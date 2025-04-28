@@ -113,9 +113,8 @@ export default function Home() {
                         <div
                             className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
                             <button
-                                id="contactBtn"
                                 onClick={() => setactiveTab('contact')}
-                                className={`group w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300 rounded-[4px] 
+                                className={`${styles.btn} group w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300 rounded-[4px] 
                                 ${
                                     activeTab === 'contact'
                                         ? 'text-[#3D9ED6] border-[#CCCCCC]'
@@ -153,9 +152,8 @@ export default function Home() {
                                 </svg>
                             </button>
                             <button
-                                id="requisiteBtn"
                                 onClick={() => setactiveTab('requisite')}
-                                className={`w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] rounded-[4px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300
+                                className={`${styles.btn} w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] rounded-[4px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300
                                  ${
                                     activeTab === 'requisite'
                                         ? 'text-[#3D9ED6] border-[#CCCCCC]'
@@ -311,7 +309,7 @@ export default function Home() {
                                 {/*)}*/}
 
                                 <button type='submit'
-                                        className="w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in">
+                                        className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
                                     <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
                                          width="23" height="20" viewBox="0 0 23 20" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -349,7 +347,7 @@ export default function Home() {
                                 />
                             </div>
                             <button
-                                className="flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] transition-colors text-[20px]">
+                                className={`flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] transition-colors text-[20px]`}>
                                 Скачать PDF
                                 <Image
                                     src='/pdf.png'
