@@ -1,0 +1,132 @@
+.contact {
+  .contactContainer {
+    .contactLeftContent {
+      width: 260px;
+
+      .btns {
+        background: rgba(0, 0, 0, 0.07);
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(2px);
+
+        button {
+          background: rgba(42, 42, 42, 0.1);
+          backdrop-filter: blur(2px);
+          border-radius: 4px;
+
+          &:hover {
+            color: #3D9ED6;
+
+            svg path {
+              fill: #cccccc;
+            }
+          }
+        }
+      }
+    }
+
+    .contactRightContent {
+      background: rgba(0, 0, 0, 0.07);
+
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(2px);
+
+      .fileIcon {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      form {
+        .selectOption {
+          background: rgba(53, 53, 53, 0.1);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(2px);
+        }
+
+        .formInpts {
+
+        }
+      }
+    }
+  }
+}
+
+button {
+  .sendIconLeft {
+    position: absolute;
+    left: 20px;
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  .sendIconRight {
+
+  }
+
+  &:hover {
+    //padding-left: 95px;
+
+    span{
+      transform: translateX(80px);
+    }
+
+    .sendIconLeft {
+      transform: translateX(0);
+      left: 20px;
+      opacity: 1;
+    }
+
+    .sendIconRight {
+      transform: translateX(50px);
+    }
+  }
+}
+
+.linear {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, #000000 100%);
+}
+
+.faqBg {
+  background-position: -460px -920px;
+}
+
+.footer {
+  .footerTop {
+    .form {
+
+      form {
+
+        button {
+
+          &:hover {
+            img {
+              transform: rotate(48deg);
+            }
+          }
+
+        }
+      }
+
+    }
+
+
+    .links {
+      .footerBtns {
+
+        img {
+          &:hover {
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+
+          // Оптимизация для Next.js Image
+          > span {
+            display: block !important; // Убираем лишние обертки
+            line-height: 0; // Убираем лишние отступы
+          }
+        }
+      }
+    }
+  }
+}
