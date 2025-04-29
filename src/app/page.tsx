@@ -51,7 +51,7 @@ export default function Home() {
     };
 
     const readFileAsText = (file: File): Promise<string> => {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             const reader = new FileReader();
             reader.onload = (e) => resolve(e.target?.result as string);
             // reader.onerror = (e) => reject(reader.error);
@@ -296,7 +296,7 @@ export default function Home() {
                                             type={isPhone ? "tel" : 'text'}
                                             fail={emailError}
                                             required={true}
-                                            message={false}
+                                            // message={false}
                                             disable={!isPhone && !isEmail}
                                             value={contactValue}
                                             onChange={(value) => setContactValue(value)}
