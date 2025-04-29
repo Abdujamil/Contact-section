@@ -1,35 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --background: #ffffff;
+    --foreground: #171717;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
 }
+
 html, body {
-  height: 100%;
+    height: 100%;
 }
+
 body {
-  background: #0a0a0a;
-  color: #ccc;
-  font-family: Arial, Helvetica, sans-serif;
+    background: #0a0a0a;
+    color: #ccc;
+    font-family: Arial, Helvetica, sans-serif;
 
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.field__input:focus, .field__textarea:focus {
+    box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
+    border: 1px solid #737373;
+    z-index: 1;
+}
+.field__input, .field__textarea {
+    /*margin-top: 25px;*/
+    z-index: 1;
+    transition: all .2s ease-in-out 0s;
+    display: block;
+    height: 50px;
+    background: #4a587d;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 12px;
+    color: #fff;
+    border: 1px solid #353535;
+    resize: none;
+    outline: none;
+    caret-color: #fff;
+}
+.field__input:focus~.field__title-top, .field__textarea:focus~.field__title-top {
+    top: -25px;
+}
+.field__title-top {
+    z-index: -1;
+}
+
+body > div.page-module-scss-module__rcUngW__contact.w-full.h-full.max-w-\[1160px\].mx-auto.flex.items-center > div > div:nth-child(2) > form > div.page-module-scss-module__rcUngW__formInpts.w-full > div.relative.z-\[0\].undefined.transition-all.duration-300 > label > span.field__title.undefined.undefined,
+body > div.page-module-scss-module__rcUngW__contact.w-full.h-full.max-w-\[1160px\].mx-auto.flex.items-center > div > div:nth-child(2) > form > div.page-module-scss-module__rcUngW__formInpts.w-full > div.w-full.relative.z-\[1\] > div > label > span.field__title.undefined.undefined {
+    opacity: 0;
+}
+
+.field__title, .field__title-top {
+    transition: all .2s ease-in-out 0s;
+    position: absolute;
+    top: 13px;
+    left: 10px;
+    font-size: 16px;
+    color: #fff;
+    max-width: calc(100% - 40px);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
+.field__title {
+    z-index: 1;
+    pointer-events: none;
+}

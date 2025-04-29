@@ -2,11 +2,22 @@
 import Image from "next/image";
 import Footer from './footer';
 import styles from "../app/page.module.scss";
-import {useState, useEffect, ChangeEvent} from "react";
+import {useState, useEffect, useRef, ChangeEvent} from "react";
 import CustomCheckbox from "@/components/CustomCheckbox";
+import {BounceEffect} from "@/components/hooks/useBounce";
+import AppInput from "@/components/forms/elements/AppInput";
+import {useForm, FormProvider} from 'react-hook-form';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import { RequisitesPDF } from '../components/RequisitesPDF/RequisitesPDF';
 
 export default function Home() {
+    const methods = useForm();
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
+
+    const [isPhone, setIsPhone] = useState(false);
+    const [isEmail, setIsEmail] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+    const [emailSuccessful, setEmailSuccessful] = useState(false);
 
     // Select
     const [isSelectOpen, setIsSelectOpen] = useState(false);
@@ -16,84 +27,83 @@ export default function Home() {
     // Checkboxes
     const [contactMethod, setContactMethod] = useState<'email' | 'phone' | null>(null);
     const [contactValue, setContactValue] = useState('');
-    const [validationStatus, setValidationStatus] = useState<{
-        email: 'neutral' | 'success' | 'fail';
-        phone: 'neutral' | 'success' | 'fail';
-    }>({email: 'neutral', phone: 'neutral'});
 
-    useEffect(() => {
-        if (contactMethod) {
-            setValidationStatus(prev => ({
-                ...prev,
-                [contactMethod]: 'neutral'
-            }));
+    const checkboxContainerRef = useRef<HTMLDivElement>(null);
+    const [failCheck, setFailCheck] = useState(false);
+
+    // Upload file
+    const [text, setText] = useState('');
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        try {
+            const content = await readFileAsText(file);
+            setText(prev => prev + content);
+
+            // Позиционируем курсор в конец текста
+            if (textareaRef.current) {
+                textareaRef.current.focus();
+                textareaRef.current.setSelectionRange(text.length, text.length);
+            }
+        } catch (error) {
+            console.error('Error reading file:', error);
         }
-    }, [contactMethod]);
+    };
 
-    const handleCheckboxChange = (method: 'email' | 'phone', checked: boolean) => {
-        if (checked) {
-            setContactMethod(method);
-            setContactValue('');
-            setValidationStatus({
-                email: 'neutral',
-                phone: 'neutral'
+    const readFileAsText = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => resolve(e.target?.result as string);
+            reader.onerror = (e) => reject(reader.error);
+            reader.readAsText(file);
+        });
+    };
+
+    // BounceEffect
+    const bounceElements = () => {
+        const myElement = document.getElementById('bounce-checkbox')
+        if (myElement) {
+            BounceEffect(myElement, {
+                startPosition: "-50px",
+                endPosition: `${5}px`,
+                duration: 500,
+                easing: "ease",
+                direction: 'vertical',
+                distanceCoficent: -1
             });
-        } else if (contactMethod === method) {
-            setContactMethod(null);
-            setContactValue('');
         }
-    };
+    }
 
-    const validateInput = (value: string, method: 'email' | 'phone') => {
-        if (method === 'email') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(value);
-        } else if (method === 'phone') {
-            const phoneRegex = /^\+?[0-9\s\-()]{10,}$/;
-            return phoneRegex.test(value);
-        }
-        return false;
-    };
+    // Validation
+    const validContact = (value: string) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setContactValue(value);
+        if ((!emailRegex.test(value.trim()) && isEmail) || (!phoneRegex.test(value.trim()) && isPhone)) {
+            setEmailError(true)
+            setEmailSuccessful(false)
 
-        if (!contactMethod) return;
-
-        if (value === '') {
-            setValidationStatus(prev => ({
-                ...prev,
-                [contactMethod]: 'neutral'
-            }));
+            return;
         } else {
-            const isValid = validateInput(value, contactMethod);
-            setValidationStatus(prev => ({
-                ...prev,
-                [contactMethod]: isValid ? 'success' : 'fail'
-            }));
+            setEmailError(false)
+            setEmailSuccessful(true)
         }
-    };
+    }
 
-    const getInputProps = () => {
-        switch (contactMethod) {
-            case 'email':
-                return {
-                    type: 'email',
-                    placeholder: 'example@email.com',
-                    pattern: '[^@\\s]+@[^@\\s]+\\.[^@\\s]+'
-                };
-            case 'phone':
-                return {
-                    type: 'tel',
-                    placeholder: '+7 (XXX) XXX-XX-XX'
-                };
-            default:
-                return {
-                    type: 'text',
-                    placeholder: 'Выберите способ связи'
-                };
-        }
+    const {reset, formState: {submitCount}, watch, clearErrors, setFocus} = methods;
+
+    // Data requisities
+    const requisitesData = {
+        companyName: "Общество с ограниченной ответственностью «АУДИОСЕКТОР»",
+        address: "180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44",
+        inn: "6000005874",
+        ogrn: "1236000004569",
+        director: "Владимиров Владимир Михайлович",
+        email: "info@audiosector.ru"
     };
 
     return (
@@ -117,7 +127,7 @@ export default function Home() {
                                 className={`${styles.btn} group w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300 rounded-[4px] 
                                 ${
                                     activeTab === 'contact'
-                                        ? 'text-[#3D9ED6] border-[#CCCCCC]'
+                                        ? 'text-[#3D9ED6] '
                                         : 'text-[#737373] border-[#353535] hover:border-[#CCCCCC]'
                                 } overflow-hidden
                                 `}>
@@ -156,7 +166,7 @@ export default function Home() {
                                 className={`${styles.btn} w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] rounded-[4px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300
                                  ${
                                     activeTab === 'requisite'
-                                        ? 'text-[#3D9ED6] border-[#CCCCCC]'
+                                        ? 'text-[#3D9ED6] '
                                         : 'text-[#737373] border-[#353535] hover:border-[#CCCCCC]'
                                 } overflow-hidden
                                 `}>
@@ -189,147 +199,212 @@ export default function Home() {
                             activeTab !== 'contact' ? 'hidden' : ''
                         }
                         `}>
-                        <form action="" method="post" className="flex items-start justify-between w-full gap-[30px]">
-                            {/* Textarea */}
-                            <div className="relative w-full max-w-[375px]">
-                                <textarea
-                                    placeholder="Комментарий"
-                                    className="w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px]"
-                                >
-                                </textarea>
-                                <div
-                                    className={`${styles.fileIcon} w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-5 right-5 cursor-pointer`}>
-                                    <svg width="21" height="22" viewBox="0 0 21 22" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1.3366 0.0775394C0.788867 0.248058 0.230801 0.81646 0.0706159 1.36936C0.00344136 1.59672 -0.00689319 2.81619 0.00344135 10.5413L0.0189432 19.4548L0.168794 19.7493C0.375485 20.1524 0.726859 20.4986 1.12991 20.6898L1.46578 20.85L4.51964 20.8655C6.4367 20.8758 7.62517 20.8603 7.70784 20.8293C8.02822 20.7053 8.12123 20.1989 7.8732 19.9509L7.74402 19.8165L4.70049 19.7907L1.65697 19.7648L1.45544 19.6047C1.04206 19.274 1.07823 20.1421 1.07823 10.4328V1.7724L1.19708 1.55021C1.27976 1.39519 1.38827 1.28668 1.54329 1.204L1.76548 1.08516H6.77257H11.7745V2.67151C11.7745 4.16485 11.7797 4.27336 11.8778 4.42838C11.9347 4.52139 11.9863 4.60407 11.9915 4.60924C12.0018 4.6144 12.8079 4.63507 13.7897 4.65058L15.5724 4.67641L15.5879 8.58287L15.5983 12.4893L15.3709 12.5772C14.849 12.7787 14.3891 13.1869 12.0277 15.5484C9.57323 18.0028 9.47505 18.1165 9.26319 18.7572C9.12884 19.1654 9.13918 19.7752 9.28903 20.2196C9.49055 20.819 9.98144 21.377 10.5602 21.6664C10.9581 21.8679 11.2629 21.9248 11.7642 21.8989C12.255 21.8679 12.6116 21.7542 13.0043 21.5011C13.1386 21.4184 14.2238 20.3643 15.4174 19.1603C17.7995 16.7627 17.8254 16.7317 17.8615 16.1168C17.8874 15.6569 17.753 15.3417 17.35 14.9593C16.9521 14.5821 16.6524 14.4426 16.2183 14.4477C15.96 14.4477 15.8205 14.4787 15.6034 14.5924C15.2314 14.7784 15.1694 14.8353 13.5727 16.463L12.1879 17.8736V18.1113C12.1879 18.442 12.3894 18.6539 12.7098 18.6539C12.932 18.6539 12.9371 18.6487 14.4098 17.1864C15.2211 16.3803 15.9393 15.6827 16.0117 15.6362C16.2183 15.4967 16.4457 15.5277 16.6524 15.7292C16.8798 15.9411 16.8901 16.0909 16.6886 16.3596C16.6059 16.4681 15.6034 17.4964 14.4563 18.6332C12.193 20.881 12.2344 20.85 11.6711 20.8396C11.1854 20.8345 10.772 20.5813 10.493 20.1059C10.3742 19.9095 10.3535 19.8062 10.3535 19.5065C10.3587 18.8502 10.3225 18.8916 12.9268 16.2976C14.8335 14.3961 15.3296 13.9258 15.6293 13.7501C16.5646 13.2024 17.4482 13.3368 18.2594 14.1532C19.1947 15.0936 19.329 15.9359 18.6935 16.8815C18.6056 17.021 17.6393 18.0235 16.549 19.1189C15.4484 20.2247 14.5441 21.1755 14.5131 21.2582C14.3891 21.5941 14.6682 21.9609 15.0505 21.9609C15.2572 21.9609 15.2831 21.9403 17.1381 20.0852C18.1716 19.0569 19.1585 18.0441 19.3239 17.8375C20.1093 16.866 20.3625 15.786 20.0473 14.7784C19.6494 13.5176 18.3473 12.3808 17.1485 12.2516L16.8643 12.2206L16.8384 8.0248L16.8126 3.82381L16.5025 3.51894C16.332 3.34842 15.4277 2.48549 14.4873 1.60705L12.7821 3.05176e-05L7.17562 0.00519753C2.53024 0.00519753 1.52779 0.0206985 1.3366 0.0775394ZM13.8931 2.68184L14.7973 3.56028H13.8569L12.9113 3.56545V2.68701C12.9113 2.20129 12.932 1.80857 12.9526 1.80857C12.9733 1.80857 13.4022 2.20129 13.8931 2.68184Z"
-                                            fill="#737373"/>
-                                        <path
-                                            d="M4.26105 7.98345C4.04402 8.09713 3.97685 8.21081 3.97168 8.45367C3.97168 8.72237 4.11636 8.91873 4.37473 8.99107C4.50391 9.03241 5.79573 9.04274 8.48271 9.03241L12.4047 9.0169L12.5545 8.84638C12.7612 8.61386 12.7612 8.33482 12.5545 8.1023L12.4047 7.93178L8.4052 7.91627C4.90696 7.90594 4.39023 7.91627 4.26105 7.98345Z"
-                                            fill="#737373"/>
-                                        <path
-                                            d="M4.12182 11.673C3.86346 11.9365 3.9358 12.3809 4.2665 12.5514C4.43186 12.6341 12.2344 12.6341 12.4205 12.5462C12.7305 12.4067 12.8028 11.9262 12.5548 11.673L12.405 11.5231H8.33831H4.27167L4.12182 11.673Z"
-                                            fill="#737373"/>
-                                        <path
-                                            d="M4.25071 15.0886C4.07503 15.1558 3.97168 15.347 3.97168 15.595C3.97168 15.7759 4.00268 15.8482 4.12153 15.9722L4.27138 16.1221H6.76201H9.25263L9.40248 15.9722C9.60401 15.7707 9.61434 15.4245 9.42832 15.2075L9.3043 15.0628L6.82918 15.0524C5.47019 15.0473 4.30755 15.0628 4.25071 15.0886Z"
-                                            fill="#737373"/>
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div className={`${styles.formInpts}`}>
-                                {/* Кастомный select */}
-                                <div className="relative mb-[34px]">
-                                    <div
-                                        className="w-full bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] cursor-pointer flex justify-between items-center"
-                                        onClick={() => setIsSelectOpen(!isSelectOpen)}
+                        <FormProvider {...methods}>
+                            <form action="" method="post"
+                                  className="flex items-start justify-between w-full gap-[30px]">
+                                {/* Textarea */}
+                                <div className="relative w-full max-w-[375px]">
+                                    <textarea
+                                        placeholder="Комментарий"
+                                        className="w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px]"
                                     >
-                                        <span>{selectedOption}</span>
-                                        <svg
-                                            width="16"
-                                            height="10"
-                                            viewBox="0 0 16 10"
-                                            fill="none"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            className={`transition-transform duration-200 ${isSelectOpen ? 'rotate-180' : ''}`}
-                                        >
-                                            <path d="M1 1L8 8L15 1" stroke="#737373" strokeWidth="2"/>
+                                    </textarea>
+
+                                    {/* Скрытый input для загрузки файла */}
+                                    <input
+                                        type="file"
+                                        ref={fileInputRef}
+                                        onChange={handleFileUpload}
+                                        accept=".txt,.text,.md,.csv,.json,.xml,.html,.log" // Можно указать нужные форматы
+                                        className="hidden"
+                                    />
+
+                                    <div
+                                        onClick={() => fileInputRef.current?.click()}
+                                        className={`${styles.fileIcon} w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-5 right-5 cursor-pointer hover:bg-[#20272A] transition-colors duration-200`}>
+                                        <svg width="21" height="22" viewBox="0 0 21 22" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M1.3366 0.0775394C0.788867 0.248058 0.230801 0.81646 0.0706159 1.36936C0.00344136 1.59672 -0.00689319 2.81619 0.00344135 10.5413L0.0189432 19.4548L0.168794 19.7493C0.375485 20.1524 0.726859 20.4986 1.12991 20.6898L1.46578 20.85L4.51964 20.8655C6.4367 20.8758 7.62517 20.8603 7.70784 20.8293C8.02822 20.7053 8.12123 20.1989 7.8732 19.9509L7.74402 19.8165L4.70049 19.7907L1.65697 19.7648L1.45544 19.6047C1.04206 19.274 1.07823 20.1421 1.07823 10.4328V1.7724L1.19708 1.55021C1.27976 1.39519 1.38827 1.28668 1.54329 1.204L1.76548 1.08516H6.77257H11.7745V2.67151C11.7745 4.16485 11.7797 4.27336 11.8778 4.42838C11.9347 4.52139 11.9863 4.60407 11.9915 4.60924C12.0018 4.6144 12.8079 4.63507 13.7897 4.65058L15.5724 4.67641L15.5879 8.58287L15.5983 12.4893L15.3709 12.5772C14.849 12.7787 14.3891 13.1869 12.0277 15.5484C9.57323 18.0028 9.47505 18.1165 9.26319 18.7572C9.12884 19.1654 9.13918 19.7752 9.28903 20.2196C9.49055 20.819 9.98144 21.377 10.5602 21.6664C10.9581 21.8679 11.2629 21.9248 11.7642 21.8989C12.255 21.8679 12.6116 21.7542 13.0043 21.5011C13.1386 21.4184 14.2238 20.3643 15.4174 19.1603C17.7995 16.7627 17.8254 16.7317 17.8615 16.1168C17.8874 15.6569 17.753 15.3417 17.35 14.9593C16.9521 14.5821 16.6524 14.4426 16.2183 14.4477C15.96 14.4477 15.8205 14.4787 15.6034 14.5924C15.2314 14.7784 15.1694 14.8353 13.5727 16.463L12.1879 17.8736V18.1113C12.1879 18.442 12.3894 18.6539 12.7098 18.6539C12.932 18.6539 12.9371 18.6487 14.4098 17.1864C15.2211 16.3803 15.9393 15.6827 16.0117 15.6362C16.2183 15.4967 16.4457 15.5277 16.6524 15.7292C16.8798 15.9411 16.8901 16.0909 16.6886 16.3596C16.6059 16.4681 15.6034 17.4964 14.4563 18.6332C12.193 20.881 12.2344 20.85 11.6711 20.8396C11.1854 20.8345 10.772 20.5813 10.493 20.1059C10.3742 19.9095 10.3535 19.8062 10.3535 19.5065C10.3587 18.8502 10.3225 18.8916 12.9268 16.2976C14.8335 14.3961 15.3296 13.9258 15.6293 13.7501C16.5646 13.2024 17.4482 13.3368 18.2594 14.1532C19.1947 15.0936 19.329 15.9359 18.6935 16.8815C18.6056 17.021 17.6393 18.0235 16.549 19.1189C15.4484 20.2247 14.5441 21.1755 14.5131 21.2582C14.3891 21.5941 14.6682 21.9609 15.0505 21.9609C15.2572 21.9609 15.2831 21.9403 17.1381 20.0852C18.1716 19.0569 19.1585 18.0441 19.3239 17.8375C20.1093 16.866 20.3625 15.786 20.0473 14.7784C19.6494 13.5176 18.3473 12.3808 17.1485 12.2516L16.8643 12.2206L16.8384 8.0248L16.8126 3.82381L16.5025 3.51894C16.332 3.34842 15.4277 2.48549 14.4873 1.60705L12.7821 3.05176e-05L7.17562 0.00519753C2.53024 0.00519753 1.52779 0.0206985 1.3366 0.0775394ZM13.8931 2.68184L14.7973 3.56028H13.8569L12.9113 3.56545V2.68701C12.9113 2.20129 12.932 1.80857 12.9526 1.80857C12.9733 1.80857 13.4022 2.20129 13.8931 2.68184Z"
+                                                fill="#737373"/>
+                                            <path
+                                                d="M4.26105 7.98345C4.04402 8.09713 3.97685 8.21081 3.97168 8.45367C3.97168 8.72237 4.11636 8.91873 4.37473 8.99107C4.50391 9.03241 5.79573 9.04274 8.48271 9.03241L12.4047 9.0169L12.5545 8.84638C12.7612 8.61386 12.7612 8.33482 12.5545 8.1023L12.4047 7.93178L8.4052 7.91627C4.90696 7.90594 4.39023 7.91627 4.26105 7.98345Z"
+                                                fill="#737373"/>
+                                            <path
+                                                d="M4.12182 11.673C3.86346 11.9365 3.9358 12.3809 4.2665 12.5514C4.43186 12.6341 12.2344 12.6341 12.4205 12.5462C12.7305 12.4067 12.8028 11.9262 12.5548 11.673L12.405 11.5231H8.33831H4.27167L4.12182 11.673Z"
+                                                fill="#737373"/>
+                                            <path
+                                                d="M4.25071 15.0886C4.07503 15.1558 3.97168 15.347 3.97168 15.595C3.97168 15.7759 4.00268 15.8482 4.12153 15.9722L4.27138 16.1221H6.76201H9.25263L9.40248 15.9722C9.60401 15.7707 9.61434 15.4245 9.42832 15.2075L9.3043 15.0628L6.82918 15.0524C5.47019 15.0473 4.30755 15.0628 4.25071 15.0886Z"
+                                                fill="#737373"/>
                                         </svg>
                                     </div>
+                                </div>
 
-                                    {isSelectOpen && (
+                                <div className={`${styles.formInpts} w-full`}>
+                                    {/* Кастомный select */}
+                                    <div className="relative mb-[34px]">
                                         <div
-                                            className={`${styles.selectOption} absolute right-[15px] top-[30px] z-10 w-full max-w-[210px] mt-1  border border-[#353535] rounded-[4px] shadow-lg`}>
-                                            {options.map((option, index) => (
-                                                <div
-                                                    key={index}
-                                                    className={`px-4 py-2 cursor-pointer hover:bg-[#1a1a1a] hover:text-[#CCC] ${
-                                                        selectedOption === option ? 'text-[#3D9ED6] border-b border-b-[#3D9ED6]' : 'text-[#737373]'
-                                                    }`}
-                                                    onClick={() => {
-                                                        setSelectedOption(option);
-                                                        setIsSelectOpen(false);
-                                                    }}
-                                                >
-                                                    {option}
-                                                </div>
-                                            ))}
+                                            className="w-full bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] cursor-pointer flex justify-between items-center"
+                                            onClick={() => setIsSelectOpen(!isSelectOpen)}
+                                        >
+                                            <span>{selectedOption}</span>
+                                            <svg
+                                                width="16"
+                                                height="10"
+                                                viewBox="0 0 16 10"
+                                                fill="none"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                className={`transition-transform duration-200 ${isSelectOpen ? 'rotate-180' : ''}`}
+                                            >
+                                                <path d="M1 1L8 8L15 1" stroke="#737373" strokeWidth="2"/>
+                                            </svg>
                                         </div>
-                                    )}
-                                </div>
 
-                                {/* Остальные поля формы */}
-                                <input
-                                    type="text"
-                                    placeholder="ФИО"
-                                    className="w-full bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] mb-[34px] active:outline-none focus:outline-none  "
-                                />
+                                        {isSelectOpen && (
+                                            <div
+                                                className={`${styles.selectOption} absolute right-[15px] top-[30px] z-[99999] w-full max-w-[210px] mt-1  border border-[#353535] rounded-[4px]`}>
+                                                {options.map((option, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className={`px-4 py-2 cursor-pointer hover:bg-[#1a1a1a] hover:text-[#CCC] ${
+                                                            selectedOption === option ? 'text-[#3D9ED6] border-b border-b-[#3D9ED6]' : 'text-[#737373]'
+                                                        }`}
+                                                        onClick={() => {
+                                                            setSelectedOption(option);
+                                                            setIsSelectOpen(false);
+                                                        }}
+                                                    >
+                                                        {option}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
 
-
-                                <input
-                                    {...getInputProps()}
-                                    value={contactValue}
-                                    onChange={handleInputChange}
-                                    disabled={!contactMethod}
-                                    className={`w-full bg-[#101010] border ${
-                                        validationStatus[contactMethod || 'email'] === 'fail'
-                                            ? 'border-[#FF3030]'
-                                            : validationStatus[contactMethod || 'email'] === 'success'
-                                                ? 'border-[#34C759]'
-                                                : 'border-[#353535]'
-                                    } rounded-[4px] px-4 py-3 text-[#ccc] mb-[10px] active:outline-none focus:outline-none ${
-                                        !contactMethod ? 'opacity-50 cursor-not-allowed' : ''
-                                    }`}
-                                />
-                                <div className={`${styles.formCheckboxes} flex items-center gap-[20px]`}>
-                                    <CustomCheckbox
-                                        id="phone"
-                                        label="Телефон"
-                                        checked={contactMethod === 'phone'}
-                                        onChange={(checked) => handleCheckboxChange('phone', checked)}
-                                        fail={validationStatus.phone === 'fail'}
-                                        successful={validationStatus.phone === 'success'}
-                                    />
-                                    <CustomCheckbox
-                                        id="email"
-                                        label="Email"
-                                        checked={contactMethod === 'email'}
-                                        onChange={(checked) => handleCheckboxChange('email', checked)}
-                                        fail={validationStatus.email === 'fail'}
-                                        successful={validationStatus.email === 'success'}
+                                    <AppInput
+                                        className="w-full mb-[34px] !bg-[#101010] focus:!bg-[#21262F]"
+                                        title={'ФИО'}
+                                        inputName="name"
+                                        required={true}
                                     />
 
-                                </div>
-                                {/*{validationStatus[contactMethod || 'email'] === 'fail' && (*/}
-                                {/*    <p className="text-[#FF3030] text-sm mt-2">*/}
-                                {/*        {contactMethod === 'email'*/}
-                                {/*            ? 'Введите корректный email (например: example@mail.com)'*/}
-                                {/*            : 'Введите корректный номер телефона (например: +7 999 123-45-67)'}*/}
-                                {/*    </p>*/}
-                                {/*)}*/}
+                                    <div
+                                        onClick={() => {
+                                            if (!isEmail && !isPhone) {
+                                                bounceElements()
+                                                setFailCheck(true)
+                                            } else {
+                                                setFailCheck(false)
 
-                                <button type='submit'
-                                        className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
-                                    <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
-                                         width="23" height="20" viewBox="0 0 23 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
-                                            fill="#CCCCCC"/>
-                                    </svg>
-                                    <span className="transition-all duration-300 ease-in">
+                                            }
+                                            setEmailError(false)
+                                        }}
+                                        className="w-full relative z-[1]"
+                                    >
+                                        {/*<input*/}
+                                        {/*    {...getInputProps()}*/}
+                                        {/*    value={contactValue}*/}
+                                        {/*    onChange={handleInputChange}*/}
+                                        {/*    disabled={!contactMethod}*/}
+                                        {/*    className={`${styles.inptEmailPhone} w-full bg-[#101010] border ${*/}
+                                        {/*        validationStatus[contactMethod || 'email'] === 'fail'*/}
+                                        {/*            ? 'text-[#FF3030] active:scale-[0.95]'*/}
+                                        {/*            : validationStatus[contactMethod || 'email'] === 'success'*/}
+                                        {/*                ? 'border-[#737373] bg-[#20272A]'*/}
+                                        {/*                : 'border-[#353535] text-[#ccc]'*/}
+                                        {/*    } rounded-[4px] px-4 py-3  mb-[10px] active:outline-none focus:bg-[#20272A] focus:outline-none focus:border focus:border-[#737373] ${*/}
+                                        {/*        !contactMethod ? 'opacity-100' : ''*/}
+                                        {/*    } transition-transform duration-300 `}*/}
+                                        {/*/>*/}
+
+                                        <AppInput
+                                            className="w-full !bg-[#101010] focus:!bg-[#20272A]"
+                                            title={isPhone ? 'Телефон' : isEmail ? 'Email' : ''}
+                                            inputName="Contact"
+                                            mask={isPhone ? "phone" : ''}
+                                            type={isPhone ? "tel" : 'text'}
+                                            fail={emailError}
+                                            required={true}
+                                            message={false}
+                                            disable={!isPhone && !isEmail}
+                                            value={contactValue}
+                                            onChange={(value) => setContactValue(value)}
+                                            onBlur={() => validContact(contactValue)}
+                                        />
+                                    </div>
+
+                                    <div
+                                        id='bounce-checkbox'
+                                        ref={checkboxContainerRef}
+                                        className={`${styles.formCheckboxes} flex items-center gap-[20px] mt-[10px] ml-[10px]`}>
+
+                                        {/*<CustomCheckbox*/}
+                                        {/*    id="phone"*/}
+                                        {/*    label="Телефон"*/}
+                                        {/*    checked={contactMethod === 'phone'}*/}
+                                        {/*    onChange={(checked) => handleCheckboxChange('phone', checked)}*/}
+                                        {/*    fail={validationStatus.phone === 'fail'}*/}
+                                        {/*    successful={validationStatus.phone === 'success'}*/}
+                                        {/*/>*/}
+                                        {/*<CustomCheckbox*/}
+                                        {/*    id="email"*/}
+                                        {/*    label="Email"*/}
+                                        {/*    checked={contactMethod === 'email'}*/}
+                                        {/*    onChange={(checked) => handleCheckboxChange('email', checked)}*/}
+                                        {/*    fail={validationStatus.email === 'fail'}*/}
+                                        {/*    successful={validationStatus.email === 'success'}*/}
+                                        {/*/>*/}
+
+                                        <CustomCheckbox id="check-phone" successful={emailSuccessful} fail={failCheck}
+                                                        checked={isPhone} onChange={(value) => {
+                                            setIsPhone(value);
+                                            if (value) {
+                                                setIsEmail(false);
+                                                setFocus('Contact');
+                                                setEmailSuccessful(false)
+                                            }
+                                        }} label="Телефон"/>
+                                        <CustomCheckbox id="check-email" successful={emailSuccessful} fail={failCheck}
+                                                        checked={isEmail} onChange={(value) => {
+                                            setIsEmail(value);
+                                            if (value) {
+                                                setIsPhone(false);
+                                                setFocus('Contact');
+                                                setEmailSuccessful(false)
+                                            }
+                                        }} label="Email"/>
+                                    </div>
+                                    {/*{validationStatus[contactMethod || 'email'] === 'fail' && (*/}
+                                    {/*    <p className="text-[#FF3030] text-sm mt-2">*/}
+                                    {/*        {contactMethod === 'email'*/}
+                                    {/*            ? 'Введите корректный email (например: example@mail.com)'*/}
+                                    {/*            : 'Введите корректный номер телефона (например: +7 999 123-45-67)'}*/}
+                                    {/*    </p>*/}
+                                    {/*)}*/}
+
+                                    <button type='submit'
+                                            className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
+                                        <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
+                                             width="23" height="20" viewBox="0 0 23 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
+                                                fill="#CCCCCC"/>
+                                        </svg>
+                                        <span className="transition-all duration-300 ease-in">
                                         Отправить
                                     </span>
-                                    <svg className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}
-                                         width="23" height="20" viewBox="0 0 23 20" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
-                                            fill="#CCCCCC"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
+                                        <svg className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}
+                                             width="23" height="20" viewBox="0 0 23 20" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
+                                                fill="#CCCCCC"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </FormProvider>
                     </div>
 
                     {/* Блок "Реквизиты" */}
@@ -339,7 +414,8 @@ export default function Home() {
                         }`}>
                         <div className="flex justify-between items-end  mb-5">
                             <div className="w-full max-w-[516px]">
-                                <label className="block text-lg font-normal text-white mb-2 leading-[110%]">Полное наименование</label>
+                                <label className="block text-lg font-normal text-white mb-2 leading-[110%]">Полное
+                                    наименование</label>
                                 <input
                                     type="text"
                                     defaultValue="Общество с ограниченной ответственностью «АУДИОСЕКТОР»"
@@ -356,10 +432,31 @@ export default function Home() {
                                     alt="pdf-icon"
                                 />
                             </button>
+
+                            {/*<PDFDownloadLink*/}
+                            {/*    document={<RequisitesPDF data={requisitesData} />}*/}
+                            {/*    fileName="реквизиты_аудиосектор.pdf"*/}
+                            {/*>*/}
+                            {/*    {({ loading }) => (*/}
+                            {/*        <button*/}
+                            {/*            className={`flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] transition-colors text-[20px]`}*/}
+                            {/*            disabled={loading}*/}
+                            {/*        >*/}
+                            {/*            {loading ? 'Генерация...' : 'Скачать PDF'}*/}
+                            {/*            <Image*/}
+                            {/*                src='/pdf.png'*/}
+                            {/*                width={26}*/}
+                            {/*                height={39}*/}
+                            {/*                alt="pdf-icon"*/}
+                            {/*            />*/}
+                            {/*        </button>*/}
+                            {/*    )}*/}
+                            {/*</PDFDownloadLink>*/}
                         </div>
 
                         <div className="mb-6">
-                            <label className="block text-lg font-light text-white mb-2 leading-[110%]">Юридический адрес</label>
+                            <label className="block text-lg font-light text-white mb-2 leading-[110%]">Юридический
+                                адрес</label>
                             <input
                                 type="text"
                                 defaultValue="180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44"
@@ -370,7 +467,8 @@ export default function Home() {
                         <div className="space-y-[14px]">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-lg font-normal text-white mb-2 leading-[110%]">ИНН</label>
+                                    <label
+                                        className="block text-lg font-normal text-white mb-2 leading-[110%]">ИНН</label>
                                     <input
                                         type="text"
                                         defaultValue="6000005874"
@@ -379,7 +477,8 @@ export default function Home() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-lg font-normal text-white mb-2 leading-[110%]">ОГРН</label>
+                                    <label
+                                        className="block text-lg font-normal text-white mb-2 leading-[110%]">ОГРН</label>
                                     <input
                                         type="text"
                                         defaultValue="1236000004569"
@@ -400,7 +499,8 @@ export default function Home() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-lg font-normal text-white mb-2 leading-[110%]">Почта</label>
+                                    <label
+                                        className="block text-lg font-normal text-white mb-2 leading-[110%]">Почта</label>
                                     <input
                                         type="email"
                                         defaultValue="info@audiosector.ru"
