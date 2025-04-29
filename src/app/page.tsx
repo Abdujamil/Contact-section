@@ -7,10 +7,15 @@ import CustomCheckbox from "@/components/CustomCheckbox";
 import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
+import axios from "axios";
 
 export default function Home() {
-    const methods = useForm();
-    const {handleSubmit, trigger, reset} = methods;
+    const methods = useForm({
+        mode: "onTouched",
+        reValidateMode: "onChange",
+        shouldFocusError: false
+    });
+    const {handleSubmit, formState: { submitCount }, trigger, reset} = methods;
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
 
     const [isPhone, setIsPhone] = useState(false);
@@ -51,6 +56,24 @@ export default function Home() {
         return () => clearInterval(timer);
     }, [isSubmitted, methods]);
 
+    useEffect(() => {
+        if (!submitCount) return;
+
+        if (!isEmail && !isPhone) {
+            bounceElements()
+            setFailCheck(true)
+
+        } else {
+            setFailCheck(false)
+            validContact(contactValue)
+        }
+    }, [submitCount])
+
+    useEffect(() => {
+        if (emailError && contactValue.length > 0) {
+            setEmailError(false)
+        }
+    }, [contactValue])
 
     // Upload file
     const [text, setText] = useState('');
@@ -99,6 +122,19 @@ export default function Home() {
         }
     }
 
+    const successVisible = () => {
+        const myElement = document.getElementById('form-main')
+        if (myElement) {
+            BounceEffect(myElement, {
+                startPosition: "-0",
+                endPosition: `${20}px`,
+                duration: 300,
+                easing: "ease-in-out",
+                direction: 'vertical'
+            });
+        }
+    }
+
     // Validation
     // const validContact = (value: string) => {
     //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -130,39 +166,177 @@ export default function Home() {
     const {setFocus} = methods;
 
     // OnSubmit
-    const onSubmit = async (data: any) => {
-        // Сбрасываем состояние ошибок
-        setFailCheck(false);
-        setEmailError(false);
+    // const onSubmit = async (data: any) => {
+    //
+    //     const isFormValid = await trigger(undefined, { shouldFocus: true });
+    //
+    //     const isContactMethodSelected = isEmail || isPhone;
+    //
+    //     // Сбрасываем состояние ошибок
+    //     setFailCheck(false);
+    //     setEmailError(false);
+    //
+    //     // Проверка выбора способа контакта
+    //     if (!isEmail && !isPhone) {
+    //         bounceElements();
+    //         setFailCheck(true);
+    //         console.log('Error');
+    //         return;
+    //     }
+    //
+    //     // Проверка валидности контакта
+    //     if (!validContact(contactValue)) {
+    //         bounceElements();
+    //         setFailCheck(true);
+    //         console.log('Error2');
+    //         return;
+    //     }
+    //
+    //     // Проверка всех полей формы
+    //     if (!isFormValid) {
+    //         bounceElements();
+    //         console.log('Error3');
+    //         return;
+    //     }
+    //
+    //     // Если все проверки пройдены
+    //     console.log('Форма отправлена:', data);
+    //     reset();
+    //     setIsSubmitted(true); // Показываем таймер
+    //
+    //     // Здесь можно добавить отправку данных на сервер
+    //     // await submitToServer(data);
+    // };
 
-        // Проверка выбора способа контакта
-        if (!isEmail && !isPhone) {
-            bounceElements();
-            setFailCheck(true);
-            return;
-        }
+    // const onSubmit = async (data: any) => {
+    //     const formData = new FormData();
+    //
+    //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //     const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
+    //
+    //     if ((!emailRegex.test(data.Contact.trim()) && isEmail) || (!phoneRegex.test(data.Contact.trim()) && isPhone)) {
+    //         setEmailError(true)
+    //         setEmailSuccessful(false)
+    //         return;
+    //     } else {
+    //         setEmailError(false)
+    //     }
+    //
+    //     for (const key in data) {
+    //         if (data.hasOwnProperty(key)) {
+    //             formData.append(key, data[key]);
+    //         }
+    //     }
+    //
+    //     // 1. Принудительно активируем валидацию ВСЕХ полей
+    //     const isFormValid = await trigger(undefined, {shouldFocus: true});
+    //
+    //     // 2. Проверяем, заполнен ли хотя бы один способ связи
+    //     const isContactMethodSelected = isEmail || isPhone;
+    //
+    //     // 3. Проверяем валидность контакта (если способ выбран)
+    //     const isContactValid = isContactMethodSelected ? validContact(contactValue) : false;
+    //
+    //     // Если есть ошибки - показываем bounce-эффект
+    //     if (!isFormValid || !isContactMethodSelected || !isContactValid) {
+    //         bounceElements(); // Всегда срабатывает при ошибках
+    //         setFailCheck(true);
+    //
+    //         if (!isContactMethodSelected) {
+    //             console.log('Ошибка: не выбран способ связи');
+    //         } else if (!isContactValid) {
+    //             console.log('Ошибка: неверный формат контакта');
+    //         } else {
+    //             console.log('Ошибка: не заполнены обязательные поля');
+    //         }
+    //
+    //         return;
+    //     }
+    //
+    //     try {
+    //         const response = await axios.post('/api/feedback', formData);
+    //         if (response.status === 200 || 201) {
+    //             reset();
+    //             setIsPhone(false);
+    //             setIsEmail(false);
+    //             // openDefaultModal('successMessage');
+    //             successVisible()
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    //
+    //
+    //     // Если все проверки пройдены
+    //     console.log('Форма отправлена:', data);
+    //     reset();
+    //     setIsSubmitted(true);
+    // };
+
+    interface FormData {
+        [key: string]: string | File;
+    }
+
+    const onSubmit = async (data: Record<string, unknown>) => {
+        const formData = new FormData();
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
 
         // Проверка валидности контакта
-        if (!validContact(contactValue)) {
+        const contactValue = typeof data.Contact === 'string' ? data.Contact : '';
+        if ((!emailRegex.test(contactValue.trim()) && isEmail) ||
+            (!phoneRegex.test(contactValue.trim()) && isPhone)) {
+            setEmailError(true);
+            setEmailSuccessful(false);
+            return;
+        } else {
+            setEmailError(false);
+        }
+
+        // Заполнение FormData
+        Object.entries(data).forEach(([key, value]) => {
+            if (value !== undefined && value !== null) {
+                formData.append(key, value instanceof Blob ? value : String(value));
+            }
+        });
+
+        // Валидация формы
+        const isFormValid = await trigger(undefined, { shouldFocus: true });
+        const isContactMethodSelected = isEmail || isPhone;
+        const isContactValid = isContactMethodSelected ? validContact(contactValue) : false;
+
+        // Обработка ошибок
+        if (!isFormValid || !isContactMethodSelected || !isContactValid) {
             bounceElements();
             setFailCheck(true);
+
+            if (!isContactMethodSelected) {
+                console.log('Ошибка: не выбран способ связи');
+            } else if (!isContactValid) {
+                console.log('Ошибка: неверный формат контакта');
+            } else {
+                console.log('Ошибка: не заполнены обязательные поля');
+            }
             return;
         }
 
-        // Проверка всех полей формы
-        const isFormValid = await trigger();
-        if (!isFormValid) {
-            bounceElements();
-            return;
-        }
+        // Отправка данных
+        // try {
+        //     const response = await axios.post('/api/feedback', formData);
+        //     if (response.status === 200 || response.status === 201) {
+        //         reset();
+        //         setIsPhone(false);
+        //         setIsEmail(false);
+        //         successVisible();
+        //     }
+        // } catch (error) {
+        //     console.error('Ошибка отправки формы:', error);
+        // }
 
-        // Если все проверки пройдены
+        // Сброс формы
         console.log('Форма отправлена:', data);
         reset();
-        setIsSubmitted(true); // Показываем таймер
-
-        // Здесь можно добавить отправку данных на сервер
-        // await submitToServer(data);
+        setIsSubmitted(true);
     };
 
     return (
@@ -253,7 +427,7 @@ export default function Home() {
                         </div>
 
                         {/* Блок "Связаться" */}
-                        <div
+                        <div id="form-main"
                             className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 
                         ${
                                 activeTab !== 'contact' ? 'hidden' : ''
@@ -266,12 +440,13 @@ export default function Home() {
                                         <p>Форма будет доступна через: {countdown} сек.</p>
                                     </div>
                                 ) : (
-                                    <form method="post" onSubmit={handleSubmit(onSubmit)}
+                                    <form method="post" onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data"
                                           className="flex items-start justify-between w-full gap-[30px]">
                                         {/* Textarea */}
                                         <div className="relative w-full max-w-[375px]">
                                     <textarea
                                         placeholder="Комментарий"
+                                        name='comment'
                                         className="w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#21262F] focus:border focus:border-[#737373] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px]"
                                     >
                                     </textarea>
