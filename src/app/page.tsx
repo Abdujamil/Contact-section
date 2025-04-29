@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Footer from './footer';
 import styles from "../app/page.module.scss";
-import {useState, useEffect, useRef, ChangeEvent} from "react";
+import {useState, useRef} from "react";
 import CustomCheckbox from "@/components/CustomCheckbox";
 import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
@@ -22,7 +22,6 @@ export default function Home() {
     const options = ['Сотрудничество', 'Предложение', 'Ошибка', 'Оплата', 'Изменение данных', 'Подключиться к API']
 
     // Checkboxes
-    const [contactMethod, setContactMethod] = useState<'email' | 'phone' | null>(null);
     const [contactValue, setContactValue] = useState('');
 
     const checkboxContainerRef = useRef<HTMLDivElement>(null);
@@ -91,17 +90,7 @@ export default function Home() {
         }
     }
 
-    const {reset, formState: {submitCount}, watch, clearErrors, setFocus} = methods;
-
-    // Data requisities
-    const requisitesData = {
-        companyName: "Общество с ограниченной ответственностью «АУДИОСЕКТОР»",
-        address: "180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44",
-        inn: "6000005874",
-        ogrn: "1236000004569",
-        director: "Владимиров Владимир Михайлович",
-        email: "info@audiosector.ru"
-    };
+    const {setFocus} = methods;
 
     return (
         <>
@@ -298,21 +287,6 @@ export default function Home() {
                                         }}
                                         className="w-full relative z-[1]"
                                     >
-                                        {/*<input*/}
-                                        {/*    {...getInputProps()}*/}
-                                        {/*    value={contactValue}*/}
-                                        {/*    onChange={handleInputChange}*/}
-                                        {/*    disabled={!contactMethod}*/}
-                                        {/*    className={`${styles.inptEmailPhone} w-full bg-[#101010] border ${*/}
-                                        {/*        validationStatus[contactMethod || 'email'] === 'fail'*/}
-                                        {/*            ? 'text-[#FF3030] active:scale-[0.95]'*/}
-                                        {/*            : validationStatus[contactMethod || 'email'] === 'success'*/}
-                                        {/*                ? 'border-[#737373] bg-[#20272A]'*/}
-                                        {/*                : 'border-[#353535] text-[#ccc]'*/}
-                                        {/*    } rounded-[4px] px-4 py-3  mb-[10px] active:outline-none focus:bg-[#20272A] focus:outline-none focus:border focus:border-[#737373] ${*/}
-                                        {/*        !contactMethod ? 'opacity-100' : ''*/}
-                                        {/*    } transition-transform duration-300 `}*/}
-                                        {/*/>*/}
 
                                         <AppInput
                                             className="w-full !bg-[#101010] focus:!bg-[#20272A]"
@@ -335,23 +309,6 @@ export default function Home() {
                                         ref={checkboxContainerRef}
                                         className={`${styles.formCheckboxes} flex items-center gap-[20px] mt-[10px] ml-[10px]`}>
 
-                                        {/*<CustomCheckbox*/}
-                                        {/*    id="phone"*/}
-                                        {/*    label="Телефон"*/}
-                                        {/*    checked={contactMethod === 'phone'}*/}
-                                        {/*    onChange={(checked) => handleCheckboxChange('phone', checked)}*/}
-                                        {/*    fail={validationStatus.phone === 'fail'}*/}
-                                        {/*    successful={validationStatus.phone === 'success'}*/}
-                                        {/*/>*/}
-                                        {/*<CustomCheckbox*/}
-                                        {/*    id="email"*/}
-                                        {/*    label="Email"*/}
-                                        {/*    checked={contactMethod === 'email'}*/}
-                                        {/*    onChange={(checked) => handleCheckboxChange('email', checked)}*/}
-                                        {/*    fail={validationStatus.email === 'fail'}*/}
-                                        {/*    successful={validationStatus.email === 'success'}*/}
-                                        {/*/>*/}
-
                                         <CustomCheckbox id="check-phone" successful={emailSuccessful} fail={failCheck}
                                                         checked={isPhone} onChange={(value) => {
                                             setIsPhone(value);
@@ -371,13 +328,6 @@ export default function Home() {
                                             }
                                         }} label="Email"/>
                                     </div>
-                                    {/*{validationStatus[contactMethod || 'email'] === 'fail' && (*/}
-                                    {/*    <p className="text-[#FF3030] text-sm mt-2">*/}
-                                    {/*        {contactMethod === 'email'*/}
-                                    {/*            ? 'Введите корректный email (например: example@mail.com)'*/}
-                                    {/*            : 'Введите корректный номер телефона (например: +7 999 123-45-67)'}*/}
-                                    {/*    </p>*/}
-                                    {/*)}*/}
 
                                     <button type='submit'
                                             className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
