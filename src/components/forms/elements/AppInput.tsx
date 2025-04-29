@@ -29,12 +29,13 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                                                   mask,
                                                                   className,
                                                                   classNameTitle,
-                                                                  value,
+                                                                  value: propValue,
                                                                   onChange,
                                                                   onBlur
                                                               }, ref) => {
     const {register, formState: {errors, isSubmitted, submitCount}, setValue, watch} = useFormContext();
     const [visibleError, setVisibleError] = useState(false);
+    const [internalValue, setInternalValue] = useState('');
 
     const formatPhoneNumber = (value: string) => {
         let cleaned = value.replace(/\D/g, '');
@@ -61,6 +62,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
             value = formatPhoneNumber(value);
         }
 
+        setInternalValue(value);
         setValue(inputName, value);
         if (onChange) {
             onChange(value);
@@ -73,8 +75,13 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     }, [submitCount]);
 
     useEffect(() => {
-        setValue(inputName, '');
-    }, [title, inputName, setValue]);
+        const subscription = watch((value, { name }) => {
+            if (name === inputName && !value[inputName]) {
+                setInternalValue('');
+            }
+        });
+        return () => subscription.unsubscribe();
+    }, [inputName, watch]);
 
     return (
         <div className={`relative z-[0] ${disable && 'active:scale-[0.95]'} transition-all duration-300`}>
@@ -87,7 +94,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     className={`field__input ${className} ${fail && 'error !text-[red]'}`}
                     placeholder={title}
                     autoComplete="off"
-                    value={value || watch(inputName) || ''}
+                    value={propValue !== undefined ? propValue : internalValue}
                     onChange={handleChange}
                     onBlur={(e) => {
                         if (onBlur) onBlur(e.target.value);

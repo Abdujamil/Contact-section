@@ -94,10 +94,20 @@
       transform: translateX(80px);
     }
 
+    .pdfBtn{
+      transform: translateX(40px);
+    }
+
+
+
     .sendIconLeft {
       transform: translateX(0);
       left: 20px;
       opacity: 1;
+    }
+
+    img.sendIconRight{
+      transform: translateX(60px);
     }
 
     .sendIconRight {

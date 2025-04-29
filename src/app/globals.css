@@ -5,6 +5,10 @@
     --foreground: #171717;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -63,12 +67,9 @@ body {
 .field__title-top {
     z-index: -1;
 }
-
 .field__input:focus~.field__title, .field__input:hover~.field__title, .field__textarea:focus~.field__title, .field__textarea:hover~.field__title {
     opacity: 0;
 }
-
-
 .field__title, .field__title-top {
     transition: all .2s ease-in-out 0s;
     position: absolute;
