@@ -7,9 +7,6 @@ import CustomCheckbox from "@/components/CustomCheckbox";
 import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { RequisitesPDF } from '../components/RequisitesPDF/RequisitesPDF';
-
 export default function Home() {
     const methods = useForm();
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
@@ -432,26 +429,6 @@ export default function Home() {
                                     alt="pdf-icon"
                                 />
                             </button>
-
-                            {/*<PDFDownloadLink*/}
-                            {/*    document={<RequisitesPDF data={requisitesData} />}*/}
-                            {/*    fileName="реквизиты_аудиосектор.pdf"*/}
-                            {/*>*/}
-                            {/*    {({ loading }) => (*/}
-                            {/*        <button*/}
-                            {/*            className={`flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] transition-colors text-[20px]`}*/}
-                            {/*            disabled={loading}*/}
-                            {/*        >*/}
-                            {/*            {loading ? 'Генерация...' : 'Скачать PDF'}*/}
-                            {/*            <Image*/}
-                            {/*                src='/pdf.png'*/}
-                            {/*                width={26}*/}
-                            {/*                height={39}*/}
-                            {/*                alt="pdf-icon"*/}
-                            {/*            />*/}
-                            {/*        </button>*/}
-                            {/*    )}*/}
-                            {/*</PDFDownloadLink>*/}
                         </div>
 
                         <div className="mb-6">
