@@ -7,7 +7,7 @@ import CustomCheckbox from "@/components/CustomCheckbox";
 import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
-import axios from "axios";
+// import axios from "axios";
 
 export default function Home() {
     const methods = useForm({
@@ -122,18 +122,18 @@ export default function Home() {
         }
     }
 
-    const successVisible = () => {
-        const myElement = document.getElementById('form-main')
-        if (myElement) {
-            BounceEffect(myElement, {
-                startPosition: "-0",
-                endPosition: `${20}px`,
-                duration: 300,
-                easing: "ease-in-out",
-                direction: 'vertical'
-            });
-        }
-    }
+    // const successVisible = () => {
+    //     const myElement = document.getElementById('form-main')
+    //     if (myElement) {
+    //         BounceEffect(myElement, {
+    //             startPosition: "-0",
+    //             endPosition: `${20}px`,
+    //             duration: 300,
+    //             easing: "ease-in-out",
+    //             direction: 'vertical'
+    //         });
+    //     }
+    // }
 
     // Validation
     // const validContact = (value: string) => {
@@ -273,9 +273,9 @@ export default function Home() {
     //     setIsSubmitted(true);
     // };
 
-    interface FormData {
-        [key: string]: string | File;
-    }
+    // interface FormData {
+    //     [key: string]: string | File;
+    // }
 
     const onSubmit = async (data: Record<string, unknown>) => {
         const formData = new FormData();
