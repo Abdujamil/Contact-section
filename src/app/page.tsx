@@ -330,7 +330,7 @@ export default function Home() {
                                     </div>
 
                                     <button type='submit'
-                                            className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
+                                            className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
                                         <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
                                              width="23" height="20" viewBox="0 0 23 20" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
