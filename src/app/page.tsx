@@ -447,7 +447,7 @@ export default function Home() {
                                     <textarea
                                         placeholder="Комментарий"
                                         name='comment'
-                                        className="w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#21262F] focus:border focus:border-[#737373] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px]"
+                                        className="w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200"
                                     >
                                     </textarea>
 
@@ -523,7 +523,7 @@ export default function Home() {
                                             </div>
 
                                             <AppInput
-                                                className="w-full mb-[34px] !bg-[#101010] focus:!bg-[#21262F]"
+                                                className="w-full mb-[34px] !bg-[#101010] focus:!bg-[#20272A]"
                                                 title={'ФИО'}
                                                 inputName="name"
                                                 required={true}
@@ -544,7 +544,7 @@ export default function Home() {
                                             >
 
                                                 <AppInput
-                                                    className="w-full !bg-[#101010] focus:!bg-[#21262F] !placeholder-opacity-0"
+                                                    className="w-full !bg-[#101010] focus:!bg-[#20272A] !placeholder-opacity-0"
                                                     title={isPhone ? 'Телефон' : isEmail ? 'Email' : ''}
                                                     inputName="Contact"
                                                     mask={isPhone ? "phone" : ''}
