@@ -289,7 +289,7 @@ export default function Home() {
                                     >
 
                                         <AppInput
-                                            className="w-full !bg-[#101010] focus:!bg-[#20272A]"
+                                            className="w-full !bg-[#101010] focus:!bg-[#20272A] !placeholder-opacity-0"
                                             title={isPhone ? 'Телефон' : isEmail ? 'Email' : ''}
                                             inputName="Contact"
                                             mask={isPhone ? "phone" : ''}

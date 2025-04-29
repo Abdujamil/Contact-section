@@ -1,5 +1,6 @@
 import React, {useEffect, useState, forwardRef} from 'react';
 import {useFormContext} from "react-hook-form";
+import styles from '../../../app/page.module.scss';
 
 interface AppInputProps {
     title: string;
@@ -96,12 +97,12 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         }
                     }}
                 />
-                <span className={`field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
-          {title}
-        </span>
-                <span className={`field__title-top ${classNameTitle}`}>
-          {title}
-        </span>
+                <span className={`${styles.titleTop} field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
+                  {title}
+                </span>
+                <span className={`${styles.titleBottom} field__title-top ${classNameTitle}`}>
+                  {title}
+                </span>
             </label>
         </div>
     );

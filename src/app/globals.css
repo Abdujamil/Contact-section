@@ -65,13 +65,9 @@ body {
 }
 
 .field__input:focus~.field__title, .field__input:hover~.field__title, .field__textarea:focus~.field__title, .field__textarea:hover~.field__title {
-    opacity: 0 !important;
-}
-
-body > div.page-module-scss-module__rcUngW__contact.w-full.h-full.max-w-\[1160px\].mx-auto.flex.items-center > div > div:nth-child(2) > form > div.page-module-scss-module__rcUngW__formInpts.w-full > div.relative.z-\[0\].undefined.transition-all.duration-300 > label > span.field__title.undefined.undefined,
-body > div.page-module-scss-module__rcUngW__contact.w-full.h-full.max-w-\[1160px\].mx-auto.flex.items-center > div > div:nth-child(2) > form > div.page-module-scss-module__rcUngW__formInpts.w-full > div.w-full.relative.z-\[1\] > div > label > span.field__title.undefined.undefined {
     opacity: 0;
 }
+
 
 .field__title, .field__title-top {
     transition: all .2s ease-in-out 0s;
@@ -85,6 +81,9 @@ body > div.page-module-scss-module__rcUngW__contact.w-full.h-full.max-w-\[1160px
     text-overflow: ellipsis;
 }
 
+input::placeholder {
+    opacity: 0;
+}
 
 .field__title {
     z-index: 1;
