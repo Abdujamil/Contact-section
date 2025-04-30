@@ -35,6 +35,12 @@
 .glassButton:nth-child(2):hover,
 .glassButton:hover {
     border-color: #ccc !important;
+    color: #ccc;
+}
+
+.glassButton:nth-child(2):hover svg path,
+.glassButton:hover svg path{
+    fill: #ccc !important;
 }
 
 .glassButton::before {
