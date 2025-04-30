@@ -43,6 +43,7 @@ body {
     border: 1px solid #737373;
     z-index: 1;
 }
+
 .field__input, .field__textarea {
     /*margin-top: 25px;*/
     z-index: 1;
@@ -61,15 +62,19 @@ body {
     outline: none;
     caret-color: #fff;
 }
-.field__input:focus~.field__title-top, .field__textarea:focus~.field__title-top {
+
+.field__input:focus ~ .field__title-top, .field__textarea:focus ~ .field__title-top {
     top: -25px;
 }
+
 .field__title-top {
     z-index: -1;
 }
-.field__input:focus~.field__title, .field__input:hover~.field__title, .field__textarea:focus~.field__title, .field__textarea:hover~.field__title {
+
+.field__input:focus ~ .field__title, .field__input:hover ~ .field__title, .field__textarea:focus ~ .field__title, .field__textarea:hover ~ .field__title {
     opacity: 0;
 }
+
 .field__title, .field__title-top {
     transition: all .2s ease-in-out 0s;
     position: absolute;
@@ -89,4 +94,27 @@ input::placeholder {
 .field__title {
     z-index: 1;
     pointer-events: none;
+}
+
+@keyframes bounce-input {
+    0% {
+        transform: translateX(0);
+    }
+    30% {
+        transform: translateX(5px);
+    }
+    50% {
+        transform: translateX(-2px);
+    }
+    70% {
+        transform: translateX(2px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.bounce {
+    animation: bounce-input .4s ease;
+    transition: transform .2s ease;
 }

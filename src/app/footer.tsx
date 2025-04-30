@@ -6,7 +6,7 @@ import Image from "next/image";
 const Footer: React.FC = () => {
     return (
         <footer
-            className={`${styles.footer} w-full mt-[132px] bg-[#ffffff10] shadow-[0_0_10px_-5px_#000000] backdrop-blur-sm`}>
+            className={`${styles.footer} w-full bg-[#ffffff10] shadow-[0_0_10px_-5px_#000000] backdrop-blur-sm`}>
             <div
                 className={`${styles.footerTop} w-full h-full max-h-[127px] p-[20px] rounded-[4px] flex items-center justify-between`}>
                 <div className={`${styles.form} flex items-center gap-[30px]`}>

@@ -71,7 +71,7 @@
 }
 
 .titleTop{
-  opacity: 0;
+  //opacity: 0;
 }
 
 
@@ -88,7 +88,6 @@
   }
 
   &:hover {
-    //padding-left: 95px;
 
     span {
       transform: translateX(80px);
@@ -97,7 +96,6 @@
     .pdfBtn{
       transform: translateX(40px);
     }
-
 
 
     .sendIconLeft {

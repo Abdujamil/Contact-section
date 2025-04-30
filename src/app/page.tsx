@@ -7,7 +7,8 @@ import CustomCheckbox from "@/components/CustomCheckbox";
 import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
-// import axios from "axios";
+import Header from "@/components/header/Header";
+import GlassButton from "@/components/GlassButton/GlassButton";
 
 export default function Home() {
     const methods = useForm({
@@ -15,7 +16,7 @@ export default function Home() {
         reValidateMode: "onChange",
         shouldFocusError: false
     });
-    const {handleSubmit, formState: { submitCount }, trigger, reset} = methods;
+    const {handleSubmit, formState: {submitCount}, trigger, reset} = methods;
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
 
     const [isPhone, setIsPhone] = useState(false);
@@ -75,6 +76,7 @@ export default function Home() {
         }
     }, [contactValue])
 
+
     // Upload file
     const [text, setText] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -109,7 +111,11 @@ export default function Home() {
 
     // BounceEffect
     const bounceElements = () => {
-        const myElement = document.getElementById('bounce-checkbox')
+        const myElement = document.getElementById('bounce-checkbox');
+        // const formMain = document.getElementById('form-main');
+        // const bounceElems = document.querySelectorAll('.bounceElem');
+
+        // Анимация для элемента с ID
         if (myElement) {
             BounceEffect(myElement, {
                 startPosition: "-50px",
@@ -120,37 +126,60 @@ export default function Home() {
                 distanceCoficent: -1
             });
         }
-    }
 
-    // const successVisible = () => {
-    //     const myElement = document.getElementById('form-main')
-    //     if (myElement) {
-    //         BounceEffect(myElement, {
-    //             startPosition: "-0",
-    //             endPosition: `${20}px`,
-    //             duration: 300,
-    //             easing: "ease-in-out",
-    //             direction: 'vertical'
-    //         });
-    //     }
-    // }
+        // if (formMain) {
+        //     BounceEffect(formMain, {
+        //         startPosition: "-20px",
+        //         endPosition: `${5}px`,
+        //         duration: 500,
+        //         easing: "ease",
+        //         direction: 'vertical',
+        //         distanceCoficent: -1
+        //     });
+        // }
+        // // Анимация для всех элементов с классом
+        // if (bounceElems.length > 0) {
+        //     bounceElems.forEach(element => {
+        //         if (element instanceof HTMLElement) { // Проверка типа
+        //             BounceEffect(element, {
+        //                 startPosition: "-50px",
+        //                 endPosition: `${5}px`,
+        //                 duration: 500,
+        //                 easing: "ease",
+        //                 direction: 'horizontal',
+        //                 distanceCoficent: -1
+        //             });
+        //         }
+        //     });
+        // }
+    };
+
+    // BounceEffect for blocks
+    const bounceActiveBlock = () => {
+        const block = activeTab === 'contact'
+            ? document.getElementById('form-main')
+            : document.getElementById('requisite-block');
+
+        if (block) {
+            BounceEffect(block, {
+                startPosition: "-50px",
+                endPosition: `${5}px`,
+                duration: 500,
+                easing: "ease",
+                direction: 'vertical',
+                distanceCoficent: -1
+            });
+        }
+    };
+    const handleTabChange = (tab: 'contact' | 'requisite') => {
+        setactiveTab(tab);
+        setTimeout(bounceActiveBlock, 50); // Небольшая задержка для гарантии применения стилей
+    };
+    useEffect(() => {
+        bounceActiveBlock();
+    }, []);
 
     // Validation
-    // const validContact = (value: string) => {
-    //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    //     const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
-    //
-    //     if ((!emailRegex.test(value.trim()) && isEmail) || (!phoneRegex.test(value.trim()) && isPhone)) {
-    //         setEmailError(true)
-    //         setEmailSuccessful(false)
-    //
-    //         return false;
-    //     } else {
-    //         setEmailError(false)
-    //         setEmailSuccessful(true)
-    //         return false;
-    //     }
-    // }
     const validContact = (value: string): boolean => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
@@ -164,118 +193,6 @@ export default function Home() {
     };
 
     const {setFocus} = methods;
-
-    // OnSubmit
-    // const onSubmit = async (data: any) => {
-    //
-    //     const isFormValid = await trigger(undefined, { shouldFocus: true });
-    //
-    //     const isContactMethodSelected = isEmail || isPhone;
-    //
-    //     // Сбрасываем состояние ошибок
-    //     setFailCheck(false);
-    //     setEmailError(false);
-    //
-    //     // Проверка выбора способа контакта
-    //     if (!isEmail && !isPhone) {
-    //         bounceElements();
-    //         setFailCheck(true);
-    //         console.log('Error');
-    //         return;
-    //     }
-    //
-    //     // Проверка валидности контакта
-    //     if (!validContact(contactValue)) {
-    //         bounceElements();
-    //         setFailCheck(true);
-    //         console.log('Error2');
-    //         return;
-    //     }
-    //
-    //     // Проверка всех полей формы
-    //     if (!isFormValid) {
-    //         bounceElements();
-    //         console.log('Error3');
-    //         return;
-    //     }
-    //
-    //     // Если все проверки пройдены
-    //     console.log('Форма отправлена:', data);
-    //     reset();
-    //     setIsSubmitted(true); // Показываем таймер
-    //
-    //     // Здесь можно добавить отправку данных на сервер
-    //     // await submitToServer(data);
-    // };
-
-    // const onSubmit = async (data: any) => {
-    //     const formData = new FormData();
-    //
-    //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    //     const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
-    //
-    //     if ((!emailRegex.test(data.Contact.trim()) && isEmail) || (!phoneRegex.test(data.Contact.trim()) && isPhone)) {
-    //         setEmailError(true)
-    //         setEmailSuccessful(false)
-    //         return;
-    //     } else {
-    //         setEmailError(false)
-    //     }
-    //
-    //     for (const key in data) {
-    //         if (data.hasOwnProperty(key)) {
-    //             formData.append(key, data[key]);
-    //         }
-    //     }
-    //
-    //     // 1. Принудительно активируем валидацию ВСЕХ полей
-    //     const isFormValid = await trigger(undefined, {shouldFocus: true});
-    //
-    //     // 2. Проверяем, заполнен ли хотя бы один способ связи
-    //     const isContactMethodSelected = isEmail || isPhone;
-    //
-    //     // 3. Проверяем валидность контакта (если способ выбран)
-    //     const isContactValid = isContactMethodSelected ? validContact(contactValue) : false;
-    //
-    //     // Если есть ошибки - показываем bounce-эффект
-    //     if (!isFormValid || !isContactMethodSelected || !isContactValid) {
-    //         bounceElements(); // Всегда срабатывает при ошибках
-    //         setFailCheck(true);
-    //
-    //         if (!isContactMethodSelected) {
-    //             console.log('Ошибка: не выбран способ связи');
-    //         } else if (!isContactValid) {
-    //             console.log('Ошибка: неверный формат контакта');
-    //         } else {
-    //             console.log('Ошибка: не заполнены обязательные поля');
-    //         }
-    //
-    //         return;
-    //     }
-    //
-    //     try {
-    //         const response = await axios.post('/api/feedback', formData);
-    //         if (response.status === 200 || 201) {
-    //             reset();
-    //             setIsPhone(false);
-    //             setIsEmail(false);
-    //             // openDefaultModal('successMessage');
-    //             successVisible()
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //
-    //
-    //     // Если все проверки пройдены
-    //     console.log('Форма отправлена:', data);
-    //     reset();
-    //     setIsSubmitted(true);
-    // };
-
-    // interface FormData {
-    //     [key: string]: string | File;
-    // }
 
     const onSubmit = async (data: Record<string, unknown>) => {
         const formData = new FormData();
@@ -301,7 +218,7 @@ export default function Home() {
         });
 
         // Валидация формы
-        const isFormValid = await trigger(undefined, { shouldFocus: true });
+        const isFormValid = await trigger(undefined, {shouldFocus: true});
         const isContactMethodSelected = isEmail || isPhone;
         const isContactValid = isContactMethodSelected ? validContact(contactValue) : false;
 
@@ -349,6 +266,7 @@ export default function Home() {
                 >
                     <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
                 </div>
+                <Header/>
                 <div className={`${styles.contact} w-full h-dvh max-w-[1160px] mx-auto flex items-center`}>
                     <div
                         className={`${styles.contactContainer} min-h-[432px] w-full flex justify-center items-start gap-[40px]`}>
@@ -356,82 +274,63 @@ export default function Home() {
                             <h2 className="leading-[110%] text-[40px] font-normal mb-[40px] mt-[-5px]">Контакты</h2>
                             <div
                                 className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
-                                <button
-                                    onClick={() => setactiveTab('contact')}
-                                    className={`${styles.btn} group w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300 rounded-[4px] 
-                                ${
-                                        activeTab === 'contact'
-                                            ? 'text-[#3D9ED6] '
-                                            : 'text-[#737373] border-[#353535] hover:border-[#CCCCCC]'
-                                    } overflow-hidden
-                                `}>
-                                    <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
-                                         width="30" height="17" viewBox="0 0 30 17" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M27.4161 0H11.1661C9.79114 0 8.66614 1.125 8.66614 2.5V13.75C8.66614 14.413 8.92953 15.0489 9.39837 15.5178C9.86721 15.9866 10.5031 16.25 11.1661 16.25H27.4161C28.8036 16.25 29.9161 15.1375 29.9161 13.75V2.5C29.9161 1.83696 29.6527 1.20107 29.1839 0.732233C28.7151 0.263392 28.0792 0 27.4161 0ZM27.4161 4.5875L19.2911 8.75L11.1661 4.5875V2.5L19.2911 6.6375L27.4161 2.5V4.5875ZM6.12375 3.125H7.16602C7.14102 3.3375 7.16602 3.5375 7.16602 3.75V5.11492H6.12375C4.17487 5.11492 4.19616 5.36961 4.87375 4.11492C5.20044 3.50999 5.43625 3.125 6.12375 3.125Z"
-                                            fill={activeTab === 'contact' ? "#3D9ED6" : "#737373"}/>
-                                        <path
-                                            d="M7.16602 7.26168H3.90583C3.21833 7.26168 2.98252 7.64667 2.65583 8.2516C1.97824 9.50629 1.95695 9.2516 3.90583 9.2516H7.16602V7.88668C7.16602 7.67418 7.14102 7.47418 7.16602 7.26168Z"
-                                            fill={activeTab === 'contact' ? "#3D9ED6" : "#737373"}/>
-                                        <path
-                                            d="M7.16602 11.5188H1.66602C0.978516 11.5188 0.742703 11.9038 0.416016 12.5088C-0.261577 13.7635 -0.282861 13.5088 1.66602 13.5088H7.16602V12.1438C7.16602 11.9313 7.14102 11.7313 7.16602 11.5188Z"
-                                            fill={activeTab === 'contact' ? "#3D9ED6" : "#737373"}/>
-                                    </svg>
-                                    <span className="transition-all duration-300 ease-in">
-                                    Связаться
-                                </span>
-                                    <svg className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}
-                                         width="30" height="17" viewBox="0 0 30 17" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M27.4161 0H11.1661C9.79114 0 8.66614 1.125 8.66614 2.5V13.75C8.66614 14.413 8.92953 15.0489 9.39837 15.5178C9.86721 15.9866 10.5031 16.25 11.1661 16.25H27.4161C28.8036 16.25 29.9161 15.1375 29.9161 13.75V2.5C29.9161 1.83696 29.6527 1.20107 29.1839 0.732233C28.7151 0.263392 28.0792 0 27.4161 0ZM27.4161 4.5875L19.2911 8.75L11.1661 4.5875V2.5L19.2911 6.6375L27.4161 2.5V4.5875ZM6.12375 3.125H7.16602C7.14102 3.3375 7.16602 3.5375 7.16602 3.75V5.11492H6.12375C4.17487 5.11492 4.19616 5.36961 4.87375 4.11492C5.20044 3.50999 5.43625 3.125 6.12375 3.125Z"
-                                            fill={activeTab === 'contact' ? "#3D9ED6" : "#737373"}/>
-                                        <path
-                                            d="M7.16602 7.26168H3.90583C3.21833 7.26168 2.98252 7.64667 2.65583 8.2516C1.97824 9.50629 1.95695 9.2516 3.90583 9.2516H7.16602V7.88668C7.16602 7.67418 7.14102 7.47418 7.16602 7.26168Z"
-                                            fill={activeTab === 'contact' ? "#3D9ED6" : "#737373"}/>
-                                        <path
-                                            d="M7.16602 11.5188H1.66602C0.978516 11.5188 0.742703 11.9038 0.416016 12.5088C-0.261577 13.7635 -0.282861 13.5088 1.66602 13.5088H7.16602V12.1438C7.16602 11.9313 7.14102 11.7313 7.16602 11.5188Z"
-                                            fill={activeTab === 'contact' ? "#3D9ED6" : "#737373"}/>
-                                    </svg>
-                                </button>
-                                <button
-                                    onClick={() => setactiveTab('requisite')}
-                                    className={`${styles.btn} w-full  text-[20px] flex items-center justify-between pt-[11px] px-[15px] pb-[12px] rounded-[4px] border border-[#353535] hover:border-[#CCCCCC] cursor-pointer transition-[border, text, svg] duration-300
-                                 ${
-                                        activeTab === 'requisite'
-                                            ? 'text-[#3D9ED6] '
-                                            : 'text-[#737373] border-[#353535] hover:border-[#CCCCCC]'
-                                    } overflow-hidden
-                                `}>
-                                    <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
-                                         width="24" height="27" viewBox="0 0 24 27" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M13.3929 7.38281V0H5.85938C5.19337 0 4.55465 0.259277 4.08372 0.720792C3.61278 1.18231 3.34821 1.80826 3.34821 2.46094V14.7656H12.5558C13.2218 14.7656 13.8605 15.0249 14.3315 15.4864C14.8024 15.9479 15.067 16.5739 15.067 17.2266C15.067 17.8792 14.8024 18.5052 14.3315 18.9667C13.8605 19.4282 13.2218 19.6875 12.5558 19.6875H3.34821V23.7891C3.34821 24.4417 3.61278 25.0677 4.08372 25.5292C4.55465 25.9907 5.19337 26.25 5.85938 26.25H20.9263C21.5923 26.25 22.2311 25.9907 22.702 25.5292C23.1729 25.0677 23.4375 24.4417 23.4375 23.7891V9.84375H15.904C15.238 9.84375 14.5993 9.58447 14.1284 9.12296C13.6574 8.66144 13.3929 8.03549 13.3929 7.38281ZM6.69643 12.3047C6.69643 12.0871 6.78462 11.8785 6.9416 11.7246C7.09857 11.5708 7.31148 11.4844 7.53348 11.4844H19.2522C19.4742 11.4844 19.6871 11.5708 19.8441 11.7246C20.0011 11.8785 20.0893 12.0871 20.0893 12.3047C20.0893 12.5222 20.0011 12.7309 19.8441 12.8847C19.6871 13.0386 19.4742 13.125 19.2522 13.125H7.53348C7.31148 13.125 7.09857 13.0386 6.9416 12.8847C6.78462 12.7309 6.69643 12.5222 6.69643 12.3047ZM6.69643 22.1484C6.69643 21.9309 6.78462 21.7222 6.9416 21.5684C7.09857 21.4146 7.31148 21.3281 7.53348 21.3281H19.2522C19.4742 21.3281 19.6871 21.4146 19.8441 21.5684C20.0011 21.7222 20.0893 21.9309 20.0893 22.1484C20.0893 22.366 20.0011 22.5746 19.8441 22.7285C19.6871 22.8823 19.4742 22.9688 19.2522 22.9688H7.53348C7.31148 22.9688 7.09857 22.8823 6.9416 22.7285C6.78462 22.5746 6.69643 22.366 6.69643 22.1484ZM15.067 7.38281V0.410156L23.019 8.20312H15.904C15.682 8.20312 15.4691 8.1167 15.3121 7.96286C15.1552 7.80902 15.067 7.60037 15.067 7.38281ZM0.837054 16.4062C0.615053 16.4062 0.402145 16.4927 0.245167 16.6465C0.0881895 16.8004 0 17.009 0 17.2266C0 17.4441 0.0881895 17.6528 0.245167 17.8066C0.402145 17.9604 0.615053 18.0469 0.837054 18.0469H12.5558C12.7778 18.0469 12.9907 17.9604 13.1477 17.8066C13.3047 17.6528 13.3929 17.4441 13.3929 17.2266C13.3929 17.009 13.3047 16.8004 13.1477 16.6465C12.9907 16.4927 12.7778 16.4062 12.5558 16.4062H0.837054Z"
-                                            fill={activeTab === 'requisite' ? "#3D9ED6" : "#737373"}/>
-                                    </svg>
-                                    <span className="transition-all duration-300 ease-in">
-                                    Реквизиты
-                                </span>
 
+                                <GlassButton onClick={() => handleTabChange('contact')} isActive={activeTab === 'contact'}>
+                                     <svg className={`${styles.sendIconLeft}  transition-all duration-200 ease-in`}
+                                         width="30" height="17" viewBox="0 0 30 17" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M27.4161 0H11.1661C9.79114 0 8.66614 1.125 8.66614 2.5V13.75C8.66614 14.413 8.92953 15.0489 9.39837 15.5178C9.86721 15.9866 10.5031 16.25 11.1661 16.25H27.4161C28.8036 16.25 29.9161 15.1375 29.9161 13.75V2.5C29.9161 1.83696 29.6527 1.20107 29.1839 0.732233C28.7151 0.263392 28.0792 0 27.4161 0ZM27.4161 4.5875L19.2911 8.75L11.1661 4.5875V2.5L19.2911 6.6375L27.4161 2.5V4.5875ZM6.12375 3.125H7.16602C7.14102 3.3375 7.16602 3.5375 7.16602 3.75V5.11492H6.12375C4.17487 5.11492 4.19616 5.36961 4.87375 4.11492C5.20044 3.50999 5.43625 3.125 6.12375 3.125Z"
+                                            fill={activeTab === 'contact' ? "#ccc" : "#737373"}/>
+                                        <path
+                                            d="M7.16602 7.26168H3.90583C3.21833 7.26168 2.98252 7.64667 2.65583 8.2516C1.97824 9.50629 1.95695 9.2516 3.90583 9.2516H7.16602V7.88668C7.16602 7.67418 7.14102 7.47418 7.16602 7.26168Z"
+                                            fill={activeTab === 'contact' ? "#ccc" : "#737373"}/>
+                                        <path
+                                            d="M7.16602 11.5188H1.66602C0.978516 11.5188 0.742703 11.9038 0.416016 12.5088C-0.261577 13.7635 -0.282861 13.5088 1.66602 13.5088H7.16602V12.1438C7.16602 11.9313 7.14102 11.7313 7.16602 11.5188Z"
+                                            fill={activeTab === 'contact' ? "#ccc" : "#737373"}/>
+                                    </svg>
+                                    Связаться
+                                      <svg className={`${styles.sendIconRight}  transition-all duration-200 ease-in`}
+                                         width="30" height="17" viewBox="0 0 30 17" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M27.4161 0H11.1661C9.79114 0 8.66614 1.125 8.66614 2.5V13.75C8.66614 14.413 8.92953 15.0489 9.39837 15.5178C9.86721 15.9866 10.5031 16.25 11.1661 16.25H27.4161C28.8036 16.25 29.9161 15.1375 29.9161 13.75V2.5C29.9161 1.83696 29.6527 1.20107 29.1839 0.732233C28.7151 0.263392 28.0792 0 27.4161 0ZM27.4161 4.5875L19.2911 8.75L11.1661 4.5875V2.5L19.2911 6.6375L27.4161 2.5V4.5875ZM6.12375 3.125H7.16602C7.14102 3.3375 7.16602 3.5375 7.16602 3.75V5.11492H6.12375C4.17487 5.11492 4.19616 5.36961 4.87375 4.11492C5.20044 3.50999 5.43625 3.125 6.12375 3.125Z"
+                                            fill={activeTab === 'contact' ? "#ccc" : "#737373"}/>
+                                        <path
+                                            d="M7.16602 7.26168H3.90583C3.21833 7.26168 2.98252 7.64667 2.65583 8.2516C1.97824 9.50629 1.95695 9.2516 3.90583 9.2516H7.16602V7.88668C7.16602 7.67418 7.14102 7.47418 7.16602 7.26168Z"
+                                            fill={activeTab === 'contact' ? "#ccc" : "#737373"}/>
+                                        <path
+                                            d="M7.16602 11.5188H1.66602C0.978516 11.5188 0.742703 11.9038 0.416016 12.5088C-0.261577 13.7635 -0.282861 13.5088 1.66602 13.5088H7.16602V12.1438C7.16602 11.9313 7.14102 11.7313 7.16602 11.5188Z"
+                                            fill={activeTab === 'contact' ? "#ccc" : "#737373"}/>
+                                    </svg>
+                                </GlassButton>
+
+                                <GlassButton className={`${styles.secGlassBtn} hover:bottom hover:border-[#ccc]`} onClick={() => handleTabChange('requisite')} isActive={activeTab === 'requisite'}>
+                                     <svg className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
+                                         width="24" height="27" viewBox="0 0 24 27" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M13.3929 7.38281V0H5.85938C5.19337 0 4.55465 0.259277 4.08372 0.720792C3.61278 1.18231 3.34821 1.80826 3.34821 2.46094V14.7656H12.5558C13.2218 14.7656 13.8605 15.0249 14.3315 15.4864C14.8024 15.9479 15.067 16.5739 15.067 17.2266C15.067 17.8792 14.8024 18.5052 14.3315 18.9667C13.8605 19.4282 13.2218 19.6875 12.5558 19.6875H3.34821V23.7891C3.34821 24.4417 3.61278 25.0677 4.08372 25.5292C4.55465 25.9907 5.19337 26.25 5.85938 26.25H20.9263C21.5923 26.25 22.2311 25.9907 22.702 25.5292C23.1729 25.0677 23.4375 24.4417 23.4375 23.7891V9.84375H15.904C15.238 9.84375 14.5993 9.58447 14.1284 9.12296C13.6574 8.66144 13.3929 8.03549 13.3929 7.38281ZM6.69643 12.3047C6.69643 12.0871 6.78462 11.8785 6.9416 11.7246C7.09857 11.5708 7.31148 11.4844 7.53348 11.4844H19.2522C19.4742 11.4844 19.6871 11.5708 19.8441 11.7246C20.0011 11.8785 20.0893 12.0871 20.0893 12.3047C20.0893 12.5222 20.0011 12.7309 19.8441 12.8847C19.6871 13.0386 19.4742 13.125 19.2522 13.125H7.53348C7.31148 13.125 7.09857 13.0386 6.9416 12.8847C6.78462 12.7309 6.69643 12.5222 6.69643 12.3047ZM6.69643 22.1484C6.69643 21.9309 6.78462 21.7222 6.9416 21.5684C7.09857 21.4146 7.31148 21.3281 7.53348 21.3281H19.2522C19.4742 21.3281 19.6871 21.4146 19.8441 21.5684C20.0011 21.7222 20.0893 21.9309 20.0893 22.1484C20.0893 22.366 20.0011 22.5746 19.8441 22.7285C19.6871 22.8823 19.4742 22.9688 19.2522 22.9688H7.53348C7.31148 22.9688 7.09857 22.8823 6.9416 22.7285C6.78462 22.5746 6.69643 22.366 6.69643 22.1484ZM15.067 7.38281V0.410156L23.019 8.20312H15.904C15.682 8.20312 15.4691 8.1167 15.3121 7.96286C15.1552 7.80902 15.067 7.60037 15.067 7.38281ZM0.837054 16.4062C0.615053 16.4062 0.402145 16.4927 0.245167 16.6465C0.0881895 16.8004 0 17.009 0 17.2266C0 17.4441 0.0881895 17.6528 0.245167 17.8066C0.402145 17.9604 0.615053 18.0469 0.837054 18.0469H12.5558C12.7778 18.0469 12.9907 17.9604 13.1477 17.8066C13.3047 17.6528 13.3929 17.4441 13.3929 17.2266C13.3929 17.009 13.3047 16.8004 13.1477 16.6465C12.9907 16.4927 12.7778 16.4062 12.5558 16.4062H0.837054Z"
+                                            fill={activeTab === 'requisite' ? "#ccc" : "#737373"}/>
+                                    </svg>
+                                    Реквизиты
                                     <svg className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}
                                          width="24" height="27" viewBox="0 0 24 27" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M13.3929 7.38281V0H5.85938C5.19337 0 4.55465 0.259277 4.08372 0.720792C3.61278 1.18231 3.34821 1.80826 3.34821 2.46094V14.7656H12.5558C13.2218 14.7656 13.8605 15.0249 14.3315 15.4864C14.8024 15.9479 15.067 16.5739 15.067 17.2266C15.067 17.8792 14.8024 18.5052 14.3315 18.9667C13.8605 19.4282 13.2218 19.6875 12.5558 19.6875H3.34821V23.7891C3.34821 24.4417 3.61278 25.0677 4.08372 25.5292C4.55465 25.9907 5.19337 26.25 5.85938 26.25H20.9263C21.5923 26.25 22.2311 25.9907 22.702 25.5292C23.1729 25.0677 23.4375 24.4417 23.4375 23.7891V9.84375H15.904C15.238 9.84375 14.5993 9.58447 14.1284 9.12296C13.6574 8.66144 13.3929 8.03549 13.3929 7.38281ZM6.69643 12.3047C6.69643 12.0871 6.78462 11.8785 6.9416 11.7246C7.09857 11.5708 7.31148 11.4844 7.53348 11.4844H19.2522C19.4742 11.4844 19.6871 11.5708 19.8441 11.7246C20.0011 11.8785 20.0893 12.0871 20.0893 12.3047C20.0893 12.5222 20.0011 12.7309 19.8441 12.8847C19.6871 13.0386 19.4742 13.125 19.2522 13.125H7.53348C7.31148 13.125 7.09857 13.0386 6.9416 12.8847C6.78462 12.7309 6.69643 12.5222 6.69643 12.3047ZM6.69643 22.1484C6.69643 21.9309 6.78462 21.7222 6.9416 21.5684C7.09857 21.4146 7.31148 21.3281 7.53348 21.3281H19.2522C19.4742 21.3281 19.6871 21.4146 19.8441 21.5684C20.0011 21.7222 20.0893 21.9309 20.0893 22.1484C20.0893 22.366 20.0011 22.5746 19.8441 22.7285C19.6871 22.8823 19.4742 22.9688 19.2522 22.9688H7.53348C7.31148 22.9688 7.09857 22.8823 6.9416 22.7285C6.78462 22.5746 6.69643 22.366 6.69643 22.1484ZM15.067 7.38281V0.410156L23.019 8.20312H15.904C15.682 8.20312 15.4691 8.1167 15.3121 7.96286C15.1552 7.80902 15.067 7.60037 15.067 7.38281ZM0.837054 16.4062C0.615053 16.4062 0.402145 16.4927 0.245167 16.6465C0.0881895 16.8004 0 17.009 0 17.2266C0 17.4441 0.0881895 17.6528 0.245167 17.8066C0.402145 17.9604 0.615053 18.0469 0.837054 18.0469H12.5558C12.7778 18.0469 12.9907 17.9604 13.1477 17.8066C13.3047 17.6528 13.3929 17.4441 13.3929 17.2266C13.3929 17.009 13.3047 16.8004 13.1477 16.6465C12.9907 16.4927 12.7778 16.4062 12.5558 16.4062H0.837054Z"
-                                            fill={activeTab === 'requisite' ? "#3D9ED6" : "#737373"}/>
+                                            fill={activeTab === 'requisite' ? "#ccc" : "#737373"}/>
                                     </svg>
-                                </button>
+                                </GlassButton>
                             </div>
                         </div>
 
                         {/* Блок "Связаться" */}
                         <div id="form-main"
-                            className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 
+                             className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 
                         ${
-                                activeTab !== 'contact' ? 'hidden' : ''
-                            }
+                                 activeTab !== 'contact' ? 'hidden' : ''
+                             }
                         `}>
                             <FormProvider {...methods}>
                                 {isSubmitted ? (
@@ -447,7 +346,7 @@ export default function Home() {
                                     <textarea
                                         placeholder="Комментарий"
                                         name='comment'
-                                        className="w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200"
+                                        className={`${styles.bounceElem} w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200`}
                                     >
                                     </textarea>
 
@@ -523,7 +422,7 @@ export default function Home() {
                                             </div>
 
                                             <AppInput
-                                                className="w-full mb-[34px] !bg-[#101010] focus:!bg-[#20272A]"
+                                                className={`${styles.bounceElem} w-full mb-[34px] !bg-[#101010] focus:!bg-[#20272A]`}
                                                 title={'ФИО'}
                                                 inputName="name"
                                                 required={true}
@@ -544,7 +443,7 @@ export default function Home() {
                                             >
 
                                                 <AppInput
-                                                    className="w-full !bg-[#101010] focus:!bg-[#20272A] !placeholder-opacity-0"
+                                                    className={`${styles.bounceElem} w-full !bg-[#101010] focus:!bg-[#20272A] !placeholder-opacity-0`}
                                                     title={isPhone ? 'Телефон' : isEmail ? 'Email' : ''}
                                                     inputName="Contact"
                                                     mask={isPhone ? "phone" : ''}
@@ -586,8 +485,31 @@ export default function Home() {
                                                 }} label="Email"/>
                                             </div>
 
-                                            <button type='submit'
-                                                    className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>
+                                            {/*<button type='submit'*/}
+                                            {/*        className={`${styles.btn} w-full max-w-[212px] h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-300 ease-in`}>*/}
+                                            {/*    <svg*/}
+                                            {/*        className={`${styles.sendIconLeft} transition-all duration-300 ease-in`}*/}
+                                            {/*        width="23" height="20" viewBox="0 0 23 20" fill="none"*/}
+                                            {/*        xmlns="http://www.w3.org/2000/svg">*/}
+                                            {/*        <path*/}
+                                            {/*            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"*/}
+                                            {/*            fill="#CCCCCC"/>*/}
+                                            {/*    </svg>*/}
+                                            {/*    <span className="transition-all duration-300 ease-in">*/}
+                                            {/*    Отправить*/}
+                                            {/*</span>*/}
+                                            {/*    <svg*/}
+                                            {/*        className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}*/}
+                                            {/*        width="23" height="20" viewBox="0 0 23 20" fill="none"*/}
+                                            {/*        xmlns="http://www.w3.org/2000/svg">*/}
+                                            {/*        <path*/}
+                                            {/*            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"*/}
+                                            {/*            fill="#CCCCCC"/>*/}
+                                            {/*    </svg>*/}
+                                            {/*</button>*/}
+
+                                            <GlassButton isActive={false} type="submit"
+                                                         className={`${styles.btn} w-full !max-w-[212px] !h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-200 ease-in`}>
                                                 <svg
                                                     className={`${styles.sendIconLeft} transition-all duration-300 ease-in`}
                                                     width="23" height="20" viewBox="0 0 23 20" fill="none"
@@ -596,9 +518,7 @@ export default function Home() {
                                                         d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
                                                         fill="#CCCCCC"/>
                                                 </svg>
-                                                <span className="transition-all duration-300 ease-in">
                                                 Отправить
-                                            </span>
                                                 <svg
                                                     className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}
                                                     width="23" height="20" viewBox="0 0 23 20" fill="none"
@@ -607,7 +527,7 @@ export default function Home() {
                                                         d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
                                                         fill="#CCCCCC"/>
                                                 </svg>
-                                            </button>
+                                            </GlassButton>
                                         </div>
                                     </form>
                                 )}
@@ -615,10 +535,10 @@ export default function Home() {
                         </div>
 
                         {/* Блок "Реквизиты" */}
-                        <div
-                            className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${
-                                activeTab !== 'requisite' ? 'hidden' : ''
-                            }`}>
+                        <div id="requisite-block"
+                             className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${
+                                 activeTab !== 'requisite' ? 'hidden' : ''
+                             }`}>
                             <div className="flex justify-between items-end  mb-5">
                                 <div className="w-full max-w-[516px]">
                                     <label className="block text-lg font-normal text-white mb-2 leading-[110%]">Полное
@@ -630,25 +550,43 @@ export default function Home() {
                                     />
                                 </div>
                                 <button
-                                    className={`${styles.btn} flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] overflow-hidden transition-all duration-300 ease-in text-[20px]`}>
+                                    className={`${styles.btn} flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] overflow-hidden transition-all duration-200 ease-in text-[20px]`}>
                                     <Image
-                                        className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}
+                                        className={`${styles.sendIconLeft}  transition-all duration-200 ease-in`}
                                         src='/pdf.png'
                                         width={26}
                                         height={39}
                                         alt="pdf-icon"
                                     />
-                                    <span className={`${styles.pdfBtn} transition-all duration-300 ease-in`}>
+                                    <span className={`${styles.pdfBtn} transition-all duration-200 ease-in`}>
                                     Скачать PDF
                                 </span>
                                     <Image
-                                        className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}
+                                        className={`${styles.sendIconRight}  transition-all duration-200 ease-in`}
                                         src='/pdf.png'
                                         width={26}
                                         height={39}
                                         alt="pdf-icon"
                                     />
                                 </button>
+
+                                {/*<GlassButton isActive={false} className={`${styles.btn} flex items-center justify-center max-h-[51px] w-full max-w-[212px] gap-2 px-4 py-2 cursor-pointer bg-[rgba(42, 42, 42, 0.1)] backdrop-blur-[2px] border border-[#353535] rounded-[4px] text-[#CCCCCC] hover:text-white hover:bg-[rgba(42,42,42,0.5)] overflow-hidden transition-all duration-300 ease-in text-[20px]`}>*/}
+                                {/*    <Image*/}
+                                {/*        className={`${styles.sendIconLeft}  transition-all duration-300 ease-in`}*/}
+                                {/*        src='/pdf.png'*/}
+                                {/*        width={26}*/}
+                                {/*        height={39}*/}
+                                {/*        alt="pdf-icon"*/}
+                                {/*    />*/}
+                                {/*    Скачать PDF*/}
+                                {/*    <Image*/}
+                                {/*        className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}*/}
+                                {/*        src='/pdf.png'*/}
+                                {/*        width={26}*/}
+                                {/*        height={39}*/}
+                                {/*        alt="pdf-icon"*/}
+                                {/*    />*/}
+                                {/*</GlassButton>*/}
                             </div>
 
                             <div className="mb-6">
