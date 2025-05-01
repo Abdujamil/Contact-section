@@ -19,6 +19,7 @@ export default function Home() {
     });
     const {handleSubmit, formState: {submitCount}, trigger, reset} = methods;
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
+    const contactInputRef = useRef<HTMLInputElement>(null);
 
     const [isPhone, setIsPhone] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
@@ -119,12 +120,12 @@ export default function Home() {
         const myElement = document.getElementById('bounce-checkbox');
         const selectElement = document.querySelector('.relative.mb-\\[34px\\] > div');
 
+
         // Анимация для селекта
         if (selectElement instanceof HTMLElement) {
             selectElement.style.animation = 'bounce-input .4s ease';
             setTimeout(() => selectElement.style.animation = '', 100);
         }
-
         // Анимация для чекбоксов
         if (myElement) {
             BounceEffect(myElement, {
@@ -403,7 +404,7 @@ export default function Home() {
                                                 <div className={`relative mb-[34px]`}>
                                                     <div
                                                         className={`w-full bg-[#101010] border border-[#353535]
-                                                        rounded-[4px] px-4 py-3 cursor-pointer flex justify-between items-center`}
+                                                        rounded-[4px] px-4 py-3 cursor-pointer flex justify-between items-center ${!selectError && 'bounce'}`}
                                                         onClick={() => {
                                                             setIsSelectOpen(!isSelectOpen);
                                                             setSelectError(false);
@@ -473,6 +474,7 @@ export default function Home() {
                                                 >
 
                                                     <AppInput
+                                                        ref={contactInputRef}
                                                         className={`${styles.bounceElem} w-full !bg-[#101010] focus:!bg-[#20272A] !placeholder-opacity-0`}
                                                         title={isPhone ? 'Телефон' : isEmail ? 'Email' : ''}
                                                         inputName="Contact"
@@ -495,24 +497,34 @@ export default function Home() {
 
                                                     <CustomCheckbox id="check-phone" successful={emailSuccessful}
                                                                     fail={failCheck}
-                                                                    checked={isPhone} onChange={(value) => {
-                                                        setIsPhone(value);
-                                                        if (value) {
-                                                            setIsEmail(false);
-                                                            setFocus('Contact');
-                                                            setEmailSuccessful(false)
-                                                        }
-                                                    }} label="Телефон"/>
+                                                                    checked={isPhone}
+                                                                    onChange={(value) => {
+                                                                        setIsPhone(value);
+                                                                        if (value) {
+                                                                            setIsEmail(false);
+                                                                            setFocus('Contact');
+                                                                            setTimeout(() => {
+                                                                                contactInputRef.current?.focus();
+                                                                            }, 0);
+                                                                            setEmailSuccessful(false)
+                                                                        }
+                                                                    }}
+                                                                    label="Телефон"/>
                                                     <CustomCheckbox id="check-email" successful={emailSuccessful}
                                                                     fail={failCheck}
-                                                                    checked={isEmail} onChange={(value) => {
-                                                        setIsEmail(value);
-                                                        if (value) {
-                                                            setIsPhone(false);
-                                                            setFocus('Contact');
-                                                            setEmailSuccessful(false)
-                                                        }
-                                                    }} label="Email"/>
+                                                                    checked={isEmail}
+                                                                    onChange={(value) => {
+                                                                        setIsEmail(value);
+                                                                        if (value) {
+                                                                            setIsPhone(false);
+                                                                            setFocus('Contact');
+                                                                            setTimeout(() => {
+                                                                                contactInputRef.current?.focus();
+                                                                            }, 0);
+                                                                            setEmailSuccessful(false)
+                                                                        }
+                                                                    }}
+                                                                    label="Email"/>
                                                 </div>
 
 
@@ -545,27 +557,6 @@ export default function Home() {
                                                     </button>
                                                     <div className={styles.highlight}/>
                                                 </div>
-
-                                                {/*<GlassButton isActive={false} type="submit"*/}
-                                                {/*             className={`${styles.btn} w-full !max-w-[212px] !h-[51px] px-[15px] py-[13px] mt-[50px] flex items-center justify-between bg-[rgba(42,42,42,0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative overflow-hidden transition-all duration-200 ease-in`}>*/}
-                                                {/*    <svg*/}
-                                                {/*        className={`${styles.sendIconLeft} transition-all duration-300 ease-in`}*/}
-                                                {/*        width="23" height="20" viewBox="0 0 23 20" fill="none"*/}
-                                                {/*        xmlns="http://www.w3.org/2000/svg">*/}
-                                                {/*        <path*/}
-                                                {/*            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"*/}
-                                                {/*            fill="#CCCCCC"/>*/}
-                                                {/*    </svg>*/}
-                                                {/*    Отправить*/}
-                                                {/*    <svg*/}
-                                                {/*        className={`${styles.sendIconRight}  transition-all duration-300 ease-in`}*/}
-                                                {/*        width="23" height="20" viewBox="0 0 23 20" fill="none"*/}
-                                                {/*        xmlns="http://www.w3.org/2000/svg">*/}
-                                                {/*        <path*/}
-                                                {/*            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"*/}
-                                                {/*            fill="#CCCCCC"/>*/}
-                                                {/*    </svg>*/}
-                                                {/*</GlassButton>*/}
                                             </div>
                                         </form>
                                     )}
