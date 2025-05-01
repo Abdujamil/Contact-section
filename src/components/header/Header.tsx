@@ -213,7 +213,7 @@ const Header: React.FC = () => {
   });
 
   return (
-    <header className={`${styles.header} flex items-center w-full h-[70px]`}>
+    <header className={`${styles.header} flex items-center w-full min-h-[70px] h-[70px]`}>
       <div className="flex items-center justify-between w-full px-[30px]">
         <Link
           href="/"
