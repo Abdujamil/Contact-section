@@ -63,7 +63,6 @@ export default function Home() {
         if (!submitCount) return;
 
         const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
-
         if (!isEmail && !isPhone && !isSelectValid) {
             bounceElements()
             setSelectError(!isSelectValid)
@@ -120,6 +119,12 @@ export default function Home() {
         const myElement = document.getElementById('bounce-checkbox');
         const selectElement = document.querySelector('.relative.mb-\\[34px\\] > div');
 
+        // Анимация для селекта
+        if (selectElement instanceof HTMLElement) {
+            selectElement.style.animation = 'bounce-input .4s ease';
+            setTimeout(() => selectElement.style.animation = '', 100);
+        }
+
         // Анимация для чекбоксов
         if (myElement) {
             BounceEffect(myElement, {
@@ -132,11 +137,6 @@ export default function Home() {
             });
         }
 
-        // Анимация для селекта
-        if (selectElement instanceof HTMLElement) {
-            selectElement.style.animation = 'bounce-input .4s ease';
-            setTimeout(() => selectElement.style.animation = '', 100);
-        }
     };
 
     // BounceEffect for blocks
