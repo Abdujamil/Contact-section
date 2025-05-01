@@ -118,3 +118,8 @@ input::placeholder {
     animation: bounce-input .4s ease;
     transition: transform .2s ease;
 }
+
+.\!duration-200 {
+    --tw-duration: 200ms !important;
+    transition-duration: .15ms !important;
+}
