@@ -265,11 +265,11 @@ export default function Home() {
                                 <div
                                     className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
 
-                                    <div className="relative w-full !overflow-hidden">
+                                    <div className="relative !w-[220px] !overflow-hidden">
                                         <button
                                             onClick={() => handleTabChange('contact')}
                                             className={`${styles["btn"]} ${HeaderStyles["login-button"]} 
-                                        cursor-pointer w-full !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                                        cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                                             style={{
                                                 color: activeTab === 'contact' ? "#3D9ED6" : "",
                                             }}
@@ -310,10 +310,10 @@ export default function Home() {
                                         <div className={styles.highlight}/>
                                     </div>
 
-                                    <div className="relative w-full !overflow-hidden">
+                                    <div className="relative !w-[220px] !overflow-hidden">
                                         <button
                                             onClick={() => handleTabChange('requisite')}
-                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} transition-all !duration-[.15s] ease-in cursor-pointer w-full !h-[51px] !rounded-[4px] group flex items-center !justify-between `}
+                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between `}
                                             style={{
                                                 color: activeTab === 'requisite' ? "#3D9ED6" : "",
                                             }}
@@ -528,10 +528,10 @@ export default function Home() {
                                                 </div>
 
 
-                                                <div className="relative w-full !max-w-[212px] !overflow-hidden">
+                                                <div className="relative !w-[220px] !overflow-hidden">
                                                     <button
                                                         type='submit'
-                                                        className={`${styles.btn} ${HeaderStyles["login-button"]} group  w-full !max-w-[212px] !h-[51px] mt-[50px] flex items-center !justify-between`}
+                                                        className={`${styles.btn} ${HeaderStyles["login-button"]} group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-between`}
                                                         data-text=""
                                                     >
                                                         <svg
@@ -583,14 +583,14 @@ export default function Home() {
                                     <div className="relative !overflow-hidden">
                                         <button
                                             type="submit"
-                                            className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]}  group  !w-full !max-w-[212px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative transition-all duration-200 ease-in`}
+                                            className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]}  group  !w-[220px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative transition-all duration-200 ease-in`}
 
                                         >
                                             <Image
                                                 className={`${styles.sendIconLeft}  transition-all duration-200 ease-in`}
-                                                src='/pdf.png'
-                                                width={26}
-                                                height={39}
+                                                src='/pdf-icon.svg'
+                                                width={36}
+                                                height={49}
                                                 alt="pdf-icon"
                                             />
                                             <span
@@ -599,9 +599,9 @@ export default function Home() {
                                                         </span>
                                             <Image
                                                 className={`${styles.sendIconRight}  transition-all duration-200 ease-in`}
-                                                src='/pdf.png'
-                                                width={26}
-                                                height={39}
+                                                src='/pdf-icon.svg'
+                                                width={36}
+                                                height={49}
                                                 alt="pdf-icon"
                                             />
                                         </button>

@@ -119,8 +119,12 @@
 
 .btn.btnDownloadPdf {
   &:hover {
+    .sendIconLeft{
+      left: 15px;
+    }
+
     span {
-      transform: translateX(40px);
+      transform: translateX(58px);
     }
   }
 }
