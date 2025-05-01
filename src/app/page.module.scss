@@ -14,8 +14,7 @@
           border-radius: 4px;
 
           &:hover {
-            color: #ccc !important;
-            //border-color: rgb(204 204 204 / 70%) !important;
+            color: #ccc;
 
             svg path {
               fill: #cccccc;
@@ -90,7 +89,7 @@
   }
 
   &:hover {
-    color: #ccc !important;
+    color: #ccc;
 
     span {
       transform: translateX(70px);

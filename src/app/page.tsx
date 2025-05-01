@@ -270,7 +270,7 @@ export default function Home() {
                                             className={`${styles["btn"]} ${HeaderStyles["login-button"]} 
                                         cursor-pointer w-full !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                                             style={{
-                                                color: activeTab === 'contact' ? "#3D9ED6" : "#878787",
+                                                color: activeTab === 'contact' ? "#3D9ED6" : "",
                                             }}
                                         >
                                             <svg
@@ -312,9 +312,9 @@ export default function Home() {
                                     <div className="relative w-full !overflow-hidden">
                                         <button
                                             onClick={() => handleTabChange('requisite')}
-                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} cursor-pointer w-full !h-[51px] !rounded-[4px] group flex items-center !justify-between `}
+                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} transition-all !duration-[.15s] ease-in cursor-pointer w-full !h-[51px] !rounded-[4px] group flex items-center !justify-between `}
                                             style={{
-                                                color: activeTab === 'requisite' ? "#3D9ED6" : "#878787",
+                                                color: activeTab === 'requisite' ? "#3D9ED6" : "",
                                             }}
                                         >
                                             <svg
