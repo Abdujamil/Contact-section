@@ -1,5 +1,5 @@
 'use client';
-import Image from "next/image";
+// import Image from "next/image";
 import Footer from './footer';
 import styles from "../app/page.module.scss";
 import HeaderStyles from "../components/header/Header.module.css";
@@ -20,6 +20,8 @@ export default function Home() {
     const {handleSubmit, formState: {submitCount}, trigger, reset} = methods;
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
     const contactInputRef = useRef<HTMLInputElement>(null);
+
+    const [isFastClick, setIsFastClick] = useState(false);
 
     const [isPhone, setIsPhone] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
@@ -268,7 +270,7 @@ export default function Home() {
                                     <div className="relative !w-[220px] !overflow-hidden">
                                         <button
                                             onClick={() => handleTabChange('contact')}
-                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} 
+                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
                                         cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                                             style={{
                                                 color: activeTab === 'contact' ? "#3D9ED6" : "",
@@ -313,7 +315,7 @@ export default function Home() {
                                     <div className="relative !w-[220px] !overflow-hidden">
                                         <button
                                             onClick={() => handleTabChange('requisite')}
-                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between `}
+                                            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between `}
                                             style={{
                                                 color: activeTab === 'requisite' ? "#3D9ED6" : "",
                                             }}
