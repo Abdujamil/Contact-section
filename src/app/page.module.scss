@@ -112,7 +112,7 @@
     }
 
     .sendIconRight {
-      transform: translateX(58px);
+      transform: translateX(60px);
     }
   }
 }
@@ -121,6 +121,10 @@
   &:hover {
     .sendIconLeft{
       left: 15px;
+    }
+
+    .sendIconRight{
+      transform: translateX(65px);
     }
 
     span {
