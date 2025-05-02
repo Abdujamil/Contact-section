@@ -21,8 +21,6 @@ export default function Home() {
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
     const contactInputRef = useRef<HTMLInputElement>(null);
 
-    const [isFastClick, setIsFastClick] = useState(false);
-
     const [isPhone, setIsPhone] = useState(false);
     const [isEmail, setIsEmail] = useState(false);
     const [emailError, setEmailError] = useState(false);
