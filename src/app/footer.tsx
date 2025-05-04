@@ -57,23 +57,23 @@ const Footer: React.FC = () => {
                             © 2025 Audiosector
                         </p>
                     </div>
-                    <div className={`${styles.footerBtns} flex flex-col justify-center items-center relative`}>
-                        <Image
-                            src="/button-top.svg"
-                            alt="Button"
-                            width={67}
-                            height={50}
-                            className="cursor-pointer"
-                        />
+                    {/*<div className={`${styles.footerBtns} flex flex-col justify-center items-center relative`}>*/}
+                    {/*    <Image*/}
+                    {/*        src="/button-top.svg"*/}
+                    {/*        alt="Button"*/}
+                    {/*        width={67}*/}
+                    {/*        height={50}*/}
+                    {/*        className="cursor-pointer"*/}
+                    {/*    />*/}
 
-                        <Image
-                            src="/button-bottom.svg"
-                            alt="Button"
-                            width={67}
-                            height={50}
-                            className="cursor-pointer"
-                        />
-                    </div>
+                    {/*    <Image*/}
+                    {/*        src="/button-bottom.svg"*/}
+                    {/*        alt="Button"*/}
+                    {/*        width={67}*/}
+                    {/*        height={50}*/}
+                    {/*        className="cursor-pointer"*/}
+                    {/*    />*/}
+                    {/*</div>*/}
                 </div>
             </div>
 
