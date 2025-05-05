@@ -75,6 +75,7 @@ export default function Home() {
             bounceElements()
             setSelectError(!isSelectValid)
             setFailCheck(true)
+            setActiveTabb("motion")
             setVisibleError(true)
 
         } else {
