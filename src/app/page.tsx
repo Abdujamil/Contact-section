@@ -75,10 +75,12 @@ export default function Home() {
             bounceElements()
             setSelectError(!isSelectValid)
             setFailCheck(true)
+            setVisibleError(true)
 
         } else {
             setIsSelectOpen(false)
             setFailCheck(false)
+            setVisibleError(false)
             validContact(contactValue)
         }
     }, [submitCount])
@@ -124,13 +126,13 @@ export default function Home() {
     // BounceEffect
     const bounceElements = () => {
         const myElement = document.getElementById('bounce-checkbox');
-        const selectElement = document.querySelector('.relative.mb-\\[34px\\] > div');
+        // const selectElement = document.querySelector('.relative.mb-\\[34px\\] > div');
 
         // Анимация для селекта
-        if (selectElement instanceof HTMLElement) {
-            selectElement.style.animation = 'bounce-input .4s ease';
-            setTimeout(() => selectElement.style.animation = '', 100);
-        }
+        // if (selectElement instanceof HTMLElement) {
+        //     selectElement.style.animation = 'bounce-input .4s ease';
+        //     setTimeout(() => selectElement.style.animation = '', 100);
+        // }
 
         // Анимация для чекбоксов
         if (myElement) {
@@ -282,10 +284,12 @@ export default function Home() {
             (!phoneRegex.test(contactValue.trim()) && isPhone) || !isSelectValid) {
             setSelectError(true);
             setEmailError(true);
+            setVisibleError(true)
             setEmailSuccessful(false);
             return;
         } else {
             setEmailError(false);
+            setVisibleError(false)
         }
 
         // Заполнение FormData
@@ -304,6 +308,7 @@ export default function Home() {
         if (!isFormValid || !isContactMethodSelected || !isContactValid) {
             bounceElements();
             setFailCheck(true);
+            setVisibleError(true)
 
             if (!isContactMethodSelected) {
                 console.log('Ошибка: не выбран способ связи');
@@ -329,7 +334,6 @@ export default function Home() {
         direction: "vertical",
         distanceCoficent: -1,
     });
-
     const [motionSettings, setMotionSettings] = useState({
         duration: 0.6,
         ease: [0.34, 1.56, 0.64, 1],
@@ -338,24 +342,6 @@ export default function Home() {
         closeY: [60, -6, 0, 0, 0],
         opacity: [0, 1, 1, 1, 1],
     });
-
-    // const runBounceEffect = () => {
-    //     const block = document.getElementById('bounce-block');
-    //     if (!block) return;
-    //
-    //     block.animate(
-    //         [
-    //             { transform: `translateY(${bounceSettings.startPosition})`, offset: 0 },
-    //             { transform: `translateY(${bounceSettings.endPosition})`, offset: 0.5 },
-    //             { transform: 'translateY(0)', offset: 1 },
-    //         ],
-    //         {
-    //             duration: bounceSettings.duration,
-    //             easing: bounceSettings.easing,
-    //             fill: 'forwards',
-    //         }
-    //     );
-    // };
 
     const runBounceEffect = (block: HTMLElement) => {
         block.animate(
@@ -390,7 +376,6 @@ export default function Home() {
     }, [activeTabb, motionSettings]);
 
 
-
     return (
         <>
             <div className={`${styles.page} h-dvh`}>
@@ -404,7 +389,7 @@ export default function Home() {
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
 
-                    <div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-0`}>
+                    <div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-[20px] bottom-[40px]`}>
                         <div className={`flex flex-col items-start gap-[8px]`}>
                             <button
                                 className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
