@@ -327,22 +327,22 @@ export default function Home() {
         setIsSubmitted(true);
     };
 
-    const [bounceSettings, setBounceSettings] = useState({
+    const bounceSettings = {
         startPosition: "-50px",
         endPosition: "5px",
         duration: 500,
         easing: "ease",
         direction: "vertical",
         distanceCoficent: -1,
-    });
-    const [motionSettings, setMotionSettings] = useState({
+    };
+    const motionSettings = {
         duration: 0.6,
         ease: [0.34, 1.56, 0.64, 1],
         times: [0, 0.2, 0.5, 0.8, 1],
         openY: [0, 26, 0, 0, 0],
         closeY: [60, -6, 0, 0, 0],
         opacity: [0, 1, 1, 1, 1],
-    });
+    };
 
     const runBounceEffect = (block: HTMLElement) => {
         block.animate(
@@ -358,8 +358,6 @@ export default function Home() {
             }
         );
 
-        setBounceSettings();
-        setMotionSettings();
     };
 
     const runMotionEffect = () => {
