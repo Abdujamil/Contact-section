@@ -411,7 +411,7 @@ export default function Home() {
 
                             {/* Блок "Связаться" */}
                             <motion.div id="form-main"
-                                        initial={{y: 20, opacity: 0}}
+                                        initial={{y: 20, opacity: 1}}
                                         animate={controls}
                                         className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 
                             ${
@@ -633,7 +633,7 @@ export default function Home() {
 
                             {/* Блок "Реквизиты" */}
                             <motion.div id="requisite-block"
-                                        initial={{y: 20, opacity: 0}}
+                                        initial={{y: 20, opacity: 1}}
                                         animate={controls}
                                         className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${
                                             activeTab !== 'requisite' ? 'hidden' : ''
