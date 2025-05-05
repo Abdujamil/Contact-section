@@ -10,7 +10,7 @@ import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
 import Header from "@/components/header/Header";
 // import GlassButton from "@/components/GlassButton/GlassButton";
-import {AnimationSettings} from "@/components/utils/types";
+// import {AnimationSettings} from "@/components/utils/types";
 import {motion, useAnimation} from "framer-motion";
 
 
