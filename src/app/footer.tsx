@@ -34,14 +34,14 @@ const Footer: React.FC = () => {
                                 {/*    type="email" name="email" id="email" placeholder="Email"/>*/}
 
                                 <AppInput
-                                    className={`${styles.footerInpt} w-full mb-[34px] max-h-[42px] !bg-[#101010] focus:!bg-[#20272A] !py-[8px] !pr-[10px] !pl-[13px]`}
+                                    className={`${styles.footerInpt} !w-[227px] z-[2] mb-[34px] max-h-[42px] !bg-[#101010] focus:!bg-[#20272A] !py-[8px] !pr-[10px] !pl-[13px]`}
                                     title={'Email'}
                                     inputName="email"
                                     required={true}
                                 />
 
                                 <button
-                                    className=" bg-[#101010] z-[-1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer"
+                                    className=" bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer"
                                     type="submit">
                                     <Image
                                         className=' transition-all duration-[.3s] ease-in-out'

@@ -642,20 +642,23 @@ export default function Home() {
 
                                                     {isSelectOpen && (
                                                         <div
-                                                            className={`${styles.selectOption} absolute right-[15px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
+                                                            className={`${styles.selectOption} absolute right-[15px] p-[28px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
                                                             {options.map((option, index) => (
                                                                 <div
                                                                     key={index}
-                                                                    className={`px-4 py-2 cursor-pointer hover:bg-[#1a1a1a] hover:text-[#CCC] ${
-                                                                        selectedOption === option ? 'text-[#3D9ED6] border-b border-b-[#3D9ED6]' : 'text-[#737373]'
-                                                                    }`}
+                                                                    className={`pb-[15px] cursor-pointer  hover:text-[#CCC]`}
                                                                     onClick={() => {
                                                                         setSelectedOption(option);
                                                                         setSelectError(false);
                                                                         setIsSelectOpen(false);
                                                                     }}
                                                                 >
-                                                                    {option}
+                                                                    <p
+                                                                        className={`${styles["menu-item"]} ${
+                                                                            selectedOption === option ? '!text-[#3D9ED6] border-b border-b-[#3D9ED6]' : 'text-[#737373]'
+                                                                        }`}>
+                                                                        {option}
+                                                                    </p>
                                                                 </div>
                                                             ))}
                                                         </div>

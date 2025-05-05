@@ -84,7 +84,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     }, [inputName, watch]);
 
     return (
-        <div className={`relative z-[0] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} transition-all duration-300`}>
+        <div className={`relative z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} transition-all duration-300`}>
             <label
                 className={`field ${disable && 'pointer-events-none'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
                 <input
