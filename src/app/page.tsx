@@ -10,8 +10,12 @@ import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
 import Header from "@/components/header/Header";
 // import GlassButton from "@/components/GlassButton/GlassButton";
+import {AnimationSettings} from "@/components/utils/types";
+import {motion, useAnimation} from "framer-motion";
+
 
 export default function Home() {
+    const controls = useAnimation();
     const methods = useForm({
         mode: "onTouched",
         reValidateMode: "onChange",
@@ -82,7 +86,6 @@ export default function Home() {
         }
     }, [contactValue])
 
-
     // Upload file
     const [text, setText] = useState('');
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -140,7 +143,7 @@ export default function Home() {
 
     };
 
-    // BounceEffect for blocks
+
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -170,6 +173,7 @@ export default function Home() {
         button.style.setProperty("--last-mouse-y", `${centerY}px`);
     };
 
+    // BounceEffect for blocks
     const bounceActiveBlock = () => {
         const block = activeTab === 'contact'
             ? document.getElementById('form-main')
@@ -232,6 +236,8 @@ export default function Home() {
             });
         }
     }, [activeTab]);
+
+
 
     // Validation
     const validContact = (value: string): boolean => {
@@ -327,12 +333,12 @@ export default function Home() {
                                             onMouseMove={handleMouseMove}
                                             onMouseLeave={handleMouseLeave}
                                             className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
-                                        cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                                             cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                                             style={{
                                                 color: activeTab === "contact" ? "#3D9ED6" : "",
                                             }}>
 
-                                        <svg
+                                            <svg
                                                 className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
                                                 width="30" height="17" viewBox="0 0 30 17" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -377,7 +383,7 @@ export default function Home() {
                                             style={{
                                                 color: activeTab === "requisite" ? "#3D9ED6" : "",
                                             }}>
-                                        <svg
+                                            <svg
                                                 className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
                                                 width="24" height="27" viewBox="0 0 24 27" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -404,10 +410,13 @@ export default function Home() {
                             </div>
 
                             {/* Блок "Связаться" */}
-                            <div id="form-main" className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 
+                            <motion.div id="form-main"
+                                        initial={{y: 20, opacity: 0}}
+                                        animate={controls}
+                                        className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 
                             ${
-                                activeTab !== 'contact' ? 'hidden' : ''
-                            }
+                                            activeTab !== 'contact' ? 'hidden' : ''
+                                        }
                             `}>
                                 <FormProvider {...methods}>
                                     {isSubmitted ? (
@@ -620,21 +629,25 @@ export default function Home() {
                                         </form>
                                     )}
                                 </FormProvider>
-                            </div>
+                            </motion.div>
 
                             {/* Блок "Реквизиты" */}
-                            <div id="requisite-block"
-                                 className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${
-                                     activeTab !== 'requisite' ? 'hidden' : ''
-                                 }`}>
+                            <motion.div id="requisite-block"
+                                        initial={{y: 20, opacity: 0}}
+                                        animate={controls}
+                                        className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${
+                                            activeTab !== 'requisite' ? 'hidden' : ''
+                                        }`}>
                                 <div className="flex justify-between items-end  mb-5">
                                     <div className="w-full max-w-[516px]">
-                                        <label className="block text-lg font-normal text-white mb-2 leading-[110%]">Полное
+                                        <label
+                                            className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">Полное
                                             наименование</label>
                                         <input
                                             type="text"
+                                            readOnly={false}
                                             defaultValue="Общество с ограниченной ответственностью «АУДИОСЕКТОР»"
-                                            className="w-full bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#CCCCCC] focus:outline-none focus:border-[#5F5F5F]"
+                                            className="w-full bg-[#101010] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#737373] focus:outline-none focus:border-[#5F5F5F]"
                                         />
                                     </div>
 
@@ -652,247 +665,10 @@ export default function Home() {
                                                 height={49}
                                                 alt="pdf-icon"
                                             />
-                                            {/*<svg className={`${styles.sendIconLeft}  transition-all duration-200 ease-in`} width="48" height="52" viewBox="0 0 48 52" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
-                                            {/*    <g opacity="0.6" filter="url(#filter0_d_13_2916)">*/}
-                                            {/*        <path d="M16.9866 4.63867H32.4387L41.1448 13.2871V37.417C41.1448 38.5076 40.2598 39.3916 39.1692 39.3916H16.9866C15.896 39.3916 15.011 38.5076 15.011 37.417V6.61426C15.011 5.52368 15.896 4.63867 16.9866 4.63867Z" fill="url(#paint0_linear_13_2916)" stroke="url(#paint1_linear_13_2916)" strokeWidth="0.139568"/>*/}
-                                            {/*        <path d="M32.5022 4.56934L41.2139 13.2242H34.5467C33.4175 13.2242 32.5022 12.3089 32.5022 11.1798V4.56934Z" fill="#BDBDBD"/>*/}
-                                            {/*        <path d="M41.2144 19.6299L34.7663 13.2239H41.2144V19.6299Z" fill="#868686"/>*/}
-                                            {/*        <path d="M14.9419 23.3103C14.9419 22.7458 15.3996 22.2881 15.9641 22.2881H35.8019C36.3665 22.2881 36.8242 22.7458 36.8242 23.3103V34.2822C36.8242 34.8468 36.3665 35.3045 35.8019 35.3045H14.9419V23.3103Z" fill="#868686"/>*/}
-                                            {/*        <g filter="url(#filter1_ddddii_13_2916)">*/}
-                                            {/*            <rect x="10.5513" y="20.9258" width="26.2724" height="13.0164" rx="1.02223" fill="url(#paint2_linear_13_2916)"/>*/}
-                                            {/*            <rect x="10.5683" y="20.9428" width="26.2384" height="12.9823" rx="1.00519" stroke="url(#paint3_linear_13_2916)" strokeWidth="0.0340742"/>*/}
-                                            {/*        </g>*/}
-                                            {/*        <g filter="url(#filter2_ddiiii_13_2916)">*/}
-                                            {/*            <path d="M13.5157 32.1094V24.2377H17.0105C17.8739 24.2377 18.5327 24.4461 18.9868 24.863C19.4408 25.2798 19.6679 25.853 19.6679 26.5825C19.6679 27.3045 19.4408 27.8777 18.9868 28.302C18.5327 28.7262 17.8739 28.9384 17.0105 28.9384H14.956V32.1094H13.5157ZM14.956 27.7995H16.843C17.3194 27.7995 17.6767 27.6953 17.9149 27.4869C18.1531 27.271 18.2722 26.9695 18.2722 26.5825C18.2722 26.1954 18.1531 25.8977 17.9149 25.6892C17.6767 25.4734 17.3194 25.3654 16.843 25.3654H14.956V27.7995ZM20.9521 32.1094V24.2377H23.8104C24.7111 24.2377 25.4704 24.394 26.0882 24.7067C26.7134 25.0119 27.1861 25.4585 27.5062 26.0465C27.8263 26.6271 27.9863 27.3343 27.9863 28.168C27.9863 28.9942 27.8263 29.7014 27.5062 30.2894C27.1861 30.8775 26.7134 31.3278 26.0882 31.6404C25.4704 31.9531 24.7111 32.1094 23.8104 32.1094H20.9521ZM22.3924 30.9147H23.7211C24.6739 30.9147 25.381 30.6876 25.8425 30.2336C26.304 29.7795 26.5348 29.091 26.5348 28.168C26.5348 27.2375 26.304 26.549 25.8425 26.1024C25.381 25.6483 24.6739 25.4213 23.7211 25.4213H22.3924V30.9147ZM29.457 32.1094V24.2377H34.6489V25.3654H30.8973V27.5985H34.3921V28.7262H30.8973V32.1094H29.457Z" fill="#CCCCCC"/>*/}
-                                            {/*        </g>*/}
-                                            {/*    </g>*/}
-                                            {/*    <defs>*/}
-                                            {/*        <filter id="filter0_d_13_2916" x="0.55127" y="0.569336" width="46.6631" height="50.8916" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">*/}
-                                            {/*            <feFlood floodOpacity="0" result="BackgroundImageFix"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-2" dy="4"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="4"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="out"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_13_2916"/>*/}
-                                            {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_13_2916" result="shape"/>*/}
-                                            {/*        </filter>*/}
-                                            {/*        <filter id="filter1_ddddii_13_2916" x="10.3468" y="20.7213" width="26.7495" height="13.4936" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">*/}
-                                            {/*            <feFlood floodOpacity="0" result="BackgroundImageFix"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.102223"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect1_dropShadow_13_2916" result="effect2_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect2_dropShadow_13_2916" result="effect3_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect3_dropShadow_13_2916" result="effect4_dropShadow_13_2916"/>*/}
-                                            {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_13_2916" result="shape"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.5 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="shape" result="effect5_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect5_innerShadow_13_2916" result="effect6_innerShadow_13_2916"/>*/}
-                                            {/*        </filter>*/}
-                                            {/*        <filter id="filter2_ddiiii_13_2916" x="13.1749" y="23.8966" width="21.8148" height="8.55356" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">*/}
-                                            {/*            <feFlood floodOpacity="0" result="BackgroundImageFix"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.5 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect1_dropShadow_13_2916" result="effect2_dropShadow_13_2916"/>*/}
-                                            {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_13_2916" result="shape"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.340742" dy="0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.442965"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="shape" result="effect3_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.340742" dy="-0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.340742"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect3_innerShadow_13_2916" result="effect4_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.340742" dy="-0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.340742"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect4_innerShadow_13_2916" result="effect5_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.340742" dy="0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.340742"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect5_innerShadow_13_2916" result="effect6_innerShadow_13_2916"/>*/}
-                                            {/*        </filter>*/}
-                                            {/*        <linearGradient id="paint0_linear_13_2916" x1="14.9417" y1="4.56934" x2="48.4748" y2="29.8186" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop offset="1" stopColor="#C5C5C5"/>*/}
-                                            {/*            <stop stopColor="#7C7C7C"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*        <linearGradient id="paint1_linear_13_2916" x1="15.9932" y1="4.56934" x2="39.948" y2="39.6081" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop stopColor="white"/>*/}
-                                            {/*            <stop offset="1" stopColor="#747474"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*        <linearGradient id="paint2_linear_13_2916" x1="10.9369" y1="20.9258" x2="36.368" y2="34.0777" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop stopColor="#DD0212"/>*/}
-                                            {/*            <stop offset="0.14" stopColor="#EF0012"/>*/}
-                                            {/*            <stop offset="1" stopColor="#DF0011"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*        <linearGradient id="paint3_linear_13_2916" x1="23.6875" y1="20.9258" x2="31.4322" y2="33.9868" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop stopColor="#F0F0F0"/>*/}
-                                            {/*            <stop offset="1" stopColor="#7C7C7C"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*    </defs>*/}
-                                            {/*</svg>*/}
                                             <span
                                                 className="!transition-all !duration-200 !ease-in !group-hover:text-[#ccc] text-[20px]">
                                                           Скачать PDF
                                                         </span>
-                                            {/*<svg className={`${styles.sendIconRight}  transition-all duration-200 ease-in`} width="48" height="52" viewBox="0 0 48 52" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
-                                            {/*    <g opacity="0.6" filter="url(#filter0_d_13_2916)">*/}
-                                            {/*        <path d="M16.9866 4.63867H32.4387L41.1448 13.2871V37.417C41.1448 38.5076 40.2598 39.3916 39.1692 39.3916H16.9866C15.896 39.3916 15.011 38.5076 15.011 37.417V6.61426C15.011 5.52368 15.896 4.63867 16.9866 4.63867Z" fill="url(#paint0_linear_13_2916)" stroke="url(#paint1_linear_13_2916)" strokeWidth="0.139568"/>*/}
-                                            {/*        <path d="M32.5022 4.56934L41.2139 13.2242H34.5467C33.4175 13.2242 32.5022 12.3089 32.5022 11.1798V4.56934Z" fill="#BDBDBD"/>*/}
-                                            {/*        <path d="M41.2144 19.6299L34.7663 13.2239H41.2144V19.6299Z" fill="#868686"/>*/}
-                                            {/*        <path d="M14.9419 23.3103C14.9419 22.7458 15.3996 22.2881 15.9641 22.2881H35.8019C36.3665 22.2881 36.8242 22.7458 36.8242 23.3103V34.2822C36.8242 34.8468 36.3665 35.3045 35.8019 35.3045H14.9419V23.3103Z" fill="#868686"/>*/}
-                                            {/*        <g filter="url(#filter1_ddddii_13_2916)">*/}
-                                            {/*            <rect x="10.5513" y="20.9258" width="26.2724" height="13.0164" rx="1.02223" fill="url(#paint2_linear_13_2916)"/>*/}
-                                            {/*            <rect x="10.5683" y="20.9428" width="26.2384" height="12.9823" rx="1.00519" stroke="url(#paint3_linear_13_2916)" strokeWidth="0.0340742"/>*/}
-                                            {/*        </g>*/}
-                                            {/*        <g filter="url(#filter2_ddiiii_13_2916)">*/}
-                                            {/*            <path d="M13.5157 32.1094V24.2377H17.0105C17.8739 24.2377 18.5327 24.4461 18.9868 24.863C19.4408 25.2798 19.6679 25.853 19.6679 26.5825C19.6679 27.3045 19.4408 27.8777 18.9868 28.302C18.5327 28.7262 17.8739 28.9384 17.0105 28.9384H14.956V32.1094H13.5157ZM14.956 27.7995H16.843C17.3194 27.7995 17.6767 27.6953 17.9149 27.4869C18.1531 27.271 18.2722 26.9695 18.2722 26.5825C18.2722 26.1954 18.1531 25.8977 17.9149 25.6892C17.6767 25.4734 17.3194 25.3654 16.843 25.3654H14.956V27.7995ZM20.9521 32.1094V24.2377H23.8104C24.7111 24.2377 25.4704 24.394 26.0882 24.7067C26.7134 25.0119 27.1861 25.4585 27.5062 26.0465C27.8263 26.6271 27.9863 27.3343 27.9863 28.168C27.9863 28.9942 27.8263 29.7014 27.5062 30.2894C27.1861 30.8775 26.7134 31.3278 26.0882 31.6404C25.4704 31.9531 24.7111 32.1094 23.8104 32.1094H20.9521ZM22.3924 30.9147H23.7211C24.6739 30.9147 25.381 30.6876 25.8425 30.2336C26.304 29.7795 26.5348 29.091 26.5348 28.168C26.5348 27.2375 26.304 26.549 25.8425 26.1024C25.381 25.6483 24.6739 25.4213 23.7211 25.4213H22.3924V30.9147ZM29.457 32.1094V24.2377H34.6489V25.3654H30.8973V27.5985H34.3921V28.7262H30.8973V32.1094H29.457Z" fill="#CCCCCC"/>*/}
-                                            {/*        </g>*/}
-                                            {/*    </g>*/}
-                                            {/*    <defs>*/}
-                                            {/*        <filter id="filter0_d_13_2916" x="0.55127" y="0.569336" width="46.6631" height="50.8916" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">*/}
-                                            {/*            <feFlood floodOpacity="0" result="BackgroundImageFix"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-2" dy="4"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="4"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="out"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_13_2916"/>*/}
-                                            {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_13_2916" result="shape"/>*/}
-                                            {/*        </filter>*/}
-                                            {/*        <filter id="filter1_ddddii_13_2916" x="10.3468" y="20.7213" width="26.7495" height="13.4936" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">*/}
-                                            {/*            <feFlood floodOpacity="0" result="BackgroundImageFix"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.102223"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect1_dropShadow_13_2916" result="effect2_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect2_dropShadow_13_2916" result="effect3_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect3_dropShadow_13_2916" result="effect4_dropShadow_13_2916"/>*/}
-                                            {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect4_dropShadow_13_2916" result="shape"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0 0.682353 0 0 0 0.5 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="shape" result="effect5_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect5_innerShadow_13_2916" result="effect6_innerShadow_13_2916"/>*/}
-                                            {/*        </filter>*/}
-                                            {/*        <filter id="filter2_ddiiii_13_2916" x="13.1749" y="23.8966" width="21.8148" height="8.55356" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">*/}
-                                            {/*            <feFlood floodOpacity="0" result="BackgroundImageFix"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.0681485" dy="-0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.5 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.0681485" dy="0.0681485"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.0681485"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect1_dropShadow_13_2916" result="effect2_dropShadow_13_2916"/>*/}
-                                            {/*            <feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_13_2916" result="shape"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.340742" dy="0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.442965"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="shape" result="effect3_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.340742" dy="-0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.340742"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect3_innerShadow_13_2916" result="effect4_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="0.340742" dy="-0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.340742"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect4_innerShadow_13_2916" result="effect5_innerShadow_13_2916"/>*/}
-                                            {/*            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>*/}
-                                            {/*            <feOffset dx="-0.340742" dy="0.340742"/>*/}
-                                            {/*            <feGaussianBlur stdDeviation="0.340742"/>*/}
-                                            {/*            <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>*/}
-                                            {/*            <feColorMatrix type="matrix" values="0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0 0.85098 0 0 0 0.2 0"/>*/}
-                                            {/*            <feBlend mode="normal" in2="effect5_innerShadow_13_2916" result="effect6_innerShadow_13_2916"/>*/}
-                                            {/*        </filter>*/}
-                                            {/*        <linearGradient id="paint0_linear_13_2916" x1="14.9417" y1="4.56934" x2="48.4748" y2="29.8186" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop offset="1" stopColor="#C5C5C5"/>*/}
-                                            {/*            <stop stopColor="#7C7C7C"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*        <linearGradient id="paint1_linear_13_2916" x1="15.9932" y1="4.56934" x2="39.948" y2="39.6081" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop stopColor="white"/>*/}
-                                            {/*            <stop offset="1" stopColor="#747474"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*        <linearGradient id="paint2_linear_13_2916" x1="10.9369" y1="20.9258" x2="36.368" y2="34.0777" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop stopColor="#DD0212"/>*/}
-                                            {/*            <stop offset="0.14" stopColor="#EF0012"/>*/}
-                                            {/*            <stop offset="1" stopColor="#DF0011"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*        <linearGradient id="paint3_linear_13_2916" x1="23.6875" y1="20.9258" x2="31.4322" y2="33.9868" gradientUnits="userSpaceOnUse">*/}
-                                            {/*            <stop stopColor="#F0F0F0"/>*/}
-                                            {/*            <stop offset="1" stopColor="#7C7C7C"/>*/}
-                                            {/*        </linearGradient>*/}
-                                            {/*    </defs>*/}
-                                            {/*</svg>*/}
-
                                             <Image
                                                 className={`${styles.sendIconRight}  transition-all duration-200 ease-in`}
                                                 src='/pdf-icon.svg'
@@ -908,12 +684,13 @@ export default function Home() {
                                 </div>
 
                                 <div className="mb-6">
-                                    <label className="block text-lg font-light text-white mb-2 leading-[110%]">Юридический
+                                    <label
+                                        className="pl-[18px] block text-lg font-light text-[#ccc] mb-2 leading-[110%]">Юридический
                                         адрес</label>
                                     <input
                                         type="text"
                                         defaultValue="180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44"
-                                        className="w-full max-h-[51px] bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#CCCCCC] focus:outline-none focus:border-[#5F5F5F]"
+                                        className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                     />
                                 </div>
 
@@ -921,48 +698,49 @@ export default function Home() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label
-                                                className="block text-lg font-normal text-white mb-2 leading-[110%]">ИНН</label>
+                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">ИНН</label>
                                             <input
                                                 type="text"
                                                 defaultValue="6000005874"
-                                                className="w-full max-h-[51px] bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#CCCCCC] focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             />
                                         </div>
 
                                         <div>
                                             <label
-                                                className="block text-lg font-normal text-white mb-2 leading-[110%]">ОГРН</label>
+                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">ОГРН</label>
                                             <input
                                                 type="text"
                                                 defaultValue="1236000004569"
-                                                className="w-full max-h-[51px] bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#CCCCCC] focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             />
                                         </div>
                                     </div>
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
-                                            <label className="block text-lg font-normal text-white mb-2 leading-[110%]">Генеральный
+                                            <label
+                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">Генеральный
                                                 директор</label>
                                             <input
                                                 type="text"
                                                 defaultValue="Владимиров Владимир Михайлович"
-                                                className="w-full max-h-[51px] bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#CCCCCC] focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             />
                                         </div>
 
                                         <div>
                                             <label
-                                                className="block text-lg font-normal text-white mb-2 leading-[110%]">Почта</label>
+                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">Почта</label>
                                             <input
                                                 type="email"
                                                 defaultValue="info@audiosector.ru"
-                                                className="w-full max-h-[51px] bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3 text-[#CCCCCC] focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                     <Footer/>

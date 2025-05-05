@@ -56,11 +56,11 @@ body {
     line-height: 24px;
     font-weight: 400;
     padding: 12px;
-    color: #fff;
+    color: #ccc;
     border: 1px solid #353535;
     resize: none;
     outline: none;
-    caret-color: #fff;
+    caret-color: #ccc;
 }
 
 .field__input:focus ~ .field__title-top, .field__textarea:focus ~ .field__title-top {

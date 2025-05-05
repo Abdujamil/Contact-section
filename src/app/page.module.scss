@@ -30,6 +30,11 @@
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(2px);
 
+      input {
+        user-select: none; /* Запрещаем выделение текста */
+        pointer-events: none; /* Блокируем все события мыши */
+      }
+
       .fileIcon {
         background: rgba(255, 255, 255, 0.1);
       }
@@ -119,11 +124,11 @@
 
 .btn.btnDownloadPdf {
   &:hover {
-    .sendIconLeft{
+    .sendIconLeft {
       left: 15px;
     }
 
-    .sendIconRight{
+    .sendIconRight {
       transform: translateX(65px);
     }
 
@@ -194,3 +199,4 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) -60%, #000000 100%);
   }
 }
+
