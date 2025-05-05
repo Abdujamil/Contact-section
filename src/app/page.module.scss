@@ -168,6 +168,7 @@
           transform: translateX(-80px);
 
           &:hover {
+              transform: translateX(0);
             img {
               transform: rotate(48deg);
             }
