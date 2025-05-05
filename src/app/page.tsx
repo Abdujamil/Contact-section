@@ -23,6 +23,7 @@ export default function Home() {
     });
     const {handleSubmit, formState: {submitCount}, trigger, reset} = methods;
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
+    const [activeTabb, setActiveTabb] = useState<'bounceEffect' | 'motion'>('bounceEffect');
     const contactInputRef = useRef<HTMLInputElement>(null);
 
     const [isPhone, setIsPhone] = useState(false);
@@ -44,6 +45,8 @@ export default function Home() {
 
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [countdown, setCountdown] = useState(10);
+    const [visibleError, setVisibleError] = useState(false);
+
 
     // Таймер обратного отсчета
     useEffect(() => {
@@ -123,12 +126,12 @@ export default function Home() {
         const myElement = document.getElementById('bounce-checkbox');
         const selectElement = document.querySelector('.relative.mb-\\[34px\\] > div');
 
-
         // Анимация для селекта
         if (selectElement instanceof HTMLElement) {
             selectElement.style.animation = 'bounce-input .4s ease';
             setTimeout(() => selectElement.style.animation = '', 100);
         }
+
         // Анимация для чекбоксов
         if (myElement) {
             BounceEffect(myElement, {
@@ -140,9 +143,7 @@ export default function Home() {
                 distanceCoficent: -1
             });
         }
-
     };
-
 
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -184,14 +185,31 @@ export default function Home() {
             block.style.animation = 'none';
             void block.offsetHeight; // Trigger reflow
 
-            BounceEffect(block, {
-                startPosition: "-50px",
-                endPosition: `${5}px`,
-                duration: 500,
-                easing: "ease",
-                direction: 'vertical',
-                distanceCoficent: -1
-            });
+            // BounceEffect(block, {
+            //     startPosition: "-50px",
+            //     endPosition: `${5}px`,
+            //     duration: 500,
+            //     easing: "ease",
+            //     direction: 'vertical',
+            //     distanceCoficent: -1
+            // });
+
+            // const target = {
+            //     y: block ? animationSettings.openY : animationSettings.closeY,
+            //     opacity: block ? [0, 1, 1, 1, 1] : [1, 1, 1, 1, 0],
+            //     transition: {
+            //         duration: animationSettings.duration,
+            //         ease: animationSettings.ease,
+            //         times: animationSettings.times,
+            //     },
+            // };
+            // controls.start(target);
+
+            if (activeTabb === 'bounceEffect') {
+                runBounceEffect(block);
+            } else {
+                runMotionEffect();
+            }
         }
     };
     const handleTabChange = (tab: 'contact' | 'requisite') => {
@@ -238,7 +256,6 @@ export default function Home() {
     }, [activeTab]);
 
 
-
     // Validation
     const validContact = (value: string): boolean => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -251,9 +268,7 @@ export default function Home() {
         setEmailSuccessful(isValid);
         return isValid;
     };
-
     const {setFocus} = methods;
-
     const onSubmit = async (data: Record<string, unknown>) => {
         const formData = new FormData();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -306,6 +321,75 @@ export default function Home() {
         setIsSubmitted(true);
     };
 
+    const [bounceSettings, setBounceSettings] = useState({
+        startPosition: "-50px",
+        endPosition: "5px",
+        duration: 500,
+        easing: "ease",
+        direction: "vertical",
+        distanceCoficent: -1,
+    });
+
+    const [motionSettings, setMotionSettings] = useState({
+        duration: 0.6,
+        ease: [0.34, 1.56, 0.64, 1],
+        times: [0, 0.2, 0.5, 0.8, 1],
+        openY: [0, 26, 0, 0, 0],
+        closeY: [60, -6, 0, 0, 0],
+        opacity: [0, 1, 1, 1, 1],
+    });
+
+    // const runBounceEffect = () => {
+    //     const block = document.getElementById('bounce-block');
+    //     if (!block) return;
+    //
+    //     block.animate(
+    //         [
+    //             { transform: `translateY(${bounceSettings.startPosition})`, offset: 0 },
+    //             { transform: `translateY(${bounceSettings.endPosition})`, offset: 0.5 },
+    //             { transform: 'translateY(0)', offset: 1 },
+    //         ],
+    //         {
+    //             duration: bounceSettings.duration,
+    //             easing: bounceSettings.easing,
+    //             fill: 'forwards',
+    //         }
+    //     );
+    // };
+
+    const runBounceEffect = (block: HTMLElement) => {
+        block.animate(
+            [
+                {transform: `translateY(${bounceSettings.startPosition})`, offset: 0},
+                {transform: `translateY(${bounceSettings.endPosition})`, offset: 0.5},
+                {transform: 'translateY(0)', offset: 1},
+            ],
+            {
+                duration: bounceSettings.duration,
+                easing: bounceSettings.easing,
+                fill: 'forwards',
+            }
+        );
+    };
+
+    const runMotionEffect = () => {
+        controls.start({
+            y: motionSettings.openY,
+            opacity: motionSettings.opacity,
+            transition: {
+                duration: motionSettings.duration,
+                ease: motionSettings.ease,
+                times: motionSettings.times,
+            },
+        });
+    };
+    useEffect(() => {
+        if (activeTabb === 'motion') {
+            runMotionEffect();
+        }
+    }, [activeTabb, motionSettings]);
+
+
 
     return (
         <>
@@ -319,6 +403,77 @@ export default function Home() {
                 </div>
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
+
+                    <div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-0`}>
+                        <div className={`flex flex-col items-start gap-[8px]`}>
+                            <button
+                                className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
+                                             cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                                onClick={() => setActiveTabb('bounceEffect')}>Анимация первая (Egor)
+                            </button>
+                            <button
+                                className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
+                                             cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                                onClick={() => setActiveTabb('motion')}>Анимация вторая (Adam)
+                            </button>
+                        </div>
+
+                        {activeTabb === 'bounceEffect' && (
+                            <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>
+                                <h3>Настройки BounceEffect:</h3>
+                                <label>Start Position:
+                                    <input className={`border border-[#737373]`} value={bounceSettings.startPosition}
+                                           onChange={e => setBounceSettings({
+                                               ...bounceSettings,
+                                               startPosition: e.target.value
+                                           })}/></label><br/>
+                                <label>End Position:
+                                    <input className={`border border-[#737373]`} value={bounceSettings.endPosition}
+                                           onChange={e => setBounceSettings({
+                                               ...bounceSettings,
+                                               endPosition: e.target.value
+                                           })}/></label><br/>
+                                <label>Duration (ms):
+                                    <input className={`border border-[#737373]`} type="number"
+                                           value={bounceSettings.duration}
+                                           onChange={e => setBounceSettings({
+                                               ...bounceSettings,
+                                               duration: parseInt(e.target.value)
+                                           })}/></label><br/>
+                                <label>Easing:
+                                    <input className={`border border-[#737373]`} value={bounceSettings.easing}
+                                           onChange={e => setBounceSettings({
+                                               ...bounceSettings,
+                                               easing: e.target.value
+                                           })}/></label><br/>
+                            </div>
+                        )}
+
+                        {activeTabb === 'motion' && (
+                            <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>
+                                <h3>Настройки Framer Motion:</h3>
+                                <label>Duration: <input className={`border border-[#737373]`} type="number"
+                                                        value={motionSettings.duration}
+                                                        onChange={e => setMotionSettings({
+                                                            ...motionSettings,
+                                                            duration: parseFloat(e.target.value)
+                                                        })}/></label><br/>
+                                <label>Ease: <input className={`border border-[#737373]`}
+                                                    value={motionSettings.ease.join(',')}
+                                                    onChange={e => setMotionSettings({
+                                                        ...motionSettings,
+                                                        ease: e.target.value.split(',').map(Number)
+                                                    })}/></label><br/>
+                                <label>Open Y: <input className={`border border-[#737373]`}
+                                                      value={motionSettings.openY.join(',')}
+                                                      onChange={e => setMotionSettings({
+                                                          ...motionSettings,
+                                                          openY: e.target.value.split(',').map(Number)
+                                                      })}/></label><br/>
+                            </div>
+                        )}
+                    </div>
+
                     <div
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
@@ -472,7 +627,9 @@ export default function Home() {
                                                 <div className={`relative mb-[34px]`}>
                                                     <div
                                                         className={`w-full bg-[#101010] border border-[#353535]
-                                                        rounded-[4px] px-4 py-3 cursor-pointer flex justify-between items-center ${!selectError && 'bounce'}`}
+                                                        rounded-[4px] px-4 py-3 cursor-pointer flex justify-between items-center  ${
+                                                            visibleError && submitCount > 0 ? 'bounce' : ''
+                                                        }`}
                                                         onClick={() => {
                                                             setIsSelectOpen(!isSelectOpen);
                                                             setSelectError(false);
@@ -633,6 +790,7 @@ export default function Home() {
 
                             {/* Блок "Реквизиты" */}
                             <motion.div id="requisite-block"
+
                                         initial={{y: 20, opacity: 1}}
                                         animate={controls}
                                         className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${

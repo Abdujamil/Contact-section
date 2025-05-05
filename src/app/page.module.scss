@@ -140,6 +140,7 @@
 
 .linear {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, #000000 100%);
+  filter: blur(1px);
 }
 
 .faqBg {
@@ -152,7 +153,19 @@
 
       form {
 
+        input {
+          &:focus, &:active {
+            outline: none;
+
+            & + button {
+              transform: translateX(0);
+            }
+          }
+        }
+
         button {
+          transition: transform .1s ease-in-out;
+          transform: translateX(-80px);
 
           &:hover {
             img {
@@ -188,6 +201,8 @@
     }
   }
 }
+
+
 
 @media screen and (min-width: 2540px) {
   .faqBg {

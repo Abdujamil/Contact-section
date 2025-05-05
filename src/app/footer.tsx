@@ -22,20 +22,20 @@ const Footer: React.FC = () => {
 
                         <form action="#" className="flex items-center gap-[10px]">
                             <input
-                                className="bg-[#2B2B2B] border border-[#737373] rounded-[4px] py-[8px] pr-[10px] pl-[13px] focus:outline-none active:outline-none "
+                                className="w-[228px] bg-[#101010] z-[1] border border-[#353535] rounded-[4px] py-[8px] pr-[10px] pl-[13px] focus:outline-none active:outline-none "
                                 type="email" name="email" id="email" placeholder="Email"/>
 
-                            <button
-                                className="bg-[#2B2B2B] border border-[#737373] rounded-[4px] py-[8px] px-[18px] cursor-pointer"
-                                type="submit">
-                                <Image
-                                    className=' transition-all duration-[.3s] ease-in-out'
-                                    src="/send-icon.svg"
-                                    alt='send-icon'
-                                    width={24}
-                                    height={24}
-                                />
-                            </button>
+                                <button
+                                    className=" bg-[#101010] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer"
+                                    type="submit">
+                                    <Image
+                                        className=' transition-all duration-[.3s] ease-in-out'
+                                        src="/send-icon.svg"
+                                        alt='send-icon'
+                                        width={24}
+                                        height={24}
+                                    />
+                                </button>
                         </form>
                     </div>
                 </div>
@@ -57,23 +57,6 @@ const Footer: React.FC = () => {
                             © 2025 Audiosector
                         </p>
                     </div>
-                    {/*<div className={`${styles.footerBtns} flex flex-col justify-center items-center relative`}>*/}
-                    {/*    <Image*/}
-                    {/*        src="/button-top.svg"*/}
-                    {/*        alt="Button"*/}
-                    {/*        width={67}*/}
-                    {/*        height={50}*/}
-                    {/*        className="cursor-pointer"*/}
-                    {/*    />*/}
-
-                    {/*    <Image*/}
-                    {/*        src="/button-bottom.svg"*/}
-                    {/*        alt="Button"*/}
-                    {/*        width={67}*/}
-                    {/*        height={50}*/}
-                    {/*        className="cursor-pointer"*/}
-                    {/*    />*/}
-                    {/*</div>*/}
                 </div>
             </div>
 
