@@ -122,6 +122,7 @@ input[type='email']::placeholder {
     }
 }
 
+
 .bounce {
     animation: bounce-input .4s ease;
     transition: transform .2s ease;

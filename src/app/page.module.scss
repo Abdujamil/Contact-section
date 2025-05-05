@@ -231,6 +231,10 @@
           color: #878787 !important;
         }
 
+        .titleBottom{
+          color: #878787 !important;
+        }
+
 
         input {
 
@@ -282,6 +286,13 @@
       }
     }
   }
+}
+
+.txtGradientRight {
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, #ccc, #cccccc71);
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 

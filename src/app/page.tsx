@@ -389,81 +389,81 @@ export default function Home() {
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
 
-                    <div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-[20px]`}>
-                        <div className={`flex flex-col items-start gap-[8px]`}>
-                            <button
-                                className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
-                                             cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
-                                onClick={() => setActiveTabb('bounceEffect')}>Анимация первая (Egor)
-                            </button>
-                            <button
-                                className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
-                                             cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
-                                onClick={() => setActiveTabb('motion')}>Анимация вторая (Adam)
-                            </button>
-                        </div>
+                    {/*<div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-[20px]`}>*/}
+                    {/*    <div className={`flex flex-col items-start gap-[8px]`}>*/}
+                    {/*        <button*/}
+                    {/*            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   */}
+                    {/*                         cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
+                    {/*            onClick={() => setActiveTabb('bounceEffect')}>Анимация первая (Egor)*/}
+                    {/*        </button>*/}
+                    {/*        <button*/}
+                    {/*            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   */}
+                    {/*                         cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
+                    {/*            onClick={() => setActiveTabb('motion')}>Анимация вторая (Adam)*/}
+                    {/*        </button>*/}
+                    {/*    </div>*/}
 
-                        {activeTabb === 'bounceEffect' && (
-                            <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>
-                                <h3>Настройки BounceEffect:</h3>
-                                <label>Start Position:
-                                    <input className={`border border-[#737373]`} value={bounceSettings.startPosition}
-                                           onChange={e => setBounceSettings({
-                                               ...bounceSettings,
-                                               startPosition: e.target.value
-                                           })}/></label><br/>
-                                <label>End Position:
-                                    <input className={`border border-[#737373]`} value={bounceSettings.endPosition}
-                                           onChange={e => setBounceSettings({
-                                               ...bounceSettings,
-                                               endPosition: e.target.value
-                                           })}/></label><br/>
-                                <label>Duration (ms):
-                                    <input className={`border border-[#737373]`} type="number"
-                                           value={bounceSettings.duration}
-                                           onChange={e => setBounceSettings({
-                                               ...bounceSettings,
-                                               duration: parseInt(e.target.value)
-                                           })}/></label><br/>
-                                <label>Easing:
-                                    <input className={`border border-[#737373]`} value={bounceSettings.easing}
-                                           onChange={e => setBounceSettings({
-                                               ...bounceSettings,
-                                               easing: e.target.value
-                                           })}/></label><br/>
-                            </div>
-                        )}
+                    {/*    {activeTabb === 'bounceEffect' && (*/}
+                    {/*        <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>*/}
+                    {/*            <h3>Настройки BounceEffect:</h3>*/}
+                    {/*            <label>Start Position:*/}
+                    {/*                <input className={`border border-[#737373]`} value={bounceSettings.startPosition}*/}
+                    {/*                       onChange={e => setBounceSettings({*/}
+                    {/*                           ...bounceSettings,*/}
+                    {/*                           startPosition: e.target.value*/}
+                    {/*                       })}/></label><br/>*/}
+                    {/*            <label>End Position:*/}
+                    {/*                <input className={`border border-[#737373]`} value={bounceSettings.endPosition}*/}
+                    {/*                       onChange={e => setBounceSettings({*/}
+                    {/*                           ...bounceSettings,*/}
+                    {/*                           endPosition: e.target.value*/}
+                    {/*                       })}/></label><br/>*/}
+                    {/*            <label>Duration (ms):*/}
+                    {/*                <input className={`border border-[#737373]`} type="number"*/}
+                    {/*                       value={bounceSettings.duration}*/}
+                    {/*                       onChange={e => setBounceSettings({*/}
+                    {/*                           ...bounceSettings,*/}
+                    {/*                           duration: parseInt(e.target.value)*/}
+                    {/*                       })}/></label><br/>*/}
+                    {/*            <label>Easing:*/}
+                    {/*                <input className={`border border-[#737373]`} value={bounceSettings.easing}*/}
+                    {/*                       onChange={e => setBounceSettings({*/}
+                    {/*                           ...bounceSettings,*/}
+                    {/*                           easing: e.target.value*/}
+                    {/*                       })}/></label><br/>*/}
+                    {/*        </div>*/}
+                    {/*    )}*/}
 
-                        {activeTabb === 'motion' && (
-                            <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>
-                                <h3>Настройки Framer Motion:</h3>
-                                <label>Duration: <input className={`border border-[#737373]`} type="number"
-                                                        value={motionSettings.duration}
-                                                        onChange={e => setMotionSettings({
-                                                            ...motionSettings,
-                                                            duration: parseFloat(e.target.value)
-                                                        })}/></label><br/>
-                                <label>Ease: <input className={`border border-[#737373]`}
-                                                    value={motionSettings.ease.join(',')}
-                                                    onChange={e => setMotionSettings({
-                                                        ...motionSettings,
-                                                        ease: e.target.value.split(',').map(Number)
-                                                    })}/></label><br/>
-                                <label>Open Y: <input className={`border border-[#737373]`}
-                                                      value={motionSettings.openY.join(',')}
-                                                      onChange={e => setMotionSettings({
-                                                          ...motionSettings,
-                                                          openY: e.target.value.split(',').map(Number)
-                                                      })}/></label><br/>
-                            </div>
-                        )}
-                    </div>
+                    {/*    {activeTabb === 'motion' && (*/}
+                    {/*        <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>*/}
+                    {/*            <h3>Настройки Framer Motion:</h3>*/}
+                    {/*            <label>Duration: <input className={`border border-[#737373]`} type="number"*/}
+                    {/*                                    value={motionSettings.duration}*/}
+                    {/*                                    onChange={e => setMotionSettings({*/}
+                    {/*                                        ...motionSettings,*/}
+                    {/*                                        duration: parseFloat(e.target.value)*/}
+                    {/*                                    })}/></label><br/>*/}
+                    {/*            <label>Ease: <input className={`border border-[#737373]`}*/}
+                    {/*                                value={motionSettings.ease.join(',')}*/}
+                    {/*                                onChange={e => setMotionSettings({*/}
+                    {/*                                    ...motionSettings,*/}
+                    {/*                                    ease: e.target.value.split(',').map(Number)*/}
+                    {/*                                })}/></label><br/>*/}
+                    {/*            <label>Open Y: <input className={`border border-[#737373]`}*/}
+                    {/*                                  value={motionSettings.openY.join(',')}*/}
+                    {/*                                  onChange={e => setMotionSettings({*/}
+                    {/*                                      ...motionSettings,*/}
+                    {/*                                      openY: e.target.value.split(',').map(Number)*/}
+                    {/*                                  })}/></label><br/>*/}
+                    {/*        </div>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
 
                     <div
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
                             <div className={`${styles.contactLeftContent}`}>
-                                <h2 className="leading-[110%] text-[40px] font-normal mb-[40px] mt-[-5px]">Контакты</h2>
+                                <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[40px] mt-[-5px]`}>Контакты</h2>
                                 <div
                                     className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
 

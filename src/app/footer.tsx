@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
                                 />
 
                                 <button
-                                    className=" bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer"
+                                    className="w-[60px] h-[40px] bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer"
                                     type="submit">
                                     <Image
                                         className=' transition-all duration-[.3s] ease-in-out'
@@ -55,8 +55,7 @@ const Footer: React.FC = () => {
                         </FormProvider>
                     </div>
                 </div>
-                <div
-                    className={`${styles.logo} mx-[10px] text-center flex flex-col justify-center items-center gap-[13px]`}>
+                <div className={`${styles.logo} mx-[10px] text-center flex flex-col justify-center items-center gap-[13px] w-full`}>
                     <p className="font-[400 text-[#878787] text-[16px]">ИНН 6000005874 </p>
                     <h3 className="text-[18px]">ООО &quot;АУДИОСЕКТОР&quot;</h3>
                     <p className="font-[400 text-[#878787] text-[16px]">Политика конфиденциальности</p>
