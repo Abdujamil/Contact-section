@@ -389,7 +389,7 @@ export default function Home() {
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
 
-                    <div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-[20px] bottom-[40px]`}>
+                    <div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-[20px]`}>
                         <div className={`flex flex-col items-start gap-[8px]`}>
                             <button
                                 className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
@@ -612,7 +612,7 @@ export default function Home() {
                                                 <div className={`relative mb-[34px]`}>
                                                     <div
                                                         className={`w-full bg-[#101010] border border-[#353535]
-                                                        rounded-[4px] px-4 py-3 cursor-pointer flex justify-between items-center  ${
+                                                        rounded-[4px] px-[12px] py-3 cursor-pointer flex justify-between items-center  ${
                                                             visibleError && submitCount > 0 ? 'bounce' : ''
                                                         }`}
                                                         onClick={() => {
