@@ -151,14 +151,23 @@
   .footerTop {
     .form {
 
+      form:has(input:focus) button {
+        transform: translateX(0);
+      }
+
       form {
+        .titleTop {
+          top: 10px !important;
+        }
+
 
         input {
+
           &:focus, &:active {
             outline: none;
 
             & + button {
-              transform: translateX(0);
+              transform: translateX(0) !important;
             }
           }
         }
@@ -168,7 +177,8 @@
           transform: translateX(-80px);
 
           &:hover {
-              transform: translateX(0);
+            transform: translateX(0) !important;
+
             img {
               transform: rotate(48deg);
             }
@@ -202,7 +212,6 @@
     }
   }
 }
-
 
 
 @media screen and (min-width: 2540px) {
