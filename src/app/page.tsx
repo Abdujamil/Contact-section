@@ -357,6 +357,9 @@ export default function Home() {
                 fill: 'forwards',
             }
         );
+
+        setBounceSettings();
+        setMotionSettings();
     };
 
     const runMotionEffect = () => {
