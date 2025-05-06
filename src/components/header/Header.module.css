@@ -47,7 +47,7 @@
   transition: transform 0.2s ease, color 0.5s ease;
   border-radius: 4px;
   padding: 7px 20px;
-  height: 36px;
+  height: 35px;
   will-change: transform, color, border-color, opacity;
   background: none;
   -webkit-font-smoothing: antialiased;
@@ -152,7 +152,7 @@
   position: relative;
   border-radius: 4px;
   padding: 7px 20px;
-  height: 36px;
+  height: 35px;
   background: none;
   border: 1px solid transparent;
 }
