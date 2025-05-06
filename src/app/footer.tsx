@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                             <div className="relative">
                                 <Link href="/blog"
                                       className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
-                                      data-text="Блог"
+                                      data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
                                       Блог
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                             <div className="relative">
                                 <Link href="/contacts"
                                       className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
-                                      data-text="Контакты"
+                                      data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
                                       Контакты
@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
                             <div className="relative">
                                 <Link href="/license"
                                       className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
-                                      data-text="Лицензии"
+                                      data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
                                       Лицензии
@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                             <div className="relative">
                                 <Link href="/oferta"
                                       className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
-                                      data-text="Оферта"
+                                      data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
                                       Оферта
@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                             <div className="relative">
                                 <Link href="/politic"
                                       className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
-                                      data-text="Политика"
+                                      data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
                                       Политика

@@ -134,7 +134,7 @@
 }
 
 .menu-item-active {
-  color: var(--siniy);
+  color: #3D9ED6;
   font-size: 18px;
   font-weight: 400;
   display: flex;
@@ -385,7 +385,7 @@
 }
 
 .menu-item-active:hover {
-  color: var(--siniy);
+  color: #3D9ED6;
   border-color: #353535;
 }
 
