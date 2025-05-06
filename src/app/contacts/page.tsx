@@ -368,7 +368,7 @@ export default function Home() {
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
                     <div
-                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
+                        className={`${styles.contactContainer} pb-[127px] w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
                             <div className={`${styles.contactLeftContent}`}>
                                 <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[35px] mt-[-5px]`}>Контакты</h2>
