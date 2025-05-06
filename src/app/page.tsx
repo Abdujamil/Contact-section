@@ -327,14 +327,14 @@ export default function Home() {
         setIsSubmitted(true);
     };
 
-    const bounceSettings = {
-        startPosition: "-50px",
-        endPosition: "5px",
-        duration: 500,
-        easing: "ease",
-        direction: "vertical",
-        distanceCoficent: -1,
-    };
+    // const bounceSettings = {
+    //     startPosition: "-50px",
+    //     endPosition: "5px",
+    //     duration: 500,
+    //     easing: "ease",
+    //     direction: "vertical",
+    //     distanceCoficent: -1,
+    // };
     const motionSettings = {
         duration: 0.6,
         bounce: 5,
@@ -346,21 +346,21 @@ export default function Home() {
         opacity: [0, 1, 1, 1, 1],    // Дефолтные значения для opacity
     };
 
-    const runBounceEffect = (block: HTMLElement) => {
-        block.animate(
-            [
-                {transform: `translateY(${bounceSettings.startPosition})`, offset: 0},
-                {transform: `translateY(${bounceSettings.endPosition})`, offset: 0.5},
-                {transform: 'translateY(0)', offset: 1},
-            ],
-            {
-                duration: bounceSettings.duration,
-                easing: bounceSettings.easing,
-                fill: 'forwards',
-            }
-        );
-
-    };
+    // const runBounceEffect = (block: HTMLElement) => {
+    //     block.animate(
+    //         [
+    //             {transform: `translateY(${bounceSettings.startPosition})`, offset: 0},
+    //             {transform: `translateY(${bounceSettings.endPosition})`, offset: 0.5},
+    //             {transform: 'translateY(0)', offset: 1},
+    //         ],
+    //         {
+    //             duration: bounceSettings.duration,
+    //             easing: bounceSettings.easing,
+    //             fill: 'forwards',
+    //         }
+    //     );
+    //
+    // };
 
     const runMotionEffect = () => {
         controls.start({
