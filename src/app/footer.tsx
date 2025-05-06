@@ -1,20 +1,22 @@
 "use client";
 import React from "react";
+import HeaderStyles from "../components/header/Header.module.css";
 import styles from '../app/page.module.scss';
 import Image from "next/image";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from "react-hook-form";
+import Link from "next/link";
 
 
 const Footer: React.FC = () => {
     const methods = useForm();
-
 
     return (
         <footer
             className={`${styles.footer} w-full bg-[#ffffff10] shadow-[0_0_10px_-5px_#000000] backdrop-blur-sm`}>
             <div
                 className={`${styles.footerTop} w-full h-full max-h-[127px] p-[20px] rounded-[4px] flex items-center justify-between`}>
+
                 <div className={`${styles.form} flex items-center gap-[30px]`}>
                     <Image
                         className="absolute bottom-[0] h-[137px]"
@@ -28,7 +30,7 @@ const Footer: React.FC = () => {
 
 
                         <FormProvider {...methods}>
-                            <form action="#"  className={`flex items-center gap-[10px]`}>
+                            <form action="#" className={`flex items-center gap-[10px]`}>
                                 {/*<input*/}
                                 {/*    className="w-[228px] bg-[#101010] z-[1] border border-[#353535] rounded-[4px] py-[8px] pr-[10px] pl-[13px] focus:outline-none active:outline-none "*/}
                                 {/*    type="email" name="email" id="email" placeholder="Email"/>*/}
@@ -55,28 +57,77 @@ const Footer: React.FC = () => {
                         </FormProvider>
                     </div>
                 </div>
-                <div className={`${styles.logo} mx-[10px] text-center flex flex-col justify-center items-center gap-[13px] w-full`}>
+                <div
+                    className={`${styles.logo} mx-[10px] text-center flex flex-col justify-center items-center gap-[13px] w-full`}>
                     <p className="font-[400 text-[#878787] text-[16px]">ИНН 6000005874 </p>
                     <h3 className="text-[18px]">ООО &quot;АУДИОСЕКТОР&quot;</h3>
                     <p className="font-[400 text-[#878787] text-[16px]">Политика конфиденциальности</p>
                 </div>
                 <div className={`${styles.links} flex text-end gap-[76px] h-full`}>
                     <div className="flex items-end justify-between flex-col">
-                        <ul className="flex items-center gap-[20px]">
-                            <li><a href="#" className="text-[18px]">Блог</a></li>
-                            <li><a href="#" className="text-[18px]">Лицензии</a></li>
-                            <li><a href="#" className="text-[18px]">Контакты</a></li>
-                        </ul>
+                        <div className="flex items-center gap-[20px]">
+                            <div className="relative">
+                                <Link href="/blog"
+                                      className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
+                                      data-text="Блог"
+                                >
+                                    <span className="font-normal text-[18px] leading-[120%]">
+                                      Блог
+                                    </span>
+                                </Link>
+                                <div className={styles.highlight}/>
+                            </div>
+                            <div className="relative">
+                                <Link href="/contacts"
+                                      className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
+                                      data-text="Контакты"
+                                >
+                                    <span className="font-normal text-[18px] leading-[120%]">
+                                      Контакты
+                                    </span>
+                                </Link>
+                                <div className={styles.highlight}/>
+                            </div>
+                        </div>
 
-                        <p className="text-[16px] text-[#A4A4A4]">
-                            © 2025 Audiosector
-                        </p>
+                        <div className="flex items-center gap-[20px] list-none">
+                            <div className="relative">
+                                <Link href="/license"
+                                      className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
+                                      data-text="Лицензии"
+                                >
+                                    <span className="font-normal text-[18px] leading-[120%]">
+                                      Лицензии
+                                    </span>
+                                </Link>
+                                <div className={styles.highlight}/>
+                            </div>
+                            <div className="relative">
+                                <Link href="/oferta"
+                                      className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
+                                      data-text="Оферта"
+                                >
+                                    <span className="font-normal text-[18px] leading-[120%]">
+                                      Оферта
+                                    </span>
+                                </Link>
+                                <div className={styles.highlight}/>
+                            </div>
+                            <div className="relative">
+                                <Link href="/politic"
+                                      className={`${HeaderStyles["login-button"]} !border-none group flex items-center justify-center`}
+                                      data-text="Политика"
+                                >
+                                    <span className="font-normal text-[18px] leading-[120%]">
+                                      Политика
+                                    </span>
+                                </Link>
+                                <div className={styles.highlight}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <style jsx>{`
-            `}</style>
         </footer>
     );
 };
