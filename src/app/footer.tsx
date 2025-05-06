@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                     className={`${styles.logo} mx-[10px] text-center flex flex-col justify-center items-center gap-[13px] w-full`}>
                     <p className="font-[400 text-[#878787] text-[16px]">ИНН 6000005874 </p>
                     <h3 className="text-[18px]">ООО &quot;АУДИОСЕКТОР&quot;</h3>
-                    <p className="font-[400 text-[#878787] text-[16px]">Политика конфиденциальности</p>
+                    <p className="font-[400 text-[#878787] text-[16px]">© 2025 Audiosector</p>
                 </div>
                 <div className={`${styles.links} flex text-end gap-[76px] h-full`}>
                     <div className="flex items-end justify-between flex-col">

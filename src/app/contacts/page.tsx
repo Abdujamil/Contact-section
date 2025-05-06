@@ -71,13 +71,14 @@ export default function Home() {
 
         const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
         if (!isEmail && !isPhone && !isSelectValid) {
-            bounceElements()
             setSelectError(!isSelectValid)
+            bounceElements()
             setFailCheck(true)
             setVisibleError(true)
 
         } else {
             setIsSelectOpen(false)
+            setSelectError(false)
             setFailCheck(false)
             setVisibleError(false)
             validContact(contactValue)
@@ -258,7 +259,6 @@ export default function Home() {
         }
     }, [activeTab]);
 
-
     // Validation
     const validContact = (value: string): boolean => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -283,7 +283,7 @@ export default function Home() {
         const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
         if ((!emailRegex.test(contactValue.trim()) && isEmail) ||
             (!phoneRegex.test(contactValue.trim()) && isPhone) || !isSelectValid) {
-            setSelectError(true);
+            setSelectError(!isSelectValid)
             setEmailError(true);
             setVisibleError(true)
             setEmailSuccessful(false);
@@ -308,6 +308,7 @@ export default function Home() {
         // Обработка ошибок
         if (!isFormValid || !isContactMethodSelected || !isContactValid) {
             bounceElements();
+            setSelectError(!isSelectValid)
             setFailCheck(true);
             setVisibleError(true)
 
@@ -326,15 +327,11 @@ export default function Home() {
         reset();
         setIsSubmitted(true);
     };
+    useEffect(() => {
+        setVisibleError(false);
+        setTimeout(() => setVisibleError(true), 30);
+    }, [submitCount]);
 
-    // const bounceSettings = {
-    //     startPosition: "-50px",
-    //     endPosition: "5px",
-    //     duration: 500,
-    //     easing: "ease",
-    //     direction: "vertical",
-    //     distanceCoficent: -1,
-    // };
     const motionSettings = {
         duration: 0.6,
         bounce: 5,
@@ -345,23 +342,6 @@ export default function Home() {
         closeY: [60, -6, 0, 0, 0], // Анимация закрытия
         opacity: [0, 1, 1, 1, 1],    // Дефолтные значения для opacity
     };
-
-    // const runBounceEffect = (block: HTMLElement) => {
-    //     block.animate(
-    //         [
-    //             {transform: `translateY(${bounceSettings.startPosition})`, offset: 0},
-    //             {transform: `translateY(${bounceSettings.endPosition})`, offset: 0.5},
-    //             {transform: 'translateY(0)', offset: 1},
-    //         ],
-    //         {
-    //             duration: bounceSettings.duration,
-    //             easing: bounceSettings.easing,
-    //             fill: 'forwards',
-    //         }
-    //     );
-    //
-    // };
-
     const runMotionEffect = () => {
         controls.start({
             y: motionSettings.openY,
@@ -373,11 +353,6 @@ export default function Home() {
             },
         });
     };
-    // useEffect(() => {
-    //     if (activeTabb === 'motion') {
-    //         runMotionEffect();
-    //     }
-    // }, [activeTabb, motionSettings]);
 
 
     return (
