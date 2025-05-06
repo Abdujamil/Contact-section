@@ -371,7 +371,7 @@ export default function Home() {
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
                             <div className={`${styles.contactLeftContent}`}>
-                                <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[40px] mt-[-5px]`}>Контакты</h2>
+                                <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[35px] mt-[-5px]`}>Контакты</h2>
                                 <div
                                     className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
 
