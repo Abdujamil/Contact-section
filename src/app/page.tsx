@@ -23,7 +23,6 @@ export default function Home() {
     });
     const {handleSubmit, formState: {submitCount}, trigger, reset} = methods;
     const [activeTab, setactiveTab] = useState<'contact' | 'requisite'>('contact');
-    const [activeTabb, setActiveTabb] = useState<'bounceEffect' | 'motion'>('bounceEffect');
     const contactInputRef = useRef<HTMLInputElement>(null);
 
     const [isPhone, setIsPhone] = useState(false);
@@ -75,7 +74,6 @@ export default function Home() {
             bounceElements()
             setSelectError(!isSelectValid)
             setFailCheck(true)
-            setActiveTabb("motion")
             setVisibleError(true)
 
         } else {
@@ -208,11 +206,13 @@ export default function Home() {
             // };
             // controls.start(target);
 
-            if (activeTabb === 'bounceEffect') {
-                runBounceEffect(block);
-            } else {
-                runMotionEffect();
-            }
+            runMotionEffect();
+
+            // if (activeTab === 'bounceEffect') {
+            //     runBounceEffect(block);
+            // } else {
+            //     runMotionEffect();
+            // }
         }
     };
     const handleTabChange = (tab: 'contact' | 'requisite') => {
@@ -337,11 +337,13 @@ export default function Home() {
     };
     const motionSettings = {
         duration: 0.6,
+        bounce: 5,
+        delay: 0,
         ease: [0.34, 1.56, 0.64, 1],
         times: [0, 0.2, 0.5, 0.8, 1],
-        openY: [0, 26, 0, 0, 0],
-        closeY: [60, -6, 0, 0, 0],
-        opacity: [0, 1, 1, 1, 1],
+        openY: [0, 26, 0, 0, 0], // Анимация открытия
+        closeY: [60, -6, 0, 0, 0], // Анимация закрытия
+        opacity: [0, 1, 1, 1, 1],    // Дефолтные значения для opacity
     };
 
     const runBounceEffect = (block: HTMLElement) => {
@@ -371,11 +373,11 @@ export default function Home() {
             },
         });
     };
-    useEffect(() => {
-        if (activeTabb === 'motion') {
-            runMotionEffect();
-        }
-    }, [activeTabb, motionSettings]);
+    // useEffect(() => {
+    //     if (activeTabb === 'motion') {
+    //         runMotionEffect();
+    //     }
+    // }, [activeTabb, motionSettings]);
 
 
     return (
@@ -390,77 +392,6 @@ export default function Home() {
                 </div>
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
-
-                    {/*<div className={`flex items-center mt-[60px] gap-[20px] absolute z-[999999] right-[20px]`}>*/}
-                    {/*    <div className={`flex flex-col items-start gap-[8px]`}>*/}
-                    {/*        <button*/}
-                    {/*            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   */}
-                    {/*                         cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
-                    {/*            onClick={() => setActiveTabb('bounceEffect')}>Анимация первая (Egor)*/}
-                    {/*        </button>*/}
-                    {/*        <button*/}
-                    {/*            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   */}
-                    {/*                         cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
-                    {/*            onClick={() => setActiveTabb('motion')}>Анимация вторая (Adam)*/}
-                    {/*        </button>*/}
-                    {/*    </div>*/}
-
-                    {/*    {activeTabb === 'bounceEffect' && (*/}
-                    {/*        <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>*/}
-                    {/*            <h3>Настройки BounceEffect:</h3>*/}
-                    {/*            <label>Start Position:*/}
-                    {/*                <input className={`border border-[#737373]`} value={bounceSettings.startPosition}*/}
-                    {/*                       onChange={e => setBounceSettings({*/}
-                    {/*                           ...bounceSettings,*/}
-                    {/*                           startPosition: e.target.value*/}
-                    {/*                       })}/></label><br/>*/}
-                    {/*            <label>End Position:*/}
-                    {/*                <input className={`border border-[#737373]`} value={bounceSettings.endPosition}*/}
-                    {/*                       onChange={e => setBounceSettings({*/}
-                    {/*                           ...bounceSettings,*/}
-                    {/*                           endPosition: e.target.value*/}
-                    {/*                       })}/></label><br/>*/}
-                    {/*            <label>Duration (ms):*/}
-                    {/*                <input className={`border border-[#737373]`} type="number"*/}
-                    {/*                       value={bounceSettings.duration}*/}
-                    {/*                       onChange={e => setBounceSettings({*/}
-                    {/*                           ...bounceSettings,*/}
-                    {/*                           duration: parseInt(e.target.value)*/}
-                    {/*                       })}/></label><br/>*/}
-                    {/*            <label>Easing:*/}
-                    {/*                <input className={`border border-[#737373]`} value={bounceSettings.easing}*/}
-                    {/*                       onChange={e => setBounceSettings({*/}
-                    {/*                           ...bounceSettings,*/}
-                    {/*                           easing: e.target.value*/}
-                    {/*                       })}/></label><br/>*/}
-                    {/*        </div>*/}
-                    {/*    )}*/}
-
-                    {/*    {activeTabb === 'motion' && (*/}
-                    {/*        <div className={`flex flex-col gap-[2px]`} style={{marginTop: 20}}>*/}
-                    {/*            <h3>Настройки Framer Motion:</h3>*/}
-                    {/*            <label>Duration: <input className={`border border-[#737373]`} type="number"*/}
-                    {/*                                    value={motionSettings.duration}*/}
-                    {/*                                    onChange={e => setMotionSettings({*/}
-                    {/*                                        ...motionSettings,*/}
-                    {/*                                        duration: parseFloat(e.target.value)*/}
-                    {/*                                    })}/></label><br/>*/}
-                    {/*            <label>Ease: <input className={`border border-[#737373]`}*/}
-                    {/*                                value={motionSettings.ease.join(',')}*/}
-                    {/*                                onChange={e => setMotionSettings({*/}
-                    {/*                                    ...motionSettings,*/}
-                    {/*                                    ease: e.target.value.split(',').map(Number)*/}
-                    {/*                                })}/></label><br/>*/}
-                    {/*            <label>Open Y: <input className={`border border-[#737373]`}*/}
-                    {/*                                  value={motionSettings.openY.join(',')}*/}
-                    {/*                                  onChange={e => setMotionSettings({*/}
-                    {/*                                      ...motionSettings,*/}
-                    {/*                                      openY: e.target.value.split(',').map(Number)*/}
-                    {/*                                  })}/></label><br/>*/}
-                    {/*        </div>*/}
-                    {/*    )}*/}
-                    {/*</div>*/}
-
                     <div
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
