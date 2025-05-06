@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div className={`${styles.links}`}>
                     <div className="flex items-end justify-between flex-col h-[89px]">
-                        <div className="flex items-center gap-[17px]">
+                        <div className="flex items-center gap-[9px]">
                             <div className="relative">
                                 <Link href="/blog"
                                       className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div className="relative">
                                 <Link href="/contacts"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !w-[120px] !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-[20px] list-none">
+                        <div className="flex items-center gap-[9px] list-none">
                             <div className="relative">
                                 <Link href="/license"
                                       className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div className="relative">
                                 <Link href="/politic"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !w-[120px] !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
