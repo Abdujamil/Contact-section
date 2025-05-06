@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                         <div className="flex items-center gap-[20px]">
                             <div className="relative">
                                 <Link href="/blog"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[34px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
@@ -79,7 +79,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div className="relative">
                                 <Link href="/contacts"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[34px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
                         <div className="flex items-center gap-[20px] list-none">
                             <div className="relative">
                                 <Link href="/license"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[34px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div className="relative">
                                 <Link href="/oferta"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[34px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div className="relative">
                                 <Link href="/politic"
-                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[34px] flex items-center justify-center`}
+                                      className={`${HeaderStyles["login-button"]} !border-none group !h-[33px] flex items-center justify-center`}
                                       data-text=""
                                 >
                                     <span className="font-normal text-[18px] leading-[120%]">
