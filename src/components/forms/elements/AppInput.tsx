@@ -193,7 +193,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         onChange?.(value);
     };
 
-    const watchedValue = watch(inputName);
+    // const watchedValue = watch(inputName);
     const hasValue = propValue !== undefined ? propValue.length > 0 : internalValue.length > 0;
     const shouldShowTitleTop = focused || hasValue;
     const shouldShowTitle = !shouldShowTitleTop && isSubmitted && errors[inputName];
