@@ -625,6 +625,7 @@ export default function Home() {
                                                                             setIsEmail(false);
                                                                             setFocus('Contact');
                                                                             setTimeout(() => {
+                                                                                contactInputRef.current?.click();
                                                                                 contactInputRef.current?.focus();
                                                                             }, 0);
                                                                             setEmailSuccessful(false)
@@ -640,6 +641,7 @@ export default function Home() {
                                                                             setIsPhone(false);
                                                                             setFocus('Contact');
                                                                             setTimeout(() => {
+                                                                                contactInputRef.current?.click();
                                                                                 contactInputRef.current?.focus();
                                                                             }, 0);
                                                                             setEmailSuccessful(false)
