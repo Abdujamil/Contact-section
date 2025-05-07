@@ -75,6 +75,10 @@ body {
     opacity: 0;
 }
 
+.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {
+    z-index: -1;
+}
+
 .field__title, .field__title-top {
     transition: all .2s ease-in-out 0s;
     position: absolute;

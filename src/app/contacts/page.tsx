@@ -281,16 +281,18 @@ export default function Home() {
         // Проверка валидности контакта
         const contactValue = typeof data.Contact === 'string' ? data.Contact : '';
         const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
+
         if ((!emailRegex.test(contactValue.trim()) && isEmail) ||
             (!phoneRegex.test(contactValue.trim()) && isPhone) || !isSelectValid) {
-            setSelectError(!isSelectValid)
             setEmailError(true);
             setVisibleError(true)
+            setSelectError(!isSelectValid)
             setEmailSuccessful(false);
             return;
         } else {
             setEmailError(false);
-            setVisibleError(false)
+            setVisibleError(false);
+            setSelectError(false)
         }
 
         // Заполнение FormData

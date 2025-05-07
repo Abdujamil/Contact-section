@@ -66,6 +66,10 @@
             //height: 36px;
             will-change: transform, color, clip-path;
             background: none;
+
+            &:hover {
+              color: #3D9ED6;
+            }
           }
 
 
