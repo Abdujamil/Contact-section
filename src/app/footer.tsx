@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
 
                 <div className={`${styles.form} flex items-center gap-[22px]`}>
                     <Image
-                        className="relative bottom-[6px] h-[135px]"
+                        className="relative bottom-[5px]"
                         src="/micro.png"
                         alt='micro'
                         width={95}

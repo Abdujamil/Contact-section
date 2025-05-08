@@ -87,9 +87,11 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     return (
         <div className={`relative z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
             <label
+                htmlFor={inputName}  // Привязка label к input через htmlFor
                 className={`field ${disable && 'pointer-events-none'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
                 <input
-                    {...register(inputName, {required})}
+                    id={inputName}  // Уникальный id для каждого инпута
+                    {...register(inputName, { required })}
                     ref={ref}
                     type={type}
                     className={`field__input ${className} ${fail && 'error !text-[red]'}`}
@@ -114,6 +116,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 </span>
             </label>
         </div>
+
     );
 });
 AppInput.displayName = 'AppInput';
