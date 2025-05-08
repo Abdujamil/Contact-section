@@ -531,7 +531,7 @@ export default function Home() {
                                                         }}
                                                     >
                                                         <span
-                                                            className={selectError ? 'text-[#FF3030]' : selectedOption ? 'text-[#CCC]' : 'text-[#737373]'}>
+                                                            className={selectError ? 'text-[#FF3030]' : selectedOption ? 'text-[#CCC]' : 'text-[#CCC]'}>  {/* Тут текст поменял из text-[#737373] на text-[#ССС] так как pagespeed ругался */}
                                                             {selectedOption || 'Тема'}
                                                         </span>
                                                         <svg

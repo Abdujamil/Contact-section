@@ -104,6 +104,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                             e.target.setSelectionRange(e.target.value.length, e.target.value.length);
                         }
                     }}
+                    aria-label={title}
                 />
                 <span className={`${styles.titleTop} field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
                   {title}

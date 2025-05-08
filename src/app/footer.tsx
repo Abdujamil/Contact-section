@@ -23,7 +23,10 @@ const Footer: React.FC = () => {
                         src="/micro.png"
                         alt='micro'
                         width={95}
-                        height={90}
+                        height={139}
+                        loading="eager"
+                        // height={90}
+                        priority
                     />
                     <div className="flex flex-col items-start justify-between h-[89px]">
                         <p className={`text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]`}>Подписаться на новости</p>
