@@ -10,7 +10,7 @@ const ContactsCard = () => {
             className={`${styles.card} group w-full h-[348px]; max-w-[260px] border border-[#353535] hover:border-[#CCCCCC] active:scale-[98%] rounded-[8px] overflow-hidden transition-border duration-200 ease-in`}>
             <div className={`w-full h-[171px] rounded-tl-[8px] rounded-tr-[8px] relative`}>
                 <Image
-                    src="/image.png"
+                    src="/1.png"
                     alt="img"
                     width={260}
                     height={171}
