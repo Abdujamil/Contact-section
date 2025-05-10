@@ -46,6 +46,16 @@ export default function Home() {
     const [countdown, setCountdown] = useState(10);
     const [visibleError, setVisibleError] = useState(false);
 
+    const selectRef = useRef<HTMLDivElement>(null);
+
+    const triggerSelectBounce = () => {
+        const el = selectRef.current;
+        if (!el) return;
+
+        el.classList.remove('bounce'); // сначала удаляем
+        void el.offsetWidth;           // форсируем перерендер (рефлоу)
+        el.classList.add('bounce');   // добавляем снова
+    };
 
     // Таймер обратного отсчета
     useEffect(() => {
@@ -66,24 +76,53 @@ export default function Home() {
         return () => clearInterval(timer);
     }, [isSubmitted, methods]);
 
+    // useEffect(() => {
+    //     if (!submitCount) return;
+    //
+    //     const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
+    //     if (!isEmail && !isPhone && !isSelectValid) {
+    //         bounceElements()
+    //         setSelectError(!isSelectValid)
+    //         setFailCheck(true)
+    //         setVisibleError(true)
+    //
+    //     } else {
+    //         setIsSelectOpen(false)
+    //         setSelectError(false)
+    //         setFailCheck(false)
+    //         setVisibleError(false)
+    //         validContact(contactValue)
+    //     }
+    // }, [submitCount])
+
     useEffect(() => {
         if (!submitCount) return;
 
         const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
-        if (!isEmail && !isPhone && !isSelectValid) {
-            setSelectError(!isSelectValid)
-            bounceElements()
-            setFailCheck(true)
-            setVisibleError(true)
+        const isContactValid = isEmail || isPhone;
 
+        if (!isSelectValid) {
+            setSelectError(true);
+            triggerSelectBounce();
         } else {
-            setIsSelectOpen(false)
-            setSelectError(false)
-            setFailCheck(false)
-            setVisibleError(false)
-            validContact(contactValue)
+            setSelectError(false);
         }
-    }, [submitCount])
+
+        if (!isContactValid) {
+            setFailCheck(true);
+            bounceElements(); // Чекбоксы прыгают
+        } else {
+            setFailCheck(false);
+        }
+
+        if (!isSelectValid || !isContactValid) {
+            setVisibleError(true);
+        } else {
+            setVisibleError(false);
+            validContact(contactValue);
+        }
+    }, [submitCount]);
+
 
     useEffect(() => {
         if (emailError && contactValue.length > 0) {
@@ -521,10 +560,11 @@ export default function Home() {
                                                 {/* Кастомный select */}
                                                 <div className={`relative mb-[34px]`}>
                                                     <div
+                                                        ref={selectRef}
                                                         className={`w-full bg-[#101010] border border-[#353535]
-                                                        rounded-[4px] px-[12px] py-3 cursor-pointer flex justify-between items-center  ${
-                                                            visibleError && submitCount > 0 ? 'bounce' : ''
-                                                        }`}
+                                                        rounded-[4px] px-[12px] py-3 cursor-pointer flex justify-between items-center 
+                                                        ${selectError && visibleError ? 'bounce' : ''}
+                                                         `}
                                                         onClick={() => {
                                                             setIsSelectOpen(!isSelectOpen);
                                                             setSelectError(false);
