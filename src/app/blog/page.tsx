@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from "@/components/header/Header";
 import styles from "@/app/page.module.scss";
-import Footer from "@/app/footer";
 import ContactsCard from '@/components/ContactsCard/ContactsCard'
 
 const BlogPage = () => {
