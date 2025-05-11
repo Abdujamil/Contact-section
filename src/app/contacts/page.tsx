@@ -186,6 +186,7 @@ export default function Home() {
         }
     };
 
+    let lastClickPosition: { x: number; y: number } | null = null;
     const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         const x = e.clientX - rect.left;
@@ -206,14 +207,18 @@ export default function Home() {
 
     const initializeMousePosition = (button: HTMLButtonElement) => {
         const rect = button.getBoundingClientRect();
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
 
-        button.style.setProperty("--mouse-x", `${centerX}px`);
-        button.style.setProperty("--mouse-y", `${centerY}px`);
-        button.style.setProperty("--last-mouse-x", `${centerX}px`);
-        button.style.setProperty("--last-mouse-y", `${centerY}px`);
+        const x = lastClickPosition ? lastClickPosition.x : rect.width / 2;
+        const y = lastClickPosition ? lastClickPosition.y : rect.height / 2;
+
+        button.style.setProperty("--mouse-x", `${x}px`);
+        button.style.setProperty("--mouse-y", `${y}px`);
+        button.style.setProperty("--last-mouse-x", `${x}px`);
+        button.style.setProperty("--last-mouse-y", `${y}px`);
+
+        lastClickPosition = null; // сброс после использования
     };
+
 
     // BounceEffect for blocks
     const bounceActiveBlock = () => {
@@ -255,7 +260,29 @@ export default function Home() {
             // }
         }
     };
-    const handleTabChange = (tab: 'contact' | 'requisite') => {
+    // const handleTabChange = (tab: 'contact' | 'requisite') => (e: React.MouseEvent<HTMLButtonElement>) => {
+    //     setactiveTab(tab);
+    //
+    //     setTimeout(() => {
+    //         const targetButton = tab === 'contact'
+    //             ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
+    //             : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
+    //
+    //         if (targetButton) {
+    //             initializeMousePosition(targetButton);
+    //         }
+    //
+    //         const targetBlock = tab === 'contact'
+    //             ? document.getElementById('form-main')
+    //             : document.getElementById('requisite-block');
+    //
+    //         if (targetBlock && targetBlock.offsetParent !== null) {
+    //             bounceActiveBlock();
+    //         }
+    //     }, 10);
+    // };
+
+    const switchTab = (tab: 'contact' | 'requisite') => {
         setactiveTab(tab);
 
         setTimeout(() => {
@@ -276,6 +303,16 @@ export default function Home() {
             }
         }, 10);
     };
+
+    const handleTabClick = (tab: 'contact' | 'requisite') => (e: React.MouseEvent<HTMLButtonElement>) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        lastClickPosition = {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        };
+        switchTab(tab);
+    };
+
     useEffect(() => {
         bounceActiveBlock();
 
@@ -284,12 +321,18 @@ export default function Home() {
             : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
 
         if (activeButton) {
-            initializeMousePosition(activeButton);
+            if (lastClickPosition) {
+                activeButton.style.setProperty("--mouse-x", `${lastClickPosition.x}px`);
+                activeButton.style.setProperty("--mouse-y", `${lastClickPosition.y}px`);
+                activeButton.style.setProperty("--last-mouse-x", `${lastClickPosition.x}px`);
+                activeButton.style.setProperty("--last-mouse-y", `${lastClickPosition.y}px`);
+            } else {
+                initializeMousePosition(activeButton);
+            }
 
-            // Проверяем, находится ли курсор над кнопкой (если да — обновляем позицию)
             activeButton.addEventListener("mouseenter", () => {
                 const rect = activeButton.getBoundingClientRect();
-                const x = rect.width / 2; // Центр кнопки
+                const x = rect.width / 2;
                 const y = rect.height / 2;
 
                 activeButton.style.setProperty("--mouse-x", `${x}px`);
@@ -297,6 +340,7 @@ export default function Home() {
             });
         }
     }, [activeTab]);
+
 
     // Validation
     const validContact = (value: string): boolean => {
@@ -395,7 +439,6 @@ export default function Home() {
         });
     };
 
-
     return (
         <>
             <div className={`${styles.page} h-dvh`}>
@@ -418,7 +461,7 @@ export default function Home() {
 
                                     <div className="relative !w-[220px] !overflow-hidden">
                                         <button
-                                            onClick={() => handleTabChange("contact")}
+                                            onClick={handleTabClick("contact")}
                                             onMouseMove={handleMouseMove}
                                             onMouseLeave={handleMouseLeave}
                                             className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
@@ -443,8 +486,8 @@ export default function Home() {
                                             </svg>
                                             <span
                                                 className="text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
-                                          Связаться
-                                        </span>
+                                              Связаться
+                                            </span>
                                             <svg
                                                 className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
                                                 width="30" height="17" viewBox="0 0 30 17" fill="none"
@@ -465,7 +508,7 @@ export default function Home() {
 
                                     <div className="relative !w-[220px] !overflow-hidden">
                                         <button
-                                            onClick={() => handleTabChange("requisite")}
+                                            onClick={handleTabClick("requisite")}
                                             onMouseMove={handleMouseMove}
                                             onMouseLeave={handleMouseLeave}
                                             className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
@@ -730,7 +773,6 @@ export default function Home() {
 
                             {/* Блок "Реквизиты" */}
                             <motion.div id="requisite-block"
-
                                         initial={{y: 20, opacity: 1}}
                                         animate={controls}
                                         className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${

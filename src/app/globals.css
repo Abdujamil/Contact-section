@@ -32,6 +32,7 @@ body {
     color: #ccc;
     font-family: Arial, Helvetica, sans-serif;
 
+    user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -92,8 +93,7 @@ body {
 }
 
 
-
-.field__input:not(:placeholder-shown):not(:focus)~.field__title, .field__textarea:not(:placeholder-shown):not(:focus)~.field__title {
+.field__input:not(:placeholder-shown):not(:focus) ~ .field__title, .field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {
     z-index: -1;
 }
 

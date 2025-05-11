@@ -14,7 +14,7 @@ const ContactsCard = () => {
                     alt="img"
                     width={260}
                     height={171}
-                    className={`min-h-[171px] rounded-tl-[8px] rounded-tr-[8px] object-cover relative top-[-2] group-hover:scale-105 transition-scale duration-100 ease-in`}
+                    className={`min-h-[171px] rounded-tl-[8px] rounded-tr-[8px] object-cover !select-none !pointer-events-auto relative top-[-2] group-hover:scale-105 transition-scale duration-100 ease-in`}
                 />
             </div>
 
