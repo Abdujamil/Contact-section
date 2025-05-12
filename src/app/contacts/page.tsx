@@ -14,7 +14,7 @@ import Header from "@/components/header/Header";
 import {motion, useAnimation} from "framer-motion";
 
 
-export default function Home() {
+export default function Contacts() {
     const controls = useAnimation();
     const methods = useForm({
         mode: "onTouched",
@@ -219,7 +219,6 @@ export default function Home() {
         lastClickPosition = null; // сброс после использования
     };
 
-
     // BounceEffect for blocks
     const bounceActiveBlock = () => {
         const block = activeTab === 'contact'
@@ -313,33 +312,33 @@ export default function Home() {
         switchTab(tab);
     };
 
-    useEffect(() => {
-        bounceActiveBlock();
-
-        const activeButton = activeTab === 'contact'
-            ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
-            : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
-
-        if (activeButton) {
-            if (lastClickPosition) {
-                activeButton.style.setProperty("--mouse-x", `${lastClickPosition.x}px`);
-                activeButton.style.setProperty("--mouse-y", `${lastClickPosition.y}px`);
-                activeButton.style.setProperty("--last-mouse-x", `${lastClickPosition.x}px`);
-                activeButton.style.setProperty("--last-mouse-y", `${lastClickPosition.y}px`);
-            } else {
-                initializeMousePosition(activeButton);
-            }
-
-            activeButton.addEventListener("mouseenter", () => {
-                const rect = activeButton.getBoundingClientRect();
-                const x = rect.width / 2;
-                const y = rect.height / 2;
-
-                activeButton.style.setProperty("--mouse-x", `${x}px`);
-                activeButton.style.setProperty("--mouse-y", `${y}px`);
-            });
-        }
-    }, [activeTab]);
+    // useEffect(() => {
+    //     bounceActiveBlock();
+    //
+    //     const activeButton = activeTab === 'contact'
+    //         ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
+    //         : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
+    //
+    //     if (activeButton) {
+    //         if (lastClickPosition) {
+    //             activeButton.style.setProperty("--mouse-x", `${lastClickPosition.x}px`);
+    //             activeButton.style.setProperty("--mouse-y", `${lastClickPosition.y}px`);
+    //             activeButton.style.setProperty("--last-mouse-x", `${lastClickPosition.x}px`);
+    //             activeButton.style.setProperty("--last-mouse-y", `${lastClickPosition.y}px`);
+    //         } else {
+    //             initializeMousePosition(activeButton);
+    //         }
+    //
+    //         activeButton.addEventListener("mouseenter", () => {
+    //             const rect = activeButton.getBoundingClientRect();
+    //             const x = rect.width / 2;
+    //             const y = rect.height / 2;
+    //
+    //             activeButton.style.setProperty("--mouse-x", `${x}px`);
+    //             activeButton.style.setProperty("--mouse-y", `${y}px`);
+    //         });
+    //     }
+    // }, [activeTab]);
 
 
     // Validation

@@ -3,7 +3,7 @@ import Header from "@/components/header/Header";
 import styles from "@/app/page.module.scss";
 import ContactsCard from '@/components/ContactsCard/ContactsCard'
 
-const BlogPage = () => {
+const Blog = () => {
     return (
         <div className={`h-screen flex flex-col items-center justify-center`}>
             {/* Background */}
@@ -47,4 +47,4 @@ const BlogPage = () => {
     );
 };
 
-export default BlogPage;
+export default Blog;
