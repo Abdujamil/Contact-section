@@ -450,7 +450,7 @@ export default function Home() {
                     <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
                 </div>
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
-                    <Header/>
+                    <Header />
                     <div
                         className={`${styles.contactContainer} pb-[127px] w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>

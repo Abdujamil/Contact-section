@@ -18,8 +18,8 @@ const BlogPage = () => {
                 <Header/>
                 <div
                     className={`${styles.blog} w-full max-w-[1180px] my-[10px] min-h-full h-auto mt-[60px] mb-[127px] mx-auto flex flex-col items-center`}>
-                    <h2 className={`${styles.txtGradientRight} text-center text-[56px] leading-[110%] mb-10`}>Полезные
-                        статьи и советы по <br/> преобразованию аудио в текст</h2>
+                    <h1 className={`${styles.txtGradientRight} text-center text-[56px] leading-[110%] mb-10`}>Полезные
+                        статьи и советы  </h1>
 
                     <div className={`${styles.blogCardsContainer} h-auto w-full`}>
                         <div className={`${styles.blogCards} grid grid-cols-4 gap-[40px] mb-[127px]`}>

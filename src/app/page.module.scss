@@ -223,17 +223,14 @@
   background-position: -460px -920px;
 }
 
-//Blog --------------------------------
-
+//-------------------------------- Blog --------------------------------//
 .blog {
-
   h2 {
     -webkit-text-fill-color: transparent;
     background: linear-gradient(180deg, #CCCCCC 0%, rgba(204, 204, 204, 0.443137) 100%);
     -webkit-background-clip: text;
     background-clip: text;
   }
-
 
   .blogCardsContainer {
     .blogCards {
@@ -298,8 +295,6 @@
       }
 
     }
-
-
     .links {
       a {
         span {
@@ -318,7 +313,6 @@
             transform: scale(0.95);
           }
 
-          // Оптимизация для Next.js Image
           > span {
             display: block !important; // Убираем лишние обертки
             line-height: 0; // Убираем лишние отступы
@@ -336,13 +330,10 @@
   background-clip: text;
 }
 
-
 @media screen and (min-width: 2540px) {
   .faqBg {
     background-position: -698px -920px;
   }
-
-
   .linear {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) -60%, #000000 100%);
   }
