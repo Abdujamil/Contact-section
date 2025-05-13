@@ -34,7 +34,7 @@ export default function Contacts() {
     // Select
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string>('');
-    const options = ['Сотрудничество', 'Предложение', 'Ошибка', 'Оплата', 'Изменение данных', 'Подключиться к API']
+    const options = ['Предложение', 'Ошибка', 'Оплата', 'Изменение данных', 'Подключиться к API']
 
     // Checkboxes
     const [contactValue, setContactValue] = useState('');
@@ -603,7 +603,7 @@ export default function Contacts() {
                                                     <div
                                                         ref={selectRef}
                                                         className={`w-full bg-[#101010] border 
-                                                        rounded-[4px] px-[12px] py-3 cursor-pointer flex justify-between items-center
+                                                        rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                                         transition-border duration-200 ease-in
                                                         ${selectError && visibleError ? 'bounce' : ''}
                                                         ${isSelectOpen ? 'border-[#ccc]' : 'border-[#353535]'}
@@ -635,7 +635,7 @@ export default function Contacts() {
 
                                                     {isSelectOpen && (
                                                         <div
-                                                            className={`${styles.selectOption} absolute right-[15px] p-[28px] pb-[13px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
+                                                            className={`${styles.selectOption} absolute right-[17px] p-[30px] px-[26px] pb-[13px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
                                                             {options.map((option, index) => (
                                                                 <div
                                                                     key={index}
