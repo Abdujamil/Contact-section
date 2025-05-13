@@ -5,12 +5,13 @@ import styles from '../../app/faq.module.scss';
 import {useButton} from "../utils/useButton";
 import {AnimationSettings} from "../utils/types";
 import HeaderStyles from "../header/Header.module.css";
+import {StaticImageData} from "next/image";
 
 interface Props {
     id: number;
     isOpen: boolean | undefined;
     answer: string;
-    src: any;
+    src: string | StaticImageData;
     animationSettings: AnimationSettings;
 }
 
@@ -59,7 +60,7 @@ const AnswerSection: React.FC<Props> = ({id, isOpen, answer, src, animationSetti
                     animate={controls}
                     style={{display: isOpen ? "block" : "none"}}
                 >
-                    <img src={src} alt="FAQ image"
+                    <img src={typeof src === "string" ? src : src.src} alt="FAQ image"
                          className="w-full min-w-[155px] h-[155px] border border-[#CCCCCC] rounded-[6px]"
                     />
                 </motion.div>

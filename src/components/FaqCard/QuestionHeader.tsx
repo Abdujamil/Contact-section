@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, {StaticImageData} from "next/image";
 import styles from '../../app/faq.module.scss';
 import React from "react";
 
@@ -6,7 +6,7 @@ interface Props {
     id: number;
     num: number | string;
     question: string;
-    src: any | string;
+    src: string | StaticImageData;
     isOpen: boolean | undefined;
     handleClick: () => void;
 }

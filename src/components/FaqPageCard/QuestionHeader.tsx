@@ -1,11 +1,12 @@
 import styles from '../../app/faq.module.scss';
 import React from "react";
+import {StaticImageData} from "next/image";
 
 interface Props {
     id: number;
     num: number | string;
     question: string;
-    src: any;
+    src: string | StaticImageData;
     isOpen: boolean | undefined;
     handleClick: () => void;
 }

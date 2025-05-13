@@ -1,10 +1,12 @@
 import {StaticImageData} from "next/image";
+import { EasingFunction } from "framer-motion";
+import { ReactNode } from "react";
 
 export interface AnimationSettings {
     duration: number;
     bounce: number; // Амплитуда отскока
     delay: number;   // Задержка
-    ease: any;  // ease кривая
+    ease: EasingFunction | number[];  // ease кривая
     times: number[]; // Временные точки для transition
     openY: number[]; // Анимация при открытии
     closeY: number[]; // Анимация при закрытии
@@ -16,7 +18,7 @@ export interface FaqCardProps {
     num: string;
     question: string;
     answer: string;
-    fullAnswer: any;
+    fullAnswer: ReactNode;
     src: string | StaticImageData;
     defaultOpen?: boolean;
     isOpen?: boolean;

@@ -2,12 +2,13 @@ import {motion, useAnimation} from "framer-motion";
 import {useEffect} from "react";
 import styles from '../../app/faq.module.scss';
 import {AnimationSettings} from "../utils/types";
+import {StaticImageData} from "next/image";
 
 interface Props {
     id: number;
     isOpen: boolean | undefined;
     fullAnswer: string;
-    src: any | string;
+    src: string | StaticImageData;
     animationSettings: AnimationSettings;
 }
 
