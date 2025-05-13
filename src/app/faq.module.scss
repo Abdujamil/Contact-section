@@ -1,0 +1,438 @@
+.page {
+  --gray-rgb: 0, 0, 0;
+  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
+  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
+
+  font-family: 'Arial';
+  color: #CCCCCC;
+
+
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.accordion {
+
+  .faqCard {
+    //border: 1px solid transparent;
+    border-radius: 6px;
+    transition: border ease-in-out .3s;
+
+
+    &:hover {
+      //border: 1px solid #CCCCCC !important;
+
+      .question {
+        border: 1px solid #CCCCCC !important;
+
+        .number {
+          p {
+            color: #3D9ED6;
+            //font-weight: bold;
+
+            //font-family: 'Rubik';
+            font-style: normal;
+            font-size: 50px;
+            left: -14px;
+          }
+        }
+
+        h3 {
+          //font-size: 22px;
+          color: #3D9ED6;
+          //font-weight: bold;
+        }
+
+        .logoOnHover {
+          display: block;
+          opacity: 1;
+        }
+
+        .arrow {
+          //transform: rotate(190deg);
+
+          svg path {
+            stroke: #3D9ED6;
+          }
+        }
+      }
+
+    }
+
+    //background: #20272B !important;
+    //box-shadow: inset -5px -5px 7px #000000, inset 5px 5px 7px #000000 !important;
+    //border: 1px solid #CCCCCC !important;
+
+    .question {
+      &:active {
+        //transform: scale(.99);
+        //box-shadow: inset -5px -5px 7px #000000, inset 5px 5px 7px #000000;
+        border-color: #4a738c !important;
+
+
+        .questionContainer:active {
+          transform: scale(.99);
+          //background: #20272B !important;
+          //box-shadow: inset -5px -5px 7px #000000, inset 5px 5px 7px #000000 !important;
+          border-radius: 4px;
+        }
+
+        .logoOnHover {
+          border: 0.97px solid #CCCCCC !important;
+          filter: drop-shadow(0px 0px 5.82px rgba(0, 0, 0, 0.8));
+          backdrop-filter: blur(2.425px);
+          border-radius: 3.88px;
+        }
+      }
+    }
+  }
+
+  .faqCard.active {
+    .number {
+      p {
+        color: #3D9ED6;
+
+        font-style: normal;
+        font-size: 50px;
+        left: -14px;
+        top: 12px;
+      }
+    }
+
+    h3 {
+      color: #3D9ED6;
+    }
+
+    .logoOnHover {
+      opacity: 0;
+    }
+
+    .arrow {
+      svg {
+        transform: rotate(-180deg);
+      }
+
+      svg path {
+        stroke: #3D9ED6;
+      }
+    }
+
+    .answer {
+
+      img {
+        transform: translateY(0%);
+      }
+
+      img, button {
+      }
+
+    }
+  }
+
+  .faqCard:nth-child(10) {
+    .active {
+      .number {
+        p {
+          left: -18 !important;
+        }
+      }
+    }
+
+    &:hover {
+      .question {
+        .number {
+          p {
+            left: -18 !important;
+          }
+        }
+      }
+    }
+
+  }
+
+  .faqCard:nth-child(11) {
+    .active {
+      .number {
+        p {
+          left: -12 !important;
+        }
+      }
+    }
+
+    &:hover {
+      .question {
+        .number {
+          p {
+            left: -12 !important;
+          }
+        }
+      }
+    }
+
+  }
+
+  .question {
+    position: relative;
+    border: 1px solid transparent;
+
+    .number {
+
+      p {
+        font-family: "Rubik", sans-serif;
+      }
+    }
+
+    h3 {
+
+    }
+
+    .logoOnHover {
+      filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.8));
+    }
+
+    .arrow {
+      svg {
+      }
+    }
+  }
+
+  .answer {
+    .texts {
+      .motionBlurEffect {
+        animation: motion-blur 0.12s linear forwards,
+        motion-blur-reverse 0.4s linear forwards 0.12s;
+      }
+
+      img {
+        transform: translateY(-200%);
+      }
+
+      .logo {
+        filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.8));
+      }
+    }
+
+    .textsBtn {
+      perspective: 200px;
+      z-index: 10;
+
+      will-change: transform;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      backface-visibility: hidden;
+    }
+
+    .motionEffect {
+      font-family: "Simple-Square", sans-serif;
+
+      &:active {
+        //box-shadow: inset 1px 1px 2px 0 #3d9ed6, inset -1px -1px 2px 0 #3d9ed6;
+        transform: scale(.9) rotateY(var(--y)) translateZ(10px) !important;
+      }
+
+      &:before {
+        background: radial-gradient(250px circle at var(--mouse-x) var(--mouse-y), hsla(0, 0%, 78%, .22), transparent 30%);
+        border-radius: inherit;
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        opacity: 0;
+        transition: opacity .3s ease;
+        z-index: 20;
+      }
+
+      &:hover:before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.pageFaq {
+  .faqCard {
+    border: 1px solid transparent !important;
+    .question {
+      //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, .6), inset 0 0 6px hsla(0, 0%, 100%, .1);
+      backdrop-filter: blur(2px);
+
+      &:hover {
+        border: 1px solid #CCCCCC !important;
+        background-color: rgba(61, 158, 214, 0.07);
+
+
+        h3 {
+          color: #3D9ED6 !important;
+        }
+
+        .arrow {
+
+          svg path {
+            stroke: #3D9ED6;
+          }
+        }
+
+        &:active {
+          border-color: #CCCCCC !important;
+          background-color: #20272B;
+          box-shadow: inset -2px -2px 4px #000000, inset 2px 2px 4px #000000;
+        }
+      }
+
+    }
+
+    .texts {
+      color: #CCCCCC;
+
+      ul {
+        list-style: disc;
+
+        padding-left: 20px;
+
+        li {
+
+        }
+      }
+
+      h3 {
+        font-size: 20px;
+        font-weight: bold;
+        color: #3D9ED6;
+      }
+
+      h4 {
+        //color: #3D9ED6;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 16px;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 130%;
+      }
+    }
+
+    .question {
+      border: 1px solid #353535;
+    }
+  }
+}
+
+.registerBlock {
+  background: rgba(0, 0, 0, 0.07);
+  //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .6), inset 0 0 6px hsla(0, 0%, 100%, .1);
+  backdrop-filter: blur(2px);
+
+
+  //background: rgba(0, 0, 0, 0.07);
+  //filter: blur(2px);
+
+  .btn {
+    background: rgba(45, 47, 47, 0.1);
+  }
+}
+
+.linear {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, #000000 100%);
+  filter: blur(1px);
+}
+
+.faqBg {
+  //background-position: 0 -40px;
+  background-position: -460px -920px;
+
+  //@media screen and (max-width: 1440px) {
+  //  background-image: url("/bg-2.svg");
+  //  background-position: 0 0; /* Сбросить позицию для нового фона */
+  //}
+}
+
+.btn {
+  background: rgba(42, 42, 42, 0.1);
+  backdrop-filter: blur(2px);
+  border-radius: 4px;
+
+  &:hover {
+    color: #ccc;
+
+    //svg path {
+    //  fill: #ccc;
+    //}
+
+    svg rect{
+      fill: #ccc;
+    }
+  }
+
+  .sendIconLeft {
+    position: absolute;
+    left: 20px;
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+
+  .sendIconRight {
+
+  }
+
+  &:hover {
+    color: #ccc;
+
+    span {
+      transform: translateX(55px);
+    }
+
+    .pdfBtn {
+      transform: translateX(40px);
+    }
+
+
+    .sendIconLeft {
+      transform: translateX(0);
+      left: 20px;
+      //left: 10px;
+      opacity: 1;
+    }
+
+    img.sendIconRight {
+      transform: translateX(60px);
+    }
+
+    .sendIconRight {
+      transform: translateX(58px);
+    }
+  }
+}
+
+.txtGradientRight {
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, #ccc, #cccccc71);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.highlight {
+  border-left: 3px solid #3D9ED6;
+}
+
+.faqCard {
+  scroll-margin-top: 80px;
+  transition: border-color 0.3s ease;
+}
+
+
+@media screen and (min-width: 2540px) {
+  .faqBg {
+    background-position: -698px -820px;
+  }
+}

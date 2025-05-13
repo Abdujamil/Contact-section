@@ -9,9 +9,8 @@ import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
 import Header from "@/components/header/Header";
-// import GlassButton from "@/components/GlassButton/GlassButton";
-// import {AnimationSettings} from "@/components/utils/types";
 import {motion, useAnimation} from "framer-motion";
+import Bg from "@/components/background/bg";
 
 
 export default function Contacts() {
@@ -75,26 +74,6 @@ export default function Contacts() {
 
         return () => clearInterval(timer);
     }, [isSubmitted, methods]);
-
-    // useEffect(() => {
-    //     if (!submitCount) return;
-    //
-    //     const isSelectValid = selectedOption !== '' && selectedOption !== 'Тема';
-    //     if (!isEmail && !isPhone && !isSelectValid) {
-    //         bounceElements()
-    //         setSelectError(!isSelectValid)
-    //         setFailCheck(true)
-    //         setVisibleError(true)
-    //
-    //     } else {
-    //         setIsSelectOpen(false)
-    //         setSelectError(false)
-    //         setFailCheck(false)
-    //         setVisibleError(false)
-    //         validContact(contactValue)
-    //     }
-    // }, [submitCount])
-
     useEffect(() => {
         if (!submitCount) return;
 
@@ -122,8 +101,6 @@ export default function Contacts() {
             validContact(contactValue);
         }
     }, [submitCount]);
-
-
     useEffect(() => {
         if (emailError && contactValue.length > 0) {
             setEmailError(false)
@@ -259,28 +236,6 @@ export default function Contacts() {
             // }
         }
     };
-    // const handleTabChange = (tab: 'contact' | 'requisite') => (e: React.MouseEvent<HTMLButtonElement>) => {
-    //     setactiveTab(tab);
-    //
-    //     setTimeout(() => {
-    //         const targetButton = tab === 'contact'
-    //             ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
-    //             : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
-    //
-    //         if (targetButton) {
-    //             initializeMousePosition(targetButton);
-    //         }
-    //
-    //         const targetBlock = tab === 'contact'
-    //             ? document.getElementById('form-main')
-    //             : document.getElementById('requisite-block');
-    //
-    //         if (targetBlock && targetBlock.offsetParent !== null) {
-    //             bounceActiveBlock();
-    //         }
-    //     }, 10);
-    // };
-
     const switchTab = (tab: 'contact' | 'requisite') => {
         setactiveTab(tab);
 
@@ -302,7 +257,6 @@ export default function Contacts() {
             }
         }, 10);
     };
-
     const handleTabClick = (tab: 'contact' | 'requisite') => (e: React.MouseEvent<HTMLButtonElement>) => {
         const rect = e.currentTarget.getBoundingClientRect();
         lastClickPosition = {
@@ -441,17 +395,11 @@ export default function Contacts() {
     return (
         <>
             <div className={`${styles.page} h-dvh`}>
-                {/* Background */}
-                <div
-                    className={`${styles.faqBg} fixed w-full h-dvh bg-[url(/bg.webp)] bg-no-repeat left-0 top-0 z-[-1]`}
-                    style={{backgroundAttachment: 'fixed',}}
-                >
-                    <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
-                </div>
+               <Bg />
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header />
                     <div
-                        className={`${styles.contactContainer} pb-[127px] w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
+                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
                             <div className={`${styles.contactLeftContent}`}>
                                 <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[35px] mt-[-5px]`}>Контакты</h2>
@@ -636,7 +584,7 @@ export default function Contacts() {
 
                                                     {isSelectOpen && (
                                                         <div
-                                                            className={`${styles.selectOption} absolute right-[17px] p-[30px] px-[26px] pb-[13px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
+                                                            className={`${styles.selectOption} absolute right-[17px] p-[26px] px-[26px] pb-[11px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
                                                             {options.map((option, index) => (
                                                                 <div
                                                                     key={index}

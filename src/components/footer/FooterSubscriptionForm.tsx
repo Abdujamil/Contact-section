@@ -9,9 +9,9 @@ const FooterSubscriptionForm: React.FC = () => {
     const methods = useForm();
 
     return (
-        <div className={`${styles.form} flex items-center gap-[22px] max-w-[345px]`}>
-            <Image src="/micro.png" alt='micro' width={95} height={139} priority className="min-w-[95px] relative bottom-[5px]" />
-            <div className="flex flex-col items-start justify-between h-[89px]">
+        <div className={`${styles.form} pl-[125px] flex items-center gap-[22px] max-w-[345px]`}>
+            <Image src="/micro.png" alt='micro' width={95} height={139} priority className="min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px]" />
+            <div className="flex flex-col items-start justify-between max-w-[228px] h-[89px]">
                 <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">Подписаться на новости</p>
                 <FormProvider {...methods}>
                     <form action="#" className="flex items-center gap-[10px] max-h-[40px]">
@@ -24,7 +24,7 @@ const FooterSubscriptionForm: React.FC = () => {
                         <div className="relative">
                             <button
                                 type="submit"
-                                className={`${headerStyles["login-button"]} w-[60px] !h-[39px] bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer group flex items-center justify-center`}
+                                className={`${headerStyles["login-button"]} absolute w-[60px] !h-[39px] bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer group flex items-center justify-center`}
                             >
                                 <Image src="/send-icon.svg" alt="send-icon" width={24} height={24} />
                             </button>

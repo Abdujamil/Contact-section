@@ -3,25 +3,23 @@ import Footer from './footer';
 import styles from "../app/page.module.scss";
 import React from "react";
 import Header from "@/components/header/Header";
+import Bg from "@/components/background/bg";
 
 export default function Home() {
 
     return (
         <>
             <div className={`${styles.page} h-dvh`}>
-                {/* Background */}
-                <div
-                    className={`${styles.faqBg} fixed w-full h-dvh bg-[url(/bg.webp)] bg-no-repeat left-0 top-0 z-[-1]`}
-                    style={{backgroundAttachment: 'fixed',}}
-                >
-                    <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
-                </div>
+                <Bg />
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <Header/>
-                    <div
-                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
-                       <h1 className={`text-[50px]`} >Welcome</h1>
-                    </div>
+                        <div id="type-container"
+                             className="my-[50px] w-full max-w-[900px] h-screen flex flex-col items-center justify-center gap-[10px] z-[900] relative">
+                            <h1 className="relative mt-[-5px] not-italic font-normal text-[48px] leading-[110%] tracking-[-0.03em] text-center txt-gradient-right">Добро пожаловать!</h1>
+                            <p className="font-normal text-[28px] text-[#3d9ed6] leading-[120%] tracking-[-0.03em] text-center z-[900] flex items-center whitespace-nowrap self-center">
+                                Скоро бомбовый сайт будет :)
+                            </p>
+                        </div>
                     <Footer/>
                 </div>
             </div>

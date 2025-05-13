@@ -3,17 +3,12 @@ import Header from "@/components/header/Header";
 import styles from "@/app/page.module.scss";
 import BlogCard from '@/components/BlogCard/BlogCard'
 import {faqData} from "@/data/blog";
+import Bg from "@/components/background/bg";
 
 const Blog = () => {
     return (
         <div className={`h-screen flex flex-col items-center justify-center`}>
-            {/* Background */}
-            <div
-                className={`${styles.faqBg} fixed w-full h-dvh bg-[url(/bg.png)] bg-no-repeat left-0 top-0 z-[-1]`}
-                style={{backgroundAttachment: 'fixed',}}
-            >
-                <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
-            </div>
+            <Bg />
             <div
                 className={`${styles.blog} w-full min-h-full h-auto mx-auto flex flex-col items-center`}>
                 <Header/>
