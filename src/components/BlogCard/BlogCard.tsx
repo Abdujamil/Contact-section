@@ -15,14 +15,21 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({num, title, date, src}) => {
     return (
         <div
-            className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden`}>
+            className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden`}
+            style={{
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden'
+            }}>
             <div className={`!w-full h-[171px] rounded-tl-[8px] rounded-tr-[8px] relative`}>
                 <Image
                     src={src}
                     alt={`Картинка ${num}`}
                     width={260}
                     height={171}
-                    className={`min-h-[171px] rounded-tl-[8px] rounded-tr-[8px] object-cover !select-none !pointer-events-auto relative top-[-2] group-hover:scale-105 transition-scale duration-100 ease-in`}
+                    loading="eager"
+                    className={`min-h-[171px] rounded-tl-[8px] rounded-tr-[8px] object-cover !select-none !pointer-events-auto relative top-[-2] group-hover:scale-105 transition-transform duration-100 ease-in`}
                 />
             </div>
 
