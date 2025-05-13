@@ -1,4 +1,5 @@
 import {StaticImageData} from "next/image";
+import {ReactNode} from "react";
 
 interface AsideItem {
     id: string;
@@ -10,7 +11,7 @@ interface FaqItem {
     num: string;
     question: string;
     answer: string;
-    fullAnswer?: any | string;
+    fullAnswer: ReactNode;
     aside: AsideItem[];
     src: string | StaticImageData;
     largeImgSrc: string | StaticImageData;
