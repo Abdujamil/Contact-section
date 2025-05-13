@@ -6,12 +6,12 @@ interface Props {
     id: number;
     num: number | string;
     question: string;
-    src: any;
+    src: any | string;
     isOpen: boolean | undefined;
     handleClick: () => void;
 }
 
-const QuestionHeader: React.FC<Props> = ({id, num, question, src, isOpen, handleClick}) => {
+const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClick}) => {
     return (
         <div
             style={{

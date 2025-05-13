@@ -11,7 +11,6 @@ const FaqCard: React.FC<FaqCardProps> = ({
                                              question,
                                              answer,
                                              src,
-                                             defaultOpen = false,
                                              isOpen,
                                              onToggle,
                                              animationSettings = defaultSettings,

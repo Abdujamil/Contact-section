@@ -7,11 +7,11 @@ interface Props {
     id: number;
     isOpen: boolean | undefined;
     fullAnswer: string;
-    src: any;
+    src: any | string;
     animationSettings: AnimationSettings;
 }
 
-const AnswerSection: React.FC<Props> = ({id, isOpen, fullAnswer, src, animationSettings}) => {
+const AnswerSection: React.FC<Props> = ({isOpen, fullAnswer, animationSettings}) => {
     const controls = useAnimation();
 
     useEffect(() => {

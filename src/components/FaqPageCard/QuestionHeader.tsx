@@ -10,7 +10,7 @@ interface Props {
     handleClick: () => void;
 }
 
-const QuestionHeader: React.FC<Props> = ({id, num, question, src, isOpen, handleClick}) => {
+const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
     return (
         <div
             className={`${styles.question}

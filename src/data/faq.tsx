@@ -10,7 +10,7 @@ interface FaqItem {
     num: string;
     question: string;
     answer: string;
-    fullAnswer?: any;
+    fullAnswer?: any | string;
     aside: AsideItem[];
     src: string | StaticImageData;
     largeImgSrc: string | StaticImageData;

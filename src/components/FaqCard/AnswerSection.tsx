@@ -16,7 +16,7 @@ interface Props {
 
 const AnswerSection: React.FC<Props> = ({id, isOpen, answer, src, animationSettings}) => {
     const controls = useAnimation();
-    const {setButtonRef, setWrapperRef} = useButton();
+    const {setButtonRef} = useButton();
     const router = useRouter();
 
     useEffect(() => {
@@ -30,6 +30,7 @@ const AnswerSection: React.FC<Props> = ({id, isOpen, answer, src, animationSetti
             },
         };
         controls.start(target);
+
     }, [isOpen, animationSettings]);
 
     return (
