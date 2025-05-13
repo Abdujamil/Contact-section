@@ -602,11 +602,12 @@ export default function Contacts() {
                                                 <div className={`relative mb-[34px]`}>
                                                     <div
                                                         ref={selectRef}
-                                                        className={`w-full bg-[#101010] border 
+                                                        className={`w-full  border 
                                                         rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                                         transition-border duration-200 ease-in
                                                         ${selectError && visibleError ? 'bounce' : ''}
                                                         ${isSelectOpen ? 'border-[#ccc]' : 'border-[#353535]'}
+                                                        ${isSelectOpen ? 'bg-[#1A1A1A]' : 'bg-[#101010]'}
                                                          `}
                                                         onClick={() => {
                                                             setIsSelectOpen(!isSelectOpen);
