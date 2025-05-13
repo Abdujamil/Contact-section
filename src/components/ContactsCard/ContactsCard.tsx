@@ -7,8 +7,8 @@ import Link from "next/link";
 const ContactsCard = () => {
     return (
         <div
-            className={`${styles.card} group w-full h-[348px]; max-w-[260px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden`}>
-            <div className={`w-full h-[171px] rounded-tl-[8px] rounded-tr-[8px] relative`}>
+            className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden`}>
+            <div className={`!w-full h-[171px] rounded-tl-[8px] rounded-tr-[8px] relative`}>
                 <Image
                     src="/1.png"
                     alt="img"

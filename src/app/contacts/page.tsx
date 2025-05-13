@@ -312,33 +312,33 @@ export default function Contacts() {
         switchTab(tab);
     };
 
-    // useEffect(() => {
-    //     bounceActiveBlock();
-    //
-    //     const activeButton = activeTab === 'contact'
-    //         ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
-    //         : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
-    //
-    //     if (activeButton) {
-    //         if (lastClickPosition) {
-    //             activeButton.style.setProperty("--mouse-x", `${lastClickPosition.x}px`);
-    //             activeButton.style.setProperty("--mouse-y", `${lastClickPosition.y}px`);
-    //             activeButton.style.setProperty("--last-mouse-x", `${lastClickPosition.x}px`);
-    //             activeButton.style.setProperty("--last-mouse-y", `${lastClickPosition.y}px`);
-    //         } else {
-    //             initializeMousePosition(activeButton);
-    //         }
-    //
-    //         activeButton.addEventListener("mouseenter", () => {
-    //             const rect = activeButton.getBoundingClientRect();
-    //             const x = rect.width / 2;
-    //             const y = rect.height / 2;
-    //
-    //             activeButton.style.setProperty("--mouse-x", `${x}px`);
-    //             activeButton.style.setProperty("--mouse-y", `${y}px`);
-    //         });
-    //     }
-    // }, [activeTab]);
+    useEffect(() => {
+        bounceActiveBlock();
+
+        // const activeButton = activeTab === 'contact'
+        //     ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
+        //     : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
+        //
+        // if (activeButton) {
+        //     if (lastClickPosition) {
+        //         activeButton.style.setProperty("--mouse-x", `${lastClickPosition.x}px`);
+        //         activeButton.style.setProperty("--mouse-y", `${lastClickPosition.y}px`);
+        //         activeButton.style.setProperty("--last-mouse-x", `${lastClickPosition.x}px`);
+        //         activeButton.style.setProperty("--last-mouse-y", `${lastClickPosition.y}px`);
+        //     } else {
+        //         initializeMousePosition(activeButton);
+        //     }
+        //
+        //     activeButton.addEventListener("mouseenter", () => {
+        //         const rect = activeButton.getBoundingClientRect();
+        //         const x = rect.width / 2;
+        //         const y = rect.height / 2;
+        //
+        //         activeButton.style.setProperty("--mouse-x", `${x}px`);
+        //         activeButton.style.setProperty("--mouse-y", `${y}px`);
+        //     });
+        // }
+    }, [activeTab]);
 
 
     // Validation
@@ -536,7 +536,6 @@ export default function Contacts() {
                                         </button>
                                         <div className={styles.highlight}/>
                                     </div>
-
                                 </div>
                             </div>
 
@@ -603,9 +602,11 @@ export default function Contacts() {
                                                 <div className={`relative mb-[34px]`}>
                                                     <div
                                                         ref={selectRef}
-                                                        className={`w-full bg-[#101010] border border-[#353535]
-                                                        rounded-[4px] px-[12px] py-3 cursor-pointer flex justify-between items-center 
+                                                        className={`w-full bg-[#101010] border 
+                                                        rounded-[4px] px-[12px] py-3 cursor-pointer flex justify-between items-center
+                                                        transition-border duration-200 ease-in
                                                         ${selectError && visibleError ? 'bounce' : ''}
+                                                        ${isSelectOpen ? 'border-[#ccc]' : 'border-[#353535]'}
                                                          `}
                                                         onClick={() => {
                                                             setIsSelectOpen(!isSelectOpen);
@@ -626,7 +627,7 @@ export default function Contacts() {
                                                         >
                                                             <path
                                                                 d="M1 1L8 8L15 1"
-                                                                stroke={selectError ? "#FF3030" : "#737373"}
+                                                                stroke={selectError ? "#FF3030" : isSelectOpen ? "#3D9ED6" : "#737373"}
                                                                 strokeWidth="2"
                                                             />
                                                         </svg>
@@ -634,7 +635,7 @@ export default function Contacts() {
 
                                                     {isSelectOpen && (
                                                         <div
-                                                            className={`${styles.selectOption} absolute right-[15px] p-[28px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
+                                                            className={`${styles.selectOption} absolute right-[15px] p-[28px] pb-[13px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}>
                                                             {options.map((option, index) => (
                                                                 <div
                                                                     key={index}
