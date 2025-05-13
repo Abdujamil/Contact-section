@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from "@/components/header/Header";
 import styles from "@/app/page.module.scss";
-import ContactsCard from '@/components/ContactsCard/ContactsCard'
+import BlogCard from '@/components/BlogCard/BlogCard'
+import {faqData} from "@/data/blog";
 
 const Blog = () => {
     return (
@@ -23,22 +24,17 @@ const Blog = () => {
 
                     <div className={`${styles.blogCardsContainer} h-auto w-full`}>
                         <div className={`${styles.blogCards} grid grid-cols-4 gap-[40px] mb-[127px]`}>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
-                            <ContactsCard/>
+                            {
+                                faqData.map((item) => (
+                                    <BlogCard
+                                        key={item.id}
+                                        num={item.num}
+                                        title={item.title}
+                                        date={item.date}
+                                        src={item.src}
+                                    />
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
