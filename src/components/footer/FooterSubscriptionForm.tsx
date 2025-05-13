@@ -9,8 +9,8 @@ const FooterSubscriptionForm: React.FC = () => {
     const methods = useForm();
 
     return (
-        <div className={`${styles.form} flex items-center gap-[22px]`}>
-            <Image src="/micro.png" alt='micro' width={95} height={139} priority className="relative bottom-[5px]" />
+        <div className={`${styles.form} flex items-center gap-[22px] max-w-[345px]`}>
+            <Image src="/micro.png" alt='micro' width={95} height={139} priority className="min-w-[95px] relative bottom-[5px]" />
             <div className="flex flex-col items-start justify-between h-[89px]">
                 <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">Подписаться на новости</p>
                 <FormProvider {...methods}>
