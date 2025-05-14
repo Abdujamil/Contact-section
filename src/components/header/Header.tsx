@@ -528,7 +528,6 @@ const Header: React.FC = () => {
             />
           </svg>
         </Link>
-
         <div className="flex items-center gap-[30px]">
           <div className="hidden min-[961px]:flex items-center gap-[60px]">
             <nav className="flex gap-[9px]">{renderMenuItems}</nav>
