@@ -8,7 +8,6 @@ import CustomCheckbox from "@/components/CustomCheckbox";
 import {BounceEffect} from "@/components/hooks/useBounce";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from 'react-hook-form';
-import Header from "@/components/header/Header";
 import {motion, useAnimation} from "framer-motion";
 import Bg from "@/components/background/bg";
 
@@ -397,12 +396,11 @@ export default function Contacts() {
             <div className={`${styles.page} h-dvh`}>
                <Bg />
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
-                    <Header />
                     <div
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
                             <div className={`${styles.contactLeftContent}`}>
-                                <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[35px] mt-[-5px]`}>Контакты</h2>
+                                <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[33px] mt-[-5px]`}>Контакты</h2>
                                 <div
                                     className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
 
@@ -511,7 +509,7 @@ export default function Contacts() {
                                                 <textarea
                                                     placeholder="Комментарий"
                                                     name='comment'
-                                                    className={`${styles.bounceElem} w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[18px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200`}
+                                                    className={`${styles.bounceElem} w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200`}
                                                 >
                                                 </textarea>
 

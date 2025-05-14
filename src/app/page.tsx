@@ -3,7 +3,6 @@
 import React, {useState} from "react";
 import styles from './faq.module.scss';
 import FaqCard from '../components/FaqCard/index'
-import Header from "@/components/header/Header";
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
 
@@ -39,8 +38,7 @@ const Home: React.FC = () => {
         <>
             <Bg />
             <main className={`${styles.main} w-full h-full`}>
-                <Header />
-                <div className={`w-full h-full mb-[80px] mt-[60px]`}>
+                <div className={`w-full h-full mb-[80px] mt-[120px]`}>
                     <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
                         <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] text-[48px] text-[#ccc] mb-[30px]`}>FAQ:
                             Ответы

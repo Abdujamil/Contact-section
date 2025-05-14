@@ -3,7 +3,6 @@ import {faqData} from "@/data/faq";
 import React from "react";
 import Footer from "../../footer";
 import FaqPageContent from "@/components/FaqPageCard/FaqPageContent";
-import Header from "@/components/header/Header";
 import Bg from "@/components/background/bg";
 
 type Props = {
@@ -29,9 +28,8 @@ export default async function FaqPage({params}: Props) {
         <>
             <div className={`h-dvh`}>
                 <Bg/>
-                <Header/>
                 <div
-                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[60px] px-[10px] mb-[100px] grid grid-cols-4 gap-[58px]">
+                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[58px]">
                     <FaqPageContent id={id}/>
                 </div>
                 <Footer/>
