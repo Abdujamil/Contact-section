@@ -1,28 +1,74 @@
-'use client';
-import Footer from './footer';
-import styles from "../app/page.module.scss";
-import React from "react";
+"use client";
+
+import React, {useState} from "react";
+import styles from './faq.module.scss';
+import FaqCard from '../components/FaqCard/index'
 import Header from "@/components/header/Header";
+import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
 
-export default function Home() {
+const Home: React.FC = () => {
+    const [openId, setOpenId] = useState<number | null>(null);
+    // const [animationSettings, setAnimationSettings] = useState({
+    //     duration: 0.6,
+    //     bounce: 5,
+    //     delay: 0,
+    //     ease: [0.30, 1.7, 0.60, 1],
+    //     times: [0, 0.2, 0.5, 0.8, 1],
+    //     openY: [0, 26, 0, 0, 0],
+    //     closeY: [60, -6, 0, 0, 0],
+    //     opacity: [0, 1, 1, 1, 1],
+    // });
+
+    const animationSettings = {
+        duration: 0.6,
+        bounce: 5,
+        delay: 0,
+        ease: [0.30, 1.7, 0.60, 1],
+        times: [0, 0.2, 0.5, 0.8, 1],
+        openY: [0, 26, 0, 0, 0],
+        closeY: [60, -6, 0, 0, 0],
+        opacity: [0, 1, 1, 1, 1],
+    }
+
+    const handleToggle = (id: number) => {
+        setOpenId(prevId => prevId === id ? null : id);
+    };
 
     return (
         <>
-            <div className={`${styles.page} h-dvh`}>
-                <Bg />
-                <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
-                    <Header/>
-                        <div id="type-container"
-                             className="my-[50px] w-full max-w-[900px] h-screen flex flex-col items-center justify-center gap-[10px] z-[900] relative">
-                            <h1 className="relative mt-[-5px] not-italic font-normal text-[48px] leading-[110%] tracking-[-0.03em] text-center txt-gradient-right">Добро пожаловать!</h1>
-                            <p className="font-normal text-[28px] text-[#3d9ed6] leading-[120%] tracking-[-0.03em] text-center z-[900] flex items-center whitespace-nowrap self-center">
-                                Скоро бомбовый сайт будет :)
-                            </p>
+            <Bg />
+            <main className={`${styles.main} w-full h-full`}>
+                <Header />
+                <div className={`w-full h-full mb-[80px] mt-[60px]`}>
+                    <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
+                        <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] text-[48px] text-[#ccc] mb-[30px]`}>FAQ:
+                            Ответы
+                            на
+                            главные
+                            вопросы</h2>
+                        <div className={`flex flex-col gap-[5px] h-full`}>
+                            {faqData.map((item) => (
+                                <FaqCard
+                                    id={item.id}
+                                    key={item.id}
+                                    num={item.num}
+                                    question={item.question}
+                                    answer={item.answer}
+                                    fullAnswer={""}
+                                    src={item.src}
+                                    isOpen={openId === item.id}
+                                    onToggle={handleToggle}
+                                    animationSettings={animationSettings}
+                                />
+                            ))}
                         </div>
-                    <Footer/>
+                    </section>
+                    {/*<Footer />*/}
                 </div>
-            </div>
+            </main>
         </>
     );
-}
+};
+
+export default Home;

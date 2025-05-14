@@ -5,7 +5,6 @@ interface AsideItem {
     id: string;
     title: string;
 }
-
 interface FaqItem {
     id: number;
     num: string;
@@ -16,7 +15,6 @@ interface FaqItem {
     src: string | StaticImageData;
     largeImgSrc: string | StaticImageData;
 }
-
 export const faqData: FaqItem[] = [
     {
         id: 1,

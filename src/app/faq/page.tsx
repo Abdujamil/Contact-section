@@ -7,7 +7,7 @@ import Header from "@/components/header/Header";
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
 
-const Home: React.FC = () => {
+const Faq: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
     // const [animationSettings, setAnimationSettings] = useState({
     //     duration: 0.6,
@@ -71,4 +71,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home;
+export default Faq;
