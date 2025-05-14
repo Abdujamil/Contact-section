@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 
 
 export default async function FaqPage({params}: Props) {
-    const {id: idString} = await params;
+    const {id: idString} = params;
     const id = parseInt(idString);
     const faqItem = faqData.find((item) => item.id === id);
 
