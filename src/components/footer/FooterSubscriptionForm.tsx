@@ -11,7 +11,7 @@ const FooterSubscriptionForm: React.FC = () => {
     return (
         <div className={`${styles.form} pl-[125px] flex items-center gap-[22px]`}>
             <Image src="/micro.png" alt='micro' width={95} height={139} priority className="min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px]" />
-            <div className="flex flex-col items-start justify-between max-w-[254px] h-[89px]">
+            <div className="flex flex-col items-start justify-between max-w-[252px] h-[89px]">
                 <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">Подписаться на новости</p>
                 <FormProvider {...methods}>
                     <form action="#" className="flex items-center gap-[10px] max-h-[40px]">

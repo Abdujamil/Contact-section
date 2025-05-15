@@ -17,8 +17,8 @@ export default function FaqAside({items}: { items: AsideItem[] }) {
                 <li key={item.id} className="group cursor-pointer">
                     <a
                         href={item.id}
-                        className={`text-[16px] font-normal transition-colors duration-300 group-hover:text-[#4A738C]  ${
-                            activeHash === item.id ? "text-[#4A738C]" : ""
+                        className={`text-[16px] font-normal transition-colors duration-300 group-hover:text-[#3D9ED6]  ${
+                            activeHash === item.id ? "text-[#3D9ED6]" : ""
                         }`}
                     >
                         {item.title}
