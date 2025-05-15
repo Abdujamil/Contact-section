@@ -8,17 +8,6 @@ import Bg from "@/components/background/bg";
 
 const Faq: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
-    // const [animationSettings, setAnimationSettings] = useState({
-    //     duration: 0.6,
-    //     bounce: 5,
-    //     delay: 0,
-    //     ease: [0.30, 1.7, 0.60, 1],
-    //     times: [0, 0.2, 0.5, 0.8, 1],
-    //     openY: [0, 26, 0, 0, 0],
-    //     closeY: [60, -6, 0, 0, 0],
-    //     opacity: [0, 1, 1, 1, 1],
-    // });
-
     const animationSettings = {
         duration: 0.6,
         bounce: 5,

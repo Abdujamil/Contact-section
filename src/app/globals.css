@@ -54,6 +54,27 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
+/*Scrollbar*/
+
+.simplebar-track.simplebar-vertical{
+    width: 9px !important;
+}
+
+.simplebar-scrollbar:before {
+    background: rgba(255, 255, 255, 0.1) !important;
+    /*border: 1px solid #93969d !important;*/
+    border-radius: 2px !important;
+    backdrop-filter: blur(2px) !important;
+    transition: background .2s linear !important;
+    opacity: 1 !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 2px rgba(255, 255, 255, 0.2) !important;
+}
+
+.simplebar-dragging .simplebar-scrollbar:before, .simplebar-hover .simplebar-scrollbar:before {
+    background: rgba(61, 158, 214, 0.3) !important;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 2px rgba(255, 255, 255, 0.2) !important;
+}
+
 .field__input:focus, .field__textarea:focus {
     box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     border: 1px solid #737373;

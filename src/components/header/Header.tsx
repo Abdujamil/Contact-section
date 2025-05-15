@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 import {useMouseTracking} from '../hooks/useMouseTracking';
+import {useAuth} from "@/components/context/AuthContext";
 
 interface MenuItem {
   label: string;
@@ -74,6 +75,21 @@ MenuItem.displayName = "MenuItem";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
+
+  // Login
+  const { toggleRegisterPromo, showRegisterPromo } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("isLoggedIn");
+    if (saved === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", String(isLoggedIn));
+  }, [isLoggedIn]);
 
   const renderMenuItems = useMemo(() => {
     return menuItems.map((item) => {
@@ -507,11 +523,12 @@ const Header: React.FC = () => {
             <div className="relative">
               <button
                 className={`${styles["login-button"]} group flex items-center justify-center`}
-                data-text="Войти"
+                data-text={showRegisterPromo ? "Войти" : "Выйти"}
+                onClick={toggleRegisterPromo}
                 onMouseMove={handleLoginButtonMouseMove}
                 onMouseLeave={handleLoginButtonMouseLeave}>
                 <span className="font-normal text-[18px] leading-[120%]">
-                  Войти
+                  {showRegisterPromo ? "Войти" : "Выйти"}
                 </span>
               </button>
               <div className={styles.highlight} />
