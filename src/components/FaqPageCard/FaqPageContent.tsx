@@ -113,6 +113,10 @@ export default function FaqPageContent({id}: { id: number }) {
     const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
     const [initialized, setInitialized] = useState(false);
 
+    const [openFaqItem, setOpenFaqItem] = useState(() =>
+        faqData.find(item => item.id === id) || null
+    );
+
     // 💡 Выполняем только на клиенте, чтобы избежать расхождения SSR/CSR
     useEffect(() => {
         const fromHeader = searchParams.get("from") === "header";
@@ -135,7 +139,14 @@ export default function FaqPageContent({id}: { id: number }) {
     }, []);
 
     const currentFaqItem = faqData.find(item => item.id === id);
-    const openFaqItem = faqData.find(item => item.id === openQuestionId || item.id === id);
+    // const openFaqItem = faqData.find(item => item.id === openQuestionId || item.id === id);
+
+    useEffect(() => {
+        const found = faqData.find(item => item.id === openQuestionId);
+        if (found) {
+            setOpenFaqItem(found);
+        }
+    }, [openQuestionId]);
 
     if (!currentFaqItem) return null;
 
