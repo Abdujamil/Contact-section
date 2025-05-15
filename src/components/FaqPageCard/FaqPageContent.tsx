@@ -100,15 +100,13 @@
 "use client";
 import React, {useState, useEffect} from "react";
 import Image from "next/image";
-import {useSearchParams} from "next/navigation";
 import {faqData} from "@/data/faq";
 import CardListt from "./ShowCardList";
 import FaqAside from "./FaqAside";
 import styles from "../../app/faq.module.scss";
 import HeaderStyles from "../header/Header.module.css";
 
-export default function FaqPageContent({id}: { id: number }) {
-    const searchParams = useSearchParams();
+export default function FaqPageContent({id,  fromHeader}: { id: number, fromHeader?: boolean; }) {
     const [openQuestionId, setOpenQuestionId] = useState<number | null>(null);
     const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
     const [initialized, setInitialized] = useState(false);
@@ -117,14 +115,12 @@ export default function FaqPageContent({id}: { id: number }) {
         faqData.find(item => item.id === id) || null
     );
 
-    // 💡 Выполняем только на клиенте, чтобы избежать расхождения SSR/CSR
     useEffect(() => {
-        const fromHeader = searchParams.get("from") === "header";
         if (!fromHeader) {
-            setOpenQuestionId(id); // открыть карточку по умолчанию
+            setOpenQuestionId(id);
         }
         setInitialized(true);
-    }, [id, searchParams]);
+    }, [id, fromHeader]);
 
     useEffect(() => {
         faqData.forEach(item => {
