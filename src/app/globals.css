@@ -57,7 +57,7 @@ body {
 /*Scrollbar*/
 
 .simplebar-track.simplebar-vertical{
-    width: 9px !important;
+    width: 13px !important;
 }
 
 .simplebar-scrollbar:before {
