@@ -98,7 +98,7 @@
 //
 
 "use client";
-import React, {useState, useMemo, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import {useSearchParams} from "next/navigation";
 import {faqData} from "@/data/faq";
