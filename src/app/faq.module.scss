@@ -430,6 +430,12 @@
   transition: border-color 0.3s ease;
 }
 
+.btn.faqTryBtn{
+
+  &:hover  svg path{
+    fill: #CCCCCC !important;
+  }
+}
 
 @media screen and (min-width: 2540px) {
   .faqBg {

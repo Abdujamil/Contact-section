@@ -13,7 +13,8 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   { label: "Главная", href: "/" },
   { label: "Стоимость", href: "/pricing" },
-  { label: "FAQ", href: "/faqPage/1" },
+  // { label: "FAQ", href: "/faqPage/1" },
+  { label: "FAQ", href: "/faqPage/1?from=header" },
   { label: "Организациям", href: "/organizations" },
   { label: "Блог", href: "/blog" },
   { label: "Контакты", href: "/contacts" },
