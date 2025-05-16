@@ -1,16 +1,22 @@
 import React from "react";
 import Image from "next/image";
+import {useInView} from "react-intersection-observer";
 import AppInput from "@/components/forms/elements/AppInput";
-import { useForm, FormProvider } from "react-hook-form";
+import {useForm, FormProvider} from "react-hook-form";
 import styles from '../../app/page.module.scss';
 import headerStyles from "../../components/header/Header.module.css";
 
 const FooterSubscriptionForm: React.FC = () => {
     const methods = useForm();
+    const {ref, inView} = useInView({threshold: 1});
 
     return (
-        <div className={`${styles.form} pl-[125px] flex items-center gap-[22px]`}>
-            <Image src="/micro.png" alt='micro' width={95} height={139} priority className="min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px]" />
+        <div ref={ref} className={`${styles.form} pl-[125px] flex items-center gap-[22px]`}>
+            <Image src="/micro.png" alt='micro' width={95} height={139} priority className={`min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px] transition-all duration-400 ease-out
+            ${
+                inView ? 'opacity-100 translate-y-0' : 'translate-y-[140px]'
+            }
+            `}/>
             <div className="flex flex-col items-start justify-between max-w-[252px] h-[89px]">
                 <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">Подписаться на новости</p>
                 <FormProvider {...methods}>
@@ -26,9 +32,9 @@ const FooterSubscriptionForm: React.FC = () => {
                                 type="submit"
                                 className={`${headerStyles["login-button"]} absolute w-[60px] !h-[39px] bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer group flex items-center justify-center`}
                             >
-                                <Image src="/send-icon.svg" alt="send-icon" width={24} height={24} />
+                                <Image src="/send-icon.svg" alt="send-icon" width={24} height={24}/>
                             </button>
-                            <div className={styles.highlight} />
+                            <div className={styles.highlight}/>
                         </div>
                     </form>
                 </FormProvider>

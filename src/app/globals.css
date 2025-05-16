@@ -58,12 +58,13 @@ body {
 
 .simplebar-track.simplebar-vertical{
     width: 13px !important;
+    z-index: 9999999999 !important;
 }
 
 .simplebar-scrollbar:before {
     background: rgba(255, 255, 255, 0.1) !important;
     /*border: 1px solid #93969d !important;*/
-    border-radius: 2px !important;
+    border-radius: 3px !important;
     backdrop-filter: blur(2px) !important;
     transition: background .2s linear !important;
     opacity: 1 !important;
