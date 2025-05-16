@@ -17,7 +17,7 @@ const FooterSubscriptionForm: React.FC = () => {
             {/*    inView ? 'opacity-100 translate-y-0' : 'translate-y-[140px]'*/}
             {/*}*/}
             {/*`}/>*/}
-            <div className="flex flex-col items-start justify-between h-[89px]">
+            <div className="max-w-[228px] flex flex-col items-start justify-between h-[89px]">
                 <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">Подписаться на новости</p>
                 <FormProvider {...methods}>
                     <form action="#" className="flex items-center gap-[10px] max-h-[40px]">
