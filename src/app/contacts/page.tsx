@@ -509,7 +509,7 @@ export default function Contacts() {
                                                 <textarea
                                                     placeholder="Комментарий"
                                                     name='comment'
-                                                    className={`${styles.bounceElem} w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200`}
+                                                    className={`${styles.bounceElem} placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200`}
                                                 >
                                                 </textarea>
 

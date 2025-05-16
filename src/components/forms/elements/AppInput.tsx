@@ -69,6 +69,21 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         }
     };
 
+    const getAutocompleteName = (name: string): string => {
+        switch (name.toLowerCase()) {
+            case 'name':
+                return 'name';
+            case 'contact':
+                return type === 'tel' ? 'tel' : 'email';
+            case 'email':
+                return 'email';
+            case 'phone':
+                return 'tel';
+            default:
+                return 'on';
+        }
+    };
+    
     useEffect(() => {
         setVisibleError(false);
         setTimeout(() => setVisibleError(true), 30);
@@ -96,7 +111,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     type={type}
                     className={`field__input ${className} ${fail && 'error !text-[red]'}`}
                     placeholder=""
-                    autoComplete="off"
+                    autoComplete={getAutocompleteName(inputName)}
                     value={propValue !== undefined ? propValue : internalValue}
                     onChange={handleChange}
                     onBlur={(e) => {

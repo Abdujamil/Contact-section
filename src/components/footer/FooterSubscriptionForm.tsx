@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import {useInView} from "react-intersection-observer";
+// import {useInView} from "react-intersection-observer";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from "react-hook-form";
 import styles from '../../app/page.module.scss';
@@ -8,16 +8,16 @@ import headerStyles from "../../components/header/Header.module.css";
 
 const FooterSubscriptionForm: React.FC = () => {
     const methods = useForm();
-    const {ref, inView} = useInView({threshold: 1});
+    // const {ref, inView} = useInView({threshold: 1});
 
     return (
-        <div ref={ref} className={`${styles.form} pl-[125px] flex items-center gap-[22px]`}>
-            <Image src="/micro.png" alt='micro' width={95} height={139} priority className={`min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px] transition-all duration-400 ease-out
-            ${
-                inView ? 'opacity-100 translate-y-0' : 'translate-y-[140px]'
-            }
-            `}/>
-            <div className="flex flex-col items-start justify-between max-w-[252px] h-[89px]">
+        <div className={`${styles.form} flex items-center gap-[22px]`}>
+            {/*<Image src="/micro.png" alt='micro' width={95} height={139} priority className={`min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px] transition-all duration-400 ease-out*/}
+            {/*${*/}
+            {/*    inView ? 'opacity-100 translate-y-0' : 'translate-y-[140px]'*/}
+            {/*}*/}
+            {/*`}/>*/}
+            <div className="flex flex-col items-start justify-between h-[89px]">
                 <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">Подписаться на новости</p>
                 <FormProvider {...methods}>
                     <form action="#" className="flex items-center gap-[10px] max-h-[40px]">
