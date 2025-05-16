@@ -229,7 +229,7 @@ export default function FaqPageContent({id, fromHeader}: { id: number, fromHeade
             <div className="col-span-3">
                 <div className="pb-[40px]">
                     <h2
-                        className={`${styles.title} ${styles.txtGradientRight} mb-[40px] font-normal leading-[85%] text-[48px] text-[#CCCCCC]`}
+                        className={`${styles.title} ${styles.txtGradientRight} mb-[43px] font-normal leading-[85%] text-[48px] text-[#CCCCCC]`}
                     >
                         FAQ: Ответы на главные вопросы
                     </h2>
