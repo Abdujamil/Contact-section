@@ -29,7 +29,7 @@ const Faq: React.FC = () => {
             <main className={`${styles.main} w-full h-full`}>
                 <div className={`w-full h-full mb-[80px] mt-[60px]`}>
                     <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
-                        <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] text-[48px] text-[#ccc] mb-[30px]`}>FAQ:
+                        <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] text-[48px] text-[#ccc] mb-[41px]`}>FAQ:
                             Ответы
                             на
                             главные
