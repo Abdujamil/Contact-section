@@ -46,15 +46,6 @@ export default function Contacts() {
 
     const selectRef = useRef<HTMLDivElement>(null);
 
-    const triggerSelectBounce = () => {
-        const el = selectRef.current;
-        if (!el) return;
-
-        el.classList.remove('bounce'); // сначала удаляем
-        void el.offsetWidth;           // форсируем перерендер (рефлоу)
-        el.classList.add('bounce');   // добавляем снова
-    };
-
     // Таймер обратного отсчета
     useEffect(() => {
         if (!isSubmitted) return;
@@ -81,14 +72,13 @@ export default function Contacts() {
 
         if (!isSelectValid) {
             setSelectError(true);
-            triggerSelectBounce();
         } else {
             setSelectError(false);
         }
 
         if (!isContactValid) {
             setFailCheck(true);
-            bounceElements(); // Чекбоксы прыгают
+            bounceElements();
         } else {
             setFailCheck(false);
         }
@@ -394,7 +384,7 @@ export default function Contacts() {
     return (
         <>
             <div className={`${styles.page} h-dvh`}>
-               <Bg />
+                <Bg/>
                 <div className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}>
                     <div
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center `}>
@@ -742,22 +732,22 @@ export default function Contacts() {
                                     <div className="relative !overflow-hidden">
                                         <button
                                             type="submit"
-                                            className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]}  group  !w-[220px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative transition-all duration-200 ease-in`}
+                                            className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]}  group  !w-[220px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.15s] ease-in `}
 
                                         >
                                             <Image
-                                                className={`${styles.sendIconLeft}  transition-all duration-200 ease-in`}
+                                                className={`${styles.sendIconLeft}   transition-all !duration-[.15s] ease-in `}
                                                 src='/pdf-icon.svg'
                                                 width={36}
                                                 height={49}
                                                 alt="pdf-icon"
                                             />
                                             <span
-                                                className="!transition-all !duration-200 !ease-in !group-hover:text-[#ccc] text-[20px]">
+                                                className=" !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] text-[20px]">
                                                           Скачать PDF
                                                         </span>
                                             <Image
-                                                className={`${styles.sendIconRight}  transition-all duration-200 ease-in`}
+                                                className={`${styles.sendIconRight}   transition-all !duration-[.15s] ease-in `}
                                                 src='/pdf-icon.svg'
                                                 width={36}
                                                 height={49}

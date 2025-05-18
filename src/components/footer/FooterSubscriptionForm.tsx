@@ -11,7 +11,7 @@ const FooterSubscriptionForm: React.FC = () => {
     // const {ref, inView} = useInView({threshold: 1});
 
     return (
-        <div className={`${styles.form} flex items-center gap-[22px]`}>
+        <div className={`${styles.form} flex w-[370px] items-center gap-[22px]`}>
             {/*<Image src="/micro.png" alt='micro' width={95} height={139} priority className={`min-w-[95px] absolute top-[-11px] left-[25px] bottom-[5px] transition-all duration-400 ease-out*/}
             {/*${*/}
             {/*    inView ? 'opacity-100 translate-y-0' : 'translate-y-[140px]'*/}
