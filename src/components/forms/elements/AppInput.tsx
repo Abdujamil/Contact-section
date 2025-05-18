@@ -67,8 +67,8 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         if (onChange) {
             onChange(value);
         }
-    };
 
+    };
     const getAutocompleteName = (name: string): string => {
         switch (name.toLowerCase()) {
             case 'name':
