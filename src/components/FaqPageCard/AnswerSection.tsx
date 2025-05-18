@@ -1,6 +1,6 @@
 import {motion, useAnimation} from "framer-motion";
 import {ReactNode, useEffect} from "react";
-import styles from '../../app/faq.module.scss';
+import styles from '../../app/faq/faq.module.scss';
 import {AnimationSettings} from "../utils/types";
 import {StaticImageData} from "next/image";
 

@@ -212,7 +212,7 @@ export default function Contacts() {
                         <div className={`w-full flex justify-center items-start gap-[40px]`}>
                             <div className={`${styles.contactLeftContent}`}>
                                 <h2 className={`${styles.txtGradientRight}  leading-[110%] text-[40px] font-normal mb-[33px] mt-[-5px]`}>Контакты</h2>
-                                <Btns activeTab={activeTab} setActiveTab={setActiveTab} controls={controls} />
+                                <Btns activeTab={activeTab} setActiveTab={setActiveTab} controls={controls}/>
                             </div>
 
                             {/* Блок "Связаться" */}
@@ -226,9 +226,25 @@ export default function Contacts() {
                             `}>
                                 <FormProvider {...methods}>
                                     {isSubmitted ? (
-                                        <div className="timer-container">
-                                            <h3>Сообщение отправлено!</h3>
-                                            <p>Форма будет доступна через: {countdown} сек.</p>
+                                        <div className={`flex flex-col items-center justify-center gap-2`}>
+                                            <h3 className={`text-[32px] text-[#CCCCCC] leading-[37px] `}>Сообщение
+                                                отправлено!</h3>
+                                            <p className={`text-[20px] text-[#CCCCCC] leading-[120%] flex flex-col items-center justify-center gap-5 mb-[40px]`}>
+                                                Форма будет доступна через
+                                                <span
+                                                    className={`text-[44px] text-[#A4A4A4] leading-[120%] font-[Rubik]`}>
+                                                {countdown}
+                                            </span>
+                                            </p>
+
+                                            <div>
+                                                <Image
+                                                    src="/sendIcon.svg"
+                                                    alt="send-icon"
+                                                    width={205}
+                                                    height={206}
+                                                />
+                                            </div>
                                         </div>
                                     ) : (
                                         <form method="post" onSubmit={handleSubmit(onSubmit)}

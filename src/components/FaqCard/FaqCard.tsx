@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from '../../app/faq.module.scss';
+import styles from '../../app/faq/faq.module.scss';
 import {FaqCardProps, defaultSettings} from "../utils/types";
 import QuestionHeader from "./QuestionHeader";
 import AnswerSection from "./AnswerSection";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from '../../app/faq.module.scss';
+import styles from '../../app/faq/faq.module.scss';
 import FaqCard from "./FaqCard";
 import { faqData } from "../../data/faq";
 

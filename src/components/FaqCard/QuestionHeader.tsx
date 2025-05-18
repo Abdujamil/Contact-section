@@ -1,5 +1,5 @@
 import Image, {StaticImageData} from "next/image";
-import styles from '../../app/faq.module.scss';
+import styles from '../../app/faq/faq.module.scss';
 import React from "react";
 
 interface Props {

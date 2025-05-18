@@ -1,7 +1,7 @@
 "use client";
 
 import React, {useState} from "react";
-import styles from './faq.module.scss';
+import styles from './faq/faq.module.scss';
 import FaqCard from '../components/FaqCard/index'
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";

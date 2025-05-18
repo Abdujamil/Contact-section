@@ -1,7 +1,7 @@
 import {motion, useAnimation} from "framer-motion";
 import React, {useEffect} from "react";
 import {useRouter} from "next/navigation";
-import styles from '../../app/faq.module.scss';
+import styles from '../../app/faq/faq.module.scss';
 import {useButton} from "../utils/useButton";
 import {AnimationSettings} from "../utils/types";
 import HeaderStyles from "../header/Header.module.css";

@@ -1,4 +1,4 @@
-import styles from '../../app/faq.module.scss';
+import styles from '../../app/faq/faq.module.scss';
 import React from "react";
 import {StaticImageData} from "next/image";
 
