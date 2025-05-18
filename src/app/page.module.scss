@@ -1,18 +1,8 @@
 .contact {
   .contactContainer {
     .contactLeftContent {
-      width: 260px;
-
       .btns {
-        background: rgba(0, 0, 0, 0.07);
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(2px);
-
         .btn {
-          background: rgba(42, 42, 42, 0.1);
-          backdrop-filter: blur(2px);
-          border-radius: 4px;
-
           &:hover {
             color: #ccc;
 
@@ -25,15 +15,9 @@
     }
 
     .contactRightContent {
-      background: rgba(0, 0, 0, 0.07);
+      //background: rgba(0, 0, 0, 0.07);
 
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
-      //backdrop-filter: blur(2px);
-
-      input {
-        user-select: none; /* Запрещаем выделение текста */
-        pointer-events: none; /* Блокируем все события мыши */
-      }
 
       .fileIcon {
         background: rgba(255, 255, 255, 0.1);
@@ -47,23 +31,17 @@
           border: 1px solid #353535;
           border-radius: 4px;
 
-
           .menu-item {
             align-items: center;
             color: #878787;
             display: inline-block;
             flex: 1 0 auto;
             font-size: 16px;
-            //font-weight: 500;
             justify-content: left;
-            //line-height: 19px;
             overflow: visible;
             position: relative;
             text-align: left;
             transition: transform 0.2s ease, color 0.5s ease;
-            //border-radius: 4px;
-            //padding: 7px 20px;
-            //height: 36px;
             will-change: transform, color, clip-path;
             background: none;
 
@@ -71,8 +49,6 @@
               color: #3D9ED6;
             }
           }
-
-
           .menu-item::after {
             content: "";
             position: absolute;
@@ -89,8 +65,6 @@
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
           }
-
-
           .menu-item::before {
             content: attr(data-text);
             position: absolute;
@@ -116,11 +90,9 @@
           .menu-item:hover::before {
             clip-path: inset(0 0 0 0);
           }
-
           .menu-item:hover::after {
             clip-path: inset(0 0 0 0);
           }
-
         }
 
         .formInpts {
@@ -152,12 +124,7 @@
   }
 }
 
-.titleTop {
-  //opacity: 0;
-}
-
 .btn {
-
   .sendIconLeft {
     position: absolute;
     left: 20px;
@@ -329,7 +296,6 @@
   -webkit-background-clip: text;
   background-clip: text;
 }
-
 
 @media screen and (min-width: 2540px) {
   .faqBg {
