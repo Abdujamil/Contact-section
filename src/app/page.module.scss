@@ -23,6 +23,11 @@
         background: rgba(255, 255, 255, 0.1);
       }
 
+      input {
+        user-select: none; /* Запрещаем выделение текста */
+        pointer-events: none; /* Блокируем все события мыши */
+      }
+
       form {
         .selectOption {
           background: rgba(53, 53, 53, 0.1);

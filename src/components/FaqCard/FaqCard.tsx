@@ -5,6 +5,7 @@ import {FaqCardProps, defaultSettings} from "../utils/types";
 import QuestionHeader from "./QuestionHeader";
 import AnswerSection from "./AnswerSection";
 
+
 const FaqCard: React.FC<FaqCardProps> = ({
                                              id,
                                              num,
