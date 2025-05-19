@@ -9,7 +9,7 @@ export const useFormStates = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [failCheck, setFailCheck] = useState(false);
     const [visibleError, setVisibleError] = useState(false);
-    const [countdown, setCountdown] = useState(10);
+    // const [countdown, setCountdown] = useState(10);
     const [contactValue, setContactValue] = useState("");
 
     return {
@@ -21,7 +21,7 @@ export const useFormStates = () => {
         isSubmitted, setIsSubmitted,
         failCheck, setFailCheck,
         visibleError, setVisibleError,
-        countdown, setCountdown,
+        // countdown, setCountdown,
         contactValue, setContactValue,
     };
 };
