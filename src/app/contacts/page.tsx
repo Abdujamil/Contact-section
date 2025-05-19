@@ -80,23 +80,24 @@ export default function Contacts() {
   ];
 
   // Таймер обратного отсчета
-//   useEffect(() => {
-//     if (!isSubmitted) return;
+  // useEffect(() => {
+  //   if (!isSubmitted) return;
 
-//     const timer = setInterval(() => {
-//       setCountdown((prev) => {
-//         if (prev <= 1) {
-//           clearInterval(timer);
-//           setIsSubmitted(false);
-//           methods.reset(); // Сбрасываем форму
-//           return 10;
-//         }
-//         return prev - 1;
-//       });
-//     }, 1000);
+  //   const timer = setInterval(() => {
+  //     setCountdown((prev) => {
+  //       if (prev <= 1) {
+  //         clearInterval(timer);
+  //         setIsSubmitted(false);
+  //         methods.reset(); // Сбрасываем форму
+  //         return 10;
+  //       }
+  //       return prev - 1;
+  //     });
+  //   }, 1000);
 
-//     return () => clearInterval(timer);
-//   }, [isSubmitted, methods]);
+  //   return () => clearInterval(timer);
+  // }, [isSubmitted, methods]);
+
   useEffect(() => {
     if (!submitCount) return;
 
@@ -283,10 +284,11 @@ export default function Contacts() {
                     //         />
                     //     </div>
                     // </div>
-                    // <FlightSuccess />
                     <FlightSuccess
-                      close={() => console.log("closed")}
+                      close={() => setIsSubmitted(false)}
                       small={true}
+                      closeIcon={true}
+                      text="Успешно"
                     />
                   ) : (
                     <form

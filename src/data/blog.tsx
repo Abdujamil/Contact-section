@@ -8,7 +8,7 @@ interface FaqItem {
     src: string | StaticImageData;
 }
 
-export const faqData: FaqItem[] = [
+export const blogData: FaqItem[] = [
     {
         id: 1,
         num: "1",

@@ -5,6 +5,7 @@ import Image, {StaticImageData} from "next/image";
 import Link from "next/link";
 
 interface BlogCardProps {
+    id: number;
     num: string;
     title: string;
     date: string;
@@ -12,9 +13,10 @@ interface BlogCardProps {
 }
 
 
-const BlogCard: React.FC<BlogCardProps> = ({num, title, date, src}) => {
+const BlogCard: React.FC<BlogCardProps> = ({id, num, title, date, src}) => {
     return (
-        <div
+        <Link href={`/blogPage/${id}`}>
+            <div
             className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden`}
             style={{
                 willChange: 'transform',
@@ -39,21 +41,17 @@ const BlogCard: React.FC<BlogCardProps> = ({num, title, date, src}) => {
                 </h3>
 
                 <div className={`${styles.cardBody} w-full flex  items-end justify-between`}>
-                    <div className="relative">
-                        <Link href={`/#`}
-                              className={`${HeaderStyles["login-button"]} group flex items-center justify-center`}
-                              data-text="">
-                                <span className="text-[18px] leading-[120%]">
-                                    Подробнее
-                                </span>
-                        </Link>
-                        <div className={styles.highlight}/>
+                    <p className={`${styles.cardBodyDate} text-[#737373] text-[16px] leading-[13px]`}>{date}</p>
+                    
+                    <div>
+                        <p className={`${styles.cardBodyDate} text-[#737373] text-[16px] leading-[13px]`}>Автор</p>
                     </div>
 
-                    <p className={`${styles.cardBodyDate} text-[#737373] text-[10.6641px] leading-[13px]`}>{date}</p>
                 </div>
             </div>
         </div>
+</Link>
+        
     );
 };
 

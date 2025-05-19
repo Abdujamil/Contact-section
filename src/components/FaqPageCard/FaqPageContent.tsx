@@ -220,6 +220,7 @@ export default function FaqPageContent({id, fromHeader}: { id: number, fromHeade
                             sizes="260px"
                             className="rounded-[8px] object-cover"
                             quality={85}
+                            priority
                         />
                     </div>
                 )

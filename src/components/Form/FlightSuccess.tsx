@@ -1,13 +1,8 @@
 import React, { useEffect } from "react";
 import FlyingPlane from "./FlyingPlane";
 
-const FlightSuccess = ({
-  close,
-  small = false,
-}: {
-  close: () => void;
-  small?: boolean;
-}) => {
+const FlightSuccess = ({ close, small = false, text, closeIcon = true }: { closeIcon?:boolean; close: () => void; small?: boolean; text: string }) => {
+
   const [time, setTime] = React.useState(10);
 
   useEffect(() => {

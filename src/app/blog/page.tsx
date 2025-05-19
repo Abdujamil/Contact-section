@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from "@/app/page.module.scss";
 import BlogCard from '@/components/BlogCard/BlogCard'
-import {faqData} from "@/data/blog";
+import {blogData} from "@/data/blog";
 import Bg from "@/components/background/bg";
 import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 
@@ -25,8 +25,9 @@ const Blog = () => {
                         <div className={`${styles.blogCardsContainer} h-auto w-full`}>
                             <div className={`${styles.blogCards} grid grid-cols-4 gap-[40px] mb-[127px]`}>
                                 {
-                                    faqData.map((item) => (
+                                    blogData.map((item) => (
                                         <BlogCard
+                                            id={item.id}
                                             key={item.id}
                                             num={item.num}
                                             title={item.title}
