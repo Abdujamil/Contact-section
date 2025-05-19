@@ -288,9 +288,7 @@ export default function Contacts() {
                     // <FlightSuccess />
                     <FlightSuccess
                       close={() => console.log("closed")}
-                      text="Успешно!"
                       small={true}
-                      closeIcon={false}
                     />
                   ) : (
                     <form
