@@ -287,8 +287,7 @@ export default function Contacts() {
                     <FlightSuccess
                       close={() => setIsSubmitted(false)}
                       small={true}
-                      closeIcon={true}
-                      text="Успешно"
+                      text="Сообщение отправлено!"
                     />
                   ) : (
                     <form

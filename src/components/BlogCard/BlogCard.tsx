@@ -1,5 +1,4 @@
 import React from 'react';
-import HeaderStyles from '../../components/header/Header.module.css'
 import styles from "@/app/page.module.scss";
 import Image, {StaticImageData} from "next/image";
 import Link from "next/link";

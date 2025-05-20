@@ -1,23 +1,24 @@
 import React, { useEffect } from "react";
 import FlyingPlane from "./FlyingPlane";
 
-const FlightSuccess = ({ close, small = false, text, closeIcon = true }: { closeIcon?:boolean; close: () => void; small?: boolean; text: string }) => {
+const FlightSuccess = ({ close, small = false, text }: { close: () => void; small?: boolean; text: string }) => {
 
   const [time, setTime] = React.useState(10);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((prev) => {
-        const num = prev - 1;
-        if (num === 0) {
-          clearInterval(timer);
-          close();
-        }
-        return num;
-      });
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  const timer = setInterval(() => {
+    setTime((prev) => {
+      const num = prev - 1;
+      if (num === 0) {
+        clearInterval(timer);
+        close(); // или: if (closeIcon) close();
+      }
+      return num;
+    });
+  }, 1000);
+  return () => clearInterval(timer);
+}, []);
+
 
   return (
     <div className="active">
@@ -27,7 +28,7 @@ const FlightSuccess = ({ close, small = false, text, closeIcon = true }: { close
           <div className="h-[23px]">
             {/* <p className="text-[32px] tracking-[-0.03em]">{text}</p> */}
             <h3 className={`text-[32px] text-[#CCCCCC] leading-[37px] `}>
-              Сообщение отправлено!
+              {text}
             </h3>
           </div>
 
