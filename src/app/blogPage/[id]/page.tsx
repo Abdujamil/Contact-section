@@ -21,6 +21,9 @@ export default function blogPage({
   const fromHeader = searchParams?.from === "header";
   const faqItem = blogData.find((item) => item.id === id);
 
+  if(fromHeader){
+    console.log('hey!')
+  }
   if (!faqItem) return notFound();
   return (
         <>
