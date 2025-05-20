@@ -126,8 +126,8 @@
         transform: translateY(0%);
       }
 
-      img, button {
-      }
+      img,
+      button {}
 
     }
   }
@@ -185,17 +185,14 @@
       }
     }
 
-    h3 {
-
-    }
+    h3 {}
 
     .logoOnHover {
       filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.8));
     }
 
     .arrow {
-      svg {
-      }
+      svg {}
     }
   }
 
@@ -203,7 +200,7 @@
     .texts {
       .motionBlurEffect {
         animation: motion-blur 0.12s linear forwards,
-        motion-blur-reverse 0.4s linear forwards 0.12s;
+          motion-blur-reverse 0.4s linear forwards 0.12s;
       }
 
       img {
@@ -258,6 +255,7 @@
 .pageFaq {
   .faqCard {
     border: 1px solid transparent !important;
+
     .question {
       //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(255, 255, 255, 0.1);
       box-shadow: 0 0 10px rgba(0, 0, 0, .6), inset 0 0 6px hsla(0, 0%, 100%, .1);
@@ -296,9 +294,7 @@
 
         padding-left: 20px;
 
-        li {
-
-        }
+        li {}
       }
 
       h3 {
@@ -369,7 +365,7 @@
     //  fill: #ccc;
     //}
 
-    svg rect{
+    svg rect {
       fill: #ccc;
     }
   }
@@ -377,13 +373,11 @@
   .sendIconLeft {
     position: absolute;
     left: 20px;
-    transform: translateX(-50px);
+    transform: translateX(-75px);
     opacity: 0;
   }
 
-  .sendIconRight {
-
-  }
+  .sendIconRight {}
 
   &:hover {
     color: #ccc;
@@ -430,9 +424,9 @@
   transition: border-color 0.3s ease;
 }
 
-.btn.faqTryBtn{
+.btn.faqTryBtn {
 
-  &:hover  svg path{
+  &:hover svg path {
     fill: #CCCCCC !important;
   }
 }

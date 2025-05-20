@@ -21,7 +21,7 @@ export default function blogPage({
   const fromHeader = searchParams?.from === "header";
   const faqItem = blogData.find((item) => item.id === id);
 
-  if (!faqItem || !fromHeader) return notFound();
+  if (!faqItem) return notFound();
   return (
         <>
             <ScrollWrapper>
