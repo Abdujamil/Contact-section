@@ -3,7 +3,7 @@ import FlyingPlane from "./FlyingPlane";
 
 const FlightSuccess = ({ close, small = false, text }: { close: () => void; small?: boolean; text: string }) => {
 
-  const [time, setTime] = React.useState(10);
+  const [time, setTime] = React.useState(2);
 
   useEffect(() => {
   const timer = setInterval(() => {

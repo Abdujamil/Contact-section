@@ -78,6 +78,7 @@ export default function Contacts() {
     "Изменение данных",
     "Подключиться к API",
   ];
+  const [comment, setComment] = useState("");
 
   // Таймер обратного отсчета
   // useEffect(() => {
@@ -124,11 +125,13 @@ export default function Contacts() {
       validContact(contactValue, isEmail, isPhone);
     }
   }, [submitCount]);
+
   useEffect(() => {
     if (emailError && contactValue.length > 0) {
       setEmailError(false);
     }
   }, [contactValue]);
+
   useEffect(() => {
     bounceActiveBlock(activeTab, controls);
 
@@ -217,29 +220,38 @@ export default function Contacts() {
 
     // Сброс формы
     console.log("Форма отправлена:", data);
-    reset();
-    // Сброс локальных состояний
-    setIsSubmitted(true);
-    setIsPhone(false);
-    setIsEmail(false);
-    setContactValue("");
-    setText(""); // Если у вас есть состояние для текста файла
-    setSelectedOption("Тема"); // Или значение по умолчанию для селекта
     setEmailError(false);
     setVisibleError(false);
     setSelectError(false);
+    setFailCheck(false); // Важное изменение!
     setEmailSuccessful(false);
-    setFailCheck(false);
-    
+
+    // Сброс значений
+    setIsSubmitted(true);
+    // setIsPhone(false); // Сбрасываем чекбокс телефона
+    // setIsEmail(false); // Сбрасываем чекбокс email
+    setSelectedOption("Тема");
+    setContactValue("");
+    setText("");
+
+    // Полный сброс формы
+    reset();
+
     // Сброс файлового инпута
     if (fileInputRef.current) {
-        fileInputRef.current.value = "";
+      fileInputRef.current.value = "";
     }
   };
   useEffect(() => {
     setVisibleError(false);
     setTimeout(() => setVisibleError(true), 30);
   }, [submitCount]);
+  
+  useEffect(() => {
+    if (selectedOption === "Тема") {
+      setSelectError(false);
+    }
+  }, [selectedOption]);
 
   return (
     <>
@@ -296,10 +308,15 @@ export default function Contacts() {
                       <div className="relative w-full max-w-[375px]">
                         <textarea
                           name="comment"
-                          onChange={(e) => setText(e.target.value)}
+                          value={comment}
+                          onChange={(e) => setComment(e.target.value)}
                           className={`${styles.bounceElem} placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300`}
                         ></textarea>
-                        <span className="absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200">
+                        <span
+                          className={`absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200 ${
+                            comment.trim() ? "opacity-0" : "opacity-100"
+                          }`}
+                        >
                           Комментарий
                         </span>
 
@@ -380,6 +397,8 @@ export default function Contacts() {
                               className={
                                 selectError
                                   ? "text-[#FF3030]"
+                                  : selectedOption === "Тема"
+                                  ? "text-[#CCC]"
                                   : selectedOption
                                   ? "text-[#CCC]"
                                   : "text-[#CCC]"
@@ -402,10 +421,12 @@ export default function Contacts() {
                               <path
                                 d="M1 1L8 8L15 1"
                                 stroke={
-                                  selectError
-                                    ? "#FF3030"
-                                    : isSelectOpen
+                                  isSelectOpen
                                     ? "#3D9ED6"
+                                    : selectError
+                                    ? "#FF3030"
+                                    : selectedOption
+                                    ? "#CCC"
                                     : "#737373"
                                 }
                                 strokeWidth="2"
@@ -488,9 +509,10 @@ export default function Contacts() {
                           <CustomCheckbox
                             id="check-phone"
                             successful={emailSuccessful}
-                            fail={failCheck}
+                            fail={failCheck && !isPhone}
                             checked={isPhone}
                             onChange={(value) => {
+                              setFailCheck(false);
                               setIsPhone(value);
                               if (value) {
                                 setIsEmail(false);
@@ -507,9 +529,10 @@ export default function Contacts() {
                           <CustomCheckbox
                             id="check-email"
                             successful={emailSuccessful}
-                            fail={failCheck}
+                            fail={failCheck && !isEmail}
                             checked={isEmail}
                             onChange={(value) => {
+                              setFailCheck(false);
                               setIsEmail(value);
                               if (value) {
                                 setIsPhone(false);

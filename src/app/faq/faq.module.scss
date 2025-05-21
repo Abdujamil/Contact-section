@@ -408,6 +408,7 @@
   }
 }
 
+
 .txtGradientRight {
   -webkit-text-fill-color: transparent;
   background-image: linear-gradient(90deg, #ccc, #cccccc71);
@@ -425,6 +426,12 @@
 }
 
 .btn.faqTryBtn {
+
+  &:hover {
+    span {
+      transform: translateX(55px) !important;
+    }
+  }
 
   &:hover svg path {
     fill: #CCCCCC !important;

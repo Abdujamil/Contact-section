@@ -4,7 +4,7 @@ import React, {useState} from "react";
 import styles from './faq/faq.module.scss';
 import FaqCard from '../components/FaqCard/index'
 import {faqData} from "@/data/faq";
-import Bg from "@/components/background/bg";
+// import Bg from "@/components/background/bg";
 import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 
 const Home: React.FC = () => {
@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     return (
         <>
             <ScrollWrapper>
-                <Bg/>
+                {/* <Bg/> */}
                 <main className={`${styles.main} w-full h-full`}>
                     <div className={`w-full h-full mb-[80px] mt-[120px]`}>
                         <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>

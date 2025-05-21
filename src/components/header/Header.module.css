@@ -34,7 +34,7 @@
 
 .menu-item {
   align-items: center;
-  color: #979797;
+  color: #acacac;
   display: flex;
   flex: 1 0 auto;
   font-size: 18px;
@@ -248,7 +248,7 @@
 
 .login-button {
   align-items: center;
-  color: #979797;
+  color: #acacac;
   display: flex;
   font-size: 18px;
   font-weight: 400;
@@ -273,7 +273,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  color: #979797;
+  color: #acacac;
   overflow: hidden;
   white-space: nowrap;
   transition: transform 0.2s ease, color 0.5s ease;

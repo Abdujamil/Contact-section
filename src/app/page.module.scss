@@ -3,6 +3,7 @@
     .contactLeftContent {
       .btns {
         box-shadow: 0 0 10px #0009, inset 0 0 6px #ffffff1a;
+
         .btn {
           &:hover {
             color: #ccc;
@@ -213,8 +214,6 @@
     }
   }
 }
-
-
 
 .linear {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) -10%, #000000 100%);
