@@ -218,7 +218,23 @@ export default function Contacts() {
     // Сброс формы
     console.log("Форма отправлена:", data);
     reset();
+    // Сброс локальных состояний
     setIsSubmitted(true);
+    setIsPhone(false);
+    setIsEmail(false);
+    setContactValue("");
+    setText(""); // Если у вас есть состояние для текста файла
+    setSelectedOption("Тема"); // Или значение по умолчанию для селекта
+    setEmailError(false);
+    setVisibleError(false);
+    setSelectError(false);
+    setEmailSuccessful(false);
+    setFailCheck(false);
+    
+    // Сброс файлового инпута
+    if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+    }
   };
   useEffect(() => {
     setVisibleError(false);
@@ -280,6 +296,7 @@ export default function Contacts() {
                       <div className="relative w-full max-w-[375px]">
                         <textarea
                           name="comment"
+                          onChange={(e) => setText(e.target.value)}
                           className={`${styles.bounceElem} placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300`}
                         ></textarea>
                         <span className="absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200">
