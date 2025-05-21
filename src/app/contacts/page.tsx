@@ -264,26 +264,6 @@ export default function Contacts() {
               >
                 <FormProvider {...methods}>
                   {isSubmitted ? (
-                    // <div className={`flex flex-col items-center justify-center gap-2`}>
-                    //     <h3 className={`text-[32px] text-[#CCCCCC] leading-[37px] `}>Сообщение
-                    //         отправлено!</h3>
-                    //     <p className={`text-[20px] text-[#CCCCCC] leading-[120%] flex flex-col items-center justify-center gap-5 mb-[40px]`}>
-                    //         Форма будет доступна через
-                    //         <span
-                    //             className={`text-[44px] text-[#A4A4A4] leading-[120%] font-[Rubik]`}>
-                    //         {countdown}
-                    //     </span>
-                    //     </p>
-
-                    //     <div>
-                    //         <Image
-                    //             src="/sendIcon.svg"
-                    //             alt="send-icon"
-                    //             width={205}
-                    //             height={206}
-                    //         />
-                    //     </div>
-                    // </div>
                     <FlightSuccess
                       close={() => setIsSubmitted(false)}
                       small={true}
@@ -299,10 +279,12 @@ export default function Contacts() {
                       {/* Textarea */}
                       <div className="relative w-full max-w-[375px]">
                         <textarea
-                          placeholder="Комментарий"
                           name="comment"
-                          className={`${styles.bounceElem} placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] bg-[#101010 active:outline-none focus:outline-none text-[#ссс] text-[16px] transition-all duration-200`}
+                          className={`${styles.bounceElem} placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300`}
                         ></textarea>
+                        <span className="absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200">
+                          Комментарий
+                        </span>
 
                         {/* Скрытый input для загрузки файла */}
                         <input
@@ -363,12 +345,12 @@ export default function Contacts() {
                                                         }
                                                         ${
                                                           isSelectOpen
-                                                            ? "border-[#ccc]"
+                                                            ? "border-[#737373]"
                                                             : "border-[#353535]"
                                                         }
                                                         ${
                                                           isSelectOpen
-                                                            ? "bg-[#1A1A1A]"
+                                                            ? "bg-[#20272A]"
                                                             : "bg-[#101010]"
                                                         }
                                                          `}

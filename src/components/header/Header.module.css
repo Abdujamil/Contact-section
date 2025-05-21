@@ -34,7 +34,7 @@
 
 .menu-item {
   align-items: center;
-  color: #878787;
+  color: #ccc;
   display: flex;
   flex: 1 0 auto;
   font-size: 18px;
@@ -74,7 +74,7 @@
   border-color: #353535;
 }
 
-.menu-item::after {
+/* .menu-item::after {
   content: "";
   position: absolute;
   top: -1px;
@@ -100,7 +100,7 @@
   );
   opacity: 0;
   pointer-events: none;
-}
+} */
 
 .menu-item:hover::after,
 .menu-item-active::after {
@@ -132,7 +132,7 @@
 }
 
 .login-button span {
-  color: inherit;
+  color: #ccc;
   transition: color 0.2s ease;
   line-height: 19px;
 }
@@ -186,7 +186,7 @@
   pointer-events: none;
 }
 
-.menu-item-active::after {
+/* .menu-item-active::after {
   content: "";
   position: absolute;
   top: -1px;
@@ -215,9 +215,9 @@
   );
   opacity: 0;
   pointer-events: none;
-}
+} */
 
-.menu-item-active:hover .highlight {
+/* .menu-item-active:hover .highlight {
   background: radial-gradient(
     250px circle at var(--mouse-x, var(--last-mouse-x, var(--click-x, 50%)))
       var(--mouse-y, var(--last-mouse-y, var(--click-y, 50%))),
@@ -225,7 +225,7 @@
     transparent 30%
   );
   opacity: 1;
-}
+} */
 
 .menu-item:active,
 .menu-item.fast-click {
@@ -273,7 +273,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  color: #878787;
+  color: #ccc;
   overflow: hidden;
   white-space: nowrap;
   transition: transform 0.2s ease, color 0.5s ease;

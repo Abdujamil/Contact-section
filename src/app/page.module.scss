@@ -2,6 +2,7 @@
   .contactContainer {
     .contactLeftContent {
       .btns {
+        box-shadow: 0 0 10px #0009, inset 0 0 6px #ffffff1a;
         .btn {
           &:hover {
             color: #ccc;
@@ -31,6 +32,18 @@
       }
 
       form {
+
+        /* При hover на textarea скрываем соседний span */
+        textarea:hover+span {
+          opacity: 0;
+        }
+
+        /* При фокусе (активном состоянии) textarea скрываем span */
+        textarea:focus+span {
+          opacity: 0;
+        }
+
+
         .selectOption {
           background: rgba(53, 53, 53, 0.1);
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
