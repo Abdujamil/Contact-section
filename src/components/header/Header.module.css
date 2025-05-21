@@ -1,7 +1,8 @@
 .header {
   backdrop-filter: blur(15px);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
-  background: rgba(255, 255, 255, 0.1);
+  /* background: rgba(255, 255, 255, 0.1); */
+  background: rgb(255 255 255 / 6%);
 }
 
 .logo {
@@ -34,7 +35,7 @@
 
 .menu-item {
   align-items: center;
-  color: #acacac;
+  color: #adadad;
   display: flex;
   flex: 1 0 auto;
   font-size: 18px;
@@ -248,7 +249,7 @@
 
 .login-button {
   align-items: center;
-  color: #acacac;
+  color: #adadad;
   display: flex;
   font-size: 18px;
   font-weight: 400;
@@ -273,7 +274,7 @@
   left: 0;
   right: 0;
   width: 100%;
-  color: #acacac;
+  color: #adadad;
   overflow: hidden;
   white-space: nowrap;
   transition: transform 0.2s ease, color 0.5s ease;
