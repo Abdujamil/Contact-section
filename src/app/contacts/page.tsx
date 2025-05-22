@@ -386,11 +386,14 @@ export default function Contacts() {
                                                             : ""
                                                         }
                                                         ${
-                                                          // Если открыт или выбран не дефолт — светлый бордер и фон
-                                                          isSelectOpen ||
                                                           selectedOption
-                                                            ? "!border-[#737373] !bg-[#20272A]" // активный стиль
-                                                            : "!border-[#353535] !bg-[#101010]" // дефолтный стиль
+                                                            ? "!border-[#353535] !bg-[#20272A]" 
+                                                            : "border-[#353535] bg-[#101010]"
+                                                        }
+                                                        ${
+                                                          isSelectOpen 
+                                                            ? "!border-[#737373] !bg-[#20272A]" 
+                                                            : "!border-[#353535] bg-[#101010]"
                                                         }
                                                         
                                                          `}

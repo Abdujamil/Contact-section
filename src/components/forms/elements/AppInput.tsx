@@ -113,8 +113,8 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     {...register(inputName, { required })}
                     ref={ref}
                     type={type}
-                    className={`field__input ${className} ${fail && 'error !text-[red]'} 
-                    ${isActive ? '!bg-[#20272A] !border-[#737373]' : '!bg-[#101010]'} focus:!bg-[#20272A]'}`}
+                    className={`field__input ${className} ${fail && 'error !text-[red]'}
+                    ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} focus:!bg-[#20272A] active:bg-[#20272A]'}`}
                     placeholder=""
                     autoComplete={getAutocompleteName(inputName)}
                     value={propValue !== undefined ? propValue : internalValue}
