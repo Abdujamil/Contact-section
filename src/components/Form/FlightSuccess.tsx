@@ -3,7 +3,7 @@ import FlyingPlane from "./FlyingPlane";
 
 const FlightSuccess = ({ close, small = false, text }: { close: () => void; small?: boolean; text: string }) => {
 
-  const [time, setTime] = React.useState(2);
+  const [time, setTime] = React.useState(10);
 
   useEffect(() => {
   const timer = setInterval(() => {
@@ -21,7 +21,7 @@ const FlightSuccess = ({ close, small = false, text }: { close: () => void; smal
 
 
   return (
-    <div className="active">
+    <div className="active]">
     
       <div className="flex flex-col items-center">
         <div className="flex flex-col gap-[30px] text-white text-center items-center">
