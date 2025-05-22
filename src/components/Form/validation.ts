@@ -8,6 +8,6 @@ export const validContact = (
     isEmail: boolean,
     isPhone: boolean
 ): boolean => {
-    return (isEmail && emailRegex.test(value.trim())) ||
-        (isPhone && phoneRegex.test(value.trim()));
+    return (isEmail && emailRegex.test(value.trim())) 
+    || (isPhone && phoneRegex.test(value.trim()));
 };
