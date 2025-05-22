@@ -12,7 +12,7 @@ import Bg from "@/components/background/bg";
 import {
   validContact,
   emailRegex,
-  // phoneRegex,
+  phoneRegex,
 } from "@/components/Form/validation";
 import { useFormStates } from "@/components/hooks/formState";
 import { useFormRefs } from "@/components/hooks/formRefs";
@@ -79,6 +79,8 @@ export default function Contacts() {
     "Подключиться к API",
   ];
   const [comment, setComment] = useState("");
+  const [wasSubmittedSuccessfully, setWasSubmittedSuccessfully] =
+    useState(false);
 
   // Таймер обратного отсчета
   // useEffect(() => {
@@ -129,17 +131,14 @@ export default function Contacts() {
   // }, [submitCount]);
 
   useEffect(() => {
-    if (!submitCount) return;
+    if (!submitCount || wasSubmittedSuccessfully) return;
 
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
     const isContactValid =
-      (isEmail && emailRegex.test(contactValue)) || isPhone; // телефон не проверяем вообще
+      (isEmail && emailRegex.test(contactValue)) ||
+      (isPhone && phoneRegex.test(contactValue));
 
-    if (!isSelectValid) {
-      setSelectError(true);
-    } else {
-      setSelectError(false);
-    }
+    setSelectError(!isSelectValid);
 
     if (!isEmail && !isPhone) {
       setFailCheck(true);
@@ -152,7 +151,7 @@ export default function Contacts() {
       setVisibleError(true);
     } else {
       setVisibleError(false);
-      validContact(contactValue, isEmail);
+      validContact(contactValue, isEmail, isPhone);
     }
   }, [submitCount]);
 
@@ -295,11 +294,13 @@ export default function Contacts() {
     }
 
     // Сброс ошибок
-    setEmailError(false);
+    setSelectError(true);
     setVisibleError(false);
-    setSelectError(false);
+    setEmailError(false);
     setFailCheck(false);
     setEmailSuccessful(false);
+    setIsPhone(false);
+    setIsEmail(false);
 
     // Заполнение и отправка формы
     Object.entries(data).forEach(([key, value]) => {
@@ -315,10 +316,12 @@ export default function Contacts() {
     setText("");
     setComment("");
     reset();
+    setWasSubmittedSuccessfully(false);
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+    setWasSubmittedSuccessfully(true);
   };
 
   useEffect(() => {
@@ -331,6 +334,8 @@ export default function Contacts() {
       setSelectError(false);
     }
   }, [selectedOption]);
+  const showEmailCheckboxError = visibleError && failCheck && !isEmail;
+  const showPhoneCheckboxError = visibleError && failCheck && !isPhone;
 
   return (
     <>
@@ -454,27 +459,24 @@ export default function Contacts() {
                         <div className={`relative mb-[34px]`}>
                           <div
                             ref={selectRef}
-                            className={`w-full  border 
-                                                        rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
-                                                        transition-border duration-200 ease-in
-                                                        ${
-                                                          selectError &&
-                                                          visibleError
-                                                            ? "bounce"
-                                                            : ""
-                                                        }
-                                                        ${
-                                                          selectedOption
-                                                            ? "!border-[#353535] !bg-[#20272A]"
-                                                            : "border-[#353535] bg-[#101010]"
-                                                        }
-                                                        ${
-                                                          isSelectOpen
-                                                            ? "!border-[#737373] !bg-[#20272A]"
-                                                            : "!border-[#353535] bg-[#101010]"
-                                                        }
-                                                        
-                                                         `}
+                            className={`
+                                      w-full border rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
+                                      transition-border duration-200 ease-in
+                                      ${
+                                        selectError && visibleError
+                                          ? "bounce"
+                                          : ""
+                                      }
+                                      ${
+                                        isSelectOpen
+                                          ? "!border-[#737373] !bg-[#20272A]"
+                                          : selectedOption !== "" &&
+                                            selectedOption !== "Тема"
+                                          ? "!border-[#353535] !bg-[#20272A]"
+                                          : "!border-[#353535] !bg-[#101010]"
+                                      }
+
+                                    `}
                             onClick={() => {
                               setIsSelectOpen(!isSelectOpen);
                               setSelectError(false);
@@ -482,19 +484,12 @@ export default function Contacts() {
                           >
                             <span
                               className={
-                                selectError
-                                  ? "text-[#FF3030]"
-                                  : selectedOption === "Тема"
-                                  ? "text-[#CCC]"
-                                  : selectedOption
-                                  ? "text-[#CCC]"
-                                  : "text-[#CCC]"
+                                selectError ? "text-[#FF3030]" : "text-[#CCC]"
                               }
                             >
-                              {" "}
-                              {/* Тут текст поменял из text-[#737373] на text-[#ССС] так как pagespeed ругался */}
                               {selectedOption || "Тема"}
                             </span>
+
                             <svg
                               width="16"
                               height="10"
@@ -559,12 +554,13 @@ export default function Contacts() {
 
                         <div
                           onClick={() => {
-                            if (!isEmail) {
+                            if (!isEmail && !isPhone) {
                               bounceElements();
                               setFailCheck(true);
                             } else {
                               setFailCheck(false);
                             }
+
                             setEmailError(false);
                           }}
                           className="w-full relative z-[1]"
@@ -576,14 +572,18 @@ export default function Contacts() {
                             inputName="Contact"
                             mask={isPhone ? "phone" : ""}
                             type={isPhone ? "tel" : "text"}
-                            fail={visibleError && failCheck && !isEmail}
+                            fail={
+                              visibleError && failCheck && !isPhone && !isEmail
+                            }
                             // fail={emailError}
                             required={isEmail}
                             // message={false}
                             disable={!isPhone && !isEmail}
                             value={contactValue}
                             onChange={(value) => setContactValue(value)}
-                            onBlur={() => validContact(contactValue, isEmail)}
+                            onBlur={() =>
+                              validContact(contactValue, isEmail, isPhone)
+                            }
                           />
                         </div>
 
@@ -595,7 +595,7 @@ export default function Contacts() {
                           <CustomCheckbox
                             id="check-email"
                             successful={emailSuccessful}
-                            fail={failCheck && !isEmail}
+                            fail={showEmailCheckboxError}
                             checked={isEmail}
                             onChange={(value) => {
                               setFailCheck(false);
@@ -616,7 +616,7 @@ export default function Contacts() {
                           <CustomCheckbox
                             id="check-phone"
                             successful={emailSuccessful}
-                            fail={failCheck && !isPhone}
+                            fail={showPhoneCheckboxError}
                             checked={isPhone}
                             onChange={(value) => {
                               setFailCheck(false);
