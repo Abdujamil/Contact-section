@@ -315,7 +315,7 @@ export default function Contacts() {
                            placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                            ${
                              comment
-                               ? "!bg-[#20272A] border-[#737373]"
+                               ? "!bg-[#20272A] border-[#353535]"
                                : "bg-[#101010] border-[#353535]"
                            }
                            `}
