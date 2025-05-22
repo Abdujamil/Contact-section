@@ -12,7 +12,7 @@ import Bg from "@/components/background/bg";
 import {
   validContact,
   emailRegex,
-  phoneRegex,
+  // phoneRegex,
 } from "@/components/Form/validation";
 import { useFormStates } from "@/components/hooks/formState";
 import { useFormRefs } from "@/components/hooks/formRefs";
@@ -31,7 +31,7 @@ export default function Contacts() {
   const {
     handleSubmit,
     formState: { submitCount },
-    trigger,
+    // trigger,
     reset,
   } = methods;
   const [activeTab, setActiveTab] = useState<"contact" | "requisite">(
@@ -152,7 +152,7 @@ export default function Contacts() {
       setVisibleError(true);
     } else {
       setVisibleError(false);
-      validContact(contactValue, isEmail, isPhone);
+      validContact(contactValue, isEmail);
     }
   }, [submitCount]);
 
@@ -370,7 +370,7 @@ export default function Contacts() {
                             `}
               >
                 <FormProvider {...methods}>
-                  {isSubmitted ? (
+                  {isSubmitted == false? (
                     <FlightSuccess
                       close={() => setIsSubmitted(false)}
                       small={true}
@@ -584,7 +584,7 @@ export default function Contacts() {
                             value={contactValue}
                             onChange={(value) => setContactValue(value)}
                             onBlur={() =>
-                              validContact(contactValue, isEmail, isPhone)
+                              validContact(contactValue, isEmail)
                             }
                           />
                         </div>
