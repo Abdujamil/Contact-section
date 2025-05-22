@@ -4,8 +4,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
-import {useMouseTracking} from '../hooks/useMouseTracking';
-import {useAuth} from "@/components/context/AuthContext";
+import { useMouseTracking } from "../hooks/useMouseTracking";
+import { useAuth } from "@/components/context/AuthContext";
 
 interface MenuItem {
   label: string;
@@ -24,7 +24,13 @@ const menuItems: MenuItem[] = [
 
 const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
   ({ item, isActive }) => {
-    const {isFastClick, setIsFastClick, handleMouseMove, handleMouseUp, handleMouseLeave} = useMouseTracking();
+    const {
+      isFastClick,
+      setIsFastClick,
+      handleMouseMove,
+      handleMouseUp,
+      handleMouseLeave,
+    } = useMouseTracking();
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -63,7 +69,8 @@ const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
         onMouseMove={handleMouseMove}
         onClick={handleClick}
         onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}>
+        onMouseLeave={handleMouseLeave}
+      >
         <span>{item.label}</span>
         <div className={styles.highlight} />
       </Link>
@@ -79,6 +86,7 @@ const Header: React.FC = () => {
   // Login
   const { toggleRegisterPromo, showRegisterPromo } = useAuth();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hoverDirection, setHoverDirection] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("isLoggedIn");
@@ -91,6 +99,18 @@ const Header: React.FC = () => {
     localStorage.setItem("isLoggedIn", String(isLoggedIn));
   }, [isLoggedIn]);
 
+  useEffect(() => {
+    const menuItems = document.querySelectorAll(`.${styles["login-button"]}`);
+    menuItems.forEach((element) => {
+      const event = new MouseEvent("mousemove", {
+        clientX: window.innerWidth / 4,
+        clientY: window.innerHeight / 4,
+        bubbles: true,
+      });
+      element.dispatchEvent(event);
+    });
+  }, [showRegisterPromo]);
+
   const renderMenuItems = useMemo(() => {
     return menuItems.map((item) => {
       const isActive =
@@ -102,6 +122,25 @@ const Header: React.FC = () => {
     });
   }, [pathname]);
 
+  // const handleLoginButtonMouseMove = (
+  //   e: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   const x = e.clientX - rect.left;
+  //   const isLeftSide = x < rect.width / 2;
+
+  //   e.currentTarget.style.setProperty(
+  //     "--hover-direction",
+  //     isLeftSide ? "left" : "right"
+  //   );
+  // };
+
+  // const handleLoginButtonMouseLeave = (
+  //   e: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   e.currentTarget.style.removeProperty("--hover-direction");
+  // };
+
   const handleLoginButtonMouseMove = (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -109,16 +148,17 @@ const Header: React.FC = () => {
     const x = e.clientX - rect.left;
     const isLeftSide = x < rect.width / 2;
 
-    e.currentTarget.style.setProperty(
-      "--hover-direction",
-      isLeftSide ? "left" : "right"
-    );
+    const newDirection = isLeftSide ? "left" : "right";
+    e.currentTarget.style.setProperty("--hover-direction", newDirection);
+
+    setHoverDirection(newDirection); // сохраняем направление
   };
 
   const handleLoginButtonMouseLeave = (
     e: React.MouseEvent<HTMLButtonElement>
   ) => {
-    e.currentTarget.style.removeProperty("--hover-direction");
+    if (!hoverDirection) return; // если нет сохраненного направления, ничего не делаем
+    e.currentTarget.style.setProperty("--hover-direction", hoverDirection); // восстанавливаем прежнее направление
   };
 
   useEffect(() => {
@@ -202,19 +242,23 @@ const Header: React.FC = () => {
   });
 
   return (
-    <header className={`${styles.header} fixed top-0 z-[99999999] flex items-center w-full min-h-[60px] h-[60px]`}>
+    <header
+      className={`${styles.header} fixed top-0 z-[99999999] flex items-center w-full min-h-[60px] h-[60px]`}
+    >
       <div className="flex items-center justify-between w-full px-[30px]">
         <Link
           href="/"
           className={`${styles["logo-wrapper"]} cursor-pointer`}
-          aria-label="Главная">
+          aria-label="Главная"
+        >
           <svg
             className={styles.logo}
             width="100"
             height="38"
             viewBox="0 0 100 38"
             fill="none"
-            xmlns="http://www.w3.org/2000/svg">
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               d="M75.7719 23.388C75.7719 23.2495 75.8843 23.1372 76.0229 23.1372C76.1616 23.1372 76.274 23.2495 76.274 23.388V25.3318H75.7719V23.388Z"
               fill="#37779D"
@@ -526,7 +570,8 @@ const Header: React.FC = () => {
                 data-text={showRegisterPromo ? "Войти" : "Выйти"}
                 onClick={toggleRegisterPromo}
                 onMouseMove={handleLoginButtonMouseMove}
-                onMouseLeave={handleLoginButtonMouseLeave}>
+                onMouseLeave={handleLoginButtonMouseLeave}
+              >
                 <span className="font-normal text-[18px] leading-[120%]">
                   {showRegisterPromo ? "Войти" : "Выйти"}
                 </span>

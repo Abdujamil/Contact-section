@@ -233,6 +233,7 @@ export default function Contacts() {
     setSelectedOption("Тема");
     setContactValue("");
     setText("");
+    setComment('')
 
     // Полный сброс формы
     reset();
@@ -246,7 +247,7 @@ export default function Contacts() {
     setVisibleError(false);
     setTimeout(() => setVisibleError(true), 30);
   }, [submitCount]);
-  
+
   useEffect(() => {
     if (selectedOption === "Тема") {
       setSelectError(false);
@@ -310,7 +311,14 @@ export default function Contacts() {
                           name="comment"
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
-                          className={`${styles.bounceElem} placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300`}
+                          className={`${styles.bounceElem}
+                           placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                           ${
+                             comment
+                               ? "!bg-[#20272A] border-[#737373]"
+                               : "bg-[#101010] border-[#353535]"
+                           }
+                           `}
                         ></textarea>
                         <span
                           className={`absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200 ${
@@ -378,15 +386,13 @@ export default function Contacts() {
                                                             : ""
                                                         }
                                                         ${
-                                                          isSelectOpen
-                                                            ? "border-[#737373]"
-                                                            : "border-[#353535]"
+                                                          // Если открыт или выбран не дефолт — светлый бордер и фон
+                                                          isSelectOpen ||
+                                                          selectedOption
+                                                            ? "!border-[#737373] !bg-[#20272A]" // активный стиль
+                                                            : "!border-[#353535] !bg-[#101010]" // дефолтный стиль
                                                         }
-                                                        ${
-                                                          isSelectOpen
-                                                            ? "bg-[#20272A]"
-                                                            : "bg-[#101010]"
-                                                        }
+                                                        
                                                          `}
                             onClick={() => {
                               setIsSelectOpen(!isSelectOpen);
@@ -464,7 +470,7 @@ export default function Contacts() {
                         </div>
 
                         <AppInput
-                          className={`${styles.bounceElem} w-full mb-[34px] !bg-[#101010] focus:!bg-[#20272A]`}
+                          className={`${styles.bounceElem} w-full mb-[34px]`}
                           title={"ФИО"}
                           inputName="name"
                           required={true}
@@ -484,7 +490,7 @@ export default function Contacts() {
                         >
                           <AppInput
                             ref={contactInputRef}
-                            className={`${styles.bounceElem} w-full !bg-[#101010] focus:!bg-[#20272A] !placeholder-opacity-0`}
+                            className={`${styles.bounceElem} w-full focus:!bg-[#20272A] !placeholder-opacity-0`}
                             title={isPhone ? "Телефон" : isEmail ? "Email" : ""}
                             inputName="Contact"
                             mask={isPhone ? "phone" : ""}

@@ -7,10 +7,12 @@
     font-style: normal;
     font-display: swap;
 }
+
 @font-face {
     font-family: 'Rubik';
     src: url('./fonts/Rubik-Light.ttf') format('truetype');
-    font-weight: 300; /* Light */
+    font-weight: 300;
+    /* Light */
     font-style: normal;
     font-display: swap;
 }
@@ -38,7 +40,8 @@
     }
 }
 
-html, body {
+html,
+body {
     height: 100%;
 }
 
@@ -56,33 +59,41 @@ body {
 
 /*Scrollbar*/
 
-.simplebar-track.simplebar-vertical{
+.simplebar-track.simplebar-vertical {
     width: 13px !important;
+    right: 1px !important;
     z-index: 9999999999 !important;
 }
 
 .simplebar-scrollbar:before {
-    background: rgba(255, 255, 255, 0.1) !important;
+    /* background: rgba(255, 255, 255, 0.1) !important; */
     /*border: 1px solid #93969d !important;*/
     border-radius: 3px !important;
     backdrop-filter: blur(2px) !important;
     transition: background .2s linear !important;
     opacity: 1 !important;
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 2px rgba(255, 255, 255, 0.2) !important; */
+
+    background: rgba(61, 158, 214, 0.3) !important;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 2px rgba(255, 255, 255, 0.2) !important;
+    border: 0.001px solid #ccc;
 }
 
-.simplebar-dragging .simplebar-scrollbar:before, .simplebar-hover .simplebar-scrollbar:before {
+.simplebar-dragging .simplebar-scrollbar:before,
+.simplebar-hover .simplebar-scrollbar:before {
     background: rgba(61, 158, 214, 0.3) !important;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 2px rgba(255, 255, 255, 0.2) !important;
 }
 
-.field__input:focus, .field__textarea:focus {
+.field__input:focus,
+.field__textarea:focus {
     box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     border: 1px solid #737373;
     z-index: 1;
 }
 
-.field__input, .field__textarea {
+.field__input,
+.field__textarea {
     /*margin-top: 25px;*/
     z-index: 1;
     transition: all .2s ease-in-out 0s;
@@ -100,7 +111,8 @@ body {
     outline: none;
     caret-color: #ccc;
 }
-.field__input:-webkit-autofill{
+
+.field__input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #20272A inset !important;
     box-shadow: 0 0 0 1000px #20272A inset !important;
     -webkit-text-fill-color: #ccc !important;
@@ -109,7 +121,7 @@ body {
     border: 1px solid #737373 !important;
 }
 
-.field__input:-webkit-autofill:focus{
+.field__input:-webkit-autofill:focus {
     /*-webkit-box-shadow:*/
     /*        inset 2px 2px 2px rgba(7, 26, 38, 0.502),*/
     /*        inset -2px -2px 2px rgba(7, 26, 38, 0.502),*/
@@ -124,7 +136,8 @@ body {
     caret-color: #ccc !important;
 }
 
-.field__input:focus ~ .field__title-top, .field__textarea:focus ~ .field__title-top {
+.field__input:focus~.field__title-top,
+.field__textarea:focus~.field__title-top {
     top: -25px;
 }
 
@@ -132,15 +145,19 @@ body {
     z-index: -1;
 }
 
-.field__input:focus ~ .field__title, .field__input:hover ~ .field__title, .field__textarea:focus ~ .field__title, .field__textarea:hover ~ .field__title {
+.field__input:focus~.field__title,
+.field__input:hover~.field__title,
+.field__textarea:focus~.field__title,
+.field__textarea:hover~.field__title {
     opacity: 0;
 }
 
-.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {
+.field__input:not(:placeholder-shown):not(:focus)~.field__title {
     z-index: -1;
 }
 
-.field__title, .field__title-top {
+.field__title,
+.field__title-top {
     transition: all .2s ease-in-out 0s;
     position: absolute;
     top: 13px;
@@ -152,7 +169,8 @@ body {
     text-overflow: ellipsis;
 }
 
-.field__input:not(:placeholder-shown):not(:focus) ~ .field__title, .field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {
+.field__input:not(:placeholder-shown):not(:focus)~.field__title,
+.field__textarea:not(:placeholder-shown):not(:focus)~.field__title {
     z-index: -1;
 }
 
@@ -173,15 +191,19 @@ input[type='email']::placeholder {
     0% {
         transform: translateX(0);
     }
+
     30% {
         transform: translateX(5px);
     }
+
     50% {
         transform: translateX(-2px);
     }
+
     70% {
         transform: translateX(2px);
     }
+
     100% {
         transform: translateX(0);
     }
