@@ -370,7 +370,7 @@ export default function Contacts() {
                             `}
               >
                 <FormProvider {...methods}>
-                  {isSubmitted == false? (
+                  {isSubmitted ? (
                     <FlightSuccess
                       close={() => setIsSubmitted(false)}
                       small={true}
@@ -576,16 +576,14 @@ export default function Contacts() {
                             inputName="Contact"
                             mask={isPhone ? "phone" : ""}
                             type={isPhone ? "tel" : "text"}
-                            fail={isEmail ? emailError : false}
+                            fail={visibleError && failCheck && !isEmail}
                             // fail={emailError}
                             required={isEmail}
                             // message={false}
                             disable={!isPhone && !isEmail}
                             value={contactValue}
                             onChange={(value) => setContactValue(value)}
-                            onBlur={() =>
-                              validContact(contactValue, isEmail)
-                            }
+                            onBlur={() => validContact(contactValue, isEmail)}
                           />
                         </div>
 
@@ -603,6 +601,7 @@ export default function Contacts() {
                               setFailCheck(false);
                               setIsEmail(value);
                               if (value) {
+                                setContactValue("");
                                 setIsPhone(false);
                                 setFocus("Contact");
                                 setTimeout(() => {
@@ -623,6 +622,7 @@ export default function Contacts() {
                               setFailCheck(false);
                               setIsPhone(value);
                               if (value) {
+                                setContactValue("");
                                 setIsEmail(false);
                                 setFocus("Contact");
                                 setTimeout(() => {
