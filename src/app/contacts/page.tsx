@@ -20,6 +20,8 @@ import { handleFileUpload } from "@/components/Form/fileUpload";
 import { bounceElements, bounceActiveBlock } from "@/components/Form/bounce";
 import Btns from "@/components/ContactsBlockBtns/btns";
 import FlightSuccess from "@/components/Form/FlightSuccess";
+import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+
 
 export default function Contacts() {
   const controls = useAnimation();
@@ -345,9 +347,16 @@ export default function Contacts() {
       setSelectError(false);
     }
   }, [selectedOption]);
-  const showEmailCheckboxError = visibleError && failCheck && isEmail && !emailRegex.test(contactValue.trim());
-  const showPhoneCheckboxError = visibleError && failCheck && isPhone && !phoneRegex.test(contactValue.trim());
-
+  const showEmailCheckboxError =
+    visibleError &&
+    failCheck &&
+    isEmail &&
+    !emailRegex.test(contactValue.trim());
+  const showPhoneCheckboxError =
+    visibleError &&
+    failCheck &&
+    isPhone &&
+    !phoneRegex.test(contactValue.trim());
 
   return (
     <>
@@ -653,6 +662,8 @@ export default function Contacts() {
                       <div className="relative !w-[220px] !overflow-hidden">
                         <button
                           type="submit"
+                          onMouseMove={handleMouseMove}
+                          onMouseLeave={handleMouseLeave}
                           className={`${styles.btn} ${HeaderStyles["login-button"]} group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-between`}
                           data-text=""
                         >
