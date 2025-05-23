@@ -10,7 +10,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import { motion, useAnimation } from "framer-motion";
 import Bg from "@/components/background/bg";
 import {
-  validContact,
+  // validContact,
   emailRegex,
   phoneRegex,
 } from "@/components/Form/validation";
@@ -132,6 +132,29 @@ export default function Contacts() {
   //   }
   // }, [submitCount]);
 
+  // Validation
+  const { setFocus } = methods;
+  // const contactValue = watch("contact") || "";
+
+  const validContactt = (value: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex =
+      /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
+
+    if (
+      (!emailRegex.test(value.trim()) && isEmail) ||
+      (!phoneRegex.test(value.trim()) && isPhone)
+    ) {
+      setEmailError(true);
+      setEmailSuccessful(false);
+
+      return;
+    } else {
+      setEmailError(false);
+      setEmailSuccessful(true);
+    }
+  };
+
   useEffect(() => {
     if (!submitCount || wasSubmittedSuccessfully) return;
 
@@ -147,13 +170,14 @@ export default function Contacts() {
       bounceElements();
     } else {
       setFailCheck(false);
+      validContactt(contactValue);
     }
 
     if (!isSelectValid || !isContactValid) {
       setVisibleError(true);
     } else {
       setVisibleError(false);
-      validContact(contactValue, isEmail, isPhone);
+      validContactt(contactValue);
     }
   }, [submitCount]);
 
@@ -191,6 +215,11 @@ export default function Contacts() {
   }, [activeTab]);
 
   useEffect(() => {
+    setFailCheck(false);
+    setFocus("contact");
+  }, [isPhone, isEmail]);
+
+  useEffect(() => {
     const isValidEmail = isEmail && emailRegex.test(contactValue.trim());
     const isValidPhone = phoneRegex.test(contactValue.trim());
 
@@ -201,8 +230,6 @@ export default function Contacts() {
     }
   }, [contactValue, isEmail, isPhone]);
 
-  // Validation
-  const { setFocus } = methods;
   // const onSubmit = async (data: Record<string, unknown>) => {
   //   const formData = new FormData();
   //   // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -346,16 +373,16 @@ export default function Contacts() {
       setSelectError(false);
     }
   }, [selectedOption]);
-  const showEmailCheckboxError =
-    visibleError &&
-    failCheck &&
-    isEmail &&
-    !emailRegex.test(contactValue.trim());
-  const showPhoneCheckboxError =
-    visibleError &&
-    failCheck &&
-    isPhone &&
-    !phoneRegex.test(contactValue.trim());
+  // const showEmailCheckboxError =
+  //   visibleError &&
+  //   failCheck &&
+  //   isEmail &&
+  //   !emailRegex.test(contactValue.trim());
+  // const showPhoneCheckboxError =
+  //   visibleError &&
+  //   failCheck &&
+  //   isPhone &&
+  //   !phoneRegex.test(contactValue.trim());
 
   return (
     <>
@@ -595,27 +622,15 @@ export default function Contacts() {
                           mask={isPhone ? "phone" : ""}
                           type={isPhone ? "tel" : "text"}
                           fail={
-                            (isEmail &&
-                              visibleError &&
-                              failCheck &&
-                              !emailRegex.test(contactValue.trim())) ||
-                            (isPhone &&
-                              visibleError &&
-                              failCheck &&
-                              !phoneRegex.test(contactValue.trim()))
+                            visibleError && failCheck && !isPhone && !isEmail
                           }
-                          // fail={
-                          //   visibleError && failCheck && !isPhone && !isEmail
-                          // }
                           // fail={emailError}
                           required={isEmail}
                           // message={false}
                           disable={!isPhone && !isEmail}
                           value={contactValue}
                           onChange={(value) => setContactValue(value)}
-                          onBlur={() =>
-                            validContact(contactValue, isEmail, isPhone)
-                          }
+                          onBlur={() => validContactt(contactValue)}
                         />
                       </div>
 
@@ -627,7 +642,8 @@ export default function Contacts() {
                         <CustomCheckbox
                           id="check-email"
                           successful={emailSuccessful}
-                          fail={showEmailCheckboxError}
+                          fail={failCheck}
+                          // fail={showEmailCheckboxError}
                           checked={isEmail}
                           onChange={(value) => {
                             setFailCheck(false);
@@ -648,7 +664,8 @@ export default function Contacts() {
                         <CustomCheckbox
                           id="check-phone"
                           successful={emailSuccessful}
-                          fail={showPhoneCheckboxError}
+                          fail={failCheck}
+                          // fail={showPhoneCheckboxError}
                           checked={isPhone}
                           onChange={(value) => {
                             setFailCheck(false);
