@@ -37,7 +37,7 @@ const FooterSubscriptionForm: React.FC = () => {
               <button
                 type="submit"
                 onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
+                onMouseLeave={handleMouseLeave} 
                 className={`${headerStyles["login-button"]} absolute w-[60px] !h-[39px] bg-[#101010] z-[1] mb-[10px] border border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer group flex items-center justify-center`}
               >
                 <Image

@@ -20,8 +20,7 @@ import { handleFileUpload } from "@/components/Form/fileUpload";
 import { bounceElements, bounceActiveBlock } from "@/components/Form/bounce";
 import Btns from "@/components/ContactsBlockBtns/btns";
 import FlightSuccess from "@/components/Form/FlightSuccess";
-import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
-
+import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
 
 export default function Contacts() {
   const controls = useAnimation();
