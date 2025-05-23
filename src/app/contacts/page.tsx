@@ -192,7 +192,7 @@ export default function Contacts() {
 
   useEffect(() => {
     const isValidEmail = isEmail && emailRegex.test(contactValue.trim());
-    const isValidPhone = isPhone && phoneRegex.test(contactValue.trim());
+    const isValidPhone = phoneRegex.test(contactValue.trim());
 
     if (isValidEmail || isValidPhone) {
       setEmailSuccessful(true);
@@ -595,8 +595,18 @@ export default function Contacts() {
                           mask={isPhone ? "phone" : ""}
                           type={isPhone ? "tel" : "text"}
                           fail={
-                            visibleError && failCheck && !isPhone && !isEmail
+                            (isEmail &&
+                              visibleError &&
+                              failCheck &&
+                              !emailRegex.test(contactValue.trim())) ||
+                            (isPhone &&
+                              visibleError &&
+                              failCheck &&
+                              !phoneRegex.test(contactValue.trim()))
                           }
+                          // fail={
+                          //   visibleError && failCheck && !isPhone && !isEmail
+                          // }
                           // fail={emailError}
                           required={isEmail}
                           // message={false}

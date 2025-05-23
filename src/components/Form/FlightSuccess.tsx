@@ -53,7 +53,7 @@ const FlightSuccess = ({ close, small = false, text }: { close: () => void; smal
             small ? "top-[180px]" : "top-[210px]"
           } left-0 right-0 absolute`}
         >
-          <FlyingPlane />
+          {/* <FlyingPlane /> */}
         </div>
       </div>
     </div>
