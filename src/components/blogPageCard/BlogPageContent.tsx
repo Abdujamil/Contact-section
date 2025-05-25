@@ -19,8 +19,8 @@ export default function BlogPageContent({
   fromHeader?: boolean;
 }) {
   const [openQuestionId, setOpenQuestionId] = useState<number | null>(null);
-  const setLoadedImages = useState<Record<number, boolean>>({});
-  const setInitialized = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
+  const [initialized, setInitialized] = useState(false);
 
   const { showRegisterPromo } = useAuth();
 
@@ -50,6 +50,8 @@ export default function BlogPageContent({
   const currentFaqItem = blogData.find((item) => item.id === id);
   useEffect(() => {
     const found = blogData.find((item) => item.id === openQuestionId);
+    loadedImages;
+    initialized;
     if (found) {
       setOpenFaqItem(found);
     }
