@@ -50,8 +50,6 @@ export default function BlogPageContent({
   const currentFaqItem = blogData.find((item) => item.id === id);
   useEffect(() => {
     const found = blogData.find((item) => item.id === openQuestionId);
-    loadedImages;
-    initialized;
     if (found) {
       setOpenFaqItem(found);
     }
@@ -77,6 +75,10 @@ export default function BlogPageContent({
   };
 
   if (!currentFaqItem) return null;
+
+  if (!initialized) return <div>Загрузка...</div>;
+  if (!loadedImages) return <div>Загрузка...</div>;
+
 
   //   return (
   //     <>
