@@ -44,7 +44,7 @@ import React from "react";
 type AsideItem = {
   id: string;
   title: string;
-  subtitle: string[]; // Привёл к строчному типу
+  subtitle: string[];
 };
 
 export default function BlogAside({ items }: { items: AsideItem[] }) {
@@ -78,15 +78,15 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
             {item.subtitle.length > 0 && (
               <ul className="list-disc pl-[15px] font-normal my-[15px]">
                 {item.subtitle.map((sub, subIndex) => {
-                  const subId = `${baseId.replace("#", "")}-${subIndex}`;
-                  const href = `#${subId}`;
+                 const subId = `${baseId.replace("#", "")}-${subIndex}`; // ex: "about-0"
+                 const isActive = activeHash === subId;
 
                   return (
                     <li className={`my-[15px]`} key={subId}>
                       <a
-                        href={href}
+                        href={`#${subId}`}
                         className={`transition-colors text-[16px] duration-300 hover:text-[#3D9ED6] font-normal ${
-                          activeHash === href ? "text-[#3D9ED6]" : ""
+                          isActive ? "text-[#3D9ED6]" : ""
                         }`}
                       >
                         {sub}

@@ -262,6 +262,28 @@
   }
 }
 
+.registerBlock {
+  background: rgba(0, 0, 0, 0.07);
+  //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .6), inset 0 0 6px hsla(0, 0%, 100%, .1);
+  backdrop-filter: blur(2px);
+
+
+  //background: rgba(0, 0, 0, 0.07);
+  //filter: blur(2px);
+
+  .btn {
+    background: rgba(45, 47, 47, 0.1);
+
+
+    &:hover svg path {
+      fill: #ccc !important;
+    }
+  }
+}
+
+
+
 .btn.blogNextBtn,
 .btn.blogLeftBtn {
   &:hover {
