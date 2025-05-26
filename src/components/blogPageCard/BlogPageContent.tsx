@@ -79,124 +79,138 @@ export default function BlogPageContent({
   if (!initialized) return <div>Загрузка...</div>;
   if (!loadedImages) return <div>Загрузка...</div>;
 
-
-  //   return (
-  //     <>
-  //       <aside className="sticky top-20 h-fit w-[260px] backdrop-blur-sm z-[999999]">
-  //         <BlogAside items={currentFaqItem.aside} />
-  //       </aside>
-  //       <div className={`${showRegisterPromo ? 'col-span-2 w-[660px]' : 'col-span-3 w-[860px]'}`}>
-  //         <div className="pb-[40px]">
-  //           <section
-  //             className={`${styles.accordion} w-full flex flex-col gap-[5px]`}
-  //           >
-  //             {openFaqItem && (
-  //               <div>
-  //                 <div
-  //                   className={`${styles.BlogPageContent} text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
-  //                 >
-  //                   <div className={`flex items-center justify-center mb-[30px]`}>
-  //                     <Image
-  //                       className={`rounded-[8px]`}
-  //                       src="/blgLg1.png"
-  //                       alt="blog img"
-  //                       width={600}
-  //                       height={300}
-  //                     />
-  //                   </div>
-  //                   {currentFaqItem.fullAnswer}
-  //                 </div>
-  //               </div>
-  //             )}
-  //           </section>
-  //         </div>
-  //       </div>
-
-  //       {showRegisterPromo && (
-  //         <aside className="sticky top-20 h-fit w-[160px] backdrop-blur-sm z-[999999]">
-  //           <p className={`text-[#3D9ED6] text-[20px] leading-[110%] mb-[20px]`}>
-  //             При регистрации дарим 30 минут!
-  //           </p>
-
-  //           <div className="relative w-full h-[51px] !overflow-hidden">
-  //             <button
-  //               className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} w-full !h-full group flex items-center !justify-between`}
-  //               data-text=""
-  //               onMouseMove={handleMouseMove}
-  //               onMouseLeave={handleMouseLeave}
-  //             >
-  //               <svg
-  //                 className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
-  //                 width="24"
-  //                 height="24"
-  //                 viewBox="0 0 24 24"
-  //                 fill="none"
-  //                 xmlns="http://www.w3.org/2000/svg"
-  //               >
-  //                 <g clip-path="url(#clip0_3537_3888)">
-  //                   <path
-  //                     d="M11.9998 23.1838C9.78797 23.1838 7.62577 22.5279 5.78666 21.299C3.94756 20.0702 2.51415 18.3236 1.6677 16.28C0.821252 14.2365 0.599783 11.9879 1.0313 9.81855C1.46281 7.64918 2.52793 5.65648 4.09196 4.09245C5.65599 2.52842 7.64869 1.4633 9.81806 1.03179C11.9874 0.600271 14.2361 0.82174 16.2796 1.66819C18.3231 2.51464 20.0697 3.94804 21.2985 5.78715C22.5274 7.62626 23.1833 9.78846 23.1833 12.0003C23.1833 14.9664 22.005 17.8109 19.9077 19.9082C17.8104 22.0055 14.9659 23.1838 11.9998 23.1838ZM11.9998 2.41453C10.104 2.41453 8.25064 2.97673 6.67426 4.03003C5.09788 5.08333 3.86925 6.58043 3.14372 8.33201C2.41819 10.0836 2.22836 12.011 2.59823 13.8704C2.9681 15.7299 3.88106 17.4379 5.22166 18.7785C6.56226 20.1191 8.27028 21.0321 10.1297 21.4019C11.9892 21.7718 13.9166 21.582 15.6682 20.8565C17.4197 20.1309 18.9168 18.9023 19.9701 17.3259C21.0234 15.7495 21.5856 13.8962 21.5856 12.0003C21.5856 9.45802 20.5757 7.01983 18.778 5.22215C16.9803 3.42446 14.5422 2.41453 11.9998 2.41453Z"
-  //                     fill="#737373"
-  //                   />
-  //                   <path
-  //                     d="M15.6666 16.7933L11.2012 12.3279V4.81104H12.7988V11.6649L16.7929 15.667L15.6666 16.7933Z"
-  //                     fill="#737373"
-  //                   />
-  //                 </g>
-  //                 <defs>
-  //                   <clipPath id="clip0_3537_3888">
-  //                     <rect width="24" height="24" fill="white" />
-  //                   </clipPath>
-  //                 </defs>
-  //               </svg>
-
-  //               <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
-  //                 Получить
-  //               </span>
-
-  //               <svg
-  //                 className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
-  //                 width="24"
-  //                 height="24"
-  //                 viewBox="0 0 24 24"
-  //                 fill="none"
-  //                 xmlns="http://www.w3.org/2000/svg"
-  //               >
-  //                 <g clip-path="url(#clip0_3537_3888)">
-  //                   <path
-  //                     d="M11.9998 23.1838C9.78797 23.1838 7.62577 22.5279 5.78666 21.299C3.94756 20.0702 2.51415 18.3236 1.6677 16.28C0.821252 14.2365 0.599783 11.9879 1.0313 9.81855C1.46281 7.64918 2.52793 5.65648 4.09196 4.09245C5.65599 2.52842 7.64869 1.4633 9.81806 1.03179C11.9874 0.600271 14.2361 0.82174 16.2796 1.66819C18.3231 2.51464 20.0697 3.94804 21.2985 5.78715C22.5274 7.62626 23.1833 9.78846 23.1833 12.0003C23.1833 14.9664 22.005 17.8109 19.9077 19.9082C17.8104 22.0055 14.9659 23.1838 11.9998 23.1838ZM11.9998 2.41453C10.104 2.41453 8.25064 2.97673 6.67426 4.03003C5.09788 5.08333 3.86925 6.58043 3.14372 8.33201C2.41819 10.0836 2.22836 12.011 2.59823 13.8704C2.9681 15.7299 3.88106 17.4379 5.22166 18.7785C6.56226 20.1191 8.27028 21.0321 10.1297 21.4019C11.9892 21.7718 13.9166 21.582 15.6682 20.8565C17.4197 20.1309 18.9168 18.9023 19.9701 17.3259C21.0234 15.7495 21.5856 13.8962 21.5856 12.0003C21.5856 9.45802 20.5757 7.01983 18.778 5.22215C16.9803 3.42446 14.5422 2.41453 11.9998 2.41453Z"
-  //                     fill="#737373"
-  //                   />
-  //                   <path
-  //                     d="M15.6666 16.7933L11.2012 12.3279V4.81104H12.7988V11.6649L16.7929 15.667L15.6666 16.7933Z"
-  //                     fill="#737373"
-  //                   />
-  //                 </g>
-  //                 <defs>
-  //                   <clipPath id="clip0_3537_3888">
-  //                     <rect width="24" height="24" fill="white" />
-  //                   </clipPath>
-  //                 </defs>
-  //               </svg>
-  //             </button>
-  //             <div className={styles.highlight} />
-  //           </div>
-  //         </aside>
-  //       )}
-  //     </>
-  //   );
-
   return (
     <>
       <div
-        className={`w-full grid gap-[40px] ${
-          showRegisterPromo
-            ? "grid-cols-[260px_1fr_160px]"
-            : "grid-cols-[260px_1fr]"
-        }`}
+        className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}
       >
         {/* Левый ASIDE (BlogAside) */}
         <aside className="sticky top-20 h-fit backdrop-blur-sm z-[10] w-[260px]">
+          
+          
+          {/* {showRegisterPromo && (
+            <div className="sticky top-20 h-fit backdrop-blur-sm z-[10] w-[160px]">
+              <p className="text-[#3D9ED6] text-[20px] leading-[110%] mb-[20px]">
+                При регистрации дарим 30 минут!
+              </p>
+              <div className="relative w-full h-[51px] !overflow-hidden">
+                <button
+                  className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center !justify-between`}
+                  data-text=""
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <svg
+                    className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_3537_3888)">
+                      <path
+                        d="M11.9998 23.1838C9.78797 23.1838 7.62577 22.5279 5.78666 21.299C3.94756 20.0702 2.51415 18.3236 1.6677 16.28C0.821252 14.2365 0.599783 11.9879 1.0313 9.81855C1.46281 7.64918 2.52793 5.65648 4.09196 4.09245C5.65599 2.52842 7.64869 1.4633 9.81806 1.03179C11.9874 0.600271 14.2361 0.82174 16.2796 1.66819C18.3231 2.51464 20.0697 3.94804 21.2985 5.78715C22.5274 7.62626 23.1833 9.78846 23.1833 12.0003C23.1833 14.9664 22.005 17.8109 19.9077 19.9082C17.8104 22.0055 14.9659 23.1838 11.9998 23.1838ZM11.9998 2.41453C10.104 2.41453 8.25064 2.97673 6.67426 4.03003C5.09788 5.08333 3.86925 6.58043 3.14372 8.33201C2.41819 10.0836 2.22836 12.011 2.59823 13.8704C2.9681 15.7299 3.88106 17.4379 5.22166 18.7785C6.56226 20.1191 8.27028 21.0321 10.1297 21.4019C11.9892 21.7718 13.9166 21.582 15.6682 20.8565C17.4197 20.1309 18.9168 18.9023 19.9701 17.3259C21.0234 15.7495 21.5856 13.8962 21.5856 12.0003C21.5856 9.45802 20.5757 7.01983 18.778 5.22215C16.9803 3.42446 14.5422 2.41453 11.9998 2.41453Z"
+                        fill="#737373"
+                      />
+                      <path
+                        d="M15.6666 16.7933L11.2012 12.3279V4.81104H12.7988V11.6649L16.7929 15.667L15.6666 16.7933Z"
+                        fill="#737373"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_3537_3888">
+                        <rect width="24" height="24" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+                    Получить
+                  </span>
+
+                  <svg
+                    className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_3537_3888)">
+                      <path
+                        d="M11.9998 23.1838C9.78797 23.1838 7.62577 22.5279 5.78666 21.299C3.94756 20.0702 2.51415 18.3236 1.6677 16.28C0.821252 14.2365 0.599783 11.9879 1.0313 9.81855C1.46281 7.64918 2.52793 5.65648 4.09196 4.09245C5.65599 2.52842 7.64869 1.4633 9.81806 1.03179C11.9874 0.600271 14.2361 0.82174 16.2796 1.66819C18.3231 2.51464 20.0697 3.94804 21.2985 5.78715C22.5274 7.62626 23.1833 9.78846 23.1833 12.0003C23.1833 14.9664 22.005 17.8109 19.9077 19.9082C17.8104 22.0055 14.9659 23.1838 11.9998 23.1838ZM11.9998 2.41453C10.104 2.41453 8.25064 2.97673 6.67426 4.03003C5.09788 5.08333 3.86925 6.58043 3.14372 8.33201C2.41819 10.0836 2.22836 12.011 2.59823 13.8704C2.9681 15.7299 3.88106 17.4379 5.22166 18.7785C6.56226 20.1191 8.27028 21.0321 10.1297 21.4019C11.9892 21.7718 13.9166 21.582 15.6682 20.8565C17.4197 20.1309 18.9168 18.9023 19.9701 17.3259C21.0234 15.7495 21.5856 13.8962 21.5856 12.0003C21.5856 9.45802 20.5757 7.01983 18.778 5.22215C16.9803 3.42446 14.5422 2.41453 11.9998 2.41453Z"
+                        fill="#737373"
+                      />
+                      <path
+                        d="M15.6666 16.7933L11.2012 12.3279V4.81104H12.7988V11.6649L16.7929 15.667L15.6666 16.7933Z"
+                        fill="#737373"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_3537_3888">
+                        <rect width="24" height="24" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+                <div className={styles.highlight} />
+              </div>
+            </div>
+          )} */}
+          
+
+          {showRegisterPromo && (
+            <div
+              className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[8px]`}
+            >
+              <p
+                className={`${styles.text} mb-[16px] text-[#3D9ED6] text-[20px] font-[400] leading-[110%]`}
+              >
+                При регистрации дарим 30 минут!
+              </p>
+              <div className="relative w-full h-[51px] !overflow-hidden">
+                <button
+                  className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} w-full !h-full group flex items-center !justify-between`}
+                  data-text=""
+                  onMouseMove={handleMouseMove}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <svg
+                    className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+                    width="18"
+                    height="24"
+                    viewBox="0 0 18 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.625 0.871195V1.74239L14.7964 1.75176L17.9732 1.76581L17.9893 11.9859L18 22.2108H14.8125H11.625V23.1054V24L11.5018 23.9766C11.4375 23.9625 8.94643 23.5691 5.97321 23.1007C2.99464 22.637 0.433928 22.2342 0.27857 22.2061L0 22.1593V11.9953C0 6.4075 0.0160713 1.83607 0.0375004 1.83607C0.0857143 1.83607 11.3571 0.0562077 11.5018 0.0234203L11.625 1.90735e-06V0.871195ZM11.625 12V20.5714H13.8482H16.0714V12V3.42857H13.8482H11.625V12ZM9.39107 11.2974C9.13929 11.4286 9.03214 11.6393 9.03214 12C9.03214 12.3607 9.13929 12.5714 9.39107 12.7026C9.63214 12.8337 9.86786 12.8197 10.0768 12.6698C10.2911 12.5105 10.3929 12.2998 10.3929 12C10.3929 11.7002 10.2911 11.4895 10.0768 11.3302C9.86786 11.1803 9.63214 11.1663 9.39107 11.2974Z"
+                      fill="#737373"
+                    />
+                  </svg>
+                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+                    Попробовать
+                  </span>
+                  <svg
+                    className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
+                    width="18"
+                    height="24"
+                    viewBox="0 0 18 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.625 0.871195V1.74239L14.7964 1.75176L17.9732 1.76581L17.9893 11.9859L18 22.2108H14.8125H11.625V23.1054V24L11.5018 23.9766C11.4375 23.9625 8.94643 23.5691 5.97321 23.1007C2.99464 22.637 0.433928 22.2342 0.27857 22.2061L0 22.1593V11.9953C0 6.4075 0.0160713 1.83607 0.0375004 1.83607C0.0857143 1.83607 11.3571 0.0562077 11.5018 0.0234203L11.625 1.90735e-06V0.871195ZM11.625 12V20.5714H13.8482H16.0714V12V3.42857H13.8482H11.625V12ZM9.39107 11.2974C9.13929 11.4286 9.03214 11.6393 9.03214 12C9.03214 12.3607 9.13929 12.5714 9.39107 12.7026C9.63214 12.8337 9.86786 12.8197 10.0768 12.6698C10.2911 12.5105 10.3929 12.2998 10.3929 12C10.3929 11.7002 10.2911 11.4895 10.0768 11.3302C9.86786 11.1803 9.63214 11.1663 9.39107 11.2974Z"
+                      fill="#737373"
+                    />
+                  </svg>
+                </button>
+                <div className={styles.highlight} />
+              </div>
+            </div>
+          )}
+
           <BlogAside items={currentFaqItem.aside} />
         </aside>
 
@@ -429,78 +443,6 @@ export default function BlogPageContent({
             </div>
           </section>
         </div>
-
-        {/* Правый ASIDE (Promo) */}
-        {showRegisterPromo && (
-          <aside className="sticky top-20 h-fit backdrop-blur-sm z-[10] w-[160px]">
-            <p className="text-[#3D9ED6] text-[20px] leading-[110%] mb-[20px]">
-              При регистрации дарим 30 минут!
-            </p>
-            <div className="relative w-full h-[51px] !overflow-hidden">
-              <button
-                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center !justify-between`}
-                data-text=""
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-              >
-                <svg
-                  className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_3537_3888)">
-                    <path
-                      d="M11.9998 23.1838C9.78797 23.1838 7.62577 22.5279 5.78666 21.299C3.94756 20.0702 2.51415 18.3236 1.6677 16.28C0.821252 14.2365 0.599783 11.9879 1.0313 9.81855C1.46281 7.64918 2.52793 5.65648 4.09196 4.09245C5.65599 2.52842 7.64869 1.4633 9.81806 1.03179C11.9874 0.600271 14.2361 0.82174 16.2796 1.66819C18.3231 2.51464 20.0697 3.94804 21.2985 5.78715C22.5274 7.62626 23.1833 9.78846 23.1833 12.0003C23.1833 14.9664 22.005 17.8109 19.9077 19.9082C17.8104 22.0055 14.9659 23.1838 11.9998 23.1838ZM11.9998 2.41453C10.104 2.41453 8.25064 2.97673 6.67426 4.03003C5.09788 5.08333 3.86925 6.58043 3.14372 8.33201C2.41819 10.0836 2.22836 12.011 2.59823 13.8704C2.9681 15.7299 3.88106 17.4379 5.22166 18.7785C6.56226 20.1191 8.27028 21.0321 10.1297 21.4019C11.9892 21.7718 13.9166 21.582 15.6682 20.8565C17.4197 20.1309 18.9168 18.9023 19.9701 17.3259C21.0234 15.7495 21.5856 13.8962 21.5856 12.0003C21.5856 9.45802 20.5757 7.01983 18.778 5.22215C16.9803 3.42446 14.5422 2.41453 11.9998 2.41453Z"
-                      fill="#737373"
-                    />
-                    <path
-                      d="M15.6666 16.7933L11.2012 12.3279V4.81104H12.7988V11.6649L16.7929 15.667L15.6666 16.7933Z"
-                      fill="#737373"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_3537_3888">
-                      <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-
-                <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
-                  Получить
-                </span>
-
-                <svg
-                  className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_3537_3888)">
-                    <path
-                      d="M11.9998 23.1838C9.78797 23.1838 7.62577 22.5279 5.78666 21.299C3.94756 20.0702 2.51415 18.3236 1.6677 16.28C0.821252 14.2365 0.599783 11.9879 1.0313 9.81855C1.46281 7.64918 2.52793 5.65648 4.09196 4.09245C5.65599 2.52842 7.64869 1.4633 9.81806 1.03179C11.9874 0.600271 14.2361 0.82174 16.2796 1.66819C18.3231 2.51464 20.0697 3.94804 21.2985 5.78715C22.5274 7.62626 23.1833 9.78846 23.1833 12.0003C23.1833 14.9664 22.005 17.8109 19.9077 19.9082C17.8104 22.0055 14.9659 23.1838 11.9998 23.1838ZM11.9998 2.41453C10.104 2.41453 8.25064 2.97673 6.67426 4.03003C5.09788 5.08333 3.86925 6.58043 3.14372 8.33201C2.41819 10.0836 2.22836 12.011 2.59823 13.8704C2.9681 15.7299 3.88106 17.4379 5.22166 18.7785C6.56226 20.1191 8.27028 21.0321 10.1297 21.4019C11.9892 21.7718 13.9166 21.582 15.6682 20.8565C17.4197 20.1309 18.9168 18.9023 19.9701 17.3259C21.0234 15.7495 21.5856 13.8962 21.5856 12.0003C21.5856 9.45802 20.5757 7.01983 18.778 5.22215C16.9803 3.42446 14.5422 2.41453 11.9998 2.41453Z"
-                      fill="#737373"
-                    />
-                    <path
-                      d="M15.6666 16.7933L11.2012 12.3279V4.81104H12.7988V11.6649L16.7929 15.667L15.6666 16.7933Z"
-                      fill="#737373"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_3537_3888">
-                      <rect width="24" height="24" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </button>
-              <div className={styles.highlight} />
-            </div>
-          </aside>
-        )}
       </div>
 
       {/* Автор статьи */}

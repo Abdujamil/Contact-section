@@ -5,6 +5,7 @@ import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 import styles from "@/app/page.module.scss";
 import BlogPageContent from "@/components/blogPageCard/BlogPageContent";
 import Footer from "@/app/footer";
+import Bg from "@/components/background/bg";
 
 export async function generateStaticParams() {
   return blogData.map((item) => ({
@@ -29,7 +30,9 @@ export default function blogPage({
   if (!faqItem) return notFound();
   return (
     <>
+      <Bg />
       <ScrollWrapper>
+        <Bg />
         <div className={`h-dvh mt-[120px]`}>
           <h1
             className={`${styles.txtGradientRight} max-w-[882px] m-auto text-center text-[56px] leading-[110%] mb-10`}

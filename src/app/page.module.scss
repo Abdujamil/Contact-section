@@ -281,10 +281,10 @@
   }
 }
 
-.btn.blogTryBtn{
+.btn.blogTryBtn {
   &:hover span {
     transform: translateX(30px);
-}
+  }
 }
 
 .btn.blogLeftBtn {
@@ -317,6 +317,19 @@
   .sendIconRight {
     opacity: 0;
     transform: translate(45px);
+  }
+}
+
+.btn.faqTryBtn {
+
+  &:hover {
+    span {
+      transform: translateX(55px) !important;
+    }
+  }
+
+  &:hover svg path {
+    fill: #CCCCCC !important;
   }
 }
 
