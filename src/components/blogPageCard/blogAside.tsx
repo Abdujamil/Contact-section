@@ -48,10 +48,12 @@ type AsideItem = {
 };
 
 export default function BlogAside({ items }: { items: AsideItem[] }) {
-  // Собираем все ID: основной + подзаголовки
+  // Собираем все section IDs
   const sectionIds = items.flatMap((item) => {
     const baseId = item.id.replace(/^#/, "");
-    const subtitleIds = item.subtitle.map((_, subIndex) => `${baseId}-${subIndex}`);
+    const subtitleIds = item.subtitle.map(
+      (_, subIndex) => `${baseId}-${subIndex}`
+    );
     return [item.id, ...subtitleIds.map((id) => `#${id}`)];
   });
 
@@ -61,28 +63,29 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     <ul className="space-y-4 text-[#737373] font-bold text-sm">
       {items.map((item) => {
         const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
+        const plainBaseId = baseId.replace("#", "");
 
         return (
           <li key={baseId}>
-            {/* Title как отдельная ссылка */}
+            {/* Главный заголовок */}
             <a
               href={baseId}
-              className={`block text-[16px]  font-normal transition-colors duration-300 hover:text-[#3D9ED6] ${
+              className={`block text-[16px] font-normal transition-colors duration-300 hover:text-[#3D9ED6] ${
                 activeHash === baseId ? "text-[#3D9ED6]" : ""
               }`}
             >
               {item.title}
             </a>
 
-            {/* Subtitle — каждый как отдельный якорь */}
+            {/* Подзаголовки */}
             {item.subtitle.length > 0 && (
               <ul className="list-disc pl-[15px] font-normal my-[15px]">
                 {item.subtitle.map((sub, subIndex) => {
-                 const subId = `${baseId.replace("#", "")}-${subIndex}`; // ex: "about-0"
-                 const isActive = activeHash === subId;
+                  const subId = `${plainBaseId}-${subIndex}`; // e.g. "about-0"
+                  const isActive = activeHash === `#${subId}`;
 
                   return (
-                    <li className={`my-[15px]`} key={subId}>
+                    <li className="my-[15px]" key={subId}>
                       <a
                         href={`#${subId}`}
                         className={`transition-colors text-[16px] duration-300 hover:text-[#3D9ED6] font-normal ${

@@ -75,7 +75,7 @@ export const blogData: FaqItem[] = [
           слова, если это предусмотрено требованиями учебного заведения.
         </p>
 
-        <h4 id="formatting-rules" className={`scroll-mt-[80px] font-[700] text-[18px]`}>
+        <h4 id="academic-requirements-0" className={`scroll-mt-[80px] font-[700] text-[18px]`}>
           Ключевые правила оформления транскрибации лекции:
         </h4>
         <ul className={`list-disc pl-[15px] my-[20px]`}>
@@ -103,7 +103,7 @@ export const blogData: FaqItem[] = [
           нейросетей.
         </p>
 
-        <h3 id="accuracy-human-vs-ai" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
+        <h3 id="manual-vs-auto-0" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
           Точность транскрибации: человек против машины
         </h3>
         <p className={`mb-[10px]`}>
@@ -126,7 +126,7 @@ export const blogData: FaqItem[] = [
           контроль.
         </p>
 
-        <h3 id="time-and-cost" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
+        <h3 id="manual-vs-auto-1" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
           Время и затраты: автоматизация vs ручная
         </h3>
         <p className={`mb-[10px]`}>
@@ -164,7 +164,7 @@ export const blogData: FaqItem[] = [
         >
           Стоимость услуг: сравнение цен и затрат
         </h2>
-        <h3 id="price-comparison" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[16px]">
+        <h3 id="service-costs-0" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[16px]">
           Стоимость услуг: сравнение цен
         </h3>
         <p className={`mb-[20px]`}>
@@ -174,7 +174,7 @@ export const blogData: FaqItem[] = [
           оценивается в $60–200 за час. Это означает экономию в десятки раз.
         </p>
 
-        <h3 id="cost-comparison" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
+        <h3 id="service-costs-1" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
           Сравнение затрат:
         </h3>
         <p className={`mb-[20px]`}>
@@ -367,7 +367,7 @@ export const blogData: FaqItem[] = [
           учебные процессы и работу специалистов.
         </p>
 
-        <h3 id="solutions-institutions" className="scroll-mt-[80px] font-[700] mt-[22px] mb-[16px]">
+        <h3 id="solutions-edu-0" className="scroll-mt-[80px] font-[700] mt-[22px] mb-[16px]">
           Решения AudioSector для учебных заведений
         </h3>
         <p>
@@ -380,7 +380,7 @@ export const blogData: FaqItem[] = [
           стандартам​.
         </p>
 
-        <h3 id="solutions-benefits" className="scroll-mt-[80px] font-[700] mt-[30px] mb-[10px]">
+        <h3 id="solutions-edu-1" className="scroll-mt-[80px] font-[700] mt-[30px] mb-[10px]">
           Применение AudioSector в учебном заведении позволяет:
         </h3>
         <ul className={`list-disc pl-[15px] mb-[10px]`}>
@@ -408,7 +408,7 @@ export const blogData: FaqItem[] = [
           ресурсов.
         </p>
 
-        <h3 id="solutions-specialists" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
+        <h3 id="solutions-edu-2" className="scroll-mt-[80px] font-[700] mt-[24px] mb-[10px]">
           Решения AudioSector для частных специалистов
         </h3>
         <p>
