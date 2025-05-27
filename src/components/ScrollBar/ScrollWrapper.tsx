@@ -380,7 +380,7 @@ export default function ScrollWrapper({
         return;
       }
 
-      currentScroll += diff * 0.08;
+      currentScroll += diff * 0.05;
       scrollContainer.scrollTop = currentScroll;
       requestAnimationFrame(smoothScroll);
     };
