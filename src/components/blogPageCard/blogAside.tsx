@@ -63,7 +63,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     <ul className="space-y-4 text-[#737373] font-bold text-sm">
       {items.map((item) => {
         const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
-        const plainBaseId = baseId.replace("#", "");
+        // const plainBaseId = baseId.replace("#", "");
 
         return (
           <li key={baseId}>
@@ -78,7 +78,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
             </a>
 
             {/* Подзаголовки */}
-            {item.subtitle.length > 0 && (
+            {/* {item.subtitle.length > 0 && (
               <ul className="list-disc pl-[15px] font-normal my-[15px]">
                 {item.subtitle.map((sub, subIndex) => {
                   const subId = `${plainBaseId}-${subIndex}`; // e.g. "about-0"
@@ -98,7 +98,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                   );
                 })}
               </ul>
-            )}
+            )} */}
           </li>
         );
       })}
