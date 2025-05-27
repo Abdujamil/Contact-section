@@ -177,7 +177,6 @@ export default function ScrollWrapper({
 }) {
   const simpleBarRef = useRef<SimpleBar | null>(null);
 
-  
   //   useEffect(() => {
   //     if (!simpleBarRef.current) return;
 
@@ -266,233 +265,238 @@ export default function ScrollWrapper({
   //     };
   //   }, []);
 
+  //   useEffect(() => {
+  //     if (!simpleBarRef.current) return;
 
-//   useEffect(() => {
-//     if (!simpleBarRef.current) return;
+  //     const scrollContainer = simpleBarRef.current.getScrollElement();
 
-//     const scrollContainer = simpleBarRef.current.getScrollElement();
+  //     let currentScroll = 0;
+  //     let targetScroll = 0;
+  //     let isScrolling = false;
 
-//     let currentScroll = 0;
-//     let targetScroll = 0;
-//     let isScrolling = false;
+  //     const initScroll = () => {
+  //       currentScroll = scrollContainer.scrollTop;
+  //       targetScroll = currentScroll;
+  //     };
 
-//     const initScroll = () => {
-//       currentScroll = scrollContainer.scrollTop;
-//       targetScroll = currentScroll;
-//     };
+  //     const smoothScroll = () => {
+  //       const diff = targetScroll - currentScroll;
+  //       if (Math.abs(diff) < 0.02) {
+  //         isScrolling = false;
+  //         return;
+  //       }
+  //       currentScroll += diff * 0.1;
+  //       scrollContainer.scrollTo({ top: currentScroll });
+  //       requestAnimationFrame(smoothScroll);
+  //     };
 
-//     const smoothScroll = () => {
-//       const diff = targetScroll - currentScroll;
-//       if (Math.abs(diff) < 0.02) {
-//         isScrolling = false;
-//         return;
-//       }
-//       currentScroll += diff * 0.1;
-//       scrollContainer.scrollTo({ top: currentScroll });
-//       requestAnimationFrame(smoothScroll);
-//     };
+  //     const handleWheel = (e: WheelEvent) => {
+  //       e.preventDefault();
+  //       targetScroll += e.deltaY;
 
-//     const handleWheel = (e: WheelEvent) => {
-//       e.preventDefault();
-//       targetScroll += e.deltaY;
+  //       const maxScroll =
+  //         scrollContainer.scrollHeight - scrollContainer.clientHeight;
+  //       targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
 
-//       const maxScroll =
-//         scrollContainer.scrollHeight - scrollContainer.clientHeight;
-//       targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+  //       if (!isScrolling) {
+  //         isScrolling = true;
+  //         requestAnimationFrame(smoothScroll);
+  //       }
+  //     };
 
-//       if (!isScrolling) {
-//         isScrolling = true;
-//         requestAnimationFrame(smoothScroll);
-//       }
-//     };
+  //     const handleScroll = () => {
+  //       if (!isScrolling) {
+  //         currentScroll = scrollContainer.scrollTop;
+  //         targetScroll = currentScroll;
+  //       }
 
-//     const handleScroll = () => {
-//       if (!isScrolling) {
-//         currentScroll = scrollContainer.scrollTop;
-//         targetScroll = currentScroll;
-//       }
+  //       // 🌀 Scroll animation logic here
+  //       const section = scrollContainer.querySelector(
+  //         "#sectionPin"
+  //       ) as HTMLElement;
+  //       const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
+  //       if (!section || !pinWrap) return;
 
-//       // 🌀 Scroll animation logic here
-//       const section = scrollContainer.querySelector(
-//         "#sectionPin"
-//       ) as HTMLElement;
-//       const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
-//       if (!section || !pinWrap) return;
+  //       const sectionTop = section.offsetTop;
+  //       const scrollY = scrollContainer.scrollTop;
+  //       const scrollLength = pinWrap.scrollWidth - window.innerWidth;
 
-//       const sectionTop = section.offsetTop;
-//       const scrollY = scrollContainer.scrollTop;
-//       const scrollLength = pinWrap.scrollWidth - window.innerWidth;
+  //       if (scrollY >= sectionTop && scrollY <= sectionTop + scrollLength) {
+  //         const progress = (scrollY - sectionTop) / scrollLength;
+  //         pinWrap.style.transform = `translateX(${-progress * scrollLength}px)`;
+  //       }
+  //     };
 
-//       if (scrollY >= sectionTop && scrollY <= sectionTop + scrollLength) {
-//         const progress = (scrollY - sectionTop) / scrollLength;
-//         pinWrap.style.transform = `translateX(${-progress * scrollLength}px)`;
-//       }
-//     };
+  //     initScroll();
 
-//     initScroll();
+  //     scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
+  //     scrollContainer.addEventListener("scroll", handleScroll);
 
-//     scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
-//     scrollContainer.addEventListener("scroll", handleScroll);
-
-//     return () => {
-//       scrollContainer.removeEventListener("wheel", handleWheel);
-//       scrollContainer.removeEventListener("scroll", handleScroll);
-//     };
-//   }, []);
-
+  //     return () => {
+  //       scrollContainer.removeEventListener("wheel", handleWheel);
+  //       scrollContainer.removeEventListener("scroll", handleScroll);
+  //     };
+  //   }, []);
 
   useEffect(() => {
-  if (!simpleBarRef.current) return;
+    if (!simpleBarRef.current) return;
 
-  const scrollContainer = simpleBarRef.current.getScrollElement();
+    const scrollContainer = simpleBarRef.current.getScrollElement();
 
-  // === ScrollTrigger proxy ===
-  ScrollTrigger.scrollerProxy(scrollContainer, {
-    scrollTop(value) {
-      if (arguments.length) {
-        scrollContainer.scrollTop = value;
-      }
-      return scrollContainer.scrollTop;
-    },
-    getBoundingClientRect() {
-      return {
-        top: 0,
-        left: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
-    },
-    pinType: scrollContainer.style.transform ? "transform" : "fixed",
-  });
+    // === ScrollTrigger proxy ===
+    ScrollTrigger.scrollerProxy(scrollContainer, {
+      scrollTop(value) {
+        if (arguments.length) {
+          scrollContainer.scrollTop = value;
+        }
+        return scrollContainer.scrollTop;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+      pinType: scrollContainer.style.transform ? "transform" : "fixed",
+    });
 
-  let currentScroll = 0;
-  let targetScroll = 0;
-  let isScrolling = false;
+    let currentScroll = 0;
+    let targetScroll = 0;
+    let isScrolling = false;
 
-  const initScroll = () => {
-    currentScroll = scrollContainer.scrollTop;
-    targetScroll = currentScroll;
-  };
-
-  const smoothScroll = () => {
-    const diff = targetScroll - currentScroll;
-    if (Math.abs(diff) < 0.05) {
-      currentScroll = targetScroll;
-      scrollContainer.scrollTop = currentScroll;
-      isScrolling = false;
-      return;
-    }
-
-    currentScroll += diff * 0.08;
-    scrollContainer.scrollTop = currentScroll;
-    requestAnimationFrame(smoothScroll);
-  };
-
-  const handleWheel = (e: WheelEvent) => {
-    e.preventDefault();
-    targetScroll += e.deltaY;
-
-    const maxScroll =
-      scrollContainer.scrollHeight - scrollContainer.clientHeight;
-    targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-
-    if (!isScrolling) {
-      isScrolling = true;
-      requestAnimationFrame(smoothScroll);
-    }
-  };
-
-  const handleScroll = () => {
-    if (!isScrolling) {
+    const initScroll = () => {
       currentScroll = scrollContainer.scrollTop;
       targetScroll = currentScroll;
-    }
+    };
 
-    // Scroll-based animation
-    const section = scrollContainer.querySelector("#sectionPin") as HTMLElement;
-    const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
-    if (!section || !pinWrap) return;
+    const smoothScroll = () => {
+      const diff = targetScroll - currentScroll;
+      if (Math.abs(diff) < 0.05) {
+        currentScroll = targetScroll;
+        scrollContainer.scrollTop = currentScroll;
+        isScrolling = false;
+        return;
+      }
 
-    const sectionTop = section.offsetTop;
-    const scrollY = scrollContainer.scrollTop;
-    const scrollLength = pinWrap.scrollWidth - window.innerWidth;
+      currentScroll += diff * 0.08;
+      scrollContainer.scrollTop = currentScroll;
+      requestAnimationFrame(smoothScroll);
+    };
 
-    if (scrollY >= sectionTop && scrollY <= sectionTop + scrollLength) {
-      const progress = (scrollY - sectionTop) / scrollLength;
-      pinWrap.style.transform = `translateX(${-progress * scrollLength}px)`;
-    }
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      targetScroll += e.deltaY;
 
-    ScrollTrigger.update(); // sync ScrollTrigger
-  };
+      const maxScroll =
+        scrollContainer.scrollHeight - scrollContainer.clientHeight;
+      targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
 
-  const handleAnchorClick = (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (target.tagName === "A") {
-      const anchor = target.getAttribute("href");
-      if (anchor?.startsWith("#")) {
-        const el = scrollContainer.querySelector(anchor);
-        if (el) {
-          e.preventDefault();
+      if (!isScrolling) {
+        isScrolling = true;
+        requestAnimationFrame(smoothScroll);
+      }
+    };
 
-          const elTop = (el as HTMLElement).offsetTop;
-          const maxScroll =
-            scrollContainer.scrollHeight - scrollContainer.clientHeight;
+    const handleScroll = () => {
+      if (!isScrolling) {
+        currentScroll = scrollContainer.scrollTop;
+        targetScroll = currentScroll;
+      }
 
-          targetScroll = Math.max(0, Math.min(elTop, maxScroll));
+      // Scroll-based animation
+      const section = scrollContainer.querySelector(
+        "#sectionPin"
+      ) as HTMLElement;
+      const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
+      if (!section || !pinWrap) return;
 
-          if (!isScrolling) {
-            isScrolling = true;
-            requestAnimationFrame(smoothScroll);
+      const sectionTop = section.offsetTop;
+      const scrollY = scrollContainer.scrollTop;
+      const scrollLength = pinWrap.scrollWidth - window.innerWidth;
+
+      if (scrollY >= sectionTop && scrollY <= sectionTop + scrollLength) {
+        const progress = (scrollY - sectionTop) / scrollLength;
+        pinWrap.style.transform = `translateX(${-progress * scrollLength}px)`;
+      }
+
+      ScrollTrigger.update(); // sync ScrollTrigger
+    };
+
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === "A") {
+        const anchor = target.getAttribute("href");
+        if (anchor?.startsWith("#")) {
+          const el = scrollContainer.querySelector(anchor);
+          if (el) {
+            e.preventDefault();
+
+            //   const elTop = (el as HTMLElement).offsetTop;
+            const offset = 200; // отступ вверх (в пикселях)
+            const elTop = (el as HTMLElement).offsetTop + offset;
+
+            const maxScroll =
+              scrollContainer.scrollHeight - scrollContainer.clientHeight;
+
+            targetScroll = Math.max(0, Math.min(elTop, maxScroll));
+
+            if (!isScrolling) {
+              isScrolling = true;
+              requestAnimationFrame(smoothScroll);
+            }
           }
         }
       }
-    }
-  };
+    };
 
-  const setupAnimation = () => {
-    const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
-    const section = scrollContainer.querySelector("#sectionPin") as HTMLElement;
+    const setupAnimation = () => {
+      const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
+      const section = scrollContainer.querySelector(
+        "#sectionPin"
+      ) as HTMLElement;
 
-    if (!pinWrap || !section) return;
+      if (!pinWrap || !section) return;
 
-    const pinWrapWidth = pinWrap.scrollWidth;
-    const horizontalScrollLength = pinWrapWidth - window.innerWidth;
+      const pinWrapWidth = pinWrap.scrollWidth;
+      const horizontalScrollLength = pinWrapWidth - window.innerWidth;
 
-    gsap.to(pinWrap, {
-      x: -horizontalScrollLength,
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        scroller: scrollContainer,
-        scrub: true,
-        pin: true,
-        start: "top top",
-        end: () => `${pinWrapWidth}px`,
-      },
-    });
+      gsap.to(pinWrap, {
+        x: -horizontalScrollLength,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          scroller: scrollContainer,
+          scrub: true,
+          pin: true,
+          start: "top top",
+          end: () => `${pinWrapWidth}px`,
+        },
+      });
 
-    ScrollTrigger.addEventListener("refresh", () => {
-      ScrollTrigger.update();
-    });
+      ScrollTrigger.addEventListener("refresh", () => {
+        ScrollTrigger.update();
+      });
 
-    ScrollTrigger.refresh();
-  };
+      ScrollTrigger.refresh();
+    };
 
-  initScroll();
+    initScroll();
 
-  scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
-  scrollContainer.addEventListener("scroll", handleScroll);
-  scrollContainer.addEventListener("click", handleAnchorClick);
+    scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
+    scrollContainer.addEventListener("scroll", handleScroll);
+    scrollContainer.addEventListener("click", handleAnchorClick);
 
-  requestAnimationFrame(setupAnimation);
+    requestAnimationFrame(setupAnimation);
 
-  return () => {
-    scrollContainer.removeEventListener("wheel", handleWheel);
-    scrollContainer.removeEventListener("scroll", handleScroll);
-    scrollContainer.removeEventListener("click", handleAnchorClick);
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  };
-}, []);
+    return () => {
+      scrollContainer.removeEventListener("wheel", handleWheel);
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      scrollContainer.removeEventListener("click", handleAnchorClick);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
 
   return (
     <SimpleBar className="max-h-screen" ref={simpleBarRef}>
