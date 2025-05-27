@@ -42,6 +42,7 @@
 
 html,
 body {
+    scroll-behavior: smooth;
     height: 100%;
 }
 
@@ -98,7 +99,7 @@ body {
     /* -webkit-backdrop-filter: blur(2px)!important; */
     /* backdrop-filter: blur(2px) !important; */
     /* border-radius: 5px !important; */
-    
+
     opacity: 1 !important;
     border-radius: 3px;
     border: .001px solid rgb(255 255 255 / 10%);
@@ -106,7 +107,7 @@ body {
     transition: background .2s linear !important;
 }
 
-.simplebar-scrollbar:active{
+.simplebar-scrollbar:active {
     border: .001px solid rgb(255 255 255 / 20%);
 }
 
