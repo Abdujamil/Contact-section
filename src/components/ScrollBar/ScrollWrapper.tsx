@@ -380,7 +380,7 @@ export default function ScrollWrapper({
         return;
       }
 
-      currentScroll += diff * 0.05;
+      currentScroll += diff * 0.08;
       scrollContainer.scrollTop = currentScroll;
       requestAnimationFrame(smoothScroll);
     };
@@ -476,8 +476,10 @@ export default function ScrollWrapper({
       });
 
       ScrollTrigger.addEventListener("refresh", () => {
-        ScrollTrigger.update();
-      });
+        // ScrollTrigger.update();
+        if (!isScrolling) ScrollTrigger.update();
+
+    });
 
       ScrollTrigger.refresh();
     };
@@ -499,7 +501,7 @@ export default function ScrollWrapper({
   }, []);
 
   return (
-    <SimpleBar className="max-h-screen" ref={simpleBarRef}>
+    <SimpleBar className="max-h-screen" ref={simpleBarRef} style={{ overflowAnchor: 'none' }}>
       {children}
     </SimpleBar>
   );

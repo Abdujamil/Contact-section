@@ -213,6 +213,11 @@ input[type='email']::placeholder {
     pointer-events: none;
 }
 
+.pin-wrap {
+  will-change: transform;
+}
+
+
 @keyframes bounce-input {
     0% {
         transform: translateX(0);
