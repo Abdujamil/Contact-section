@@ -24,7 +24,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ id, num, title, date, src }) => {
         }}
       >
         <div
-          className={`!w-full h-[171px] rounded-tl-[8px] rounded-tr-[8px] relative`}
+          className={`!w-full min-w-[260px] h-[171px] rounded-tl-[8px] rounded-tr-[8px] relative`}
         >
           <Image
             src={src}

@@ -1,7 +1,7 @@
 "use client";
 // @ts-expect-error: типы ломаются из-за package.json exports
 import SimpleBar from "simplebar-react";
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import "simplebar-react/dist/simplebar.min.css";
 
 import gsap from "gsap";
@@ -16,8 +16,11 @@ export default function ScrollWrapper({
 }) {
   const simpleBarRef = useRef<SimpleBar | null>(null);
 
-  const [scrollStopThreshold, setScrollStopThreshold] = useState(0.100); // "остановка при"
-  const [scrollEaseFactor, setScrollEaseFactor] = useState(0.200); // "насколько плавный скролл"
+//   const [scrollStopThreshold, setScrollStopThreshold] = useState(0.1); // "остановка при"
+//   const [scrollEaseFactor, setScrollEaseFactor] = useState(0.2); // "насколько плавный скролл"
+
+  const scrollStopThreshold = 0.1;
+  const scrollEaseFactor = 0.2;
 
   const thresholdRef = useRef(scrollStopThreshold);
   const easeRef = useRef(scrollEaseFactor);
@@ -368,7 +371,7 @@ export default function ScrollWrapper({
 
   return (
     <>
-      <div className="fixed top-[10%] left-0 z-50 bg-black text-white p-2 text-xs space-y-2">
+      {/* <div className="fixed top-[10%] left-0 z-50 bg-black text-white p-2 text-xs space-y-2">
         <div>
           <label>
             🛑 Порог остановки (threshold): {scrollStopThreshold.toFixed(3)}
@@ -395,7 +398,7 @@ export default function ScrollWrapper({
             onChange={(e) => setScrollEaseFactor(parseFloat(e.target.value))}
           />
         </div>
-      </div>
+      </div> */}
       <SimpleBar
         className="max-h-screen"
         ref={simpleBarRef}
