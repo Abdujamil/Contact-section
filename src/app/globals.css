@@ -42,9 +42,16 @@
 
 html,
 body {
-    overscroll-behavior: none;
+    /* overscroll-behavior: none; */
     height: 100%;
 }
+
+html,
+body,
+.simplebar-content-wrapper {
+  /* scroll-behavior: smooth; */
+}
+
 
 body {
     background: #000;

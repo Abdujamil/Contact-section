@@ -1,168 +1,7 @@
-// "use client";
-
-// // @ts-expect-error: типы ломаются из-за package.json exports
-// import SimpleBar from "simplebar-react";
-// import { useRef, useEffect } from "react";
-// import "simplebar-react/dist/simplebar.min.css";
-
-// export default function ScrollWrapper({
-//   children,
-// }: {
-//   children: React.ReactNode;
-// }) {
-//   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//   const simpleBarRef = useRef<SimpleBar | null>(null);
-
-//   // useEffect(() => {
-//   //     if (!simpleBarRef.current) return;
-
-//   //     let currentScroll = 0;
-//   //     let targetScroll = 0;
-//   //     let isScrolling = false;
-
-//   //     const scrollContainer = simpleBarRef.current.getScrollElement();
-
-//   //     const initScroll = () => {
-//   //         if (scrollContainer) {
-//   //             currentScroll = scrollContainer.scrollTop;
-//   //             targetScroll = currentScroll;
-//   //         }
-//   //     };
-
-//   //     const smoothScroll = () => {
-//   //         const diff = targetScroll - currentScroll;
-//   //         if (Math.abs(diff) < 0.2) {
-//   //             isScrolling = false;
-//   //             return;
-//   //         }
-//   //         currentScroll += diff * 0.1;
-//   //         if (scrollContainer) {
-//   //             scrollContainer.scrollTo({ top: currentScroll });
-//   //         }
-//   //         requestAnimationFrame(smoothScroll);
-//   //     };
-
-//   //     const handleWheel = (e: WheelEvent) => {
-//   //         e.preventDefault();
-//   //         targetScroll += e.deltaY;
-
-//   //         if (scrollContainer) {
-//   //             const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
-//   //             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-//   //         }
-
-//   //         if (!isScrolling) {
-//   //             isScrolling = true;
-//   //             requestAnimationFrame(smoothScroll);
-//   //         }
-//   //     };
-
-//   //     const handleScroll = () => {
-//   //         if (!isScrolling && scrollContainer) {
-//   //             currentScroll = scrollContainer.scrollTop;
-//   //             targetScroll = currentScroll;
-//   //         }
-//   //     };
-
-//   //     initScroll();
-
-//   //     if (scrollContainer) {
-//   //         scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
-//   //         scrollContainer.addEventListener('scroll', handleScroll);
-//   //     }
-
-//   //     return () => {
-//   //         if (scrollContainer) {
-//   //             scrollContainer.removeEventListener('wheel', handleWheel);
-//   //             scrollContainer.removeEventListener('scroll', handleScroll);
-//   //         }
-//   //     };
-//   // }, []);
-
-//   useEffect(() => {
-//     if (!simpleBarRef.current) return;
-
-//     const scrollContainer = simpleBarRef.current.getScrollElement();
-
-//     let currentScroll = 0;
-//     let targetScroll = 0;
-//     let isScrolling = false;
-
-//     const initScroll = () => {
-//       currentScroll = scrollContainer.scrollTop;
-//       targetScroll = currentScroll;
-//     };
-
-//     const smoothScroll = () => {
-//       const diff = targetScroll - currentScroll;
-//       if (Math.abs(diff) < 0.08) {
-//         isScrolling = false;
-//         return;
-//       }
-//       currentScroll += diff * 0.08;
-//       scrollContainer.scrollTo({ top: currentScroll });
-//       requestAnimationFrame(smoothScroll);
-//     };
-
-//     const handleWheel = (e: WheelEvent) => {
-//       e.preventDefault();
-//       targetScroll += e.deltaY;
-
-//       const maxScroll =
-//         scrollContainer.scrollHeight - scrollContainer.clientHeight;
-//       targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-
-//       if (!isScrolling) {
-//         isScrolling = true;
-//         requestAnimationFrame(smoothScroll);
-//       }
-//     };
-
-//     const handleScroll = () => {
-//       if (!isScrolling) {
-//         currentScroll = scrollContainer.scrollTop;
-//         targetScroll = currentScroll;
-//       }
-
-//       // 🌀 Scroll animation logic here
-//       const section = scrollContainer.querySelector(
-//         "#sectionPin"
-//       ) as HTMLElement;
-//       const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
-//       if (!section || !pinWrap) return;
-
-//       const sectionTop = section.offsetTop;
-//       const scrollY = scrollContainer.scrollTop;
-//       const scrollLength = pinWrap.scrollWidth - window.innerWidth;
-
-//       if (scrollY >= sectionTop && scrollY <= sectionTop + scrollLength) {
-//         const progress = (scrollY - sectionTop) / scrollLength;
-//         pinWrap.style.transform = `translateX(${-progress * scrollLength}px)`;
-//       }
-//     };
-
-//     initScroll();
-
-//     scrollContainer.addEventListener("wheel", handleWheel, { passive: false });
-//     scrollContainer.addEventListener("scroll", handleScroll);
-
-//     return () => {
-//       scrollContainer.removeEventListener("wheel", handleWheel);
-//       scrollContainer.removeEventListener("scroll", handleScroll);
-//     };
-//   }, []);
-
-//   return (
-//     <SimpleBar className="max-h-screen" ref={simpleBarRef}>
-//       {children}
-//     </SimpleBar>
-//   );
-// }
-
 "use client";
 // @ts-expect-error: типы ломаются из-за package.json exports
 import SimpleBar from "simplebar-react";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import "simplebar-react/dist/simplebar.min.css";
 
 import gsap from "gsap";
@@ -176,6 +15,20 @@ export default function ScrollWrapper({
   children: React.ReactNode;
 }) {
   const simpleBarRef = useRef<SimpleBar | null>(null);
+
+  const [scrollStopThreshold, setScrollStopThreshold] = useState(0.05); // "остановка при"
+  const [scrollEaseFactor, setScrollEaseFactor] = useState(0.07); // "насколько плавный скролл"
+
+  const thresholdRef = useRef(scrollStopThreshold);
+  const easeRef = useRef(scrollEaseFactor);
+
+  useEffect(() => {
+    thresholdRef.current = scrollStopThreshold;
+  }, [scrollStopThreshold]);
+
+  useEffect(() => {
+    easeRef.current = scrollEaseFactor;
+  }, [scrollEaseFactor]);
 
   //   useEffect(() => {
   //     if (!simpleBarRef.current) return;
@@ -371,16 +224,30 @@ export default function ScrollWrapper({
       targetScroll = currentScroll;
     };
 
+    // const smoothScroll = () => {
+    //   const diff = targetScroll - currentScroll;
+    //   if (Math.abs(diff) < 0.05) {
+    //     currentScroll = targetScroll;
+    //     scrollContainer.scrollTop = currentScroll;
+    //     isScrolling = false;
+    //     return;
+    //   }
+
+    //   currentScroll += diff * 0.07;
+    //   scrollContainer.scrollTop = currentScroll;
+    //   requestAnimationFrame(smoothScroll);
+    // };
+
     const smoothScroll = () => {
       const diff = targetScroll - currentScroll;
-      if (Math.abs(diff) < 0.05) {
+      if (Math.abs(diff) < thresholdRef.current) {
         currentScroll = targetScroll;
         scrollContainer.scrollTop = currentScroll;
         isScrolling = false;
         return;
       }
 
-      currentScroll += diff * 0.08;
+      currentScroll += diff * easeRef.current;
       scrollContainer.scrollTop = currentScroll;
       requestAnimationFrame(smoothScroll);
     };
@@ -478,8 +345,7 @@ export default function ScrollWrapper({
       ScrollTrigger.addEventListener("refresh", () => {
         // ScrollTrigger.update();
         if (!isScrolling) ScrollTrigger.update();
-
-    });
+      });
 
       ScrollTrigger.refresh();
     };
@@ -501,8 +367,42 @@ export default function ScrollWrapper({
   }, []);
 
   return (
-    <SimpleBar className="max-h-screen" ref={simpleBarRef} style={{ overflowAnchor: 'none' }}>
-      {children}
-    </SimpleBar>
+    <>
+      <div className="fixed top-[10%] left-0 z-50 bg-black text-white p-2 text-xs space-y-2">
+        <div>
+          <label>
+            🛑 Порог остановки (threshold): {scrollStopThreshold.toFixed(3)}
+          </label>
+          <input
+            type="range"
+            min="0.001"
+            max="0.2"
+            step="0.001"
+            value={scrollStopThreshold}
+            onChange={(e) => setScrollStopThreshold(parseFloat(e.target.value))}
+          />
+        </div>
+        <div>
+          <label>
+            💨 Скорость плавности (ease): {scrollEaseFactor.toFixed(3)}
+          </label>
+          <input
+            type="range"
+            min="0.01"
+            max="0.3"
+            step="0.001"
+            value={scrollEaseFactor}
+            onChange={(e) => setScrollEaseFactor(parseFloat(e.target.value))}
+          />
+        </div>
+      </div>
+      <SimpleBar
+        className="max-h-screen"
+        ref={simpleBarRef}
+        style={{ overflowAnchor: "none" }}
+      >
+        {children}
+      </SimpleBar>
+    </>
   );
 }

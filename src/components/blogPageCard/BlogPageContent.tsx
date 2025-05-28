@@ -184,7 +184,7 @@ export default function BlogPageContent({
             <div
               className={`w-full flex items-center justify-between mt-[30px]`}
             >
-              <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
+              <div className="relative w-full max-w-[218px] h-[51px] !overflow-hidden">
                 <button
                   onClick={handlePrev}
                   className={` ${styles["btn"]} ${styles["blogLeftBtn"]} ${HeaderStyles["login-button"]} w-full !h-full group flex items-center !justify-between`}
@@ -284,7 +284,7 @@ export default function BlogPageContent({
                 </button>
                 <div className={styles.highlight} />
               </div>
-              <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
+              <div className="relative w-full max-w-[218px] h-[51px] !overflow-hidden">
                 <button
                   onClick={handleNext}
                   className={` ${styles["btn"]} ${styles["blogNextBtn"]} ${HeaderStyles["login-button"]}  w-full !h-full group flex items-center !justify-between`}
