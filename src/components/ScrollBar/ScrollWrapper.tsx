@@ -376,7 +376,7 @@ export default function ScrollWrapper({
           <input
             type="range"
             min="0.001"
-            max="0.2"
+            max="0.5"
             step="0.001"
             value={scrollStopThreshold}
             onChange={(e) => setScrollStopThreshold(parseFloat(e.target.value))}
@@ -389,7 +389,7 @@ export default function ScrollWrapper({
           <input
             type="range"
             min="0.01"
-            max="0.3"
+            max="0.5"
             step="0.001"
             value={scrollEaseFactor}
             onChange={(e) => setScrollEaseFactor(parseFloat(e.target.value))}
