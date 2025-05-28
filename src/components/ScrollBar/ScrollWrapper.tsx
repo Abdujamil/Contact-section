@@ -16,8 +16,8 @@ export default function ScrollWrapper({
 }) {
   const simpleBarRef = useRef<SimpleBar | null>(null);
 
-  const [scrollStopThreshold, setScrollStopThreshold] = useState(0.05); // "остановка при"
-  const [scrollEaseFactor, setScrollEaseFactor] = useState(0.07); // "насколько плавный скролл"
+  const [scrollStopThreshold, setScrollStopThreshold] = useState(0.100); // "остановка при"
+  const [scrollEaseFactor, setScrollEaseFactor] = useState(0.200); // "насколько плавный скролл"
 
   const thresholdRef = useRef(scrollStopThreshold);
   const easeRef = useRef(scrollEaseFactor);
