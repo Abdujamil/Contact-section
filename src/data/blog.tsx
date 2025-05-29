@@ -31,7 +31,7 @@ export const blogData: FaqItem[] = [
     fullAnswer: (
       <>
         <div id="academic-requirements" className={`scroll-mt-[80px]`}>
-          <h2 className="scroll-mt-[80px] mb-[20px] text-[24px] leading-[120%] font-[700] text-[#3D9ED6]">
+          <h2 className="scroll-mt-[80px] mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Академические требования к транскрибированному тексту
           </h2>
 
@@ -97,7 +97,7 @@ export const blogData: FaqItem[] = [
         </div>
 
         <div id="manual-vs-auto" className={``}>
-          <h2 className="mt-[10px] mb-[20px] text-[24px] leading-[120%] font-[700] text-[#3D9ED6]">
+          <h2 className="mt-[10px] mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Ручная или автоматическая транскрибация: что выбрать
           </h2>
           <p>
@@ -169,7 +169,7 @@ export const blogData: FaqItem[] = [
         </div>
 
         <div id="service-costs" className={``}>
-          <h2 className="mt-[24px] mb-[20px] text-[24px] leading-[120%] font-[700] text-[#3D9ED6]">
+          <h2 className="mt-[24px] mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Стоимость услуг: сравнение цен и затрат
           </h2>
           <h3
@@ -375,7 +375,7 @@ export const blogData: FaqItem[] = [
         </div>
 
         <div id="solutions-edu" className={``}>
-          <h2 className="mb-[22px] text-[24px] leading-[120%] font-[700] text-[#3D9ED6]">
+          <h2 className="mb-[22px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Решения AudioSector в образовательной сфере
           </h2>
           <p>
@@ -473,7 +473,7 @@ export const blogData: FaqItem[] = [
         </div>
 
         <div id="conclusion" className={``}>
-          <h2 className=" mt-[24px] mb-[22px] text-[24px] leading-[120%] font-[700] text-[#3D9ED6]">
+          <h2 className=" mt-[24px] mb-[22px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Заключение
           </h2>
           <p className={`mb-[15px]`}>
@@ -545,7 +545,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -671,7 +671,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -797,7 +797,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -923,7 +923,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1049,7 +1049,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1175,7 +1175,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1301,7 +1301,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1427,7 +1427,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1553,7 +1553,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1679,7 +1679,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1805,7 +1805,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -1931,7 +1931,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -2057,7 +2057,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -2183,7 +2183,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>
@@ -2309,7 +2309,7 @@ export const blogData: FaqItem[] = [
       <>
         <h2
           id="security-file"
-          className="mb-[16px] text-[24px] leading-[120%] font-[700] text-[#CCCCCC]"
+          className="mb-[16px] text-[24px] leading-[120%]  text-[#CCCCCC]"
         >
           Защищены ли загружаемые вами файлы?
         </h2>

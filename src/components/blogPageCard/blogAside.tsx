@@ -36,10 +36,12 @@
 //   );
 // }
 
-
 "use client";
 import { useScrollSpy } from "../useScrollSpy";
 import React from "react";
+// import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
+// import HeaderStyles from "@/components/header/Header.module.css";
+import styles from "@/app/page.module.scss";
 
 type AsideItem = {
   id: string;
@@ -57,49 +59,65 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     return [item.id, ...subtitleIds.map((id) => `#${id}`)];
   });
 
-  const activeHash = useScrollSpy({ sectionIds, offset: 100 });
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    const rect = target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    target.style.setProperty("--mouse-x", `${x}px`);
+    target.style.setProperty("--mouse-y", `${y}px`);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent) => {
+    const target = e.currentTarget as HTMLElement;
+    target.style.removeProperty("--mouse-x");
+    target.style.removeProperty("--mouse-y");
+  };
+
+  // const activeHash = useScrollSpy({ sectionIds, offset: 100 });
+
+  const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
+  const activeHash = scrollSpyHash || (items.length > 0 ? items[0].id : "");
 
   return (
-    <ul className="space-y-4 text-[#737373] font-bold text-sm">
+    <ul className="space-y-4 font-bold text-sm pl-[15px] ">
       {items.map((item) => {
         const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
         // const plainBaseId = baseId.replace("#", "");
 
         return (
-          <li key={baseId}>
-            {/* Главный заголовок */}
-            <a
-              href={baseId}
-              className={`block text-[16px] font-normal transition-colors duration-300 hover:text-[#3D9ED6] ${
-                activeHash === baseId ? "text-[#3D9ED6]" : ""
-              }`}
+          <>
+            <li
+              className={`
+                list-disc
+                marker:transition-all 
+                marker:duration-150 
+                ${
+                  activeHash === baseId
+                    ? "marker:text-[#3D9ED6]"
+                    : "marker:text-transparent"
+                }
+              `}
+              key={baseId}
             >
-              {item.title}
-            </a>
-
-            {/* Подзаголовки */}
-            {/* {item.subtitle.length > 0 && (
-              <ul className="list-disc pl-[15px] font-normal my-[15px]">
-                {item.subtitle.map((sub, subIndex) => {
-                  const subId = `${plainBaseId}-${subIndex}`; // e.g. "about-0"
-                  const isActive = activeHash === `#${subId}`;
-
-                  return (
-                    <li className="my-[15px]" key={subId}>
-                      <a
-                        href={`#${subId}`}
-                        className={`transition-colors text-[16px] duration-300 hover:text-[#3D9ED6] font-normal ${
-                          isActive ? "text-[#3D9ED6]" : ""
-                        }`}
-                      >
-                        {sub}
-                      </a>
-                    </li>
-                  );
-                })}
-              </ul>
-            )} */}
-          </li>
+              <a
+                href={baseId}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className={`relative block text-[16px] font-normal transition-colors 
+                  ${styles.linkGlow}
+                  ${
+                    activeHash === baseId
+                      ? "text-[#3D9ED6]" // активный цвет
+                      : "text-[#878787] hover:text-[#ccc]"
+                  } // обычный ховер
+                `}
+              >
+                {item.title}
+              </a>
+            </li>
+          </>
         );
       })}
     </ul>

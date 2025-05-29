@@ -401,28 +401,6 @@ export default function BlogPageContent({
         }`}
       >
         <div></div>
-        {/* <Link
-          href="/authorPage/"
-          className={`${styles.authorBlock} w-full mb-[150px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535]`}
-        >
-          <div className={`min-w-[101px] min-h-[90px] rounded-[4px]`}>
-            <Image src="/ava.png" alt="avatar" width={101} height={90} />
-          </div>
-          <div>
-            <h3
-              className={`text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px] `}
-            >
-              Дарья Глухова
-            </h3>
-            <p className={`text-[#ccc] text-[16px] leading-[130%]`}>
-              Специалист по деловому письму, который помогает бренду звучать
-              ясно и уверенно. Дарья пишет так, чтобы даже сложная терминология
-              воспринималась естественно. Она знает, как объяснить API,
-              распознавание речи или защиту данных без перегрузки.
-            </p>
-          </div>
-        </Link> */}
-
         {currentEditor && (
           <Link
             href={`/editorPage/${currentEditor.id}`}
@@ -478,3 +456,4 @@ export default function BlogPageContent({
     </>
   );
 }
+
