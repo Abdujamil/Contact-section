@@ -63,7 +63,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   const activeHash = scrollSpyHash || (items.length > 0 ? items[0].id : "");
 
   return (
-    <ul className="space-y-4 font-bold text-sm pl-[15px] ">
+    <ul className="space-y-4 font-bold text-sm">
       {items.map((item) => {
         const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
         // const plainBaseId = baseId.replace("#", "");
@@ -71,14 +71,6 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
         return (
           <>
             <li
-              className={`
-                list-disc
-                ${
-                  activeHash === baseId
-                    ? "marker:text-[#3D9ED6]"
-                    : "marker:text-transparent"
-                }
-              `}
               key={baseId}
             >
               <a
