@@ -367,27 +367,27 @@
   inset: 0;
   border-radius: 4px;
   pointer-events: none;
-  background: radial-gradient(
-    100px circle at var(--mouse-x) var(--mouse-y),
-    rgba(255, 255, 255, 0.1),
-    transparent 90%
-  );
-  mask-image: radial-gradient(
-    100px circle at var(--mouse-x) var(--mouse-y),
-    white,
-    transparent 90%
-  );
-  -webkit-mask-image: radial-gradient(
-    100px circle at var(--mouse-x) var(--mouse-y),
-    white,
-    transparent 90%
-  );
+  background: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.1),
+      transparent 90%);
+  mask-image: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
+      white,
+      transparent 90%);
+  -webkit-mask-image: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
+      white,
+      transparent 90%);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
 .linkGlow:hover::after {
   opacity: 1;
+}
+
+.linkGlow:active {
+  transition: transform .2s, color .5s;
+  transform: scale(.95);
+  box-shadow: inset 2px 2px 2px #071a2680, inset -2px -2px 2px #071a2680;
 }
 
 

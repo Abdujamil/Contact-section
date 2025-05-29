@@ -39,8 +39,6 @@
 "use client";
 import { useScrollSpy } from "../useScrollSpy";
 import React from "react";
-// import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
-// import HeaderStyles from "@/components/header/Header.module.css";
 import styles from "@/app/page.module.scss";
 
 type AsideItem = {
@@ -59,22 +57,6 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     return [item.id, ...subtitleIds.map((id) => `#${id}`)];
   });
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const target = e.currentTarget as HTMLElement;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-  };
-
-  const handleMouseLeave = (e: React.MouseEvent) => {
-    const target = e.currentTarget as HTMLElement;
-    target.style.removeProperty("--mouse-x");
-    target.style.removeProperty("--mouse-y");
-  };
-
   // const activeHash = useScrollSpy({ sectionIds, offset: 100 });
 
   const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
@@ -91,8 +73,6 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
             <li
               className={`
                 list-disc
-                marker:transition-all 
-                marker:duration-150 
                 ${
                   activeHash === baseId
                     ? "marker:text-[#3D9ED6]"
@@ -103,15 +83,15 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
             >
               <a
                 href={baseId}
-                onMouseMove={handleMouseMove}
-                onMouseLeave={handleMouseLeave}
-                className={`relative block text-[16px] font-normal transition-colors 
+                className={`relative block text-[16px] font-normal
                   ${styles.linkGlow}
                   ${
                     activeHash === baseId
-                      ? "text-[#3D9ED6]" // активный цвет
+                      ? "text-[#3D9ED6]"
                       : "text-[#878787] hover:text-[#ccc]"
-                  } // обычный ховер
+                  } 
+                  active:text-[#4a738c]
+                    active:will-change-transform
                 `}
               >
                 {item.title}
