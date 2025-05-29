@@ -243,9 +243,12 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`${styles.header} fixed top-0 z-[99999999] flex items-center w-full min-h-[60px] h-[60px]`}
+      className={`${styles.header} fixed top-0 z-[1] flex items-center w-full min-h-[60px] h-[60px]`}
+      style={{ pointerEvents: 'none' }}
     >
-      <div className="flex items-center justify-between w-full px-[30px]">
+      <div className="flex items-center justify-between w-full px-[30px]" 
+      style={{ pointerEvents: 'auto' }}
+      >
         <Link
           href="/"
           className={`${styles["logo-wrapper"]} cursor-pointer`}

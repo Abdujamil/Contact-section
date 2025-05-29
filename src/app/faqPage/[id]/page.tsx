@@ -43,7 +43,6 @@ import React from "react";
 import Footer from "../../footer";
 import FaqPageContent from "@/components/FaqPageCard/FaqPageContent";
 import Bg from "@/components/background/bg";
-import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 
 // type Props = {
 //     params: { id: string };
@@ -70,7 +69,6 @@ export default async function FaqPage({params, searchParams}: {
 
     return (
         <>
-            <ScrollWrapper>
                 <div className={`h-dvh`}>
                     <Bg/>
                     <div
@@ -82,7 +80,6 @@ export default async function FaqPage({params, searchParams}: {
                     </div>
                     <Footer/>
                 </div>
-            </ScrollWrapper>
         </>
     );
 }

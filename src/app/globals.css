@@ -96,22 +96,14 @@ body {
 .simplebar-dragging .simplebar-scrollbar:before,
 .simplebar-hover .simplebar-scrollbar:before,
 .simplebar-scrollbar:before {
-    /* background: rgb(61 158 214 / 20%) !important; */
     background: #3d9ed642;
     border: 1px solid #5c5c5c;
-    /* box-shadow: 0 0 10px #00000000, inset 0 0 0px rgb(255 255 255 / 0%) !important; */
-
+    cursor: pointer;
 }
 
 .simplebar-scrollbar:before {
-    /* border: .001px solid rgb(255 255 255 / 20%); */
-    /* -webkit-backdrop-filter: blur(2px)!important; */
-    /* backdrop-filter: blur(2px) !important; */
-    /* border-radius: 5px !important; */
-
     opacity: 1 !important;
     border-radius: 3px;
-    /* border: .001px solid rgb(255 255 255 / 10%); */
     background: hsl(202deg 27% 58% / 25%) !important;
     transition: background .2s linear !important;
 }

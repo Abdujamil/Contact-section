@@ -1,7 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { blogData } from "@/data/blog";
-import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 import styles from "@/app/page.module.scss";
 import BlogPageContent from "@/components/blogPageCard/BlogPageContent";
 import Footer from "@/app/footer";
@@ -31,7 +30,6 @@ export default function blogPage({
   return (
     <>
       <Bg />
-      <ScrollWrapper>
         <Bg />
         <div className={`h-dvh mt-[120px]`}>
           <h1
@@ -45,7 +43,6 @@ export default function blogPage({
 
           <Footer />
         </div>
-      </ScrollWrapper>
     </>
   );
 }

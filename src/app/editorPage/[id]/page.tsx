@@ -4,7 +4,6 @@ import React from "react";
 import { useParams } from "next/navigation";
 
 import Bg from "@/components/background/bg";
-import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 import Footer from "@/app/footer";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import { editors } from "@/data/editors";
@@ -22,7 +21,6 @@ export default function EditorPage() {
   return (
     <>
       <Bg />
-      <ScrollWrapper>
         <Bg />
         <div className={`min-h-screen mt-[120px]`}>
           <div className={`max-w-[1180px] min-h-screen m-auto`}>
@@ -66,7 +64,6 @@ export default function EditorPage() {
 
           <Footer />
         </div>
-      </ScrollWrapper>
     </>
   );
 }

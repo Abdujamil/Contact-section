@@ -5,12 +5,11 @@ import styles from "@/app/page.module.scss";
 import BlogCard from "@/components/BlogCard/BlogCard";
 import { blogData } from "@/data/blog";
 import Bg from "@/components/background/bg";
-import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 
 const Blog = () => {
   return (
-    <ScrollWrapper>
-        <Bg/>
+    <>
+      <Bg />
       <div className={`h-screen flex flex-col items-center justify-center`}>
         <Bg />
         <div
@@ -44,7 +43,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
-    </ScrollWrapper>
+    </>
   );
 };
 
