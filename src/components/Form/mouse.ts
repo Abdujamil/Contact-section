@@ -14,6 +14,7 @@ export const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
 };
 
+
 export const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -45,7 +46,8 @@ export const setLastClickPosition = (e: React.MouseEvent<HTMLButtonElement>) => 
     };
 };
 
-// Новые функции для переключения вкладок
+
+// Функция для переключения на новую вкладку
 export const switchTab = (
     tab: "contact" | "requisite",
     setActiveTab: React.Dispatch<React.SetStateAction<"contact" | "requisite">>,
@@ -73,12 +75,31 @@ export const switchTab = (
     }, 10);
 };
 
+// Функция только для анимации уже активного блока
+export const animateActiveBlock = (
+    tab: "contact" | "requisite",
+    controls: AnimationControls
+) => {
+    // Запускаем анимацию без переключения вкладки
+    bounceActiveBlock(tab, controls);
+};
+
+// Обновленная функция обработки клика
 export const handleTabClick = (
     tab: "contact" | "requisite",
     setActiveTab: React.Dispatch<React.SetStateAction<"contact" | "requisite">>,
     controls: AnimationControls,
-    styles: Record<string, string>
+    styles: Record<string, string>,
+    currentActiveTab: "contact" | "requisite" // Добавляем текущую активную вкладку
 ) => (e: React.MouseEvent<HTMLButtonElement>) => {
     setLastClickPosition(e);
-    switchTab(tab, setActiveTab, controls, styles);
+
+    // Проверяем - кликают ли по уже активной вкладке
+    if (tab === currentActiveTab) {
+        // Если вкладка уже активна - только проигрываем анимацию
+        animateActiveBlock(tab, controls);
+    } else {
+        // Если кликают по неактивной вкладке - переключаем
+        switchTab(tab, setActiveTab, controls, styles);
+    }
 };

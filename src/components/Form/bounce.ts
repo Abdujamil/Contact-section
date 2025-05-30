@@ -52,6 +52,9 @@ export const bounceActiveBlock = (activeTab: 'contact' | 'requisite', controls: 
         : document.getElementById('requisite-block');
 
     if (block) {
+
+        controls.stop();
+        
         // Сброс анимации перед запуском новой
         block.style.animation = 'none';
         void block.offsetHeight; // Trigger reflow

@@ -18,7 +18,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}>
             <div className="relative !w-[220px] !overflow-hidden">
                 <button
-                    onClick={handleTabClick("contact", setActiveTab, controls, styles)}
+                    onClick={handleTabClick("contact", setActiveTab, controls, styles, activeTab)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
@@ -65,7 +65,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
 
             <div className="relative !w-[220px] !overflow-hidden">
                 <button
-                    onClick={handleTabClick("requisite", setActiveTab, controls, styles)}
+                   onClick={handleTabClick("requisite", setActiveTab, controls, styles, activeTab)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}

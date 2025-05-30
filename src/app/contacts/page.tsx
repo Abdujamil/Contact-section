@@ -415,11 +415,10 @@ export default function Contacts() {
                 id="form-main"
                 initial={{ y: 20, opacity: 1 }}
                 animate={controls}
-                className={`${
-                  styles.contactRightContent
-                } w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 overflow-hidden relative
-                            ${activeTab !== "contact" ? "hidden" : ""}
-                            `}
+                className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 overflow-hidden relative`}
+                style={{
+                  display: activeTab !== "contact" ? "none" : "block",
+                }}
               >
                 <FormProvider {...methods}>
                   {/* {isSubmitted ? (
@@ -748,11 +747,10 @@ export default function Contacts() {
                 id="requisite-block"
                 initial={{ y: 20, opacity: 1 }}
                 animate={controls}
-                className={`${
-                  styles.contactRightContent
-                } w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 ${
-                  activeTab !== "requisite" ? "hidden" : ""
-                }`}
+                className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10`}
+                style={{
+                  display: activeTab !== "requisite" ? "none" : "block",
+                }}
               >
                 <div className="flex justify-between items-end  mb-5">
                   <div className="w-full max-w-[516px]">
