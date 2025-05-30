@@ -624,7 +624,7 @@ export default function Contacts() {
                             visibleError && failCheck && !isPhone && !isEmail
                           }
                           // fail={emailError}
-                          required={isEmail}
+                          required={true}
                           // message={false}
                           disable={!isPhone && !isEmail}
                           value={contactValue}
