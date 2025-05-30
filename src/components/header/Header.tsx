@@ -243,7 +243,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`${styles.header} fixed top-0 z-[1] flex items-center w-full min-h-[60px] h-[60px]`}
+      className={`${styles.header} fixed top-0 z-[999] flex items-center w-full min-h-[60px] h-[60px]`}
       style={{ pointerEvents: 'none' }}
     >
       <div className="flex items-center justify-between w-full px-[30px]" 
