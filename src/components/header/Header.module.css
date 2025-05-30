@@ -235,14 +235,14 @@
   will-change: transform, color, border-color;
   transition: transform 0.2s ease, border-color 0.5s ease;
   color: #4a738c;
-  border-color: #4a738c;
+  /* border-color: #4a738c; */
   background: none;
   box-shadow: none;
 }
 
 .menu-item:active::after,
 .menu-item.fast-click::after {
-  border-color: #4a738c;
+  /* border-color: #4a738c; */
   transition: border-color 0.5s ease;
   opacity: 1;
 }
@@ -326,7 +326,7 @@
 
 .login-button:active::after,
 .login-button.fast-click::after {
-  border-color: #4a738c;
+  /* border-color: #4a738c; */
   transition: border-color 0.5s ease;
   opacity: 1;
 }
@@ -338,8 +338,8 @@
   will-change: transform;
   transition: transform 0.2s ease, color 0.5s ease;
   color: #4a738c;
-  box-shadow: inset 2px 2px 2px 0 rgba(7, 26, 38, 0.5),
-    inset -2px -2px 2px 0 rgba(7, 26, 38, 0.5);
+  /* box-shadow: inset 2px 2px 2px 0 rgba(7, 26, 38, 0.5),
+    inset -2px -2px 2px 0 rgba(7, 26, 38, 0.5); */
 }
 
 .login-button:active::before,
@@ -355,7 +355,7 @@
   will-change: transform, color, border-color;
   transition: transform 0.2s ease, color 0.5s ease, border-color 0.5s ease;
   color: #4a738c !important;
-  border-color: #4a738c;
+  /* border-color: #4a738c; */
   background: none;
   box-shadow: none;
 }
@@ -384,7 +384,7 @@
 
 .menu-item-active:active::after,
 .menu-item-active.fast-click::after {
-  border-color: #4a738c;
+  /* border-color: #4a738c; */
   transition: border-color 0.5s ease;
   opacity: 1;
 }
