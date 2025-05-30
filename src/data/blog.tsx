@@ -80,7 +80,7 @@ export const blogData: FaqItem[] = [
 
           <h3
             id="academic-requirements-0"
-            className={`scroll-mt-[80px] font-[700] text-[20px]`}
+            className={`scroll-mt-[80px] text-[20px]`}
           >
             Ключевые правила оформления транскрибации лекции:
           </h3>
@@ -110,7 +110,7 @@ export const blogData: FaqItem[] = [
 
           <h3
             id="manual-vs-auto-0"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[24px] mb-[10px]"
+            className="scroll-mt-[80px] text-[20px] mt-[24px] mb-[10px]"
           >
             Точность транскрибации: человек против машины
           </h3>
@@ -135,7 +135,7 @@ export const blogData: FaqItem[] = [
           </p>
           <h3
             id="manual-vs-auto-1"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[24px] mb-[10px]"
+            className="scroll-mt-[80px] text-[20px] mt-[24px] mb-[10px]"
           >
             Время и затраты: автоматизация vs ручная
           </h3>
@@ -174,7 +174,7 @@ export const blogData: FaqItem[] = [
           </h2>
           <h3
             id="service-costs-0"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[24px] mb-[16px]"
+            className="scroll-mt-[80px] text-[20px] mt-[24px] mb-[16px]"
           >
             Стоимость услуг: сравнение цен
           </h3>
@@ -187,7 +187,7 @@ export const blogData: FaqItem[] = [
 
           <h3
             id="service-costs-1"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[24px] mb-[10px]"
+            className="scroll-mt-[80px] text-[20px] mt-[24px] mb-[10px]"
           >
             Сравнение затрат:
           </h3>
@@ -387,7 +387,7 @@ export const blogData: FaqItem[] = [
 
           <h3
             id="solutions-edu-0"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[22px] mb-[16px]"
+            className="scroll-mt-[80px] text-[20px] mt-[22px] mb-[16px]"
           >
             Решения AudioSector для учебных заведений
           </h3>
@@ -403,7 +403,7 @@ export const blogData: FaqItem[] = [
 
           <h3
             id="solutions-edu-1"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[30px] mb-[10px]"
+            className="scroll-mt-[80px] text-[20px] mt-[30px] mb-[10px]"
           >
             Применение AudioSector в учебном заведении позволяет:
           </h3>
@@ -434,7 +434,7 @@ export const blogData: FaqItem[] = [
 
           <h3
             id="solutions-edu-2"
-            className="scroll-mt-[80px] text-[20px] font-[700] mt-[24px] mb-[10px]"
+            className="scroll-mt-[80px] text-[20px] mt-[24px] mb-[10px]"
           >
             Решения AudioSector для частных специалистов
           </h3>

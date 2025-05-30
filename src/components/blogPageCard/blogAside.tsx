@@ -82,22 +82,20 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   // Состояние для отслеживания кликнутого элемента
   const [clickedHash, setClickedHash] = useState<string | null>(null);
   // Состояние для сохранения последнего активного элемента
-  const [lastActiveHash, setLastActiveHash] = useState<string>(
-    items.length > 0 ? items[0].id : ""
-  );
-
+  const [lastActiveHash, setLastActiveHash] = useState<string>(items.length > 0 ? items[0].id : "");
+  
   // Простой массив ID без subtitle
   const sectionIds = items.map((item) => item.id);
 
   const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
-
+  
   // Обновляем lastActiveHash когда scrollSpy находит новый активный элемент
   useEffect(() => {
     if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
       setLastActiveHash(scrollSpyHash);
     }
   }, [scrollSpyHash, lastActiveHash]);
-
+  
   // Используем кликнутый хеш, если он есть, иначе последний активный
   const activeHash = clickedHash || lastActiveHash;
 
