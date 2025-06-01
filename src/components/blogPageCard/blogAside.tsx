@@ -82,9 +82,8 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   // Состояние для отслеживания кликнутого элемента
   const [clickedHash, setClickedHash] = useState<string | null>(null);
   // Состояние для сохранения последнего активного элемента
-  const [lastActiveHash, setLastActiveHash] = useState<string>(items.length > 0 ? items[0].id : "");
+  const [lastActiveHash, setLastActiveHash] = useState<string>("");
   
-  // Простой массив ID без subtitle
   const sectionIds = items.map((item) => item.id);
 
   const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
@@ -128,7 +127,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                     : "text-[#878787] hover:text-[#ccc]"
                 } 
                 active:text-[#4a738c]
-                active:will-change-transform
+                 active:will-change-transform
               `}
             >
               {item.title}

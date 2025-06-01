@@ -60,6 +60,7 @@ interface UseScrollSpyOptions {
 
 export function useScrollSpy({ sectionIds, offset = 0 }: UseScrollSpyOptions) {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
   useEffect(() => {
     const elements = sectionIds
@@ -73,6 +74,11 @@ export function useScrollSpy({ sectionIds, offset = 0 }: UseScrollSpyOptions) {
       window;
 
     const handleScroll = () => {
+      // Отмечаем, что пользователь начал скроллить
+      if (!hasScrolled) {
+        setHasScrolled(true);
+      }
+
       let foundActiveId: string | null = null;
 
       // Находим активный элемент
@@ -94,7 +100,7 @@ export function useScrollSpy({ sectionIds, offset = 0 }: UseScrollSpyOptions) {
         }
       } else {
         // Если не нашли активный элемент, проверяем - не находимся ли мы в самом начале
-        if (elements.length > 0) {
+        if (elements.length > 0 && hasScrolled) {
           const firstElement = elements[0];
           const firstRect = firstElement.getBoundingClientRect();
 
@@ -109,13 +115,14 @@ export function useScrollSpy({ sectionIds, offset = 0 }: UseScrollSpyOptions) {
 
     scrollContainer.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
-    handleScroll(); // начальный запуск
+    
+    // Убираем начальный запуск handleScroll()
 
     return () => {
       scrollContainer.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [sectionIds, offset, activeId]);
+  }, [sectionIds, offset, activeId, hasScrolled]);
 
   return activeId;
 }
