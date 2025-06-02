@@ -159,7 +159,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                   ${
                     activeHash === baseId
                       ? "!text-[#3D9ED6] !border-[#353535]"
-                      : "!text-[#878787] !border-transparent hover:!text-[#ccc] hover:!border-[#ccc]"
+                      : "!text-[#878787] !border-transparent hover:!text-[#ccc] hover:!border-[#353535]"
                   }
                 `}
               data-text=""
