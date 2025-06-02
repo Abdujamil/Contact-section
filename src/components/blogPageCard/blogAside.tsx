@@ -155,7 +155,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                   ${HeaderStyles["login-button"]}
                   ${styles["faqTryBtn"]}
                   w-full !h-full group flex items-center !justify-start !text-left
-                  font-normal text-[16px] leading-[20px] ease-in duration-150
+                  font-normal text-[16px] leading-[20px] ease-in duration-150 !p-[12px] !rounded-[6px]
                   ${
                     activeHash === baseId
                       ? "!text-[#3D9ED6] !border-[#353535]"
