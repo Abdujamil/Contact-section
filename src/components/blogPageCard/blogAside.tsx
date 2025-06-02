@@ -166,7 +166,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <span className={`w-full ${
+              <span className={`w-full !text-[16px] ${
                     activeHash === baseId
                       ? "!text-[#3D9ED6] !border-[#353535]"
                       : "!text-[#878787] group-hover:!text-[#ccc]"
