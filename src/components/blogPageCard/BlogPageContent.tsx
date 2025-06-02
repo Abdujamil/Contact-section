@@ -168,6 +168,7 @@ export default function BlogPageContent({
           <section
             className={`${styles.accordion} w-full flex flex-col gap-[5px]`}
           >
+            
             {openFaqItem && (
               <div
                 className={`${styles.BlogPageContent} text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
@@ -184,6 +185,7 @@ export default function BlogPageContent({
                 {currentFaqItem.fullAnswer}
               </div>
             )}
+
             <div
               className={`w-full flex items-center justify-between mt-[30px]`}
             >

@@ -23,7 +23,7 @@ export const blogData: FaqItem[] = [
   {
     id: 1,
     num: "1",
-    editorId: 2,
+    editorId: 1,
     title: "Транскрибация вакансии без опыта работы для школьников?",
     date: "2020-03-01",
     src: "/1.png",
@@ -918,7 +918,7 @@ export const blogData: FaqItem[] = [
   {
     id: 5,
     num: "5",
-    editorId: 5,
+    editorId: 1,
     fullAnswer: (
       <>
         <h2
@@ -1044,7 +1044,7 @@ export const blogData: FaqItem[] = [
   {
     id: 6,
     num: "6",
-    editorId: 6,
+    editorId: 2,
     fullAnswer: (
       <>
         <h2
@@ -1170,7 +1170,7 @@ export const blogData: FaqItem[] = [
   {
     id: 7,
     num: "7",
-    editorId: 7,
+    editorId: 3,
     fullAnswer: (
       <>
         <h2
@@ -1296,7 +1296,7 @@ export const blogData: FaqItem[] = [
   {
     id: 8,
     num: "8",
-    editorId: 8,
+    editorId: 4,
     fullAnswer: (
       <>
         <h2
@@ -1422,7 +1422,7 @@ export const blogData: FaqItem[] = [
   {
     id: 9,
     num: "9",
-    editorId: 9,
+    editorId: 1,
     fullAnswer: (
       <>
         <h2
@@ -1548,7 +1548,7 @@ export const blogData: FaqItem[] = [
   {
     id: 10,
     num: "10",
-    editorId: 10,
+    editorId: 2,
     fullAnswer: (
       <>
         <h2
@@ -1674,7 +1674,7 @@ export const blogData: FaqItem[] = [
   {
     id: 11,
     num: "11",
-    editorId: 11,
+    editorId: 3,
     fullAnswer: (
       <>
         <h2
@@ -1800,7 +1800,7 @@ export const blogData: FaqItem[] = [
   {
     id: 12,
     num: "12",
-    editorId: 12,
+    editorId: 4,
     fullAnswer: (
       <>
         <h2
@@ -1926,7 +1926,7 @@ export const blogData: FaqItem[] = [
   {
     id: 13,
     num: "13",
-    editorId: 13,
+    editorId: 1,
     fullAnswer: (
       <>
         <h2
@@ -2052,7 +2052,7 @@ export const blogData: FaqItem[] = [
   {
     id: 14,
     num: "14",
-    editorId: 14,
+    editorId: 2,
     fullAnswer: (
       <>
         <h2
@@ -2178,7 +2178,7 @@ export const blogData: FaqItem[] = [
   {
     id: 15,
     num: "15",
-    editorId: 15,
+    editorId: 3,
     fullAnswer: (
       <>
         <h2
@@ -2304,7 +2304,7 @@ export const blogData: FaqItem[] = [
   {
     id: 16,
     num: "16",
-    editorId: 16,
+    editorId: 4,
     fullAnswer: (
       <>
         <h2
