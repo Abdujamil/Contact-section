@@ -13,7 +13,7 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ id, num, title, date, src }) => {
   return (
-    <div className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden active:scale-[0.95] transition-transform ease-in duration-100`}
+    <div className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden active:scale-[0.95] transition-transform ease-in duration-200`}
           style={{
             willChange: "transform",
             transform: "translateZ(0)",

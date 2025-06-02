@@ -123,8 +123,8 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                 ${styles.linkGlow}
                 ${
                   activeHash === baseId
-                    ? "text-[#3D9ED6]"
-                    : "text-[#878787] hover:text-[#ccc]"
+                    ? "text-[#3D9ED6] border border-[#353535] rounded-[6px] p-[6px]"
+                    : "text-[#878787] hover:text-[#ccc] p-[6px] pl-0"
                 } 
                 active:text-[#4a738c]
                  active:will-change-transform

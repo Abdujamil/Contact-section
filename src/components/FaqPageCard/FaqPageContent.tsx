@@ -234,7 +234,7 @@ export default function FaqPageContent({
                 <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-[8px]" />
               )}
             </div>
-            <FaqAside items={openFaqItem.aside} />
+            {/* <FaqAside items={openFaqItem.aside} /> */}
           </>
         ) : (
           <div className="relative w-full h-[260px] mb-[20px] rounded-[8px] border border-[#353535]">
