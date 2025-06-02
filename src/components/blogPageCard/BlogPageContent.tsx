@@ -89,7 +89,7 @@ export default function BlogPageContent({
         <aside className="sticky top-20 h-fit z-[10] w-[260px]">
           {showRegisterPromo && (
             <div
-              className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[8px]`}
+              className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[6px]`}
             >
               <p
                 className={`${styles.text} mb-[16px] text-[#3D9ED6] text-[20px] font-[400] leading-[110%]`}
@@ -175,7 +175,7 @@ export default function BlogPageContent({
               >
                 <div className="flex items-center justify-center mb-[30px]">
                   <Image
-                    className="rounded-[8px]"
+                    className="rounded-[6px]"
                     src="/blgLg1.png"
                     alt="blog img"
                     width={600}

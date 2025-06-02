@@ -151,26 +151,33 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
               href={baseId}
               onClick={() => handleAnchorClick(baseId)}
               className={`
+                group
                   ${styles["blogAsideBtn"]}
                   ${HeaderStyles["login-button"]}
                   ${styles["faqTryBtn"]}
-                  w-full !h-full group flex items-center !justify-start !text-left
+                  w-full !h-full flex items-center !justify-start !text-left
                   font-normal text-[16px] leading-[20px] ease-in duration-150 !p-[12px] !rounded-[6px]
                   ${
                     activeHash === baseId
-                      ? "!text-[#3D9ED6] !border-[#353535]"
-                      : "!text-[#878787] !border-transparent hover:!border-[#353535]"
+                      ? `${styles.blogAsideBtnActive} !text-[#3D9ED6] !border-[#353535]`
+                      : "!border-transparent hover:!border-[#353535] group-hover:!text-[#adadada]"
                   }
                 `}
               data-text=""
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <span className={`w-full !text-[16px] ${
-                    activeHash === baseId
-                      ? "!text-[#3D9ED6] !border-[#353535]"
-                      : "!text-[#878787] "
-                  }`}>{item.title}</span>
+              <span
+                className={`w-full !text-[16px] ${
+                  activeHash === baseId
+                    ? "!text-[#3D9ED6]"
+                    : "group-hover:!text-[#adadad]"
+                }`}
+              >
+                {item.title}
+              </span>
+
+              {activeHash === baseId && <div className={styles.highlight} />}
             </a>
 
             {/* <a
