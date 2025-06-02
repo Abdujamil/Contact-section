@@ -102,7 +102,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { faqData } from "@/data/faq";
 import CardListt from "./ShowCardList";
-import FaqAside from "./FaqAside";
+// import FaqAside from "./FaqAside";
 import styles from "../../app/faq/faq.module.scss";
 import HeaderStyles from "../header/Header.module.css";
 import { useAuth } from "@/components/context/AuthContext";
