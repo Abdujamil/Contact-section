@@ -26,7 +26,6 @@ export default function EditorPage() {
   return (
     <>
       <Bg />
-      <Bg />
       <div className={`min-h-screen mt-[120px]`}>
         <div className={`max-w-[1180px] min-h-screen m-auto`}>
           <Breadcrumbs

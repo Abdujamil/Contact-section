@@ -11,6 +11,9 @@ import Link from "next/link";
 import BlogCard from "../BlogCard/BlogCard";
 import { useRouter } from "next/navigation";
 import { editors } from "@/data/editors";
+import Breadcrumbs from "../breadCrumbs/breadCrumbs";
+import ScrollProgress from "../ScrollProgress/ScrollProgress";
+
 export default function BlogPageContent({
   id,
   fromHeader,
@@ -85,6 +88,9 @@ export default function BlogPageContent({
   return (
     <>
       <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}>
+        <Breadcrumbs blogTitle={currentFaqItem?.title} />
+
+        <ScrollProgress />
         {/* Левый ASIDE (BlogAside) */}
         <aside className="sticky top-20 h-fit z-[10] w-[260px]">
           {showRegisterPromo && (
@@ -168,7 +174,6 @@ export default function BlogPageContent({
           <section
             className={`${styles.accordion} w-full flex flex-col gap-[5px]`}
           >
-            
             {openFaqItem && (
               <div
                 className={`${styles.BlogPageContent} text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
@@ -216,16 +221,16 @@ export default function BlogPageContent({
                       <path
                         d="M20.1836 13H5.81716"
                         stroke="#191919"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M9.92167 8.8953L5.81698 13L9.92167 17.1047"
                         stroke="#191919"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </g>
                     <defs>
@@ -263,16 +268,16 @@ export default function BlogPageContent({
                       <path
                         d="M20.1836 13H5.81716"
                         stroke="#191919"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                       <path
                         d="M9.92167 8.8953L5.81698 13L9.92167 17.1047"
                         stroke="#191919"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       />
                     </g>
                     <defs>

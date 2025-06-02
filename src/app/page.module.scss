@@ -52,71 +52,7 @@
           border: 1px solid #353535;
           border-radius: 4px;
 
-          .menu-item {
-            align-items: center;
-            color: #878787;
-            display: inline-block;
-            flex: 1 0 auto;
-            font-size: 16px;
-            justify-content: left;
-            overflow: visible;
-            position: relative;
-            text-align: left;
-            transition: transform 0.2s ease, color 0.5s ease;
-            will-change: transform, color, clip-path;
-            background: none;
 
-            &:hover {
-              color: #3D9ED6;
-            }
-          }
-
-          .menu-item::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-bottom-width: 1px;
-            border-bottom-style: solid;
-            border-bottom-color: #3D9ED6;
-            clip-path: inset(0 0 0 100%);
-            transition: clip-path 0.2s ease, border-color 0.5s ease;
-            transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-          }
-
-          .menu-item::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            width: 80%;
-            color: #ccc;
-            overflow: hidden;
-            white-space: nowrap;
-            transition: transform 0.2s ease, clip-path 0.2s ease, color 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 19px;
-            padding: 7px 20px;
-            clip-path: inset(0 0 0 100%);
-            transform-origin: center;
-            will-change: transform, clip-path, color, border-color;
-          }
-
-          .menu-item:hover::before {
-            clip-path: inset(0 0 0 0);
-          }
-
-          .menu-item:hover::after {
-            clip-path: inset(0 0 0 0);
-          }
         }
 
         .formInpts {
@@ -149,6 +85,72 @@
       }
     }
   }
+}
+
+.menu-item {
+  align-items: center;
+  color: #878787;
+  display: inline-block;
+  flex: 1 0 auto;
+  font-size: 16px;
+  justify-content: left;
+  overflow: visible;
+  position: relative;
+  text-align: left;
+  transition: transform 0.2s ease, color 0.5s ease;
+  will-change: transform, color, clip-path;
+  background: none;
+
+  &:hover {
+    color: #3D9ED6;
+  }
+}
+
+.menu-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #3D9ED6;
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 0.2s ease, border-color 0.5s ease;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.menu-item::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 80%;
+  color: #ccc;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: transform 0.2s ease, clip-path 0.2s ease, color 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 19px;
+  padding: 7px 20px;
+  clip-path: inset(0 0 0 100%);
+  transform-origin: center;
+  will-change: transform, clip-path, color, border-color;
+}
+
+.menu-item:hover::before {
+  clip-path: inset(0 0 0 0);
+}
+
+.menu-item:hover::after {
+  clip-path: inset(0 0 0 0);
 }
 
 .btn {
