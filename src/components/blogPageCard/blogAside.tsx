@@ -159,8 +159,8 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                   font-normal text-[16px] leading-[20px] ease-in duration-150 !p-[12px] !rounded-[6px]
                   ${
                     activeHash === baseId
-                      ? `${styles.blogAsideBtnActive} !text-[#3D9ED6] !border-[#adadada]`
-                      : "!border-transparent hover:!border-[#353535] group-hover:!text-[#adadada]"
+                      ? `${styles.blogAsideBtnActive} !text-[#3D9ED6] !border-[#adadad]`
+                      : "!border-transparent hover:!border-[#353535] group-hover:!text-[#ccc]"
                   }
                 `}
               data-text=""
