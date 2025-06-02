@@ -112,7 +112,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   };
 
   return (
-    <ul className="space-y-4 font-bold text-sm">
+    <ul className="space-y-[9px] font-bold text-sm">
       {items.map((item) => {
         const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
 
@@ -159,7 +159,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                   ${
                     activeHash === baseId
                       ? "!text-[#3D9ED6] !border-[#353535]"
-                      : "!text-[#878787] !border-transparent hover:!text-[#ccc] hover:!border-[#353535]"
+                      : "!text-[#878787] !border-transparent hover:!border-[#353535]"
                   }
                 `}
               data-text=""
@@ -169,7 +169,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
               <span className={`w-full !text-[16px] ${
                     activeHash === baseId
                       ? "!text-[#3D9ED6] !border-[#353535]"
-                      : "!text-[#878787] group-hover:!text-[#ccc]"
+                      : "!text-[#878787] "
                   }`}>{item.title}</span>
             </a>
 
