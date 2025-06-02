@@ -92,7 +92,7 @@
 import React from "react";
 import styles from "@/app/page.module.scss";
 import Image, { StaticImageData } from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface BlogCardProps {
