@@ -103,22 +103,29 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     }
   }, [clickedHash, scrollSpyHash]);
 
-  const handleAnchorClick = (href: string, index: number, e: React.MouseEvent) => {
+  const handleAnchorClick = (
+    href: string,
+    index: number,
+    e: React.MouseEvent
+  ) => {
     e.preventDefault();
 
     if (!scrollContainer) return;
 
     // Получаем доступ к кастомному скроллу SimpleBar
-    const simpleBar = (scrollContainer as any).__isSimpleBar ?
-        scrollContainer : scrollContainer.closest('.simplebar-content-wrapper');
+    type SimpleBarElement = HTMLElement & { __isSimpleBar?: boolean };
+
+    const simpleBar = (scrollContainer as SimpleBarElement).__isSimpleBar
+      ? scrollContainer
+      : scrollContainer?.closest(".simplebar-content-wrapper");
 
     if (!simpleBar) return;
 
     // Для первого элемента - скроллим в самый верх
     if (index === 0) {
-      simpleBar.scrollTo({ top: 0, behavior: 'smooth' });
+      simpleBar.scrollTo({ top: 0, behavior: "smooth" });
       setClickedHash(href);
-      window.history.pushState(null, '', window.location.pathname);
+      window.history.pushState(null, "", window.location.pathname);
       return;
     }
 
@@ -126,10 +133,10 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     if (index === items.length - 1) {
       simpleBar.scrollTo({
         top: simpleBar.scrollHeight,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
       setClickedHash(href);
-      window.history.pushState(null, '', window.location.pathname + href);
+      window.history.pushState(null, "", window.location.pathname + href);
       return;
     }
 
@@ -140,25 +147,25 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
       const targetPosition = (targetElement as HTMLElement).offsetTop - offset;
       simpleBar.scrollTo({
         top: targetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
       setClickedHash(href);
     }
   };
 
   return (
-      <ul className="space-y-[5px] font-bold text-sm">
-        {items.map((item, index) => {
-          const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
-          const isFirst = index === 0;
-          const isLast = index === items.length - 1;
+    <ul className="space-y-[5px] font-bold text-sm">
+      {items.map((item, index) => {
+        const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
+        // const isFirst = index === 0;
+        // const isLast = index === items.length - 1;
 
-          return (
-              <li key={baseId}>
-                <a
-                    href={baseId} // Для первого элемента используем #top
-                    onClick={(e) => handleAnchorClick(baseId, index, e)}
-                    className={`
+        return (
+          <li key={baseId}>
+            <a
+              href={baseId} // Для первого элемента используем #top
+              onClick={(e) => handleAnchorClick(baseId, index, e)}
+              className={`
                 group
                 ${styles["blogAsideBtn"]}
                 ${HeaderStyles["login-button"]}
@@ -166,30 +173,30 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                 w-full !h-full flex items-center !justify-start !text-left
                 font-normal text-[16px] leading-[20px] ease-in duration-150 !p-[12px] !rounded-[6px]
                 ${
-                        activeHash === baseId
-                            ? `${styles.blogAsideBtnActive} !text-[#3D9ED6] !border-[#adadad]`
-                            : "!border-transparent hover:!border-[#353535] group-hover:!text-[#ccc]"
-                    }
+                  activeHash === baseId
+                    ? `${styles.blogAsideBtnActive} !text-[#3D9ED6] !border-[#adadad]`
+                    : "!border-transparent hover:!border-[#353535] group-hover:!text-[#ccc]"
+                }
               `}
-                    data-text=""
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                >
+              data-text=""
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+            >
               <span
-                  className={`w-full !text-[16px] ${
-                      activeHash === baseId
-                          ? "!text-[#3D9ED6]"
-                          : "group-hover:!text-[#adadad]"
-                  }`}
+                className={`w-full !text-[16px] ${
+                  activeHash === baseId
+                    ? "!text-[#3D9ED6]"
+                    : "group-hover:!text-[#adadad]"
+                }`}
               >
                 {item.title}
               </span>
 
-                  {activeHash === baseId && <div className={styles.highlight} />}
-                </a>
-              </li>
-          );
-        })}
-      </ul>
+              {activeHash === baseId && <div className={styles.highlight} />}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
