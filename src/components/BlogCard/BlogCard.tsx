@@ -103,7 +103,7 @@ interface BlogCardProps {
   src: string | StaticImageData;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ id, num, title, date, src }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
   const router = useRouter();
 
   // const handleCardClick = () => {
