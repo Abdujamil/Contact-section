@@ -12,7 +12,6 @@ import BlogCard from "../BlogCard/BlogCard";
 import { useRouter } from "next/navigation";
 import { editors } from "@/data/editors";
 import Breadcrumbs from "../breadCrumbs/breadCrumbs";
-import ScrollProgress from "../ScrollProgress/ScrollProgress";
 
 export default function BlogPageContent({
   id,
@@ -90,7 +89,6 @@ export default function BlogPageContent({
       <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}>
         <Breadcrumbs blogTitle={currentFaqItem?.title} />
 
-        <ScrollProgress />
         {/* Левый ASIDE (BlogAside) */}
         <aside className="sticky top-20 h-fit z-[10] w-[260px]">
           {showRegisterPromo && (
