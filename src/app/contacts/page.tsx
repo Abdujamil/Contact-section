@@ -21,6 +21,7 @@ import { bounceElements, bounceActiveBlock } from "@/components/Form/bounce";
 import Btns from "@/components/ContactsBlockBtns/btns";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
+import Link from "next/link";
 
 export default function Contacts() {
   const controls = useAnimation();
@@ -415,7 +416,7 @@ export default function Contacts() {
                 id="form-main"
                 initial={{ y: 20, opacity: 1 }}
                 animate={controls}
-                className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 overflow-hidden relative`}
+                className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10 relative`}
                 style={{
                   display: activeTab !== "contact" ? "none" : "block",
                 }}
@@ -740,6 +741,16 @@ export default function Contacts() {
                     </div>
                   )}
                 </FormProvider>
+
+                <motion.div
+                    initial={{ y: 40, opacity: 0 }}
+                    animate={controls}
+                >
+                  <p className={`text-center relative bottom-[-50px]`}>
+                    Нажимая на кнопку «Отправить» вы соглашаетесь с
+                    <Link href="/politics" className={`text-[#3D9ED6]`}> политикой конфиденциальности</Link>
+                  </p>
+                </motion.div>
               </motion.div>
 
               {/* Блок "Реквизиты" */}

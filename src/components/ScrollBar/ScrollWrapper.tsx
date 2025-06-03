@@ -399,6 +399,43 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
       }
     };
 
+    // const handleAnchorClick = (e: MouseEvent) => {
+    //   const target = e.target as HTMLElement;
+    //   if (target.tagName === "A") {
+    //     const anchor = target.getAttribute("href");
+    //     if (!anchor) return;
+    //
+    //     e.preventDefault();
+    //
+    //     // Получаем индекс элемента из data-атрибута
+    //     const index = target.dataset.index ? parseInt(target.dataset.index) : -1;
+    //     const totalItems = target.dataset.totalItems ? parseInt(target.dataset.totalItems) : -1;
+    //
+    //     // Для первого элемента - скролл вверх
+    //     if (anchor === "#top" || index === 0) {
+    //       targetScroll = 0;
+    //     }
+    //     // Для последнего элемента - скролл вниз
+    //     else if (index === totalItems - 1) {
+    //       targetScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+    //     }
+    //     // Для остальных якорей
+    //     else if (anchor.startsWith("#") && anchor !== "#") {
+    //       const el = scrollContainer.querySelector(anchor);
+    //       if (el) {
+    //         const offset = 200;
+    //         const elTop = (el as HTMLElement).offsetTop - offset;
+    //         targetScroll = Math.max(0, Math.min(elTop, scrollContainer.scrollHeight - scrollContainer.clientHeight));
+    //       }
+    //     }
+    //
+    //     if (!isScrolling) {
+    //       isScrolling = true;
+    //       requestAnimationFrame(smoothScroll);
+    //     }
+    //   }
+    // };
+
     const setupAnimation = () => {
       const pinWrap = scrollContainer.querySelector(".pin-wrap") as HTMLElement;
       const section = scrollContainer.querySelector(

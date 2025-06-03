@@ -30,8 +30,7 @@ export default function blogPage({
   return (
     <>
       <Bg />
-        <Bg />
-        <div className={`h-dvh mt-[120px]`}>
+        <div className={`h-dvh mt-[134px]`}>
           <h1
             className={`${styles.txtGradientRight} max-w-[882px] m-auto text-center text-[56px] leading-[110%] mb-10`}
           >
