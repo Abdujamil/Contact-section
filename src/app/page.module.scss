@@ -336,7 +336,7 @@
   }
 
   span {
-    transform: translate(55px);
+    transform: translate(96px);
   }
 
   .sendIconLeft {
@@ -347,6 +347,14 @@
   .sendIconRight {
     opacity: 0;
     transform: translate(45px);
+  }
+}
+
+.btn.blogNextBtn{
+  &:hover{
+    span{
+      transform: translateX(107px);
+    }
   }
 }
 

@@ -11,6 +11,7 @@ interface FaqItem {
   id: number;
   num: string;
   title: string;
+  slug: string;
   date: string;
   src: string | StaticImageData;
   fullAnswer: ReactNode;
@@ -25,6 +26,7 @@ export const blogData: FaqItem[] = [
     num: "1",
     editorId: 1,
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-lektsii",
     date: "2020-03-01",
     src: "/1.png",
     largeImgSrc: "/blgLg1.png",
@@ -640,6 +642,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/2.png",
     largeImgSrc: "/blgLg1.png",
@@ -766,6 +769,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/3.png",
     largeImgSrc: "/blgLg1.png",
@@ -892,6 +896,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/4.png",
     largeImgSrc: "/blgLg1.png",
@@ -1018,6 +1023,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/5.png",
     largeImgSrc: "/blgLg1.png",
@@ -1144,6 +1150,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/6.png",
     largeImgSrc: "/blgLg1.png",
@@ -1270,6 +1277,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/2.png",
     largeImgSrc: "/blgLg1.png",
@@ -1396,6 +1404,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/3.png",
     largeImgSrc: "/blgLg1.png",
@@ -1522,6 +1531,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/4.png",
     largeImgSrc: "/blgLg1.png",
@@ -1648,6 +1658,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/6.png",
     largeImgSrc: "/blgLg1.png",
@@ -1774,6 +1785,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/3.png",
     largeImgSrc: "/blgLg1.png",
@@ -1900,6 +1912,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/6.png",
     largeImgSrc: "/blgLg1.png",
@@ -2026,6 +2039,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/2.png",
     largeImgSrc: "/blgLg1.png",
@@ -2152,6 +2166,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/4.png",
     largeImgSrc: "/blgLg1.png",
@@ -2278,6 +2293,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/5.png",
     largeImgSrc: "/blgLg1.png",
@@ -2404,6 +2420,7 @@ export const blogData: FaqItem[] = [
     ),
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
+    slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
     date: "2020-03-01",
     src: "/1.png",
     largeImgSrc: "/blgLg1.png",

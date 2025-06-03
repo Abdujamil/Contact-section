@@ -93,6 +93,7 @@ import styles from "@/app/page.module.scss";
 import Image, { StaticImageData } from "next/image";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { createSlug } from "@/components/utils/createSlug"; 
 
 interface BlogCardProps {
   id: number;
@@ -105,12 +106,26 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ id, num, title, date, src }) => {
   const router = useRouter();
 
+  // const handleCardClick = () => {
+  //   router.push(`/blogPage/${id}`);
+  // };
+
   const handleCardClick = () => {
-    router.push(`/blogPage/${id}`);
+    const slug = createSlug(title);
+    console.log('Original title:', title);
+    console.log('Generated slug:', slug);
+    console.log('Final URL:', `/blogPage/${slug}`);
+    
+    if (!slug) {
+      console.error('Slug is empty for title:', title);
+      return;
+    }
+    
+    router.push(`/blogPage/${slug}`);
   };
 
   const handleAuthorClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Предотвращаем всплытие события
+    e.stopPropagation();
     router.push('/');
   };
 
