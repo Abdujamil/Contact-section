@@ -192,7 +192,7 @@ export default function BlogPageContent({
             <div
               className={`w-full flex items-center justify-between mt-[30px]`}
             >
-              <div className="relative w-full max-w-[218px] h-[51px] !overflow-hidden">
+              <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
                 <button
                   onClick={handlePrev}
                   className={` ${styles["btn"]} ${styles["blogLeftBtn"]} ${HeaderStyles["login-button"]} w-full !h-full group flex items-center !justify-between`}
@@ -247,7 +247,7 @@ export default function BlogPageContent({
                     Предыдущая
                   </span>
 
-                  <svg
+                  {/* <svg
                     className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
                     width="26"
                     height="26"
@@ -288,11 +288,11 @@ export default function BlogPageContent({
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
                 </button>
                 <div className={styles.highlight} />
               </div>
-              <div className="relative w-full max-w-[218px] h-[51px] !overflow-hidden">
+              <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
                 <button
                   onClick={handleNext}
                   className={` ${styles["btn"]} ${styles["blogNextBtn"]} ${HeaderStyles["login-button"]}  w-full !h-full group flex items-center !justify-between`}
@@ -300,7 +300,7 @@ export default function BlogPageContent({
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <svg
+                  {/* <svg
                     className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
                     width="26"
                     height="26"
@@ -342,7 +342,7 @@ export default function BlogPageContent({
                         />
                       </clipPath>
                     </defs>
-                  </svg>
+                  </svg> */}
 
                   <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
                     Следующая

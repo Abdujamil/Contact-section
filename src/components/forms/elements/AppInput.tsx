@@ -17,6 +17,8 @@ interface AppInputProps {
     onChange?: (value: string) => void;
     onBlur?: (value: string) => void;
     onFocus?: () => void;
+    defaultValue?: string;
+    autocomplete?: string,
 }
 
 const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
@@ -33,6 +35,8 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                                                   value: propValue,
                                                                   onChange,
                                                                   onFocus,
+                                                                  defaultValue,
+                                                                  autocomplete,
                                                                   onBlur
                                                               }, ref) => {
     const {register, formState: {errors, isSubmitted, submitCount}, setValue, watch} = useFormContext();
@@ -109,6 +113,9 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         return () => subscription.unsubscribe();
     }, [inputName, watch]);
 
+    useEffect(() => {
+        setValue(inputName, defaultValue || '')
+    }, [title])
 
     return (
         <div className={`relative z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
@@ -123,7 +130,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     className={`field__input ${className} ${fail && 'error !text-[red]'}
                     ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} focus:!bg-[#20272A] active:bg-[#20272A]'}`}
                     placeholder=""
-                    autoComplete={getAutocompleteName(inputName)}
+                    autoComplete={getAutocompleteName(inputName) || autocomplete}
                     value={propValue !== undefined ? propValue : internalValue}
                     onChange={handleChange}
                     onBlur={(e) => {

@@ -86,57 +86,12 @@ export default function Contacts() {
   const [wasSubmittedSuccessfully, setWasSubmittedSuccessfully] =
     useState(false);
 
-  // Таймер обратного отсчета
-  // useEffect(() => {
-  //   if (!isSubmitted) return;
-
-  //   const timer = setInterval(() => {
-  //     setCountdown((prev) => {
-  //       if (prev <= 1) {
-  //         clearInterval(timer);
-  //         setIsSubmitted(false);
-  //         methods.reset(); // Сбрасываем форму
-  //         return 10;
-  //       }
-  //       return prev - 1;
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(timer);
-  // }, [isSubmitted, methods]);
-
-  // useEffect(() => {
-  //   if (!submitCount) return;
-
-  //   const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
-  //   const isContactValid = isEmail;
-  //   // const isContactValid = isEmail || isPhone;
-
-  //   if (!isSelectValid) {
-  //     setSelectError(true);
-  //   } else {
-  //     setSelectError(false);
-  //   }
-
-  //   if (!isContactValid) {
-  //     setFailCheck(true);
-  //     bounceElements();
-  //   } else {
-  //     setFailCheck(false);
-  //   }
-
-  //   if (!isSelectValid || !isContactValid) {
-  //     setVisibleError(true);
-  //   } else {
-  //     setVisibleError(false);
-  //     // validContact(contactValue, isEmail, isPhone);
-  //     validContact(contactValue, isEmail, isPhone);
-  //   }
-  // }, [submitCount]);
-
+  const [contactData, setContactData] = useState({
+    phone: "",
+    email: "",
+  });
   // Validation
   const { setFocus } = methods;
-  // const contactValue = watch("contact") || "";
 
   const validContactt = (value: string) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -150,10 +105,34 @@ export default function Contacts() {
       setEmailError(true);
       setEmailSuccessful(false);
 
+      if (isEmail) {
+        setContactData((prev) => ({
+          ...prev,
+          email: "",
+        }));
+      } else {
+        setContactData((prev) => ({
+          ...prev,
+          phone: "",
+        }));
+      }
+
       return;
     } else {
       setEmailError(false);
       setEmailSuccessful(true);
+
+      if (isEmail) {
+        setContactData((prev) => ({
+          ...prev,
+          email: value.trim(),
+        }));
+      } else {
+        setContactData((prev) => ({
+          ...prev,
+          phone: value.trim(),
+        }));
+      }
     }
   };
 
@@ -191,29 +170,6 @@ export default function Contacts() {
 
   useEffect(() => {
     bounceActiveBlock(activeTab, controls);
-    // const activeButton = activeTab === 'contact'
-    //     ? document.querySelector(`.${styles["contact-btn"]}`) as HTMLButtonElement
-    //     : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
-    //
-    // if (activeButton) {
-    //     if (lastClickPosition) {
-    //         activeButton.style.setProperty("--mouse-x", `${lastClickPosition.x}px`);
-    //         activeButton.style.setProperty("--mouse-y", `${lastClickPosition.y}px`);
-    //         activeButton.style.setProperty("--last-mouse-x", `${lastClickPosition.x}px`);
-    //         activeButton.style.setProperty("--last-mouse-y", `${lastClickPosition.y}px`);
-    //     } else {
-    //         initializeMousePosition(activeButton);
-    //     }
-    //
-    //     activeButton.addEventListener("mouseenter", () => {
-    //         const rect = activeButton.getBoundingClientRect();
-    //         const x = rect.width / 2;
-    //         const y = rect.height / 2;
-    //
-    //         activeButton.style.setProperty("--mouse-x", `${x}px`);
-    //         activeButton.style.setProperty("--mouse-y", `${y}px`);
-    //     });
-    // }
   }, [activeTab]);
 
   useEffect(() => {
@@ -232,89 +188,6 @@ export default function Contacts() {
     }
   }, [contactValue, isEmail, isPhone]);
 
-  // const onSubmit = async (data: Record<string, unknown>) => {
-  //   const formData = new FormData();
-  //   // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  //   // const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
-
-  //   // Проверка валидности контакта
-  //   const contactValue = typeof data.Contact === "string" ? data.Contact : "";
-  //   const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
-
-  //   if (
-  //     (!emailRegex.test(contactValue.trim()) && isEmail) ||
-  //     // (!phoneRegex.test(contactValue.trim()) && isPhone) ||
-  //     !isSelectValid
-  //   ) {
-  //     setEmailError(true);
-  //     setVisibleError(true);
-  //     setSelectError(!isSelectValid);
-  //     setEmailSuccessful(false);
-  //     return;
-  //   } else {
-  //     setEmailError(false);
-  //     setVisibleError(false);
-  //     setSelectError(false);
-  //   }
-
-  //   // Заполнение FormData
-  //   Object.entries(data).forEach(([key, value]) => {
-  //     if (value !== undefined && value !== null) {
-  //       formData.append(key, value instanceof Blob ? value : String(value));
-  //     }
-  //   });
-
-  //   // Валидация формы
-  //   const isFormValid = await trigger(undefined, { shouldFocus: true });
-  //   // const isContactMethodSelected = isEmail || isPhone;
-  //   const isContactMethodSelected = isEmail;
-  //   const isContactValid = isContactMethodSelected
-  //     ? validContact(contactValue, isEmail)
-  //     : false;
-
-  //   // Обработка ошибок
-  //   if (!isFormValid || !isContactMethodSelected || !isContactValid) {
-  //     bounceElements();
-  //     setSelectError(!isSelectValid);
-  //     setFailCheck(true);
-  //     setVisibleError(true);
-
-  //     if (!isContactMethodSelected) {
-  //       console.log("Ошибка: не выбран способ связи");
-  //     } else if (!isContactValid) {
-  //       console.log("Ошибка: неверный формат контакта");
-  //     } else {
-  //       console.log("Ошибка: не заполнены обязательные поля");
-  //     }
-  //     return;
-  //   }
-
-  //   // Сброс формы
-  //   console.log("Форма отправлена:", data);
-  //   setEmailError(false);
-  //   setVisibleError(false);
-  //   setSelectError(false);
-  //   setFailCheck(false); // Важное изменение!
-  //   setEmailSuccessful(false);
-
-  //   // Сброс значений
-  //   setIsSubmitted(true);
-  //   // setIsPhone(false); // Сбрасываем чекбокс телефона
-  //   // setIsEmail(false); // Сбрасываем чекбокс email
-  //   setSelectedOption("Тема");
-  //   setContactValue("");
-  //   setText("");
-  //   setComment('')
-
-  //   // Полный сброс формы
-  //   reset();
-
-  //   // Сброс файлового инпута
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.value = "";
-  //   }
-  // };
-
   const onSubmit = async (data: Record<string, unknown>) => {
     const formData = new FormData();
 
@@ -324,6 +197,9 @@ export default function Contacts() {
     const isContactMethodSelected = isEmail || isPhone;
 
     setShowPolicy(true);
+
+    formData.append("email", contactData.email);
+    formData.append("phone", contactData.phone);
 
     // 1. Проверяем email только если он выбран
     const isEmailValid = !isEmail || (isEmail && emailRegex.test(contactValue));
@@ -372,14 +248,6 @@ export default function Contacts() {
     setShowPolicy(true);
   };
 
-  // Функция для обработки изменения темы
-  // const handleTopicChange = (value: string) => {
-  //   setSelectedOption(value);
-  //   if (value !== "Тема") {
-  //     setShowPolicy(true);
-  //   }
-  // };
-
   useEffect(() => {
     setVisibleError(false);
     setTimeout(() => setVisibleError(true), 30);
@@ -390,16 +258,6 @@ export default function Contacts() {
       setSelectError(false);
     }
   }, [selectedOption]);
-  // const showEmailCheckboxError =
-  //   visibleError &&
-  //   failCheck &&
-  //   isEmail &&
-  //   !emailRegex.test(contactValue.trim());
-  // const showPhoneCheckboxError =
-  //   visibleError &&
-  //   failCheck &&
-  //   isPhone &&
-  //   !phoneRegex.test(contactValue.trim());
 
   return (
     <>
@@ -438,13 +296,6 @@ export default function Contacts() {
                 }}
               >
                 <FormProvider {...methods}>
-                  {/* {isSubmitted ? (
-                    <FlightSuccess
-                      close={() => setIsSubmitted(false)}
-                      small={true}
-                      text="Сообщение отправлено!"
-                    />
-                  ) : ( */}
                   <form
                     method="post"
                     onSubmit={handleSubmit(onSubmit)}
@@ -639,6 +490,13 @@ export default function Contacts() {
                         className="w-full relative z-[1]"
                       >
                         <AppInput
+                          defaultValue={
+                            isEmail
+                              ? contactData.email
+                              : isPhone
+                              ? contactData.phone
+                              : ""
+                          }
                           ref={contactInputRef}
                           className={`${styles.bounceElem} w-full focus:!bg-[#20272A] !placeholder-opacity-0`}
                           title={isPhone ? "Телефон" : isEmail ? "Email" : ""}
@@ -665,15 +523,25 @@ export default function Contacts() {
                       >
                         <CustomCheckbox
                           id="check-email"
-                          successful={emailSuccessful}
+                          successful={
+                            emailSuccessful || contactData.email !== ""
+                          }
                           fail={failCheck}
                           // fail={showEmailCheckboxError}
-                          checked={isEmail}
+                          checked={isEmail || contactData.email !== ""}
                           onChange={(value) => {
                             setFailCheck(false);
-                            setIsEmail(value);
+                            // setIsEmail(value);
+                            setIsEmail(value || contactData.email !== "");
+                            if (value || contactData.email !== "") {
+                              setIsPhone(false);
+                              setContactValue(contactData.email);
+                            } else if (contactData.phone !== "") {
+                              setIsPhone(true);
+                              setContactValue(contactData.phone);
+                            }
                             if (value) {
-                              setContactValue("");
+                              // setContactValue("");
                               setIsPhone(false);
                               setFocus("Contact");
                               setTimeout(() => {
@@ -687,15 +555,25 @@ export default function Contacts() {
                         />
                         <CustomCheckbox
                           id="check-phone"
-                          successful={emailSuccessful}
+                          successful={
+                            emailSuccessful || contactData.phone !== ""
+                          }
                           fail={failCheck}
                           // fail={showPhoneCheckboxError}
-                          checked={isPhone}
+                          checked={isPhone || contactData.phone !== ""}
                           onChange={(value) => {
                             setFailCheck(false);
-                            setIsPhone(value);
+                            // setIsPhone(value);
+                            setIsPhone(value || contactData.phone !== "");
+                            if (value || contactData.phone !== "") {
+                              setIsEmail(false);
+                              setContactValue(contactData.phone);
+                            } else if (contactData.email !== "") {
+                              setIsEmail(true);
+                              setContactValue(contactData.email);
+                            }
                             if (value) {
-                              setContactValue("");
+                              // setContactValue("");
                               setIsEmail(false);
                               setFocus("Contact");
                               setTimeout(() => {

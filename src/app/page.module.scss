@@ -303,10 +303,10 @@
   }
 
   &:hover {
-    color: #ccc;
+    color: #737373;
 
     svg rect {
-      fill: #ccc;
+      fill: #737373;
     }
   }
 }
@@ -321,11 +321,11 @@
   &:hover {
 
     span {
-      transform: translateX(0);
+      transform: translateX(97px);
     }
 
     .sendIconLeft {
-      transform: translate(-55px) !important;
+      transform: translate(0) !important;
     }
 
 
@@ -336,12 +336,12 @@
   }
 
   span {
-    transform: translate(96px);
+    transform: translate(50px);
   }
 
   .sendIconLeft {
     opacity: 1 !important;
-    transform: translate(0) !important;
+    transform: translate(-55px) !important;
   }
 
   .sendIconRight {
@@ -350,11 +350,25 @@
   }
 }
 
-.btn.blogNextBtn{
-  &:hover{
-    span{
-      transform: translateX(107px);
+.btn.blogNextBtn {
+  &:hover {
+    span {
+      transform: translateX(0px);
     }
+
+    .sendIconRight {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
+  span {
+    transform: translate(50px);
+  }
+
+  .sendIconRight {
+    opacity: 0;
+    transform: translate(45px);
   }
 }
 
