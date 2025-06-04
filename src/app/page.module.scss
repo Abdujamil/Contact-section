@@ -97,7 +97,7 @@
   overflow: visible;
   position: relative;
   text-align: left;
-  transition: transform 0.2s ease, color 0.5s ease;
+  transition: transform 0.1s ease, color 0.1s ease;
   will-change: transform, color, clip-path;
   background: none;
 
@@ -117,7 +117,7 @@
   border-bottom-style: solid;
   border-bottom-color: #3D9ED6;
   clip-path: inset(0 0 0 100%);
-  transition: clip-path 0.2s ease, border-color 0.5s ease;
+  transition: clip-path 0.1s ease, border-color 0.1s ease;
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -134,7 +134,7 @@
   color: #ccc;
   overflow: hidden;
   white-space: nowrap;
-  transition: transform 0.2s ease, clip-path 0.2s ease, color 0.5s ease;
+  transition: transform 0.1s ease, clip-path 0.1s ease, color 0.1s ease;
   display: flex;
   align-items: center;
   justify-content: center;

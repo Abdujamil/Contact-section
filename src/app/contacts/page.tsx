@@ -661,7 +661,7 @@ export default function Contacts() {
                   }}
                 >
                   <p
-                    className={`text-center relative bottom-[-50px] text-[#737373] text-[13px]`}
+                    className={`text-center relative bottom-[-50px] text-[#737373] text-[14px]`}
                   >
                     Нажимая на кнопку «Отправить» вы соглашаетесь с
                     <Link
