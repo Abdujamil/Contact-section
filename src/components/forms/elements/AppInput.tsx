@@ -16,6 +16,7 @@ interface AppInputProps {
     value?: string;
     onChange?: (value: string) => void;
     onBlur?: (value: string) => void;
+    onFocus?: () => void;
 }
 
 const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
@@ -31,6 +32,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                                                   classNameTitle,
                                                                   value: propValue,
                                                                   onChange,
+                                                                  onFocus,
                                                                   onBlur
                                                               }, ref) => {
     const {register, formState: {errors, isSubmitted, submitCount}, setValue, watch} = useFormContext();
@@ -72,6 +74,11 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
             onChange(value);
         }
 
+    };
+     const handleFocus = () => {
+        if (onFocus) {
+            onFocus(); // Вызываем переданный обработчик фокуса
+        }
     };
     const getAutocompleteName = (name: string): string => {
         switch (name.toLowerCase()) {
@@ -126,6 +133,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                             e.target.setSelectionRange(e.target.value.length, e.target.value.length);
                         }
                     }}
+                    onFocus={handleFocus} 
                     aria-label={title}
                 />
                 <span className={`${styles.titleTop} field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>

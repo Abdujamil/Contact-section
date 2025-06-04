@@ -42,6 +42,7 @@ export default function Contacts() {
   );
   // Upload file
   const [text, setText] = useState("");
+  const [showPolicy, setShowPolicy] = useState(false);
 
   const {
     isPhone,
@@ -322,6 +323,8 @@ export default function Contacts() {
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
     const isContactMethodSelected = isEmail || isPhone;
 
+    setShowPolicy(true);
+
     // 1. Проверяем email только если он выбран
     const isEmailValid = !isEmail || (isEmail && emailRegex.test(contactValue));
 
@@ -362,6 +365,19 @@ export default function Contacts() {
       fileInputRef.current.value = "";
     }
     setWasSubmittedSuccessfully(true);
+  };
+
+  // Функция для показа политики при фокусе на поля
+  const handleFieldFocus = () => {
+    setShowPolicy(true);
+  };
+
+  // Функция для обработки изменения темы
+  const handleTopicChange = (value: string) => {
+    setSelectedOption(value);
+    if (value !== "Тема") {
+      setShowPolicy(true);
+    }
   };
 
   useEffect(() => {
@@ -529,7 +545,10 @@ export default function Contacts() {
                           onClick={() => {
                             setIsSelectOpen(!isSelectOpen);
                             setSelectError(false);
+
+                            // setShowPolicy(true);
                           }}
+                          onFocus={handleFieldFocus}
                         >
                           <span
                             className={
@@ -577,6 +596,10 @@ export default function Contacts() {
                                   setSelectedOption(option);
                                   setSelectError(false);
                                   setIsSelectOpen(false);
+
+                                  if (option !== "Тема") {
+                                    setShowPolicy(true);
+                                  }
                                 }}
                               >
                                 <p
@@ -596,6 +619,7 @@ export default function Contacts() {
 
                       <AppInput
                         className={`${styles.bounceElem} w-full mb-[34px]`}
+                        onFocus={handleFieldFocus}
                         title={"ФИО"}
                         inputName="name"
                         required={true}
@@ -607,9 +631,9 @@ export default function Contacts() {
                             bounceElements();
                             setFailCheck(true);
                           } else {
+                            setShowPolicy(true);
                             setFailCheck(false);
                           }
-
                           setEmailError(false);
                         }}
                         className="w-full relative z-[1]"
@@ -690,7 +714,7 @@ export default function Contacts() {
                           type="submit"
                           onMouseMove={handleMouseMove}
                           onMouseLeave={handleMouseLeave}
-                          className={`${styles.btn} ${HeaderStyles["login-button"]} group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-between`}
+                          className={`${styles.btn} ${HeaderStyles["login-button"]} bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-between`}
                           data-text=""
                         >
                           <svg
@@ -742,18 +766,36 @@ export default function Contacts() {
                   )}
                 </FormProvider>
 
+                {/* Анимированный блок с политикой */}
                 <motion.div
-                    initial={{ y: 40, opacity: 0 }}
-                    animate={controls}
+                  initial={{ y: 18, opacity: 0 }}
+                  animate={
+                    showPolicy ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }
+                  }
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 6, // Меньше значение = больше отскок
+                    mass: 0.3, // Добавляем массу для более "пружинистого" эффекта
+                  }}
+                  style={{
+                    display: showPolicy ? "block" : "", // Лучше использовать none для скрытия
+                  }}
                 >
-                  <p className={`text-center relative bottom-[-50px]`}>
+                  <p
+                    className={`text-center relative bottom-[-50px] text-[#737373] text-[13px]`}
+                  >
                     Нажимая на кнопку «Отправить» вы соглашаетесь с
-                    <Link href="/politics" className={`text-[#3D9ED6]`}> политикой конфиденциальности</Link>
+                    <Link
+                      href="/politics"
+                      className={`!text-[#737373] ${styles["menu-item"]} !text-[13px] font-[300] ml-[4px]`}
+                    >
+                      политикой конфиденциальности
+                    </Link>
                   </p>
                 </motion.div>
               </motion.div>
 
-            
               {/* Блок "Реквизиты" */}
               <motion.div
                 id="requisite-block"
