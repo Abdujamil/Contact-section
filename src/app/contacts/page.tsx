@@ -397,7 +397,7 @@ export default function Contacts() {
                             setIsSelectOpen(!isSelectOpen);
                             setSelectError(false);
 
-                            // setShowPolicy(true);
+                            setShowPolicy(true);
                           }}
                           onFocus={handleFieldFocus}
                         >
