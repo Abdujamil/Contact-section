@@ -44,10 +44,11 @@ import Footer from "../../footer";
 import FaqPageContent from "@/components/FaqPageCard/FaqPageContent";
 import Bg from "@/components/background/bg";
 
-// type Props = {
-//     params: { id: string };
-//     searchParams?: { [key: string]: string | string[] | undefined };
-// };
+// Обновленный тип для Next.js 15
+type Props = {
+    params: Promise<{ id: string }>;
+    searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 export async function generateStaticParams() {
     return faqData.map((item) => ({
@@ -55,31 +56,30 @@ export async function generateStaticParams() {
     }));
 }
 
-
-export default async function FaqPage({params, searchParams}: {
-    params: { id: string };
-    searchParams?: { [key: string]: string | string[] | undefined };
-}) {
-
-    const id = parseInt(params.id);
-    const fromHeader = searchParams?.from === "header";
+export default async function FaqPage({ params, searchParams }: Props) {
+    // Ожидаем разрешения Promise для получения параметров
+    const { id: idParam } = await params;
+    const searchParamsResolved = searchParams ? await searchParams : {};
+    
+    const id = parseInt(idParam);
+    const fromHeader = searchParamsResolved?.from === "header";
     const faqItem = faqData.find((item) => item.id === id);
 
     if (!faqItem) return notFound();
 
     return (
         <>
-                <div className={`h-dvh`}>
-                    <Bg/>
-                    <div
-                        className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[58px]">
-                        <FaqPageContent
-                            fromHeader={fromHeader}
-                            id={id}
-                        />
-                    </div>
-                    <Footer/>
+            <div className={`h-dvh`}>
+                <Bg/>
+                <div
+                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[58px]">
+                    <FaqPageContent
+                        fromHeader={fromHeader}
+                        id={id}
+                    />
                 </div>
+                <Footer/>
+            </div>
         </>
     );
 }

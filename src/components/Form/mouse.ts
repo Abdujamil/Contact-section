@@ -5,7 +5,7 @@ import { bounceActiveBlock } from "./bounce";
 
 let lastClickPosition: { x: number; y: number } | null = null;
 
-export const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+export const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -15,7 +15,7 @@ export const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
 };
 
 
-export const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+export const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
