@@ -373,12 +373,12 @@ export default function Contacts() {
   };
 
   // Функция для обработки изменения темы
-  const handleTopicChange = (value: string) => {
-    setSelectedOption(value);
-    if (value !== "Тема") {
-      setShowPolicy(true);
-    }
-  };
+  // const handleTopicChange = (value: string) => {
+  //   setSelectedOption(value);
+  //   if (value !== "Тема") {
+  //     setShowPolicy(true);
+  //   }
+  // };
 
   useEffect(() => {
     setVisibleError(false);
