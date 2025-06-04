@@ -129,6 +129,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
     router.push('/');
   };
 
+  
+
   return (
     <div 
       className={`${styles.card} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden active:scale-[0.95] transition-transform ease-in duration-200 cursor-pointer`}
