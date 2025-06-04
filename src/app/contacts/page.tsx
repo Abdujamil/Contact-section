@@ -139,6 +139,8 @@ export default function Contacts() {
   useEffect(() => {
     if (!submitCount || wasSubmittedSuccessfully) return;
 
+     setShowPolicy(true);
+
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
     const isContactValid =
       (isEmail && emailRegex.test(contactValue)) ||
@@ -195,8 +197,6 @@ export default function Contacts() {
       typeof data.Contact === "string" ? data.Contact.trim() : "";
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
     const isContactMethodSelected = isEmail || isPhone;
-
-    setShowPolicy(true);
 
     formData.append("email", contactData.email);
     formData.append("phone", contactData.phone);
