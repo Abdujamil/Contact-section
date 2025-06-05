@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import CustomCheckbox from "@/components/CustomCheckbox";
 import AppInput from "@/components/forms/elements/AppInput";
 import { useForm, FormProvider } from "react-hook-form";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
 import Bg from "@/components/background/bg";
 import {
   // validContact,
@@ -139,7 +139,7 @@ export default function Contacts() {
   useEffect(() => {
     if (!submitCount || wasSubmittedSuccessfully) return;
 
-     setShowPolicy(true);
+    setShowPolicy(true);
 
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
     const isContactValid =
@@ -258,6 +258,29 @@ export default function Contacts() {
       setSelectError(false);
     }
   }, [selectedOption]);
+
+  useEffect(() => {
+    // Сбрасываем все ошибки и состояния
+    setSelectError(false);
+    setEmailError(false);
+    setVisibleError(false);
+    setFailCheck(false);
+    setIsPhone(false);
+    setIsEmail(false);
+    setEmailSuccessful(false);
+    setIsSubmitted(false);
+    setShowPolicy(false);
+    setSelectedOption("Тема");
+    setContactValue("");
+    setComment("");
+    setText("");
+    reset(); // сбрасывает react-hook-form поля
+
+    // Сбрасываем файл, если был
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  }, [activeTab]);
 
   return (
     <>
@@ -435,7 +458,51 @@ export default function Contacts() {
                           </svg>
                         </div>
 
-                        {isSelectOpen && (
+                        <AnimatePresence>
+                          {isSelectOpen && (
+                            <motion.div
+                              key="select-options"
+                              initial={{ opacity: 0, y: -30 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              // exit={{ opacity: 0, y: -10 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 300,
+                                damping: 6,
+                                mass: 0.3,
+                              }}
+                              className={`${styles.selectOption} absolute right-[17px] p-[26px] px-[26px] pb-[11px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
+                            >
+                              {options.map((option, index) => (
+                                <div
+                                  key={index}
+                                  className={`pb-[15px] cursor-pointer  hover:text-[#CCC]`}
+                                  onClick={() => {
+                                    setSelectedOption(option);
+                                    setSelectError(false);
+                                    setIsSelectOpen(false);
+
+                                    if (option !== "Тема") {
+                                      setShowPolicy(true);
+                                    }
+                                  }}
+                                >
+                                  <p
+                                    className={`${styles["menu-item"]} ${
+                                      selectedOption === option
+                                        ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
+                                        : "text-[#737373]"
+                                    }`}
+                                  >
+                                    {option}
+                                  </p>
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+
+                        {/* {isSelectOpen && (
                           <div
                             className={`${styles.selectOption} absolute right-[17px] p-[26px] px-[26px] pb-[11px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
                           >
@@ -465,7 +532,7 @@ export default function Contacts() {
                               </div>
                             ))}
                           </div>
-                        )}
+                        )} */}
                       </div>
 
                       <AppInput
@@ -646,27 +713,24 @@ export default function Contacts() {
 
                 {/* Анимированный блок с политикой */}
                 <motion.div
-                  initial={{ y: 18, opacity: 0 }}
+                  initial={{ y: 20, opacity: 0 }}
                   animate={
-                    showPolicy ? { y: 0, opacity: 1 } : { y: 40, opacity: 0 }
+                    showPolicy ? { y: 10, opacity: 1 } : { y: -4, opacity: 0 }
                   }
                   transition={{
                     type: "spring",
                     stiffness: 300,
-                    damping: 6, // Меньше значение = больше отскок
+                    damping: 4, // Меньше значение = больше отскок
                     mass: 0.3, // Добавляем массу для более "пружинистого" эффекта
-                  }}
-                  style={{
-                    display: showPolicy ? "block" : "", // Лучше использовать none для скрытия
                   }}
                 >
                   <p
-                    className={`text-center relative bottom-[-50px] text-[#737373] text-[14px]`}
+                    className={`text-center relative bottom-[-40px] text-[#737373] text-[14px]`}
                   >
                     Нажимая на кнопку «Отправить» вы соглашаетесь с
                     <Link
                       href="/politics"
-                      className={`!text-[#737373] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
+                      className={`!text-[#737373] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
                     >
                       политикой конфиденциальности
                     </Link>
