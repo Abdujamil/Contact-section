@@ -220,6 +220,7 @@ export default function Contacts() {
     setEmailSuccessful(false);
     setIsPhone(false);
     setIsEmail(false);
+    
 
     // Заполнение и отправка формы
     Object.entries(data).forEach(([key, value]) => {
@@ -234,6 +235,7 @@ export default function Contacts() {
     setContactValue("");
     setText("");
     setComment("");
+    setContactData({ email: "", phone: "" });
     reset();
     setWasSubmittedSuccessfully(false);
 
@@ -274,7 +276,7 @@ export default function Contacts() {
     setContactValue("");
     setComment("");
     setText("");
-    reset(); // сбрасывает react-hook-form поля
+    reset();
 
     // Сбрасываем файл, если был
     if (fileInputRef.current) {
@@ -591,7 +593,7 @@ export default function Contacts() {
                         <CustomCheckbox
                           id="check-email"
                           successful={
-                            emailSuccessful || contactData.email !== ""
+                            emailSuccessful && isEmail
                           }
                           fail={failCheck}
                           // fail={showEmailCheckboxError}
@@ -622,9 +624,7 @@ export default function Contacts() {
                         />
                         <CustomCheckbox
                           id="check-phone"
-                          successful={
-                            emailSuccessful || contactData.phone !== ""
-                          }
+                          successful={emailSuccessful && isPhone}
                           fail={failCheck}
                           // fail={showPhoneCheckboxError}
                           checked={isPhone || contactData.phone !== ""}
