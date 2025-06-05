@@ -236,6 +236,7 @@ export default function Contacts() {
     setText("");
     setComment("");
     setContactData({ email: "", phone: "" });
+    setShowPolicy(false);
     reset();
     setWasSubmittedSuccessfully(false);
 
