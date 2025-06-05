@@ -666,7 +666,7 @@ export default function Contacts() {
                     Нажимая на кнопку «Отправить» вы соглашаетесь с
                     <Link
                       href="/politics"
-                      className={`!text-[#737373] ${styles["menu-item"]} !text-[13px] font-[300] ml-[4px]`}
+                      className={`!text-[#737373] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
                     >
                       политикой конфиденциальности
                     </Link>

@@ -101,6 +101,9 @@
   will-change: transform, color, clip-path;
   background: none;
 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   &:hover {
     color: #3D9ED6;
   }
