@@ -90,6 +90,7 @@ export default function Contacts() {
     phone: "",
     email: "",
   });
+
   // Validation
   const { setFocus } = methods;
 
@@ -136,18 +137,58 @@ export default function Contacts() {
     }
   };
 
+  // useEffect(() => {
+  //   if (!submitCount || wasSubmittedSuccessfully) return;
+
+  //   setShowPolicy(true);
+
+  //   const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
+  //   const isContactValid =
+  //     (isEmail && emailRegex.test(contactValue)) ||
+  //     (isPhone && phoneRegex.test(contactValue));
+
+  //   setSelectError(!isSelectValid);
+
+  //   if (!isEmail && !isPhone) {
+  //     setFailCheck(true);
+  //     bounceElements();
+  //   } else {
+  //     setFailCheck(false);
+  //     validContactt(contactValue);
+  //   }
+
+  //   if (!isSelectValid || !isContactValid) {
+  //     setVisibleError(true);
+  //   } else {
+  //     setVisibleError(false);
+  //     validContactt(contactValue);
+  //   }
+  // }, [submitCount]);
+
+  const [emailCheckboxError, setEmailCheckboxError] = useState(false);
+  const [phoneCheckboxError, setPhoneCheckboxError] = useState(false);
+
   useEffect(() => {
     if (!submitCount || wasSubmittedSuccessfully) return;
 
     setShowPolicy(true);
 
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
-    const isContactValid =
-      (isEmail && emailRegex.test(contactValue)) ||
-      (isPhone && phoneRegex.test(contactValue));
+
+    // ИЗМЕНЕНИЕ: теперь проверяем что ОБА поля заполнены
+    const isEmailValid =
+      contactData.email !== "" && emailRegex.test(contactData.email);
+    const isPhoneValid =
+      contactData.phone !== "" && phoneRegex.test(contactData.phone);
+    const isBothContactsValid = isEmailValid && isPhoneValid;
 
     setSelectError(!isSelectValid);
 
+    // Устанавливаем ошибки для отдельных чекбоксов
+    setEmailCheckboxError(!isEmailValid);
+    setPhoneCheckboxError(!isPhoneValid);
+
+    // Проверяем что выбран хотя бы один способ связи И оба поля заполнены
     if (!isEmail && !isPhone) {
       setFailCheck(true);
       bounceElements();
@@ -156,13 +197,13 @@ export default function Contacts() {
       validContactt(contactValue);
     }
 
-    if (!isSelectValid || !isContactValid) {
+    if (!isSelectValid || !isBothContactsValid) {
       setVisibleError(true);
     } else {
       setVisibleError(false);
       validContactt(contactValue);
     }
-  }, [submitCount]);
+  }, [submitCount, contactData.email, contactData.phone]);
 
   useEffect(() => {
     if (emailError && contactValue.length > 0) {
@@ -190,37 +231,120 @@ export default function Contacts() {
     }
   }, [contactValue, isEmail, isPhone]);
 
+  // const onSubmit = async (data: Record<string, unknown>) => {
+  //   const formData = new FormData();
+
+  //   const contactValue =
+  //     typeof data.Contact === "string" ? data.Contact.trim() : "";
+  //   const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
+  //   // const isContactMethodSelected = isEmail || isPhone;
+  //   const isContactMethodSelected = contactData.email && contactData.phone;
+
+  //   formData.append("email", contactData.email);
+  //   formData.append("phone", contactData.phone);
+
+  //   // 1. Проверяем email только если он выбран
+  //   // const isEmailValid = !isEmail || (isEmail && emailRegex.test(contactValue));
+
+  //   // if (!isSelectValid || !isContactMethodSelected || !isEmailValid) {
+  //   //   setEmailError(!isEmailValid);
+  //   //   setVisibleError(true);
+  //   //   setSelectError(!isSelectValid);
+  //   //   setEmailSuccessful(false);
+  //   //   return;
+  //   // }
+
+  //   const isEmailValid = emailRegex.test(contactData.email);
+  //   const isPhoneValid = phoneRegex.test(contactData.phone);
+
+  //   if (
+  //     !isSelectValid ||
+  //     !isContactMethodSelected ||
+  //     !isEmailValid ||
+  //     !isPhoneValid
+  //   ) {
+  //     setEmailError(!isEmailValid || !isPhoneValid);
+  //     setVisibleError(true);
+  //     setSelectError(!isSelectValid);
+  //     setEmailSuccessful(false);
+  //     return;
+  //   }
+
+  //   // Сброс ошибок
+  //   setSelectError(true);
+  //   setVisibleError(false);
+  //   setEmailError(false);
+  //   setFailCheck(false);
+  //   setEmailSuccessful(false);
+  //   setIsPhone(false);
+  //   setIsEmail(false);
+
+  //   // Заполнение и отправка формы
+  //   Object.entries(data).forEach(([key, value]) => {
+  //     if (value !== undefined && value !== null) {
+  //       formData.append(key, value instanceof Blob ? value : String(value));
+  //     }
+  //   });
+
+  //   console.log("Форма отправлена:", data);
+  //   setIsSubmitted(true);
+  //   setSelectedOption("Тема");
+  //   setContactValue("");
+  //   setText("");
+  //   setComment("");
+  //   setContactData({ email: "", phone: "" });
+  //   setShowPolicy(false);
+  //   reset();
+  //   setWasSubmittedSuccessfully(false);
+
+  //   if (fileInputRef.current) {
+  //     fileInputRef.current.value = "";
+  //   }
+  //   setWasSubmittedSuccessfully(true);
+  // };
+
+  // Функция для показа политики при фокусе на поля
+
   const onSubmit = async (data: Record<string, unknown>) => {
     const formData = new FormData();
 
-    const contactValue =
-      typeof data.Contact === "string" ? data.Contact.trim() : "";
     const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
     const isContactMethodSelected = isEmail || isPhone;
+
+    // ИЗМЕНЕНИЕ: проверяем что ОБА поля заполнены и валидны
+    const isEmailValid =
+      contactData.email !== "" && emailRegex.test(contactData.email);
+    const isPhoneValid =
+      contactData.phone !== "" && phoneRegex.test(contactData.phone);
+    const isBothContactsValid = isEmailValid && isPhoneValid;
 
     formData.append("email", contactData.email);
     formData.append("phone", contactData.phone);
 
-    // 1. Проверяем email только если он выбран
-    const isEmailValid = !isEmail || (isEmail && emailRegex.test(contactValue));
-
-    if (!isSelectValid || !isContactMethodSelected || !isEmailValid) {
-      setEmailError(!isEmailValid);
+    // Проверяем все условия: выбрана тема, выбран способ связи, оба поля заполнены
+    if (!isSelectValid || !isContactMethodSelected || !isBothContactsValid) {
+      setEmailError(!isBothContactsValid);
       setVisibleError(true);
       setSelectError(!isSelectValid);
       setEmailSuccessful(false);
+
+      // Устанавливаем ошибки для отдельных чекбоксов
+      setEmailCheckboxError(!isEmailValid);
+      setPhoneCheckboxError(!isPhoneValid);
+
       return;
     }
 
-    // Сброс ошибок
-    setSelectError(true);
+    // Сброс всех ошибок при успешной отправке
+    setSelectError(false);
     setVisibleError(false);
     setEmailError(false);
     setFailCheck(false);
     setEmailSuccessful(false);
     setIsPhone(false);
     setIsEmail(false);
-    
+    setEmailCheckboxError(false);
+    setPhoneCheckboxError(false);
 
     // Заполнение и отправка формы
     Object.entries(data).forEach(([key, value]) => {
@@ -230,6 +354,9 @@ export default function Contacts() {
     });
 
     console.log("Форма отправлена:", data);
+    console.log("Email:", contactData.email);
+    console.log("Phone:", contactData.phone);
+
     setIsSubmitted(true);
     setSelectedOption("Тема");
     setContactValue("");
@@ -246,7 +373,6 @@ export default function Contacts() {
     setWasSubmittedSuccessfully(true);
   };
 
-  // Функция для показа политики при фокусе на поля
   const handleFieldFocus = () => {
     setShowPolicy(true);
   };
@@ -284,6 +410,17 @@ export default function Contacts() {
       fileInputRef.current.value = "";
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    const isValidEmail = emailRegex.test(contactData.email.trim());
+    const isValidPhone = phoneRegex.test(contactData.phone.trim());
+
+    if (isValidEmail && isValidPhone) {
+      setEmailSuccessful(true);
+    } else {
+      setEmailSuccessful(false);
+    }
+  }, [contactData]);
 
   return (
     <>
@@ -586,16 +723,14 @@ export default function Contacts() {
                         />
                       </div>
 
-                      <div
+                      {/* <div
                         id="bounce-checkbox"
                         ref={checkboxContainerRef}
                         className={`${styles.formCheckboxes} flex items-center gap-[20px] mt-[10px] ml-[10px]`}
                       >
                         <CustomCheckbox
                           id="check-email"
-                          successful={
-                            emailSuccessful && isEmail
-                          }
+                          successful={emailSuccessful && isEmail}
                           fail={failCheck}
                           // fail={showEmailCheckboxError}
                           checked={isEmail || contactData.email !== ""}
@@ -642,6 +777,69 @@ export default function Contacts() {
                             }
                             if (value) {
                               // setContactValue("");
+                              setIsEmail(false);
+                              setFocus("Contact");
+                              setTimeout(() => {
+                                contactInputRef.current?.click();
+                                contactInputRef.current?.focus();
+                              }, 0);
+                              setEmailSuccessful(false);
+                            }
+                          }}
+                          label="Телефон"
+                        />
+                      </div> */}
+
+                      <div
+                        id="bounce-checkbox"
+                        ref={checkboxContainerRef}
+                        className={`${styles.formCheckboxes} flex items-center gap-[20px] mt-[10px] ml-[10px]`}
+                      >
+                        <CustomCheckbox
+                          id="check-email"
+                          successful={emailSuccessful && isEmail}
+                          fail={emailCheckboxError} // Используем отдельное состояние ошибки для email
+                          checked={isEmail || contactData.email !== ""}
+                          onChange={(value) => {
+                            setFailCheck(false);
+                            setEmailCheckboxError(false); // Сбрасываем ошибку при изменении
+                            setIsEmail(value || contactData.email !== "");
+                            if (value || contactData.email !== "") {
+                              setIsPhone(false);
+                              setContactValue(contactData.email);
+                            } else if (contactData.phone !== "") {
+                              setIsPhone(true);
+                              setContactValue(contactData.phone);
+                            }
+                            if (value) {
+                              setIsPhone(false);
+                              setFocus("Contact");
+                              setTimeout(() => {
+                                contactInputRef.current?.click();
+                                contactInputRef.current?.focus();
+                              }, 0);
+                              setEmailSuccessful(false);
+                            }
+                          }}
+                          label="Email"
+                        />
+                        <CustomCheckbox
+                          id="check-phone"
+                          successful={emailSuccessful && isPhone}
+                          fail={phoneCheckboxError} // Используем отдельное состояние ошибки для телефона
+                          checked={isPhone || contactData.phone !== ""}
+                          onChange={(value) => {
+                            setFailCheck(false);
+                            setPhoneCheckboxError(false); // Сбрасываем ошибку при изменении
+                            setIsPhone(value || contactData.phone !== "");
+                            if (value || contactData.phone !== "") {
+                              setIsEmail(false);
+                              setContactValue(contactData.phone);
+                            } else if (contactData.email !== "") {
+                              setIsEmail(true);
+                              setContactValue(contactData.email);
+                            }
+                            if (value) {
                               setIsEmail(false);
                               setFocus("Contact");
                               setTimeout(() => {
