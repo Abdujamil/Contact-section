@@ -956,7 +956,7 @@ export default function Contacts() {
                       type="text"
                       readOnly={false}
                       defaultValue="Общество с ограниченной ответственностью «АУДИОСЕКТОР»"
-                      className="w-full bg-[#101010] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#737373] focus:outline-none focus:border-[#5F5F5F]"
+                      className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                     />
                   </div>
 
@@ -994,7 +994,7 @@ export default function Contacts() {
                   <input
                     type="text"
                     defaultValue="180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44"
-                    className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                   />
                 </div>
 
@@ -1007,7 +1007,7 @@ export default function Contacts() {
                       <input
                         type="text"
                         defaultValue="6000005874"
-                        className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                        className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                       />
                     </div>
 
@@ -1018,7 +1018,7 @@ export default function Contacts() {
                       <input
                         type="text"
                         defaultValue="1236000004569"
-                        className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                        className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                       />
                     </div>
                   </div>
@@ -1031,7 +1031,7 @@ export default function Contacts() {
                       <input
                         type="text"
                         defaultValue="Владимиров Владимир Михайлович"
-                        className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                        className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                       />
                     </div>
 
@@ -1039,10 +1039,11 @@ export default function Contacts() {
                       <label className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
                         Почта
                       </label>
+                      {/* 20272A */}
                       <input
                         type="email"
                         defaultValue="info@audiosector.ru"
-                        className="w-full max-h-[51px] text-[#737373] cursor-not-allowed bg-[#101010] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                        className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                       />
                     </div>
                   </div>
