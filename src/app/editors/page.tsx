@@ -59,7 +59,7 @@ export default function Editors() {
                       <h3 className="text-[#ccc] group-hover:text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
                         {editor.name}
                       </h3>
-                      <p className="text-[#ccc] text-[16px] leading-[130%]">
+                      <p className={`${styles.authorDesc} text-[#ccc] text-[16px] leading-[130%]`}>
                         {editor.bio}
                       </p>
                     </div>

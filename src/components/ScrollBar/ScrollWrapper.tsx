@@ -254,6 +254,7 @@
 import SimpleBar from "simplebar-react";
 import { useRef, useEffect, createContext, useContext, ReactNode } from "react";
 import "simplebar-react/dist/simplebar.min.css";
+import { usePathname } from "next/navigation";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -482,6 +483,15 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const scrollContainer = simpleBarRef.current?.getScrollElement();
+    if (scrollContainer) {
+      scrollContainer.scrollTop = 0;
+    }
+  }, [pathname]);
 
   // Получаем scroll контейнер для передачи в контекст
   const scrollContainer = simpleBarRef.current?.getScrollElement() || null;

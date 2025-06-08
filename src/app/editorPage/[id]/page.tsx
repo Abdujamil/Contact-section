@@ -52,7 +52,7 @@ export default function EditorPage() {
               <h3 className="text-[#ccc] group-hover:text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
                 {currentEditor.name}
               </h3>
-              <p className="text-[#ccc] text-[16px] leading-[130%]">
+              <p className={`${styles.authorDesc} text-[#ccc] text-[16px] leading-[130%]`}>
                 {currentEditor.bio ??
                   "Редактор этого материала. Больше информации вы найдёте на его странице."}
               </p>
