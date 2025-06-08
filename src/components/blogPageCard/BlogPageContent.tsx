@@ -409,7 +409,7 @@ export default function BlogPageContent({
         {currentEditor && (
           <Link
             href={`/editorPage/${currentEditor.id}`}
-            className={`${styles.authorBlock} w-full mb-[150px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535]`}
+            className={`${styles.authorBlock} ${styles.shadowcards} group w-full mb-[150px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
           >
             <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
               {currentEditor.avatar ? (
@@ -424,7 +424,7 @@ export default function BlogPageContent({
               )}
             </div>
             <div>
-              <h3 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
+              <h3 className=" text-[#ccc] group-hover:text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
                 {currentEditor.name}
               </h3>
               <p className="text-[#ccc] text-[16px] leading-[130%]">

@@ -41,7 +41,7 @@ export default function Editors() {
                   {/* Ссылка на страницу редактора */}
                   <Link
                     href={`/editorPage/${editor.id}`}
-                    className={`${styles.authorBlock} flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#3D9ED6]`}
+                    className={`${styles.authorBlock} ${styles.shadowcards} group flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
                   >
                     <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
                       {editor.avatar ? (
@@ -56,7 +56,7 @@ export default function Editors() {
                       )}
                     </div>
                     <div>
-                      <h3 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
+                      <h3 className="text-[#ccc] group-hover:text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
                         {editor.name}
                       </h3>
                       <p className="text-[#ccc] text-[16px] leading-[130%]">
