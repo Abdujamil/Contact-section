@@ -44,17 +44,6 @@
           opacity: 0;
         }
 
-
-        .selectOption {
-          background: rgba(53, 53, 53, 0.1);
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
-          backdrop-filter: blur(5px);
-          border: 1px solid #353535;
-          border-radius: 4px;
-
-
-        }
-
         .formInpts {
 
           .inptEmailPhone {
@@ -85,6 +74,14 @@
       }
     }
   }
+}
+
+.selectOption {
+  background: rgba(53, 53, 53, 0.1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid #353535;
+  border-radius: 4px;
 }
 
 .menu-item {
@@ -407,6 +404,22 @@
   .sendIconRight {
     opacity: 0;
     transform: translate(45px);
+  }
+}
+
+.btn.telegramBtn {
+  border-color: transparent;
+
+  &:hover {
+    span {
+      transform: translateX(16px);
+
+      color: #3D9ED6 !important;
+    }
+
+    .sendIconLeft {
+      left: 3px;
+    }
   }
 }
 
