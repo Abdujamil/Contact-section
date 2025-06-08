@@ -34,7 +34,7 @@ export default function EditorPage() {
           />
           {/* Автор */}
           <div
-            className={`${styles.shadowcards} ${styles.authorBlock}group w-full mb-[40px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535]`}
+            className={`${styles.shadowcards} ${styles.authorBlockActive} group w-full mb-[40px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#ccc]`}
           >
             <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
               {currentEditor.avatar ? (
@@ -49,7 +49,7 @@ export default function EditorPage() {
               )}
             </div>
             <div>
-              <h3 className="text-[#ccc] group-hover:text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
+              <h3 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
                 {currentEditor.name}
               </h3>
               <p className={`${styles.authorDesc} text-[#ccc] text-[16px] leading-[130%]`}>
@@ -103,7 +103,7 @@ export default function EditorPage() {
                     <Link
                       key={editor.id}
                       href={`/editorPage/${editor.id}`}
-                      className={`${styles.authorBlock} ${styles.shadowcards} group w-full max-w-[580px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc] active:scale-[0.95] transition-all ease-in duration-100`}
+                      className={`${styles.authorBlock} ${styles.shadowcards} group w-full max-w-[580px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc] active:scale-[0.95]`}
                     >
                       <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
                         {editor.avatar ? (
