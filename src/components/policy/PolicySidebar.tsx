@@ -10,11 +10,19 @@ interface PolicySidebarProps {
   setActiveTab: (tab: PolicyTab) => void;
 }
 
+const tabIdMap: Record<PolicyTab, number> = {
+  policy: 1,
+  offer: 2,
+  license: 3,
+};
+
 const PolicySidebar: React.FC<PolicySidebarProps> = ({
   activeTab,
   setActiveTab,
 }) => {
-  const currentBlogItem = policyData.find((item) => item.id);
+  const currentBlogItem = policyData.find(
+    (item) => item.id === tabIdMap[activeTab]
+  );
 
   const tabs = [
     {

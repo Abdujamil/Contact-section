@@ -49,7 +49,7 @@ body {
 html,
 body,
 .simplebar-content-wrapper {
-  /* scroll-behavior: smooth; */
+    /* scroll-behavior: smooth; */
 }
 
 
@@ -215,7 +215,7 @@ input[type='email']::placeholder {
 }
 
 .pin-wrap {
-  will-change: transform;
+    will-change: transform;
 }
 
 
@@ -249,4 +249,38 @@ input[type='email']::placeholder {
 .\!duration-200 {
     --tw-duration: 200ms !important;
     transition-duration: .15ms !important;
+}
+
+
+/* //-------------------------------- Policy --------------------------------// */
+.policy-content {
+    section {
+        margin-bottom: 30px;
+    }
+
+    h2 {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 120%;
+
+        color: #3D9ED6;
+
+        margin-bottom: 20px;
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 130%;
+
+        margin-bottom: 10px;
+    }
+
+    ul>li,
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 130%;
+        color: #CCCCCC;
+    }
 }

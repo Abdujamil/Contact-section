@@ -4,7 +4,7 @@ import styles from "@/app/page.module.scss";
 import Bg from "@/components/background/bg";
 import PolicySidebar from "@/components/policy/PolicySidebar";
 import PolicyContent from "@/components/policy/PolicyContent";
-
+import Footer from "@/app/footer";
 export type PolicyTab = "policy" | "offer" | "license";
 
 export default function PolicyPage() {
@@ -15,7 +15,7 @@ export default function PolicyPage() {
     <>
       <Bg />
       <div
-        className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-dvh mt-[134px]`}
+        className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[134px]`}
       >
         <Bg />
         <h1
@@ -29,6 +29,7 @@ export default function PolicyPage() {
           <PolicyContent activeTab={activeTab} />
         </div>
       </div>
+     <Footer />
     </>
   );
 }
