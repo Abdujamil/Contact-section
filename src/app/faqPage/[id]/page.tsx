@@ -72,7 +72,7 @@ export default async function FaqPage({ params, searchParams }: Props) {
             <div className={`h-dvh`}>
                 <Bg/>
                 <div
-                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[58px]">
+                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[40px]">
                     <FaqPageContent
                         fromHeader={fromHeader}
                         id={id}

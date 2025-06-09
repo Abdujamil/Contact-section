@@ -163,7 +163,7 @@ const FooterLinks: React.FC = () => {
           </div>
 
           {/* Telegram btn */}
-          <div className="relative w-full min-w-[137px] m-auto !h-[33px] ">
+          <div className="relative w-full min-w-[137px] m-auto !h-[35px] ">
             <button
               onClick={handleClick}
               className={` ${styles["btn"]} ${headerStyles["login-button"]} ${styles["telegramBtn"]} group w-full !h-full flex items-center !justify-center !px-[15px] !py-[5.5px] `}
