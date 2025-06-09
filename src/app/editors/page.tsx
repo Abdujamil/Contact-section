@@ -23,7 +23,7 @@ export default function Editors() {
       <Bg />
       <div className={`min-h-screen mt-[120px]`}>
         <Breadcrumbs editorId={editorId} inBlog={true} editorPage={true} />
-        <div className={`max-w-[1180px] m-auto min-h-screen`}>
+        <div className={`max-w-[1180px] px-[10px] m-auto min-h-screen`}>
           <h1
             className={`${styles.txtGradientRight} text-center text-[56px] leading-[110%] text-3xl mb-[40px]`}
           >
