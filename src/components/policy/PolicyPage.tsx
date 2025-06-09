@@ -15,11 +15,11 @@ export default function PolicyPage() {
     <>
       <Bg />
       <div
-        className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[134px]`}
+        className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
       >
         <Bg />
         <h1
-          className={`${styles.txtGradientRight} text-center text-[56px] leading-[110%] mb-[60px]`}
+          className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] mb-[30px]`}
         >
           Политика конфиденциальности
         </h1>

@@ -259,7 +259,6 @@ input[type='email']::placeholder {
     }
 
     h2 {
-        font-weight: 700;
         font-size: 20px;
         line-height: 120%;
 
@@ -269,7 +268,6 @@ input[type='email']::placeholder {
     }
 
     h3 {
-        font-weight: 700;
         font-size: 16px;
         line-height: 130%;
 

@@ -60,7 +60,7 @@ const PolicySidebar: React.FC<PolicySidebarProps> = ({
   return (
     <aside className="sticky top-20 h-fit z-[10] w-[260px]">
       <div
-        className={`${styles.btns} mb-[46px] flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+        className={`${styles.btns} mb-[20px] flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
       >
         {tabs.map((tab) => (
           <PolicyTabButton

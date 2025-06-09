@@ -25,7 +25,7 @@ export default function Editors() {
         <Breadcrumbs editorId={editorId} inBlog={true} editorPage={true} />
         <div className={`max-w-[1180px] px-[10px] m-auto min-h-screen`}>
           <h1
-            className={`${styles.txtGradientRight} text-center text-[56px] leading-[110%] text-3xl mb-[40px]`}
+            className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] text-3xl mb-[30px]`}
           >
             Наши редакторы
           </h1>

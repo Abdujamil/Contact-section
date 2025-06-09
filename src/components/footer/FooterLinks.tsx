@@ -50,8 +50,8 @@ const FooterLinks: React.FC = () => {
       <div className="flex items-end justify-between flex-col h-[89px] z-[9999]">
         <div className="flex items-center gap-[9px]">
           {/* Кастомный select */}
-          <div className={`relative mt-[4px]`}>
-            <div className="w-[62px] max-w-[220px] m-auto !h-[33px]">
+          <div className={`relative`}>
+            <div className="w-[62px] max-w-[220px] m-auto !h-[35px]">
               <button
                 onClick={() => {
                   setIsSelectOpen(!isSelectOpen);

@@ -107,6 +107,7 @@ import styles from "../../app/faq/faq.module.scss";
 import HeaderStyles from "../header/Header.module.css";
 import { useAuth } from "@/components/context/AuthContext";
 import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function FaqPageContent({
   id,
@@ -118,8 +119,8 @@ export default function FaqPageContent({
   const [openQuestionId, setOpenQuestionId] = useState<number | null>(null);
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
   const [initialized, setInitialized] = useState(false);
-
   const { showRegisterPromo } = useAuth();
+
 
   const [openFaqItem, setOpenFaqItem] = useState(
     () => faqData.find((item) => item.id === id) || null
@@ -212,49 +213,59 @@ export default function FaqPageContent({
         )}
 
         {/* Сайдбар с картинкой и FAQAside */}
-        {openQuestionId && openFaqItem ? (
-          <>
+        <AnimatePresence mode="wait">
+          {openQuestionId && openFaqItem ? (
+              <motion.div
+                key={openFaqItem?.id}
+                initial={{ opacity: 1, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 6,
+                  mass: 0.3,
+                }}
+                className="relative w-full h-[260px] mb-[20px] rounded-[8px] border border-[#353535]"
+              >
+                <Image
+                  src={openFaqItem.largeImgSrc}
+                  alt={openFaqItem.question}
+                  fill
+                  sizes="260px"
+                  className="rounded-[8px] object-cover"
+                  priority={openFaqItem.id === id}
+                  quality={85}
+                  onLoadingComplete={() =>
+                    setLoadedImages((prev) => ({
+                      ...prev,
+                      [openFaqItem.id]: true,
+                    }))
+                  }
+                />
+                {!loadedImages[openFaqItem.id] && (
+                  <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-[8px]" />
+                )}
+              </motion.div>
+          ) : (
             <div className="relative w-full h-[260px] mb-[20px] rounded-[8px] border border-[#353535]">
               <Image
-                src={openFaqItem.largeImgSrc}
-                alt={openFaqItem.question}
+                src="/faq-default-img.png"
+                alt="Изображение по умолчанию"
                 fill
                 sizes="260px"
                 className="rounded-[8px] object-cover"
-                priority={openFaqItem.id === id}
                 quality={85}
-                onLoadingComplete={() =>
-                  setLoadedImages((prev) => ({
-                    ...prev,
-                    [openFaqItem.id]: true,
-                  }))
-                }
+                priority
               />
-              {!loadedImages[openFaqItem.id] && (
-                <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-[8px]" />
-              )}
             </div>
-            {/* <FaqAside items={openFaqItem.aside} /> */}
-          </>
-        ) : (
-          <div className="relative w-full h-[260px] mb-[20px] rounded-[8px] border border-[#353535]">
-            <Image
-              src="/faq-default-img.png"
-              alt="Изображение по умолчанию"
-              fill
-              sizes="260px"
-              className="rounded-[8px] object-cover"
-              quality={85}
-              priority
-            />
-          </div>
-        )}
+          )}
+        </AnimatePresence>
       </aside>
 
       <div className="col-span-3">
         <div className="pb-[40px]">
           <h2
-            className={`${styles.title} ${styles.txtGradientRight} mb-[43px] font-normal leading-[85%] text-[48px] text-[#CCCCCC]`}
+            className={`${styles.title} ${styles.txtGradientRight} mb-[30px] font-normal leading-[85%] text-[48px] text-[#CCCCCC]`}
           >
             FAQ: Ответы на главные вопросы
           </h2>
