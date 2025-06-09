@@ -19,7 +19,7 @@ export default function PolicyPage() {
       >
         <Bg />
         <h1
-          className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] mb-[30px]`}
+          className={`${styles.txtGradientRight} text-center text-[48px] leading-[85%] mb-[30px]`}
         >
           Политика конфиденциальности
         </h1>
