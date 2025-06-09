@@ -17,7 +17,11 @@ interface PolicyTabButtonProps {
   onClick: () => void;
 }
 
-const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({ tab, isActive, onClick }) => {
+const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
+  tab,
+  isActive,
+  onClick,
+}) => {
   return (
     <div className="relative !w-[220px] !overflow-hidden">
       <button
@@ -39,11 +43,11 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({ tab, isActive, onClic
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {React.cloneElement(tab.icon as React.ReactElement, {
+          {React.cloneElement(tab.icon, {
             fill: isActive ? "#ccc" : "#737373",
           })}
         </svg>
-        
+
         <span
           className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${
             isActive ? "!text-[#3D9ED6]" : "text-[#878787]"
@@ -51,7 +55,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({ tab, isActive, onClic
         >
           {tab.label}
         </span>
-        
+
         <svg
           className={`${styles.sendIconRight} transition-all !duration-[.15s] ease-in`}
           width="25"
@@ -60,7 +64,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({ tab, isActive, onClic
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {React.cloneElement(tab.icon as React.ReactElement, {
+          {React.cloneElement(tab.icon, {
             fill: isActive ? "#ccc" : "#737373",
           })}
         </svg>
