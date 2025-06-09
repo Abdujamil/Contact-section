@@ -186,7 +186,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                 className={`w-full !text-[16px] ${
                   activeHash === baseId
                     ? "!text-[#3D9ED6]"
-                    : "group-hover:!text-[#adadad]"
+                    : "group-hover:!text-[#ccc]"
                 }`}
               >
                 {item.title}
