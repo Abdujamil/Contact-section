@@ -163,15 +163,15 @@ const FooterLinks: React.FC = () => {
           </div>
 
           {/* Telegram btn */}
-          <div className="relative w-full max-w-[137px] m-auto !h-[33px] ">
+          <div className="relative w-full min-w-[137px] m-auto !h-[33px] ">
             <button
               onClick={handleClick}
-              className={` ${styles["btn"]} ${headerStyles["login-button"]} ${styles["telegramBtn"]} group w-full !h-full flex items-center !justify-center`}
+              className={` ${styles["btn"]} ${headerStyles["login-button"]} ${styles["telegramBtn"]} group w-full !h-full flex items-center !justify-center !px-[15px] !py-[5.5px] `}
               data-text=""
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in">
+              <span className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.15s] !ease-in">
                 Telegram
               </span>
 

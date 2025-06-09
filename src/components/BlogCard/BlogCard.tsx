@@ -153,7 +153,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
             height={171}
             loading="eager"
             draggable={false}
-            className={`min-h-[171px] rounded-tl-[8px] rounded-tr-[8px] object-cover !select-none !pointer-events-auto relative top-[-2] group-hover:scale-105 transition-transform duration-100 ease-in`}
+            className={`!w-full min-h-[171px] rounded-tl-[8px] rounded-tr-[8px] object-cover !select-none !pointer-events-auto relative top-[-2] group-hover:scale-105 transition-transform duration-100 ease-in`}
           />
         </div>
 
