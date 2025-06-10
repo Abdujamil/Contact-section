@@ -33,7 +33,7 @@ export default function EditorPage() {
           />
           {/* Автор */}
           <div
-            className={`${styles.shadowcards} ${styles.authorBlockActive} group w-full mb-[40px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#ccc]`}
+            className={`${styles.shadowcards} ${styles.authorBlockActive} group w-full mb-[40px] flex items-center gap-[21px] p-[20px] rounded-[6px]`}
           >
             <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
               {currentEditor.avatar ? (
