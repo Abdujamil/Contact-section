@@ -113,7 +113,7 @@ export default async function BlogPage({
     return (
       <>
         <Bg />
-        <div className={`h-dvh mt-[117px]`}>
+        <div className={`h-dvh mt-[113px]`}>
           <h1
             className={`${styles.txtGradientRight} max-w-[882px] m-auto text-center text-[48px] leading-[110%] mb-[30px]`}
           >
