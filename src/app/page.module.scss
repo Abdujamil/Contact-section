@@ -291,7 +291,7 @@
 
   h3,
   h4 {
-    color: #737373;
+    color: #878787;
   }
 
   ul>li,
@@ -333,6 +333,9 @@
 
 .btn.blogNextBtn,
 .btn.blogLeftBtn {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+
   &:hover {
 
     span {
@@ -351,8 +354,16 @@
 }
 
 .btn.blogTryBtn {
-  &:hover span {
-    transform: translateX(30px);
+  &:hover {
+
+    span {
+      // transform: translateX(30px);
+      transform: translateX(50px);
+    }
+
+    .sendIconLeft {
+      left: 17px;
+    }
   }
 }
 
@@ -360,11 +371,11 @@
   &:hover {
 
     span {
-      transform: translateX(97px);
+      transform: translateX(107px);
     }
 
     .sendIconLeft {
-      transform: translate(0) !important;
+      transform: translate(-5px) !important;
     }
 
 
@@ -415,6 +426,8 @@
   border-color: transparent;
 
   &:hover {
+    border-color: #353535 !important;
+
     span {
       transform: translateX(16px);
 
@@ -424,6 +437,12 @@
     .sendIconLeft {
       left: 13px;
     }
+  }
+}
+
+.btn.langBtn {
+  &:hover {
+    border-color: #353535 !important;
   }
 }
 

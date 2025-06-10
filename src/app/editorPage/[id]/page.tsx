@@ -117,7 +117,7 @@ export default function EditorPage() {
                         )}
                       </div>
                       <div>
-                        <h3 className="group-hover:text-[#3D9ED6] text-[#ccc] text-[20px] leading-[120%] mb-[10px]">
+                        <h3 className="text-[#878787] text-[20px] leading-[120%] mb-[10px]">
                           {editor.name}
                         </h3>
                         <p className="text-[#ccc] text-[16px] leading-[130%]">

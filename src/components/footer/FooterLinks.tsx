@@ -56,7 +56,7 @@ const FooterLinks: React.FC = () => {
                 onClick={() => {
                   setIsSelectOpen(!isSelectOpen);
                 }}
-                className={` ${styles["btn"]} ${headerStyles["login-button"]} ${styles["faqTryBtn"]} group !border-transparent hover:border-1 w-full !h-full flex items-center !justify-between`}
+                className={` ${styles["btn"]} ${headerStyles["login-button"]} ${styles["langBtn"]} group !border-transparent hover:border-1 w-full !h-full flex items-center !justify-center`}
                 data-text=""
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}

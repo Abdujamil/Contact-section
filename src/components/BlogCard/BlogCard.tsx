@@ -159,7 +159,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
 
         <div className={`${styles.cardBody} py-[20px] px-[15px]`}>
           <h3
-            className={`${styles.cardTitle} text-[19.5px] text-[#CCCCCC] leading-[120%] mb-[52px] group-hover:text-[#3D9ED6]`}
+            className={`${styles.cardTitle} text-[19.5px] text-[#adadad] leading-[120%] mb-[52px]`}
           >
             {title}
           </h3>
