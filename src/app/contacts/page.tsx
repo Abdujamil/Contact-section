@@ -437,7 +437,7 @@ export default function Contacts() {
             >
               <div className={`${styles.contactLeftContent}`}>
                 <h2
-                  className={`${styles.txtGradientRight}  leading-[85%] text-[40px] font-normal mb-[33px] mt-[-5px]`}
+                  className={`${styles.txtGradientRight}  leading-[85%] text-[48px] font-normal mb-[33px] mt-[0]`}
                 >
                   Контакты
                 </h2>

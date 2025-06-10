@@ -438,7 +438,7 @@ export default function BlogPageContent({
 
       {/* Похожие статьи */}
       <h2
-        className={`${styles.txtGradientRight} text-center text-[56px] leading-[110%] mb-10`}
+        className={`${styles.txtGradientRight} text-center text-[48px] leading-[85%] mb-10`}
       >
         Похожие статьи{" "}
       </h2>
