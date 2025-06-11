@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 interface AsideItem {
   id: string;
   title: string;
-  subtitle: string[];
+  subtitle?: string[];
 }
 
 interface FaqItem {
@@ -98,7 +98,7 @@ export const blogData: FaqItem[] = [
           </ul>
         </div>
 
-        <div id="manual-vs-auto" className={``}>
+        <div id="manual-vs-auto" className={`scroll-mt-[80px]`}>
           <h2 className="mt-[10px] mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Ручная или автоматическая транскрибация: что выбрать
           </h2>
@@ -170,7 +170,7 @@ export const blogData: FaqItem[] = [
           </div>
         </div>
 
-        <div id="service-costs" className={``}>
+        <div id="service-costs" className={`scroll-mt-[80px]`}>
           <h2 className="mt-[24px] mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Стоимость услуг: сравнение цен и затрат
           </h2>
@@ -376,7 +376,7 @@ export const blogData: FaqItem[] = [
           </div>
         </div>
 
-        <div id="solutions-edu" className={``}>
+        <div id="solutions-edu" className={`scroll-mt-[80px]`}>
           <h2 className="mb-[22px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Решения AudioSector в образовательной сфере
           </h2>
@@ -474,7 +474,7 @@ export const blogData: FaqItem[] = [
           </p>
         </div>
 
-        <div id="conclusion" className={``}>
+        <div id="conclusion" className={`scroll-mt-[80px]`}>
           <h2 className=" mt-[24px] mb-[22px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Заключение
           </h2>
@@ -535,7 +535,9 @@ export const blogData: FaqItem[] = [
       {
         id: "#conclusion",
         title: "Заключение",
-        subtitle: [],
+        subtitle: [
+           "Решения AudioSector для учебных заведений",
+        ],
       },
     ],
   },

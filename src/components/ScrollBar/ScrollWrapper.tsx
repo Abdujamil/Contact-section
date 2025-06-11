@@ -424,7 +424,7 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
     //     else if (anchor.startsWith("#") && anchor !== "#") {
     //       const el = scrollContainer.querySelector(anchor);
     //       if (el) {
-    //         const offset = 100;
+    //         const offset = 150;
     //         const elTop = (el as HTMLElement).offsetTop - offset;
     //         targetScroll = Math.max(0, Math.min(elTop, scrollContainer.scrollHeight - scrollContainer.clientHeight));
     //       }
