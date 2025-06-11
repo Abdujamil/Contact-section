@@ -383,7 +383,7 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
           if (el) {
             e.preventDefault();
 
-            const offset = 180; // отступ вверх (в пикселях)
+            const offset = 164; // отступ вверх (в пикселях)
             const elTop = (el as HTMLElement).offsetTop + offset;
 
             const maxScroll =

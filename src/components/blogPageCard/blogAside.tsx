@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "../header/Header.module.css";
 import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
+import { useScrollContainer } from "@/components/ScrollBar/ScrollWrapper";
 
 type AsideItem = {
   id: string;
@@ -12,22 +13,26 @@ type AsideItem = {
 };
 
 export default function BlogAside({ items }: { items: AsideItem[] }) {
+  const scrollContainer = useScrollContainer();
   // Состояние для отслеживания кликнутого элемента
   const [clickedHash, setClickedHash] = useState<string | null>(null);
+  const [lastActiveHash, setLastActiveHash] = useState<string>("");
 
   // Собираем все section IDs
-  const sectionIds = items.flatMap((item) => {
-    const baseId = item.id.replace(/^#/, "");
-    const subtitleIds =
-      item.subtitle?.map((_, subIndex) => `${baseId}-${subIndex}`) ?? [];
-    return [item.id, ...subtitleIds.map((id) => `#${id}`)];
-  });
+  // const sectionIds = items.flatMap((item) => {
+  //   const baseId = item.id.replace(/^#/, "");
+  //   const subtitleIds =
+  //     item.subtitle?.map((_, subIndex) => `${baseId}-${subIndex}`) ?? [];
+  //   return [item.id, ...subtitleIds.map((id) => `#${id}`)];
+  // });
 
+  // const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
+  const sectionIds = items.map((item) => item.id);
   const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
 
   // Используем кликнутый хеш, если он есть, иначе scrollSpy результат
-  const activeHash =
-    clickedHash || scrollSpyHash || (items.length > 0 ? items[0].id : "");
+  // const activeHash =
+  //   clickedHash || scrollSpyHash || (items.length > 0 ? items[0].id : "");
 
   // Сбрасываем кликнутый хеш когда scrollSpy догоняет
   useEffect(() => {
@@ -36,8 +41,61 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     }
   }, [clickedHash, scrollSpyHash]);
 
-  const handleAnchorClick = (href: string) => {
-    setClickedHash(href);
+  useEffect(() => {
+    if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
+      setLastActiveHash(scrollSpyHash);
+    }
+  }, [scrollSpyHash, lastActiveHash]);
+
+  // const handleAnchorClick = (href: string) => {
+  //   setClickedHash(href);
+  // };
+
+  useEffect(() => {
+    if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
+      setLastActiveHash(scrollSpyHash);
+    }
+  }, [scrollSpyHash, lastActiveHash]);
+
+  const activeHash = clickedHash || lastActiveHash;
+
+  useEffect(() => {
+    if (clickedHash && scrollSpyHash === clickedHash) {
+      setClickedHash(null);
+    }
+  }, [clickedHash, scrollSpyHash]);
+
+  const handleAnchorClick = (
+    href: string,
+    index: number,
+    e: React.MouseEvent
+  ) => {
+    e.preventDefault();
+
+    if (!scrollContainer) return;
+
+    // Получаем доступ к кастомному скроллу SimpleBar
+    type SimpleBarElement = HTMLElement & { __isSimpleBar?: boolean };
+
+    const simpleBar = (scrollContainer as SimpleBarElement).__isSimpleBar
+      ? scrollContainer
+      : scrollContainer?.closest(".simplebar-content-wrapper");
+
+    if (!simpleBar) return;
+
+    
+
+    // Для остальных элементов - обычный скролл к якорю
+    const targetElement = scrollContainer.querySelector(href);
+    if (targetElement) {
+      const offset = 100;
+      const targetPosition = (targetElement as HTMLElement).offsetTop - offset;
+      simpleBar.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+      setClickedHash(href);
+    }
   };
 
   return (
