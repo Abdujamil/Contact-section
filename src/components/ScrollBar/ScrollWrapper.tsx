@@ -213,7 +213,7 @@
 //       {/* <div className="fixed top-[10%] left-0 z-50 bg-black text-white p-2 text-xs space-y-2">
 //         <div>
 //           <label>
-//             🛑 Порог остановки (threshold): {scrollStopThreshold.toFixed(3)}
+//             Порог остановки (threshold): {scrollStopThreshold.toFixed(3)}
 //           </label>
 //           <input
 //             type="range"
@@ -226,7 +226,7 @@
 //         </div>
 //         <div>
 //           <label>
-//             💨 Скорость плавности (ease): {scrollEaseFactor.toFixed(3)}
+//              Скорость плавности (ease): {scrollEaseFactor.toFixed(3)}
 //           </label>
 //           <input
 //             type="range"
@@ -383,7 +383,7 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
           if (el) {
             e.preventDefault();
 
-            const offset = 200; // отступ вверх (в пикселях)
+            const offset = 180; // отступ вверх (в пикселях)
             const elTop = (el as HTMLElement).offsetTop + offset;
 
             const maxScroll =
@@ -405,13 +405,13 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
     //   if (target.tagName === "A") {
     //     const anchor = target.getAttribute("href");
     //     if (!anchor) return;
-    //
+
     //     e.preventDefault();
-    //
+
     //     // Получаем индекс элемента из data-атрибута
     //     const index = target.dataset.index ? parseInt(target.dataset.index) : -1;
     //     const totalItems = target.dataset.totalItems ? parseInt(target.dataset.totalItems) : -1;
-    //
+
     //     // Для первого элемента - скролл вверх
     //     if (anchor === "#top" || index === 0) {
     //       targetScroll = 0;
@@ -424,12 +424,12 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
     //     else if (anchor.startsWith("#") && anchor !== "#") {
     //       const el = scrollContainer.querySelector(anchor);
     //       if (el) {
-    //         const offset = 200;
+    //         const offset = 100;
     //         const elTop = (el as HTMLElement).offsetTop - offset;
     //         targetScroll = Math.max(0, Math.min(elTop, scrollContainer.scrollHeight - scrollContainer.clientHeight));
     //       }
     //     }
-    //
+
     //     if (!isScrolling) {
     //       isScrolling = true;
     //       requestAnimationFrame(smoothScroll);

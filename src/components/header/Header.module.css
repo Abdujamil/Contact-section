@@ -116,7 +116,7 @@
 }
 
 .menu-item-active {
-  color: var(--siniy);
+  color: #3d9ed6;
   font-size: 18px;
   font-weight: 400;
   display: flex;
@@ -182,7 +182,7 @@
 /* Кнопка входа */
 .login-button {
   align-items: center;
-  color: #adadad;
+  color: #adadad !important;
   display: flex;
   font-size: 18px;
   font-weight: 400;
@@ -314,7 +314,7 @@
 }
 
 .menu-item-active:hover {
-  color: var(--siniy);
+  color: #3d9ed6;
   border-color: #737373;
 }
 

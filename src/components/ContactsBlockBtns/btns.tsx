@@ -21,7 +21,8 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     onClick={handleTabClick("contact", setActiveTab, controls, styles, activeTab)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}   
+                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}
+                                             border !border-[#353535]    
                                              cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                     style={{
                         color: activeTab === "contact" ? "#3D9ED6" : "!#ccc",
@@ -68,7 +69,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                    onClick={handleTabClick("requisite", setActiveTab, controls, styles, activeTab)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                     style={{
                         color: activeTab === "requisite" ? "#3D9ED6" : "!#ссс",
                     }}>

@@ -131,10 +131,9 @@ export default function BlogPageContent({
                       </clipPath>
                     </defs>
                   </svg>
-                  <span className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+                  <span className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
                     Получить
                   </span>
-                 
                 </button>
               </div>
             </div>
@@ -219,52 +218,9 @@ export default function BlogPageContent({
                     </defs>
                   </svg>
 
-                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
                     Предыдущая
                   </span>
-
-                  {/* <svg
-                    className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
-                    width="26"
-                    height="26"
-                    viewBox="0 0 26 26"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      width="24"
-                      height="24"
-                      rx="2"
-                      transform="matrix(-1 0 0 1 25 1)"
-                      fill="#737373"
-                    />
-                    <g clipPath="url(#clip0_3502_3398)">
-                      <path
-                        d="M20.1836 13H5.81716"
-                        stroke="#191919"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M9.92167 8.8953L5.81698 13L9.92167 17.1047"
-                        stroke="#191919"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_3502_3398">
-                        <rect
-                          width="17.4147"
-                          height="17.4147"
-                          fill="white"
-                          transform="matrix(-0.707107 -0.707107 -0.707107 0.707107 25.3145 13)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg> */}
                 </button>
                 <div className={styles.highlight} />
               </div>
@@ -276,51 +232,7 @@ export default function BlogPageContent({
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                 >
-                  {/* <svg
-                    className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
-                    width="26"
-                    height="26"
-                    viewBox="0 0 26 26"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <rect
-                      x="1"
-                      y="1"
-                      width="24"
-                      height="24"
-                      rx="2"
-                      fill="#737373"
-                    />
-                    <g clipPath="url(#clip0_3069_1633)">
-                      <path
-                        d="M5.81641 13H20.1828"
-                        stroke="#191919"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M16.0783 8.8953L20.183 13L16.0783 17.1047"
-                        stroke="#191919"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_3069_1633">
-                        <rect
-                          width="17.4147"
-                          height="17.4147"
-                          fill="white"
-                          transform="translate(0.685547 13) rotate(-45)"
-                        />
-                      </clipPath>
-                    </defs>
-                  </svg> */}
-
-                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
                     Следующая
                   </span>
 
@@ -403,7 +315,9 @@ export default function BlogPageContent({
               <h3 className=" text-[#adadad] text-[20px] leading-[120%] mb-[10px]">
                 {currentEditor.name}
               </h3>
-              <p className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}>
+              <p
+                className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}
+              >
                 {currentEditor.bio ??
                   "Редактор этого материала. Больше информации вы найдёте на его странице."}
               </p>

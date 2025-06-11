@@ -148,7 +148,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
         >
           <Image
             src={src}
-            alt={`Картинка ${num}`}
+            alt={`image ${num}`}
             width={260}
             height={171}
             loading="eager"
