@@ -51,7 +51,7 @@ export default function EditorPage() {
               <h3 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px]">
                 {currentEditor.name}
               </h3>
-              <p className={`${styles.authorDesc} text-[#ccc] text-[16px] leading-[130%]`}>
+              <p className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}>
                 {currentEditor.bio ??
                   "Редактор этого материала. Больше информации вы найдёте на его странице."}
               </p>
@@ -117,10 +117,10 @@ export default function EditorPage() {
                         )}
                       </div>
                       <div>
-                        <h3 className="text-[#878787] text-[20px] leading-[120%] mb-[10px]">
+                        <h3 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px]">
                           {editor.name}
                         </h3>
-                        <p className="text-[#ccc] text-[16px] leading-[130%]">
+                        <p className="text-[#adadad] text-[16px] leading-[130%]">
                           {editor.bio ??
                             "Редактор этого материала. Больше информации вы найдёте на его странице."}
                         </p>

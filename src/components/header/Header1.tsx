@@ -4,6 +4,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
+import { useMouseTracking } from "../hooks/useMouseTracking";
+import { useAuth } from "@/components/context/AuthContext";
 
 interface MenuItem {
   label: string;
@@ -13,7 +15,7 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   { label: "Главная", href: "/" },
   { label: "Стоимость", href: "/pricing" },
-  // { label: "FAQ", href: "/faq" },
+  // { label: "FAQ", href: "/faqPage/1" },
   { label: "FAQ", href: "/faqPage/1?from=header" },
   { label: "Организациям", href: "/organizations" },
   { label: "Блог", href: "/blog" },
@@ -22,16 +24,13 @@ const menuItems: MenuItem[] = [
 
 const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
   ({ item, isActive }) => {
-    const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      e.currentTarget.style.setProperty("--mouse-x", `${x}px`);
-      e.currentTarget.style.setProperty("--mouse-y", `${y}px`);
-      e.currentTarget.style.setProperty("--last-mouse-x", `${x}px`);
-      e.currentTarget.style.setProperty("--last-mouse-y", `${y}px`);
-    };
+    const {
+      isFastClick,
+      setIsFastClick,
+      handleMouseMove,
+      handleMouseUp,
+      handleMouseLeave,
+    } = useMouseTracking();
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       const rect = e.currentTarget.getBoundingClientRect();
@@ -40,20 +39,25 @@ const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
 
       e.currentTarget.style.setProperty("--click-x", `${x}px`);
       e.currentTarget.style.setProperty("--click-y", `${y}px`);
+
+      setIsFastClick(true);
+
+      const handleRouteChange = () => {
+        setTimeout(() => {
+          setIsFastClick(false);
+        }, 120);
+      };
+
+      window.addEventListener("beforeunload", handleRouteChange);
+
+      return () => {
+        window.removeEventListener("beforeunload", handleRouteChange);
+      };
     };
-
-    const handleMouseLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      e.currentTarget.style.setProperty("--last-mouse-x", `${x}px`);
-      e.currentTarget.style.setProperty("--last-mouse-y", `${y}px`);
-    };
-
     const getClassName = () => {
       const classes = [styles["menu-item"]];
       if (isActive) classes.push(styles["menu-item-active"]);
+      if (isFastClick) classes.push(styles["fast-click"]);
       return classes.join(" ");
     };
 
@@ -64,7 +68,9 @@ const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
         data-text={item.label}
         onMouseMove={handleMouseMove}
         onClick={handleClick}
-        onMouseLeave={handleMouseLeave}>
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+      >
         <span>{item.label}</span>
         <div className={styles.highlight} />
       </Link>
@@ -76,7 +82,34 @@ MenuItem.displayName = "MenuItem";
 
 const Header: React.FC = () => {
   const pathname = usePathname();
-  const [isIconVisible, setIsIconVisible] = useState(false);
+
+  // Login
+  const { toggleRegisterPromo, showRegisterPromo } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hoverDirection, setHoverDirection] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("isLoggedIn");
+    if (saved === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", String(isLoggedIn));
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    const menuItems = document.querySelectorAll(`.${styles["login-button"]}`);
+    menuItems.forEach((element) => {
+      const event = new MouseEvent("mousemove", {
+        clientX: window.innerWidth / 4,
+        clientY: window.innerHeight / 4,
+        bubbles: true,
+      });
+      element.dispatchEvent(event);
+    });
+  }, [showRegisterPromo]);
 
   const renderMenuItems = useMemo(() => {
     return menuItems.map((item) => {
@@ -89,45 +122,67 @@ const Header: React.FC = () => {
     });
   }, [pathname]);
 
+  // const handleLoginButtonMouseMove = (
+  //   e: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   const rect = e.currentTarget.getBoundingClientRect();
+  //   const x = e.clientX - rect.left;
+  //   const isLeftSide = x < rect.width / 2;
+
+  //   e.currentTarget.style.setProperty(
+  //     "--hover-direction",
+  //     isLeftSide ? "left" : "right"
+  //   );
+  // };
+
+  // const handleLoginButtonMouseLeave = (
+  //   e: React.MouseEvent<HTMLButtonElement>
+  // ) => {
+  //   e.currentTarget.style.removeProperty("--hover-direction");
+  // };
+
+  const handleLoginButtonMouseMove = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const isLeftSide = x < rect.width / 2;
+
+    const newDirection = isLeftSide ? "left" : "right";
+    e.currentTarget.style.setProperty("--hover-direction", newDirection);
+
+    setHoverDirection(newDirection); // сохраняем направление
+  };
+
+  const handleLoginButtonMouseLeave = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    if (!hoverDirection) return; // если нет сохраненного направления, ничего не делаем
+    e.currentTarget.style.setProperty("--hover-direction", hoverDirection); // восстанавливаем прежнее направление
+  };
+
   useEffect(() => {
     const addMouseEffect = (elements: NodeListOf<Element>) => {
       elements.forEach((element) => {
         if (!element.hasAttribute("data-mouse-effect-added")) {
-          element.addEventListener("mouseenter", ((e: MouseEvent) => {
-            const rect = element.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            (element as HTMLElement).style.setProperty("--mouse-x", `${x}px`);
-            (element as HTMLElement).style.setProperty("--mouse-y", `${y}px`);
-            (element as HTMLElement).style.setProperty(
-              "--last-mouse-x",
-              `${x}px`
-            );
-            (element as HTMLElement).style.setProperty(
-              "--last-mouse-y",
-              `${y}px`
-            );
-          }) as EventListener);
+          let isFirstMove = true;
 
           element.addEventListener("mousemove", ((e: MouseEvent) => {
+            if (isFirstMove) {
+              isFirstMove = false;
+              return;
+            }
+
             const rect = element.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
 
             (element as HTMLElement).style.setProperty("--mouse-x", `${x}px`);
             (element as HTMLElement).style.setProperty("--mouse-y", `${y}px`);
-            (element as HTMLElement).style.setProperty(
-              "--last-mouse-x",
-              `${x}px`
-            );
-            (element as HTMLElement).style.setProperty(
-              "--last-mouse-y",
-              `${y}px`
-            );
           }) as EventListener);
 
           element.addEventListener("mouseleave", () => {
+            isFirstMove = true;
             (element as HTMLElement).style.removeProperty("--mouse-x");
             (element as HTMLElement).style.removeProperty("--mouse-y");
           });
@@ -137,11 +192,41 @@ const Header: React.FC = () => {
       });
     };
 
+    const addClickEffect = (elements: NodeListOf<Element>) => {
+      elements.forEach((element) => {
+        if (!element.hasAttribute("data-click-effect-added")) {
+          let lastClickTime = 0;
+          const delay = 120;
+
+          element.addEventListener("mousedown", (() => {
+            const currentTime = Date.now();
+            if (currentTime - lastClickTime > delay) {
+              element.classList.add("fast-click");
+              lastClickTime = currentTime;
+            }
+          }) as EventListener);
+
+          element.addEventListener("mouseup", (() => {
+            setTimeout(() => {
+              element.classList.remove("fast-click");
+            }, delay);
+          }) as EventListener);
+
+          element.addEventListener("mouseleave", (() => {
+            element.classList.remove("fast-click");
+          }) as EventListener);
+
+          element.setAttribute("data-click-effect-added", "true");
+        }
+      });
+    };
+
     const timer = setTimeout(() => {
       const menuItems = document.querySelectorAll(
         `.${styles["menu-item"]}, .${styles["login-button"]}`
       );
       addMouseEffect(menuItems);
+      addClickEffect(menuItems);
     }, 100);
 
     return () => {
@@ -152,19 +237,23 @@ const Header: React.FC = () => {
       menuItems.forEach((element) => {
         (element as HTMLElement).style.removeProperty("--mouse-x");
         (element as HTMLElement).style.removeProperty("--mouse-y");
-        (element as HTMLElement).style.removeProperty("--last-mouse-x");
-        (element as HTMLElement).style.removeProperty("--last-mouse-y");
       });
     };
   });
 
   return (
-    <header className={`${styles.header} flex items-center w-full h-[70px]`}>
-      <div className="flex items-center justify-between w-full px-[30px]">
+    <header
+      className={`${styles.header} fixed top-0 z-[999] flex items-center w-full min-h-[60px] h-[60px]`}
+      style={{ pointerEvents: 'none' }}
+    >
+      <div className="flex items-center justify-between w-full px-[30px]" 
+      style={{ pointerEvents: 'auto' }}
+      >
         <Link
           href="/"
           className={`${styles["logo-wrapper"]} cursor-pointer`}
-          aria-label="Главная">
+          aria-label="Главная"
+        >
           <svg
             className={styles.logo}
             width="100"
@@ -172,8 +261,7 @@ const Header: React.FC = () => {
             viewBox="0 0 100 38"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            aria-label="Логотип AudioSector"
-            role="img">
+          >
             <path
               d="M75.7719 23.388C75.7719 23.2495 75.8843 23.1372 76.0229 23.1372C76.1616 23.1372 76.274 23.2495 76.274 23.388V25.3318H75.7719V23.388Z"
               fill="#37779D"
@@ -476,73 +564,27 @@ const Header: React.FC = () => {
             />
           </svg>
         </Link>
-
         <div className="flex items-center gap-[30px]">
           <div className="hidden min-[961px]:flex items-center gap-[60px]">
             <nav className="flex gap-[9px]">{renderMenuItems}</nav>
-            <div className="overflow-hidden">
+            <div className="relative">
               <button
                 className={`${styles["login-button"]} group flex items-center justify-center`}
-                data-text="Войти"
-                onMouseEnter={() => setIsIconVisible(true)}
-                onMouseLeave={() => setIsIconVisible(false)}>
-                <div className="flex items-center gap-[10px]">
-                  <svg
-                    className={`${styles["login-icon"]} ${
-                      isIconVisible ? styles["login-icon-visible"] : ""
-                    }`}
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M11.625 0.871195V1.74239L14.7964 1.75176L17.9732 1.76581L17.9893 11.9859L18 22.2108H14.8125H11.625V23.1054V24L11.5018 23.9766C11.4375 23.9625 8.94643 23.5691 5.97321 23.1007C2.99464 22.637 0.433928 22.2342 0.27857 22.2061L0 22.1593V11.9953C0 6.4075 0.0160713 1.83607 0.0375004 1.83607C0.0857143 1.83607 11.3571 0.0562077 11.5018 0.0234203L11.625 1.90735e-06V0.871195ZM11.625 12V20.5714H13.8482H16.0714V12V3.42857H13.8482H11.625V12ZM9.39107 11.2974C9.13929 11.4286 9.03214 11.6393 9.03214 12C9.03214 12.3607 9.13929 12.5714 9.39107 12.7026C9.63214 12.8337 9.86786 12.8197 10.0768 12.6698C10.2911 12.5105 10.3929 12.2998 10.3929 12C10.3929 11.7002 10.2911 11.4895 10.0768 11.3302C9.86786 11.1803 9.63214 11.1663 9.39107 11.2974Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span className="font-normal text-[18px] leading-[120%]">
-                    Войти
-                  </span>
-                </div>
-                <div className={styles.highlight} />
+                data-text={showRegisterPromo ? "Войти" : "Выйти"}
+                onClick={toggleRegisterPromo}
+                onMouseMove={handleLoginButtonMouseMove}
+                onMouseLeave={handleLoginButtonMouseLeave}
+              >
+                <span className="font-normal text-[18px] leading-[120%]">
+                  {showRegisterPromo ? "Войти" : "Выйти"}
+                </span>
               </button>
+              <div className={styles.highlight} />
             </div>
           </div>
 
           <div className="flex min-[961px]:hidden items-center gap-[30px]">
-            <button className="hamburger-btn" aria-label="Меню">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                role="img">
-                <path
-                  d="M3 12H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3 6H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3 18H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+            <button className="hamburger-btn" aria-label="Меню"></button>
           </div>
         </div>
       </div>

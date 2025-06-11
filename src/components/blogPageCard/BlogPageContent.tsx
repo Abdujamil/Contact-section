@@ -102,7 +102,7 @@ export default function BlogPageContent({
               </p>
               <div className="relative w-full h-[51px] !overflow-hidden">
                 <button
-                  className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center !justify-center`}
+                  className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-center`}
                   data-text=""
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
@@ -171,7 +171,7 @@ export default function BlogPageContent({
               <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
                 <button
                   onClick={handlePrev}
-                  className={` ${styles["btn"]} ${styles["blogLeftBtn"]} ${HeaderStyles["login-button"]} w-full !h-full group flex items-center !justify-between`}
+                  className={` ${styles["btn"]} ${styles["blogLeftBtn"]} ${HeaderStyles["login-button"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between`}
                   data-text=""
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
@@ -271,7 +271,7 @@ export default function BlogPageContent({
               <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
                 <button
                   onClick={handleNext}
-                  className={` ${styles["btn"]} ${styles["blogNextBtn"]} ${HeaderStyles["login-button"]}  w-full !h-full group flex items-center !justify-between`}
+                  className={` ${styles["btn"]} ${styles["blogNextBtn"]} ${HeaderStyles["login-button"]} border !border-[#353535]  w-full !h-full group flex items-center !justify-between`}
                   data-text=""
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
@@ -400,10 +400,10 @@ export default function BlogPageContent({
               )}
             </div>
             <div>
-              <h3 className=" text-[#878787] text-[20px] leading-[120%] mb-[10px]">
+              <h3 className=" text-[#adadad] text-[20px] leading-[120%] mb-[10px]">
                 {currentEditor.name}
               </h3>
-              <p className={`${styles.authorDesc} text-[#ccc] text-[16px] leading-[130%]`}>
+              <p className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}>
                 {currentEditor.bio ??
                   "Редактор этого материала. Больше информации вы найдёте на его странице."}
               </p>

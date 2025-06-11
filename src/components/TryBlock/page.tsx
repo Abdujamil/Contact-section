@@ -22,7 +22,7 @@ export default function page() {
 
         <div className="relative w-full max-w-[220px] m-auto h-[51px] !overflow-hidden ">
           <button
-            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} w-full !h-full group flex items-center !justify-between`}
+            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between`}
             data-text=""
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}

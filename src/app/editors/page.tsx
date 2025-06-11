@@ -56,10 +56,10 @@ export default function Editors() {
                       )}
                     </div>
                     <div>
-                      <h3 className="text-[#878787] text-[20px] leading-[120%] mb-[10px]">
+                      <h3 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px]">
                         {editor.name}
                       </h3>
-                      <p className={`${styles.authorDesc} text-[#ccc] text-[16px] leading-[130%]`}>
+                      <p className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}>
                         {editor.bio}
                       </p>
                     </div>
@@ -109,7 +109,7 @@ export default function Editors() {
 
               <div className="relative w-full max-w-[220px] m-auto h-[51px] !overflow-hidden ">
                 <button
-                  className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} w-full !h-full group flex items-center !justify-between`}
+                  className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between`}
                   data-text=""
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}

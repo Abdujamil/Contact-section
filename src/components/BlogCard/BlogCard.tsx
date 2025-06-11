@@ -168,7 +168,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
             className={`${styles.cardBody} w-full flex  items-end justify-between`}
           >
             <p
-              className={`${styles.cardBodyDate}  flex items-center gap-[4px] text-[#737373] text-[14px] leading-[13px]`}
+              className={`${styles.cardBodyDate}  flex items-center gap-[4px] text-[#adadad] text-[14px] leading-[13px]`}
             >
               <Image
                 src="/mingcute_calendar-fill.svg"
@@ -182,7 +182,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
             <div>
               <button
                 onClick={handleAuthorClick}
-                className={`${styles.cardBodyDate} flex items-center gap-[4px] text-[#737373] text-[14px] leading-[13px] hover:text-[#ccc] transition-colors duration-100 ease-in bg-transparent border-none cursor-pointer`}
+                className={`${styles.cardBodyDate} flex items-center gap-[4px] text-[#adadad] text-[14px] leading-[13px] hover:text-[#ccc] transition-colors duration-100 ease-in bg-transparent border-none cursor-pointer`}
               >
                 <svg
                   width="14"

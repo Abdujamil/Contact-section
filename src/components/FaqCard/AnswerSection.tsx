@@ -83,7 +83,7 @@ const AnswerSection: React.FC<Props> = ({
         onClick={() => router.push(`/faqPage/${id}`)}
       >
         <button
-          className={`${HeaderStyles["login-button"]} ${styles["btn"]} 
+          className={`${HeaderStyles["login-button"]} ${styles["btn"]} border !border-[#353535]
                                         cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}

@@ -30,7 +30,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
         onMouseLeave={handleMouseLeave}
         className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${
           tab.id === "policy" ? styles["contact-btn"] : styles["requisite-btn"]
-        } cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.15s] ease-in`}
+        } border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.15s] ease-in`}
         style={{
           color: isActive ? "#3D9ED6" : "#ccc",
         }}
