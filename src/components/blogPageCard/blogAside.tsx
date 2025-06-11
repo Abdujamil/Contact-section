@@ -130,15 +130,15 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
     }
 
     // Для последнего элемента - скроллим в самый низ
-    if (index === items.length - 1) {
-      simpleBar.scrollTo({
-        top: simpleBar.scrollHeight,
-        behavior: "smooth",
-      });
-      setClickedHash(href);
-      window.history.pushState(null, "", window.location.pathname + href);
-      return;
-    }
+    // if (index === items.length - 1) {
+    //   simpleBar.scrollTo({
+    //     top: simpleBar.scrollHeight,
+    //     behavior: "smooth",
+    //   });
+    //   setClickedHash(href);
+    //   window.history.pushState(null, "", window.location.pathname + href);
+    //   return;
+    // }
 
     // Для остальных элементов - обычный скролл к якорю
     const targetElement = scrollContainer.querySelector(href);

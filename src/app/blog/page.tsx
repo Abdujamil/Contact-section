@@ -23,7 +23,7 @@ const Blog = () => {
   };
 
   // Функция для изменения страницы
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
     // Прокрутка к началу карточек при смене страницы
     document.querySelector(`.${styles.blogCardsContainer}`)?.scrollIntoView({
@@ -188,7 +188,7 @@ const Blog = () => {
                     return (
                       <button
                         key={page}
-                        onClick={() => handlePageChange(page)}
+                        onClick={() => handlePageChange(Number(page))}
                         className={`cursor-pointer flex items-center
                         px-[18px] py-[15px] max-h-[50px] rounded-lg border text-[20px] transition-all duration-200 min-w-[40px]
                         ${
