@@ -100,14 +100,14 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
 
   return (
     <ul className="space-y-4 font-bold text-sm">
-      {items.map((item) => {
+      {items.map((item, index) => {
         const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
 
         return (
           <li key={baseId}>
             <a
               href={baseId}
-              onClick={() => handleAnchorClick(baseId)}
+              onClick={(e) => handleAnchorClick(baseId, index, e,)}
               className={`relative !text-[16px] text-[#adadad] font-normal
                 group
                  ${styles["blogAsideBtn"]}
