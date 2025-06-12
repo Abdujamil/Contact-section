@@ -72,7 +72,9 @@ const PolicySidebar: React.FC<PolicySidebarProps> = ({
         ))}
       </div>
 
-      <BlogAside items={currentBlogItem?.aside ?? []} />
+      <div className={`mb-25`}>
+        <BlogAside items={currentBlogItem?.aside ?? []} />
+      </div>
     </aside>
   );
 };

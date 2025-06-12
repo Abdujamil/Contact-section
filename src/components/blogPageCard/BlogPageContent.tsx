@@ -165,7 +165,7 @@ export default function BlogPageContent({
             )}
 
             <div
-              className={`w-full flex items-center justify-between mt-[30px]`}
+              className={`w-full flex items-center justify-between mt-[30px] mb-[40px]`}
             >
               <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
                 <button
@@ -283,47 +283,39 @@ export default function BlogPageContent({
                 <div className={styles.highlight} />
               </div>
             </div>
+
+            {currentEditor && (
+              <Link
+                href={`/editorPage/${currentEditor.id}`}
+                className={`${styles.authorBlock} ${styles.shadowcards} group w-full mb-[150px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
+              >
+                <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
+                  {currentEditor.avatar ? (
+                    <Image
+                      src={currentEditor.avatar}
+                      alt={currentEditor.name}
+                      width={101}
+                      height={90}
+                    />
+                  ) : (
+                    <div className="bg-gray-700 w-full h-full" />
+                  )}
+                </div>
+                <div>
+                  <h3 className=" text-[#adadad] text-[20px] leading-[120%] mb-[10px]">
+                    {currentEditor.name}
+                  </h3>
+                  <p
+                    className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}
+                  >
+                    {currentEditor.bio ??
+                      "Редактор этого материала. Больше информации вы найдёте на его странице."}
+                  </p>
+                </div>
+              </Link>
+            )}
           </section>
         </div>
-      </div>
-
-      {/* Автор статьи */}
-      <div
-        className={`grid gap-[40px] mt-[40px] ${
-          showRegisterPromo ? "grid-cols-[260px_1fr]" : "grid-cols-[260px_1fr]"
-        }`}
-      >
-        <div></div>
-        {currentEditor && (
-          <Link
-            href={`/editorPage/${currentEditor.id}`}
-            className={`${styles.authorBlock} ${styles.shadowcards} group w-full mb-[150px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
-          >
-            <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
-              {currentEditor.avatar ? (
-                <Image
-                  src={currentEditor.avatar}
-                  alt={currentEditor.name}
-                  width={101}
-                  height={90}
-                />
-              ) : (
-                <div className="bg-gray-700 w-full h-full" />
-              )}
-            </div>
-            <div>
-              <h3 className=" text-[#adadad] text-[20px] leading-[120%] mb-[10px]">
-                {currentEditor.name}
-              </h3>
-              <p
-                className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}
-              >
-                {currentEditor.bio ??
-                  "Редактор этого материала. Больше информации вы найдёте на его странице."}
-              </p>
-            </div>
-          </Link>
-        )}
       </div>
 
       {/* Похожие статьи */}

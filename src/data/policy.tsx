@@ -217,70 +217,49 @@ export const policyData: FaqItem[] = [
     largeImgSrc: "/blgLg1.png",
     fullAnswer: (
       <>
-        <div className="policy-content">
-          <section id="introduction">
-            <h2>Введение2</h2>
-            {/* контент */}
-          </section>
-
-          <section id="data-collection">
-            <h2>Интеллектуальные права</h2>
-            {/* контент */}
-          </section>
-
-          <section id="data-usage">
-            <h2>Конфиденциальность и защита информации</h2>
-            {/* контент */}
-          </section>
-
-          <section id="dop-sved">
-            <h2>Дополнительные сведения</h2>
-          </section>
-
-          {/* и так далее... */}
-        </div>
+        <div className="policy-content"></div>
       </>
     ),
 
     aside: [
       {
-        id: "#introduction",
+        id: "#obshchie-polozheniya-terminy-i-opredeleniya",
         title: "1. Общие положения. Термины и определения",
       },
       {
-        id: "#data-collection",
+        id: "#predmet-dogovora",
         title: "2. Предмет договора",
       },
       {
-        id: "#data-usage",
+        id: "#kachestvo-uslug",
         title: "3. Качество услуг",
       },
       {
-        id: "#dop-sved",
+        id: "#poryadok-oplaty",
         title: "4. Порядок оплаты",
       },
       {
-        id: "#introduction2",
+        id: "#sroki-i-usloviya-okazaniya-uslug",
         title: "5. Сроки и условия оказания услуг",
       },
       {
-        id: "#data-collection2",
+        id: "#otvetstvennost-storon",
         title: "6. Ответственность сторон",
       },
       {
-        id: "#data-usage2",
+        id: "#izmenenie-i-rastorzhenie-dogovora",
         title: "7. Изменение и расторжение договора",
       },
       {
-        id: "#dop-sved2",
+        id: "#razreshenie-sporov",
         title: "8. Разрешение споров",
       },
       {
-        id: "#introduction3",
+        id: "#zaklyuchitelnye-polozheniya",
         title: "9. Заключительные положения",
       },
       {
-        id: "#data-collection3",
+        id: "#rekvizity-ispolnitelya",
         title: "10. Реквизиты Исполнителя",
       },
     ],
@@ -294,50 +273,29 @@ export const policyData: FaqItem[] = [
     largeImgSrc: "/blgLg1.png",
     fullAnswer: (
       <>
-        <div className="policy-content">
-          <section id="introduction">
-            <h2>Введение3</h2>
-            {/* контент */}
-          </section>
-
-          <section id="data-collection">
-            <h2>Интеллектуальные права</h2>
-            {/* контент */}
-          </section>
-
-          <section id="data-usage">
-            <h2>Конфиденциальность и защита информации</h2>
-            {/* контент */}
-          </section>
-
-          <section id="dop-sved">
-            <h2>Дополнительные сведения</h2>
-          </section>
-
-          {/* и так далее... */}
-        </div>
+        <div className="policy-content"></div>
       </>
     ),
 
     aside: [
       {
-        id: "#introduction",
+        id: "#litsenzii-i-pravovoy-status",
         title: "Лицензии и правовой статус: гарантия надёжности и прозрачности",
       },
       {
-        id: "#data-collection",
+        id: "#svidetelstvo-o-registratsii",
         title: "Свидетельство о регистрации программы для ЭВМ",
       },
       {
-        id: "#data-usage",
+        id: "#akkreditovannaya-it-kompaniya",
         title: "Мы аккредитованная IT-компания",
       },
       {
-        id: "#dop-sved",
+        id: "#pochemu-licenzii-vazhny",
         title: "Почему наличие лицензий имеет значение?",
       },
       {
-        id: "#tt",
+        id: "#poprobuyte-servis",
         title: "Попробуйте сервис — 30 минут бесплатно",
       },
     ],

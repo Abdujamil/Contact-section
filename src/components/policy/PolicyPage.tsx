@@ -7,9 +7,14 @@ import PolicyContent from "@/components/policy/PolicyContent";
 import Footer from "@/app/footer";
 export type PolicyTab = "policy" | "offer" | "license";
 
+const tabTitles: Record<PolicyTab, string> = {
+  policy: "Политика конфиденциальности",
+  offer: "Публичная оферта",
+  license: "Лицензии",
+};
+
 export default function PolicyPage() {
   const [activeTab, setActiveTab] = useState<PolicyTab>("policy");
-
 
   return (
     <>
@@ -21,7 +26,7 @@ export default function PolicyPage() {
         <h1
           className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] mt-[-8px] mb-[30px]`}
         >
-          Политика конфиденциальности
+           {tabTitles[activeTab]}
         </h1>
 
         <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
