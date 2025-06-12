@@ -29,8 +29,8 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${
-          tab.id === "policy" ? styles["contact-btn"] : styles["requisite-btn"]
-        } border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.15s] ease-in`}
+          tab.id === "policy" ? styles["contact-btn"] : styles["requisite-btn"] 
+        } ${styles["requisite-btn"]} border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.15s] ease-in`}
         style={{
           color: isActive ? "#3D9ED6" : "#ccc",
         }}
@@ -40,7 +40,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
           width="25"
           height="28"
           viewBox={tab.viewBox}
-          fill="none"
+          fill={isActive ? "#ccc" : "#737373"}
           xmlns="http://www.w3.org/2000/svg"
         >
           {React.cloneElement(tab.icon, {
@@ -61,7 +61,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
           width="25"
           height="28"
           viewBox={tab.viewBox}
-          fill="none"
+          fill={isActive ? "#ccc" : "#737373"}
           xmlns="http://www.w3.org/2000/svg"
         >
           {React.cloneElement(tab.icon, {

@@ -6,6 +6,7 @@ import BlogCard from "@/components/BlogCard/BlogCard";
 import { blogData } from "@/data/blog";
 import Bg from "@/components/background/bg";
 import Pagination from "@/components/Pagination/pagination";
+import Footer from "../footer";
 
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +35,6 @@ const Blog = () => {
     <>
       <Bg />
       <div className={`h-screen flex flex-col items-center justify-center`}>
-        <Bg />
         <div
           className={`${styles.blog} w-full min-h-full h-auto mx-auto flex flex-col items-center`}
         >
@@ -73,6 +73,8 @@ const Blog = () => {
               className="mb-[127px]"
             />
           </div>
+
+          <Footer />
         </div>
       </div>
     </>

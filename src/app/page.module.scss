@@ -463,6 +463,15 @@
   }
 }
 
+.btn.requisite-btn{
+  &:hover{
+
+    svg path {
+      fill: #ccc;
+    }
+  }
+}
+
 .blogAsideBtn {
   padding: 12px;
 

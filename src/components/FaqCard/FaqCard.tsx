@@ -23,7 +23,7 @@ const FaqCard: React.FC<FaqCardProps> = ({
     // className={`relative cursor-pointer s:py-[23px] active:border-[#3D9ED6] group-active/window:text-[#FFF]`}
     return (
         <div
-            className={`${styles.faqCard} ${isOpen ? styles.active : ""} transition-all duration-[.5s] `}
+            className={`${styles.faqCard} ${isOpen ? styles.active : ""} transition-all duration-[.5s]`}
             style={{
                 // borderColor: isOpen ? "#CCCCCC" : "transparent",
                 background: isOpen ? "#53535380" : "",

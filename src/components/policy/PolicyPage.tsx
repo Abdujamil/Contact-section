@@ -22,7 +22,7 @@ export default function PolicyPage() {
       <div
         className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
       >
-        <Bg />
+        {/* <Bg /> */}
         <h1
           className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] mt-[-8px] mb-[30px]`}
         >
