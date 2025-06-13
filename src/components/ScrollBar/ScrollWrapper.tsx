@@ -272,7 +272,9 @@ interface ScrollWrapperProps {
   children: ReactNode;
 }
 
-export default function ScrollWrapper({ children }: ScrollWrapperProps) {
+export default function ScrollWrapper({
+  children,
+}: ScrollWrapperProps) {
   const simpleBarRef = useRef<SimpleBar | null>(null);
   const scrollStopThreshold = 0.1;
   const scrollEaseFactor = 0.2;
@@ -383,6 +385,7 @@ export default function ScrollWrapper({ children }: ScrollWrapperProps) {
           if (el) {
             e.preventDefault();
 
+            // const offset = 164; // отступ вверх (в пикселях)
             const offset = 164; // отступ вверх (в пикселях)
             const elTop = (el as HTMLElement).offsetTop + offset;
 

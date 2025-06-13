@@ -7,11 +7,6 @@ import Footer from "@/app/footer";
 import Bg from "@/components/background/bg";
 import { createSlug } from "@/components/utils/createSlug";
 
-// export async function generateStaticParams() {
-//   return blogData.map((item) => ({
-//     id: item.id.toString(),
-//   }));
-// }
 
 export async function generateStaticParams() {
   try {
@@ -41,8 +36,6 @@ export async function generateStaticParams() {
     return [];
   }
 }
-
-// Генерация метаданных - теперь с async params
 export async function generateMetadata({
   params,
 }: {
@@ -108,7 +101,7 @@ export default async function BlogPage({
       return notFound();
     }
 
-    console.log(`✅ Found blog item: ${blogItem.title}`);
+    console.log(`Found blog item: ${blogItem.title}`);
 
     return (
       <>

@@ -19,7 +19,7 @@ export default function PolicyOfferContent() {
             условиях.
           </p>
 
-          <section id="obshchie-polozheniya-terminy-i-opredeleniya">
+          <section id="obshchie-polozheniya-terminy-i-opredeleniya" className="scroll-mt-[80px]">
             <h2>1. Общие положения. Термины и определения</h2>
 
             <p>
@@ -136,7 +136,7 @@ export default function PolicyOfferContent() {
               20 июня 2024 г.
             </p>
           </section>
-          <section id="predmet-dogovora">
+          <section id="predmet-dogovora" className="scroll-mt-[80px]">
             <h2>2. Предмет договора</h2>
 
             <p>
@@ -162,7 +162,7 @@ export default function PolicyOfferContent() {
               персональных данных.
             </p>
           </section>
-          <section id="kachestvo-uslug">
+          <section id="kachestvo-uslug" className="scroll-mt-[80px]">
             <h2>3. Качество услуг</h2>
             <p>
               3.1. Качество услуг должно соответствовать требованиям, обычно
@@ -244,7 +244,7 @@ export default function PolicyOfferContent() {
               надлежащими по качеству.
             </p>
           </section>
-          <section id="poryadok-oplaty">
+          <section id="poryadok-oplaty" className="scroll-mt-[80px]">
             <h2>4. Порядок оплаты</h2>
 
             <p>
@@ -291,7 +291,7 @@ export default function PolicyOfferContent() {
               Sprl
             </p>
           </section>
-          <section id="sroki-i-usloviya-okazaniya-uslug">
+          <section id="sroki-i-usloviya-okazaniya-uslug" className="scroll-mt-[80px]">
             <h2>5. Сроки и условия оказания услуг</h2>
 
             <p>
@@ -314,7 +314,7 @@ export default function PolicyOfferContent() {
               Исполнителю.
             </p>
           </section>
-          <section id="otvetstvennost-storon">
+          <section id="otvetstvennost-storon" className="scroll-mt-[80px]">
             <h2>6. Ответственность сторон</h2>
 
             <p>
@@ -369,7 +369,7 @@ export default function PolicyOfferContent() {
               прямо или косвенно связанные с административными процедурами).
             </p>
           </section>
-          <section id="izmenenie-i-rastorzhenie-dogovora">
+          <section id="izmenenie-i-rastorzhenie-dogovora" className="scroll-mt-[80px]">
             <h2>7. Изменение и расторжение договора</h2>
 
             <p>
@@ -403,7 +403,7 @@ export default function PolicyOfferContent() {
               не уведомляет Клиента об изменениях, вносимых в договор-оферту.
             </p>
           </section>
-          <section id="razreshenie-sporov">
+          <section id="razreshenie-sporov" className="scroll-mt-[80px]">
             <h2>8. Разрешение споров</h2>
 
             <p>8.1 Досудебный (претензионный) порядок разрешения споров.</p>
@@ -435,7 +435,7 @@ export default function PolicyOfferContent() {
               с законодательством РФ.
             </p>
           </section>
-          <section id="zaklyuchitelnye-polozheniya">
+          <section id="zaklyuchitelnye-polozheniya" className="scroll-mt-[80px]">
             <h2>9. Заключительные положения</h2>
             <p>
               9.1 Договор вступает в силу и становится обязательным для сторон
@@ -460,7 +460,7 @@ export default function PolicyOfferContent() {
               адресат не ознакомился с ним.
             </p>
           </section>
-          <section id="rekvizity-ispolnitelya">
+          <section id="rekvizity-ispolnitelya" className="scroll-mt-[80px]">
             <h2>10. Реквизиты Исполнителя</h2>
 
             <p>

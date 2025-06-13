@@ -30,16 +30,20 @@ const AnswerSection: React.FC<Props> = ({isOpen, fullAnswer, animationSettings})
 
     return (
         <div
-            className={`${styles.answer} bg-[#1A1A1A] rounded-[8px]`}
+            className={`${styles.answer} bg-[#0000007c] rounded-[8px]`}
             style={{
                 height: isOpen ? "auto" : "0px",
                 paddingTop: isOpen ? "30px" : "0px",
                 paddingBottom: isOpen ? "30px" : "0px",
                 paddingRight: isOpen ? "30px" : "0px",
                 paddingLeft: isOpen ? "30px" : "0px",
-                border: isOpen ? "1px solid #CCCCCC" : "",
-                marginTop: isOpen ? "6px" : "",
+                border: isOpen ? "1px solid #353535" : "",
+                borderTop: isOpen ? "none" : "",
+                // marginTop: isOpen ? "6px" : "",
+                marginTop: isOpen ? "-4px" : "",
                 overflow: "hidden",
+                boxShadow: isOpen ? "0 0 10px #0009, inset 0 0 6px #ffffff1a" : "",
+                // backdropFilter: isOpen ? "blur(5px)" : "",
             }}
         >
             <div className={`${styles.texts}`}>

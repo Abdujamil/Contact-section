@@ -35,6 +35,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   //   clickedHash || scrollSpyHash || (items.length > 0 ? items[0].id : "");
 
   // Сбрасываем кликнутый хеш когда scrollSpy догоняет
+  
   useEffect(() => {
     if (clickedHash && scrollSpyHash === clickedHash) {
       setClickedHash(null);
@@ -50,7 +51,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   // const handleAnchorClick = (href: string) => {
   //   setClickedHash(href);
   // };
-
+  
   useEffect(() => {
     if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
       setLastActiveHash(scrollSpyHash);
