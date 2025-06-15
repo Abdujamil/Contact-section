@@ -26,8 +26,8 @@ const FaqCard: React.FC<FaqCardProps> = ({
             className={`${styles.faqCard} ${isOpen ? styles.active : ""} transition-all duration-[.5s]`}
             style={{
                 // borderColor: isOpen ? "#CCCCCC" : "transparent",
-                background: isOpen ? "#53535380" : "",
-                boxShadow: isOpen ? "none" : "",
+                // background: isOpen ? "#53535380" : "",
+                // boxShadow: isOpen ? "none" : "",
             }}
         >
             <QuestionHeader

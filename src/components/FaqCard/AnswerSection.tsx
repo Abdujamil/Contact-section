@@ -43,7 +43,7 @@ const AnswerSection: React.FC<Props> = ({
 
   return (
     <div
-      className={`${styles.answer} bg-[#1A1A1A] rounded-[6px]`}
+      className={`${styles.answer} rounded-[6px]`}
       style={{
         height: isOpen ? "auto" : "0px",
         paddingTop: isOpen ? "30px" : "0px",
@@ -55,6 +55,7 @@ const AnswerSection: React.FC<Props> = ({
         border: isOpen ? "1px solid #CCCCCC" : "",
         borderTopColor: isOpen ? "transparent" : "",
         marginTop: isOpen ? "-4px" : "",
+        boxShadow: isOpen ? "0 0 10px #0009, inset 0 0 6px #ffffff1a" : "",
         overflow: "hidden",
       }}
     >

@@ -111,8 +111,8 @@
 .login-button span {
   color: inherit;
   transition: color 0.08s ease;
-  transform: translateY(-0.06em);
-  margin-top: 1.5px;
+  /*transform: translateY(-0.06em);*/
+  /*margin-top: 1.5px;*/
 }
 
 .menu-item-active {
@@ -235,8 +235,8 @@
 .login-button span {
   color: inherit;
   transition: color 0.08s ease;
-  transform: translateY(-0.06em);
-  margin-top: 1.5px;
+  /*transform: translateY(-0.06em);*/
+  /*margin-top: 1.5px;*/
 }
 
 /* Эффект рамки */

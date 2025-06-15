@@ -59,7 +59,6 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ activeTab }) => {
         {currentData.fullAnswer}
       </div>
 
-
         <TryBlock
             title="Хотите протестировать?"
             content="

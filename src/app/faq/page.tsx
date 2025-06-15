@@ -51,7 +51,6 @@ const Faq: React.FC = () => {
                             ))}
                         </div>
                     </section>
-                    {/*<Footer />*/}
                 </div>
             </main>
         </>

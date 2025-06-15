@@ -963,7 +963,7 @@ export default function Contacts() {
                   <div className="relative !overflow-hidden">
                     <button
                       type="submit"
-                      className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]}  group  !w-[220px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.15s] ease-in `}
+                      className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.15s] ease-in `}
                     >
                       <Image
                         className={`${styles.sendIconLeft}   transition-all !duration-[.15s] ease-in `}

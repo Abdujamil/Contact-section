@@ -34,6 +34,7 @@ function OfferPage() {
                     <PolicySidebar activeTab={activeTab} setActiveTab={setActiveTab}/>
                     <PolicyOfferContent/>
                 </div>
+
             </div>
             <Footer/>
         </>
