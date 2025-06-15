@@ -27,8 +27,8 @@ export const policyData: FaqItem[] = [
     largeImgSrc: "/blgLg1.png",
     fullAnswer: (
       <>
-        <div className="policy-content scroll-mt-[80px]">
-          <section id="introduction" className="scroll-mt-[80px]">
+        <div className="policy-content">
+          <section id="introduction" className={`scroll-mt-[80px]`}>
             <h2>Введение</h2>
             <p>
               Настоящие Условия Пользовательского соглашения уведомляют Вас о
@@ -40,8 +40,7 @@ export const policyData: FaqItem[] = [
               всех пользователей веб-сайта
             </p>
           </section>
-
-          <section id="data-collection" className="scroll-mt-[80px]">
+          <section id="data-collection" className={`scroll-mt-[80px]`}>
             <h2>Интеллектуальные права</h2>
             <p>
               Вся информация, представленная на данном веб-сайте принадлежит
@@ -56,8 +55,7 @@ export const policyData: FaqItem[] = [
               законодательством РФ.
             </p>
           </section>
-
-          <section id="data-usage" className="scroll-mt-[80px]">
+          <section id="data-usage" className={`scroll-mt-[80px]`}>
             <h2>Конфиденциальность и защита информации</h2>
             <h3>
               Персональные данные пользователя обрабатывается в соответствии с
@@ -173,7 +171,6 @@ export const policyData: FaqItem[] = [
               </ul>
             </div>
           </section>
-
           <section id="dop-sved" className="scroll-mt-[80px] !mb-0">
             <h2>Дополнительные сведения</h2>
 
@@ -217,7 +214,7 @@ export const policyData: FaqItem[] = [
     largeImgSrc: "/blgLg1.png",
     fullAnswer: (
       <>
-        <div className="policy-content"></div>
+
       </>
     ),
 
@@ -273,7 +270,7 @@ export const policyData: FaqItem[] = [
     largeImgSrc: "/blgLg1.png",
     fullAnswer: (
       <>
-        <div className="policy-content"></div>
+
       </>
     ),
 

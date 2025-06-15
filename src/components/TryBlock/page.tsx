@@ -3,7 +3,12 @@ import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
 import { handleMouseLeave, handleMouseMove } from "../Form/mouse";
 
-export default function page() {
+type TryBlockProps = {
+  title: string;
+  content: string;
+};
+
+export default function page({ title, content }: TryBlockProps) {
   return (
     <div className={`w-full flex items-center justify-center mb-[100px]`}>
       <div
@@ -12,12 +17,10 @@ export default function page() {
         <h3
           className={`${styles.txtGradientRight} text-[32px] leading-[120%] mb-[20px]`}
         >
-          Попробуйте 30 минут бесплатной транскрибации
+          {title}
         </h3>
         <p className={`text-[#A4A4A4] leading-[140%] text-[18px] mb-[20px]`}>
-          Зарегистрируйтесь и получите 30 бесплатных минут. Подходит
-          для интервью, встреч, звонков и тп. Убедитесь в точности и удобстве
-          сервиса — без риска.
+          {content}
         </p>
 
         <div className="relative w-full max-w-[220px] m-auto h-[51px] !overflow-hidden ">

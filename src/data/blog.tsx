@@ -33,7 +33,7 @@ export const blogData: FaqItem[] = [
     fullAnswer: (
       <>
         <div id="academic-requirements" className={`scroll-mt-[80px]`}>
-          <h2 className="scroll-mt-[80px] mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
+          <h2 className="mb-[20px] text-[24px] leading-[120%]  text-[#3D9ED6]">
             Академические требования к транскрибированному тексту
           </h2>
 

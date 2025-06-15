@@ -21,7 +21,12 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ activeTab }) => {
     return (
       <div>
         <PolicyOfferContent />
-        <TryBlock />
+          <TryBlock
+              title="Хотите протестировать?"
+              content="
+                Попробуйте AUDIOSECTOR прямо сейчас. Никаких сложностей. Только
+                результат."
+          />
       </div>
     );
   }
@@ -30,7 +35,12 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ activeTab }) => {
     return (
       <div>
         <PolicyLicenseContent />
-        <TryBlock />
+          <TryBlock
+              title="Хотите протестировать?"
+              content="
+                Попробуйте AUDIOSECTOR прямо сейчас. Никаких сложностей. Только
+                результат."
+          />
       </div>
     );
   }
@@ -50,7 +60,12 @@ const PolicyContent: React.FC<PolicyContentProps> = ({ activeTab }) => {
       </div>
 
 
-      <TryBlock />
+        <TryBlock
+            title="Хотите протестировать?"
+            content="
+                Попробуйте AUDIOSECTOR прямо сейчас. Никаких сложностей. Только
+                результат."
+        />
     </div>
   );
 };

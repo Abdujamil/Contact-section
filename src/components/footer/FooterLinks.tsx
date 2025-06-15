@@ -9,9 +9,9 @@ import { Check } from "lucide-react";
 const links = [
   { href: "/contacts", label: "Контакты" },
   { href: "/blog", label: "Блог" },
-  { href: "/license", label: "Лицензии" },
-  { href: "/oferta", label: "Оферта" },
-  { href: "/politic", label: "Политика" },
+  { href: "/politic?tab=license", label: "Лицензии" },
+  { href: "/politic?tab=oferta", label: "Оферта" },
+  { href: "/politic?tab=politic", label: "Политика" },
 ];
 
 const FooterLinks: React.FC = () => {

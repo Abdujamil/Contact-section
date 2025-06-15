@@ -282,6 +282,16 @@ export default function ScrollWrapper({
   const thresholdRef = useRef(scrollStopThreshold);
   const easeRef = useRef(scrollEaseFactor);
 
+  const getScrollOffset = () => {
+    if (pathname.includes('/politic')) {
+      return 110; // Меньший offset для страницы политики
+    }
+    if (pathname.includes('/blog')) {
+      return 164; // Стандартный offset для блога
+    }
+    return 120; // Дефолтный offset для остальных страниц
+  };
+
   useEffect(() => {
     thresholdRef.current = scrollStopThreshold;
   }, [scrollStopThreshold]);
@@ -386,7 +396,7 @@ export default function ScrollWrapper({
             e.preventDefault();
 
             // const offset = 164; // отступ вверх (в пикселях)
-            const offset = 164; // отступ вверх (в пикселях)
+            const offset = getScrollOffset(); // отступ вверх (в пикселях)
             const elTop = (el as HTMLElement).offsetTop + offset;
 
             const maxScroll =

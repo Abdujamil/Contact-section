@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "@/app/page.module.scss";
 import Bg from "@/components/background/bg";
 import PolicySidebar from "@/components/policy/PolicySidebar";
 import PolicyContent from "@/components/policy/PolicyContent";
 import Footer from "@/app/footer";
 export type PolicyTab = "policy" | "offer" | "license";
+import { useSearchParams } from "next/navigation";
 
 const tabTitles: Record<PolicyTab, string> = {
   policy: "Политика конфиденциальности",
@@ -13,8 +14,26 @@ const tabTitles: Record<PolicyTab, string> = {
   license: "Лицензии",
 };
 
+const urlToTabMap: Record<string, PolicyTab> = {
+    "oferta": "offer",
+    "license": "license",
+    "politic": "policy",
+};
+
 export default function PolicyPage() {
   const [activeTab, setActiveTab] = useState<PolicyTab>("policy");
+
+  const searchParams = useSearchParams();
+
+    useEffect(() => {
+        // Получаем параметр tab из URL
+        const tabParam = searchParams.get("tab");
+
+        if (tabParam && urlToTabMap[tabParam]) {
+            setActiveTab(urlToTabMap[tabParam]);
+        }
+    }, [searchParams]);
+
 
   return (
     <>

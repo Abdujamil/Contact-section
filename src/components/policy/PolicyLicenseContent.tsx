@@ -182,7 +182,7 @@ export default function PolicyLicenseContent() {
               <h2>Свидетельство о регистрации программы для ЭВМ</h2>
 
               <div className={`flex items-start gap-[30px] mb-[20px]`}>
-                <div className={`w-full max-w-[280px]`}>
+                <div className={`w-full max-w-[260px]`}>
                   <Image
                     className={`cursor-pointer`}
                     onClick={() => setOpenFirst(true)}
@@ -269,7 +269,7 @@ export default function PolicyLicenseContent() {
               </ul>
 
               <div className={`flex items-start gap-[30px] my-[20px]`}>
-                <div className={`w-full max-w-[280px]`}>
+                <div className={`w-full max-w-[260px]`}>
                   <Image
                     className={`cursor-pointer`}
                     onClick={() => setOpenSecond(true)}
