@@ -35,12 +35,12 @@
       form {
 
         /* При hover на textarea скрываем соседний span */
-        textarea:hover+span {
+        textarea:hover + span {
           opacity: 0;
         }
 
         /* При фокусе (активном состоянии) textarea скрываем span */
-        textarea:focus+span {
+        textarea:focus + span {
           opacity: 0;
         }
 
@@ -293,7 +293,7 @@
     color: #878787;
   }
 
-  ul>li,
+  ul > li,
   p {
     font-size: 16px;
   }
@@ -463,8 +463,8 @@
 
 }
 
-.btn.requisite-btn{
-  &:hover{
+.btn.requisite-btn {
+  &:hover {
 
     svg path {
       fill: #adadad;
@@ -511,14 +511,14 @@
   border-radius: 4px;
   pointer-events: none;
   background: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
-      rgba(255, 255, 255, 0.1),
-      transparent 90%);
+          rgba(255, 255, 255, 0.1),
+          transparent 90%);
   mask-image: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
-      white,
-      transparent 90%);
+          white,
+          transparent 90%);
   -webkit-mask-image: radial-gradient(100px circle at var(--mouse-x) var(--mouse-y),
-      white,
-      transparent 90%);
+          white,
+          transparent 90%);
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -534,9 +534,23 @@
 
 .txtGradientRight {
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(90deg, #ccc, #cccccc71);
+  //background-image: linear-gradient(90deg, #ccc, #cccccc71);
+  background-image: linear-gradient(270deg, #ffffff4f, #ccc);
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.txtGradientTitle {
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(270deg, #ffffff4f, #ccc);
+  background-clip: text;
+}
+
+.licenseBtns{
+  backdrop-filter: blur(5px);
+  background: #00000012;
+  box-shadow: 0 0 10px #0009, inset 0 0 6px #ffffff1a;
 }
 
 //-------------------------------- Editor --------------------------------//
@@ -552,6 +566,7 @@
     }
   }
 }
+
 //-------------------------------- Footer --------------------------------//
 .footer {
   .footerTop {
@@ -578,7 +593,7 @@
           &:active {
             outline: none;
 
-            &+button {
+            & + button {
               transform: translateX(0) !important;
             }
           }
@@ -619,7 +634,7 @@
             transform: scale(0.95);
           }
 
-          >span {
+          > span {
             display: block !important; // Убираем лишние обертки
             line-height: 0; // Убираем лишние отступы
           }

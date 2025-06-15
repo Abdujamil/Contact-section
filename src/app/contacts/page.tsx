@@ -858,7 +858,7 @@ export default function Contacts() {
                           type="submit"
                           onMouseMove={handleMouseMove}
                           onMouseLeave={handleMouseLeave}
-                          className={`${styles.btn} ${HeaderStyles["login-button"]} bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-between`}
+                          className={`${styles.btn} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-between`}
                           data-text=""
                         >
                           <svg
