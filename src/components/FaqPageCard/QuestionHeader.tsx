@@ -21,6 +21,7 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                 height: isOpen ? "68px" : "68px",
                 alignItems: isOpen ? "start" : "center",
                 // borderBottom: isOpen ? "1px solid #737373" : "",
+                background: isOpen ? "rgba(61,158,214,0.07)" : "",
                 border: isOpen ? "1px solid #CCCCCC" : "",
             }}
         >

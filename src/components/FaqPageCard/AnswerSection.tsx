@@ -30,7 +30,7 @@ const AnswerSection: React.FC<Props> = ({isOpen, fullAnswer, animationSettings})
 
     return (
         <div
-            className={`${styles.answer} bg-[#0000007c] rounded-[8px]`}
+            className={`${styles.answer} rounded-[8px]`}
             style={{
                 height: isOpen ? "auto" : "0px",
                 paddingTop: isOpen ? "30px" : "0px",
@@ -40,7 +40,7 @@ const AnswerSection: React.FC<Props> = ({isOpen, fullAnswer, animationSettings})
                 border: isOpen ? "1px solid #353535" : "",
                 borderTop: isOpen ? "none" : "",
                 // marginTop: isOpen ? "6px" : "",
-                marginTop: isOpen ? "-4px" : "",
+                marginTop: isOpen ? "-5px" : "",
                 overflow: "hidden",
                 boxShadow: isOpen ? "0 0 10px #0009, inset 0 0 6px #ffffff1a" : "",
                 // backdropFilter: isOpen ? "blur(5px)" : "",

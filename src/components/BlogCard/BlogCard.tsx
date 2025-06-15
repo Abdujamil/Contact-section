@@ -93,7 +93,7 @@ import styles from "@/app/page.module.scss";
 import Image, { StaticImageData } from "next/image";
 // import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { createSlug } from "@/components/utils/createSlug"; 
+import { createSlug } from "@/components/utils/createSlug";
 
 interface BlogCardProps {
   id: number;
@@ -112,27 +112,25 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
 
   const handleCardClick = () => {
     const slug = createSlug(title);
-    console.log('Original title:', title);
-    console.log('Generated slug:', slug);
-    console.log('Final URL:', `/blogPage/${slug}`);
-    
+    console.log("Original title:", title);
+    console.log("Generated slug:", slug);
+    console.log("Final URL:", `/blogPage/${slug}`);
+
     if (!slug) {
-      console.error('Slug is empty for title:', title);
+      console.error("Slug is empty for title:", title);
       return;
     }
-    
+
     router.push(`/blogPage/${slug}`);
   };
 
   const handleAuthorClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    router.push('/');
+    router.push("/");
   };
 
-  
-
   return (
-    <div 
+    <div
       className={`${styles.card} ${styles.shadowcards} group w-full h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden cursor-pointer`}
       style={{
         willChange: "transform",
@@ -170,12 +168,26 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
             <p
               className={`${styles.cardBodyDate}  flex items-center gap-[4px] text-[#adadad] text-[14px] leading-[13px]`}
             >
-              <Image
+              {/* <Image
                 src="/mingcute_calendar-fill.svg"
                 alt="calendar-icon"
-                width={14}
-                height={14}
-              />
+                width={16}
+                height={16}
+              /> */}
+
+              <svg
+                width="14"
+                height="15"
+                viewBox="0 0 10 10"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 9.52381C0.725 9.52381 0.489667 9.43063 0.294 9.24429C0.0983333 9.05794 0.000333333 8.83365 0 8.57143V1.90476C0 1.64286 0.098 1.41873 0.294 1.23238C0.49 1.04603 0.725333 0.952698 1 0.952381H1.5V0H2.5V0.952381H6.5V0H7.5V0.952381H8C8.275 0.952381 8.5105 1.04571 8.7065 1.23238C8.9025 1.41905 9.00033 1.64317 9 1.90476V4.13095C9 4.26587 8.952 4.37905 8.856 4.47048C8.76 4.5619 8.64133 4.60746 8.5 4.60714C8.35866 4.60683 8.24 4.56111 8.144 4.47C8.048 4.37889 8 4.26587 8 4.13095V3.80952H1V8.57143H3.9C4.04167 8.57143 4.1605 8.61714 4.2565 8.70857C4.3525 8.8 4.40033 8.91302 4.4 9.04762C4.39967 9.18222 4.35167 9.2954 4.256 9.38714C4.16033 9.47889 4.04167 9.52444 3.9 9.52381H1ZM7.5 10C6.80833 10 6.21883 9.76778 5.7315 9.30333C5.24417 8.83889 5.00033 8.27746 5 7.61905C4.99967 6.96063 5.2435 6.39921 5.7315 5.93476C6.2195 5.47032 6.809 5.23809 7.5 5.23809C8.191 5.23809 8.78066 5.47032 9.269 5.93476C9.75733 6.39921 10.001 6.96063 10 7.61905C9.999 8.27746 9.75516 8.83905 9.2685 9.30381C8.78183 9.76857 8.19233 10.0006 7.5 10ZM8.3375 8.75L8.6875 8.41667L7.75 7.52381V6.19048H7.25V7.71429L8.3375 8.75Z"
+                  fill="#737373"
+                />
+              </svg>
+
               {date}
             </p>
 

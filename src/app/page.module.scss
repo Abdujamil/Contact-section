@@ -472,6 +472,14 @@
   }
 }
 
+.editorTryBlock .btn.blogTryBtn {
+  &:hover {
+    span {
+      transform: translateX(35px) !important;
+    }
+  }
+}
+
 .blogAsideBtn {
   padding: 12px;
 
