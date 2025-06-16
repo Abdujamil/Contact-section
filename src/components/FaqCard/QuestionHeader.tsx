@@ -26,7 +26,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
         >
 
             <div
-                className={`${styles.logoOnHover} absolute right-[8%] overflow-hidden hidden z-[9999] w-[157px] h-[157px] border border-[#CCCCCC] backdrop-blur-[2.5px]  rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
+                className={`${styles.logoOnHover} absolute right-[8%] overflow-hidden hidden z-[9999] w-[157px] h-[157px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
                 style={{
                     display: isOpen ? "none" : "",
                 }}
