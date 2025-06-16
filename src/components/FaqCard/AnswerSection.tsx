@@ -126,7 +126,7 @@ const AnswerSection: React.FC<Props> = ({
             </defs>
           </svg>
 
-          <span className="text-[20px] text-[#adadad] !transition-all !duration-[.15s] !ease-in">
+          <span className="text-[20px] !text-[#adadad] !transition-all !duration-[.15s] !ease-in">
             Подробнее
           </span>
         </button>

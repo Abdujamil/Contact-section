@@ -164,7 +164,7 @@
     color: #ccc;
 
     span {
-      transform: translateX(83px);
+      transform: translateX(46px);
     }
 
     .pdfBtn {
@@ -189,6 +189,14 @@
   }
 }
 
+.btn.contact-btn{
+  &:hover{
+    span {
+      transform: translateX(92px);
+    }
+  }
+}
+
 .btn.btnDownloadPdf {
   &:hover {
     .sendIconLeft {
@@ -209,7 +217,7 @@
   &:hover {
 
     span {
-      transform: translateX(81px);
+      transform: translateX(90px);
     }
   }
 }
@@ -412,7 +420,7 @@
   }
 
   span {
-    transform: translate(50px);
+    transform: translate(55px);
   }
 
   .sendIconRight {

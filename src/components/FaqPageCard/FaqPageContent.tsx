@@ -213,7 +213,8 @@ export default function FaqPageContent({
 
   return (
     <>
-      <aside className="sticky top-[195px] h-fit w-[260px] backdrop-blur-sm z-[999999]">
+
+      <aside className="sticky top-[195px] h-fit w-[260px] backdrop-blur-sm z-[9999]">
         {/* Промо блок */}
         {showRegisterPromo && (
           <div
@@ -301,7 +302,6 @@ export default function FaqPageContent({
           )}
         </AnimatePresence>
       </aside>
-
       <div className="col-span-3">
         <div className="pb-[40px]">
           <h2
