@@ -32,7 +32,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
           tab.id === "policy" ? styles["contact-btn"] : styles["requisite-btn"] 
         } ${styles["requisite-btn"]} border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.15s] ease-in`}
         style={{
-          color: isActive ? "#3D9ED6" : "#ccc",
+          color: isActive ? "#3D9ED6" : "#adadad",
         }}
       >
         <svg
@@ -40,11 +40,11 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
           width="25"
           height="28"
           viewBox={tab.viewBox}
-          fill={isActive ? "#ccc" : "#737373"}
+          fill="#adadad"
           xmlns="http://www.w3.org/2000/svg"
         >
           {React.cloneElement(tab.icon, {
-            fill: isActive ? "#ccc" : "#737373",
+            fill: isActive ? "#adadad" : "#adadad",
           })}
         </svg>
 
@@ -61,11 +61,11 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
           width="25"
           height="28"
           viewBox={tab.viewBox}
-          fill={isActive ? "#ccc" : "#737373"}
+          fill="#adadad"
           xmlns="http://www.w3.org/2000/svg"
         >
           {React.cloneElement(tab.icon, {
-            fill: isActive ? "#ccc" : "#737373",
+            fill: isActive ? "#adadad" : "#adadad",
           })}
         </svg>
       </button>

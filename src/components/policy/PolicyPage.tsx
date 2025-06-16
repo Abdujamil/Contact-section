@@ -6,6 +6,7 @@ import PolicySidebar from "@/components/policy/PolicySidebar";
 import PolicyContent from "@/components/policy/PolicyContent";
 import Footer from "@/app/footer";
 import {useSearchParams} from "next/navigation";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 export type PolicyTab = "policy" | "offer" | "license";
 
@@ -41,7 +42,7 @@ function PolicyPageContent() {
             <div
                 className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
             >
-                {/* <Bg /> */}
+                <Breadcrumbs policyUrl={true}/>
                 <h1
                     className={`${styles.txtGradientTitle} text-center text-[48px] leading-[110%] mt-[-8px] mb-[30px]`}
                 >

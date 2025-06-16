@@ -53,14 +53,14 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                     <p className={`font-[300] w-[45px] text-[22px] transition-all ease duration-[.1s] relative left-0`}>{num}</p>
                 </div>
                 <div className={`${styles.answerContainer} w-full`}>
-                    <h3 className={`w-full font-[400] text-[20px] transition-all ease-in-out duration-[0.3s] `}>{question}</h3>
+                    <h3 className={`w-full font-[400] text-[20px] transition-all ease-in-out duration-[0.3s] text-[#adadad]`}>{question}</h3>
                 </div>
 
                 <div className={`${styles.arrow}`}>
                     <svg className={`transition-all duration-[.2s] ease-in-out`} width="24" height="24"
                          viewBox="0 0 24 24" fill="none">
-                        <path d="M5 5L19 19" stroke="#CCCCCC" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M19 11L19 19L11 19" stroke="#CCCCCC" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M5 5L19 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M19 11L19 19L11 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                 </div>
             </div>

@@ -5,6 +5,7 @@ import styles from './faq.module.scss';
 import FaqCard from '../../components/FaqCard/index'
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 const Faq: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
@@ -28,6 +29,7 @@ const Faq: React.FC = () => {
            <Bg />
             <main className={`${styles.main} w-full h-full`}>
                 <div className={`w-full h-full mb-[80px] mt-[60px]`}>
+                    <Breadcrumbs />
                     <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
                         <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] text-[48px] text-[#ccc] mb-[41px]`}>FAQ:
                             Ответы

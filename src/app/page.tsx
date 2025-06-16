@@ -6,6 +6,7 @@ import FaqCard from '../components/FaqCard/index'
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
 import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 const Home: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
@@ -30,6 +31,7 @@ const Home: React.FC = () => {
             <ScrollWrapper>
                 <Bg/>
                 <main className={`${styles.main} w-full h-full`}>
+                    <Breadcrumbs faq={true}/>
                     <div className={`w-full h-full mb-[80px] mt-[120px]`}>
                         <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
                             <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] mt-[-8px] text-[48px] text-[#ccc] mb-[30px]`}>FAQ:

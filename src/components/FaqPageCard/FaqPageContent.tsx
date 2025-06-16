@@ -213,14 +213,13 @@ export default function FaqPageContent({
 
   return (
     <>
-      <aside className="sticky top-[20.6%] h-fit w-[260px] backdrop-blur-sm z-[999999]">
+      <aside className="sticky top-[195px] h-fit w-[260px] backdrop-blur-sm z-[999999]">
         {/* Промо блок */}
         {showRegisterPromo && (
           <div
             className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[8px]`}
           >
-            <p
-              className={`${styles.text} mb-[16px] text-[#3D9ED6] text-[20px] font-[400] leading-[110%]`}
+            <p className={`${styles.text} mb-[16px] text-[#3D9ED6] text-[20px] font-[400] leading-[110%]`}
             >
               При регистрации дарим 30 минут!
             </p>

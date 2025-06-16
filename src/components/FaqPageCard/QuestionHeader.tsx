@@ -30,7 +30,7 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                 className={`${styles.questionContainer} relative z-[99] w-full h-full p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
 
                 <div className={`${styles.answerContainer} w-full`}>
-                    <h3 className={`w-full font-[400] text-[20px] text-[#CCCCCC]  `}
+                    <h3 className={`w-full font-[400] text-[20px] text-[#adadad]`}
                         style={{color: isOpen ? "#3D9ED6" : "",}}
                     >{question}</h3>
                 </div>
@@ -57,8 +57,8 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                             viewBox="0 0 24 24"
                             fill="none"
                         >
-                            <path d="M5 5L19 19" stroke="#737373" strokeWidth="2" strokeLinecap="round"/>
-                            <path d="M19 11L19 19L11 19" stroke="#737373" strokeWidth="2" strokeLinecap="round"/>
+                            <path d="M5 5L19 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
+                            <path d="M19 11L19 19L11 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
                         </svg>
                     )}
                 </div>

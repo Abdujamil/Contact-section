@@ -22,6 +22,7 @@ import Btns from "@/components/ContactsBlockBtns/btns";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
 import Link from "next/link";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 export default function Contacts() {
   const controls = useAnimation();
@@ -137,34 +138,6 @@ export default function Contacts() {
     }
   };
 
-  // useEffect(() => {
-  //   if (!submitCount || wasSubmittedSuccessfully) return;
-
-  //   setShowPolicy(true);
-
-  //   const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
-  //   const isContactValid =
-  //     (isEmail && emailRegex.test(contactValue)) ||
-  //     (isPhone && phoneRegex.test(contactValue));
-
-  //   setSelectError(!isSelectValid);
-
-  //   if (!isEmail && !isPhone) {
-  //     setFailCheck(true);
-  //     bounceElements();
-  //   } else {
-  //     setFailCheck(false);
-  //     validContactt(contactValue);
-  //   }
-
-  //   if (!isSelectValid || !isContactValid) {
-  //     setVisibleError(true);
-  //   } else {
-  //     setVisibleError(false);
-  //     validContactt(contactValue);
-  //   }
-  // }, [submitCount]);
-
   const [emailCheckboxError, setEmailCheckboxError] = useState(false);
   const [phoneCheckboxError, setPhoneCheckboxError] = useState(false);
 
@@ -231,77 +204,6 @@ export default function Contacts() {
     }
   }, [contactValue, isEmail, isPhone]);
 
-  // const onSubmit = async (data: Record<string, unknown>) => {
-  //   const formData = new FormData();
-
-  //   const contactValue =
-  //     typeof data.Contact === "string" ? data.Contact.trim() : "";
-  //   const isSelectValid = selectedOption !== "" && selectedOption !== "Тема";
-  //   // const isContactMethodSelected = isEmail || isPhone;
-  //   const isContactMethodSelected = contactData.email && contactData.phone;
-
-  //   formData.append("email", contactData.email);
-  //   formData.append("phone", contactData.phone);
-
-  //   // 1. Проверяем email только если он выбран
-  //   // const isEmailValid = !isEmail || (isEmail && emailRegex.test(contactValue));
-
-  //   // if (!isSelectValid || !isContactMethodSelected || !isEmailValid) {
-  //   //   setEmailError(!isEmailValid);
-  //   //   setVisibleError(true);
-  //   //   setSelectError(!isSelectValid);
-  //   //   setEmailSuccessful(false);
-  //   //   return;
-  //   // }
-
-  //   const isEmailValid = emailRegex.test(contactData.email);
-  //   const isPhoneValid = phoneRegex.test(contactData.phone);
-
-  //   if (
-  //     !isSelectValid ||
-  //     !isContactMethodSelected ||
-  //     !isEmailValid ||
-  //     !isPhoneValid
-  //   ) {
-  //     setEmailError(!isEmailValid || !isPhoneValid);
-  //     setVisibleError(true);
-  //     setSelectError(!isSelectValid);
-  //     setEmailSuccessful(false);
-  //     return;
-  //   }
-
-  //   // Сброс ошибок
-  //   setSelectError(true);
-  //   setVisibleError(false);
-  //   setEmailError(false);
-  //   setFailCheck(false);
-  //   setEmailSuccessful(false);
-  //   setIsPhone(false);
-  //   setIsEmail(false);
-
-  //   // Заполнение и отправка формы
-  //   Object.entries(data).forEach(([key, value]) => {
-  //     if (value !== undefined && value !== null) {
-  //       formData.append(key, value instanceof Blob ? value : String(value));
-  //     }
-  //   });
-
-  //   console.log("Форма отправлена:", data);
-  //   setIsSubmitted(true);
-  //   setSelectedOption("Тема");
-  //   setContactValue("");
-  //   setText("");
-  //   setComment("");
-  //   setContactData({ email: "", phone: "" });
-  //   setShowPolicy(false);
-  //   reset();
-  //   setWasSubmittedSuccessfully(false);
-
-  //   if (fileInputRef.current) {
-  //     fileInputRef.current.value = "";
-  //   }
-  //   setWasSubmittedSuccessfully(true);
-  // };
 
   // Функция для показа политики при фокусе на поля
 
@@ -429,6 +331,7 @@ export default function Contacts() {
         <div
           className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}
         >
+          <Breadcrumbs contactUrl={true} />
           <div
             className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center`}
           >

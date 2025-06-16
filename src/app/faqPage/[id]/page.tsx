@@ -43,6 +43,7 @@ import React from "react";
 import Footer from "../../footer";
 import FaqPageContent from "@/components/FaqPageCard/FaqPageContent";
 import Bg from "@/components/background/bg";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 // Обновленный тип для Next.js 15
 type Props = {
@@ -73,6 +74,7 @@ export default async function FaqPage({ params, searchParams }: Props) {
                 <Bg/>
                 <div
                     className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[40px]">
+                    <Breadcrumbs faqPage={true}/>
                     <FaqPageContent
                         fromHeader={fromHeader}
                         id={id}
