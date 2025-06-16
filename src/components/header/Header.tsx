@@ -163,7 +163,7 @@ const Header: React.FC = () => {
   // Login
   const { toggleRegisterPromo, showRegisterPromo } = useAuth();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [hoverDirection, setHoverDirection] = useState<string | null>(null);
+  // const [hoverDirection, setHoverDirection] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("isLoggedIn");
