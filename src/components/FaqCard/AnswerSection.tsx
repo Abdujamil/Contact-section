@@ -60,7 +60,7 @@ const AnswerSection: React.FC<Props> = ({
       }}
     >
       <div className={`${styles.texts} flex gap-[40px] mb-[24px]`}>
-        <p className="text-[18px] font-normal leading-[140%]">{answer}</p>
+        <p className="text-[16px] font-normal leading-[140%]">{answer}</p>
         <motion.div
           className="w-[155px] max-h-[155px] mt-[5px]"
           initial={{ y: 20, opacity: 0 }}
@@ -97,7 +97,7 @@ const AnswerSection: React.FC<Props> = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <rect x="1" y="1" width="24" height="24" rx="2" fill="#737373" />
+            <rect x="1" y="1" width="24" height="24" rx="2" fill="#adadad" />
             <g clipPath="url(#clip0_3069_1633)">
               <path
                 d="M5.81641 13H20.1828"
@@ -126,45 +126,9 @@ const AnswerSection: React.FC<Props> = ({
             </defs>
           </svg>
 
-          <span className="text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+          <span className="text-[20px] text-[#adadad] !transition-all !duration-[.15s] !ease-in">
             Подробнее
           </span>
-          {/*<svg*/}
-          {/*  className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}*/}
-          {/*  width="26"*/}
-          {/*  height="26"*/}
-          {/*  viewBox="0 0 26 26"*/}
-          {/*  fill="none"*/}
-          {/*  xmlns="http://www.w3.org/2000/svg"*/}
-          {/*>*/}
-          {/*  <rect x="1" y="1" width="24" height="24" rx="2" fill="#737373" />*/}
-          {/*  <g clipPath="url(#clip0_3069_1633)">*/}
-          {/*    <path*/}
-          {/*      d="M5.81641 13H20.1828"*/}
-          {/*      stroke="#191919"*/}
-          {/*      strokeWidth="2"*/}
-          {/*      strokeLinecap="round"*/}
-          {/*      strokeLinejoin="round"*/}
-          {/*    />*/}
-          {/*    <path*/}
-          {/*      d="M16.0783 8.8953L20.183 13L16.0783 17.1047"*/}
-          {/*      stroke="#191919"*/}
-          {/*      strokeWidth="2"*/}
-          {/*      strokeLinecap="round"*/}
-          {/*      strokeLinejoin="round"*/}
-          {/*    />*/}
-          {/*  </g>*/}
-          {/*  <defs>*/}
-          {/*    <clipPath id="clip0_3069_1633">*/}
-          {/*      <rect*/}
-          {/*        width="17.4147"*/}
-          {/*        height="17.4147"*/}
-          {/*        fill="white"*/}
-          {/*        transform="translate(0.685547 13) rotate(-45)"*/}
-          {/*      />*/}
-          {/*    </clipPath>*/}
-          {/*  </defs>*/}
-          {/*</svg>*/}
         </button>
         <div className={styles.highlight} />
       </motion.div>
