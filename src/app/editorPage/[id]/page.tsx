@@ -61,7 +61,7 @@ export default function EditorPage() {
           {/* Статьи */}
           <div className={``}>
             <h2
-              className={`text-[#3D9ED6] text-[24px] leading-[120%] mb-[20px]`}
+              className={`text-[#878787] text-[24px] leading-[120%] mb-[20px]`}
             >
               Все статьи данного редактора
             </h2>
