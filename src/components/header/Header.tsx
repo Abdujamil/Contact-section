@@ -4,6 +4,8 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
+import { useAuth } from "@/components/context/AuthContext";
+
 
 interface MenuItem {
   label: string;
@@ -157,6 +159,22 @@ const Header: React.FC = () => {
       });
     };
   });
+
+  // Login
+  const { toggleRegisterPromo, showRegisterPromo } = useAuth();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [hoverDirection, setHoverDirection] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("isLoggedIn");
+    if (saved === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", String(isLoggedIn));
+  }, [isLoggedIn]);
 
   return (
     <header className={`${styles.header} flex items-center w-full h-[70px]`}>
@@ -483,7 +501,8 @@ const Header: React.FC = () => {
             <div className="overflow-hidden">
               <button
                 className={`${styles["login-button"]} group flex items-center justify-center`}
-                data-text="Войти"
+                data-text={showRegisterPromo ? "Войти" : "Выйти"}
+                onClick={toggleRegisterPromo}
                 onMouseEnter={() => setIsIconVisible(true)}
                 onMouseLeave={() => setIsIconVisible(false)}>
                 <div className="flex items-center gap-[10px]">
@@ -502,7 +521,7 @@ const Header: React.FC = () => {
                     />
                   </svg>
                   <span className="font-normal text-[18px] leading-[120%]">
-                    Войти
+                     {showRegisterPromo ? "Войти" : "Выйти"}
                   </span>
                 </div>
                 <div className={styles.highlight} />
