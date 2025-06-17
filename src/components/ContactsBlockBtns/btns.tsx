@@ -35,7 +35,7 @@ const Btns: React.FC<BtnsProps> = ({ activeTab, setActiveTab, controls }) => {
                                              border !border-[#353535]    
                                              cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
           style={{
-            color: activeTab === "contact" ? "#3D9ED6" : "!#ccc",
+            color: activeTab === "contact" ? "#3D9ED6" : "#adadad",
           }}
         >
           <svg
@@ -61,7 +61,7 @@ const Btns: React.FC<BtnsProps> = ({ activeTab, setActiveTab, controls }) => {
           </svg>
           <span
             className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${
-              activeTab === "contact" ? "!text-[#3D9ED6]" : "#878787"
+              activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"
             }`}
           >
             Связаться
@@ -104,7 +104,7 @@ const Btns: React.FC<BtnsProps> = ({ activeTab, setActiveTab, controls }) => {
           onMouseLeave={handleMouseLeave}
           className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
           style={{
-            color: activeTab === "requisite" ? "#3D9ED6" : "!#ссс",
+            color: activeTab === "requisite" ? "#3D9ED6" : "#adadad",
           }}
         >
           <svg
@@ -122,7 +122,7 @@ const Btns: React.FC<BtnsProps> = ({ activeTab, setActiveTab, controls }) => {
           </svg>
           <span
             className={`text-[20px] !transition-all !duration-[.15s] !ease-in ${
-              activeTab === "requisite" ? "!text-[#3D9ED6]" : "#878787"
+              activeTab === "requisite" ? "!text-[#3D9ED6]" : "#adadad"
             }`}
           >
             Реквизиты

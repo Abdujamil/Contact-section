@@ -545,37 +545,7 @@ export default function Contacts() {
                           )}
                         </AnimatePresence>
 
-                        {/* {isSelectOpen && (
-                          <div
-                            className={`${styles.selectOption} absolute right-[17px] p-[26px] px-[26px] pb-[11px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
-                          >
-                            {options.map((option, index) => (
-                              <div
-                                key={index}
-                                className={`pb-[15px] cursor-pointer  hover:text-[#CCC]`}
-                                onClick={() => {
-                                  setSelectedOption(option);
-                                  setSelectError(false);
-                                  setIsSelectOpen(false);
 
-                                  if (option !== "Тема") {
-                                    setShowPolicy(true);
-                                  }
-                                }}
-                              >
-                                <p
-                                  className={`${styles["menu-item"]} ${
-                                    selectedOption === option
-                                      ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
-                                      : "text-[#737373]"
-                                  }`}
-                                >
-                                  {option}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        )} */}
                       </div>
 
                       <AppInput
@@ -774,25 +744,12 @@ export default function Contacts() {
                           >
                             <path
                               d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
-                              fill="#CCCCCC"
+                              fill="#adadad"
                             />
                           </svg>
-                          <span className="!transition-all !duration-[.15s] !ease-in font-normal text-[20px] leading-[120%]">
+                          <span className="!transition-all !duration-[.15s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
                             Отправить
                           </span>
-                          {/*<svg*/}
-                          {/*  className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}*/}
-                          {/*  width="23"*/}
-                          {/*  height="20"*/}
-                          {/*  viewBox="0 0 23 20"*/}
-                          {/*  fill="none"*/}
-                          {/*  xmlns="http://www.w3.org/2000/svg"*/}
-                          {/*>*/}
-                          {/*  <path*/}
-                          {/*    d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"*/}
-                          {/*    fill="#CCCCCC"*/}
-                          {/*  />*/}
-                          {/*</svg>*/}
                         </button>
                         <div className={styles.highlight} />
                       </div>
@@ -868,16 +825,18 @@ export default function Contacts() {
                       type="submit"
                       className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.15s] ease-in `}
                     >
-                      <Image
-                        className={`${styles.sendIconLeft}   transition-all !duration-[.15s] ease-in `}
-                        src="/pdf-icon.svg"
-                        width={36}
-                        height={49}
-                        alt="pdf-icon"
-                      />
+
                       <span className=" !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] text-[20px]">
                         Скачать PDF
                       </span>
+
+                      <Image
+                          className={`${styles.sendIconRight}   transition-all !duration-[.15s] ease-in `}
+                          src="/pdf-icon.svg"
+                          width={36}
+                          height={49}
+                          alt="pdf-icon"
+                      />
                     </button>
                     <div className={styles.highlight} />
                   </div>

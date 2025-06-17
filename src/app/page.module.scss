@@ -198,17 +198,26 @@
 }
 
 .btn.btnDownloadPdf {
+
+  .sendIconRight {
+    transform: translateX(65px);
+  }
+
+  span {
+    transform: translateX(20px);
+  }
+
   &:hover {
     .sendIconLeft {
       left: 15px;
     }
 
     .sendIconRight {
-      transform: translateX(65px);
+      transform: translateX(17px);
     }
 
     span {
-      transform: translateX(36px);
+      transform: translateX(-13px);
     }
   }
 }

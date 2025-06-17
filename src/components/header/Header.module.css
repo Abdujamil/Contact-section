@@ -110,7 +110,7 @@
 
 .login-button span {
   color: inherit;
-  transition: color 0.08s ease;
+  /*transition: color 0.08s ease;*/
   /*transform: translateY(-0.06em);*/
   /*margin-top: 1.5px;*/
 }
@@ -234,7 +234,7 @@
 
 .login-button span {
   color: inherit;
-  transition: color 0.08s ease;
+  /*transition: color 0.08s ease;*/
   /*transform: translateY(-0.06em);*/
   /*margin-top: 1.5px;*/
 }
