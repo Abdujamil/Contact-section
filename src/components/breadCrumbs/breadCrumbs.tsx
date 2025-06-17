@@ -141,7 +141,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li>
-                            Контакы
+                            Контакты
                         </li>
                     </>
                 )}

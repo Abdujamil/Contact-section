@@ -831,7 +831,7 @@ export default function Contacts() {
                   >
                     Нажимая на кнопку «Отправить» вы соглашаетесь с
                     <Link
-                      href="/politics"
+                      href="/politic"
                       className={`!text-[#737373] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
                     >
                       политикой конфиденциальности
@@ -866,7 +866,7 @@ export default function Contacts() {
                   <div className="relative !overflow-hidden">
                     <button
                       type="submit"
-                      className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-between gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.15s] ease-in `}
+                      className={`${styles.btn} ${styles.btnDownloadPdf} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.15s] ease-in `}
                     >
                       <Image
                         className={`${styles.sendIconLeft}   transition-all !duration-[.15s] ease-in `}
@@ -878,13 +878,6 @@ export default function Contacts() {
                       <span className=" !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] text-[20px]">
                         Скачать PDF
                       </span>
-                      <Image
-                        className={`${styles.sendIconRight}   transition-all !duration-[.15s] ease-in `}
-                        src="/pdf-icon.svg"
-                        width={36}
-                        height={49}
-                        alt="pdf-icon"
-                      />
                     </button>
                     <div className={styles.highlight} />
                   </div>

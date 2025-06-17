@@ -44,7 +44,7 @@ const AnswerSection: React.FC<Props> = ({isOpen, fullAnswer, animationSettings})
                 // marginTop: isOpen ? "6px" : "",
                 marginTop: isOpen ? "-5px" : "",
                 overflow: "hidden",
-                boxShadow: isOpen ? "0 0 10px #0009, inset 0 0 6px #ffffff1a" : "",
+                // boxShadow: isOpen ? "0 0 10px #0009, inset 0 0 6px #ffffff1a" : "",
                 // backdropFilter: isOpen ? "blur(5px)" : "",
             }}
         >
