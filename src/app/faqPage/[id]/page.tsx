@@ -57,11 +57,11 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function FaqPage({ params, searchParams }: Props) {
+export default async function FaqPage({params, searchParams}: Props) {
     // Ожидаем разрешения Promise для получения параметров
-    const { id: idParam } = await params;
+    const {id: idParam} = await params;
     const searchParamsResolved = searchParams ? await searchParams : {};
-    
+
     const id = parseInt(idParam);
     const fromHeader = searchParamsResolved?.from === "header";
     const faqItem = faqData.find((item) => item.id === id);
@@ -74,7 +74,7 @@ export default async function FaqPage({ params, searchParams }: Props) {
                 <Bg/>
                 <Breadcrumbs faqPage={true}/>
                 <div
-                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px] px-[10px] mb-[100px] grid grid-cols-4 gap-[40px]">
+                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px]">
                     <FaqPageContent
                         fromHeader={fromHeader}
                         id={id}
