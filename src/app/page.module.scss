@@ -231,10 +231,14 @@
   }
 }
 
-.btn.send-button{
-  .sendIconRight{
+.btn.send-button {
+  .sendIconRight {
     transform: translateX(70px);
     opacity: 0;
+  }
+
+  span{
+    transform: translateX(12px);
   }
 
   &:hover {
@@ -249,24 +253,24 @@
   }
 }
 
-// Новая анимация кнопок
+ //Новая анимация кнопок
 .btn.contact-btn2 {
 
-  .sendIconLeft2 {
-    transform: translateX(46px) translateY(40px);
-    opacity: 0;
-  }
+  //.sendIconLeft2 {
+  //  transform: translateX(46px) translateY(40px);
+  //  opacity: 0;
+  //}
 
   &:hover {
-    .sendIconLeft2 {
-      transform: translateX(46px) translateY(0);
-      opacity: 1;
-    }
-
-    .sendIconRight2 {
-      transform: translateY(-40px);
-      opacity: 0;
-    }
+    //.sendIconLeft2 {
+    //  transform: translateX(46px) translateY(0);
+    //  opacity: 1;
+    //}
+    //
+    //.sendIconRight2 {
+    //  transform: translateY(-40px);
+    //  opacity: 0;
+    //}
 
     span {
       transform: translateX(0);
@@ -277,7 +281,7 @@
 .btn.requisite-btn2 {
 
   .sendIconLeft3 {
-    transform: translateX(46px) translateY(-40px);
+    transform: translateX(46px) translateY(40px);
     opacity: 0;
   }
 
@@ -288,7 +292,7 @@
     }
 
     .sendIconRight3 {
-      transform: translateY(40px);
+      transform: translateY(-40px);
       opacity: 0;
     }
 

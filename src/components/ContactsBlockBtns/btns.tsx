@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, {useState} from "react";
 import styles from "@/app/page.module.scss";
 import {
     handleMouseLeave,
@@ -16,6 +17,8 @@ type BtnsProps = {
 };
 
 const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
+    const [wasHovered, setWasHovered] = useState(false);
+
     return (
         <div
             className={`${styles.btns} flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
@@ -154,7 +157,11 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                         controls,
                         styles,
                         activeTab
-                    )}
+                    )
+                    }
+                    onMouseEnter={() => {
+                        if (!wasHovered) setWasHovered(true);
+                    }}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn2"]}
@@ -166,13 +173,16 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                 >
                   <span
                       className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${
-                          activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"
-                      }`}
+                          activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"}
+                           ${wasHovered ? "!translate-x-0" : "translate-y-0"}`}
                   >
                     Связаться
                   </span>
                     <svg
-                        className={`${styles.sendIconLeft2}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconLeft2}
+                          transition-all !duration-[.15s] ease-in
+                          ${wasHovered ? "opacity-100 translate-x-[46px]" : "opacity-0 translate-x-[46px] translate-y-10"}
+                          `}
                         width="30"
                         height="17"
                         viewBox="0 0 30 17"
@@ -194,7 +204,10 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     </svg>
 
                     <svg
-                        className={`${styles.sendIconRight2}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconRight2} 
+                        transition-all !duration-[.15s] ease-in
+                        ${wasHovered ? "opacity-0 -translate-y-10" : "opacity-100 translate-y-0"}
+                        `}
                         width="30"
                         height="17"
                         viewBox="0 0 30 17"
