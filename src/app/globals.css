@@ -67,6 +67,32 @@ body {
 
 /*Scrollbar*/
 
+.scrollbar {
+    --scrollY: 0px;
+    --scrollbarHeight: 100px;
+    /*z-index: 1000;x*/
+    right: 0;
+    top: 0;
+    height: 100%;
+    position: fixed;
+    width: 13px;
+    padding: 4px 2px;
+    z-index: 999999;
+}
+
+.scrollbar:before {
+    content: "";
+    display: block;
+    position: relative;
+    top: var(--scrollY);
+    width: 100%;
+    height: var(--scrollbarHeight);
+    border-radius: 3px;
+    border: 1px solid #5c5c5c;
+    background: hsl(202deg 27% 58% / 25%) !important;
+    transition: background .2s linear !important;
+}
+
 .simplebar-track.simplebar-vertical {
     width: 13px !important;
     right: 1px !important;

@@ -258,7 +258,7 @@
 
   //.sendIconLeft2 {
   //  transform: translateX(46px) translateY(40px);
-  //  opacity: 0;
+  //  opacity: 1;
   //}
 
   &:hover {
@@ -269,7 +269,7 @@
     //
     //.sendIconRight2 {
     //  transform: translateY(-40px);
-    //  opacity: 0;
+    //  opacity: 1;
     //}
 
     span {
@@ -277,6 +277,7 @@
     }
   }
 }
+
 
 .btn.requisite-btn2 {
 
