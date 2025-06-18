@@ -256,21 +256,21 @@
  //Новая анимация кнопок
 .btn.contact-btn2 {
 
-  //.sendIconLeft2 {
-  //  transform: translateX(46px) translateY(40px);
-  //  opacity: 1;
-  //}
+  .sendIconLeft2 {
+    transform: translateX(46px) translateY(40px);
+    opacity: 1;
+  }
 
   &:hover {
-    //.sendIconLeft2 {
-    //  transform: translateX(46px) translateY(0);
-    //  opacity: 1;
-    //}
-    //
-    //.sendIconRight2 {
-    //  transform: translateY(-40px);
-    //  opacity: 1;
-    //}
+    .sendIconLeft2 {
+      transform: translateX(46px) translateY(0);
+      opacity: 1;
+    }
+
+    .sendIconRight2 {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
 
     span {
       transform: translateX(0);

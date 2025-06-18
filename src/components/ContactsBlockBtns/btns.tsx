@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import styles from "@/app/page.module.scss";
 import {
-    // handleMouseLeave,
+    handleMouseLeave,
     handleMouseMove,
     handleTabClick,
 } from "@/components/Form/mouse";
@@ -18,18 +18,15 @@ type BtnsProps = {
 
 const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
 
-    const [currentIcon, setCurrentIcon] = useState<"left" | "right">("right");
-    const [isHovering, setIsHovering] = useState(false);
+    const [activeIcon, setActiveIcon] = useState(0); // 0 - первая иконка, 1 - вторая
+    const [isAnimating, setIsAnimating] = useState(false);
 
     const handleMouseEnter = () => {
-        setCurrentIcon((prev) => (prev === "right" ? "left" : "right"));
-        setIsHovering(true);
+        if (isAnimating) return; // защита от двойного срабатывания
+        setIsAnimating(true);
+        setActiveIcon(prev => (prev + 1) % 2); // переключаем 0 ↔ 1
+        setTimeout(() => setIsAnimating(false), 200); // ждём окончания анимации
     };
-
-    const handleMouseLeave = () => {
-        setIsHovering(false); // но ничего не откатываем!
-    };
-
 
     return (
         <div
@@ -45,8 +42,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                         controls,
                         styles,
                         activeTab
-                    )
-                    }
+                    )}
                     onMouseEnter={handleMouseEnter}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
@@ -65,18 +61,16 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     Связаться
                   </span>
                     <svg
-                        className={`${styles.sendIconLeft2}
-                          transition-all !duration-[.15s] ease-in translate-x-[46px]
-                          ${
-                            currentIcon === "left"
-                                ? isHovering
-                                    ? "translate-y-0 opacity-100"
-                                    : "translate-y-0 opacity-100"
-                                : isHovering
-                                    ? "translate-y-[40px] opacity-0"
-                                    : "translate-y-[40px] opacity-0"
+                        className={`absolute right-[15px] transition-all duration-200 ease-in
+        ${
+                            activeIcon === 0
+                                ? "translate-y-0 opacity-100" // активная иконка — на месте
+                                : "translate-y-[-40px] opacity-0" // неактивная — улетает вверх
                         }
-                          `}
+        ${
+                            // Если это иконка 0, но она не активна — она должна быть снизу (готовится к появлению)
+                            activeIcon === 1 && "translate-y-[40px] opacity-0"
+                        }`}
                         width="30"
                         height="17"
                         viewBox="0 0 30 17"
@@ -97,18 +91,16 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                         />
                     </svg>
                     <svg
-                        className={`${styles.sendIconRight2} 
-                        transition-all !duration-[.15s] ease-in
-                       ${
-                            currentIcon === "right"
-                                ? isHovering
-                                    ? "translate-y-[-40px] opacity-0"
-                                    : "translate-y-0 opacity-100"
-                                : isHovering
-                                    ? "translate-y-0 opacity-100"
-                                    : "translate-y-[-40px] opacity-0"
+                        className={`absolute right-[15px] transition-all duration-200 ease-in
+        ${
+                            activeIcon === 1
+                                ? "translate-y-0 opacity-100" // активная иконка — на месте
+                                : "translate-y-[-40px] opacity-0" // неактивная — улетает вверх
                         }
-                        `}
+        ${
+                            // Если это иконка 1, но она не активна — она должна быть снизу (готовится к появлению)
+                            activeIcon === 0 && "translate-y-[40px] opacity-0"
+                        }`}
                         width="30"
                         height="17"
                         viewBox="0 0 30 17"
