@@ -784,12 +784,12 @@ export default function Contacts() {
                   }}
                 >
                   <p
-                    className={`text-center relative bottom-[-40px] text-[#adadad] text-[14px]`}
+                    className={`text-center relative bottom-[-40px] text-[#878787] text-[14px]`}
                   >
                     Нажимая на кнопку «Отправить» вы соглашаетесь с
                     <Link
                       href="/politic"
-                      className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
+                      className={`!text-[#878787] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
                     >
                       политикой конфиденциальности
                     </Link>
