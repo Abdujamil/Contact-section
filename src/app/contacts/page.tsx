@@ -734,11 +734,11 @@ export default function Contacts() {
                           className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-center`}
                           data-text=""
                         >
-                          <span className="!transition-all !duration-[.15s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
+                          <span className="!transition-all !duration-[.11s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
                             Отправить
                           </span>
                           <svg
-                              className={`${styles.sendIconRight} transition-all !duration-[.15s] ease-in`}
+                              className={`${styles.sendIconRight} transition-all !duration-[.11s] ease-in`}
                               width="23"
                               height="20"
                               viewBox="0 0 23 20"

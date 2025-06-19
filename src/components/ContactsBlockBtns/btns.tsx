@@ -34,98 +34,6 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
         >
 
             {/* Новая анимация кнопок */}
-            {/*    <div className="relative !w-[220px] !overflow-hidden">*/}
-            {/*        <button*/}
-            {/*            onClick={handleTabClick(*/}
-            {/*                "contact",*/}
-            {/*                setActiveTab,*/}
-            {/*                controls,*/}
-            {/*                styles,*/}
-            {/*                activeTab*/}
-            {/*            )}*/}
-            {/*            onMouseEnter={handleMouseEnter}*/}
-            {/*            onMouseMove={handleMouseMove}*/}
-            {/*            onMouseLeave={handleMouseLeave}*/}
-            {/*            className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn2"]}*/}
-            {/*                                     border !border-[#353535]    */}
-            {/*                                     cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
-            {/*            style={{*/}
-            {/*                color: activeTab === "contact" ? "#3D9ED6" : "#adadad",*/}
-            {/*            }}*/}
-            {/*        >*/}
-            {/*          <span*/}
-            {/*              className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${*/}
-            {/*                  activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"}*/}
-            {/*                   `}*/}
-            {/*          >*/}
-            {/*            Связаться*/}
-            {/*          </span>*/}
-            {/*            <svg*/}
-            {/*                className={`absolute right-[15px] transition-all duration-200 ease-in*/}
-            {/*${*/}
-            {/*                    activeIcon === 0*/}
-            {/*                        ? "translate-y-0 opacity-100" // активная иконка — на месте*/}
-            {/*                        : "translate-y-[-40px] opacity-0" // неактивная — улетает вверх*/}
-            {/*                }*/}
-            {/*${*/}
-            {/*                    // Если это иконка 0, но она не активна — она должна быть снизу (готовится к появлению)*/}
-            {/*                    activeIcon === 1 && "translate-y-[40px] opacity-0"*/}
-            {/*                }`}*/}
-            {/*                width="30"*/}
-            {/*                height="17"*/}
-            {/*                viewBox="0 0 30 17"*/}
-            {/*                fill="none"*/}
-            {/*                xmlns="http://www.w3.org/2000/svg"*/}
-            {/*            >*/}
-            {/*                <path*/}
-            {/*                    d="M27.4161 0H11.1661C9.79114 0 8.66614 1.125 8.66614 2.5V13.75C8.66614 14.413 8.92953 15.0489 9.39837 15.5178C9.86721 15.9866 10.5031 16.25 11.1661 16.25H27.4161C28.8036 16.25 29.9161 15.1375 29.9161 13.75V2.5C29.9161 1.83696 29.6527 1.20107 29.1839 0.732233C28.7151 0.263392 28.0792 0 27.4161 0ZM27.4161 4.5875L19.2911 8.75L11.1661 4.5875V2.5L19.2911 6.6375L27.4161 2.5V4.5875ZM6.12375 3.125H7.16602C7.14102 3.3375 7.16602 3.5375 7.16602 3.75V5.11492H6.12375C4.17487 5.11492 4.19616 5.36961 4.87375 4.11492C5.20044 3.50999 5.43625 3.125 6.12375 3.125Z"*/}
-            {/*                    fill="#adadad"*/}
-            {/*                />*/}
-            {/*                <path*/}
-            {/*                    d="M7.16602 7.26168H3.90583C3.21833 7.26168 2.98252 7.64667 2.65583 8.2516C1.97824 9.50629 1.95695 9.2516 3.90583 9.2516H7.16602V7.88668C7.16602 7.67418 7.14102 7.47418 7.16602 7.26168Z"*/}
-            {/*                    fill="#adadad"*/}
-            {/*                />*/}
-            {/*                <path*/}
-            {/*                    d="M7.16602 11.5188H1.66602C0.978516 11.5188 0.742703 11.9038 0.416016 12.5088C-0.261577 13.7635 -0.282861 13.5088 1.66602 13.5088H7.16602V12.1438C7.16602 11.9313 7.14102 11.7313 7.16602 11.5188Z"*/}
-            {/*                    fill="#adadad"*/}
-            {/*                />*/}
-            {/*            </svg>*/}
-            {/*            <svg*/}
-            {/*                className={`absolute right-[15px] transition-all duration-200 ease-in*/}
-            {/*${*/}
-            {/*                    activeIcon === 1*/}
-            {/*                        ? "translate-y-0 opacity-100" // активная иконка — на месте*/}
-            {/*                        : "translate-y-[-40px] opacity-0" // неактивная — улетает вверх*/}
-            {/*                }*/}
-            {/*${*/}
-            {/*                    // Если это иконка 1, но она не активна — она должна быть снизу (готовится к появлению)*/}
-            {/*                    activeIcon === 0 && "translate-y-[40px] opacity-0"*/}
-            {/*                }`}*/}
-            {/*                width="30"*/}
-            {/*                height="17"*/}
-            {/*                viewBox="0 0 30 17"*/}
-            {/*                fill="none"*/}
-            {/*                xmlns="http://www.w3.org/2000/svg"*/}
-            {/*            >*/}
-            {/*                <path*/}
-            {/*                    d="M27.4161 0H11.1661C9.79114 0 8.66614 1.125 8.66614 2.5V13.75C8.66614 14.413 8.92953 15.0489 9.39837 15.5178C9.86721 15.9866 10.5031 16.25 11.1661 16.25H27.4161C28.8036 16.25 29.9161 15.1375 29.9161 13.75V2.5C29.9161 1.83696 29.6527 1.20107 29.1839 0.732233C28.7151 0.263392 28.0792 0 27.4161 0ZM27.4161 4.5875L19.2911 8.75L11.1661 4.5875V2.5L19.2911 6.6375L27.4161 2.5V4.5875ZM6.12375 3.125H7.16602C7.14102 3.3375 7.16602 3.5375 7.16602 3.75V5.11492H6.12375C4.17487 5.11492 4.19616 5.36961 4.87375 4.11492C5.20044 3.50999 5.43625 3.125 6.12375 3.125Z"*/}
-            {/*                    fill="#adadad"*/}
-            {/*                />*/}
-            {/*                <path*/}
-            {/*                    d="M7.16602 7.26168H3.90583C3.21833 7.26168 2.98252 7.64667 2.65583 8.2516C1.97824 9.50629 1.95695 9.2516 3.90583 9.2516H7.16602V7.88668C7.16602 7.67418 7.14102 7.47418 7.16602 7.26168Z"*/}
-            {/*                    fill="#adadad"*/}
-            {/*                />*/}
-            {/*                <path*/}
-            {/*                    d="M7.16602 11.5188H1.66602C0.978516 11.5188 0.742703 11.9038 0.416016 12.5088C-0.261577 13.7635 -0.282861 13.5088 1.66602 13.5088H7.16602V12.1438C7.16602 11.9313 7.14102 11.7313 7.16602 11.5188Z"*/}
-            {/*                    fill="#adadad"*/}
-            {/*                />*/}
-            {/*            </svg>*/}
-
-
-            {/*        </button>*/}
-            {/*        <div className={styles.highlight}/>*/}
-            {/*    </div>*/}
-
             <div className="relative !w-[220px] !overflow-hidden">
                 <button
                     onClick={handleTabClick(
@@ -137,15 +45,22 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     )}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn"]}
-                                                   border !border-[#353535]    
-                                                   cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn2"]}
+                                                 border !border-[#353535]    
+                                                 cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                     style={{
                         color: activeTab === "contact" ? "#3D9ED6" : "#adadad",
                     }}
                 >
+                      <span
+                          className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${
+                              activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"}
+                               `}
+                      >
+                        Связаться
+                      </span>
                     <svg
-                        className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconLeft2}  transition-all !duration-[.15s] ease-in`}
                         width="30"
                         height="17"
                         viewBox="0 0 30 17"
@@ -165,15 +80,8 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                             fill="#adadad"
                         />
                     </svg>
-                    <span
-                        className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${
-                            activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"
-                        }`}
-                    >
-                  Связаться
-                </span>
                     <svg
-                        className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconRight2}  transition-all !duration-[.15s] ease-in`}
                         width="30"
                         height="17"
                         viewBox="0 0 30 17"
@@ -193,6 +101,8 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                             fill="#adadad"
                         />
                     </svg>
+
+
                 </button>
                 <div className={styles.highlight}/>
             </div>
@@ -208,14 +118,14 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     )}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn2"]} border !border-[#353535]  transition-all !duration-[.1s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn2"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                     style={{
                         color: activeTab === "requisite" ? "#3D9ED6" : "#adadad",
                     }}
                 >
 
                     <span
-                        className={`text-[20px] !transition-all !duration-[.1s] !ease-in ${
+                        className={`text-[20px] !transition-all !duration-[.15s] !ease-in ${
                             activeTab === "requisite" ? "!text-[#3D9ED6]" : "#adadad"
                         }`}
                     >
@@ -223,7 +133,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     </span>
 
                     <svg
-                        className={`${styles.sendIconLeft3}  transition-all !duration-[.1s] ease-in`}
+                        className={`${styles.sendIconLeft3}  transition-all !duration-[.15s] ease-in`}
                         width="24"
                         height="27"
                         viewBox="0 0 24 27"
@@ -237,7 +147,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     </svg>
 
                     <svg
-                        className={`${styles.sendIconRight3}  transition-all !duration-[.1s] ease-in`}
+                        className={`${styles.sendIconRight3}  transition-all !duration-[.15s] ease-in`}
                         width="24"
                         height="27"
                         viewBox="0 0 24 27"
@@ -376,6 +286,8 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*  </button>*/}
             {/*  <div className={styles.highlight} />*/}
             {/*</div>*/}
+
+
         </div>
     );
 };
