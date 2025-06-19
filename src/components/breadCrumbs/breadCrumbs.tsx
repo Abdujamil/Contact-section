@@ -65,7 +65,7 @@ export default function Breadcrumbs({
                                 />
                             </svg>
                         </li>
-                        <li>
+                        <li className={`text-[#3D9ED6]`}>
                             Политика конфиденциальности
                         </li>
                     </>
