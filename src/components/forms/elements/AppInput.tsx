@@ -146,7 +146,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 <span className={`${styles.titleTop} field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
                   {title}
                 </span>
-                <span className={`${styles.titleBottom} field__title-top ${classNameTitle}`}>
+                <span className={`${styles.titleBottom}  field__title-top ${classNameTitle}`}>
                   {title}
                 </span>
             </label>

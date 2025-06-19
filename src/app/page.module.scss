@@ -669,11 +669,11 @@
       form {
         .titleTop {
           top: 10px !important;
-          color: #878787 !important;
+          color: #ccc !important;
         }
 
         .titleBottom {
-          color: #878787 !important;
+          color: #ccc !important;
         }
 
 
@@ -691,14 +691,14 @@
 
         button {
           transition: transform .1s ease-in-out;
-          transform: translateX(-80px);
+          //transform: translateX(-80px);
 
           &:hover {
             transform: translateX(0) !important;
 
-            img {
-              transform: rotate(48deg);
-            }
+          }
+          img {
+            transform: rotate(48deg) translate(-2px);
           }
 
         }
