@@ -45,7 +45,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     )}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["contact-btn2"]}
+                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]}
                                                  border !border-[#353535]    
                                                  cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                     style={{
@@ -118,7 +118,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     )}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn2"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                     style={{
                         color: activeTab === "requisite" ? "#3D9ED6" : "#adadad",
                     }}
@@ -133,7 +133,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     </span>
 
                     <svg
-                        className={`${styles.sendIconLeft3}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconLeft2}  transition-all !duration-[.15s] ease-in`}
                         width="24"
                         height="27"
                         viewBox="0 0 24 27"
@@ -147,7 +147,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                     </svg>
 
                     <svg
-                        className={`${styles.sendIconRight3}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconRight2}  transition-all !duration-[.15s] ease-in`}
                         width="24"
                         height="27"
                         viewBox="0 0 24 27"
