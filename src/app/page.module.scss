@@ -517,19 +517,20 @@
     border-color: #353535 !important;
 
     span {
-      transform: translateX(16px);
+      transform: translateX(-16px);
 
       color: #3D9ED6 !important;
     }
 
     .sendIconLeft {
-      left: 13px;
+      transform: translateX(78px);
     }
   }
 
 
   .sendIconLeft {
-    left: 45px;
+    //left: 45px;
+    transform: translateX(90px);
   }
 }
 
