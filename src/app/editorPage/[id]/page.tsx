@@ -86,7 +86,7 @@ export default function EditorPage() {
 
             {/* Другие редакторы AUDIOSECTOR */}
             <div
-              className={`${styles.similarEditors} mb-[100px]`}
+              className={`${styles.similarEditors} mb-[50px]`}
             >
               <h2
                 className={`${styles.txtGradientRight} text-[48px] leading-[110%] m-auto text-center mb-[30px]`}

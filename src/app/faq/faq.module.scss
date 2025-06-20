@@ -452,16 +452,45 @@
   transition: border-color 0.3s ease;
 }
 
-.btn.faqTryBtn {
+//.btn.faqTryBtn {
+//
+//  &:hover {
+//    span {
+//      transform: translateX(35px) !important;
+//    }
+//  }
+//
+//  &:hover svg path {
+//    fill: #adadad !important;
+//  }
+//}
 
-  &:hover {
-    span {
-      transform: translateX(35px) !important;
-    }
+
+//Новая анимация кнопок
+.btn.customBtn {
+  .sendIconLeft2 {
+    transform: translateX(46px) translateY(40px);
+    opacity: 1;
   }
 
-  &:hover svg path {
-    fill: #adadad !important;
+  span {
+    width: 96px;
+  }
+
+  &:hover {
+    .sendIconLeft2 {
+      transform: translateX(46px) translateY(0);
+      opacity: 1;
+    }
+
+    .sendIconRight2 {
+      transform: translateY(-40px);
+      opacity: 0;
+    }
+
+    span {
+      transform: translateX(0);
+    }
   }
 }
 

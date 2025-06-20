@@ -41,7 +41,7 @@ const Blog = () => {
                     className={`${styles.blog} w-full min-h-full h-auto mx-auto flex flex-col items-center`}
                 >
                     <div
-                        className={`${styles.blogContainer} w-full max-w-[1180px] px-[10px] min-h-full h-auto mt-[120px] mb-[127px] mx-auto flex flex-col items-center`}
+                        className={`${styles.blogContainer} w-full max-w-[1180px] px-[10px] min-h-full h-auto mt-[120px] mb-[90px] mx-auto flex flex-col items-center`}
                     >
                         <h1
                             className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] mb-[30px] mt-[-8px]`}
@@ -72,7 +72,6 @@ const Blog = () => {
                             currentPage={currentPage}
                             totalPages={totalPages}
                             onPageChange={handlePageChange}
-                            className="mb-[127px]"
                         />
                     </div>
 

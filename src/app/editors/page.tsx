@@ -31,7 +31,7 @@ export default function Editors() {
                         Наши редакторы
                     </h1>
 
-                    <div className={`flex flex-col gap-[60px] mb-[100px]`}>
+                    <div className={`flex flex-col gap-[50px] mb-[50px]`}>
                         {editors.map((editor) => {
                             const editorBlogs = blogData
                                 .filter((blog) => blog.editorId === editor.id)

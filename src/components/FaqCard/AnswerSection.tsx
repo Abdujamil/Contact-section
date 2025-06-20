@@ -4,9 +4,8 @@ import { useRouter } from "next/navigation";
 import styles from "../../app/faq/faq.module.scss";
 import { useButton } from "../utils/useButton";
 import { AnimationSettings } from "../utils/types";
-import HeaderStyles from "../header/Header.module.css";
 import { StaticImageData } from "next/image";
-import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+import CustomButton from "@/components/CustomButton/CustomButtom";
 
 
 interface Props {
@@ -41,6 +40,43 @@ const AnswerSection: React.FC<Props> = ({
     controls.start(target);
   }, [isOpen, animationSettings]);
 
+  const faqIcon = (
+      <svg
+          width="26"
+          height="26"
+          viewBox="0 0 26 26"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect x="1" y="1" width="24" height="24" rx="2" fill="#adadad" />
+        <g clipPath="url(#clip0_3069_1633)">
+          <path
+              d="M5.81641 13H20.1828"
+              stroke="#191919"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+          />
+          <path
+              d="M16.0783 8.8953L20.183 13L16.0783 17.1047"
+              stroke="#191919"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+          />
+        </g>
+        <defs>
+          <clipPath id="clip0_3069_1633">
+            <rect
+                width="17.4147"
+                height="17.4147"
+                fill="white"
+                transform="translate(0.685547 13) rotate(-45)"
+            />
+          </clipPath>
+        </defs>
+      </svg>
+  );
   return (
     <div
       className={`${styles.answer} rounded-[6px]`}
@@ -83,53 +119,9 @@ const AnswerSection: React.FC<Props> = ({
         className="relative !w-[220px] !overflow-hidden"
         onClick={() => router.push(`/faqPage/${id}`)}
       >
-        <button
-          className={`${HeaderStyles["login-button"]} ${styles["btn"]} border !border-[#353535]
-                                        cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-center`}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <svg
-            className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
-            width="26"
-            height="26"
-            viewBox="0 0 26 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <rect x="1" y="1" width="24" height="24" rx="2" fill="#adadad" />
-            <g clipPath="url(#clip0_3069_1633)">
-              <path
-                d="M5.81641 13H20.1828"
-                stroke="#191919"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M16.0783 8.8953L20.183 13L16.0783 17.1047"
-                stroke="#191919"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_3069_1633">
-                <rect
-                  width="17.4147"
-                  height="17.4147"
-                  fill="white"
-                  transform="translate(0.685547 13) rotate(-45)"
-                />
-              </clipPath>
-            </defs>
-          </svg>
 
-          <span className="text-[20px] !text-[#adadad] !transition-all !duration-[.15s] !ease-in">
-            Подробнее
-          </span>
-        </button>
+        <CustomButton label="Подробнее" iconLeft={faqIcon} iconRight={faqIcon} />
+
         <div className={styles.highlight} />
       </motion.div>
 

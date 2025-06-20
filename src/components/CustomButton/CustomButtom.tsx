@@ -1,63 +1,56 @@
-import React from "react";
-import Link from "next/link";
-import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
+"use client";
 
+import React from "react";
+import styles from "@/app/page.module.scss";
+import HeaderStyles from "@/components/header/Header.module.css";
+import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 
 interface CustomButtonProps {
-  type?: "button" | "link" | "toggle";
-  isActive?: boolean;
-  label: string;
-  onClick?: () => void;
-  href?: string;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+    label: string;
+    iconLeft: React.ReactNode;
+    iconRight: React.ReactNode;
+    isActive?: boolean;
+    className?: string;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
-  type = "button",
-  isActive = false,
-  label,
-  onClick,
-  href,
-  leftIcon,
-  rightIcon,
-}) => {
-  const baseClasses = `group flex items-center justify-between w-[220px] h-[51px] rounded-[4px] cursor-pointer transition-all duration-150 ease-in px-4 ${
-    isActive ? "text-[#3D9ED6]" : "text-[#878787]"
-  }`;
+                                                       label,
+                                                       iconLeft,
+                                                       className,
+                                                       isActive = false,
+                                                       onClick,
+                                                   }) => {
 
-  const content = (
-    <>
-      <div className="transition-all duration-150 ease-in">{leftIcon}</div>
-      <span
-        className={`text-[20px] transition-all duration-150 ease-in group-hover:text-[#ccc] ${
-          isActive ? "!text-[#3D9ED6]" : ""
-        }`}
-      >
-        {label}
-      </span>
-      <div className="transition-all duration-150 ease-in">{rightIcon}</div>
-    </>
-  );
-
-  if (type === "link" && href) {
     return (
-      <Link href={href} className={baseClasses}>
-        {content}
-      </Link>
-    );
-  }
+        <div className="relative !w-[220px] !overflow-hidden">
+            <button
+                onClick={onClick}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                style={{color: isActive ? "#3D9ED6" : "#adadad"}}
+            >
+        <span
+            className={`text-[20px] !transition-all !duration-[.15s] !ease-in ${
+                isActive ? "!text-[#3D9ED6]" : "#adadad"
+            } ${className} `}
+        >
+          {label}
+        </span>
 
-  return (
-    <button
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={baseClasses}
-      onClick={onClick}
-    >
-      {content}
-    </button>
-  );
+                <span className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.15s] ease-in`}>
+          {iconLeft}
+        </span>
+
+                <span className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.15s] ease-in`}>
+          {iconLeft}
+        </span>
+            </button>
+
+            <div className={styles.highlight}/>
+        </div>
+    );
 };
 
 export default CustomButton;

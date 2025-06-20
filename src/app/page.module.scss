@@ -260,15 +260,14 @@
     opacity: 1;
   }
 
+  span {
+    width: 96px;
+  }
+
   &:hover {
     .sendIconLeft2 {
       transform: translateX(46px) translateY(0);
       opacity: 1;
-
-
-      //    transform: translateX(50px) - Политика
-      //    transform: translateX(58px) - Оферта
-      //    transform: translateX(50px) - Лицензия
     }
 
     .sendIconRight2 {
@@ -421,19 +420,26 @@
   }
 }
 
-.btn.blogTryBtn {
-  &:hover {
-
-    span {
-      // transform: translateX(30px);
-      transform: translateX(50px);
-    }
-
-    .sendIconLeft {
-      left: 17px;
-    }
-  }
-}
+//.btn.blogTryBtn {
+//
+//  .sendIconLeft {
+//    right: -78px;
+//    left: auto;
+//  }
+//
+//  &:hover {
+//
+//    span {
+//      // transform: translateX(30px);
+//      transform: translateX(-50px);
+//    }
+//
+//    .sendIconLeft {
+//      right: 13px;
+//
+//    }
+//  }
+//}
 
 .btn.blogLeftBtn {
   &:hover {
@@ -542,13 +548,13 @@
   }
 }
 
-.editorTryBlock .btn.blogTryBtn {
-  &:hover {
-    span {
-      transform: translateX(35px) !important;
-    }
-  }
-}
+//.editorTryBlock .btn.blogTryBtn {
+//  &:hover {
+//    span {
+//      transform: translateX(-35px) !important;
+//    }
+//  }
+//}
 
 .blogAsideBtn {
   padding: 12px;
@@ -630,11 +636,11 @@
   backdrop-filter: blur(2px);
 
 
-  .btn.faqTryBtn {
-    &:hover span {
-      transform: translateX(56px);
-    }
-  }
+  //.btn.faqTryBtn {
+  //  &:hover span {
+  //    transform: translateX(56px);
+  //  }
+  //}
 }
 
 //-------------------------------- Footer --------------------------------//
