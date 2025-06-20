@@ -420,26 +420,26 @@
   }
 }
 
-//.btn.blogTryBtn {
-//
-//  .sendIconLeft {
-//    right: -78px;
-//    left: auto;
-//  }
-//
-//  &:hover {
-//
-//    span {
-//      // transform: translateX(30px);
-//      transform: translateX(-50px);
-//    }
-//
-//    .sendIconLeft {
-//      right: 13px;
-//
-//    }
-//  }
-//}
+.btn.blogTryBtn {
+
+  .sendIconLeft {
+    right: -78px;
+    left: auto;
+  }
+
+  &:hover {
+
+    span {
+      // transform: translateX(30px);
+      transform: translateX(-50px);
+    }
+
+    .sendIconLeft {
+      right: 13px;
+
+    }
+  }
+}
 
 .btn.blogLeftBtn {
   &:hover {
@@ -548,13 +548,13 @@
   }
 }
 
-//.editorTryBlock .btn.blogTryBtn {
-//  &:hover {
-//    span {
-//      transform: translateX(-35px) !important;
-//    }
-//  }
-//}
+.editorTryBlock .btn.blogTryBtn {
+  &:hover {
+    span {
+      transform: translateX(-35px) !important;
+    }
+  }
+}
 
 .blogAsideBtn {
   padding: 12px;

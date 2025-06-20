@@ -452,18 +452,57 @@
   transition: border-color 0.3s ease;
 }
 
-//.btn.faqTryBtn {
-//
-//  &:hover {
-//    span {
-//      transform: translateX(35px) !important;
-//    }
-//  }
-//
-//  &:hover svg path {
-//    fill: #adadad !important;
-//  }
-//}
+.btn.faqTryBtn {
+
+  //&:hover {
+  //  span {
+  //    transform: translateX(35px) !important;
+  //  }
+  //}
+  //
+  //&:hover svg path {
+  //  fill: #adadad !important;
+  //}
+
+  .sendIconLeft {
+    right: -78px;
+    left: auto;
+  }
+
+  &:hover {
+
+    span {
+      // transform: translateX(30px);
+      transform: translateX(-34px);
+    }
+
+    .sendIconLeft {
+      right: 13px;
+
+    }
+  }
+}
+
+.btn.blogTryBtn {
+
+  .sendIconLeft {
+    right: -78px;
+    left: auto;
+  }
+
+  &:hover {
+
+    span {
+      // transform: translateX(30px);
+      transform: translateX(-43px);
+    }
+
+    .sendIconLeft {
+      right: 13px;
+
+    }
+  }
+}
 
 
 //Новая анимация кнопок

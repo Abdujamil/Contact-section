@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-
 import Bg from "@/components/background/bg";
 import Footer from "@/app/footer";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
@@ -31,6 +30,7 @@ export default function EditorPage() {
             editorName={currentEditor.name}
             editorId={currentEditor.id}
           />
+
           {/* Автор */}
           <div
             className={`${styles.shadowcards} ${styles.authorBlockActive} group w-full mb-[40px] flex items-center gap-[21px] p-[20px] rounded-[6px]`}
