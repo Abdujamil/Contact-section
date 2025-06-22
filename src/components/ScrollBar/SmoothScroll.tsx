@@ -40,6 +40,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }
         if (pathname.includes('/blog')) {
             return -165; // Стандартный offset для блога
+        }if (pathname.includes('/editors')) {
+            return 60; // Стандартный offset для блога
         }
         return 120; // Дефолтный offset для остальных страниц
     };

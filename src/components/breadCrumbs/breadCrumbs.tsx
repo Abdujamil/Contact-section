@@ -328,33 +328,32 @@ export default function Breadcrumbs({
 
                 {editorPage && (
                     <>
-                        <li className="flex items-center justify-center">
-                            <svg
-                                width="6"
-                                height="10"
-                                viewBox="0 0 6 10"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M1.25 0.917969L5.33333 5.0013L1.25 9.08464"
-                                    stroke="#CCCCCC"
-                                    strokeWidth="1.16667"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </li>
-                        <li>
-                            <Link
-                                href="/editor" // или просто /blog, если такая страница есть
-                                className={`!text-[#3D9ED6] !text-[14px]`}
-                            >
-                                Редакторы
-                            </Link>
-                        </li>
+                    <li className="flex items-center justify-center">
+                        <svg
+                            width="6"
+                            height="10"
+                            viewBox="0 0 6 10"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M1.25 0.917969L5.33333 5.0013L1.25 9.08464"
+                                stroke="#CCCCCC"
+                                strokeWidth="1.16667"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                        </svg>
+                    </li>
+                    <li
+                        className={`!text-[#3D9ED6] !text-[14px]`}
+                    >
+
+
+                        Редакторы
+                    </li>
                     </>
-                )}
+                    )}
 
                 {blogTitle && (
                     <>

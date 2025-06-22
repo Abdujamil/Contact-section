@@ -24,8 +24,6 @@ export default function Editors() {
         id: `editor-${editor.id}`,
         title: editor.name,
     }));
-    // console.log("editor", editorName);
-    // console.log("Имена редакторов:", editors.map((editor) => editor.name));
 
     return (
         <>
@@ -51,7 +49,7 @@ export default function Editors() {
                                     .slice(0, 3);
 
                                 return (
-                                    <div key={editor.id} className="flex flex-col gap-[30px]">
+                                    <div id={`editor-${editor.id}`} key={editor.id} className="flex flex-col gap-[30px]">
                                         {/* Ссылка на страницу редактора */}
                                         <Link
                                             href={`/editorPage/${editor.id}`}
@@ -103,7 +101,6 @@ export default function Editors() {
                             })}
                         </div>
                     </div>
-
                     {/* Блок Попробовать */}
                     <TryBlock
                         title="Хотите протестировать?"
