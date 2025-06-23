@@ -737,10 +737,10 @@ export default function Contacts() {
                                                     className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-center`}
                                                     data-text=""
                                                 >
-                          <span
-                              className="!transition-all !duration-[.11s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
-                            Отправить
-                          </span>
+                                                  <span
+                                                      className="!transition-all !duration-[.11s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
+                                                    Отправить
+                                                  </span>
                                                     <svg
                                                         className={`${styles.sendIconRight} transition-all !duration-[.11s] ease-in`}
                                                         width="23"
@@ -828,7 +828,7 @@ export default function Contacts() {
                                     <div className="relative !overflow-hidden">
                                         <button
                                             type="submit"
-                                            className={`${styles.btn} ${styles["customBtn"]} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.11s] ease-in `}
+                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.11s] ease-in `}
                                         >
 
                                               <span className="whitespace-nowrap !transition-all !duration-[.11s] !ease-in !group-hover:text-[#ccc] text-[20px]">
@@ -836,15 +836,7 @@ export default function Contacts() {
                                               </span>
 
                                             <Image
-                                                className={`${styles.sendIconLeft2}   transition-all !duration-[.11s] ease-in `}
-                                                src="/pdf-icon.svg"
-                                                width={36}
-                                                height={49}
-                                                alt="pdf-icon"
-                                            />
-
-                                            <Image
-                                                className={`${styles.sendIconRight2}   transition-all !duration-[.11s] ease-in `}
+                                                className={`${styles.sendIconRight}   transition-all !duration-[.11s] ease-in `}
                                                 src="/pdf-icon.svg"
                                                 width={36}
                                                 height={49}
@@ -853,6 +845,30 @@ export default function Contacts() {
                                         </button>
                                         <div className={styles.highlight}/>
                                     </div>
+
+                                    {/*<div className="relative !w-[220px] !overflow-hidden">*/}
+                                    {/*    <button*/}
+                                    {/*        type="submit"*/}
+                                    {/*        onMouseMove={handleMouseMove}*/}
+                                    {/*        onMouseLeave={handleMouseLeave}*/}
+                                    {/*        className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-center`}*/}
+                                    {/*        data-text=""*/}
+                                    {/*    >*/}
+                                    {/*              <span*/}
+                                    {/*                  className="!transition-all !duration-[.11s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">*/}
+                                    {/*                Скачать PDF*/}
+                                    {/*              </span>*/}
+
+                                    {/*        <Image*/}
+                                    {/*            className={`${styles.sendIconRight}   transition-all !duration-[.11s] ease-in `}*/}
+                                    {/*            src="/pdf-icon.svg"*/}
+                                    {/*            width={36}*/}
+                                    {/*            height={49}*/}
+                                    {/*            alt="pdf-icon"*/}
+                                    {/*        />*/}
+                                    {/*    </button>*/}
+                                    {/*    <div className={styles.highlight}/>*/}
+                                    {/*</div>*/}
                                 </div>
 
                                 <div className="mb-6">
