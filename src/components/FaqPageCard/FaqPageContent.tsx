@@ -215,7 +215,7 @@ export default function FaqPageContent({
   return (
     <>
       <h2
-          className={`${styles.title} ${styles.txtGradientRight} pl-[308px] mb-[30px] mt-[-8px] font-normal leading-[110%] text-[48px] text-[#CCCCCC]`}
+          className={`${styles.title} ${styles.txtGradientRight} w-fit pl-[308px] mb-[50px] mt-[-8px] font-normal leading-[110%] text-[48px] text-[#CCCCCC]`}
       >
         Ответы на главные вопросы
       </h2>

@@ -34,7 +34,7 @@ const Home: React.FC = () => {
                     <Breadcrumbs faq={true}/>
                     <div className={`w-full h-full mb-[80px] mt-[120px]`}>
                         <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
-                            <h2 className={`${styles.title} ${styles.txtGradientRight} font-normal leading-[110%] mt-[-8px] text-[40px] text-[#ccc] mb-[30px]`}>FAQ:
+                            <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[48px] text-[#ccc] mb-[50px]`}>FAQ:
                                 Ответы
                                 на
                                 главные

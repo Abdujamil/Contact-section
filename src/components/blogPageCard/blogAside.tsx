@@ -334,7 +334,7 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
   };
 
   return (
-      <ul className="space-y-4 font-bold text-sm">
+      <ul className="space-y-4">
         {items.map((item, index) => {
           const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
 
@@ -343,13 +343,13 @@ export default function BlogAside({ items }: { items: AsideItem[] }) {
                 <a
                     href={baseId}
                     onClick={(e) => handleAnchorClick(baseId, index, e)}
-                    className={`relative !text-[16px] text-[#adadad] font-normal
+                    className={`relative !text-[14px] text-[#adadad]
                 group
                  ${styles["blogAsideBtn"]}
                  ${HeaderStyles["login-button"]}
                  ${styles["faqTryBtn"]}
                  w-full !h-full flex items-center !justify-start !text-left
-                 font-normal text-[16px] leading-[20px] ease-in duration-150 !p-[12px] !rounded-[6px]
+                 text-[14px] leading-[120%] ease-in duration-150 !p-[12px] !rounded-[6px]
                  ${
                         activeHash === baseId
                             ? `${styles.blogAsideBtnActive} !border-[#adadad]`

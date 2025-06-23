@@ -32,14 +32,14 @@ export default function Editors() {
                 <Breadcrumbs editorId={editorId} inBlog={true} editorPage={true}/>
                 <div className={`max-w-[1180px] px-[10px] m-auto min-h-screen`}>
                     <h1
-                        className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] text-3xl mb-[30px] mt-[-8px]`}
+                        className={`${styles.txtGradientRight} w-fit m-auto text-center text-[48px] leading-[110%] text-3xl mb-[50px] mt-[-8px]`}
                     >
                         Наши редакторы
                     </h1>
 
                     <div className={`flex gap-[40px]`}>
                         <aside className="sticky top-20 h-fit z-[10] w-[260px]">
-                            <BlogAside items={items} />
+                            <BlogAside items={items}/>
                         </aside>
 
                         <div className={` w-full max-w-[860px] flex flex-col gap-[50px] mb-[50px]`}>
@@ -49,7 +49,8 @@ export default function Editors() {
                                     .slice(0, 3);
 
                                 return (
-                                    <div id={`editor-${editor.id}`} key={editor.id} className="flex flex-col gap-[30px]">
+                                    <div id={`editor-${editor.id}`} key={editor.id}
+                                         className="flex flex-col gap-[30px]">
                                         {/* Ссылка на страницу редактора */}
                                         <Link
                                             href={`/editorPage/${editor.id}`}

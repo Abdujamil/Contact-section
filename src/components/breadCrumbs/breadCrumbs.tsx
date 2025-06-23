@@ -40,7 +40,7 @@ export default function Breadcrumbs({
                 <li>
                     <Link
                         href="/"
-                        className={`${styles["menu-item"]} !text-[#adadad] !text-[14px]`}
+                        className={`${styles["menu-item"]} !hover:text-[#3D9ED6] !text-[14px]`}
                     >
                         Главная
                     </Link>
@@ -217,7 +217,7 @@ export default function Breadcrumbs({
                         </li>
                         <Link
                             href={`/`}
-                            className={`${styles["menu-item"]} !text-[#adadad] !text-[14px]`}
+                            className={`${styles["menu-item"]}  !text-[14px]`}
                         >
                             Faq
                         </Link>
@@ -266,7 +266,7 @@ export default function Breadcrumbs({
                         <li>
                             <Link
                                 href={`/editors`}
-                                className={`${styles["menu-item"]} !text-[#adadad] !text-[14px]`}
+                                className={`${styles["menu-item"]}  !text-[14px]`}
                             >
                                 Редакторы
                             </Link>
@@ -318,7 +318,7 @@ export default function Breadcrumbs({
                         <li>
                             <Link
                                 href="/blog" // или просто /blog, если такая страница есть
-                                className={`${styles["menu-item"]} !text-[#adadad] !text-[14px]`}
+                                className={`${styles["menu-item"]} !text-[14px]`}
                             >
                                 Блог
                             </Link>
@@ -348,8 +348,6 @@ export default function Breadcrumbs({
                     <li
                         className={`!text-[#3D9ED6] !text-[14px]`}
                     >
-
-
                         Редакторы
                     </li>
                     </>
@@ -377,7 +375,7 @@ export default function Breadcrumbs({
                         <li>
                             <Link
                                 href="/blog"
-                                className={`${styles["menu-item"]} !text-[#adadad] !text-[14px]`}
+                                className={`${styles["menu-item"]} !text-[14px]`}
                             >
                                 Блог
                             </Link>

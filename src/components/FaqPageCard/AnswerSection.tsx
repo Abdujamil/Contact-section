@@ -38,7 +38,7 @@ const AnswerSection: React.FC<Props> = ({isOpen, fullAnswer, animationSettings})
                 paddingRight: isOpen ? "30px" : "0px",
                 borderTopRightRadius: isOpen ? "0" : "4px",
                 borderTopLeftRadius: isOpen ? "0" : "4px",
-                paddingLeft: isOpen ? "30px" : "0px",
+                paddingLeft: isOpen ? "20px" : "0px",
                 border: isOpen ? "1px solid #CCCCCC" : "",
                 borderTop: isOpen ? "none" : "",
                 // marginTop: isOpen ? "6px" : "",
