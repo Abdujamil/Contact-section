@@ -163,6 +163,7 @@ import HeaderStyles from "../header/Header.module.css";
 import { useAuth } from "@/components/context/AuthContext";
 import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
 import { motion, AnimatePresence } from "framer-motion";
+// import TryBlock from '../TryBlock/page';
 
 export default function FaqPageContent({
   id,
@@ -220,7 +221,7 @@ export default function FaqPageContent({
       </h2>
 
       <div className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[90px] grid grid-cols-4 gap-[40px]">
-        <aside className="sticky top-[65px] h-fit w-[260px] backdrop-blur-sm z-[9999]">
+        <aside className="sticky top-[80px] h-fit w-[260px] backdrop-blur-sm z-[9999]">
           {/* Промо блок */}
           {showRegisterPromo && (
               <div
@@ -319,6 +320,7 @@ export default function FaqPageContent({
                       onToggle={(id) => setOpenQuestionId(id)}
                   />
               )}
+              {/*<TryBlock title={"Тестовый"} content={"Тестовый текст прям!!!"} />*/}
             </section>
           </div>
         </div>

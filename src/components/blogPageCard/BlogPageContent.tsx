@@ -90,7 +90,7 @@ export default function BlogPageContent({
         <Breadcrumbs blogTitle={currentFaqItem?.title} />
 
         {/* Левый ASIDE (BlogAside) */}
-        <aside className="sticky top-20 h-fit z-[10] w-[260px]">
+        <aside className="sticky top-[80px] h-fit z-[10] w-[260px]">
           {showRegisterPromo && (
             <div
               className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[6px]`}
