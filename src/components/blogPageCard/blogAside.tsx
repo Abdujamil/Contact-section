@@ -273,98 +273,99 @@
 
 // SmoothScroll
 "use client";
-import { useScrollSpy } from "../useScrollSpy";
-import React, { useState, useEffect } from "react";
+import {useScrollSpy} from "../useScrollSpy";
+import React, {useState, useEffect} from "react";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "../header/Header.module.css";
-import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
-// import { usePathname } from "next/navigation";
+import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 
 type AsideItem = {
-  id: string;
-  title: string;
-  subtitle?: string[];
+    id: string;
+    title: string;
+    subtitle?: string[];
 };
 
-export default function BlogAside({ items }: { items: AsideItem[] }) {
-  // const pathname = usePathname();
-  // Состояние для отслеживания кликнутого элемента
-  const [clickedHash, setClickedHash] = useState<string | null>(null);
-  const [lastActiveHash, setLastActiveHash] = useState<string>("");
+export default function BlogAside({items}: { items: AsideItem[] }) {
+    const [clickedHash, setClickedHash] = useState<string | null>(null);
+    const [lastActiveHash, setLastActiveHash] = useState<string>("");
 
-  const sectionIds = items.map((item) => item.id);
-  const scrollSpyHash = useScrollSpy({ sectionIds, offset: 100 });
+    const sectionIds = items.map((item) => item.id);
+    const scrollSpyHash = useScrollSpy({sectionIds, offset: 100});
 
+    useEffect(() => {
+        if (clickedHash && scrollSpyHash === clickedHash) {
+            setClickedHash(null);
+        }
+    }, [clickedHash, scrollSpyHash]);
 
-  useEffect(() => {
-    if (clickedHash && scrollSpyHash === clickedHash) {
-      setClickedHash(null);
-    }
-  }, [clickedHash, scrollSpyHash]);
+    useEffect(() => {
+        if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
+            setLastActiveHash(scrollSpyHash);
+        }
+    }, [scrollSpyHash, lastActiveHash]);
 
-  useEffect(() => {
-    if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
-      setLastActiveHash(scrollSpyHash);
-    }
-  }, [scrollSpyHash, lastActiveHash]);
+    // Убираем автоматическую активацию первого элемента
+    // useEffect(() => {
+    //     if (!scrollSpyHash && items.length > 0 && !lastActiveHash) {
+    //         setLastActiveHash(items[0].id);
+    //     }
+    // }, [scrollSpyHash, items, lastActiveHash]);
 
-  const activeHash = clickedHash || lastActiveHash;
+    const activeHash = clickedHash || lastActiveHash;
 
-  const handleAnchorClick = (
-      href: string,
-      index: number,
-      e: React.MouseEvent
-  ) => {
-    e.preventDefault();
+    const handleAnchorClick = (
+        href: string,
+        index: number,
+        e: React.MouseEvent
+    ) => {
+        e.preventDefault();
 
-    // Теперь используем обычный DOM, не SimpleBar
-    const targetElement = document.querySelector(href);
-    if (targetElement) {
-      const offset = 100 // Используем тот же offset что и в SmoothScroll
-      const targetPosition = (targetElement as HTMLElement).offsetTop - offset;
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+            const offset = 100;
+            const targetPosition = (targetElement as HTMLElement).offsetTop - offset;
 
-      // Используем window.scrollTo для совместимости с SmoothScroll
-      window.scrollTo({
-        top: targetPosition,
-        behavior: "smooth",
-      });
+            window.scrollTo({
+                top: targetPosition,
+                behavior: "smooth",
+            });
 
-      setClickedHash(href);
-    }
-  };
+            setClickedHash(href);
+        }
+    };
 
-  return (
-      <ul className="space-y-4">
-        {items.map((item, index) => {
-          const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
+    return (
+        <ul className="space-y-4">
+            {items.map((item, index) => {
+                const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
 
-          return (
-              <li key={baseId}>
-                <a
-                    href={baseId}
-                    onClick={(e) => handleAnchorClick(baseId, index, e)}
-                    className={`relative !text-[14px] text-[#adadad]
+                return (
+                    <li key={baseId}>
+                        <a
+                            href={baseId}
+                            onClick={(e) => handleAnchorClick(baseId, index, e)}
+                            className={`relative !text-[16px] !font-light text-[#adadad] !leading-[130%]
                 group
                  ${styles["blogAsideBtn"]}
                  ${HeaderStyles["login-button"]}
                  ${styles["faqTryBtn"]}
                  w-full !h-full flex items-center !justify-start !text-left
-                 text-[14px] leading-[120%] ease-in duration-150 !p-[12px] !rounded-[6px]
+                 text-[16px] ease-in duration-150 !p-[12px] !rounded-[6px]
                  ${
-                        activeHash === baseId
-                            ? `${styles.blogAsideBtnActive} !border-[#adadad]`
-                            : "!border-transparent hover:!border-[#353535] group-hover:!text-[#ccc]"
-                    }
+                                activeHash === baseId
+                                    ? `${styles.blogAsideBtnActive} !border-[#adadad]`
+                                    : "!border-transparent hover:!border-[#353535] group-hover:!text-[#ccc]"
+                            }
                 active:will-change-transform
               `}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
-                >
-                  {item.title}
-                </a>
-              </li>
-          );
-        })}
-      </ul>
-  );
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            {item.title}
+                        </a>
+                    </li>
+                );
+            })}
+        </ul>
+    );
 }

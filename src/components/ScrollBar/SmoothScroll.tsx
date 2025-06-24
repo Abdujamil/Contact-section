@@ -36,12 +36,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     // Функция для получения offset в зависимости от страницы
     const getScrollOffset = () => {
         if (pathname.includes('/politic')) {
-            return -110; // Меньший offset для страницы политики
+            return -130; // Меньший offset для страницы политики
         }
         if (pathname.includes('/blog')) {
-            return -165; // Стандартный offset для блога
+            return -185; // Стандартный offset для блога
         }if (pathname.includes('/editors')) {
-            return 60; // Стандартный offset для блога
+            return 90; // Стандартный offset для блога
         }
         return 120; // Дефолтный offset для остальных страниц
     };

@@ -64,68 +64,72 @@ interface UseScrollSpyOptions {
 export function useScrollSpy({ sectionIds, offset = 0 }: UseScrollSpyOptions) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
+  const [initialScrollY, setInitialScrollY] = useState<number>(0);
 
   useEffect(() => {
     const elements = sectionIds
-      .map((id) => document.getElementById(id.replace("#", "")))
-      .filter(Boolean) as HTMLElement[];
+        .map((id) => document.getElementById(id.replace("#", "")))
+        .filter(Boolean) as HTMLElement[];
 
     if (elements.length === 0) return;
 
     const scrollContainer =
-      document.querySelector("[data-simplebar] .simplebar-content-wrapper") ||
-      window;
+        document.querySelector("[data-simplebar] .simplebar-content-wrapper") ||
+        window;
+
+    // Запоминаем начальную позицию скролла с небольшой задержкой
+    const timer = setTimeout(() => {
+      setInitialScrollY(window.scrollY || window.pageYOffset);
+    }, 100);
 
     const handleScroll = () => {
-      // Отмечаем, что пользователь начал скроллить
-      if (!hasScrolled) {
+      const currentScrollY = window.scrollY || window.pageYOffset;
+      const scrollThreshold = 20; // Порог в пикселях
+
+      // Проверяем, действительно ли пользователь проскроллил достаточно
+      if (!hasScrolled && Math.abs(currentScrollY - initialScrollY) > scrollThreshold) {
         setHasScrolled(true);
+        // Как только начали скроллить - сразу активируем первый элемент
+        if (elements.length > 0) {
+          const firstElementId = `#${elements[0].id}`;
+          if (activeId !== firstElementId) {
+            setActiveId(firstElementId);
+          }
+          return; // Выходим, чтобы не перезаписать логикой ниже
+        }
       }
 
       let foundActiveId: string | null = null;
 
-      // Находим активный элемент
-      for (let i = 0; i < elements.length; i++) {
-        const el = elements[i];
-        const rect = el.getBoundingClientRect();
+      // Находим активный элемент только если пользователь уже скроллил
+      if (hasScrolled) {
+        for (let i = 0; i < elements.length; i++) {
+          const el = elements[i];
+          const rect = el.getBoundingClientRect();
 
-        if (rect.top - offset <= 0) {
-          foundActiveId = `#${el.id}`;
-        } else {
-          break;
-        }
-      }
-
-      // Если нашли активный элемент - обновляем
-      if (foundActiveId) {
-        if (foundActiveId !== activeId) {
-          setActiveId(foundActiveId);
-        }
-      } else {
-        // Если не нашли активный элемент, проверяем - не находимся ли мы в самом начале
-        if (elements.length > 0 && hasScrolled) {
-          const firstElement = elements[0];
-          const firstRect = firstElement.getBoundingClientRect();
-
-          // Если первый элемент еще не дошел до offset, активируем его
-          if (firstRect.top > offset && activeId !== `#${firstElement.id}`) {
-            setActiveId(`#${firstElement.id}`);
+          if (rect.top - offset <= 0) {
+            foundActiveId = `#${el.id}`;
+          } else {
+            break;
           }
-          // Иначе сохраняем текущий activeId (не сбрасываем)
+        }
+
+        // Если нашли активный элемент - обновляем
+        if (foundActiveId && foundActiveId !== activeId) {
+          setActiveId(foundActiveId);
         }
       }
     };
 
     scrollContainer.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
-    
-    // Убираем начальный запуск handleScroll()
 
     return () => {
+      clearTimeout(timer);
       scrollContainer.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [sectionIds, offset, activeId, hasScrolled]);
+  }, [sectionIds, offset, activeId, hasScrolled, initialScrollY]);
 
   return activeId;
 }
