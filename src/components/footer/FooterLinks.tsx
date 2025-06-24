@@ -171,12 +171,12 @@ const FooterLinks: React.FC = () => {
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
             >
-              <span className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.11s] !ease-in">
+              <span className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in">
                 Telegram
               </span>
 
               <svg
-                  className={`${styles.sendIconLeft}  transition-all !duration-[.11s] ease-in`}
+                  className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}
                   width="24"
                   height="24"
                   viewBox="0 0 24 24"

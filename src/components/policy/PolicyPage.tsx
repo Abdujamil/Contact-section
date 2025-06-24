@@ -7,6 +7,7 @@ import PolicyContent from "@/components/policy/PolicyContent";
 import Footer from "@/app/footer";
 import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import TryBlock from "@/components/TryBlock/page";
 
 export type PolicyTab = "policy" | "offer" | "license";
 
@@ -52,6 +53,19 @@ function PolicyPageContent() {
                 <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
                     <PolicySidebar activeTab={activeTab} setActiveTab={setActiveTab}/>
                     <PolicyContent activeTab={activeTab}/>
+                </div>
+
+                <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}>
+                    <div className={`w-[480px]`}>
+
+                    </div>
+
+                    <TryBlock
+                        title="Хотите протестировать?"
+                        content="
+                Попробуйте AUDIOSECTOR прямо сейчас. Никаких сложностей. Только
+                результат."
+                    />
                 </div>
             </div>
             <Footer/>
