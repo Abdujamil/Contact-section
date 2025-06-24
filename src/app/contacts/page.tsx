@@ -537,7 +537,7 @@ export default function Contacts() {
                                                                         className={`${styles["menu-item"]} ${
                                                                             selectedOption === option
                                                                                 ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
-                                                                                : "!text-[#adadad]"
+                                                                                : "text-[#adadad]"
                                                                         }`}
                                                                     >
                                                                         {option}

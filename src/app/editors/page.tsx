@@ -37,12 +37,12 @@ export default function Editors() {
                         Наши редакторы
                     </h1>
 
-                    <div className={`flex gap-[40px]`}>
+                    <div className={`flex gap-[40px] mb-[50px]`}>
                         <aside className="sticky top-20 h-fit z-[10] w-[260px]">
                             <BlogAside items={items}/>
                         </aside>
 
-                        <div className={` w-full max-w-[860px] flex flex-col gap-[50px] mb-[50px]`}>
+                        <div className={` w-full max-w-[860px] flex flex-col gap-[50px]`}>
                             {editors.map((editor) => {
                                 const editorBlogs = blogData
                                     .filter((blog) => blog.editorId === editor.id)
@@ -82,7 +82,7 @@ export default function Editors() {
                                         {editorBlogs.length > 0 && (
                                             <div>
                                                 <div
-                                                    className={`${styles.blogCards} grid grid-cols-3 gap-[40px] mb-[60px]`}
+                                                    className={`${styles.editorCards} grid grid-cols-3 gap-[40px] mb-[60px]`}
                                                 >
                                                     {editorBlogs.map((item) => (
                                                         <BlogCard
@@ -103,12 +103,18 @@ export default function Editors() {
                         </div>
                     </div>
                     {/* Блок Попробовать */}
-                    <TryBlock
-                        title="Хотите протестировать?"
-                        content="
+                    <div className={`flex gap-[40px]`}>
+                        <div className="w-[348px]">
+
+                        </div>
+
+                        <TryBlock
+                            title="Хотите протестировать?"
+                            content="
                         Попробуйте AUDIOSECTOR прямо сейчас. Никаких сложностей. Только
                         результат."
-                    />
+                        />
+                    </div>
                 </div>
                 <Footer/>
             </div>

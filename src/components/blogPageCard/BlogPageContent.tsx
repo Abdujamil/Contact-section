@@ -86,7 +86,7 @@ export default function BlogPageContent({
 
   return (
     <>
-      <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}>
+      <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr] mb-[150px]`}>
         <Breadcrumbs blogTitle={currentFaqItem?.title} />
 
         {/* Левый ASIDE (BlogAside) */}
@@ -287,7 +287,7 @@ export default function BlogPageContent({
             {currentEditor && (
               <Link
                 href={`/editorPage/${currentEditor.id}`}
-                className={`${styles.authorBlock} ${styles.shadowcards} group w-full mb-[150px] flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
+                className={`${styles.authorBlock} ${styles.shadowcards} group w-full flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
               >
                 <div className="min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
                   {currentEditor.avatar ? (
