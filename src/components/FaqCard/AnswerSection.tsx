@@ -89,12 +89,12 @@ const AnswerSection: React.FC<Props> = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
-          <span className="text-[20px] !text-[#adadad] !transition-all !duration-[.15s] !ease-in">
+          <span className="text-[20px] !text-[#adadad] !transition-all !duration-[.13s] !ease-in">
             Подробнее
           </span>
 
           <svg
-              className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+              className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}
               width="26"
               height="26"
               viewBox="0 0 26 26"

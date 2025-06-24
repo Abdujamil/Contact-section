@@ -28,22 +28,22 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                 onClick={onClick}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
             >
         <span
-            className={`text-[20px] !transition-all !duration-[.15s] !ease-in ${
+            className={`text-[20px] !transition-all !duration-[.13s] !ease-in ${
                 isActive ? "!text-[#3D9ED6]" : "#adadad"
             } ${className} `}
         >
           {label}
         </span>
 
-                <span className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.15s] ease-in`}>
+                <span className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
           {iconLeft}
         </span>
 
-                <span className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.15s] ease-in`}>
+                <span className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
           {iconLeft}
         </span>
             </button>

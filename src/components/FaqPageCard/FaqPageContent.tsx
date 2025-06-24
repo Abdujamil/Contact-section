@@ -239,7 +239,7 @@ export default function FaqPageContent({
                       onMouseLeave={handleMouseLeave}
                   >
                     <svg
-                        className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+                        className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}
                         width="18"
                         height="24"
                         viewBox="0 0 18 24"
@@ -251,7 +251,7 @@ export default function FaqPageContent({
                           fill="#737373"
                       />
                     </svg>
-                    <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+                    <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
                   Попробовать
                 </span>
                   </button>

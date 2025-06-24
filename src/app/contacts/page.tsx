@@ -738,11 +738,11 @@ export default function Contacts() {
                                                     data-text=""
                                                 >
                                                   <span
-                                                      className="!transition-all !duration-[.11s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
+                                                      className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">
                                                     Отправить
                                                   </span>
                                                     <svg
-                                                        className={`${styles.sendIconRight} transition-all !duration-[.11s] ease-in`}
+                                                        className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
                                                         width="23"
                                                         height="20"
                                                         viewBox="0 0 23 20"
@@ -828,15 +828,15 @@ export default function Contacts() {
                                     <div className="relative !overflow-hidden">
                                         <button
                                             type="submit"
-                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.11s] ease-in `}
+                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
                                         >
 
-                                              <span className="whitespace-nowrap !transition-all !duration-[.11s] !ease-in !group-hover:text-[#ccc] text-[20px]">
+                                              <span className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
                                                 Скачать PDF
                                               </span>
 
                                             <Image
-                                                className={`${styles.sendIconRight}   transition-all !duration-[.11s] ease-in `}
+                                                className={`${styles.sendIconRight}   transition-all !duration-[.13s] ease-in `}
                                                 src="/pdf-icon.svg"
                                                 width={36}
                                                 height={49}
@@ -855,12 +855,12 @@ export default function Contacts() {
                                     {/*        data-text=""*/}
                                     {/*    >*/}
                                     {/*              <span*/}
-                                    {/*                  className="!transition-all !duration-[.11s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">*/}
+                                    {/*                  className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">*/}
                                     {/*                Скачать PDF*/}
                                     {/*              </span>*/}
 
                                     {/*        <Image*/}
-                                    {/*            className={`${styles.sendIconRight}   transition-all !duration-[.11s] ease-in `}*/}
+                                    {/*            className={`${styles.sendIconRight}   transition-all !duration-[.13s] ease-in `}*/}
                                     {/*            src="/pdf-icon.svg"*/}
                                     {/*            width={36}*/}
                                     {/*            height={49}*/}

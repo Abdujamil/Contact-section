@@ -30,13 +30,13 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
                 onMouseLeave={handleMouseLeave}
                 className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} ${
                     tab.id === "policy" ? styles["contact-btn"] : styles["requisite-btn"]
-                } ${styles["requisite-btn"]} border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.15s] ease-in`}
+                } ${styles["requisite-btn"]} border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.13s] ease-in`}
                 style={{
                     color: isActive ? "#3D9ED6" : "#adadad",
                 }}
             >
         <span
-            className={`w-[95px] text-[20px] text-left !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${
+            className={`w-[95px] text-[20px] text-left !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] ${
                 isActive ? "!text-[#3D9ED6]" : "text-[#878787]"
             }`}
         >
@@ -44,7 +44,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
         </span>
 
                 <svg
-                    className={`${styles.sendIconLeft2} transition-all !duration-[.15s] ease-in`}
+                    className={`${styles.sendIconLeft2} transition-all !duration-[.13s] ease-in`}
                     width="25"
                     height="28"
                     viewBox={tab.viewBox}
@@ -57,7 +57,7 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
                 </svg>
 
                 <svg
-                    className={`${styles.sendIconRight2} transition-all !duration-[.15s] ease-in`}
+                    className={`${styles.sendIconRight2} transition-all !duration-[.13s] ease-in`}
                     width="25"
                     height="28"
                     viewBox={tab.viewBox}

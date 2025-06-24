@@ -109,14 +109,14 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*        }}*/}
             {/*    >*/}
             {/*          <span*/}
-            {/*              className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${*/}
+            {/*              className={`text-[20px] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] ${*/}
             {/*                  activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"}*/}
             {/*                   `}*/}
             {/*          >*/}
             {/*            Связаться*/}
             {/*          </span>*/}
             {/*        <svg*/}
-            {/*            className={`${styles.sendIconLeft2}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*            className={`${styles.sendIconLeft2}  transition-all !duration-[.13s] ease-in`}*/}
             {/*            width="30"*/}
             {/*            height="17"*/}
             {/*            viewBox="0 0 30 17"*/}
@@ -137,7 +137,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*            />*/}
             {/*        </svg>*/}
             {/*        <svg*/}
-            {/*            className={`${styles.sendIconRight2}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*            className={`${styles.sendIconRight2}  transition-all !duration-[.13s] ease-in`}*/}
             {/*            width="30"*/}
             {/*            height="17"*/}
             {/*            viewBox="0 0 30 17"*/}
@@ -172,14 +172,14 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*        )}*/}
             {/*        onMouseMove={handleMouseMove}*/}
             {/*        onMouseLeave={handleMouseLeave}*/}
-            {/*        className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
+            {/*        className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535]  transition-all !duration-[.13s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
             {/*        style={{*/}
             {/*            color: activeTab === "requisite" ? "#3D9ED6" : "#adadad",*/}
             {/*        }}*/}
             {/*    >*/}
 
             {/*        <span*/}
-            {/*            className={`text-[20px] !transition-all !duration-[.15s] !ease-in ${*/}
+            {/*            className={`text-[20px] !transition-all !duration-[.13s] !ease-in ${*/}
             {/*                activeTab === "requisite" ? "!text-[#3D9ED6]" : "#adadad"*/}
             {/*            }`}*/}
             {/*        >*/}
@@ -187,7 +187,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*        </span>*/}
 
             {/*        <svg*/}
-            {/*            className={`${styles.sendIconLeft2}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*            className={`${styles.sendIconLeft2}  transition-all !duration-[.13s] ease-in`}*/}
             {/*            width="24"*/}
             {/*            height="27"*/}
             {/*            viewBox="0 0 24 27"*/}
@@ -201,7 +201,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*        </svg>*/}
 
             {/*        <svg*/}
-            {/*            className={`${styles.sendIconRight2}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*            className={`${styles.sendIconRight2}  transition-all !duration-[.13s] ease-in`}*/}
             {/*            width="24"*/}
             {/*            height="27"*/}
             {/*            viewBox="0 0 24 27"*/}
@@ -236,7 +236,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*    }}*/}
             {/*  >*/}
             {/*    <svg*/}
-            {/*      className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*      className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}*/}
             {/*      width="30"*/}
             {/*      height="17"*/}
             {/*      viewBox="0 0 30 17"*/}
@@ -257,14 +257,14 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*      />*/}
             {/*    </svg>*/}
             {/*    <span*/}
-            {/*      className={`text-[20px] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc] ${*/}
+            {/*      className={`text-[20px] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] ${*/}
             {/*        activeTab === "contact" ? "!text-[#3D9ED6]" : "#adadad"*/}
             {/*      }`}*/}
             {/*    >*/}
             {/*      Связаться*/}
             {/*    </span>*/}
             {/*    <svg*/}
-            {/*      className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*      className={`${styles.sendIconRight}  transition-all !duration-[.13s] ease-in`}*/}
             {/*      width="30"*/}
             {/*      height="17"*/}
             {/*      viewBox="0 0 30 17"*/}
@@ -299,13 +299,13 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*    )}*/}
             {/*    onMouseMove={handleMouseMove}*/}
             {/*    onMouseLeave={handleMouseLeave}*/}
-            {/*    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} border !border-[#353535]  transition-all !duration-[.15s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
+            {/*    className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["requisite-btn"]} border !border-[#353535]  transition-all !duration-[.13s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}*/}
             {/*    style={{*/}
             {/*      color: activeTab === "requisite" ? "#3D9ED6" : "#adadad",*/}
             {/*    }}*/}
             {/*  >*/}
             {/*    <svg*/}
-            {/*      className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*      className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}*/}
             {/*      width="24"*/}
             {/*      height="27"*/}
             {/*      viewBox="0 0 24 27"*/}
@@ -318,14 +318,14 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
             {/*      />*/}
             {/*    </svg>*/}
             {/*    <span*/}
-            {/*      className={`text-[20px] !transition-all !duration-[.15s] !ease-in ${*/}
+            {/*      className={`text-[20px] !transition-all !duration-[.13s] !ease-in ${*/}
             {/*        activeTab === "requisite" ? "!text-[#3D9ED6]" : "#adadad"*/}
             {/*      }`}*/}
             {/*    >*/}
             {/*      Реквизиты*/}
             {/*    </span>*/}
             {/*    <svg*/}
-            {/*      className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}*/}
+            {/*      className={`${styles.sendIconRight}  transition-all !duration-[.13s] ease-in`}*/}
             {/*      width="24"*/}
             {/*      height="27"*/}
             {/*      viewBox="0 0 24 27"*/}

@@ -108,7 +108,7 @@ export default function BlogPageContent({
                   onMouseLeave={handleMouseLeave}
                 >
                   <svg
-                    className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+                    className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -131,7 +131,7 @@ export default function BlogPageContent({
                       </clipPath>
                     </defs>
                   </svg>
-                  <span className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
+                  <span className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in ">
                     Получить
                   </span>
                 </button>
@@ -176,7 +176,7 @@ export default function BlogPageContent({
                   onMouseLeave={handleMouseLeave}
                 >
                   <svg
-                    className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
+                    className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}
                     width="26"
                     height="26"
                     viewBox="0 0 26 26"
@@ -218,7 +218,7 @@ export default function BlogPageContent({
                     </defs>
                   </svg>
 
-                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
+                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in ">
                     Предыдущая
                   </span>
                 </button>
@@ -232,12 +232,12 @@ export default function BlogPageContent({
                   onMouseMove={handleMouseMove}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
+                  <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in ">
                     Следующая
                   </span>
 
                   <svg
-                    className={`${styles.sendIconRight}  transition-all !duration-[.15s] ease-in`}
+                    className={`${styles.sendIconRight}  transition-all !duration-[.13s] ease-in`}
                     width="26"
                     height="26"
                     viewBox="0 0 26 26"

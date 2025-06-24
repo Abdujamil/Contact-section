@@ -87,7 +87,7 @@ const Pagination: React.FC<PaginationProps> = ({
           onMouseLeave={handleMouseLeave}
         >
           <svg
-            className={`${styles.sendIconLeft} transition-all !duration-[.15s] ease-in`}
+            className={`${styles.sendIconLeft} transition-all !duration-[.13s] ease-in`}
             width="26"
             height="26"
             viewBox="0 0 26 26"
@@ -128,7 +128,7 @@ const Pagination: React.FC<PaginationProps> = ({
               </clipPath>
             </defs>
           </svg>
-          <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#adadad]">
+          <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#adadad]">
             Предыдущая
           </span>
         </button>
@@ -182,11 +182,11 @@ const Pagination: React.FC<PaginationProps> = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
-          <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in !group-hover:text-[#ccc]">
+          <span className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
             Следующая
           </span>
           <svg
-            className={`${styles.sendIconRight} transition-all !duration-[.15s] ease-in`}
+            className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
             width="26"
             height="26"
             viewBox="0 0 26 26"
