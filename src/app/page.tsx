@@ -5,8 +5,8 @@ import styles from './faq/faq.module.scss';
 import FaqCard from '../components/FaqCard/index'
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
-// import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+// import Footer from "@/app/footer";
 
 const Home: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
@@ -28,38 +28,36 @@ const Home: React.FC = () => {
 
     return (
         <>
-            {/*<ScrollWrapper>*/}
-                <Bg/>
-                <main className={`${styles.main} w-full h-full`}>
-                    <Breadcrumbs faq={true}/>
-                    <div className={`w-full h-full mb-[80px] mt-[120px]`}>
-                        <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px]`}>
-                            <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[48px] text-[#ccc] mb-[50px]`}>FAQ:
-                                Ответы
-                                на
-                                главные
-                                вопросы</h2>
-                            <div className={`flex flex-col gap-[5px] h-full`}>
-                                {faqData.map((item) => (
-                                    <FaqCard
-                                        id={item.id}
-                                        key={item.id}
-                                        num={item.num}
-                                        question={item.question}
-                                        answer={item.answer}
-                                        fullAnswer={""}
-                                        src={item.src}
-                                        isOpen={openId === item.id}
-                                        onToggle={handleToggle}
-                                        animationSettings={animationSettings}
-                                    />
-                                ))}
-                            </div>
-                        </section>
-                        {/*<Footer />*/}
-                    </div>
-                </main>
-            {/*</ScrollWrapper>*/}
+            <Bg/>
+            <main className={`${styles.main} w-full `}>
+                <Breadcrumbs faq={true}/>
+                <div className={`w-full h-full mb-[80px] mt-[120px]`}>
+                    <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px] mb-[76px]`}>
+                        <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[48px] text-[#ccc] mb-[50px]`}>FAQ:
+                            Ответы
+                            на
+                            главные
+                            вопросы</h2>
+                        <div className={`flex flex-col gap-[5px] h-full`}>
+                            {faqData.map((item) => (
+                                <FaqCard
+                                    id={item.id}
+                                    key={item.id}
+                                    num={item.num}
+                                    question={item.question}
+                                    answer={item.answer}
+                                    fullAnswer={""}
+                                    src={item.src}
+                                    isOpen={openId === item.id}
+                                    onToggle={handleToggle}
+                                    animationSettings={animationSettings}
+                                />
+                            ))}
+                        </div>
+                    </section>
+                    {/*<Footer/>*/}
+                </div>
+            </main>
         </>
     );
 };

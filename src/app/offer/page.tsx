@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import PolicyOfferContent from "@/components/policy/PolicyOfferContent";
 import Bg from "@/components/background/bg";
 import styles from "@/app/page.module.scss";
-import Footer from "@/app/footer";
 import PolicySidebar from "@/components/policy/PolicySidebar";
 
 export type PolicyTab = "policy" | "offer" | "license";
@@ -36,7 +35,6 @@ function OfferPage() {
                 </div>
 
             </div>
-            <Footer/>
         </>
     )
 }

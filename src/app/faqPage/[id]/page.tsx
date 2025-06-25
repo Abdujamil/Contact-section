@@ -40,7 +40,7 @@
 import {notFound} from "next/navigation";
 import {faqData} from "@/data/faq";
 import React from "react";
-import Footer from "../../footer";
+// import Footer from "../../footer";
 import FaqPageContent from "@/components/FaqPageCard/FaqPageContent";
 import Bg from "@/components/background/bg";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
@@ -70,17 +70,17 @@ export default async function FaqPage({params, searchParams}: Props) {
 
     return (
         <>
-            <div className={`h-dvh`}>
+            <div className={``}>
                 <Bg/>
                 <Breadcrumbs faqPage={true}/>
                 <div
-                    className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto mt-[120px]">
+                    className="w-full max-w-[1180px] h-auto mx-auto mt-[120px]">
                     <FaqPageContent
                         fromHeader={fromHeader}
                         id={id}
                     />
                 </div>
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         </>
     );

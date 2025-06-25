@@ -3,7 +3,7 @@
 import React from "react";
 import { useParams } from "next/navigation";
 import Bg from "@/components/background/bg";
-import Footer from "@/app/footer";
+// import Footer from "@/app/footer";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import { editors } from "@/data/editors";
 import Image from "next/image";
@@ -141,7 +141,7 @@ export default function EditorPage() {
           </div>
         </div>
 
-        <Footer />
+        {/*<Footer />*/}
       </div>
     </>
   );

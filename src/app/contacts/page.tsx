@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Footer from "../footer";
+// import Footer from "../footer";
 import styles from "../page.module.scss";
 import HeaderStyles from "../../components/header/Header.module.css";
 import React, {useState, useEffect} from "react";
@@ -329,7 +329,7 @@ export default function Contacts() {
 
     return (
         <>
-            <div className={`${styles.page} h-dvh`}>
+            <div className={`${styles.page} h-full`}>
                 <Bg/>
                 <div
                     className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center`}
@@ -940,7 +940,7 @@ export default function Contacts() {
                             </motion.div>
                         </div>
                     </div>
-                    <Footer/>
+                    {/*<Footer/>*/}
                 </div>
             </div>
         </>

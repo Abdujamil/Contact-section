@@ -2,7 +2,7 @@
 
 import React from "react";
 import Bg from "@/components/background/bg";
-import Footer from "@/app/footer";
+// import Footer from "@/app/footer";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 // import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
 import {useParams} from "next/navigation";
@@ -116,7 +116,7 @@ export default function Editors() {
                         />
                     </div>
                 </div>
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         </>
     );

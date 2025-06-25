@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { blogData } from "@/data/blog";
 import styles from "@/app/page.module.scss";
 import BlogPageContent from "@/components/blogPageCard/BlogPageContent";
-import Footer from "@/app/footer";
+// import Footer from "@/app/footer";
 import Bg from "@/components/background/bg";
 import { createSlug } from "@/components/utils/createSlug";
 
@@ -106,7 +106,7 @@ export default async function BlogPage({
     return (
       <>
         <Bg />
-        <div className={`h-dvh mt-[112px]`}>
+        <div className={`mt-[112px]`}>
           <h1
             className={`${styles.txtGradientRight} max-w-[882px] m-auto text-center text-[48px] leading-[110%] mb-[50px]`}
           >
@@ -115,7 +115,7 @@ export default async function BlogPage({
           <div className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] grid">
             <BlogPageContent fromHeader={fromHeader} id={blogItem.id} />
           </div>
-          <Footer />
+          {/*<Footer />*/}
         </div>
       </>
     );

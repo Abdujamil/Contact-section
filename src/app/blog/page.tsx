@@ -6,7 +6,7 @@ import BlogCard from "@/components/BlogCard/BlogCard";
 import {blogData} from "@/data/blog";
 import Bg from "@/components/background/bg";
 import Pagination from "@/components/Pagination/pagination";
-import Footer from "../footer";
+// import Footer from "../footer";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 const Blog = () => {
@@ -35,7 +35,7 @@ const Blog = () => {
     return (
         <>
             <Bg/>
-            <div className={`h-screen flex flex-col items-center justify-center`}>
+            <div className={`flex flex-col items-center justify-center`}>
                 <Breadcrumbs blogUrl={true}/>
                 <div
                     className={`${styles.blog} w-full min-h-full h-auto mx-auto flex flex-col items-center`}
@@ -75,7 +75,7 @@ const Blog = () => {
                         />
                     </div>
 
-                    <Footer/>
+                    {/*<Footer/>*/}
                 </div>
             </div>
         </>

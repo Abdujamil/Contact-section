@@ -2,7 +2,6 @@
 import React, {useState} from "react";
 import Bg from "@/components/background/bg";
 import styles from "@/app/page.module.scss";
-import Footer from "@/app/footer";
 import PolicySidebar from "@/components/policy/PolicySidebar";
 import PolicyLicenseContent from "@/components/policy/PolicyLicenseContent";
 
@@ -35,7 +34,6 @@ function LicensePage() {
                     <PolicyLicenseContent/>
                 </div>
             </div>
-            <Footer/>
         </>
     )
 }

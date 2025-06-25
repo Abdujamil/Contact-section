@@ -13,9 +13,11 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     useEffect(() => {
         const isContact = pathname === '/contact';
+        const isPricing = pathname === '/pricing';
+        const isOrganization = pathname === '/organizations';
 
         // Скрываем нативный скролл при переходе на /contact
-        document.body.style.overflow = isContact ? 'hidden' : '';
+        document.body.style.overflow = isContact || isPricing || isOrganization ? 'hidden' : '';
         setShowScrollbar(!isContact);
 
         // Принудительно пересчитываем скроллбар после рендера страницы
@@ -40,7 +42,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }
         if (pathname.includes('/blog')) {
             return -185; // Стандартный offset для блога
-        }if (pathname.includes('/editors')) {
+        }
+        if (pathname.includes('/editors')) {
             return 90; // Стандартный offset для блога
         }
         return 120; // Дефолтный offset для остальных страниц

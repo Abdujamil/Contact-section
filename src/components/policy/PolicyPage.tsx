@@ -4,7 +4,6 @@ import styles from "@/app/page.module.scss";
 import Bg from "@/components/background/bg";
 import PolicySidebar from "@/components/policy/PolicySidebar";
 import PolicyContent from "@/components/policy/PolicyContent";
-import Footer from "@/app/footer";
 import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
@@ -68,7 +67,6 @@ function PolicyPageContent() {
                     />
                 </div>
             </div>
-            <Footer/>
         </>
     );
 }

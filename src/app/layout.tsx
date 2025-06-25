@@ -4,8 +4,8 @@ import "./globals.css";
 import Header from "@/components/header/Header";
 import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
-// import ScrollWrapper from "@/components/ScrollBar/ScrollWrapper";
 import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
+import Footer from "@/app/footer";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -29,17 +29,15 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         >
         <AuthProvider>
-            {/*<ScrollWrapper>*/}
-            {/*  <Header />*/}
-            {/*  {children}*/}
-            {/*</ScrollWrapper>*/}
-
             <SmoothScroll>
                 <Header/>
-                {children}
+                <main className="flex-grow">
+                    {children}
+                </main>
+                <Footer/>
             </SmoothScroll>
         </AuthProvider>
         </body>
