@@ -186,7 +186,7 @@ const Pagination: React.FC<PaginationProps> = ({
             Следующая
           </span>
           <svg
-            className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
+            className={`${styles.sendIconRight} transition-all !duration-[.15s] ease-in`}
             width="26"
             height="26"
             viewBox="0 0 26 26"

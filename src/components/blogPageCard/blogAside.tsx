@@ -304,12 +304,6 @@ export default function BlogAside({items}: { items: AsideItem[] }) {
         }
     }, [scrollSpyHash, lastActiveHash]);
 
-    // Убираем автоматическую активацию первого элемента
-    // useEffect(() => {
-    //     if (!scrollSpyHash && items.length > 0 && !lastActiveHash) {
-    //         setLastActiveHash(items[0].id);
-    //     }
-    // }, [scrollSpyHash, items, lastActiveHash]);
 
     const activeHash = clickedHash || lastActiveHash;
 
