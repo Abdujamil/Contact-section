@@ -56,6 +56,7 @@ const Blog = () => {
                                 {getCurrentPageCards().map((item) => (
                                     <BlogCard
                                         id={item.id}
+                                        editorId={item.editorId}
                                         key={item.id}
                                         num={item.num}
                                         title={item.title}

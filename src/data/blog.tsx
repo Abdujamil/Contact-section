@@ -7,7 +7,7 @@ interface AsideItem {
   subtitle?: string[];
 }
 
-interface FaqItem {
+interface BlogItem {
   id: number;
   num: string;
   title: string;
@@ -20,7 +20,7 @@ interface FaqItem {
   editorId: number;
 }
 
-export const blogData: FaqItem[] = [
+export const blogData: BlogItem[] = [
   {
     id: 1,
     num: "1",

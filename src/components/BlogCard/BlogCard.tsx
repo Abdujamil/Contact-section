@@ -96,13 +96,14 @@ import { createSlug } from "@/components/utils/createSlug";
 
 interface BlogCardProps {
   id: number;
+  editorId: number;
   num: string;
   title: string;
   date: string;
   src: string | StaticImageData;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) => {
   const router = useRouter();
 
   // const handleCardClick = () => {
@@ -125,7 +126,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ num, title, date, src }) => {
 
   const handleAuthorClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    router.push("/");
+    router.push(`/editorPage/${editorId}`);
   };
 
   return (
