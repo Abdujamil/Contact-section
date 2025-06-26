@@ -80,6 +80,7 @@ export default function EditorPage() {
                     title={item.title}
                     date={item.date}
                     src={item.src}
+                    editorId={item.editorId}
                   />
                 ))}
             </div>

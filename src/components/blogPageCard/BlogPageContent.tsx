@@ -336,6 +336,7 @@ export default function BlogPageContent({
               title={item.title}
               date={item.date}
               src={item.src}
+              editorId={item.editorId}
             />
           ))}
         </div>
