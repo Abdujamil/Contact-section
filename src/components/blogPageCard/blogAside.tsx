@@ -329,7 +329,7 @@ export default function BlogAside({items}: { items: AsideItem[] }) {
     };
 
     return (
-        <ul className="space-y-4">
+        <ul className="space-y-[4px]">
             {items.map((item, index) => {
                 const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
 
