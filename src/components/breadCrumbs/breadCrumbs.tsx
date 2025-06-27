@@ -246,29 +246,6 @@ export default function Breadcrumbs({
                                 />
                             </svg>
                         </li>
-                        <Link
-                            href={`/`}
-                            className={`${styles["menu-item"]}  !text-[14px]`}
-                        >
-                            Faq
-                        </Link>
-                        <li className={`flex items-center justify-center`}>
-                            <svg
-                                width="6"
-                                height="10"
-                                viewBox="0 0 6 10"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M1.25 0.917969L5.33333 5.0013L1.25 9.08464"
-                                    stroke="#CCCCCC"
-                                    strokeWidth="1.16667"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </li>
                         <li className={`text-[#3D9ED6]`}>
                             Страница Faq
                         </li>
