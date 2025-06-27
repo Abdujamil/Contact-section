@@ -9,6 +9,7 @@ interface BreadcrumbsProps {
     blogTitle?: string;
     blogUrl?: true;
     policyUrl?: boolean;
+    policyTab?: string;
     offerUrl?: boolean;
     licenseUrl?: boolean;
     contactUrl?: boolean;
@@ -17,6 +18,7 @@ interface BreadcrumbsProps {
     faq?: boolean;
     faqPage?: boolean;
     organizationUrl?: boolean;
+    organizationTab?: string;
 }
 
 export default function Breadcrumbs({
@@ -28,11 +30,13 @@ export default function Breadcrumbs({
                                         blogUrl,
                                         contactUrl,
                                         policyUrl,
+                                        policyTab,
                                         offerUrl,
                                         licenseUrl,
                                         faq,
                                         faqPage,
                                         organizationUrl,
+                                        organizationTab
                                     }: BreadcrumbsProps) {
     //   const pathname = usePathname();
 
@@ -68,7 +72,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            Политика конфиденциальности
+                            {policyTab ? policyTab : "Политика конфиденциальности"}
                         </li>
                     </>
                 )}
@@ -93,7 +97,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            Огранизация
+                            {organizationTab ? organizationTab : "Организация"}
                         </li>
                     </>
                 )}

@@ -2,7 +2,7 @@
 import styles from "@/app/page.module.scss";
 import React from "react";
 
-export default function OrganizationOfferContent() {
+export default function OrganizationApiContent() {
   return (
     <div>
       <div

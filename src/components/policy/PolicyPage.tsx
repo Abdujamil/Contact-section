@@ -7,6 +7,7 @@ import PolicyContent from "@/components/policy/PolicyContent";
 import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
+// import {OrganizationTab} from "@/components/organization/OrganizationPage";
 
 export type PolicyTab = "policy" | "offer" | "license";
 
@@ -36,13 +37,20 @@ function PolicyPageContent() {
         }
     }, [searchParams]);
 
+    const getBreadcrumbText = (tab: PolicyTab): string => {
+        if (tab === "policy") {
+            return "Политика конфиденциальности";
+        }
+        return tabTitles[tab];
+    };
+
     return (
         <>
             <Bg/>
             <div
                 className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
             >
-                <Breadcrumbs policyUrl={true}/>
+                <Breadcrumbs policyUrl={true} policyTab={getBreadcrumbText(activeTab)}/>
                 <h1
                     className={`${styles.txtGradientTitle} text-center text-[48px] leading-[110%] mt-[-8px] mb-[50px]`}
                 >

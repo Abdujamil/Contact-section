@@ -36,13 +36,21 @@ function OrganizationPageContent() {
         }
     }, [searchParams]);
 
+    // Получаем текст для хлебных крошек в зависимости от активной вкладки
+    const getBreadcrumbText = (tab: OrganizationTab): string => {
+        if (tab === "aboutCompany") {
+            return "Организация";
+        }
+        return tabTitles[tab];
+    };
+
     return (
         <>
             <Bg/>
             <div
                 className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
             >
-                <Breadcrumbs organizationUrl={true}/>
+                <Breadcrumbs organizationUrl={true} organizationTab={getBreadcrumbText(activeTab)} />
                 <h1
                     className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[48px] leading-[110%] mt-[-8px] mb-[50px]`}
                 >

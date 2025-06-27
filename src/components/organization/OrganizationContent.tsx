@@ -2,8 +2,8 @@ import React from "react";
 import styles from "@/app/page.module.scss";
 import { OrganizationTab } from "@/components/organization/OrganizationPage";
 import { organizationData } from "@/data/organization";
-import ApiContent from "@/components/organization/OrganizationOfferContent";
-import WhereDoYouLoseContent from "./OrganizationLicenseContent";
+import ApiContent from "@/components/organization/OrganizationApiContent";
+import WhereDoYouLoseContent from "./OrganizationWhereDoYouLoseContent";
 
 interface OrganizationContentProps {
   activeTab: OrganizationTab;
