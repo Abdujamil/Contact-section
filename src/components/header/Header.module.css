@@ -181,11 +181,12 @@
 
 /* Кнопка входа */
 .login-button {
+  font-family: "Rubik" !important;
+  font-weight: 400;
   align-items: center;
   color: #adadad !important;
   display: flex;
   font-size: 18px;
-  font-weight: 400;
   justify-content: center;
   line-height: 1;
   padding: 7px 15px;
@@ -198,6 +199,7 @@
   height: 36px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 .login-button:hover {

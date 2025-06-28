@@ -247,7 +247,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            Страница Faq
+                            Faq
                         </li>
                     </>
                 )}
