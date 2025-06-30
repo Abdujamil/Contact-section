@@ -95,11 +95,11 @@ export default function BlogPageContent({
             <div
               className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[6px]`}
             >
-              <p
+              <h3
                 className={`${styles.text} mb-[16px] text-[#3D9ED6] text-[20px] font-[400] leading-[110%]`}
               >
                 При регистрации дарим 30 минут!
-              </p>
+              </h3>
               <div className="relative w-full h-[51px] !overflow-hidden">
                 <button
                   className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-center`}

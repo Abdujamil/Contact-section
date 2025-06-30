@@ -41,7 +41,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             return -130;
         }
         if (pathname.includes('/blog')) {
-            return -185;
+            return -188;
         }
         if (pathname.includes('/editors')) {
             return 90;
