@@ -179,7 +179,7 @@ export default function PolicyLicenseContent() {
                                 <li>Юридически защищённой технологии</li>
                             </ul>
                         </section>
-                        <section id="svidetelstvo-o-registratsii" className="scroll-mt-[80px]">
+                        <section id="svidetelstvo-o-registratsii" className="scroll-mt-[80px] !leading-[130%]">
                             <h2>Свидетельство о регистрации программы для ЭВМ</h2>
 
                             <div className={`flex items-start gap-[30px] mb-[20px]`}>

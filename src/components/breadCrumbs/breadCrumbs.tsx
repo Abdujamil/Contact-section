@@ -9,7 +9,7 @@ interface BreadcrumbsProps {
     blogTitle?: string;
     blogUrl?: true;
     policyUrl?: boolean;
-    policyTab?: string;
+    // policyTab?: string;
     offerUrl?: boolean;
     licenseUrl?: boolean;
     contactUrl?: boolean;
@@ -18,7 +18,7 @@ interface BreadcrumbsProps {
     faq?: boolean;
     faqPage?: boolean;
     organizationUrl?: boolean;
-    organizationTab?: string;
+    // organizationTab?: string;
 }
 
 export default function Breadcrumbs({
@@ -30,13 +30,13 @@ export default function Breadcrumbs({
                                         blogUrl,
                                         contactUrl,
                                         policyUrl,
-                                        policyTab,
+                                        // policyTab,
                                         offerUrl,
                                         licenseUrl,
                                         faq,
                                         faqPage,
                                         organizationUrl,
-                                        organizationTab
+                                        // organizationTab
                                     }: BreadcrumbsProps) {
     //   const pathname = usePathname();
 
@@ -72,7 +72,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            {policyTab ? policyTab : "Политика конфиденциальности"}
+                            Политика конфиденциальности
                         </li>
                     </>
                 )}
@@ -97,7 +97,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            {organizationTab ? organizationTab : "Организация"}
+                           Организациям
                         </li>
                     </>
                 )}

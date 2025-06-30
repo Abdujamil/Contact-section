@@ -1,10 +1,10 @@
 "use client";
-import React, {useState, useEffect, Suspense} from "react";
+import React, {useState, Suspense} from "react";
 import styles from "@/app/page.module.scss";
 import Bg from "@/components/background/bg";
 import OrganizationSidebar from "@/components/organization/OrganizationSidebar";
 import OrganizationContent from "@/components/organization/OrganizationContent";
-import {useSearchParams} from "next/navigation";
+// import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
 
@@ -16,33 +16,27 @@ const tabTitles: Record<OrganizationTab, string> = {
     API: "Api",
 };
 
-const urlToTabMap: Record<string, OrganizationTab> = {
-    "aboutCompany": "aboutCompany",
-    "whereDoYouLose": "whereDoYouLose",
-    "API": "API",
-};
+// const urlToTabMap: Record<string, OrganizationTab> = {
+//     "aboutCompany": "aboutCompany",
+//     "whereDoYouLose": "whereDoYouLose",
+//     "API": "API",
+// };
 
 // Компонент с логикой useSearchParams
 function OrganizationPageContent() {
     const [activeTab, setActiveTab] = useState<OrganizationTab>("aboutCompany");
-    const searchParams = useSearchParams();
+    // const searchParams = useSearchParams();
+    //
+    // useEffect(() => {
+    //     // Получаем параметр tab из URL
+    //     const tabParam = searchParams.get("tab");
+    //
+    //     if (tabParam && urlToTabMap[tabParam]) {
+    //         setActiveTab(urlToTabMap[tabParam]);
+    //     }
+    // }, [searchParams]);
 
-    useEffect(() => {
-        // Получаем параметр tab из URL
-        const tabParam = searchParams.get("tab");
 
-        if (tabParam && urlToTabMap[tabParam]) {
-            setActiveTab(urlToTabMap[tabParam]);
-        }
-    }, [searchParams]);
-
-    // Получаем текст для хлебных крошек в зависимости от активной вкладки
-    const getBreadcrumbText = (tab: OrganizationTab): string => {
-        if (tab === "aboutCompany") {
-            return "Организация";
-        }
-        return tabTitles[tab];
-    };
 
     return (
         <>
@@ -50,7 +44,7 @@ function OrganizationPageContent() {
             <div
                 className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
             >
-                <Breadcrumbs organizationUrl={true} organizationTab={getBreadcrumbText(activeTab)} />
+                <Breadcrumbs organizationUrl={true} />
                 <h1
                     className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[48px] leading-[110%] mt-[-8px] mb-[40px]`}
                 >
