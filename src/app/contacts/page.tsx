@@ -343,7 +343,7 @@ export default function Contacts() {
                         >
                             <div className={`${styles.contactLeftContent}`}>
                                 <h2
-                                    className={`${styles.txtGradientRight}  leading-[85%] text-[48px] font-normal mb-[33px] mt-[0]`}
+                                    className={`${styles.txtGradientRight} leading-[85%] text-[48px] font-normal mb-[33px] mt-[0]`}
                                 >
                                     Контакты
                                 </h2>
@@ -375,26 +375,27 @@ export default function Contacts() {
                                     >
                                         {/* Textarea */}
                                         <div className="relative w-full max-w-[375px]">
-                      <textarea
-                          name="comment"
-                          value={comment}
-                          onChange={(e) => setComment(e.target.value)}
-                          className={`${styles.bounceElem}
-                           placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
-                           ${
-                              comment
-                                  ? "!bg-[#20272A] border-[#353535]"
-                                  : "bg-[#101010] border-[#353535]"
-                          }
-                           `}
-                      ></textarea>
+                                          <textarea
+                                              name="comment"
+                                              value={comment}
+                                              onChange={(e) => setComment(e.target.value)}
+                                              className={`${styles.bounceElem}
+                                               placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                                               pr-[54px]
+                                               ${
+                                                  comment
+                                                      ? "!bg-[#20272A] border-[#353535]"
+                                                      : "bg-[#101010] border-[#353535]"
+                                              }
+                                               `}
+                                          ></textarea>
                                             <span
                                                 className={`absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200 ${
                                                     comment.trim() ? "opacity-0" : "opacity-100"
                                                 }`}
                                             >
-                        Комментарий
-                      </span>
+                                                Комментарий
+                                              </span>
 
                                             {/* Скрытый input для загрузки файла */}
                                             <input
@@ -590,7 +591,7 @@ export default function Contacts() {
                                                         visibleError && failCheck && !isPhone && !isEmail
                                                     }
                                                     // fail={emailError}
-                                                    required={true}
+                                                    // required={true}
                                                     // message={false}
                                                     disable={!isPhone && !isEmail}
                                                     value={contactValue}

@@ -16,17 +16,15 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         const isPricing = pathname === '/pricing';
         const isOrganization = pathname === '/organizations';
 
-        // Скрываем нативный скролл при переходе на /contact
         document.body.style.overflow = isContact || isPricing || isOrganization ? 'hidden' : '';
         setShowScrollbar(!isContact);
 
-        // Принудительно пересчитываем скроллбар после рендера страницы
         const timeout1 = setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));
         }, 50);
         const timeout2 = setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));
-        }, 200); // на случай отложенного контента
+        }, 200);
 
         return () => {
             clearTimeout(timeout1);
@@ -35,7 +33,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         };
     }, [pathname]);
 
-    // Функция для получения offset в зависимости от страницы
     const getScrollOffset = () => {
         if (pathname.includes('/politic') || pathname.includes('/organizations')) {
             return -130;
@@ -46,10 +43,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         if (pathname.includes('/editors')) {
             return 90;
         }
-        // if (pathname.includes('/organizations')) {
-        //     return -130;
-        // }
-        return 120; // Дефолтный offset для остальных страниц
+        return 120;
     };
 
     useEffect(() => {
@@ -61,7 +55,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         const scrollStopThreshold = 0.1;
         const scrollEaseFactor = 0.2;
 
-        // Инициализируем текущую прокрутку
         const initScroll = () => {
             currentScroll = window.scrollY;
             targetScroll = currentScroll;
@@ -80,11 +73,28 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             requestAnimationFrame(smoothScroll);
         };
 
+        // ДОБАВЛЯЕМ: Обработчик кастомного события для скролла в начало
+        const handleCustomScrollToTop = () => {
+            targetScroll = 0;
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
+        };
+
+        // ДОБАВЛЯЕМ: Обработчик для установки конкретного targetScroll
+        const handleSetTargetScroll = (e: CustomEvent) => {
+            targetScroll = e.detail.targetScroll || 0;
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
+        };
+
         const handleWheel = (e: WheelEvent) => {
             e.preventDefault();
             targetScroll += e.deltaY;
 
-            // Ограничим targetScroll в пределах документа
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
 
@@ -94,7 +104,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
 
-        // Обработчик кликов по якорям - адаптированный из ScrollWrapper
         const handleAnchorClick = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
             if (target.tagName === "A") {
@@ -104,7 +113,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     if (el) {
                         e.preventDefault();
 
-                        const offset = getScrollOffset(); // отступ вверх (в пикселях)
+                        const offset = getScrollOffset();
                         const elTop = (el as HTMLElement).offsetTop - offset;
 
                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -119,7 +128,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
 
-        // Обработчик обычного скролла
         const handleScroll = () => {
             if (!isScrolling) {
                 currentScroll = window.scrollY;
@@ -127,7 +135,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
 
-        // Кастомный скроллбар логика
+        // Весь остальной код скроллбара остается без изменений...
         let isTicking = false;
         let isDragging = false;
         let startY = 0;
@@ -135,7 +143,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         const scrollPadding = 4;
         const scrollbar = scrollbarRef.current;
 
-        // Обновление позиции и высоты ползунка при прокрутке
         function updateScrollbar() {
             const scrollTop = window.scrollY || window.pageYOffset;
             const scrollHeight = document.documentElement.scrollHeight;
@@ -144,20 +151,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             setShowScrollbar(!pathname.includes("/contact"));
 
-
-            // Показываем скроллбар только если есть что скроллить
-            // const shouldShowScrollbar = maxScroll > 10; // небольшой порог
-            // setShowScrollbar(shouldShowScrollbar);
-
-            // if (!shouldShowScrollbar) return;
-
-            // Высота ползунка
             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
-            // Позиция ползунка
             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
             const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
 
-            // Обновляем CSS-переменные
             if (scrollbar) {
                 scrollbar.style.setProperty('--scrollY', `${topPercent}px`);
                 scrollbar.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
@@ -183,7 +180,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const deltaY = clientY - startY;
             const scrollDelta = (deltaY / maxTop) * maxScrollDrag;
 
-            // Используем нашу систему плавного скролла
             targetScroll = Math.max(0, Math.min(startScrollTop + scrollDelta, maxScrollDrag));
 
             if (!isScrolling) {
@@ -211,9 +207,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             isDragging = false;
         }
 
-        // Обработчик прокрутки с обновлением скроллбара
         const scrollHandler = () => {
-            handleScroll(); // наша логика плавного скролла
+            handleScroll();
 
             if (!isTicking) {
                 requestAnimationFrame(() => {
@@ -224,17 +219,21 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
 
-        // Инициализация
         initScroll();
         updateScrollbar();
 
-        // Добавляем слушатели
+        // ДОБАВЛЯЕМ: Слушатели для кастомных событий
+        window.addEventListener('customScrollToTop', handleCustomScrollToTop);
+        window.addEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
+
+        // ДОБАВЛЯЕМ: Слушатель для кастомного события скролла в начало
+        window.addEventListener('customScrollToTop', handleCustomScrollToTop);
+
         window.addEventListener('wheel', handleWheel, {passive: false});
         window.addEventListener('scroll', scrollHandler);
         document.addEventListener('click', handleAnchorClick);
         window.addEventListener('resize', updateScrollbar);
 
-        // Скроллбар события
         if (scrollbar) {
             scrollbar.addEventListener('mousedown', startScroll);
             scrollbar.addEventListener('touchstart', startScroll);
@@ -245,8 +244,11 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         document.addEventListener('touchmove', scrollMove);
         document.addEventListener('touchend', stopScroll);
 
-        // Очистка при размонтировании
         return () => {
+            // ДОБАВЛЯЕМ: Очистка кастомных событий
+            window.removeEventListener('customScrollToTop', handleCustomScrollToTop);
+            window.removeEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
+
             window.removeEventListener('wheel', handleWheel);
             window.removeEventListener('scroll', scrollHandler);
             document.removeEventListener('click', handleAnchorClick);
@@ -262,10 +264,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             document.removeEventListener('touchmove', scrollMove);
             document.removeEventListener('touchend', stopScroll);
         };
-    }, [pathname]); // Добавляем pathname в зависимости для пересчета offset
+    }, [pathname]);
 
-
-    // Сброс скролла при смене страницы
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
@@ -274,7 +274,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         <>
             {children}
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar"></div>}
-            {/* <div ref={scrollbarRef} className="scrollbar"></div>*/}
         </>
     );
 }
