@@ -220,14 +220,14 @@ export default function FaqPageContent({
                 </div>
 
                 <h2
-                    className={`${styles.title} ${styles.txtGradientRight} w-fit mb-[50px] mt-[-8px] font-normal leading-[110%] text-[48px] text-[#CCCCCC]`}
+                    className={`${styles.title} ${styles.txtGradientRight} w-fit mb-[40px] mt-[-8px] font-normal leading-[110%] text-[48px] text-[#CCCCCC]`}
                 >
                     Ответы на главные вопросы
                 </h2>
             </div>
 
             <div
-                className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[90px] grid grid-cols-4 gap-[40px]">
+                className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] grid grid-cols-4 gap-[40px]">
                 <aside className="sticky top-[80px] h-fit w-[260px] backdrop-blur-sm z-[9999]">
                     {/* Промо блок */}
                     {showRegisterPromo && (

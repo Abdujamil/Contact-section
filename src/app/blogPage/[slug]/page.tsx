@@ -108,7 +108,7 @@ export default async function BlogPage({
         <Bg />
         <div className={`mt-[112px]`}>
           <h1
-            className={`${styles.txtGradientRight} max-w-[882px] m-auto text-center text-[48px] leading-[110%] mb-[50px]`}
+            className={`${styles.txtGradientRight} max-w-[882px] m-auto text-center text-[48px] leading-[110%] mb-[40px]`}
           >
             {blogItem.title}
           </h1>

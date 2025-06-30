@@ -1,18 +1,32 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {useState, useEffect, useRef} from "react";
 import styles from '../../app/faq/faq.module.scss';
 import FaqCard from "./FaqCard";
-import { faqData } from "../../data/faq";
+import {faqData} from "../../data/faq";
 
 type Props = {
     initialOpenId?: number;
     onToggle?: (id: number | null) => void;
 };
 
-const CardListt: React.FC<Props> = ({ initialOpenId, onToggle }) => {
+const CardListt: React.FC<Props> = ({initialOpenId, onToggle}) => {
     const [openIds, setOpenIds] = useState<number[]>(initialOpenId ? [initialOpenId] : []);
 
     // Используем useRef для хранения всех ссылок на карточки
     const cardRefs = useRef<Record<number, React.RefObject<HTMLDivElement>>>({}); // Явно указываем тип
+
+    const scrollToCard = (id: number) => {
+        const el = cardRefs.current[id]?.current;
+        if (el) {
+            const headerOffset = 85; // Заменить на реальную высоту твоего фиксированного хедера
+            const elTop = el.offsetTop - headerOffset;
+
+            // Триггерим кастомное событие setTargetScroll
+            window.dispatchEvent(new CustomEvent("setTargetScroll", {
+                detail: {targetScroll: elTop}
+            }));
+        }
+    };
+
 
     const observer = useRef<IntersectionObserver | null>(null);
 
@@ -41,11 +55,17 @@ const CardListt: React.FC<Props> = ({ initialOpenId, onToggle }) => {
     }, [openIds, onToggle]);
 
     const handleToggle = (id: number) => {
+        const isCurrentlyOpen = openIds.includes(id);
         const newOpenIds = openIds.includes(id)
             ? openIds.filter(openId => openId !== id)  // Убираем карточку из открытых
             : [...openIds, id]; // Добавляем в открытые
 
         setOpenIds(newOpenIds);
+
+        if (!isCurrentlyOpen) {
+            scrollToCard(id);
+        }
+
         if (onToggle) {
             onToggle(newOpenIds.length > 0 ? newOpenIds[newOpenIds.length - 1] : null); // Отправляем последний открытый ID
         }
@@ -58,7 +78,7 @@ const CardListt: React.FC<Props> = ({ initialOpenId, onToggle }) => {
                     key={item.id}
                     ref={(el) => {
                         // Обновляем рефы, используя useRef для каждой карточки
-                        cardRefs.current[item.id] = el ? { current: el } : cardRefs.current[item.id];
+                        cardRefs.current[item.id] = el ? {current: el} : cardRefs.current[item.id];
                     }}
                     data-id={item.id}
                 >

@@ -98,7 +98,7 @@ button > span{
     top: var(--scrollY);
     width: 100%;
     height: var(--scrollbarHeight);
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid #5c5c5c;
     background: hsl(202deg 27% 58% / 25%) !important;
     transition: background .2s linear !important;

@@ -32,8 +32,8 @@ const Home: React.FC = () => {
             <main className={`${styles.main} w-full `}>
                 <Breadcrumbs faq={true}/>
                 <div className={`w-full h-full mb-[80px] mt-[120px]`}>
-                    <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px] mb-[76px]`}>
-                        <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[48px] text-[#ccc] mb-[50px]`}>FAQ:
+                    <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] pl-[10px] mb-[100px]`}>
+                        <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[48px] text-[#ccc] mb-[40px]`}>FAQ:
                             Ответы
                             на
                             главные

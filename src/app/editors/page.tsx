@@ -32,7 +32,7 @@ export default function Editors() {
                 <Breadcrumbs editorId={editorId} inBlog={true} editorPage={true}/>
                 <div className={`max-w-[1180px] px-[10px] m-auto min-h-screen`}>
                     <h1
-                        className={`${styles.txtGradientRight} w-fit m-auto text-center text-[48px] leading-[110%] text-3xl mb-[50px] mt-[-8px]`}
+                        className={`${styles.txtGradientRight} w-fit m-auto text-center text-[48px] leading-[110%] text-3xl mb-[40px] mt-[-8px]`}
                     >
                         Наши редакторы
                     </h1>

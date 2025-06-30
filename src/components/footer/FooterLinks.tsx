@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import styles from "../../app/page.module.scss";
 import headerStyles from "../../components/header/Header.module.css";
@@ -15,6 +15,25 @@ const links = [
 ];
 
 const FooterLinks: React.FC = () => {
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+          selectRef.current &&
+          !selectRef.current.contains(event.target as Node)
+      ) {
+        setIsSelectOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   // Select
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string>("");
@@ -50,7 +69,7 @@ const FooterLinks: React.FC = () => {
       <div className="flex items-end justify-between flex-col h-[89px] z-[9999]">
         <div className="flex items-center gap-[9px]">
           {/* Кастомный select */}
-          <div className={`relative`}>
+          <div className={`relative`} ref={selectRef}>
             <div className="w-[62px] max-w-[220px] m-auto !h-[35px]">
               <button
                 onClick={() => {
@@ -89,7 +108,9 @@ const FooterLinks: React.FC = () => {
                     damping: 6,
                     mass: 0.3,
                   }}
-                  className={`${styles.selectOption} absolute w-[191px] right-0 bottom-[40px] p-[26px] px-[26px] pb-[11px] max-w-[210px] max-h-[300px] overflow-auto mt-1 border border-[#353535] rounded-[4px]`}
+                  className={`${styles.selectOption}
+                  backdrop-blur-[5px]
+                  absolute w-[191px] right-0 bottom-[40px] p-[26px] px-[26px] pb-[11px] max-w-[210px] max-h-[300px] overflow-auto mt-1 border border-[#353535] rounded-[4px]`}
                 >
                   {options.map((option, index) => (
                     <div

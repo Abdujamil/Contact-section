@@ -52,7 +52,7 @@ function PolicyPageContent() {
             >
                 <Breadcrumbs policyUrl={true} policyTab={getBreadcrumbText(activeTab)}/>
                 <h1
-                    className={`${styles.txtGradientTitle} text-center text-[48px] leading-[110%] mt-[-8px] mb-[50px]`}
+                    className={`${styles.txtGradientTitle} text-center text-[48px] leading-[110%] mt-[-8px] mb-[40px]`}
                 >
                     {tabTitles[activeTab]}
                 </h1>
