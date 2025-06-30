@@ -10,7 +10,7 @@ import {emailRegex} from "@/components/Form/validation";
 const FooterSubscriptionForm: React.FC = () => {
     const methods = useForm();
 
-    const { register, handleSubmit, setError } = methods;
+    const { register, handleSubmit } = methods;
 
     useEffect(() => {
         // Регистрируем email с кастомной валидацией
@@ -23,8 +23,8 @@ const FooterSubscriptionForm: React.FC = () => {
         });
     }, [register]);
 
-    const onSubmit = (data: any) => {
-        console.log("✅ Email отправлен:", data.email);
+    const onSubmit = () => {
+        console.log("✅ Email отправлен:");
         methods.reset();
     };
 
