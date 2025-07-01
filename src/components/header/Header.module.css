@@ -181,7 +181,7 @@
 
 /* Кнопка входа */
 .login-button {
-  font-family: "Rubik" !important;
+  /*font-family: "Rubik" !important;*/
   font-weight: 400;
   align-items: center;
   color: #adadad !important;

@@ -92,6 +92,13 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         };
 
         const handleWheel = (e: WheelEvent) => {
+            const target = e.target as HTMLElement;
+
+            // Разрешаем нативный скролл внутри textarea и scrollable div
+            if (target.closest('textarea') || target.closest('.allow-native-scroll')) {
+                return;
+            }
+
             e.preventDefault();
             targetScroll += e.deltaY;
 

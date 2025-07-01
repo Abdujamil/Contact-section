@@ -371,7 +371,7 @@ export default function Contacts() {
                                         encType="multipart/form-data"
                                         className={`${
                                             isSubmitted ? "opacity-0" : "opacity-100"
-                                        } flex items-start justify-between w-full gap-[30px]`}
+                                        } overflow-y-auto flex items-start justify-between w-full gap-[30px]`}
                                     >
                                         {/* Textarea */}
                                         <div className="relative w-full max-w-[375px]">

@@ -338,7 +338,7 @@ export default function BlogAside({items}: { items: AsideItem[] }) {
                         <a
                             href={baseId}
                             onClick={(e) => handleAnchorClick(baseId, index, e)}
-                            className={`relative !text-[16px] !font-light text-[#adadad] !leading-[130%] text-balance
+                            className={`relative font-[Rubik] !text-[16px] !font-light text-[#adadad] !leading-[130%] text-balance
                 group
                  ${styles["blogAsideBtn"]}
                  ${HeaderStyles["login-button"]}

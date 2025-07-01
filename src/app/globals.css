@@ -17,6 +17,11 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Rubik-Regular';
+    src: url('./fonts/Rubik-Regular.ttf') format('truetype');
+}
+
 :root {
     --background: #ffffff;
     --foreground: #171717;
@@ -25,6 +30,28 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+textarea::-webkit-scrollbar {
+    display: block !important;
+}
+textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+textarea::-webkit-scrollbar-track {
+    /*background: #3D9ED6;*/
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: rgba(119, 156, 177, 0.25098);
+    border: 1px solid #5C5C5C;
+    border-radius: 50px;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+}
+
+
 
 @theme inline {
     --color-background: var(--background);
@@ -72,8 +99,8 @@ h1, h2, h3{
 
 .a span,
 button > span{
-    font-family: "Rubik" !important;
-    font-weight: 400;
+    font-family: "Rubik-Regular" !important;
+    /*font-weight: 400;*/
 }
 
 /*Scrollbar*/

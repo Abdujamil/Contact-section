@@ -1,5 +1,5 @@
-// import {StaticImageData} from "next/image";
 import {ReactNode} from "react";
+import styles from '@/app/page.module.scss';
 
 interface AsideItem {
     id: string;
@@ -65,7 +65,7 @@ export const organizationData: organizationItem[] = [
                         {/* Карточки */}
                         <div className={`flex items-center gap-[10px]`}>
                             <div
-                                className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-start text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
+                                className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-center text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
                                 <svg width="28" height="18" viewBox="0 0 28 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -80,7 +80,7 @@ export const organizationData: organizationItem[] = [
 
                             </div>
                             <div
-                                className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-start text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
+                                className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-center text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
                                 <svg width="28" height="18" viewBox="0 0 28 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -95,7 +95,7 @@ export const organizationData: organizationItem[] = [
 
                             </div>
                             <div
-                                className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-start text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
+                                className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-center text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
                                 <svg width="28" height="18" viewBox="0 0 28 18" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -248,7 +248,7 @@ export const organizationData: organizationItem[] = [
                                 Таким образом, транскрибация от AUDIOSECTOR не только удобна, но и обладает юридической
                                 значимостью, что критически важно для государственных структур, юридических компаний,
                                 образовательных учреждений и корпоративного сектора. <a
-                                className={`text-[#3D9ED6] text-[16px] underline underline-offset-2`} href="/license">Ознакомиться
+                                className={`${styles["menu-item"]} text-[16px]`} href="/license">Ознакомиться
                                 с лицензиями</a>
                             </p>
                         </div>

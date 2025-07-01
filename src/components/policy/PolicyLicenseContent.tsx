@@ -195,7 +195,7 @@ export default function PolicyLicenseContent() {
                                 </div>
 
                                 <div>
-                                    <p>
+                                    <p className={`!mb-[11px]`}>
                                         Сердце нашей платформы — интеллектуальная система
                                         транскрибации, зарегистрированная в Роспатенте как программа
                                         для ЭВМ. Это официально подтверждает её уникальность
@@ -204,20 +204,20 @@ export default function PolicyLicenseContent() {
 
                                     <h3>Что даёт регистрация пользователям?</h3>
 
-                                    <p>
+                                    <p className={`!mb-[11px]`}>
                                         Легальное использование: вы получаете доступ к защищённому,
                                         надёжному сервису
                                     </p>
-                                    <p>
+                                    <p className={`!mb-[11px]`}>
                                         Технологическая независимость: мы не используем открытые
                                         или сомнительные решения — только собственные разработки
                                     </p>
-                                    <p>
+                                    <p className={`!mb-[11px]`}>
                                         Уникальность технологии: архитектура, логика, интерфейс
                                         и алгоритмы защищены законом
                                     </p>
 
-                                    <div className="relative w-full max-w-[205px] h-[51px] !overflow-hidden">
+                                    <div className="relative w-full max-w-[205px] h-[50px] !overflow-hidden">
                                         <button
                                             className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["policyBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-center`}
                                             data-text=""
@@ -240,8 +240,8 @@ export default function PolicyLicenseContent() {
 
                                             <span
                                                 className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
-                        Свидетельство
-                      </span>
+                                                Свидетельство
+                                              </span>
                                         </button>
                                     </div>
                                 </div>
@@ -282,7 +282,7 @@ export default function PolicyLicenseContent() {
                                     />
                                 </div>
 
-                                <div className={`flex flex-col justify-between h-[380px]`}>
+                                <div className={`flex flex-col justify-between h-[352px]`}>
                                     <div>
                                         <h3>Мы соблюдаем требования:</h3>
                                         <ul className={`list-disc pl-[20px] mb-[20px]`}>
