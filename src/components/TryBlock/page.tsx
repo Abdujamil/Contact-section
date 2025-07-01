@@ -15,7 +15,7 @@ export default function page({ title, content }: TryBlockProps) {
         className={`${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[8px] border !border-[#353535]`}
       >
         <h3
-          className={`${styles.txtGradientRight} text-[32px] leading-[120%] mb-[20px]`}
+          className={`${styles.txtGradientRight} w-fit text-[32px] leading-[120%] mb-[20px]`}
         >
           {title}
         </h3>
