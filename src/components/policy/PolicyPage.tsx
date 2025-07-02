@@ -7,7 +7,7 @@ import PolicyContent from "@/components/policy/PolicyContent";
 // import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
-import {OrganizationTab} from "@/components/organization/OrganizationPage";
+// import {OrganizationTab} from "@/components/organization/OrganizationPage";
 // import {OrganizationTab} from "@/components/organization/OrganizationPage";
 
 export type PolicyTab = "policy" | "offer" | "license";
