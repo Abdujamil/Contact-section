@@ -4,7 +4,6 @@ import styles from "@/app/page.module.scss";
 import Bg from "@/components/background/bg";
 import OrganizationSidebar from "@/components/organization/OrganizationSidebar";
 import OrganizationContent from "@/components/organization/OrganizationContent";
-// import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
 
@@ -16,26 +15,17 @@ const tabTitles: Record<OrganizationTab, string> = {
     API: "Api",
 };
 
-// const urlToTabMap: Record<string, OrganizationTab> = {
-//     "aboutCompany": "aboutCompany",
-//     "whereDoYouLose": "whereDoYouLose",
-//     "API": "API",
-// };
 
 // Компонент с логикой useSearchParams
 function OrganizationPageContent() {
     const [activeTab, setActiveTab] = useState<OrganizationTab>("aboutCompany");
-    // const searchParams = useSearchParams();
-    //
-    // useEffect(() => {
-    //     // Получаем параметр tab из URL
-    //     const tabParam = searchParams.get("tab");
-    //
-    //     if (tabParam && urlToTabMap[tabParam]) {
-    //         setActiveTab(urlToTabMap[tabParam]);
-    //     }
-    // }, [searchParams]);
 
+    const handleTabChange = (tab: OrganizationTab) => {
+        setActiveTab(tab);
+
+        // 👇 Вызов кастомного события для скролла вверх
+        window.dispatchEvent(new Event('customScrollToTop'));
+    };
 
 
     return (
@@ -52,7 +42,7 @@ function OrganizationPageContent() {
                 </h1>
 
                 <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
-                    <OrganizationSidebar activeTab={activeTab} setActiveTab={setActiveTab}/>
+                    <OrganizationSidebar activeTab={activeTab} setActiveTab={handleTabChange}/>
                     <OrganizationContent activeTab={activeTab}/>
                 </div>
 

@@ -7,6 +7,7 @@ import PolicyContent from "@/components/policy/PolicyContent";
 // import {useSearchParams} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
+import {OrganizationTab} from "@/components/organization/OrganizationPage";
 // import {OrganizationTab} from "@/components/organization/OrganizationPage";
 
 export type PolicyTab = "policy" | "offer" | "license";
@@ -17,25 +18,15 @@ const tabTitles: Record<PolicyTab, string> = {
     license: "Лицензии",
 };
 
-// const urlToTabMap: Record<string, PolicyTab> = {
-//     "oferta": "offer",
-//     "license": "license",
-//     "politic": "policy",
-// };
-
 // Компонент с логикой useSearchParams
 function PolicyPageContent() {
     const [activeTab, setActiveTab] = useState<PolicyTab>("policy");
-    // const searchParams = useSearchParams();
+    const handleTabChange = (tab: PolicyTab) => {
+        setActiveTab(tab);
 
-    // useEffect(() => {
-    //     // Получаем параметр tab из URL
-    //     const tabParam = searchParams.get("tab");
-    //
-    //     if (tabParam && urlToTabMap[tabParam]) {
-    //         setActiveTab(urlToTabMap[tabParam]);
-    //     }
-    // }, [searchParams]);
+        // 👇 Вызов кастомного события для скролла вверх
+        window.dispatchEvent(new Event('customScrollToTop'));
+    };
 
     return (
         <>
@@ -51,7 +42,7 @@ function PolicyPageContent() {
                 </h1>
 
                 <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
-                    <PolicySidebar activeTab={activeTab} setActiveTab={setActiveTab}/>
+                    <PolicySidebar activeTab={activeTab} setActiveTab={handleTabChange}/>
                     <PolicyContent activeTab={activeTab}/>
                 </div>
 
