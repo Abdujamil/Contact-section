@@ -17,7 +17,7 @@ const CardListt: React.FC<Props> = ({initialOpenId, onToggle}) => {
     const scrollToCard = (id: number) => {
         const el = cardRefs.current[id]?.current;
         if (el) {
-            const headerOffset = 85; // Заменить на реальную высоту твоего фиксированного хедера
+            const headerOffset = 80;
             const elTop = el.offsetTop - headerOffset;
 
             // Триггерим кастомное событие setTargetScroll

@@ -38,7 +38,7 @@ export default function Editors() {
                     </h1>
 
                     <div className={`flex gap-[40px] mb-[50px]`}>
-                        <aside className="sticky top-20 h-fit z-[10] w-[260px]">
+                        <aside className="sticky top-[90px] h-fit z-[10] w-[260px]">
                             <BlogAside items={items}/>
                         </aside>
 

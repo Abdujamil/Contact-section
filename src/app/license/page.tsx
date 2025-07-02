@@ -1,9 +1,9 @@
 "use client"
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import Bg from "@/components/background/bg";
 import styles from "@/app/page.module.scss";
 import PolicySidebar from "@/components/policy/PolicySidebar";
-import PolicyLicenseContent from "@/components/policy/PolicyLicenseContent";
+import PolicyContent from "@/components/policy/PolicyContent";
 
 export type PolicyTab = "policy" | "offer" | "license";
 
@@ -16,6 +16,16 @@ const tabTitles: Record<PolicyTab, string> = {
 
 function LicensePage() {
     const [activeTab, setActiveTab] = useState<PolicyTab>("policy");
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    const handleTabChange = (tab: PolicyTab) => {
+        setActiveTab(tab);
+
+        // Задержка для того, чтобы DOM обновился перед скроллом
+        setTimeout(() => {
+            window.dispatchEvent(new CustomEvent('scrollbar'));
+        }, 100);
+    };
 
     return (
         <>
@@ -29,9 +39,9 @@ function LicensePage() {
                     {tabTitles[activeTab]}
                 </h1>
 
-                <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
-                    <PolicySidebar activeTab={activeTab} setActiveTab={setActiveTab}/>
-                    <PolicyLicenseContent/>
+                <div ref={contentRef} className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
+                    <PolicySidebar activeTab={activeTab} setActiveTab={handleTabChange}/>
+                    <PolicyContent activeTab={activeTab}/>
                 </div>
             </div>
         </>
