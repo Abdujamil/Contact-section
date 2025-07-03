@@ -18,7 +18,7 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                     w-full flex flex-row cursor-pointer items-center border border-[#737373] active:bg-[#20272b07] rounded-[8px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
             onClick={handleClick}
             style={{
-                height: isOpen ? "68px" : "68px",
+                // height: isOpen ? "68px" : "68px",
                 alignItems: isOpen ? "start" : "center",
                 // borderBottom: isOpen ? "1px solid #737373" : "",
                 background: isOpen ? "rgba(61,158,214,0.07)" : "",
@@ -27,15 +27,15 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
         >
 
             <div
-                className={`${styles.questionContainer} relative z-[99] w-full h-full p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
+                className={`${styles.questionContainer} relative z-[99] w-full h-full px-[15px] py-[12px] md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
 
                 <div className={`${styles.answerContainer} w-full`}>
-                    <h3 className={`w-full font-[400] text-[20px] text-[#adadad]`}
+                    <h3 className={`w-full font-[400] text-[18px] md:text-[20px] text-[#adadad]`}
                         style={{color: isOpen ? "#3D9ED6" : "",}}
                     >{question}</h3>
                 </div>
 
-                <div className={`${styles.arrow}`}>
+                <div className={`${styles.arrow} hidden md:block`}>
                     {isOpen ? (
                         /* Синий SVG при открытом состоянии */
                         <svg

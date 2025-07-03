@@ -23,12 +23,12 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                                                    }) => {
 
     return (
-        <div className="relative !w-[220px] !overflow-hidden">
+        <div className="relative md:!w-[220px] !w-full !overflow-hidden">
             <button
                 onClick={onClick}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
-                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between`}
+                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
             >
         <span

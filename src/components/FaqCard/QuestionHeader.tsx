@@ -15,13 +15,13 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
     return (
         <div
             style={{
-                height: isOpen ? "68px" : "68px",
+                // height: isOpen ? "68px" : "68px",
                 alignItems: isOpen ? "start" : "center",
                 border: isOpen ? "1px solid #CCCCCC" : "",
                 background: isOpen ? "rgba(61,158,214,0.07)" : "",
             }}
-           className={`${styles.question}
-                    w-full flex flex-row cursor-pointer items-center border border-[#353535] active:bg-[#20272b07] rounded-[8px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
+            className={`${styles.question} md:h-[68px]
+            w-full flex flex-row cursor-pointer items-center border border-[#353535] active:bg-[#20272b07] rounded-[8px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
             onClick={handleClick}
         >
 
@@ -43,7 +43,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
             </div>
 
             <div
-                className={`${styles.questionContainer} relative z-[99] w-full h-full p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
+                className={`${styles.questionContainer} relative z-[99] w-full h-full p-3 md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
                 <div className={`${styles.number} p-[6px]`}
                      style={{
                          position: isOpen ? "relative" : "initial",
@@ -53,10 +53,10 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                     <p className={`font-[300] w-[45px] text-[22px] transition-all ease duration-[.1s] relative left-0`}>{num}</p>
                 </div>
                 <div className={`${styles.answerContainer} w-full`}>
-                    <h3 className={`w-full font-[400] text-[20px] transition-all ease-in-out duration-[0.3s] text-[#adadad]`}>{question}</h3>
+                    <h3 className={`w-full font-[400] text-[18px] md:text-[20px] transition-all ease-in-out duration-[0.3s] text-[#adadad]`}>{question}</h3>
                 </div>
 
-                <div className={`${styles.arrow}`}>
+                <div className={`${styles.arrow} md:block hidden`}>
                     <svg className={`transition-all duration-[.2s] ease-in-out`} width="24" height="24"
                          viewBox="0 0 24 24" fill="none">
                         <path d="M5 5L19 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>

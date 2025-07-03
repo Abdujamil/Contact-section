@@ -215,30 +215,32 @@ export default function FaqPageContent({
     return (
         <>
             <div className={`flex gap-[40px]`}>
-                <div className={`w-[270px]`}>
-
-                </div>
+                <div className={`w-[270px] hidden md:block`}></div>
 
                 <h2
-                    className={`${styles.title} ${styles.txtGradientRight} w-fit mb-[40px] mt-[-8px] font-normal leading-[110%] text-[48px] text-[#CCCCCC]`}
+                    className={`${styles.title} ${styles.txtGradientRight} 
+                        w-fit mb-[20px] mt-[-8px] font-normal leading-[110%] text-center text-[28px] text-[#CCCCCC]
+                        md:text-[48px] md:m-0 md:mb-[40px] m-auto
+                    `}
                 >
                     Ответы на главные вопросы
                 </h2>
             </div>
 
             <div
-                className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] grid grid-cols-4 gap-[40px]">
-                <aside className="sticky top-[80px] h-fit w-[260px] backdrop-blur-sm z-[9999]">
+                className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] block md:grid md:grid-cols-4 gap-[40px]">
+
+                <aside className="md:sticky top-[80px] h-fit w-full md:w-[260px] md:px-0 m-auto md:m-0 backdrop-blur-sm z-[9999]">
                     {/* Промо блок */}
                     {showRegisterPromo && (
                         <div
                             className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[8px]`}
                         >
-                            <h3 className={`${styles.text} mb-[16px] text-[#3D9ED6] text-[20px] font-[400] leading-[110%]`}
+                            <h3 className={`${styles.text} max-w-[220px] m-auto mb-[16px] text-[#3D9ED6] text-[18px] md:text-[20px] font-[400] leading-[110%]`}
                             >
                                 При регистрации дарим 30 минут!
                             </h3>
-                            <div className="relative w-[220px] h-[51px] !overflow-hidden">
+                            <div className="relative w-[220px] m-auto h-[51px] !overflow-hidden">
                                 <button
                                     className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535]  w-full !h-full group flex items-center !justify-center`}
                                     data-text=""
@@ -259,9 +261,9 @@ export default function FaqPageContent({
                                         />
                                     </svg>
                                     <span
-                                        className="font-normal text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
-                  Попробовать
-                </span>
+                                        className="font-normal text-[18px] md:text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
+                                      Попробовать
+                                    </span>
                                 </button>
                                 <div className={styles.highlight}/>
                             </div>
@@ -281,7 +283,7 @@ export default function FaqPageContent({
                                     damping: 6,
                                     mass: 0.3,
                                 }}
-                                className="relative w-full h-[260px] mb-[20px] rounded-[8px] border border-[#353535]"
+                                className="relative w-full h-[320px] md:h-[260px] mb-[20px] rounded-[8px] border border-[#353535]"
                             >
                                 <Image
                                     src={openFaqItem.largeImgSrc}
