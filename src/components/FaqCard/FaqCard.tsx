@@ -19,16 +19,9 @@ const FaqCard: React.FC<FaqCardProps> = ({
     const handleClick = () => {
         if (onToggle) onToggle(id);
     };
-
-    // className={`relative cursor-pointer s:py-[23px] active:border-[#3D9ED6] group-active/window:text-[#FFF]`}
     return (
         <div
             className={`${styles.faqCard} ${isOpen ? styles.active : ""} transition-all duration-[.5s]`}
-            style={{
-                // borderColor: isOpen ? "#CCCCCC" : "transparent",
-                // background: isOpen ? "#53535380" : "",
-                // boxShadow: isOpen ? "none" : "",
-            }}
         >
             <QuestionHeader
                 id={id}

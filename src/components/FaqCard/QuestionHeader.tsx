@@ -57,10 +57,8 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                 </div>
 
                 <div className={`${styles.arrow} md:block hidden`}>
-                    <svg className={`transition-all duration-[.2s] ease-in-out`} width="24" height="24"
-                         viewBox="0 0 24 24" fill="none">
-                        <path d="M5 5L19 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
-                        <path d="M19 11L19 19L11 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
+                    <svg className={`transition-all duration-[.2s] ease-in-out`} width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3H8V0H6L6 3ZM14 8.96767L12.5692 7.52908L8.01287 12.1092V6H5.98815V12.1092L1.43177 7.52908L0 8.96767L7 16L7.71538 15.2822L8.43177 14.5634L14 8.96767Z" fill="#ADADAD"/>
                     </svg>
                 </div>
             </div>

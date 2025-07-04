@@ -6,7 +6,6 @@ import FaqCard from '../components/FaqCard/index'
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
-// import Footer from "@/app/footer";
 
 const Home: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
@@ -57,7 +56,6 @@ const Home: React.FC = () => {
                             ))}
                         </div>
                     </section>
-                    {/*<Footer/>*/}
                 </div>
             </main>
         </>

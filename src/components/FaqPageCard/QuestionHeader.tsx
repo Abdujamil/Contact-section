@@ -18,9 +18,7 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                     w-full flex flex-row cursor-pointer items-center border border-[#737373] active:bg-[#20272b07] rounded-[8px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
             onClick={handleClick}
             style={{
-                // height: isOpen ? "68px" : "68px",
                 alignItems: isOpen ? "start" : "center",
-                // borderBottom: isOpen ? "1px solid #737373" : "",
                 background: isOpen ? "rgba(61,158,214,0.07)" : "",
                 border: isOpen ? "1px solid #CCCCCC" : "",
             }}
@@ -36,31 +34,10 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                 </div>
 
                 <div className={`${styles.arrow} hidden md:block`}>
-                    {isOpen ? (
-                        /* Синий SVG при открытом состоянии */
-                        <svg
-                            className={`transition-all duration-300 ease-in-out`}
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                        >
-                            <path d="M5 5L19 19" stroke="#3D9ED6" strokeWidth="2" strokeLinecap="round"/>
-                            <path d="M19 11L19 19L11 19" stroke="#3D9ED6" strokeWidth="2" strokeLinecap="round"/>
-                        </svg>
-                    ) : (
-                        /* Серый SVG при закрытом состоянии */
-                        <svg
-                            className={`transition-all duration-300 ease-in-out`}
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                        >
-                            <path d="M5 5L19 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
-                            <path d="M19 11L19 19L11 19" stroke="#adadad" strokeWidth="2" strokeLinecap="round"/>
-                        </svg>
-                    )}
+                    <svg
+                        className={`transition-all duration-[.2s] ease-in-out`} width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3H8V0H6L6 3ZM14 8.96767L12.5692 7.52908L8.01287 12.1092V6H5.98815V12.1092L1.43177 7.52908L0 8.96767L7 16L7.71538 15.2822L8.43177 14.5634L14 8.96767Z" fill="#ADADAD"/>
+                    </svg>
                 </div>
             </div>
 

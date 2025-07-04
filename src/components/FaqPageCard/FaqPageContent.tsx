@@ -157,13 +157,11 @@ import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import {faqData} from "@/data/faq";
 import CardListt from "./ShowCardList";
-// import FaqAside from "./FaqAside";
 import styles from "../../app/faq/faq.module.scss";
 import HeaderStyles from "../header/Header.module.css";
 import {useAuth} from "@/components/context/AuthContext";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import {motion, AnimatePresence} from "framer-motion";
-// import TryBlock from '../TryBlock/page';
 
 export default function FaqPageContent({
                                            id,
@@ -201,7 +199,6 @@ export default function FaqPageContent({
     }, []);
 
     const currentFaqItem = faqData.find((item) => item.id === id);
-    // const openFaqItem = faqData.find(item => item.id === openQuestionId || item.id === id);
 
     useEffect(() => {
         const found = faqData.find((item) => item.id === openQuestionId);
@@ -228,7 +225,7 @@ export default function FaqPageContent({
             </div>
 
             <div
-                className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] block md:grid md:grid-cols-4 gap-[40px]">
+                className="w-full max-w-[1180px] h-auto mx-auto px-[10px] mb-[100px] block md:grid md:grid-cols-4 gap-[40px]">
 
                 <aside className="md:sticky top-[80px] h-fit w-full md:w-[260px] md:px-0 m-auto md:m-0 backdrop-blur-sm z-[9999]">
                     {/* Промо блок */}
@@ -320,7 +317,7 @@ export default function FaqPageContent({
                     </AnimatePresence>
                 </aside>
                 <div className="col-span-3">
-                    <div className="pb-[40px]">
+                    <div className="">
                         <section
                             className={`${styles.accordion} w-full flex flex-col gap-[5px]`}
                         >
@@ -330,7 +327,6 @@ export default function FaqPageContent({
                                     onToggle={(id) => setOpenQuestionId(id)}
                                 />
                             )}
-                            {/*<TryBlock title={"Тестовый"} content={"Тестовый текст прям!!!"} />*/}
                         </section>
                     </div>
                 </div>

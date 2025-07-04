@@ -44,14 +44,16 @@ const Blog = () => {
                         className={`${styles.blogContainer} w-full max-w-[1180px] px-[10px] min-h-full h-auto mt-[120px] mb-[100px] mx-auto flex flex-col items-center`}
                     >
                         <h1
-                            className={`${styles.txtGradientRight} text-center text-[48px] leading-[110%] mb-[40px] mt-[-8px]`}
+                            className={`${styles.txtGradientRight} text-center text-[28px] leading-[110%] mb-[20px] mt-[-8px]
+                            md:text-[48px] md:m-0 md:mb-[40px]
+                            `}
                         >
                             Полезные статьи и советы{" "}
                         </h1>
 
                         <div className={`${styles.blogCardsContainer} h-auto w-full`}>
                             <div
-                                className={`${styles.blogCards} grid grid-cols-4 gap-[40px] mb-[50px]`}
+                                className={`${styles.blogCards} grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-[40px] mb-[50px]`}
                             >
                                 {getCurrentPageCards().map((item) => (
                                     <BlogCard

@@ -478,29 +478,23 @@ export default function Contacts() {
                                                       </span>
 
                                                     <svg
-                                                        width="16"
-                                                        height="10"
-                                                        viewBox="0 0 16 10"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
                                                         className={`transition-transform duration-200 ${
                                                             isSelectOpen ? "rotate-180" : ""
                                                         }`}
-                                                    >
-                                                        <path
-                                                            d="M1 1L8 8L15 1"
-                                                            stroke={
-                                                                isSelectOpen
-                                                                    ? "#3D9ED6"
-                                                                    : selectError
-                                                                        ? "#FF3030"
-                                                                        : selectedOption
-                                                                            ? "#CCC"
-                                                                            : "#adadad"
-                                                            }
-                                                            strokeWidth="2"
+                                                        width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M1.414 0L9.07 7.656L7.656 9.07L0 1.414L1.414 0ZM14.3614 0L15.7754 1.414L11.5573 5.48499L10.1433 4.06999L14.3614 0Z"
+                                                              fill={
+                                                                  isSelectOpen
+                                                                      ? "#3D9ED6"
+                                                                      : selectError
+                                                                          ? "#FF3030"
+                                                                          : selectedOption
+                                                                              ? "#CCC"
+                                                                              : "#adadad"
+                                                              }
                                                         />
                                                     </svg>
+
                                                 </div>
 
                                                 <AnimatePresence>
@@ -743,17 +737,10 @@ export default function Contacts() {
                                                   </span>
                                                     <svg
                                                         className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
-                                                        width="23"
-                                                        height="20"
-                                                        viewBox="0 0 23 20"
-                                                        fill="none"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                    >
-                                                        <path
-                                                            d="M22.9139 9.91388L0.63604 0.36396L3.88829 8.9858L19.7319 9.91388L3.88829 10.842L0.640018 19.4598L22.9139 9.91388Z"
-                                                            fill="#adadad"
-                                                        />
+                                                        width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z" fill="#ADADAD"/>
                                                     </svg>
+
                                                 </button>
                                                 <div className={styles.highlight}/>
                                             </div>
@@ -788,12 +775,12 @@ export default function Contacts() {
                                     }}
                                 >
                                     <p
-                                        className={`font-[Rubik] hidden md:block text-center relative bottom-[-40px] text-[#878787] text-[14px]`}
+                                        className={`font-[Rubik] hidden md:block text-center relative bottom-[-40px] text-[#adadad] text-[16px]`}
                                     >
                                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                                         <Link
                                             href="/politic"
-                                            className={`!text-[#878787] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[14px] font-[300] ml-[4px]`}
+                                            className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
                                         >
                                             политикой конфиденциальности
                                         </Link>
@@ -828,7 +815,7 @@ export default function Contacts() {
                                     <div className="relative !overflow-hidden">
                                         <button
                                             type="submit"
-                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group  !w-[220px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
+                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[212px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
                                         >
 
                                               <span className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
