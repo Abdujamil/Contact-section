@@ -93,11 +93,11 @@ body {
 }
 
 h1, h2, h3{
-    font-family: "Rubik-Regular" !important;
+    font-family: "Rubik" !important;
     font-weight: 400;
 }
 
-.a span,
+a span,
 button > span{
     font-family: "Rubik-Regular" !important;
     /*font-weight: 400;*/
