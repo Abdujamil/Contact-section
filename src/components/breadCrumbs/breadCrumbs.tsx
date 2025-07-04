@@ -41,7 +41,7 @@ export default function Breadcrumbs({
     //   const pathname = usePathname();
 
     return (
-        <nav className="absolute top-[75px] left-[20px] md:left-[30px] text-sm text-[#adadad] mb-4">
+        <nav className="absolute font-[Rubik] top-[75px] left-[20px] md:left-[30px] text-sm text-[#adadad] mb-4">
             <ul className="flex gap-2 flex-wrap">
                 <li>
                     <Link
