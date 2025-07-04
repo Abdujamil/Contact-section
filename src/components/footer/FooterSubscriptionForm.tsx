@@ -31,7 +31,7 @@ const FooterSubscriptionForm: React.FC = () => {
     return (
         <div className={`${styles.form} flex w-[415px] items-center gap-[22px]`}>
             <div className="max-w-[228px] flex flex-col items-start justify-between h-[89px]">
-                <p className="text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">
+                <p className="text-nowrap text-[20px] text-[#3D9ED6] mb-[32px] leading-[110%]">
                     Подписаться на новости
                 </p>
                 <FormProvider {...methods}>

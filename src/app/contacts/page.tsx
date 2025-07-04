@@ -369,7 +369,7 @@ export default function Contacts() {
                                         encType="multipart/form-data"
                                         className={`${
                                             isSubmitted ? "opacity-0" : "opacity-100"
-                                        } overflow-y-auto flex items-start justify-between w-full gap-[30px]`}
+                                        } !font-[Rubik] overflow-y-auto flex items-start justify-between w-full gap-[30px]`}
                                     >
                                         {/* Textarea */}
                                         <div className="relative w-full max-w-[375px] hidden md:block">
@@ -788,7 +788,7 @@ export default function Contacts() {
                                     }}
                                 >
                                     <p
-                                        className={`hidden md:block text-center relative bottom-[-40px] text-[#878787] text-[14px]`}
+                                        className={`font-[Rubik] hidden md:block text-center relative bottom-[-40px] text-[#878787] text-[14px]`}
                                     >
                                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                                         <Link
