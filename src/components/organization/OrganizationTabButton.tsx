@@ -23,7 +23,7 @@ const OrganizationTabButton: React.FC<OrganizationTabButtonProps> = ({
                                                                    onClick,
                                                                }) => {
     return (
-        <div className="relative !w-[220px] !overflow-hidden">
+        <div className="relative !w-[220px] m-auto md:m-0 !overflow-hidden">
             <button
                 onClick={onClick}
                 onMouseMove={handleMouseMove}

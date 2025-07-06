@@ -522,7 +522,7 @@ export default function BlogPageContent({
 
   return (
       <>
-        <div className={`w-full md:grid gap-[40px] grid-cols-[260px_1fr] mb-[150px]`}>
+        <div className={`w-full md:grid gap-[40px] grid-cols-[260px_1fr] mb-[80px] md:mb-[150px]`}>
           <Breadcrumbs blogTitle={currentFaqItem?.title} />
 
           {/* Левый ASIDE (BlogAside) */}

@@ -32,16 +32,16 @@ function OrganizationPageContent() {
             >
                 <Breadcrumbs organizationUrl={true} />
                 <h1
-                    className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[48px] leading-[110%] mt-[-8px] mb-[40px]`}
+                    className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] md:text-[48px] leading-[110%] mt-[-8px] mb-5 md:mb-10`}
                 >
                     {tabTitles[activeTab]}
                 </h1>
-                <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
+                <div className="w-full md:grid gap-[40px] grid-cols-[260px_1fr]">
                     <OrganizationSidebar activeTab={activeTab} setActiveTab={handleTabChange}/>
                     <OrganizationContent activeTab={activeTab}/>
                 </div>
 
-                <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}>
+                <div className={`w-full md:grid gap-[40px] grid-cols-[260px_1fr]`}>
                     <div className={`w-[480px]`}>
 
                     </div>

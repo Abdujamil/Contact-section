@@ -78,7 +78,7 @@ export default function OrganizationWhereDoYouLoseContent() {
                                     {stats.map((item, idx) => (
                                         <div
                                             key={idx}
-                                            className="w-full max-w-[390px] h-full max-h-[133px] p-[20px] rounded-[6px] backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]"
+                                            className="w-full max-w-[390px] h-full md:max-h-[133px] p-[20px] rounded-[6px] backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]"
                                         >
                                             <h5 className={`w-fit text-[48px] leading-[85%] mb-[15px] ${styles.txtGradientTitle}`}>
                                                 {item.percent}
@@ -93,21 +93,13 @@ export default function OrganizationWhereDoYouLoseContent() {
                         <section id="who-controls-negotiations">
                             <h2 className={`!text-[32px] !mb-[30px]`}>Кто управляет вашими переговорами?</h2>
                             <div className={`mb-[50px]`}>
-                                <div className={`flex gap-[20px]`}>
+                                <div className={`flex flex-wrap gap-[20px]`}>
                                     <div
                                         className={`w-full max-w-[390px] h-[133px] p-[20px] rounded-[6px] overflow-hidden backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)] relative`}>
-                                        <p className={`!text-[20px] leading-[120%]`}>Вы уверены, что контролируете
+                                        <p className={`md:!text-[20px] leading-[120%] max-w-[180px]`}>Вы уверены, что контролируете
                                             каждый звонок?</p>
 
-                                        {/*<Image*/}
-                                        {/*    className={`absolute right-0 top-5`}*/}
-                                        {/*    src="/organization/card-img1.png"*/}
-                                        {/*    alt="card-img"*/}
-                                        {/*    width={120}*/}
-                                        {/*    height={113}*/}
-                                        {/*/>*/}
-
-                                        <svg className={`absolute right-0 top-5`} width="121" height="118" viewBox="0 0 121 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg className={`absolute right-0 top-5 sm:w-[96px] sm:h-[90px]`} width="121" height="118" viewBox="0 0 121 118" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g filter="url(#filter0_di_4337_3700)">
                                                 <rect x="35.8252" y="19" width="60" height="60" rx="30" fill="black" fillOpacity="0.05" shapeRendering="crispEdges"/>
                                                 <rect x="35.9252" y="19.1" width="59.8" height="59.8" rx="29.9" stroke="white" strokeWidth="0.2" shapeRendering="crispEdges"/>
@@ -280,17 +272,10 @@ export default function OrganizationWhereDoYouLoseContent() {
                                     </div>
                                     <div
                                         className={`w-full max-w-[390px] h-[133px] p-[20px] rounded-[6px] overflow-hidden backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)] relative`}>
-                                        <p className={`!text-[20px] leading-[120%]`}>Кто несёт ответственность <br/> за
+                                        <p className={`md:!text-[20px] leading-[120%] max-w-[180px]`}>Кто несёт ответственность <br/> за
                                             результат разговоров?</p>
-                                        {/*<Image*/}
-                                        {/*    className={`absolute right-0 top-5`}*/}
-                                        {/*    src="/organization/card-img2.png"*/}
-                                        {/*    alt="card-img"*/}
-                                        {/*    width={120}*/}
-                                        {/*    height={113}*/}
-                                        {/*/>*/}
 
-                                        <svg className={`absolute right-0 top-5`} width="121" height="113" viewBox="0 0 121 113" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <svg className={`absolute right-0 top-5 sm:w-[96px] sm:h-[90px]`} width="121" height="113" viewBox="0 0 121 113" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g filter="url(#filter0_di_4337_3717)">
                                                 <rect x="106.418" y="9.87402" width="10.9709" height="10.9709" rx="5.48544" fill="black" fillOpacity="0.05" shapeRendering="crispEdges"/>
                                                 <rect x="106.468" y="9.92402" width="10.8709" height="10.8709" rx="5.43544" stroke="white" strokeWidth="0.1" shapeRendering="crispEdges"/>
@@ -443,12 +428,12 @@ export default function OrganizationWhereDoYouLoseContent() {
                                 </div>
 
                                 <div
-                                    className={`w-full h-[133px] p-[20px] rounded-[6px] mt-[20px] mb-[30px] overflow-hidden backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)] relative`}>
+                                    className={`w-full md:h-[133px] p-[20px] rounded-[6px] mt-[20px] mb-[30px] overflow-hidden backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)] relative`}>
                                     <p className={`max-w-[312px] !text-[20px] leading-[120%]`}>Вы видите, где уходят
                                         клиенты <br/> и теряются деньги?</p>
 
                                     <Image
-                                        className={`absolute right-0 top-5`}
+                                        className={`md:absolute right-0 top-5`}
                                         src="/organization/card-img3.png"
                                         alt="card-img"
                                         width={398}

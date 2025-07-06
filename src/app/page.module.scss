@@ -650,6 +650,24 @@
       }
     }
   }
+
+  .btn.blogTryBtn {
+
+    .sendIconLeft {
+      opacity: 1;
+      right: 13px;
+      left: auto;
+      transform: translateX(0);
+    }
+
+    &:hover {
+
+      span {
+        // transform: translateX(30px);
+        transform: translateX(0);
+      }
+    }
+  }
 }
 //-------------------------------- Editor --------------------------------//
 .editorTryBlock {
@@ -765,7 +783,7 @@
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .menu-item {
     font-size: 14px;
   }

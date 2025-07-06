@@ -63,7 +63,7 @@ export const organizationData: organizationItem[] = [
                         </h3>
 
                         {/* Карточки */}
-                        <div className={`flex items-center gap-[10px]`}>
+                        <div className={`flex flex-wrap items-center gap-[10px]`}>
                             <div
                                 className={`w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-center text-center   border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]`}>
                                 <svg width="28" height="18" viewBox="0 0 28 18" fill="none"
