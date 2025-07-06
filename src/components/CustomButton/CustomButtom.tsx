@@ -23,7 +23,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                                                    }) => {
 
     return (
-        <div className="relative md:!w-[220px] !w-full !overflow-hidden">
+        <div className="relative !w-[220px] m-auto !overflow-hidden">
             <button
                 onClick={onClick}
                 onMouseMove={handleMouseMove}

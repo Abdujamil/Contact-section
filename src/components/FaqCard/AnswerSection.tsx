@@ -43,13 +43,13 @@ const AnswerSection: React.FC<Props> = ({
 
   return (
     <div
-      className={`${styles.answer} rounded-[6px]`}
+      className={`${styles.answer} rounded-[6px] md:py-[30px] md:pl-[80px] md:pr-[90px] ${isOpen ? 'p-5' : '!p-0' }`}
       style={{
         height: isOpen ? "auto" : "0px",
-        paddingTop: isOpen ? "30px" : "0px",
+        // paddingTop: isOpen ? "30px" : "0px",
         paddingBottom: isOpen ? "30px" : "0px",
-        paddingRight: isOpen ? "90px" : "0px",
-        paddingLeft: isOpen ? "80px" : "0px",
+        // paddingRight: isOpen ? "90px" : "0px",
+        // paddingLeft: isOpen ? "80px" : "0px",
         borderTopRightRadius: isOpen ? "0" : "4px",
         borderTopLeftRadius: isOpen ? "0" : "4px",
         border: isOpen ? "1px solid #CCCCCC" : "",
@@ -62,10 +62,10 @@ const AnswerSection: React.FC<Props> = ({
       <div className={`${styles.texts} flex gap-[40px] mb-[24px]`}>
         <p className="text-[16px] font-normal leading-[140%]">{answer}</p>
         <motion.div
-          className="w-[155px] max-h-[155px] mt-[5px]"
+          className="w-[155px] max-h-[155px] mt-[5px] hidden md:block"
           initial={{ y: 20, opacity: 0 }}
           animate={controls}
-          style={{ display: isOpen ? "block" : "none" }}
+          // style={{ display: isOpen ? "block" : "none" }}
         >
           <img
             src={typeof src === "string" ? src : src.src}
@@ -89,7 +89,7 @@ const AnswerSection: React.FC<Props> = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >
-          <span className="text-[20px] !text-[#adadad] !transition-all !duration-[.13s] !ease-in">
+          <span className="text-[18px] md:text-[20px] !text-[#adadad] !transition-all !duration-[.13s] !ease-in">
             Подробнее
           </span>
 

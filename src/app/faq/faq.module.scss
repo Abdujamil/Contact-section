@@ -52,6 +52,19 @@
           opacity: 1;
         }
 
+        @media (max-width: 768px) {
+          .number {
+            p {
+              font-size: 22px;
+              left: 0;
+            }
+          }
+
+          .logoOnHover {
+            display: none;
+          }
+        }
+
         .arrow {
           //transform: rotate(190deg);
 

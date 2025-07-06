@@ -793,7 +793,7 @@ export default function Contacts() {
                                 id="requisite-block"
                                 initial={{y: 20, opacity: 1}}
                                 animate={controls}
-                                className={`${styles.contactRightContent} w-full max-w-[870px] h-[437px] border border-[#353535] rounded-[6px] p-10`}
+                                className={`${styles.contactRightContent} w-full max-w-[870px] md:h-[437px] h-auto border border-[#353535] rounded-[6px] md:p-10 p-5`}
                                 style={{
                                     display: activeTab !== "requisite" ? "none" : "block",
                                 }}
@@ -804,15 +804,20 @@ export default function Contacts() {
                                             className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
                                             Полное наименование
                                         </label>
-                                        <input
-                                            type="text"
-                                            readOnly={false}
-                                            defaultValue="Общество с ограниченной ответственностью «АУДИОСЕКТОР»"
+                                        {/*<input*/}
+                                        {/*    type="text"*/}
+                                        {/*    readOnly={false}*/}
+                                        {/*    defaultValue="Общество с ограниченной ответственностью «АУДИОСЕКТОР»"*/}
+                                        {/*    className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"*/}
+                                        {/*/>*/}
+                                        <p
                                             className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
-                                        />
+                                        >
+                                            Общество с ограниченной ответственностью «АУДИОСЕКТОР»
+                                        </p>
                                     </div>
 
-                                    <div className="relative !overflow-hidden">
+                                    <div className="relative !overflow-hidden hidden md:block">
                                         <button
                                             type="submit"
                                             className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[212px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
@@ -833,29 +838,6 @@ export default function Contacts() {
                                         <div className={styles.highlight}/>
                                     </div>
 
-                                    {/*<div className="relative !w-[220px] !overflow-hidden">*/}
-                                    {/*    <button*/}
-                                    {/*        type="submit"*/}
-                                    {/*        onMouseMove={handleMouseMove}*/}
-                                    {/*        onMouseLeave={handleMouseLeave}*/}
-                                    {/*        className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] mt-[50px] flex items-center !justify-center`}*/}
-                                    {/*        data-text=""*/}
-                                    {/*    >*/}
-                                    {/*              <span*/}
-                                    {/*                  className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] text-[20px] leading-[120%]">*/}
-                                    {/*                Скачать PDF*/}
-                                    {/*              </span>*/}
-
-                                    {/*        <Image*/}
-                                    {/*            className={`${styles.sendIconRight}   transition-all !duration-[.13s] ease-in `}*/}
-                                    {/*            src="/pdf-icon.svg"*/}
-                                    {/*            width={36}*/}
-                                    {/*            height={49}*/}
-                                    {/*            alt="pdf-icon"*/}
-                                    {/*        />*/}
-                                    {/*    </button>*/}
-                                    {/*    <div className={styles.highlight}/>*/}
-                                    {/*</div>*/}
                                 </div>
 
                                 <div className="mb-6">
@@ -863,11 +845,16 @@ export default function Contacts() {
                                         className="pl-[18px] block text-lg font-light text-[#ccc] mb-2 leading-[110%]">
                                         Юридический адрес
                                     </label>
-                                    <input
-                                        type="text"
-                                        defaultValue="180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44"
-                                        className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
-                                    />
+                                    <p
+                                        className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                    >
+                                        180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44
+                                    </p>
+                                    {/*<input*/}
+                                    {/*    type="text"*/}
+                                    {/*    defaultValue="180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44"*/}
+                                    {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
+                                    {/*/>*/}
                                 </div>
 
                                 <div className="space-y-[14px]">
@@ -877,11 +864,16 @@ export default function Contacts() {
                                                 className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 ИНН
                                             </label>
-                                            <input
-                                                type="text"
-                                                defaultValue="6000005874"
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    defaultValue="6000005874"*/}
+                                            {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
+                                            {/*/>*/}
+                                            <p
                                                 className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
-                                            />
+                                            >
+                                                6000005874
+                                            </p>
                                         </div>
 
                                         <div>
@@ -889,11 +881,16 @@ export default function Contacts() {
                                                 className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 ОГРН
                                             </label>
-                                            <input
-                                                type="text"
-                                                defaultValue="1236000004569"
-                                                className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
-                                            />
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    defaultValue="1236000004569"*/}
+                                            {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
+                                            {/*/>*/}
+                                            <p
+                                                className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                            >
+                                                1236000004569
+                                            </p>
                                         </div>
                                     </div>
 
@@ -903,11 +900,17 @@ export default function Contacts() {
                                                 className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 Генеральный директор
                                             </label>
-                                            <input
-                                                type="text"
-                                                defaultValue="Владимиров Владимир Михайлович"
-                                                className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
-                                            />
+                                            {/*<input*/}
+                                            {/*    type="text"*/}
+                                            {/*    defaultValue="Владимиров Владимир Михайлович"*/}
+                                            {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
+                                            {/*/>*/}
+
+                                            <p
+                                                className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                            >
+                                                Владимиров Владимир Михайлович
+                                            </p>
                                         </div>
 
                                         <div>
@@ -916,12 +919,38 @@ export default function Contacts() {
                                                 Почта
                                             </label>
                                             {/* 20272A */}
-                                            <input
-                                                type="email"
-                                                defaultValue="info@audiosector.ru"
-                                                className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
-                                            />
+                                            {/*<input*/}
+                                            {/*    type="email"*/}
+                                            {/*    defaultValue="info@audiosector.ru"*/}
+                                            {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
+                                            {/*/>*/}
+                                            <p
+                                                className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                            >
+                                                info@audiosector.ru
+                                            </p>
                                         </div>
+                                    </div>
+
+                                    <div className="relative !overflow-hidden block md:hidden">
+                                        <button
+                                            type="submit"
+                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[212px] m-auto !h-[51px] overflow-hidden flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
+                                        >
+
+                                              <span className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
+                                                Скачать PDF
+                                              </span>
+
+                                            <Image
+                                                className={`${styles.sendIconRight}   transition-all !duration-[.13s] ease-in `}
+                                                src="/pdf-icon.svg"
+                                                width={36}
+                                                height={49}
+                                                alt="pdf-icon"
+                                            />
+                                        </button>
+                                        <div className={styles.highlight}/>
                                     </div>
                                 </div>
                             </motion.div>
