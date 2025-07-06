@@ -366,7 +366,7 @@ import BlogCard from "../BlogCard/BlogCard";
 import { useRouter } from "next/navigation";
 import { editors } from "@/data/editors";
 import Breadcrumbs from "../breadCrumbs/breadCrumbs";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Компонент точек индикатора
 const SliderDots = ({
