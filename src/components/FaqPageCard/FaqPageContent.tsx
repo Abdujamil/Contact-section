@@ -239,7 +239,7 @@ export default function FaqPageContent({
                             </h3>
                             <div className="relative w-[220px] m-auto h-[51px] !overflow-hidden">
                                 <button
-                                    className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535]  w-full !h-full group flex items-center !justify-center`}
+                                    className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535]  w-full !h-full group flex items-center !justify-between md:!justify-center`}
                                     data-text=""
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}

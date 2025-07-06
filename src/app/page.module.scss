@@ -405,7 +405,6 @@
   padding-right: 15px !important;
 
   &:hover {
-
     span {
       transform: translateX(65px);
     }
@@ -629,6 +628,29 @@
   box-shadow: 0 0 10px #0009, inset 0 0 6px #ffffff1a;
 }
 
+
+@media screen and (max-width: 768px) {
+  .btn.blogNextBtn,
+  .btn.blogLeftBtn {
+    .sendIconLeft{
+      position: relative;
+      left: 0;
+      transform: translate(0) !important;
+    }
+
+    .sendIconRight,
+    span{
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    &:hover {
+      span {
+        transform: translateX(0);
+      }
+    }
+  }
+}
 //-------------------------------- Editor --------------------------------//
 .editorTryBlock {
   background: rgba(61, 158, 214, 0.07);
@@ -742,6 +764,11 @@
   }
 }
 
-//background: rgba(119, 156, 177, 0.25098);
+
+@media screen and (min-width: 768px) {
+  .menu-item {
+    font-size: 14px;
+  }
+}
 
 

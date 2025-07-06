@@ -34,9 +34,9 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
                         <main className="flex-grow">
                             {children}
                         </main>
-                    <div className={`hidden md:block`}>
-                        <Footer/>
-                    </div>
+                        <div className={`hidden md:block`}>
+                            <Footer/>
+                        </div>
                 </SmoothScroll>
             </AuthProvider>
             </body>

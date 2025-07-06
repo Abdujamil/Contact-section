@@ -538,7 +538,7 @@ export default function BlogPageContent({
                   </h3>
                   <div className="relative w-full h-[51px] !overflow-hidden">
                     <button
-                        className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-center`}
+                        className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-between md:!justify-center`}
                         data-text=""
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}

@@ -52,7 +52,7 @@
           opacity: 1;
         }
 
-        @media (max-width: 768px) {
+        @media screen and (max-width: 768px) {
           .number {
             p {
               font-size: 22px;
@@ -107,6 +107,16 @@
         left: -14px;
         top: 12px;
       }
+    }
+
+    @media screen and (max-width: 768px) {
+      .number {
+        p {
+          font-size: 22px;
+          left: 0;
+        }
+      }
+
     }
 
     h3 {
@@ -428,8 +438,6 @@
     opacity: 0;
   }
 
-  .sendIconRight {
-  }
 
   &:hover {
     color: #ccc;
@@ -460,6 +468,28 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  .btn{
+    justify-content: space-between !important;
+
+    &:hover {
+      span {
+        transform: translateX(0) !important;
+      }
+    }
+
+    span {
+      transform: translateX(0);
+    }
+
+    .sendIconLeft {
+      opacity: 1;
+      position: relative;
+      transform: translateX(0);
+      right: 0px !important;
+    }
+  }
+}
 
 .txtGradientRight {
   -webkit-text-fill-color: transparent;

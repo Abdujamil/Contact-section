@@ -85,7 +85,7 @@ const AnswerSection: React.FC<Props> = ({
       >
         <button
           className={`${HeaderStyles["login-button"]} ${styles["btn"]} ${styles["blogTryBtn"]} border !border-[#353535]
-                                        cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-center`}
+                                        cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between md:!justify-center`}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
         >

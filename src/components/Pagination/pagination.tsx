@@ -70,7 +70,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div
-      className={`w-full flex justify-center items-center gap-10 ${className}`}
+      className={`w-full flex flex-col md:flex-row justify-center items-center gap-5 md:gap-10 ${className}`}
     >
       {/* Кнопка "Предыдущая" */}
       <div className="relative w-full max-w-[260px] h-[51px] !overflow-hidden">
