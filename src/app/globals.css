@@ -344,6 +344,12 @@ input[type='email']::placeholder {
         line-height: 130%;
         color: #CCCCCC;
     }
+
+    @media screen and (max-width: 768px) {
+        /*h2{*/
+        /*    font-size: 24px;*/
+        /*}*/
+    }
 }
 
 .oferta-content{

@@ -41,8 +41,8 @@ export default function Breadcrumbs({
     //   const pathname = usePathname();
 
     return (
-        <nav className="absolute font-[Rubik] !text-[14px] md:!text-[16px] top-[75px] left-[20px] md:left-[30px] text-sm text-[#adadad] mb-4 max-w-[100%] overflow-auto">
-            <ul className="w-full flex gap-2 flex-nowrap overflow-auto text-nowrap">
+        <nav className="absolute font-[Rubik] !text-[12px] md:!text-[16px] top-[75px] left-[20px] md:left-[30px] text-sm text-[#adadad] mb-4 max-w-[100%] overflow-auto">
+            <ul className="w-full flex flex-nowrap gap-2 text-nowrap">
                 <li>
                     <Link
                         href="/"

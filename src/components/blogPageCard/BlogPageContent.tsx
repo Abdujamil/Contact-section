@@ -526,7 +526,7 @@ export default function BlogPageContent({
           <Breadcrumbs blogTitle={currentFaqItem?.title} />
 
           {/* Левый ASIDE (BlogAside) */}
-          <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] md:px-0 m-auto md:m-0 mb-5">
+          <aside className="md:sticky top-[80px] h-fit z-[10] max-w-[320px] md:w-[260px] md:px-0 m-auto md:m-0 mb-5">
             {showRegisterPromo && (
                 <div
                     className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[6px]`}
@@ -724,8 +724,8 @@ export default function BlogPageContent({
                   <Link
                       href={`/editorPage/${currentEditor.id}`}
                       className={`${styles.authorBlock} ${styles.shadowcards} 
-                group w-full md:flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
-                  >
+                      group w-full md:flex items-center gap-[21px] p-[20px] rounded-[6px] border border-[#353535] hover:border-[#ccc]`}
+                        >
                     <div className="flex items-center mb-[21px] md:mb-0 md:block gap-5  min-w-[101px] min-h-[90px] rounded-[4px] overflow-hidden">
                       {currentEditor.avatar ? (
                           <Image

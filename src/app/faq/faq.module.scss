@@ -94,7 +94,15 @@
           border-radius: 3.88px;
         }
       }
+
     }
+      @media screen and (max-width: 768px) {
+        .question {
+          &:active {
+            background-color: #3d9ed612 !important;
+          }
+        }
+      }
   }
 
   .faqCard.active {
@@ -328,6 +336,14 @@
         }
       }
 
+    }
+
+    @media screen and (max-width: 768px) {
+      .question {
+        &:active {
+          background-color: #3d9ed612 !important;
+        }
+      }
     }
 
     .texts {
