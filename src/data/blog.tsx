@@ -7,7 +7,7 @@ interface AsideItem {
   subtitle?: string[];
 }
 
-interface BlogItem {
+export interface BlogItem {
   id: number;
   num: string;
   title: string;

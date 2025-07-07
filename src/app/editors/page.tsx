@@ -137,12 +137,13 @@ import Link from "next/link";
 import Image from "next/image";
 import {editors} from "@/data/editors";
 import {blogData} from "@/data/blog";
+import {BlogItem} from '@/data/blog';
 import BlogCard from "@/components/BlogCard/BlogCard";
 import TryBlock from "@/components/TryBlock/page";
 import BlogAside from "@/components/blogPageCard/blogAside";
 
 // Альтернативный способ - используем any для обхода конфликта типов
-const MobileBlogSlider = ({ editorBlogs }: { editorBlogs: any[] }) => {
+const MobileBlogSlider = ({ editorBlogs }: { editorBlogs: BlogItem[] }) => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
     const [touchStart, setTouchStart] = useState<number>(0);
     const [touchEnd, setTouchEnd] = useState<number>(0);
