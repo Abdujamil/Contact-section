@@ -393,7 +393,6 @@
   p {
     display: -webkit-box;
     -webkit-line-clamp: 4;
-    /* Ограничить до 4 строк */
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
@@ -630,6 +629,16 @@
 
 
 @media screen and (max-width: 768px) {
+  .authorBlock {
+
+    p {
+      display: -webkit-box;
+      -webkit-line-clamp: 10;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+
   .btn.blogNextBtn,
   .btn.blogLeftBtn {
     .sendIconLeft{

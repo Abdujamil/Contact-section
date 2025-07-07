@@ -157,7 +157,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) 
 
         <div className={`${styles.cardBody} py-[20px] px-[15px]`}>
           <h3
-            className={`${styles.cardTitle} text-[19.5px] text-[#adadad] leading-[120%] mb-[52px]`}
+            className={`${styles.cardTitle} line-clamp-3 text-[19.5px] text-[#adadad] leading-[120%] mb-[52px]`}
           >
             {title}
           </h3>
