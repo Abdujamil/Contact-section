@@ -83,7 +83,7 @@ export default function PolicyLicenseContent() {
                     {/* Кнопка закрытия */}
                     <button
                         onClick={onClose}
-                        className="absolute top-[22px] -right-2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20"
+                        className="absolute md:top-[22px]  top-[5px]  -right-2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20"
                         aria-label="Закрыть"
                     >
                         <svg
@@ -101,11 +101,11 @@ export default function PolicyLicenseContent() {
 
                     {/* Изображение */}
                     <div className="w-[624px] rounded-lg shadow-2xl">
-                        <div className="relative flex items-center justify-center">
+                        <div className="relative flex items-center md:justify-center justify-start">
                             {/* Заголовок изображения */}
                             <div
-                                className="absolute top-[-70px] left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                                <h3 className="text-center text-white text-[20px] font-bold">
+                                className="md:w-full w-[350px] absolute top-[-70px] left-0 right-0 bg-gradient-to-t to-transparent md:p-4 p-2">
+                                <h3 className="text-center text-white md:text-[20px] text-[16px] font-bold">
                                     {slides[currentImageIndex].alt}
                                 </h3>
                             </div>
@@ -182,7 +182,7 @@ export default function PolicyLicenseContent() {
                         <section id="svidetelstvo-o-registratsii" className="scroll-mt-[80px] !leading-[130%]">
                             <h2>Свидетельство о регистрации программы для ЭВМ</h2>
 
-                            <div className={`flex items-start gap-[30px] mb-[20px]`}>
+                            <div className={`flex flex-wrap md:flex-nowrap items-start justify-center gap-[30px] mb-[20px]`}>
                                 <div className={`w-full max-w-[260px]`}>
                                     <Image
                                         className={`cursor-pointer`}
@@ -270,7 +270,7 @@ export default function PolicyLicenseContent() {
                                 </li>
                             </ul>
 
-                            <div className={`flex items-start gap-[30px] my-[20px]`}>
+                            <div className={`flex flex-wrap md:flex-nowrap items-start justify-center gap-[30px] my-[20px]`}>
                                 <div className={`w-full max-w-[260px]`}>
                                     <Image
                                         className={`cursor-pointer`}

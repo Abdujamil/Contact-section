@@ -33,17 +33,17 @@ function PolicyPageContent() {
             >
                 <Breadcrumbs policyUrl={true}/>
                 <h1
-                    className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[48px] leading-[110%] mt-[-8px] mb-[40px]`}
+                    className={`${styles.txtGradientTitle} w-fit m-auto text-center md:text-[48px] text-[28px] leading-[110%] mt-[-8px] md:mb-[40px] mb-[20px]`}
                 >
                     {tabTitles[activeTab]}
                 </h1>
 
-                <div className="w-full grid gap-[40px] grid-cols-[260px_1fr]">
+                <div className="w-full md:grid gap-[40px] grid-cols-[260px_1fr]">
                     <PolicySidebar activeTab={activeTab} setActiveTab={handleTabChange}/>
                     <PolicyContent activeTab={activeTab}/>
                 </div>
 
-                <div className={`w-full grid gap-[40px] grid-cols-[260px_1fr]`}>
+                <div className={`w-full md:grid gap-[40px] grid-cols-[260px_1fr]`}>
                     <div className={`w-[480px]`}>
 
                     </div>

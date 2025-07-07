@@ -58,9 +58,9 @@ const PolicySidebar: React.FC<PolicySidebarProps> = ({
   ];
 
   return (
-    <aside className="sticky top-[80px] h-fit z-[10] w-[260px]">
+    <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] w-[320px] m-auto md:m-0">
       <div
-        className={`${styles.btns} ${styles.licenseBtns} mb-[20px] flex flex-col items-start justify-start w-full max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+        className={`${styles.btns} ${styles.licenseBtns} mb-[20px] flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
       >
         {tabs.map((tab) => (
           <PolicyTabButton
@@ -72,7 +72,7 @@ const PolicySidebar: React.FC<PolicySidebarProps> = ({
         ))}
       </div>
 
-      <div className={`mb-25`}>
+      <div className={`md:mb-25 mb-2.5`}>
         <BlogAside items={currentBlogItem?.aside ?? []} />
       </div>
     </aside>

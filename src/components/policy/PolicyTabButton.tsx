@@ -23,14 +23,14 @@ const PolicyTabButton: React.FC<PolicyTabButtonProps> = ({
                                                              onClick,
                                                          }) => {
     return (
-        <div className="relative !w-[220px] !overflow-hidden">
+        <div className="relative !w-[220px] m-auto md:m-0 !overflow-hidden">
             <button
                 onClick={onClick}
                 onMouseMove={handleMouseMove}
                 onMouseLeave={handleMouseLeave}
                 className={`${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} ${
                     tab.id === "policy" ? styles["contact-btn"] : styles["requisite-btn"]
-                } ${styles["requisite-btn"]} border !border-[#353535] cursor-pointer !w-[220px] !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.13s] ease-in`}
+                } ${styles["requisite-btn"]} border !border-[#353535] cursor-pointer !w-[220px] m-auto md:m-0 !h-[51px] !rounded-[4px] group flex items-center !justify-between transition-all !duration-[.13s] ease-in`}
                 style={{
                     color: isActive ? "#3D9ED6" : "#adadad",
                 }}
