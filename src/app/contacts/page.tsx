@@ -334,7 +334,7 @@ export default function Contacts() {
                 >
                     <Breadcrumbs contactUrl={true}/>
                     <div
-                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center`}
+                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center md:mb-0  mb-25`}
                     >
                         <div
                             className={`w-full md:flex justify-center items-start md:gap-[40px] gap-[20px] px-[20px]`}

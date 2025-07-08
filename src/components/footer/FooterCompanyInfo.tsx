@@ -17,11 +17,10 @@ const FooterCompanyInfo: React.FC = () => {
 
     const handleLanguageSelect = (language: string) => {
         setSelectedLanguage(language);
-        // Здесь можно добавить логику для смены языка
         console.log("Выбранный язык:", language);
     };
     return (
-        <div className={`w-full flex items-end justify-between `}>
+        <div className={`md:w-auto w-full flex items-end md:items-center justify-between`}>
             <div className="mx-[10px] text-center flex flex-col items-start md:items-center h-[89px] justify-between">
                 <p className="font-[400] text-[#adadad] text-[16px] leading-[110%]">ИНН 6000005874</p>
                 <p className="text-[18px] leading-[110%]">ООО &quot;АУДИОСЕКТОР&quot;</p>
@@ -32,7 +31,6 @@ const FooterCompanyInfo: React.FC = () => {
                     options={languageOptions}
                     selectedOption={selectedLanguage}
                     onSelect={handleLanguageSelect}
-                    placeholder="Выберите язык"
                     width="62px"
                     height="35px"
                     className="block md:hidden"

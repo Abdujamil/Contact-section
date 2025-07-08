@@ -8,7 +8,6 @@ interface CustomSelectProps {
     options: string[];
     selectedOption: string;
     onSelect: (option: string) => void;
-    placeholder?: string;
     className?: string;
     width?: string;
     height?: string;
@@ -18,7 +17,6 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                                                        options,
                                                        selectedOption,
                                                        onSelect,
-                                                       placeholder = "Выберите опцию",
                                                        className = "",
                                                        width = "62px",
                                                        height = "35px",

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./Header.module.css";
 import { useAuth } from "@/components/context/AuthContext";
-
+import HeaderMenu from "@/components/header/HeaderMenu";
 
 interface MenuItem {
   label: string;
@@ -79,6 +79,7 @@ MenuItem.displayName = "MenuItem";
 const Header: React.FC = () => {
   const pathname = usePathname();
   const [isIconVisible, setIsIconVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const renderMenuItems = useMemo(() => {
     return menuItems.map((item) => {
@@ -530,41 +531,48 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex min-[961px]:hidden items-center gap-[30px]">
-            <button className="hamburger-btn" aria-label="Меню">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                role="img">
-                <path
-                  d="M3 12H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3 6H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M3 18H21"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+            <button
+                className="hamburger-btn"
+                aria-label="Меню"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                  // Крестик
+                  <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+              ) : (
+                  // Бургер
+                  <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+              )}
             </button>
+
+
           </div>
+          <HeaderMenu
+              active={isMobileMenuOpen}
+              onClose={() => setIsMobileMenuOpen(false)}
+          />
         </div>
       </div>
+
     </header>
   );
 };
