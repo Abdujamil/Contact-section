@@ -749,8 +749,14 @@
           }
 
         }
+
       }
 
+        @media screen and (max-width: 768px) {
+          button {
+            transform: translateX(0) !important;
+          }
+        }
     }
 
     .links {
@@ -793,6 +799,26 @@
 
 
 @media screen and (max-width: 768px) {
+  .btn.telegramBtn {
+
+    &:hover {
+      span {
+        transform: translateX(0);
+      }
+
+      .sendIconLeft {
+        transform: translateX(0px);
+      }
+    }
+
+    .sendIconLeft {
+      opacity: 1;
+      position: relative;
+      left: 0;
+      transform: translateX(0);
+    }
+  }
+
   .menu-item {
     font-size: 12px;
   }

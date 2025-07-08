@@ -6,6 +6,7 @@ import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
 import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 import Footer from "@/app/footer";
+import FooterMob from "@/components/footer/footerMob";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -36,6 +37,9 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
                         </main>
                         <div className={`hidden md:block`}>
                             <Footer/>
+                        </div>
+                        <div className={`md:hidden`}>
+                            <FooterMob/>
                         </div>
                 </SmoothScroll>
             </AuthProvider>
