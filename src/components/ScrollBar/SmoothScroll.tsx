@@ -16,8 +16,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         const isPricing = pathname === '/pricing';
         const isOrganization = pathname === '/organizations';
         const isLogin = pathname === '/login';
+        const isAuth = pathname === '/auth/login';
 
-        document.body.style.overflow = isLogin || isContact || isPricing || isOrganization ? 'hidden' : '';
+        document.body.style.overflow = isAuth || isLogin || isContact || isPricing || isOrganization ? 'hidden' : '';
         setShowScrollbar(!isContact);
 
         const timeout1 = setTimeout(() => {

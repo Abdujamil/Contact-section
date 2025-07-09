@@ -39,11 +39,13 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           {label}
         </span>
 
-                <span className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                <span
+                    className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
           {iconLeft}
         </span>
 
-                <span className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                <span
+                    className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
           {iconLeft}
         </span>
             </button>
