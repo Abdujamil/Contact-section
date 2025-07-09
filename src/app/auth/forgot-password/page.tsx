@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
             <div>
                 <Image
                     className={`rounded-[4px] border border-[#353535]`}
-                    src='/auth/03.png' alt='03' width={375} height={509}/>
+                    src='/auth/02.png' alt='02' width={375} height={509}/>
             </div>
         </div>
     );
