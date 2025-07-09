@@ -23,7 +23,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
                                                    }) => {
 
     return (
-        <div className="relative !w-[220px] m-auto !overflow-hidden">
+        <div className={`relative !w-[220px] m-auto !overflow-hidden ${className}`}>
             <button
                 onClick={onClick}
                 onMouseMove={handleMouseMove}
@@ -34,7 +34,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
         <span
             className={`text-[20px] !transition-all !duration-[.13s] !ease-in ${
                 isActive ? "!text-[#3D9ED6]" : "#adadad"
-            } ${className} `}
+            } `}
         >
           {label}
         </span>

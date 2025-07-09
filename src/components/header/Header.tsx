@@ -500,7 +500,8 @@ const Header: React.FC = () => {
           <div className="hidden min-[961px]:flex items-center gap-[60px]">
             <nav className="flex gap-[9px]">{renderMenuItems}</nav>
             <div className="overflow-hidden">
-              <button
+              <Link
+                  href='/auth/login'
                 className={`${styles["login-button"]} group flex items-center justify-center`}
                 data-text={showRegisterPromo ? "Войти" : "Выйти"}
                 onClick={toggleRegisterPromo}
@@ -526,7 +527,7 @@ const Header: React.FC = () => {
                   </span>
                 </div>
                 <div className={styles.highlight} />
-              </button>
+              </Link>
             </div>
           </div>
 
