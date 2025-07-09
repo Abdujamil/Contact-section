@@ -115,7 +115,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                     </aside>
 
                     <div
-                        className={`${styles.BlogPageContent} h-full text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
+                        className={`${styles.BlogPageContent} h-full md:h-[579px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                     >
                         {children}
                     </div>
