@@ -33,8 +33,8 @@ export default function ForgotPasswordPage() {
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
                             type={"email"}
-                            title={"Email"}
-                            inputName="Email"
+                            title={"E-mail"}
+                            inputName="email"
                             required={true}
                         />
 

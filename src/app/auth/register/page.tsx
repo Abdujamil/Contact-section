@@ -1,20 +1,20 @@
 'use client'
 // app/(auth)/register/page.tsx
 
-import { useForm, FormProvider } from "react-hook-form";
+import {useForm, FormProvider} from "react-hook-form";
 import React, {useEffect} from "react";
 import {emailRegex} from "@/components/Form/validation";
 import AppInput from "@/components/forms/elements/AppInput";
 import styles from "@/app/page.module.scss";
-import Link from "next/link";
 import Image from "next/image";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import HeaderStyles from "@/components/header/Header.module.css";
+import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
+import UsernameInputWithValidation from "@/app/auth/register/UsernameInputWithValidation";
 
 export default function RegisterPage() {
     const methods = useForm();
-
-    const { register } = methods;
+    const {register} = methods;
 
     useEffect(() => {
         // Регистрируем email с кастомной валидацией
@@ -36,27 +36,13 @@ export default function RegisterPage() {
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
                             type={"email"}
-                            title={"Email"}
-                            inputName="Email"
+                            title={"E-mail"}
+                            inputName="email"
                             required={true}
                         />
-                        <div className={`relative`}>
-                            <AppInput
-                                className={`${styles.bounceElem} md:w-[375px]`}
-                                type={"password"}
-                                title={"Пароль"}
-                                inputName="Password"
-                                required={true}
-                            />
-                            <Link className={`block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5`} href="/auth/forgot-password">Забыли пароль?</Link>
-                        </div>
 
-                        <AppInput
-                            className={`${styles.bounceElem} md:w-[375px] `}
-                            title={"Имя пользователя"}
-                            inputName="Имя пользователя"
-                            required={true}
-                        />
+                        <PasswordInputWithStrength className={`${styles.bounceElem} md:w-[375px]`} />
+                        <UsernameInputWithValidation className={`${styles.bounceElem} md:w-[375px]`} />
 
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] my-[34px]`}
@@ -87,8 +73,11 @@ export default function RegisterPage() {
                                                   </span>
                                 <svg
                                     className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
-                                    width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z" fill="#ADADAD"/>
+                                    width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z"
+                                        fill="#ADADAD"/>
                                 </svg>
 
                             </button>
