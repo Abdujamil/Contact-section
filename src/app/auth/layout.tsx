@@ -7,6 +7,7 @@ import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
 import {usePathname} from "next/navigation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+import {motion} from "framer-motion";
 
 
 const navItems = [
@@ -114,11 +115,20 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                         </div>
                     </aside>
 
-                    <div
+                    <motion.div
+                        key={pathname}
+                        initial={{opacity: 0, y: -30}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 6,
+                            mass: 0.3,
+                        }}
                         className={`${styles.BlogPageContent} h-full md:h-[579px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                     >
                         {children}
-                    </div>
+                    </motion.div>
                 </div>
 
             </div>

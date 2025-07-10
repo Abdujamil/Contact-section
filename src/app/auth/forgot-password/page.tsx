@@ -12,7 +12,6 @@ import HeaderStyles from "@/components/header/Header.module.css";
 
 export default function ForgotPasswordPage() {
     const methods = useForm();
-
     const { register } = methods;
 
     useEffect(() => {

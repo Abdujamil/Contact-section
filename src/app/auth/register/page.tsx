@@ -28,7 +28,8 @@ export default function RegisterPage() {
     }, [register]);
 
     return (
-        <div  className={`flex gap-[30px] items-start justify-between`}>
+        <div
+            className={`flex gap-[30px] items-start justify-between`}>
             <div>
                 <FormProvider {...methods}>
                     <form className="space-y-4">
