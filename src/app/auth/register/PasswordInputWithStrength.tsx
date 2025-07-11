@@ -41,7 +41,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
 
             {passwordStrength === '' ? (
                 <Link
-                    className="md:mr-3 block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5 leading-[80%]"
+                    className="md:mr-4 block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5 leading-[80%]"
                     href="/auth/forgot-password"
                 >
                     Забыли пароль?

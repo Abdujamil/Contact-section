@@ -127,11 +127,11 @@ export default function LoginPage() {
                             <AppInput
                                 className={`${styles.bounceElem} md:w-[375px]`}
                                 type={"password"}
-                                title={"Password"}
+                                title={"Пароль"}
                                 inputName="password"
                                 required={true}
                             />
-                            <Link className={`md:mr-3 block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5 leading-[80%]`}
+                            <Link className={`md:mr-4 block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5 leading-[80%]`}
                                   href="/auth/forgot-password">Забыли пароль?</Link>
                         </div>
 
@@ -163,7 +163,7 @@ export default function LoginPage() {
                     </form>
                 </FormProvider>
 
-                <div>
+                <div className={`max-w-[375px]`}>
                     {/* вход с помощью */}
                     <div className={`flex items-center gap-[7px] justify-between mt-[10px]`}>
                         <svg width="119" height="2" viewBox="0 0 119 2" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +177,7 @@ export default function LoginPage() {
                             </defs>
                         </svg>
 
-                        <p className={`whitespace-nowrap uppercase text-[#adadad]`}>вход с помощью</p>
+                        <p className={`whitespace-nowrap text-[#adadad] text-[16px] font-[Rubik]`}>вход с помощью</p>
 
                         <svg width="119" height="2" viewBox="0 0 119 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <line x1="-4.37114e-08" y1="1" x2="119" y2="0.99999"
