@@ -26,7 +26,7 @@ export default function ForgotPasswordPage() {
     }, [register]);
 
     return (
-        <div  className={`flex gap-[30px] items-start justify-between`}>
+        <div  className={`flex gap-[30px] items-start justify-between  md:h-[497px]`}>
             <div >
                 <FormProvider {...methods}>
                     <form className="space-y-4">
@@ -62,9 +62,9 @@ export default function ForgotPasswordPage() {
                 </FormProvider>
             </div>
 
-            <div>
+            <div className={`h-full`}>
                 <Image
-                    className={`rounded-[4px] border border-[#353535]`}
+                    className={` h-full rounded-[4px] border border-[#353535]`}
                     src='/auth/02.png' alt='02' width={375} height={509}/>
             </div>
         </div>

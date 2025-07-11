@@ -29,10 +29,10 @@ export default function RegisterPage() {
 
     return (
         <div
-            className={`flex gap-[30px] items-start justify-between`}>
-            <div>
+            className={`flex gap-[30px] items-start justify-between md:h-[497px]`}>
+            <div className={`h-full`}>
                 <FormProvider {...methods}>
-                    <form className="space-y-4">
+                    <form className="space-y-8.5 h-full">
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
                             type={"email"}
@@ -86,9 +86,9 @@ export default function RegisterPage() {
                     </form>
                 </FormProvider>
             </div>
-            <div>
+            <div className={`h-full`}>
                 <Image
-                    className={`rounded-[4px] border border-[#353535]`}
+                    className={`h-full rounded-[4px] border border-[#353535]`}
                     src='/auth/03.png' alt='03' width={375} height={509}/>
             </div>
         </div>
