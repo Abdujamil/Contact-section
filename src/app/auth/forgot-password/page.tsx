@@ -31,7 +31,7 @@ export default function ForgotPasswordPage() {
                 <FormProvider {...methods}>
                     <form className="space-y-4">
                         <AppInput
-                            className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
+                            className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
                             type={"email"}
                             title={"E-mail"}
                             inputName="email"

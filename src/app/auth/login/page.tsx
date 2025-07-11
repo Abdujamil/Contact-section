@@ -113,7 +113,7 @@ export default function LoginPage() {
     return (
         <div
             className={`flex gap-[30px] items-start justify-between`}>
-            <div className={`flex flex-col items-center justify-between md:h-[489px]`}>
+            <div className={`max-w-[375px] flex flex-col items-center justify-between md:h-[489px]`}>
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                         <AppInput
@@ -123,7 +123,7 @@ export default function LoginPage() {
                             inputName="email"
                             required={true}
                         />
-                        <div className={`relative md:w-[375px]`}>
+                        <div className={`relative md:w-[375px] mb-[30px]`}>
                             <AppInput
                                 className={`${styles.bounceElem} md:w-[375px]`}
                                 type={"password"}
@@ -131,7 +131,7 @@ export default function LoginPage() {
                                 inputName="password"
                                 required={true}
                             />
-                            <Link className={`block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5`}
+                            <Link className={`block font-[Rubik] text-[18px] text-[#adadad] text-end mt-2.5 leading-[80%]`}
                                   href="/auth/forgot-password">Забыли пароль?</Link>
                         </div>
 

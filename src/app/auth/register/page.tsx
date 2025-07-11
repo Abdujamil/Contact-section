@@ -52,7 +52,7 @@ export default function RegisterPage() {
                         />
 
                         <AppInput
-                            className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
+                            className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
                             type={"date"}
                             title={"дд.мм.гг"}
                             inputName="date"
