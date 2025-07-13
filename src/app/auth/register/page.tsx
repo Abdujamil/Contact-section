@@ -54,7 +54,7 @@ export default function RegisterPage() {
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
                             type={"date"}
-                            title={"дд.мм.гг"}
+                            title={"Дата рождения"}
                             inputName="date"
                             required={true}
                         />

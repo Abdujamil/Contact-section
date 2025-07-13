@@ -103,6 +103,10 @@ button > span{
     /*font-weight: 400;*/
 }
 
+input[type="date"]::-webkit-datetime-edit {
+    color: transparent;
+}
+
 /*Scrollbar*/
 
 .scrollbar {
