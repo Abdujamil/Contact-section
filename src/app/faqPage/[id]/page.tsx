@@ -34,7 +34,7 @@ export default async function FaqPage({params, searchParams}: Props) {
                 <Bg/>
                 <Breadcrumbs faqPage={true}/>
                 <div
-                    className="w-full max-w-[1180px] h-auto mx-auto mt-[120px]">
+                    className="w-full max-w-[1180px] h-auto mx-auto mt-[130px]">
                     <FaqPageContent
                         fromHeader={fromHeader}
                         id={id}

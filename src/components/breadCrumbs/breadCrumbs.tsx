@@ -41,12 +41,12 @@ export default function Breadcrumbs({
     //   const pathname = usePathname();
 
     return (
-        <nav className="absolute font-[Rubik] !text-[12px] md:!text-[16px] top-[75px] left-[20px] md:left-[30px] text-sm text-[#adadad] mb-4 max-w-[100%] overflow-auto">
-            <ul className="w-full flex flex-nowrap gap-2 text-nowrap">
+        <nav className="w-full absolute font-[Rubik] !text-[12px] md:!text-[16px] top-[70px] left-0 text-[#adadad] md:mb-4 max-w-[100%] overflow-auto border-b border-b-[#FFFFFF19] md:pb-2">
+            <ul className="w-full flex flex-nowrap gap-2 text-nowrap pl-[30px] !text-[12px] md:!text-[16px]">
                 <li>
                     <Link
                         href="/"
-                        className={`${styles["menu-item"]} !hover:text-[#3D9ED6] `}
+                        className={`${styles["menu-item"]} !hover:text-[#3D9ED6] !text-[12px] md:!text-[16px]`}
                     >
                         Главная
                     </Link>
@@ -166,14 +166,17 @@ export default function Breadcrumbs({
                         <li>
                             <Link
                                 href={`/editors`}
-                                className={`${styles["menu-item"]}  `}
+                                className={`${styles["menu-item"]} !text-[12px] md:!text-[16px]`}
                             >
                                 Редакторы
                             </Link>
                         </li>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
@@ -187,26 +190,14 @@ export default function Breadcrumbs({
                 {inBlog && (
                     <>
                         <li className="flex items-center justify-center">
-                            <svg
-                                width="6"
-                                height="10"
-                                viewBox="0 0 6 10"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M1.25 0.917969L5.33333 5.0013L1.25 9.08464"
-                                    stroke="#CCCCCC"
-                                    strokeWidth="1.16667"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
                             <Link
                                 href="/blog" // или просто /blog, если такая страница есть
-                                className={`${styles["menu-item"]} `}
+                                className={`${styles["menu-item"]} !text-[12px] md:!text-[16px]`}
                             >
                                 Блог
                             </Link>
@@ -239,7 +230,7 @@ export default function Breadcrumbs({
                         <li>
                             <Link
                                 href="/blog"
-                                className={`${styles["menu-item"]} `}
+                                className={`${styles["menu-item"]} !text-[12px] md:!text-[16px]`}
                             >
                                 Блог
                             </Link>

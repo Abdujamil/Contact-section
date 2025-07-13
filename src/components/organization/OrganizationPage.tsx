@@ -11,7 +11,7 @@ export type OrganizationTab = "aboutCompany" | "whereDoYouLose" | "API";
 const tabTitles: Record<OrganizationTab, string> = {
     aboutCompany: "О компании",
     whereDoYouLose: "Где вы теряете",
-    API: "Api",
+    API: "Документация REST API Audiosector",
 };
 
 // Компонент с логикой useSearchParams
@@ -28,7 +28,7 @@ function OrganizationPageContent() {
         <>
             <Bg/>
             <div
-                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
+                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[130px]`}
             >
                 <Breadcrumbs organizationUrl={true} />
                 <h1

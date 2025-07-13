@@ -258,7 +258,7 @@ export default function EditorPage() {
   return (
       <>
         <Bg />
-        <div className={`min-h-screen mt-[119px]`}>
+        <div className={`min-h-screen mt-[129px]`}>
           <div className={`max-w-[1180px] px-[10px] min-h-screen m-auto`}>
             <Breadcrumbs
                 editorName={currentEditor.name}

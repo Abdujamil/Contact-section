@@ -138,12 +138,10 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                             transform: `translateX(-${(navigationStack.length - 1) * 100}%)`
                         }}
                     >
-
-
                         {navigationStack.map((level, index) => (
                             <ul
                                 key={index}
-                                className={`${styles["header-nav__list"]} flex min-w-full flex-shrink-0`}
+                                className={`${styles["header-nav__list"]} font-[Rubik] flex min-w-full flex-shrink-0`}
                             >
                                 {level.items.map((item, index_item) =>
                                     item.href ? (

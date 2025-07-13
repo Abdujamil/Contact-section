@@ -107,7 +107,7 @@ export default async function BlogPage({
         return (
             <>
                 <Bg/>
-                <div className={`mt-[112px]`}>
+                <div className={`mt-[122px]`}>
                     <h1
                         className={`${styles.txtGradientRight} w-fit
                          max-w-[862px] text-center m-auto text-[28px] leading-[110%] mb-[20px]

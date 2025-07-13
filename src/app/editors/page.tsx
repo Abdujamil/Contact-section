@@ -279,7 +279,7 @@ export default function Editors() {
     return (
         <>
             <Bg/>
-            <div className={`min-h-screen mt-[120px]`}>
+            <div className={`min-h-screen mt-[130px]`}>
                 <Breadcrumbs editorId={editorId} inBlog={true} editorPage={true}/>
                 <div className={`max-w-[1180px] px-[10px] m-auto min-h-screen`}>
                     <h1

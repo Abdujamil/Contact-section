@@ -21,7 +21,7 @@ function OfferPage() {
         <>
             <Bg/>
             <div
-                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[120px]`}
+                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[130px]`}
             >
                 <h1
                     className={`${styles.txtGradientTitle} text-center text-[48px] leading-[110%] mt-[-8px] mb-[40px]`}
