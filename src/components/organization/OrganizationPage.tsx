@@ -32,7 +32,8 @@ function OrganizationPageContent() {
             >
                 <Breadcrumbs organizationUrl={true} />
                 <h1
-                    className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] md:text-[48px] leading-[110%] mt-[-8px] mb-5 md:mb-10`}
+                    className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] leading-[110%] mb-[20px] mt-[-8px]
+                            md:text-[48px] md:mb-[40px]`}
                 >
                     {tabTitles[activeTab]}
                 </h1>

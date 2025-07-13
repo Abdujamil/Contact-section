@@ -127,9 +127,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
             />
 
             {passwordStrength === '' ? (
-                <Link
-                    className={`${styles['menu-item']} relative left-[63%] right-auto md:mr-4 block font-[Rubik] !items-end !text-[16px] text-[#adadad] !text-end mt-2.5 leading-[80%]`}
-                    href="/auth/forgot-password">Забыли пароль?</Link>
+             <div></div>
             ) : (
                 <div className="mt-2.5 flex justify-start gap-2 items-center relative">
                     <span className="font-[Rubik] text-[16px] text-[#CCCCCC] leading-[80%]">Сложность пароля:</span>

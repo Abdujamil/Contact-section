@@ -82,7 +82,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
         <>
             <Bg/>
             <div
-                className={`${styles.politic} mt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                className={`${styles.politic} mt-[20px] h-full min-h-[770px] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <div className="w-full md:grid md:max-h-[589px] gap-[40px] grid-cols-[260px_1fr]">
                     <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25">
