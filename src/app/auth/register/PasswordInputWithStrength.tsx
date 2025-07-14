@@ -72,9 +72,9 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import {useFormContext} from 'react-hook-form';
-import Link from 'next/link';
+// import Link from 'next/link';
 import AppInput from '@/components/forms/elements/AppInput';
-import styles from "@/app/page.module.scss";
+// import styles from "@/app/page.module.scss";
 
 export default function PasswordInputWithStrength({className}: { className?: string }) {
     const {watch} = useFormContext();

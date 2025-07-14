@@ -1,3 +1,101 @@
+// 'use client'
+// // app/(auth)/register/page.tsx
+//
+// import {useForm, FormProvider} from "react-hook-form";
+// import React, {useEffect} from "react";
+// import {emailRegex} from "@/components/Form/validation";
+// import AppInput from "@/components/forms/elements/AppInput";
+// import styles from "@/app/page.module.scss";
+// import Image from "next/image";
+// import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+// import HeaderStyles from "@/components/header/Header.module.css";
+// import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
+// import UsernameInputWithValidation from "@/app/auth/register/UsernameInputWithValidation";
+//
+// export default function RegisterPage() {
+//     const methods = useForm();
+//     const {register} = methods;
+//
+//     useEffect(() => {
+//         // Регистрируем email с кастомной валидацией
+//         register("email", {
+//             required: "Введите email",
+//             pattern: {
+//                 value: emailRegex,
+//                 message: "Неверный формат email",
+//             },
+//         });
+//     }, [register]);
+//
+//     return (
+//         <div
+//             className={`flex gap-[30px] items-start justify-between md:h-[497px]`}>
+//             <div className={`h-full`}>
+//                 <FormProvider {...methods}>
+//                     <form className="space-y-8.5 h-full">
+//                         <AppInput
+//                             className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
+//                             type={"email"}
+//                             title={"E-mail"}
+//                             inputName="email"
+//                             required={true}
+//                         />
+//
+//                         <PasswordInputWithStrength className={`${styles.bounceElem} md:w-[375px]`} />
+//                         <UsernameInputWithValidation className={`${styles.bounceElem} md:w-[375px]`} />
+//
+//                         <AppInput
+//                             className={`${styles.bounceElem} md:w-[375px] my-[34px]`}
+//                             title={"Ваш никнейм"}
+//                             inputName="Nickname"
+//                             required={true}
+//                         />
+//
+//                         <AppInput
+//                             className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
+//                             type={"date"}
+//                             title={"Дата рождения"}
+//                             inputName="date"
+//                             required={true}
+//                         />
+//
+//                         <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
+//                             <button
+//                                 type="submit"
+//                                 onMouseMove={handleMouseMove}
+//                                 onMouseLeave={handleMouseLeave}
+//                                 className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
+//                                 data-text=""
+//                             >
+//                                                   <span
+//                                                       className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+//                                                     Отправить
+//                                                   </span>
+//                                 <svg
+//                                     className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
+//                                     width="16" height="17" viewBox="0 0 16 17" fill="none"
+//                                     xmlns="http://www.w3.org/2000/svg">
+//                                     <path
+//                                         d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z"
+//                                         fill="#ADADAD"/>
+//                                 </svg>
+//
+//                             </button>
+//                             <div className={styles.highlight}/>
+//                         </div>
+//                     </form>
+//                 </FormProvider>
+//             </div>
+//             <div className={`h-full`}>
+//                 <Image
+//                     className={`h-full rounded-[4px] border border-[#353535]`}
+//                     src='/auth/02.png' alt='03' width={375} height={509}/>
+//             </div>
+//         </div>
+//     );
+// }
+
+
 'use client'
 // app/(auth)/register/page.tsx
 
@@ -12,6 +110,44 @@ import HeaderStyles from "@/components/header/Header.module.css";
 import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
 import UsernameInputWithValidation from "@/app/auth/register/UsernameInputWithValidation";
 
+// Функция для валидации даты
+const validateDate = (value: string) => {
+    if (!value) return "Введите дату рождения";
+
+    // Проверяем формат ДД.ММ.ГГГГ
+    const dateRegex = /^(\d{2})\.(\d{2})\.(\d{4})$/;
+    const match = value.match(dateRegex);
+
+    if (!match) {
+        return "Неверный формат даты. Используйте ДД.ММ.ГГГГ";
+    }
+
+    const [, day, month, year] = match;
+    const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+
+    // Проверяем, что дата валидна
+    if (date.getDate() !== parseInt(day) ||
+        date.getMonth() !== parseInt(month) - 1 ||
+        date.getFullYear() !== parseInt(year)) {
+        return "Несуществующая дата";
+    }
+
+    // Проверяем, что дата не в будущем
+    const today = new Date();
+    if (date > today) {
+        return "Дата не может быть в будущем";
+    }
+
+    // Проверяем, что возраст не менее 13 лет (или другое ограничение)
+    const minAge = 13;
+    const minDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+    if (date > minDate) {
+        return `Минимальный возраст: ${minAge} лет`;
+    }
+
+    return true;
+};
+
 export default function RegisterPage() {
     const methods = useForm();
     const {register} = methods;
@@ -24,6 +160,12 @@ export default function RegisterPage() {
                 value: emailRegex,
                 message: "Неверный формат email",
             },
+        });
+
+        // Регистрируем дату рождения с кастомной валидацией
+        register("date", {
+            required: "Введите дату рождения",
+            validate: validateDate
         });
     }, [register]);
 
@@ -53,10 +195,11 @@ export default function RegisterPage() {
 
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
-                            type={"date"}
+                            type={"text"}
                             title={"Дата рождения"}
                             inputName="date"
                             required={true}
+                            mask="date"
                         />
 
                         <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
@@ -67,10 +210,10 @@ export default function RegisterPage() {
                                 className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
                                 data-text=""
                             >
-                                                  <span
-                                                      className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
-                                                    Отправить
-                                                  </span>
+                                <span
+                                    className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                    Отправить
+                                </span>
                                 <svg
                                     className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
                                     width="16" height="17" viewBox="0 0 16 17" fill="none"
@@ -79,7 +222,6 @@ export default function RegisterPage() {
                                         d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z"
                                         fill="#ADADAD"/>
                                 </svg>
-
                             </button>
                             <div className={styles.highlight}/>
                         </div>
