@@ -26,7 +26,7 @@ export default function ForgotPasswordPage() {
     }, [register]);
 
     return (
-        <div  className={`flex gap-[30px] items-start justify-between  md:h-[497px]`}>
+        <div  className={`flex gap-[30px] items-start justify-between  md:h-[467px]`}>
             <div >
                 <FormProvider {...methods}>
                     <form className="space-y-4">

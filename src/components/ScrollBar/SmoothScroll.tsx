@@ -11,15 +11,36 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     const [showScrollbar, setShowScrollbar] = useState(true);
     const pathname = usePathname();
 
+    // useEffect(() => {
+    //     const isContact = pathname === '/contact';
+    //     const isPricing = pathname === '/pricing';
+    //     const isOrganization = pathname === '/organizations';
+    //
+    //     document.body.style.overflow = isContact || isPricing || isOrganization ? 'hidden' : '';
+    //     setShowScrollbar(!isContact);
+    //
+    //     const timeout1 = setTimeout(() => {
+    //         window.dispatchEvent(new Event('scroll'));
+    //     }, 50);
+    //     const timeout2 = setTimeout(() => {
+    //         window.dispatchEvent(new Event('scroll'));
+    //     }, 200);
+    //
+    //     return () => {
+    //         clearTimeout(timeout1);
+    //         clearTimeout(timeout2);
+    //         document.body.style.overflow = '';
+    //     };
+    // }, [pathname]);
+
     useEffect(() => {
         const isContact = pathname === '/contact';
         const isPricing = pathname === '/pricing';
         const isOrganization = pathname === '/organizations';
-        const isLogin = pathname === '/login';
-        const isAuth = pathname === '/auth/login';
+        const shouldHideScrollbar = pathname.startsWith("/auth") || isContact || isPricing || isOrganization;
 
-        document.body.style.overflow = isAuth || isLogin || isContact || isPricing || isOrganization ? 'hidden' : '';
-        setShowScrollbar(!isContact);
+        document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
+        setShowScrollbar(!shouldHideScrollbar);
 
         const timeout1 = setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));

@@ -56,7 +56,7 @@ export default function LoginPage() {
     return (
         <div
             className={`flex gap-[30px] items-start justify-between`}>
-            <div className={`max-w-[375px] flex flex-col items-center justify-between md:h-[497px]`}>
+            <div className={`max-w-[375px] flex flex-col items-center justify-between md:h-[467px]`}>
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                         <AppInput
@@ -397,7 +397,7 @@ export default function LoginPage() {
 
                 </div>
             </div>
-            <div className='w-full max-w-[375px] md:h-[497px]'>
+            <div className='w-full max-w-[375px] md:h-[467px]'>
                 <Image
                     className={`h-full rounded-[4px] border border-[#353535]`}
                     src='/auth/01.png' alt='01' width={375} height={488}/>

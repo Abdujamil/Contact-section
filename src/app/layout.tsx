@@ -5,8 +5,7 @@ import Header from "@/components/header/Header";
 import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
 import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
-import Footer from "@/app/footer";
-import FooterMob from "@/components/footer/footerMob";
+import  FootCondition  from '@/components/ConditionalFooter/page'
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -26,24 +25,19 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
-            >
-            <AuthProvider>
-                <SmoothScroll>
-                    <Header/>
-                        <main className="flex-grow">
-                            {children}
-                        </main>
-                        <div className={`hidden md:block`}>
-                            <Footer/>
-                        </div>
-                        <div className={`md:hidden`}>
-                            <FooterMob/>
-                        </div>
-                </SmoothScroll>
-            </AuthProvider>
-            </body>
+        <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        >
+        <AuthProvider>
+            <SmoothScroll>
+                <Header/>
+                <main className="flex-grow">
+                    {children}
+                </main>
+                <FootCondition />
+            </SmoothScroll>
+        </AuthProvider>
+        </body>
         </html>
     );
 }

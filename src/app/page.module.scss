@@ -81,6 +81,7 @@
   backdrop-filter: blur(5px);
   border: 1px solid #353535;
   border-radius: 4px;
+  transform: translateZ(0);
 }
 
 .menu-item {
@@ -159,6 +160,10 @@
     transform: translateX(-50px);
     opacity: 0;
   }
+
+  //.sendIconRight2{
+  //  transform: translateY(3px) !important;
+  //}
 
   &:hover {
     color: #ccc;
@@ -278,7 +283,7 @@
 //Новая анимация кнопок
 .btn.customBtn {
   .sendIconLeft2 {
-    transform: translateX(46px) translateY(40px);
+    transform: translateX(46px) translateY(42px);
     opacity: 1;
   }
 

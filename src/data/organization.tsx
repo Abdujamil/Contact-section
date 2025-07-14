@@ -498,9 +498,26 @@ export const organizationData: organizationItem[] = [
 
         aside: [
             {
-                id: "",
-                title: "",
+                id: "introduction",
+                title: "Введение",
+            },
+            {
+                id: "workflow",
+                title: "Порядок работы",
+            },
+            {
+                id: "base-url",
+                title: "Базовый URL — https://rest.audiosector.ru/v1",
+            },
+            {
+                id: "endpoints",
+                title: "Эндпоинты",
+            },
+            {
+                id: "error-codes",
+                title: "Общие коды возвращаемых ошибок",
             },
         ],
+
     },
 ];

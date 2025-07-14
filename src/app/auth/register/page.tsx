@@ -171,10 +171,10 @@ export default function RegisterPage() {
 
     return (
         <div
-            className={`flex gap-[30px] items-start justify-between md:h-[497px]`}>
+            className={`flex gap-[30px] items-start justify-between md:h-[467px]`}>
             <div className={`h-full`}>
                 <FormProvider {...methods}>
-                    <form className="space-y-8.5 h-full">
+                    <form className="space-y-[34px] h-full">
                         <AppInput
                             className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
                             type={"email"}

@@ -189,7 +189,10 @@
   font-size: 18px;
   justify-content: center;
   line-height: 1;
-  padding: 7px 15px;
+  /*padding: 7px 15px;*/
+
+  padding: 14px 15px 17px 15px;
+
   position: relative;
   text-align: center;
   transition: transform 0.08s ease, color 0.08s ease;
@@ -199,11 +202,15 @@
   height: 36px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
 }
 
+footer .login-button {
+  padding: 8px 15px 10px 15px;
+}
+
+
 .login-button:hover {
-  padding: 7px 15px;
+  /*padding: 7px 15px;*/
   border: 1px solid #353535;
 }
 

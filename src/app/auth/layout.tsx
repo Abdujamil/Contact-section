@@ -145,7 +145,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                 damping: 6,
                                 mass: 0.3,
                             }}
-                            className={`${styles.BlogPageContent} h-full md:h-[579px] text-[18px] leading-relaxed whitespace-pre-line p-[40px] border border-[#353535] rounded-[6px]`}
+                            className={`${styles.BlogPageContent} h-full md:h-[547px] text-[18px] leading-relaxed whitespace-pre-line p-[40px] border border-[#353535] rounded-[6px]`}
                         >
                             {children}
 

@@ -72,9 +72,8 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import {useFormContext} from 'react-hook-form';
-// import Link from 'next/link';
 import AppInput from '@/components/forms/elements/AppInput';
-// import styles from "@/app/page.module.scss";
+import styles from "@/app/page.module.scss";
 
 export default function PasswordInputWithStrength({className}: { className?: string }) {
     const {watch} = useFormContext();
@@ -117,7 +116,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
     };
 
     return (
-        <div className="relative md:h-[72px]">
+        <div className="relative">
             <AppInput
                 className={className}
                 type="password"
@@ -129,7 +128,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
             {passwordStrength === '' ? (
              <div></div>
             ) : (
-                <div className="mt-2.5 flex justify-start gap-2 items-center relative">
+                <div className="mt-2.5 flex justify-start gap-2 items-center absolute bottom-[-30px] ">
                     <span className="font-[Rubik] text-[16px] text-[#CCCCCC] leading-[80%]">Сложность пароля:</span>
                     <div className="relative">
                         <span
@@ -152,17 +151,12 @@ export default function PasswordInputWithStrength({className}: { className?: str
 
                         {showTooltip && (
                             <div
-                                className="absolute top-[30px] left-[140px] transform -translate-x-1/2 z-10 backdrop-blur-sm"
+                                className={`${styles.selectOption} absolute top-[25px] z-[99999] left-[60px]`}
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
                                 <div
-                                    className="border border-[#353535] rounded-sm p-[15px] shadow-lg min-w-[245px]"
-                                    style={{
-                                        background: 'rgba(53, 53, 53, 0.1)',
-                                        boxShadow:
-                                            '0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1)',
-                                    }}
+                                    className={`border border-[#353535] rounded-sm p-[15px] shadow-lg min-w-[245px]`}
                                 >
                                     <p className="text-left text-[#CCCCCC] text-[14px] font-[Rubik] leading-[18px]">
                                         {getTooltipText(passwordStrength)}
