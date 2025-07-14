@@ -84,7 +84,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
             <div
                 className={`${styles.politic} mt-[20px] h-full min-h-[770px] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
-                <div className="w-full md:grid md:max-h-[589px] gap-[40px] grid-cols-[260px_1fr]">
+                <div className="w-full md:grid md:max-h-[547px] gap-[40px] grid-cols-[260px_1fr]">
                     <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25">
                         <div
                             className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
