@@ -93,10 +93,10 @@ export default function OrganizationWhereDoYouLoseContent() {
                         <section id="who-controls-negotiations">
                             <h2 className={`!text-[32px] !mb-[30px]`}>Кто управляет вашими переговорами?</h2>
                             <div className={`mb-[50px]`}>
-                                <div className={`flex flex-wrap gap-[20px]`}>
+                                <div className={`flex flex-wrap md:flex-nowrap gap-[20px]`}>
                                     <div
                                         className={`w-full max-w-[390px] h-[133px] p-[20px] rounded-[6px] overflow-hidden backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)] relative`}>
-                                        <p className={`md:!text-[20px] leading-[120%] max-w-[180px]`}>Вы уверены, что контролируете
+                                        <p className={` md:!text-[20px] leading-[120%] max-w-[180px] md:max-w-full`}>Вы уверены, что контролируете
                                             каждый звонок?</p>
 
                                         <svg className={`absolute right-0 top-5 sm:w-[96px] sm:h-[90px]`} width="121" height="118" viewBox="0 0 121 118" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -272,7 +272,7 @@ export default function OrganizationWhereDoYouLoseContent() {
                                     </div>
                                     <div
                                         className={`w-full max-w-[390px] h-[133px] p-[20px] rounded-[6px] overflow-hidden backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)] relative`}>
-                                        <p className={`md:!text-[20px] leading-[120%] max-w-[180px]`}>Кто несёт ответственность <br/> за
+                                        <p className={`md:!text-[20px] leading-[120%] max-w-[180px] md:max-w-full`}>Кто несёт ответственность <br/> за
                                             результат разговоров?</p>
 
                                         <svg className={`absolute right-0 top-5 sm:w-[96px] sm:h-[90px]`} width="121" height="113" viewBox="0 0 121 113" fill="none" xmlns="http://www.w3.org/2000/svg">

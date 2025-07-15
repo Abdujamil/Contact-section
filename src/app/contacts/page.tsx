@@ -734,8 +734,11 @@ export default function Contacts() {
                                         >
                                             <FlightSuccess
                                                 close={() => setIsSubmitted(false)}
+                                                isContactPage={true}
+                                                isRegisterPage={false}
                                                 small
                                                 text="Сообщение отправлено!"
+                                                subText="Форма будет доступна через"
                                             />
                                         </div>
                                     )}

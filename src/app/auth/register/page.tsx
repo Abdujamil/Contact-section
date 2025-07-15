@@ -11,6 +11,7 @@ import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStre
 import UsernameInputWithValidation from "@/app/auth/register/UsernameInputWithValidation";
 import {motion} from "framer-motion";
 import Link from "next/link";
+import FlightSuccess from "@/components/Form/FlightSuccess";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -63,24 +64,25 @@ export default function RegisterPage() {
     const methods = useForm<RegisterFormValues>();
     const {register, handleSubmit} = methods;
     const [showPolicy, setShowPolicy] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
 
-    const onSubmit: SubmitHandler<RegisterFormValues> = async (data ) => {
+    const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
         setShowPolicy(true);
         try {
-            const res = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
-            });
-
-            const result = await res.json();
-
-            if (!res.ok) {
-                alert(result.error || 'Ошибка регистрации');
-                return;
-            }
+            // const res = await fetch('/api/register', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data),
+            // });
+            //
+            // const result = await res.json();
+            //
+            // if (!res.ok) {
+            //     alert(result.error || 'Ошибка регистрации');
+            //     return;
+            // }
             console.log("SUBMIT DATA:", data);
-            alert('Регистрация успешна!');
+            setSubmitted(false);
         } catch (error) {
             console.error(error);
             alert('Ошибка сервера');
@@ -109,107 +111,120 @@ export default function RegisterPage() {
         });
 
         // Регистрируем остальные поля
-        register("password", { required: "Введите пароль" });
-        register("username", { required: "Введите имя пользователя" });
-        register("nickname", { required: "Введите никнейм" });
+        register("password", {required: "Введите пароль"});
+        register("username", {required: "Введите имя пользователя"});
+        register("nickname", {required: "Введите никнейм"});
     }, [register]);
 
     return (
-        <div
-            className={`relative flex gap-[30px] items-start justify-between md:h-[467px]`}>
-            <div className={`h-full`}>
-                <FormProvider {...methods}>
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                        className="space-y-[34px] h-full"
-                        onFocus={handleFormInteraction}
-                        onClick={handleFormInteraction}
-                    >
-                        <AppInput
-                            className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
-                            type={"email"}
-                            title={"E-mail"}
-                            inputName="email"
-                            required={true}
-                        />
-
-                        <PasswordInputWithStrength className={`${styles.bounceElem} md:w-[375px]`}/>
-                        <UsernameInputWithValidation className={`${styles.bounceElem} md:w-[375px]`}/>
-
-                        <AppInput
-                            className={`${styles.bounceElem} md:w-[375px] my-[34px]`}
-                            title={"Ваш никнейм"}
-                            inputName="Nickname"
-                            required={true}
-                        />
-
-                        <AppInput
-                            className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
-                            type={"text"}
-                            title={"Дата рождения"}
-                            inputName="date"
-                            required={true}
-                            mask="date"
-                        />
-
-                        <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
-                            <button
-                                type="submit"
-                                onMouseMove={handleMouseMove}
-                                onMouseLeave={handleMouseLeave}
-                                className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
-                                data-text=""
+        <>
+            {!submitted ? (
+                <div
+                    className={`relative flex gap-[30px] items-start justify-between md:h-[467px]`}>
+                    <div className={`h-full`}>
+                        <FormProvider {...methods}>
+                            <form
+                                onSubmit={handleSubmit(onSubmit)}
+                                className="space-y-[34px] h-full"
+                                onFocus={handleFormInteraction}
+                                onClick={handleFormInteraction}
                             >
+                                <AppInput
+                                    className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
+                                    type={"email"}
+                                    title={"E-mail"}
+                                    inputName="email"
+                                    required={true}
+                                />
+
+                                <PasswordInputWithStrength className={`${styles.bounceElem} md:w-[375px]`}/>
+                                <UsernameInputWithValidation className={`${styles.bounceElem} md:w-[375px]`}/>
+
+                                <AppInput
+                                    className={`${styles.bounceElem} md:w-[375px] my-[34px]`}
+                                    title={"Ваш никнейм"}
+                                    inputName="Nickname"
+                                    required={true}
+                                />
+
+                                <AppInput
+                                    className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
+                                    type={"text"}
+                                    title={"Дата рождения"}
+                                    inputName="date"
+                                    required={true}
+                                    mask="date"
+                                />
+
+                                <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
+                                    <button
+                                        type="submit"
+                                        onMouseMove={handleMouseMove}
+                                        onMouseLeave={handleMouseLeave}
+                                        className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
+                                        data-text=""
+                                    >
                                 <span
                                     className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
                                     Отправить
                                 </span>
-                                <svg
-                                    className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
-                                    width="16" height="17" viewBox="0 0 16 17" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z"
-                                        fill="#ADADAD"/>
-                                </svg>
-                            </button>
-                            <div className={styles.highlight}/>
-                        </div>
-                    </form>
-                </FormProvider>
-            </div>
-            <div className={`h-full`}>
-                <Image
-                    className={`h-full rounded-[4px] border border-[#353535]`}
-                    src='/auth/02.png' alt='03' width={375} height={509}/>
-            </div>
+                                        <svg
+                                            className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
+                                            width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z"
+                                                fill="#ADADAD"/>
+                                        </svg>
+                                    </button>
+                                    <div className={styles.highlight}/>
+                                </div>
+                            </form>
+                        </FormProvider>
+                    </div>
+                    <div className={`h-full`}>
+                        <Image
+                            className={`h-full rounded-[4px] border border-[#353535]`}
+                            src='/auth/02.png' alt='03' width={375} height={509}/>
+                    </div>
 
-            {/* Анимированный блок с политикой */}
-            <motion.div
-                className={`w-full absolute bottom-[-15%] left-1/2 transform -translate-x-1/2`}
-                initial={{y: 20, opacity: 0}}
-                animate={
-                    showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}
-                }
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 4, // Меньше значение = больше отскок
-                    mass: 0.3, // Добавляем массу для более "пружинистого" эффекта
-                }}
-            >
-                <p
-                    className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
-                >
-                    Нажимая на кнопку «Отправить» вы соглашаетесь с
-                    <Link
-                        href="/politic"
-                        className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                    {/* Анимированный блок с политикой */}
+                    <motion.div
+                        className={`w-full absolute bottom-[-15%] left-1/2 transform -translate-x-1/2`}
+                        initial={{y: 20, opacity: 0}}
+                        animate={
+                            showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}
+                        }
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 4, // Меньше значение = больше отскок
+                            mass: 0.3, // Добавляем массу для более "пружинистого" эффекта
+                        }}
                     >
-                        политикой конфиденциальности
-                    </Link>
-                </p>
-            </motion.div>
-        </div>
+                        <p
+                            className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
+                        >
+                            Нажимая на кнопку «Отправить» вы соглашаетесь с
+                            <Link
+                                href="/politic"
+                                className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                            >
+                                политикой конфиденциальности
+                            </Link>
+                        </p>
+                    </motion.div>
+                </div>
+            ) : (
+                <FlightSuccess
+                    close={() => setSubmitted(false)}
+                    isContactPage={false}
+                    isRegisterPage={true}
+                    small
+                    text="Поздравляем с успешной регистрацией на сайте!"
+                    subText="Чтобы полноценно работать в личном кабинете, необходимо активировать ваш аккаунт."
+                />
+            )}
+        </>
     );
 }

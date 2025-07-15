@@ -7,11 +7,12 @@ import OrganizationContent from "@/components/organization/OrganizationContent";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import TryBlock from "@/components/TryBlock/page";
 
-export type OrganizationTab = "aboutCompany" | "whereDoYouLose" | "API";
+export type OrganizationTab = "aboutCompany" | "whereDoYouLose" | "TurnAPI" | "WhatIsApi";
 const tabTitles: Record<OrganizationTab, string> = {
     aboutCompany: "О компании",
     whereDoYouLose: "Где вы теряете",
-    API: "Документация REST API Audiosector",
+    TurnAPI: "Документация REST API Audiosector",
+    WhatIsApi: "Транскрибация с помощью API",
 };
 
 // Компонент с логикой useSearchParams
@@ -20,7 +21,6 @@ function OrganizationPageContent() {
     const handleTabChange = (tab: OrganizationTab) => {
         setActiveTab(tab);
 
-        // 👇 Вызов кастомного события для скролла вверх
         window.dispatchEvent(new Event('customScrollToTop'));
     };
 
