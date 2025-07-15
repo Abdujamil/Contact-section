@@ -63,19 +63,19 @@ const navItems = [
 export default function AuthLayout({children}: { children: ReactNode }) {
     const pathname = usePathname();
 
-    const footTexts = [
-        '',
-        'Используя AUDIO SECTOR, Вы соглашаетесь с политикой конфиденциальности.',
-        'Рекомендуем после авторизации заменить пароль.'
-    ]
+    // const footTexts = [
+    //     '',
+    //     'Используя AUDIO SECTOR, Вы соглашаетесь с политикой конфиденциальности.',
+    //     'Рекомендуем после авторизации заменить пароль.'
+    // ]
+    //
+    // let footTextIndex = 0;
 
-    let footTextIndex = 0;
-
-    if (pathname.includes("/auth/register")) {
-        footTextIndex = 1;
-    } else if (pathname.includes("/auth/forgot-password")) {
-        footTextIndex = 2;
-    }
+    // if (pathname.includes("/auth/register")) {
+    //     footTextIndex = 1;
+    // } else if (pathname.includes("/auth/forgot-password")) {
+    //     footTextIndex = 2;
+    // }
 
 
     return (
