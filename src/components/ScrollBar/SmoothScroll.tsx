@@ -34,10 +34,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     // }, [pathname]);
 
     useEffect(() => {
-        const isContact = pathname === '/contact';
-        const isPricing = pathname === '/pricing';
-        const isOrganization = pathname === '/organizations';
-        const shouldHideScrollbar = pathname.startsWith("/auth") || isContact || isPricing || isOrganization;
+        const hideScrollPaths = [
+            '/contact',
+            '/pricing',
+            '/organizations',
+            ...pathname.startsWith("/auth") ? [pathname] : []
+        ];
+
+        const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
 
         document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
         setShowScrollbar(!shouldHideScrollbar);
@@ -179,7 +183,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
             const maxScroll = scrollHeight - clientHeight;
 
-            setShowScrollbar(!pathname.includes("/contact"));
+            const hideScrollPaths = ['/contact', '/pricing', '/organizations'];
+            const shouldHide = hideScrollPaths.some(path => pathname.includes(path)) || pathname.startsWith("/auth");
+
+            setShowScrollbar(!shouldHide);
 
             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
