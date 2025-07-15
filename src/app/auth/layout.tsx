@@ -89,15 +89,11 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                         <div
                             className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
                         >
-
-
                             {navItems.map((item, index) => {
                                 const isActive = pathname === item.href;
                                 const isFirst = index === 0;
 
                                 return (
-
-
                                     <div key={item.label} className={`relative !w-[220px] m-auto !overflow-hidden`}>
                                         <Link
                                             href={item.href}
@@ -151,7 +147,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
 
                         </motion.div>
 
-                        <p className={`mt-5 text-center text-[#878787] text-[16px] font-[Rubik] leading-[80%]`}>{footTexts[footTextIndex]}</p>
+                        {/*<p className={`mt-5 text-center text-[#878787] text-[16px] font-[Rubik] leading-[80%]`}>{footTexts[footTextIndex]}</p>*/}
                     </div>
                 </div>
 

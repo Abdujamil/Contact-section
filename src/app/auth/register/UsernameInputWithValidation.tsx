@@ -39,7 +39,7 @@ export default function UsernameInputWithValidation({className}: { className?: s
                 required
             />
             {isTaken && (
-                <p className="text-[#FF3030] text-sm mt-1 font-[Rubik]">
+                <p className="absolute text-[#FF3030] text-sm mt-1 font-[Rubik]">
                     *Имя пользователя занято
                 </p>
             )}
