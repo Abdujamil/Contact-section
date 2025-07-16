@@ -8,6 +8,7 @@ import HeaderStyles from "@/components/header/Header.module.css";
 import {usePathname} from "next/navigation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import {motion} from "framer-motion";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 
 const navItems = [
@@ -82,10 +83,16 @@ export default function AuthLayout({children}: { children: ReactNode }) {
         <>
             <Bg/>
             <div
-                className={`${styles.politic} mt-[20px] h-full min-h-[770px] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                className={`${styles.politic} mt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
+                <Breadcrumbs loginUrl={true} />
                 <div className="w-full md:grid md:max-h-[547px] gap-[40px] grid-cols-[260px_1fr]">
                     <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25">
+                        <h2
+                            className={`${styles.txtGradientRight} leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
+                        >
+                            Войти
+                        </h2>
                         <div
                             className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
                         >
@@ -146,8 +153,6 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             {children}
 
                         </motion.div>
-
-                        {/*<p className={`mt-5 text-center text-[#878787] text-[16px] font-[Rubik] leading-[80%]`}>{footTexts[footTextIndex]}</p>*/}
                     </div>
                 </div>
 
