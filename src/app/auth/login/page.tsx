@@ -74,7 +74,7 @@ export default function LoginPage() {
                                 inputName="password"
                                 required={true}
                             />
-                            <Link className={`${styles['menu-item']} relative left-[63%] right-auto md:mr-4 block font-[Rubik] !items-end !text-[16px] text-[#adadad] !text-end mt-2.5 leading-[80%]`}
+                            <Link className={`${styles['menu-item']} relative left-[63%] right-auto md:mr-4 block font-[Rubik] !items-end !text-[16px] text-[#adadad] !text-end mt-2.5`}
                                   href="/auth/forgot-password">Забыли пароль?</Link>
                         </div>
                         <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
@@ -132,6 +132,7 @@ export default function LoginPage() {
                             </defs>
                         </svg>
                     </div>
+
                     {/*  Icons  */}
                     <div>
                         <div className="mt-2 flex items-center justify-center gap-[2px]">
@@ -392,7 +393,6 @@ export default function LoginPage() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div className='w-full max-w-[375px] md:h-[467px]'>

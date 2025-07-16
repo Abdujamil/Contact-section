@@ -60,6 +60,15 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         };
     }, [pathname]);
 
+    useEffect(() => {
+        if (pathname.startsWith('/auth')) {
+            // Принудительно прокручиваем наверх
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0; // на всякий случай
+        }
+    }, [pathname]);
+
+
     const getScrollOffset = () => {
         if (pathname.includes('/politic') || pathname.includes('/organizations')) {
             return -130;

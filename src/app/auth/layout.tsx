@@ -64,26 +64,11 @@ const navItems = [
 export default function AuthLayout({children}: { children: ReactNode }) {
     const pathname = usePathname();
 
-    // const footTexts = [
-    //     '',
-    //     'Используя AUDIO SECTOR, Вы соглашаетесь с политикой конфиденциальности.',
-    //     'Рекомендуем после авторизации заменить пароль.'
-    // ]
-    //
-    // let footTextIndex = 0;
-
-    // if (pathname.includes("/auth/register")) {
-    //     footTextIndex = 1;
-    // } else if (pathname.includes("/auth/forgot-password")) {
-    //     footTextIndex = 2;
-    // }
-
-
     return (
         <>
             <Bg/>
             <div
-                className={`mt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                className={`pt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <Breadcrumbs loginUrl={true} />
                 <div className="w-full md:grid md:max-h-[547px] gap-[40px] grid-cols-[260px_1fr]">
@@ -148,7 +133,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                 damping: 6,
                                 mass: 0.3,
                             }}
-                            className={`${styles.BlogPageContent} h-full md:h-[547px] text-[18px] leading-relaxed whitespace-pre-line p-[40px] border border-[#353535] rounded-[6px]`}
+                            className={`${styles.BlogPageContent} md:h-[547px] text-[18px] leading-relaxed whitespace-pre-line p-[40px] border border-[#353535] rounded-[6px]`}
                         >
                             {children}
 
