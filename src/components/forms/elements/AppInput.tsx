@@ -477,7 +477,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     <button
                         type="button"
                         onClick={() => setIsCalendarVisible(true)}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
                     >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
