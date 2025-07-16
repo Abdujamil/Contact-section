@@ -183,7 +183,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
             const maxScroll = scrollHeight - clientHeight;
 
-            const hideScrollPaths = ['/contact', '/pricing', '/organizations'];
+            const hideScrollPaths = ['/contact', '/pricing'];
             const shouldHide = hideScrollPaths.some(path => pathname.includes(path)) || pathname.startsWith("/auth");
 
             setShowScrollbar(!shouldHide);
