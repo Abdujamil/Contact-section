@@ -68,18 +68,18 @@ export default function AuthLayout({children}: { children: ReactNode }) {
         <>
             <Bg/>
             <div
-                className={`pt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                className={`${styles['auth-content']} pt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <Breadcrumbs loginUrl={true} />
                 <div className="w-full md:grid md:max-h-[547px] gap-[40px] grid-cols-[260px_1fr]">
-                    <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25">
+                    <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                         <h2
-                            className={`${styles.txtGradientRight} leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
+                            className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
                         >
                             Войти
                         </h2>
                         <div
-                            className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+                            className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
                         >
                             {navItems.map((item, index) => {
                                 const isActive = pathname === item.href;
@@ -122,7 +122,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                         </div>
                     </aside>
 
-                    <div className={`relative`}>
+                    <div className={`relative md:pb-0 pb-20`}>
                         <motion.div
                             key={pathname}
                             initial={{opacity: 0, y: -30}}
@@ -133,7 +133,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                 damping: 6,
                                 mass: 0.3,
                             }}
-                            className={`${styles.BlogPageContent} md:h-[547px] text-[18px] leading-relaxed whitespace-pre-line p-[40px] border border-[#353535] rounded-[6px]`}
+                            className={`${styles.BlogPageContent} md:h-[547px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
                         >
                             {children}
 

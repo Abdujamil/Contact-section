@@ -120,35 +120,35 @@ export default function RegisterPage() {
         <>
             {!submitted ? (
                 <div
-                    className={`relative flex gap-[30px] items-start justify-between md:h-[467px]`}>
-                    <div className={`h-full`}>
+                    className={`w-full relative flex md:flex-nowrap  flex-wrap gap-[30px] items-start justify-between md:h-[467px]`}>
+                    <div className={`h-full w-full md:w-[375px]`}>
                         <FormProvider {...methods}>
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
-                                className="space-y-[34px] h-full"
+                                className="w-full md:w-[375px] space-y-[34px] h-full"
                                 onFocus={handleFormInteraction}
                                 onClick={handleFormInteraction}
                             >
                                 <AppInput
-                                    className={`${styles.bounceElem} md:w-[375px] mb-[34px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[34px] mt-5 md:mt-0`}
                                     type={"email"}
                                     title={"E-mail"}
                                     inputName="email"
                                     required={true}
                                 />
 
-                                <PasswordInputWithStrength className={`${styles.bounceElem} md:w-[375px]`}/>
-                                <UsernameInputWithValidation className={`${styles.bounceElem} md:w-[375px]`}/>
+                                <PasswordInputWithStrength className={`${styles.bounceElem} w-full md:w-[375px]`}/>
+                                <UsernameInputWithValidation className={`${styles.bounceElem} w-full md:w-[375px]`}/>
 
                                 <AppInput
-                                    className={`${styles.bounceElem} md:w-[375px] my-[34px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[375px] my-[34px]`}
                                     title={"Ваш никнейм"}
                                     inputName="Nickname"
                                     required={true}
                                 />
 
                                 <AppInput
-                                    className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[30px]`}
                                     type={"text"}
                                     title={"Дата рождения"}
                                     inputName="date"
@@ -182,9 +182,9 @@ export default function RegisterPage() {
                             </form>
                         </FormProvider>
                     </div>
-                    <div className={`h-full`}>
+                    <div className={`w-full h-full`}>
                         <Image
-                            className={`h-full rounded-[4px] border border-[#353535]`}
+                            className={`m-auto h-full rounded-[4px] border border-[#353535]`}
                             src='/auth/02.png' alt='03' width={375} height={509}/>
                     </div>
 

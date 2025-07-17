@@ -32,14 +32,14 @@ const FlightSuccess = ({close, small = false, text, subText, isContactPage = fal
 
             <div className="font-[Rubik] flex flex-col items-center">
                 <div className="flex flex-col gap-[30px] text-white text-center items-center">
-                    <div className="h-[23px]">
+                    <div className="h-full md:h-[23px]">
                         <h3 className={`text-[32px] text-[#CCCCCC] leading-[37px] `}>
                             {text}
                         </h3>
                     </div>
 
                     <p
-                        className={` !text-[20px] text-[#CCCCCC] leading-[120%] flex flex-col items-center justify-center gap-5 
+                        className={`!text-[16px]  md:!text-[20px] text-[#CCCCCC] leading-[120%] flex flex-col items-center justify-center gap-5 
                         ${ isRegisterPage ? 'max-w-[568px] !gap-2' : 'w-full' }
                         ${ isContactPage || isRegisterPage ? "" : "mb-[40px]"}`}
                     >

@@ -194,7 +194,7 @@ input[type="date"]::-webkit-datetime-edit {
     z-index: 1;
     transition: all .2s ease-in-out 0s;
     display: block;
-    height: 50px;
+    height: 51px;
     background: #4a587d;
     border-radius: 4px;
     font-size: 16px;

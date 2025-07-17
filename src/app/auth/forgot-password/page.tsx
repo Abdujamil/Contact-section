@@ -69,14 +69,14 @@ export default function ForgotPasswordPage() {
 
             {!submitted ? (
                 <>
-                    <div className={`flex gap-[30px] items-start justify-between md:h-[467px]`}>
-                        <div>
+                    <div className={`w-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between md:h-[467px]`}>
+                        <div className={`w-full md:max-w-[375px]`}>
                             <FormProvider {...methods}>
 
                                 <form onSubmit={handleSubmit(onSubmit)} onClick={handleFormInteraction}
-                                      className="space-y-4">
+                                      className="w-full space-y-4">
                                     <AppInput
-                                        className={`${styles.bounceElem} md:w-[375px] mb-[30px]`}
+                                        className={`${styles.bounceElem} w-full md:w-[375px] mb-[30px] mt-[20px] md:mt-0`}
                                         type={"email"}
                                         title={"E-mail"}
                                         inputName="email"

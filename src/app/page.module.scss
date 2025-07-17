@@ -658,6 +658,7 @@
 }
 
 
+
 @media screen and (max-width: 768px) {
   .authorBlock {
 
@@ -705,6 +706,14 @@
         // transform: translateX(30px);
         transform: translateX(0);
       }
+    }
+  }
+
+  .auth-content{
+    .licenseBtns{
+      backdrop-filter: blur(0);
+      background:transparent;
+      box-shadow: none;
     }
   }
 }
