@@ -191,6 +191,7 @@ input[type="date"]::-webkit-datetime-edit {
 .field__input,
 .field__textarea {
     /*margin-top: 25px;*/
+    font-family: "Rubik";
     z-index: 1;
     transition: all .2s ease-in-out 0s;
     display: block;
