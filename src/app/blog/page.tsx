@@ -41,7 +41,7 @@ const Blog = () => {
                     className={`${styles.blog} w-full min-h-full h-auto mx-auto flex flex-col items-center`}
                 >
                     <div
-                        className={`${styles.blogContainer} w-full max-w-[1180px] px-[10px] min-h-full h-auto mt-[130px] mb-[100px] mx-auto flex flex-col items-center`}
+                        className={`${styles.blogContainer} w-full max-w-[1180px] px-[10px] min-h-full h-auto mt-[120px] mb-[100px] mx-auto flex flex-col items-center`}
                     >
                         <h1
                             className={`${styles.txtGradientRight} text-center text-[28px] leading-[110%] mb-[20px] mt-[-8px]
