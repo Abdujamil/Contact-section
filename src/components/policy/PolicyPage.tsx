@@ -29,7 +29,7 @@ function PolicyPageContent() {
         <>
             <Bg/>
             <div
-                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[125px]`}
+                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[118px]`}
             >
                 <Breadcrumbs policyUrl={true}/>
                 <h1
