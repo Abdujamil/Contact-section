@@ -44,7 +44,7 @@ export default function Breadcrumbs({
 
     return (
         <nav className="w-full absolute font-[Rubik] !text-[12px] md:!text-[16px] top-[70px] left-0 text-[#adadad] md:mb-4 max-w-[100%] overflow-auto border-b border-b-[#FFFFFF19] md:pb-2">
-            <ul className="w-full flex flex-nowrap gap-2 text-nowrap pl-[30px] !text-[12px] md:!text-[16px] mb-2.5 md:mb-0">
+            <ul className="w-full flex flex-nowrap gap-2 text-nowrap pl-[30px] !text-[12px] md:!text-[16px] mb-2.5 md:mb-0 leading-[70%]">
                 <li>
                     <Link
                         href="/"
