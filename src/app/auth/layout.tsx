@@ -71,7 +71,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                 className={`${styles['auth-content']} pt-[20px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <Breadcrumbs loginUrl={true} />
-                <div className="w-full md:grid md:max-h-[547px] gap-[40px] grid-cols-[260px_1fr]">
+                <div className="w-full md:grid md:max-h-[581px] gap-[40px] grid-cols-[260px_1fr]">
                     <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                         <h2
                             className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
@@ -133,10 +133,9 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                 damping: 6,
                                 mass: 0.3,
                             }}
-                            className={`${styles.BlogPageContent} md:h-[547px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+                            className={`${styles.BlogPageContent} md:h-[581px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
                         >
                             {children}
-
                         </motion.div>
                     </div>
                 </div>

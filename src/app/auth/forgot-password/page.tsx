@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
 
             {!submitted ? (
                 <>
-                    <div className={`w-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between md:h-[467px]`}>
+                    <div className={`w-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between md:h-[498px]`}>
                         <div className={`w-full md:max-w-[375px]`}>
                             <FormProvider {...methods}>
 

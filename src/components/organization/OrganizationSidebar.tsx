@@ -82,7 +82,7 @@ const OrganizationSidebar: React.FC<OrganizationSidebarProps> = ({
     return (
         <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] max-w-[320px] m-auto md:m-0">
             <div
-                className={`${styles.btns} ${styles.licenseBtns} m-auto md:m-0 md:mb-[20px] mb-[20px] flex flex-col items-start justify-start w-full max-w-full md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+                className={`${styles.btns} ${styles.licenseBtns} m-auto md:m-0 md:mb-[20px] mb-[20px] flex flex-col items-start justify-start w-full max-w-full md:max-w-[260px] p-[20px] gap-[10px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
             >
                 {tabs.map((tab) => (
                     <OrganizationTabButton

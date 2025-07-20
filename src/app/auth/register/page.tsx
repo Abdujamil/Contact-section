@@ -120,12 +120,12 @@ export default function RegisterPage() {
         <>
             {!submitted ? (
                 <div
-                    className={`w-full relative flex md:flex-nowrap  flex-wrap gap-[30px] items-start justify-between md:h-[467px]`}>
+                    className={`w-full relative flex md:flex-nowrap  flex-wrap gap-[30px] items-start justify-between md:h-[498px]`}>
                     <div className={`h-full w-full md:w-[375px]`}>
                         <FormProvider {...methods}>
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
-                                className="w-full md:w-[375px] space-y-[34px] h-full"
+                                className="w-full md:w-[375px] space-y-[38.5px] h-full"
                                 onFocus={handleFormInteraction}
                                 onClick={handleFormInteraction}
                             >
