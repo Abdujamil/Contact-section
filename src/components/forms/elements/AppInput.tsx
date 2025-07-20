@@ -220,7 +220,10 @@
 import React, {useEffect, useState, forwardRef} from 'react';
 import {useFormContext} from "react-hook-form";
 import styles from '../../../app/page.module.scss';
-import {DatePicker} from '@/components/DatePicker/DatePicker'
+// import {DatePicker} from '@/components/DatePicker/DatePicker'
+// import Picker from 'react-mobile-picker'
+import ModalPicker from "@/components/DatePicker/ModalPicker";
+
 
 interface AppInputProps {
     title: string;
@@ -404,6 +407,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         setValue(inputName, defaultValue || '')
     }, [title])
 
+
     return (
         <div
             className={`relative w-full z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
@@ -476,7 +480,10 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 {isDateMask && (
                     <button
                         type="button"
-                        onClick={() => setIsCalendarVisible(true)}
+                        onClick={(e) => {
+                            e.stopPropagation(); // Предотвращаем всплытие события
+                            setIsCalendarVisible(true); // Переключаем видимость
+                        }}
                         className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
                     >
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -487,21 +494,6 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     </button>
                 )}
             </label>
-            {isDateMask && (
-                <DatePicker
-                    isVisible={isCalendarVisible}
-                    onDateSelect={(date) => {
-                        setInternalValue(date);
-                        setValue(inputName, date);
-                        if (onChange) onChange(date);
-                        setIsCalendarVisible(false);
-                    }}
-                    onClose={() => setIsCalendarVisible(false)}
-                    initialDate={currentValue}
-                />
-            )}
-
-
             {/*{isDateMask && (*/}
             {/*    <DatePicker*/}
             {/*        isVisible={isCalendarVisible}*/}
@@ -514,9 +506,29 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
             {/*        onClose={() => setIsCalendarVisible(false)}*/}
             {/*        initialDate={currentValue}*/}
             {/*    />*/}
-            {/*)}*/}
+            {/*)*/}
+            {/*}*/}
+
+            {isDateMask && isCalendarVisible && (
+                <ModalPicker
+                    initialValue={{
+                        year: '2000',
+                        month: '06',
+                        day: '15',
+                    }}
+                    onClose={() => setIsCalendarVisible(false)}
+                    onDateSelect={(dateObj) => {
+                        const formattedDate = `${dateObj.year}-${dateObj.month}-${dateObj.day}`
+                        setValue(inputName, formattedDate)
+                        if (onChange) onChange(formattedDate)
+                        setIsCalendarVisible(false)
+                    }}
+                />
+            )}
+
         </div>
-    );
+    )
+        ;
 });
 
 AppInput.displayName = 'AppInput';

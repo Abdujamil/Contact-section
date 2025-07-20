@@ -784,7 +784,7 @@ export default function Contacts() {
                                 <div className="flex justify-between items-end  mb-5">
                                     <div className="w-full max-w-[516px]">
                                         <label
-                                            className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
+                                            className="pl-[18px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                             Полное наименование
                                         </label>
                                         {/*<input*/}
@@ -794,7 +794,7 @@ export default function Contacts() {
                                         {/*    className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"*/}
                                         {/*/>*/}
                                         <p
-                                            className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
+                                            className="w-full md:w-[556px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                                         >
                                             Общество с ограниченной ответственностью «АУДИОСЕКТОР»
                                         </p>
@@ -825,11 +825,11 @@ export default function Contacts() {
 
                                 <div className="mb-6">
                                     <label
-                                        className="pl-[18px] block text-lg font-light text-[#ccc] mb-2 leading-[110%]">
+                                        className="pl-[18px] block text-[16px] font-light text-[#ccc] mb-2 leading-[110%]">
                                         Юридический адрес
                                     </label>
                                     <p
-                                        className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                        className="w-full md:max-h-[51px] text-[#ссс] !text-[18px] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                     >
                                         180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44
                                     </p>
@@ -844,7 +844,7 @@ export default function Contacts() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[18px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 ИНН
                                             </label>
                                             {/*<input*/}
@@ -853,7 +853,7 @@ export default function Contacts() {
                                             {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
                                             {/*/>*/}
                                             <p
-                                                className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 6000005874
                                             </p>
@@ -861,7 +861,7 @@ export default function Contacts() {
 
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[18px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 ОГРН
                                             </label>
                                             {/*<input*/}
@@ -870,7 +870,7 @@ export default function Contacts() {
                                             {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
                                             {/*/>*/}
                                             <p
-                                                className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 1236000004569
                                             </p>
@@ -880,7 +880,7 @@ export default function Contacts() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[18px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 Генеральный директор
                                             </label>
                                             {/*<input*/}
@@ -890,7 +890,7 @@ export default function Contacts() {
                                             {/*/>*/}
 
                                             <p
-                                                className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 Владимиров Владимир Михайлович
                                             </p>
@@ -898,7 +898,7 @@ export default function Contacts() {
 
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-lg font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[18px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 Почта
                                             </label>
                                             {/* 20272A */}
@@ -908,7 +908,7 @@ export default function Contacts() {
                                             {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
                                             {/*/>*/}
                                             <p
-                                                className="w-full md:max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 info@audiosector.ru
                                             </p>
