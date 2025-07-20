@@ -41,7 +41,6 @@ export default function LoginPage() {
             alert('Ошибка сервера');
         }
     };
-
     useEffect(() => {
         // Регистрируем email с кастомной валидацией
         register("email", {
