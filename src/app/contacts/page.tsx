@@ -22,6 +22,8 @@ import FlightSuccess from "@/components/Form/FlightSuccess";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Link from "next/link";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import {getFileIcon} from "@/components/Form/getFileIcon";
+import FileSlider from "@/components/Form/FileSlider";
 
 
 export default function Contacts() {
@@ -72,6 +74,8 @@ export default function Contacts() {
         fileInputRef,
         textareaRef,
     } = useFormRefs();
+
+    const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
     // Select
     const [isSelectOpen, setIsSelectOpen] = useState(false);
@@ -324,7 +328,6 @@ export default function Contacts() {
         }
     }, [contactData]);
 
-
     return (
         <>
             <div className={`${styles.page} h-full`}>
@@ -398,12 +401,13 @@ export default function Contacts() {
                                             {/* Скрытый input для загрузки файла */}
                                             <input
                                                 type="file"
+                                                multiple
                                                 placeholder={text}
                                                 ref={fileInputRef}
                                                 onChange={(e) =>
-                                                    handleFileUpload(e, setText, textareaRef)
+                                                    handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
                                                 }
-                                                accept=".txt,.text,.md,.csv,.json,.xml,.html,.log" // Можно указать нужные форматы
+                                                // accept=".txt,.text,.md,.csv,.json,.xml,.html,.log,.pdf,.doc,.docx"
                                                 className="hidden"
                                             />
 
@@ -411,11 +415,20 @@ export default function Contacts() {
                                                 onClick={() => fileInputRef.current?.click()}
                                                 className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-4 right-4 cursor-pointer  transition-colors duration-200`}
                                             >
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M16.2635 9.89949L9.54597 16.617C7.78861 18.3744 4.93937 18.3744 3.18201 16.617V16.617C1.42465 14.8596 1.42465 12.0104 3.18201 10.253L11.3137 2.12132C12.4853 0.949747 14.3848 0.949747 15.5564 2.12132V2.12132C16.728 3.29289 16.728 5.19239 15.5564 6.36396L7.32364 14.5967C6.73785 15.1825 5.7881 15.1825 5.20232 14.5967V14.5967C4.61653 14.0109 4.61653 13.0612 5.20232 12.4754L12.0208 5.65685" stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round"/>
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M16.2635 9.89949L9.54597 16.617C7.78861 18.3744 4.93937 18.3744 3.18201 16.617V16.617C1.42465 14.8596 1.42465 12.0104 3.18201 10.253L11.3137 2.12132C12.4853 0.949747 14.3848 0.949747 15.5564 2.12132V2.12132C16.728 3.29289 16.728 5.19239 15.5564 6.36396L7.32364 14.5967C6.73785 15.1825 5.7881 15.1825 5.20232 14.5967V14.5967C4.61653 14.0109 4.61653 13.0612 5.20232 12.4754L12.0208 5.65685"
+                                                        stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round"/>
                                                 </svg>
 
                                             </div>
+
+                                            {
+                                                uploadedFiles && uploadedFiles.length > 0 && (
+                                                    <FileSlider uploadedFiles={uploadedFiles}/>
+                                                )
+                                            }
                                         </div>
 
                                         <div className={`${styles.formInpts} w-full`}>
@@ -461,17 +474,19 @@ export default function Contacts() {
                                                         className={`transition-transform duration-200 ${
                                                             isSelectOpen ? "rotate-180" : ""
                                                         }`}
-                                                        width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M1.414 0L9.07 7.656L7.656 9.07L0 1.414L1.414 0ZM14.3614 0L15.7754 1.414L11.5573 5.48499L10.1433 4.06999L14.3614 0Z"
-                                                              fill={
-                                                                  isSelectOpen
-                                                                      ? "#3D9ED6"
-                                                                      : selectError
-                                                                          ? "#FF3030"
-                                                                          : selectedOption
-                                                                              ? "#CCC"
-                                                                              : "#adadad"
-                                                              }
+                                                        width="16" height="10" viewBox="0 0 16 10" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M1.414 0L9.07 7.656L7.656 9.07L0 1.414L1.414 0ZM14.3614 0L15.7754 1.414L11.5573 5.48499L10.1433 4.06999L14.3614 0Z"
+                                                            fill={
+                                                                isSelectOpen
+                                                                    ? "#3D9ED6"
+                                                                    : selectError
+                                                                        ? "#FF3030"
+                                                                        : selectedOption
+                                                                            ? "#CCC"
+                                                                            : "#adadad"
+                                                            }
                                                         />
                                                     </svg>
 
@@ -637,20 +652,20 @@ export default function Contacts() {
 
                                             {/* Textarea */}
                                             <div className="relative w-full mt-[34px] md:hidden">
-                                          <textarea
-                                              name="comment"
-                                              value={comment}
-                                              onChange={(e) => setComment(e.target.value)}
-                                              className={`${styles.bounceElem}
-                                               placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
-                                               pr-[54px]
-                                               ${
-                                                  comment
-                                                      ? "!bg-[#20272A] border-[#353535]"
-                                                      : "bg-[#101010] border-[#353535]"
-                                              }
-                                               `}
-                                          ></textarea>
+                                                  <textarea
+                                                      name="comment"
+                                                      value={comment}
+                                                      onChange={(e) => setComment(e.target.value)}
+                                                      className={`${styles.bounceElem}
+                                                       placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                                                       pr-[54px]
+                                                       ${
+                                                          comment
+                                                              ? "!bg-[#20272A] border-[#353535]"
+                                                              : "bg-[#101010] border-[#353535]"
+                                                      }
+                                                       `}
+                                                  ></textarea>
                                                 <span
                                                     className={`absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200 ${
                                                         comment.trim() ? "opacity-0" : "opacity-100"
@@ -665,7 +680,7 @@ export default function Contacts() {
                                                     placeholder={text}
                                                     ref={fileInputRef}
                                                     onChange={(e) =>
-                                                        handleFileUpload(e, setText, textareaRef)
+                                                        handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
                                                     }
                                                     accept=".txt,.text,.md,.csv,.json,.xml,.html,.log" // Можно указать нужные форматы
                                                     className="hidden"
@@ -700,6 +715,7 @@ export default function Contacts() {
                                                         />
                                                     </svg>
                                                 </div>
+
                                             </div>
 
 
@@ -717,8 +733,11 @@ export default function Contacts() {
                                                   </span>
                                                     <svg
                                                         className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
-                                                        width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z" fill="#ADADAD"/>
+                                                        width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M3 9.5V7.5H0V9.5H3ZM8.96767 1.5L7.52908 2.93076L12.1092 7.48713H6V9.51185H12.1092L7.52908 14.0682L8.96767 15.5L16 8.5L15.2822 7.78462L14.5634 7.06823L8.96767 1.5Z"
+                                                            fill="#ADADAD"/>
                                                     </svg>
 
                                                 </button>
@@ -776,7 +795,7 @@ export default function Contacts() {
                                 id="requisite-block"
                                 initial={{y: 20, opacity: 1}}
                                 animate={controls}
-                                className={`${styles.contactRightContent} w-full max-w-[870px] md:h-[437px] h-auto border border-[#353535] rounded-[6px] md:p-10 p-5`}
+                                className={`${styles.contactRightContent} !font-[Rubik] w-full max-w-[870px] md:h-[437px] h-auto border border-[#353535] rounded-[6px] md:p-10 p-5`}
                                 style={{
                                     display: activeTab !== "requisite" ? "none" : "block",
                                 }}
@@ -784,7 +803,7 @@ export default function Contacts() {
                                 <div className="flex justify-between items-end  mb-5">
                                     <div className="w-full max-w-[516px]">
                                         <label
-                                            className="pl-[18px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                            className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                             Полное наименование
                                         </label>
                                         {/*<input*/}
@@ -794,7 +813,7 @@ export default function Contacts() {
                                         {/*    className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"*/}
                                         {/*/>*/}
                                         <p
-                                            className="w-full md:w-[556px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
+                                            className="w-full md:w-[556px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-[10px] py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                                         >
                                             Общество с ограниченной ответственностью «АУДИОСЕКТОР»
                                         </p>
@@ -806,7 +825,8 @@ export default function Contacts() {
                                             className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[212px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
                                         >
 
-                                              <span className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
+                                              <span
+                                                  className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
                                                 Скачать PDF
                                               </span>
 
@@ -825,13 +845,14 @@ export default function Contacts() {
 
                                 <div className="mb-6">
                                     <label
-                                        className="pl-[18px] block text-[16px] font-light text-[#ccc] mb-2 leading-[110%]">
+                                        className="pl-[10px] block text-[16px] font-light text-[#ccc] mb-2 leading-[110%]">
                                         Юридический адрес
                                     </label>
                                     <p
-                                        className="w-full md:max-h-[51px] text-[#ссс] !text-[18px] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                        className="w-full md:max-h-[51px] text-[#ссс] !text-[18px] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
                                     >
-                                        180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44
+                                        180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв.
+                                        44
                                     </p>
                                     {/*<input*/}
                                     {/*    type="text"*/}
@@ -844,7 +865,7 @@ export default function Contacts() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 ИНН
                                             </label>
                                             {/*<input*/}
@@ -853,7 +874,7 @@ export default function Contacts() {
                                             {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
                                             {/*/>*/}
                                             <p
-                                                className="w-full max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 6000005874
                                             </p>
@@ -861,7 +882,7 @@ export default function Contacts() {
 
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 ОГРН
                                             </label>
                                             {/*<input*/}
@@ -870,7 +891,7 @@ export default function Contacts() {
                                             {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
                                             {/*/>*/}
                                             <p
-                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 1236000004569
                                             </p>
@@ -880,7 +901,7 @@ export default function Contacts() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 Генеральный директор
                                             </label>
                                             {/*<input*/}
@@ -890,7 +911,7 @@ export default function Contacts() {
                                             {/*/>*/}
 
                                             <p
-                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 Владимиров Владимир Михайлович
                                             </p>
@@ -898,7 +919,7 @@ export default function Contacts() {
 
                                         <div>
                                             <label
-                                                className="pl-[18px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                                 Почта
                                             </label>
                                             {/* 20272A */}
@@ -908,7 +929,7 @@ export default function Contacts() {
                                             {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
                                             {/*/>*/}
                                             <p
-                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
                                             >
                                                 info@audiosector.ru
                                             </p>
@@ -921,7 +942,8 @@ export default function Contacts() {
                                             className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[212px] m-auto !h-[51px] overflow-hidden flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
                                         >
 
-                                              <span className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
+                                              <span
+                                                  className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
                                                 Скачать PDF
                                               </span>
 
