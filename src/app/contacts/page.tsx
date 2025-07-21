@@ -22,7 +22,6 @@ import FlightSuccess from "@/components/Form/FlightSuccess";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Link from "next/link";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
-// import {getFileIcon} from "@/components/Form/getFileIcon";
 import FileSlider from "@/components/Form/FileSlider";
 
 
@@ -332,15 +331,15 @@ export default function Contacts() {
         <>
             <div className={`${styles.page} h-full`}>
                 <Bg/>
+                <Breadcrumbs contactUrl={true}/>
                 <div
-                    className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center mt-[100px] md:mt-0`}
+                    className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center mt-[100px] md:pt-[60px] md:mt-0`}
                 >
-                    <Breadcrumbs contactUrl={true}/>
                     <div
-                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full min-h-[432px] flex justify-center items-center md:pt-[60px] md:mb-0  mb-25`}
+                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full flex justify-center items-center md:mb-0 mb-25`}
                     >
                         <div
-                            className={`w-full md:flex justify-center items-start md:gap-[40px] gap-[20px] mt-[60px] mb-[90px]`}
+                            className={`w-full md:flex justify-center items-start md:gap-[40px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px]`}>
                                 <h2
@@ -800,7 +799,7 @@ export default function Contacts() {
                                     display: activeTab !== "requisite" ? "none" : "block",
                                 }}
                             >
-                                <div className="flex justify-between items-end  mb-5">
+                                <div className="flex justify-between items-end mb-5">
                                     <div className="w-full max-w-[516px]">
                                         <label
                                             className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
@@ -813,7 +812,7 @@ export default function Contacts() {
                                         {/*    className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"*/}
                                         {/*/>*/}
                                         <p
-                                            className="w-full md:w-[556px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-[10px] py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
+                                            className="w-full md:w-[559px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-[10px] py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                                         >
                                             Общество с ограниченной ответственностью «АУДИОСЕКТОР»
                                         </p>
@@ -822,7 +821,7 @@ export default function Contacts() {
                                     <div className="relative !overflow-hidden hidden md:block">
                                         <button
                                             type="submit"
-                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[212px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
+                                            className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[191px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
                                         >
 
                                               <span
@@ -862,7 +861,7 @@ export default function Contacts() {
                                 </div>
 
                                 <div className="space-y-[14px]">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
                                         <div>
                                             <label
                                                 className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
@@ -898,7 +897,7 @@ export default function Contacts() {
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
                                         <div>
                                             <label
                                                 className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">

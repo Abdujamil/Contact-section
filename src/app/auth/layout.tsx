@@ -67,33 +67,34 @@ export default function AuthLayout({children}: { children: ReactNode }) {
     return (
         <>
             <Bg/>
+            <Breadcrumbs loginUrl={true}/>
             <div
                 className={`${styles['auth-content']} pt-[60px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
-                <Breadcrumbs loginUrl={true} />
-                <div className="w-full md:grid md:max-h-[581px] gap-[40px] grid-cols-[260px_1fr] mt-[60px] mb-[90px]">
-                    <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
-                        <h2
-                            className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
-                        >
-                            Вход
-                        </h2>
-                        <div
-                            className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
-                        >
-                            {navItems.map((item, index) => {
-                                const isActive = pathname === item.href;
-                                const isFirst = index === 0;
+                <div className="w-full flex items-center justify-center h-full">
+                    <div className={`md:flex gap-[40px] md:pt-[60px] md:pb-[60px]`}>
+                        <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
+                            <h2
+                                className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
+                            >
+                                Вход
+                            </h2>
+                            <div
+                                className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
+                            >
+                                {navItems.map((item, index) => {
+                                    const isActive = pathname === item.href;
+                                    const isFirst = index === 0;
 
-                                return (
-                                    <div key={item.label} className={`relative !w-[220px] m-auto !overflow-hidden`}>
-                                        <Link
-                                            href={item.href}
-                                            onMouseMove={handleMouseMove}
-                                            onMouseLeave={handleMouseLeave}
-                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
-                                            style={{color: isActive ? "#3D9ED6" : "#adadad"}}
-                                        >
+                                    return (
+                                        <div key={item.label} className={`relative !w-[220px] m-auto !overflow-hidden`}>
+                                            <Link
+                                                href={item.href}
+                                                onMouseMove={handleMouseMove}
+                                                onMouseLeave={handleMouseLeave}
+                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
+                                                style={{color: isActive ? "#3D9ED6" : "#adadad"}}
+                                            >
                                     <span
                                         className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
                                             isActive ? "!text-[#3D9ED6]" : "#adadad"} 
@@ -103,40 +104,41 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                       {item.label}
                                     </span>
 
-                                            <span
-                                                className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                <span
+                                                    className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                           {item.icon}
                                         </span>
 
-                                            <span
-                                                className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                <span
+                                                    className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                           {item.icon}
                                         </span>
-                                        </Link>
+                                            </Link>
 
-                                        <div className={styles.highlight}/>
-                                    </div>
-                                );
-                            })}
+                                            <div className={styles.highlight}/>
+                                        </div>
+                                    );
+                                })}
 
+                            </div>
+                        </aside>
+
+                        <div className={`relative md:pb-0 pb-20`}>
+                            <motion.div
+                                key={pathname}
+                                initial={{opacity: 0, y: -30}}
+                                animate={{opacity: 1, y: 0}}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 6,
+                                    mass: 0.3,
+                                }}
+                                className={`${styles.BlogPageContent} md:h-[581px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+                            >
+                                {children}
+                            </motion.div>
                         </div>
-                    </aside>
-
-                    <div className={`relative md:pb-0 pb-20`}>
-                        <motion.div
-                            key={pathname}
-                            initial={{opacity: 0, y: -30}}
-                            animate={{opacity: 1, y: 0}}
-                            transition={{
-                                type: "spring",
-                                stiffness: 300,
-                                damping: 6,
-                                mass: 0.3,
-                            }}
-                            className={`${styles.BlogPageContent} md:h-[581px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
-                        >
-                            {children}
-                        </motion.div>
                     </div>
                 </div>
 
