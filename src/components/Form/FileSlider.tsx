@@ -1,5 +1,4 @@
 import React, {useRef} from "react";
-import {FaChevronLeft} from "react-icons/fa";
 import {getFileIcon} from "@/components/Form/getFileIcon";
 
 const FileSlider = ({uploadedFiles}: { uploadedFiles: File[] }) => {
