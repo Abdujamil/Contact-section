@@ -68,10 +68,10 @@ export default function AuthLayout({children}: { children: ReactNode }) {
         <>
             <Bg/>
             <div
-                className={`${styles['auth-content']} pt-[85px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                className={`${styles['auth-content']} pt-[90px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <Breadcrumbs loginUrl={true} />
-                <div className="w-full md:grid md:max-h-[581px] gap-[40px] grid-cols-[260px_1fr]">
+                <div className="w-full md:grid md:max-h-[581px] gap-[40px] grid-cols-[260px_1fr] mt-[60px] mb-[90px]">
                     <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                         <h2
                             className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
