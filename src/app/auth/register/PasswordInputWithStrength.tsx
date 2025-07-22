@@ -47,7 +47,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
     };
 
     return (
-        <div className="relative">
+        <div className="relative mb-[32px]">
             <AppInput
                 className={className}
                 type="password"

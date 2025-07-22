@@ -58,7 +58,7 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
 
     return (
         <div
-            className={`${styles.btns} flex flex-col items-start justify-start w-full md:max-w-[260px] max-w-full  m-auto p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+            className={`${styles.btns} flex flex-col items-start justify-start w-full md:max-w-[260px] max-w-full  m-auto p-[19px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
         >
 
             <CustomButton

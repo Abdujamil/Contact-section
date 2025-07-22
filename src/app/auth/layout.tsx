@@ -69,10 +69,10 @@ export default function AuthLayout({children}: { children: ReactNode }) {
             <Bg/>
             <Breadcrumbs loginUrl={true}/>
             <div
-                className={`${styles['auth-content']} pt-[58px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                className={`${styles['auth-content']} pt-[61px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <div className="w-full flex items-center justify-center h-full">
-                    <div className={`md:flex gap-[40px] md:pt-[60px] md:pb-[60px]`}>
+                    <div className={`md:flex gap-[40px] md:pt-[60px] md:pb-[60px] ml-[1.5px]`}>
                         <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                             <h2
                                 className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[24px] mb-[20px] mt-[0]`}
@@ -80,7 +80,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                 Вход
                             </h2>
                             <div
-                                className={`${styles.btns} ${styles.licenseBtns} flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[16px] gap-[12px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
+                                className={`${styles.btns} ${styles.licenseBtns} h-[213px] flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[18px] gap-[10px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
                             >
                                 {navItems.map((item, index) => {
                                     const isActive = pathname === item.href;
@@ -134,7 +134,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                     damping: 6,
                                     mass: 0.3,
                                 }}
-                                className={`${styles.BlogPageContent} md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+                                className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
                             >
                                 {children}
                             </motion.div>

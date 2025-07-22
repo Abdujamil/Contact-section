@@ -125,12 +125,13 @@ export default function RegisterPage() {
                         <FormProvider {...methods}>
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
-                                className="w-full md:w-[375px] space-y-[34.5px] h-full"
+                                // className="w-full md:w-[375px] space-y-[34.5px] h-full"
+                                className="w-full md:w-[375px] h-full"
                                 onFocus={handleFormInteraction}
                                 onClick={handleFormInteraction}
                             >
                                 <AppInput
-                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[34px] mt-5 md:mt-0`}
+                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[31px] mt-5 md:mt-0`}
                                     type={"email"}
                                     title={"E-mail"}
                                     inputName="email"
@@ -148,7 +149,7 @@ export default function RegisterPage() {
                                 />
 
                                 <AppInput
-                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[30px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[43px]`}
                                     type={"text"}
                                     title={"Дата рождения"}
                                     inputName="date"
@@ -161,12 +162,12 @@ export default function RegisterPage() {
                                         type="submit"
                                         onMouseMove={handleMouseMove}
                                         onMouseLeave={handleMouseLeave}
-                                        className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
+                                        className={`${styles.btn} ${styles["register-button"]} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
                                         data-text=""
                                     >
                                 <span
                                     className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
-                                    Отправить
+                                    Регистрация
                                 </span>
                                         <svg
                                             className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
@@ -184,8 +185,8 @@ export default function RegisterPage() {
                     </div>
                     <div className={`w-full h-full`}>
                         <Image
-                            className={`md:min-w-[375px] m-auto h-full rounded-[4px] border border-[#353535]`}
-                            src='/auth/02.png' alt='03' width={375} height={509}/>
+                            className={`md:min-w-[375px] m-auto h-full md:h-[481px] rounded-[4px] border border-[#353535]`}
+                            src='/auth/02.png' alt='03' width={375} height={481}/>
                     </div>
 
                     {/* Анимированный блок с политикой */}

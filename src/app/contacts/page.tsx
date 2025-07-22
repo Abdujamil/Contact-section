@@ -343,7 +343,7 @@ export default function Contacts() {
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px]`}>
                                 <h2
-                                    className={`${styles.txtGradientRight} leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[33px] mb-[20px] mt-[0]`}
+                                    className={`${styles.txtGradientRight} leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[24px] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h2>
@@ -359,7 +359,7 @@ export default function Contacts() {
                                 id="form-main"
                                 initial={{y: 20, opacity: 1}}
                                 animate={controls}
-                                className={`${styles.contactRightContent} w-full max-w-[870px] md:h-[437px] border border-[#353535] rounded-[6px] md:p-10 p-5 relative`}
+                                className={`${styles.contactRightContent} w-full max-w-[870px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 p-5 relative`}
                                 style={{
                                     display: activeTab !== "contact" ? "none" : "block",
                                 }}
@@ -390,7 +390,7 @@ export default function Contacts() {
                                                `}
                                           ></textarea>
                                             <span
-                                                className={`absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200 ${
+                                                className={`absolute z-[9] left-[3%] top-[3%] pointer-events-none transition-opacity duration-200 ${
                                                     comment.trim() ? "opacity-0" : "opacity-100"
                                                 }`}
                                             >
@@ -412,7 +412,7 @@ export default function Contacts() {
 
                                             <div
                                                 onClick={() => fileInputRef.current?.click()}
-                                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-4 right-4 cursor-pointer  transition-colors duration-200`}
+                                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-4 cursor-pointer  transition-colors duration-200`}
                                             >
                                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
@@ -435,7 +435,7 @@ export default function Contacts() {
                                             <div className={`relative mb-[34px]`}>
                                                 <div
                                                     ref={selectRef}
-                                                    className={`
+                                                    className={` h-[51px]
                                       w-full border rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                       transition-border duration-200 ease-in
                                       ${

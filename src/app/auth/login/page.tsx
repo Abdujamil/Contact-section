@@ -59,13 +59,13 @@ export default function LoginPage() {
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                         <AppInput
-                            className={`${styles.bounceElem} w-full md:w-[375px] mb-[34px]`}
+                            className={`${styles.bounceElem} w-full md:w-[375px] mb-[32px]`}
                             type={"email"}
                             title={"E-mail"}
                             inputName="email"
                             required={true}
                         />
-                        <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[26px]`}>
+                        <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[25px]`}>
                             <AppInput
                                 className={`${styles.bounceElem} w-full md:w-[375px]`}
                                 type={"password"}
@@ -73,7 +73,7 @@ export default function LoginPage() {
                                 inputName="password"
                                 required={true}
                             />
-                            <Link className={`${styles['menu-item']} w-fit mr-4 leading-[70%] font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-2.5`}
+                            <Link className={`${styles['menu-item']} w-fit mr-4 leading-[70%] font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}
                                   href="/auth/forgot-password">Забыли пароль?</Link>
                         </div>
                         <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">

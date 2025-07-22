@@ -258,6 +258,19 @@
   }
 }
 
+.btn.register-button{
+  &:hover {
+    span {
+      transform: translateX(-27px) !important;
+    }
+
+    .sendIconRight {
+      opacity: 1;
+      transform: translateX(28px) !important;
+    }
+  }
+}
+
 .btn.log-send-button {
   .sendIconRight {
     transform: translateX(70px);
