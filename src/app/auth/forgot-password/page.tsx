@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
 
             {!submitted ? (
                 <>
-                    <div className={`w-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between md:h-[498px]`}>
+                    <div className={`w-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
                         <div className={`w-full md:max-w-[375px]`}>
                             <FormProvider {...methods}>
 
@@ -112,7 +112,7 @@ export default function ForgotPasswordPage() {
 
                         <div className={`h-full`}>
                             <Image
-                                className={` h-full rounded-[4px] border border-[#353535]`}
+                                className={`md:min-w-[375px] h-full rounded-[4px] border border-[#353535]`}
                                 src='/auth/03.png' alt='02' width={375} height={509}/>
                         </div>
                     </div>

@@ -120,12 +120,12 @@ export default function RegisterPage() {
         <>
             {!submitted ? (
                 <div
-                    className={`w-full relative flex md:flex-nowrap  flex-wrap gap-[30px] items-start justify-between md:h-[498px]`}>
+                    className={`w-full relative flex md:flex-nowrap flex-wrap gap-[30px] items-start justify-between`}>
                     <div className={`h-full w-full md:w-[375px]`}>
                         <FormProvider {...methods}>
                             <form
                                 onSubmit={handleSubmit(onSubmit)}
-                                className="w-full md:w-[375px] space-y-[38.5px] h-full"
+                                className="w-full md:w-[375px] space-y-[34.5px] h-full"
                                 onFocus={handleFormInteraction}
                                 onClick={handleFormInteraction}
                             >
@@ -184,7 +184,7 @@ export default function RegisterPage() {
                     </div>
                     <div className={`w-full h-full`}>
                         <Image
-                            className={`m-auto h-full rounded-[4px] border border-[#353535]`}
+                            className={`md:min-w-[375px] m-auto h-full rounded-[4px] border border-[#353535]`}
                             src='/auth/02.png' alt='03' width={375} height={509}/>
                     </div>
 

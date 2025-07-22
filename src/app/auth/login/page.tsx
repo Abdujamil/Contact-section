@@ -54,8 +54,8 @@ export default function LoginPage() {
 
     return (
         <div
-            className={`flex md:flex-row  flex-col gap-[30px] items-start justify-between`}>
-            <div className={`md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between md:h-[498px]`}>
+            className={`h-full flex md:flex-row flex-col gap-[30px] items-start justify-between`}>
+            <div className={`h-full md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between`}>
                 <FormProvider {...methods}>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                         <AppInput
@@ -65,7 +65,7 @@ export default function LoginPage() {
                             inputName="email"
                             required={true}
                         />
-                        <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[30px]`}>
+                        <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[26px]`}>
                             <AppInput
                                 className={`${styles.bounceElem} w-full md:w-[375px]`}
                                 type={"password"}
@@ -73,7 +73,7 @@ export default function LoginPage() {
                                 inputName="password"
                                 required={true}
                             />
-                            <Link className={`${styles['menu-item']} w-fit mr-5 font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-2.5`}
+                            <Link className={`${styles['menu-item']} w-fit mr-4 leading-[70%] font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-2.5`}
                                   href="/auth/forgot-password">Забыли пароль?</Link>
                         </div>
                         <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
@@ -117,7 +117,7 @@ export default function LoginPage() {
                             </defs>
                         </svg>
 
-                        <p className={`whitespace-nowrap text-[#adadad] text-[16px] font-[Rubik]`}>вход с помощью</p>
+                        <p className={`whitespace-nowrap text-[#adadad] text-[16px] font-[Rubik] !leading-[70%]`}>вход с помощью</p>
 
                         <svg width="119" height="2" viewBox="0 0 119 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <line x1="-4.37114e-08" y1="1" x2="119" y2="0.99999"
@@ -435,9 +435,9 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-            <div className='w-full md:max-w-[375px] md:h-[498px]'>
+            <div className='w-full md:max-w-[375px]'>
                 <Image
-                    className={`m-auto h-full rounded-[4px] border border-[#353535]`}
+                    className={`md:min-w-[375px] m-auto h-full rounded-[4px] border border-[#353535]`}
                     src='/auth/01.png' alt='01' width={375} height={488}/>
             </div>
         </div>
