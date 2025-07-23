@@ -333,17 +333,17 @@ export default function Contacts() {
                 <Bg/>
                 <Breadcrumbs contactUrl={true}/>
                 <div
-                    className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center mt-[100px] md:pt-[60px] md:mt-0`}
+                    className={`${styles.contact} w-full h-full mx-auto flex flex-col items-center mt-[100px] md:pt-[58px] md:mt-0`}
                 >
                     <div
-                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full flex justify-center items-center md:mb-0 mb-25`}
+                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full flex justify-center items-center md:mb-0 mb-25 pl-[1.5px]`}
                     >
                         <div
-                            className={`w-full md:flex justify-center items-start md:gap-[40px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
+                            className={`w-full md:flex justify-center items-start md:gap-[39px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px]`}>
                                 <h2
-                                    className={`${styles.txtGradientRight} leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[24px] mb-[20px] mt-[0]`}
+                                    className={`${styles.txtGradientRight} leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[23px] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h2>
@@ -359,7 +359,7 @@ export default function Contacts() {
                                 id="form-main"
                                 initial={{y: 20, opacity: 1}}
                                 animate={controls}
-                                className={`${styles.contactRightContent} w-full max-w-[870px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 p-5 relative`}
+                                className={`${styles.contactRightContent} w-full max-w-[860px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative`}
                                 style={{
                                     display: activeTab !== "contact" ? "none" : "block",
                                 }}
@@ -374,13 +374,13 @@ export default function Contacts() {
                                         } !font-[Rubik] overflow-y-auto flex items-start justify-between w-full gap-[30px]`}
                                     >
                                         {/* Textarea */}
-                                        <div className="relative w-full max-w-[375px] hidden md:block">
+                                        <div className="relative w-full md:w-[375px] hidden md:block">
                                           <textarea
                                               name="comment"
                                               value={comment}
                                               onChange={(e) => setComment(e.target.value)}
                                               className={`${styles.bounceElem}
-                                               placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                                               placeholder:!text-[#ccc] w-full md:w-[375px] h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                pr-[54px]
                                                ${
                                                   comment
@@ -430,9 +430,9 @@ export default function Contacts() {
                                             }
                                         </div>
 
-                                        <div className={`${styles.formInpts} w-full`}>
+                                        <div className={`${styles.formInpts} w-full md:w-[375px]`}>
                                             {/* Кастомный select */}
-                                            <div className={`relative mb-[34px]`}>
+                                            <div className={`relative mb-[32px]`}>
                                                 <div
                                                     ref={selectRef}
                                                     className={` h-[51px]
@@ -534,12 +534,10 @@ export default function Contacts() {
                                                         </motion.div>
                                                     )}
                                                 </AnimatePresence>
-
-
                                             </div>
 
                                             <AppInput
-                                                className={`${styles.bounceElem} w-full mb-[34px]`}
+                                                className={`${styles.bounceElem} w-full mb-[33px]`}
                                                 onFocus={handleFieldFocus}
                                                 title={"ФИО"}
                                                 inputName="name"
@@ -589,7 +587,7 @@ export default function Contacts() {
                                             <div
                                                 id="bounce-checkbox"
                                                 ref={checkboxContainerRef}
-                                                className={`${styles.formCheckboxes} flex items-center gap-[20px] mt-[10px] ml-[10px]`}
+                                                className={`${styles.formCheckboxes} flex items-center gap-[31px] mt-[10px] ml-[8px]`}
                                             >
                                                 <CustomCheckbox
                                                     id="check-email"
@@ -718,12 +716,12 @@ export default function Contacts() {
                                             </div>
 
 
-                                            <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
+                                            <div className="relative !w-[212px] md:m-0 m-auto !overflow-hidden">
                                                 <button
                                                     type="submit"
                                                     onMouseMove={handleMouseMove}
                                                     onMouseLeave={handleMouseLeave}
-                                                    className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] md:mt-[46px] mt-[30px] flex items-center !justify-center`}
+                                                    className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group w-full !h-[51px] md:mt-[49px] mt-[32px] flex items-center !justify-center`}
                                                     data-text=""
                                                 >
                                                   <span
@@ -794,12 +792,12 @@ export default function Contacts() {
                                 id="requisite-block"
                                 initial={{y: 20, opacity: 1}}
                                 animate={controls}
-                                className={`${styles.contactRightContent} !font-[Rubik] w-full max-w-[870px] md:h-[437px] h-auto border border-[#353535] rounded-[6px] md:p-10 p-5`}
+                                className={`${styles.contactRightContent} !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] md:p-10 md:pt-[34px] p-5`}
                                 style={{
                                     display: activeTab !== "requisite" ? "none" : "block",
                                 }}
                             >
-                                <div className="flex justify-between items-end mb-5">
+                                <div className="flex justify-between items-end mb-[22px]">
                                     <div className="w-full max-w-[516px]">
                                         <label
                                             className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
@@ -839,12 +837,11 @@ export default function Contacts() {
                                         </button>
                                         <div className={styles.highlight}/>
                                     </div>
-
                                 </div>
 
-                                <div className="mb-6">
+                                <div className="mb-6 md:w-[780px]">
                                     <label
-                                        className="pl-[10px] block text-[16px] font-light text-[#ccc] mb-2 leading-[110%]">
+                                        className="pl-[10px] block text-[16px] font-light text-[#ccc] mb-2 leading-[75%]">
                                         Юридический адрес
                                     </label>
                                     <p
@@ -860,11 +857,11 @@ export default function Contacts() {
                                     {/*/>*/}
                                 </div>
 
-                                <div className="space-y-[14px]">
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
+                                <div className="md:w-[780px]">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] mb-[22px]">
                                         <div>
                                             <label
-                                                className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[75%]">
                                                 ИНН
                                             </label>
                                             {/*<input*/}
@@ -881,7 +878,7 @@ export default function Contacts() {
 
                                         <div>
                                             <label
-                                                className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[75%]">
                                                 ОГРН
                                             </label>
                                             {/*<input*/}
@@ -900,7 +897,7 @@ export default function Contacts() {
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
                                         <div>
                                             <label
-                                                className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[75%]">
                                                 Генеральный директор
                                             </label>
                                             {/*<input*/}
@@ -918,7 +915,7 @@ export default function Contacts() {
 
                                         <div>
                                             <label
-                                                className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[110%]">
+                                                className="pl-[10px] block text-[18px] font-normal text-[#ccc] mb-2 leading-[75%]">
                                                 Почта
                                             </label>
                                             {/* 20272A */}
