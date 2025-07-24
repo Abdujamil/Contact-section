@@ -821,7 +821,7 @@ export default function Contacts() {
                                               </span>
 
                                             <Image
-                                                className={`${styles.sendIconRight}   transition-all !duration-[.13s] ease-in `}
+                                                className={`${styles.sendIconRight}   transition-all translate-y-[3px] !duration-[.13s] ease-in `}
                                                 src="/pdf-icon.svg"
                                                 width={36}
                                                 height={49}
