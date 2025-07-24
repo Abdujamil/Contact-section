@@ -2,6 +2,7 @@ import React from "react";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
 import { handleMouseLeave, handleMouseMove } from "../Form/mouse";
+import Link from "next/link";
 
 type TryBlockProps = {
   title: string;
@@ -26,7 +27,7 @@ export default function page({ title, content, buttonText='Попробоват�
         </p>
 
         <div className="relative w-full max-w-[220px] m-auto h-[51px] !overflow-hidden ">
-          <button
+          <Link href="/auth/login"
             className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between md:!justify-center`}
             data-text=""
             onMouseMove={handleMouseMove}
@@ -49,7 +50,7 @@ export default function page({ title, content, buttonText='Попробоват�
                   fill="#adadad"
               />
             </svg>
-          </button>
+          </Link>
           <div className={styles.highlight} />
         </div>
       </div>

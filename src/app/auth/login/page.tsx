@@ -1,5 +1,4 @@
 'use client'
-// app/(auth)/login/page.tsx
 import Image from "next/image";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider, SubmitHandler} from "react-hook-form";

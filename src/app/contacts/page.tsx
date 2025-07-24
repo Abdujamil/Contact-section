@@ -339,7 +339,7 @@ export default function Contacts() {
                         className={`${styles.contactContainer} w-full max-w-[1160px] h-full flex justify-center items-center md:mb-0 mb-25 pl-[1.5px]`}
                     >
                         <div
-                            className={`w-full md:flex justify-center items-start md:gap-[39px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
+                            className={`w-full md:flex justify-center items-start md:gap-[39.5px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px]`}>
                                 <h2
@@ -409,7 +409,7 @@ export default function Contacts() {
                                             />
                                             <div
                                                 // onClick={() => fileInputRef.current?.click()}
-                                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-4 cursor-pointer  transition-colors duration-200`}
+                                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-[12px] cursor-pointer  transition-colors duration-200`}
                                             >
                                                 <svg
                                                     className={`min-w-[32px]`}

@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import Image from "next/image";
 import HeaderStyles from "../header/Header.module.css";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+import Close from "@/components/closeIcon/close";
 
 
 interface SlideItem {
@@ -81,23 +82,25 @@ export default function PolicyLicenseContent() {
                     onClick={(e) => e.stopPropagation()}
                 >
                     {/* Кнопка закрытия */}
-                    <button
-                        onClick={onClose}
-                        className="absolute md:top-[22px]  top-[5px]  -right-2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20"
-                        aria-label="Закрыть"
-                    >
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="white"
-                            strokeWidth="2"
-                            className="transition-transform duration-200 hover:scale-110"
-                        >
-                            <path d="M6 6l12 12M6 18L18 6"/>
-                        </svg>
-                    </button>
+                    {/*<button*/}
+                    {/*    onClick={onClose}*/}
+                    {/*    className="absolute md:top-[22px]  top-[5px]  -right-2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20"*/}
+                    {/*    aria-label="Закрыть"*/}
+                    {/*>*/}
+                    {/*    <svg*/}
+                    {/*        width="20"*/}
+                    {/*        height="20"*/}
+                    {/*        viewBox="0 0 24 24"*/}
+                    {/*        fill="none"*/}
+                    {/*        stroke="white"*/}
+                    {/*        strokeWidth="2"*/}
+                    {/*        className="transition-transform duration-200 hover:scale-110"*/}
+                    {/*    >*/}
+                    {/*        <path d="M6 6l12 12M6 18L18 6"/>*/}
+                    {/*    </svg>*/}
+                    {/*</button>*/}
+
+                    <Close onClick={onClose}/>
 
                     {/* Изображение */}
                     <div className="w-[624px] rounded-lg shadow-2xl">
