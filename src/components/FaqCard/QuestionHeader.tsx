@@ -26,7 +26,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
         >
 
             <div
-                className={`${styles.logoOnHover} absolute right-[8%] overflow-hidden hidden z-[9999] w-[157px] h-[157px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
+                className={`${styles.logoOnHover} absolute right-[8%] translate-x-[4px] overflow-hidden hidden z-[9999] w-[157px] h-[157px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
                 style={{
                     display: isOpen ? "none" : "",
                 }}
@@ -43,7 +43,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
             </div>
 
             <div
-                className={`${styles.questionContainer} relative z-[99] w-full h-full p-3 md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
+                className={`${styles.questionContainer} relative z-[-1] w-full h-full p-3 md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
                 <div className={`${styles.number} p-[6px]`}
                      style={{
                          position: isOpen ? "relative" : "initial",

@@ -211,23 +211,28 @@ export default function FaqPageContent({
 
     return (
         <>
-            <div className={`flex gap-[40px]`}>
-                <div className={`w-[270px] hidden md:block`}></div>
+            <div className={`flex justify-center px-[10px]`}>
+                {/*<div className={`w-[270px] hidden md:block`}></div>*/}
 
                 <h2
                     className={`${styles.title} ${styles.txtGradientRight} 
                         w-fit mb-[20px] mt-[-8px] font-normal leading-[110%] text-center text-[28px] text-[#CCCCCC]
-                        md:text-[48px] md:m-0 md:mb-[40px] m-auto max-w-[280px] md:max-w-full
+                        md:text-[48px] md:m-0 md:mb-[40px] m-auto md:max-w-full
                     `}
                 >
-                    Ответы на главные вопросы
+                    FAQ:
+                    Ответы
+                    на
+                    главные
+                    вопросы
                 </h2>
             </div>
 
             <div
                 className="w-full max-w-[1180px] h-auto mx-auto px-[10px] mb-[100px] block md:grid md:grid-cols-4 gap-[40px]">
 
-                <aside className="md:sticky top-[80px] h-fit max-w-[320px]  md:w-[260px] md:px-0 m-auto md:m-0 backdrop-blur-sm z-[9999]">
+                <aside
+                    className="md:sticky top-[80px] h-fit max-w-[320px]  md:w-[260px] md:px-0 m-auto md:m-0 backdrop-blur-sm z-[9999]">
                     {/* Промо блок */}
                     {showRegisterPromo && (
                         <div

@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-// import { usePathname } from "next/navigation";
 import styles from "@/app/page.module.scss";
 
 interface BreadcrumbsProps {
@@ -9,7 +8,6 @@ interface BreadcrumbsProps {
     blogTitle?: string;
     blogUrl?: true;
     policyUrl?: boolean;
-    // policyTab?: string;
     offerUrl?: boolean;
     licenseUrl?: boolean;
     contactUrl?: boolean;
@@ -19,7 +17,6 @@ interface BreadcrumbsProps {
     faqPage?: boolean;
     organizationUrl?: boolean;
     loginUrl?: boolean;
-    // organizationTab?: string;
 }
 
 export default function Breadcrumbs({
@@ -32,15 +29,12 @@ export default function Breadcrumbs({
                                         blogUrl,
                                         contactUrl,
                                         policyUrl,
-                                        // policyTab,
                                         offerUrl,
                                         licenseUrl,
                                         faq,
                                         faqPage,
                                         organizationUrl,
-                                        // organizationTab
                                     }: BreadcrumbsProps) {
-    //   const pathname = usePathname();
 
     return (
         <nav className="w-full absolute font-[Rubik] !text-[12px] md:!text-[16px] top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">

@@ -32,21 +32,19 @@
 }
 
 textarea::-webkit-scrollbar {
-    display: block !important;
+    /*display: block !important;*/
 }
 textarea::-webkit-scrollbar {
     width: 6px;
 }
 
-textarea::-webkit-scrollbar-track {
-    /*background: #3D9ED6;*/
-}
 
 textarea::-webkit-scrollbar-thumb {
     background: rgba(119, 156, 177, 0.25098);
     border: 1px solid #5C5C5C;
     border-radius: 50px;
 }
+
 
 textarea::-webkit-scrollbar-thumb:hover {
 }

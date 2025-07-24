@@ -70,7 +70,7 @@ const AnswerSection: React.FC<Props> = ({
           <img
             src={typeof src === "string" ? src : src.src}
             alt="FAQ image"
-            className="w-full min-w-[155px] h-[155px] border border-[#CCCCCC] rounded-[6px]"
+            className="w-full min-w-[157px] h-[155px] border border-[#CCCCCC] rounded-[6px]"
           />
         </motion.div>
       </div>

@@ -16,13 +16,13 @@ const FileSlider = ({uploadedFiles}: { uploadedFiles: File[] }) => {
 
     return (
         <div
-            className="absolute bottom-2 left-[1px] right-[1px] px-2 bg-[rgba(53,53,53,0.1)] shadow-[0_0_5px_rgba(0,0,0,0.6)] backdrop-blur-[2px]">
+            className="absolute bottom-2 left-[1px] right-[1px] bg-[rgba(53,53,53,0.1)] shadow-[0_0_5px_rgba(0,0,0,0.6)] backdrop-blur-[2px]">
             <div className="relative">
                 {/* Левая стрелка (опционально) */}
                 {uploadedFiles.length > 2 && (
                     <button
                         onClick={scrollLeft}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2"
+                        className="absolute left-2 top-1/2 -translate-y-1/2 z-10"
                     >
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13 7V9H16V7H13ZM7.03233 15L8.47092 13.5692L3.89081 9.01287H10V6.98815H3.89081L8.47092 2.43177L7.03233 1L0 8L0.717771 8.71538L1.43656 9.43177L7.03233 15Z" fill="#ADADAD"/>
@@ -38,19 +38,19 @@ const FileSlider = ({uploadedFiles}: { uploadedFiles: File[] }) => {
                     {uploadedFiles.map((file, idx) => (
                         <div
                             key={idx}
-                            className="!min-w-[149px] text-[#ccc] px-2 py-1 rounded text-sm whitespace-nowrap flex items-start justify-start gap-2"
+                            className="!min-w-[149px] text-[#ccc] px-2 py-1 rounded text-sm overflow-y-auto flex items-center justify-start gap-2"
                         >
                             {getFileIcon(file.name)}
-                            <span className="text-sm">{file.name}</span>
+                            <span className={`text-sm text-ellipsis overflow-hidden line-clamp-1 break-all`}>{file.name}</span>
                         </div>
                     ))}
                 </div>
 
                 {/* Правая стрелка */}
-                {uploadedFiles.length >= 2 && (
+                {uploadedFiles.length > 2 && (
                     <button
                         onClick={scrollRight}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 cursor-pointer"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 z-10 cursor-pointer"
                     >
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path

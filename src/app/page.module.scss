@@ -26,10 +26,8 @@
       }
 
       input {
-        user-select: none;
-        /* Запрещаем выделение текста */
-        pointer-events: none;
-        /* Блокируем все события мыши */
+        //user-select: none;
+        //pointer-events: none;
       }
 
       form {

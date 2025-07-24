@@ -371,10 +371,10 @@ export default function Contacts() {
                                         encType="multipart/form-data"
                                         className={`${
                                             isSubmitted ? "opacity-0" : "opacity-100"
-                                        } !font-[Rubik] overflow-y-auto flex items-start justify-between w-full gap-[30px]`}
+                                        } !font-[Rubik] flex items-start justify-between w-full gap-[30px]`}
                                     >
                                         {/* Textarea */}
-                                        <div className="relative w-full md:w-[375px] hidden md:block">
+                                        <div className="relative w-full overflow-y-auto md:w-[375px] hidden md:block">
                                           <textarea
                                               name="comment"
                                               value={comment}
@@ -401,20 +401,19 @@ export default function Contacts() {
                                             <input
                                                 type="file"
                                                 multiple
-                                                placeholder={text}
                                                 ref={fileInputRef}
                                                 onChange={(e) =>
                                                     handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
                                                 }
-                                                // accept=".txt,.text,.md,.csv,.json,.xml,.html,.log,.pdf,.doc,.docx"
-                                                className="hidden"
+                                                className="w-[32px] absolute z-[9] left-auto right-[4%] top-[2.5%] cursor-pointer opacity-0"
                                             />
-
                                             <div
-                                                onClick={() => fileInputRef.current?.click()}
+                                                // onClick={() => fileInputRef.current?.click()}
                                                 className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-4 cursor-pointer  transition-colors duration-200`}
                                             >
-                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                <svg
+                                                    className={`min-w-[32px]`}
+                                                    width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
                                                     <path
                                                         d="M16.2635 9.89949L9.54597 16.617C7.78861 18.3744 4.93937 18.3744 3.18201 16.617V16.617C1.42465 14.8596 1.42465 12.0104 3.18201 10.253L11.3137 2.12132C12.4853 0.949747 14.3848 0.949747 15.5564 2.12132V2.12132C16.728 3.29289 16.728 5.19239 15.5564 6.36396L7.32364 14.5967C6.73785 15.1825 5.7881 15.1825 5.20232 14.5967V14.5967C4.61653 14.0109 4.61653 13.0612 5.20232 12.4754L12.0208 5.65685"
@@ -803,12 +802,6 @@ export default function Contacts() {
                                             className="pl-[10px] block text-[16px] font-normal text-[#ccc] mb-2 leading-[110%]">
                                             Полное наименование
                                         </label>
-                                        {/*<input*/}
-                                        {/*    type="text"*/}
-                                        {/*    readOnly={false}*/}
-                                        {/*    defaultValue="Общество с ограниченной ответственностью «АУДИОСЕКТОР»"*/}
-                                        {/*    className="w-full bg-[#20272A] cursor-not-allowed  border border-[#353535] rounded-[4px] px-4 py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"*/}
-                                        {/*/>*/}
                                         <p
                                             className="w-full md:w-[559px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-[10px] py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                                         >
@@ -850,11 +843,6 @@ export default function Contacts() {
                                         180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв.
                                         44
                                     </p>
-                                    {/*<input*/}
-                                    {/*    type="text"*/}
-                                    {/*    defaultValue="180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв. 44"*/}
-                                    {/*    className="w-full max-h-[51px] text-[#ссс] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-4 py-3  focus:outline-none focus:border-[#5F5F5F]"*/}
-                                    {/*/>*/}
                                 </div>
 
                                 <div className="md:w-[780px]">
