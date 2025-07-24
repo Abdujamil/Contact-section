@@ -513,10 +513,10 @@ export const organizationData: organizationItem[] = [
                 id: "endpoints",
                 title: "Эндпоинты",
             },
-            {
-                id: "error-codes",
-                title: "Общие коды возвращаемых ошибок",
-            },
+            // {
+            //     id: "error-codes",
+            //     title: "Общие коды возвращаемых ошибок",
+            // },
         ],
 
     },

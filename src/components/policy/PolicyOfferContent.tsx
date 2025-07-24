@@ -460,7 +460,7 @@ export default function PolicyOfferContent() {
               адресат не ознакомился с ним.
             </p>
           </section>
-          <section id="rekvizity-ispolnitelya" className="scroll-mt-[80px]">
+          <section id="rekvizity-ispolnitelya" className="scroll-mt-[80px] !mb-0">
             <h2>10. Реквизиты Исполнителя</h2>
 
             <p>

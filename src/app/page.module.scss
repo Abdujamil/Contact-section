@@ -596,6 +596,36 @@
   }
 }
 
+
+.editorTryBlockApi .btn.blogTryBtn {
+  &:hover {
+    span {
+      transform: translateX(-25px) !important;
+    }
+
+    .sendIconLeft {
+      right: 14px;
+    }
+  }
+}
+
+.btn.policyBtn1{
+  &:hover{
+    span{
+      transform: translateX(-23px);
+    }
+  }
+}
+
+.btn.policyBtn2{
+  &:hover{
+    span{
+      transform: translateX(-16px);
+    }
+  }
+}
+
+
 .blogAsideBtn {
   padding: 12px;
 

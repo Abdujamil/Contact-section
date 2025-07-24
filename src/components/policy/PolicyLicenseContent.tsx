@@ -182,7 +182,8 @@ export default function PolicyLicenseContent() {
                         <section id="svidetelstvo-o-registratsii" className="scroll-mt-[80px] !leading-[130%]">
                             <h2>Свидетельство о регистрации программы для ЭВМ</h2>
 
-                            <div className={`flex flex-wrap md:flex-nowrap items-start justify-center gap-[30px] mb-[20px]`}>
+                            <div
+                                className={`flex flex-wrap md:flex-nowrap items-start justify-center gap-[30px] mb-[20px]`}>
                                 <div className={`w-full max-w-[260px]`}>
                                     <Image
                                         className={`cursor-pointer`}
@@ -217,13 +218,18 @@ export default function PolicyLicenseContent() {
                                         и алгоритмы защищены законом
                                     </p>
 
-                                    <div className="relative w-full max-w-[205px] h-[50px] !overflow-hidden">
+                                    <div className="relative w-full max-w-[220px] h-[51px] !overflow-hidden ">
                                         <button
-                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["policyBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-center`}
+                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["policyBtn1"]} ${styles["blogTryBtn"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between md:!justify-center`}
                                             data-text=""
                                             onMouseMove={handleMouseMove}
                                             onMouseLeave={handleMouseLeave}
                                         >
+                                    <span
+                                        className="font-normal md:text-[20px] text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
+                                      Свидетельство
+                                    </span>
+
                                             <svg
                                                 className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
                                                 width="20"
@@ -237,12 +243,8 @@ export default function PolicyLicenseContent() {
                                                     fill="#CCCCCC"
                                                 />
                                             </svg>
-
-                                            <span
-                                                className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
-                                                Свидетельство
-                                              </span>
                                         </button>
+                                        <div className={styles.highlight}/>
                                     </div>
                                 </div>
                             </div>
@@ -270,7 +272,8 @@ export default function PolicyLicenseContent() {
                                 </li>
                             </ul>
 
-                            <div className={`flex flex-wrap md:flex-nowrap items-start justify-center gap-[30px] my-[20px]`}>
+                            <div
+                                className={`flex flex-wrap md:flex-nowrap items-start justify-center gap-[30px] my-[20px]`}>
                                 <div className={`w-full max-w-[260px]`}>
                                     <Image
                                         className={`cursor-pointer`}
@@ -307,13 +310,19 @@ export default function PolicyLicenseContent() {
                                             вам юридическую защиту при использовании платформы.
                                         </p>
                                     </div>
-                                    <div className="relative w-full max-w-[251px] h-[51px] !overflow-hidden">
+
+                                    <div className="relative w-full max-w-[251px] h-[51px] !overflow-hidden ">
                                         <button
-                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["policyBtn"]} w-full !h-full group flex items-center border !border-[#353535] !justify-center`}
+                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["policyBtn2"]} ${styles["blogTryBtn"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between md:!justify-center`}
                                             data-text=""
                                             onMouseMove={handleMouseMove}
                                             onMouseLeave={handleMouseLeave}
                                         >
+                                    <span
+                                        className="font-normal md:text-[20px] text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
+                                      Выписка из реестра
+                                    </span>
+
                                             <svg
                                                 className={`${styles.sendIconLeft}  transition-all !duration-[.15s] ease-in`}
                                                 width="20"
@@ -327,12 +336,8 @@ export default function PolicyLicenseContent() {
                                                     fill="#CCCCCC"
                                                 />
                                             </svg>
-
-                                            <span
-                                                className="font-normal !text-[#adadad] text-[20px] leading-[120%] !transition-all !duration-[.15s] !ease-in ">
-                        Выписка из реестра
-                      </span>
                                         </button>
+                                        <div className={styles.highlight}/>
                                     </div>
                                 </div>
                             </div>
@@ -375,7 +380,7 @@ export default function PolicyLicenseContent() {
                                 Вся документация доступна на этой странице — мы открыты, прозрачны и надёжны.
                             </p>
                         </section>
-                        <section id="poprobuyte-servis" className="scroll-mt-[80px]">
+                        <section id="poprobuyte-servis" className="scroll-mt-[80px] !mb-0">
                             <h2>Попробуйте сервис — 30 минут бесплатно</h2>
                             <p>Хотите убедиться в качестве работы AUDIOSECTOR? Мы предлагаем бесплатный тест-доступ:
                                 никаких рисков, никаких скрытых условий.</p>

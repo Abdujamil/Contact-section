@@ -6,20 +6,22 @@ import { handleMouseLeave, handleMouseMove } from "../Form/mouse";
 type TryBlockProps = {
   title: string;
   content: string;
+  buttonText?: string;
+  className?: string;
 };
 
-export default function page({ title, content }: TryBlockProps) {
+export default function page({ title, content, buttonText='Попробовать', className='' }: TryBlockProps) {
   return (
-    <div className={`w-full flex items-center justify-center  mb-[80px] md:mb-[100px]`}>
+    <div className={`${className} w-full flex items-center justify-center  mb-[80px] md:mb-[100px]`}>
       <div
         className={`${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[8px] border !border-[#353535]`}
       >
         <h3
-          className={`${styles.txtGradientRight} w-fit m-auto text-[24px] md:text-[32px] leading-[120%] mb-[20px]`}
+          className={`${styles.txtGradientRight} w-fit m-auto !text-[24px] !md:text-[32px] !leading-[120%] !mb-[20px]`}
         >
           {title}
         </h3>
-        <p className={`text-[#A4A4A4] leading-[140%] md:text-[18px] text-[16px] mb-[20px]`}>
+        <p className={`text-[#A4A4A4] !leading-[140%] !md:text-[18px] !text-[16px] !mb-[20px]`}>
           {content}
         </p>
 
@@ -31,7 +33,7 @@ export default function page({ title, content }: TryBlockProps) {
             onMouseLeave={handleMouseLeave}
           >
             <span className="font-normal md:text-[20px] text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
-              Попробовать
+              {buttonText}
             </span>
 
             <svg
