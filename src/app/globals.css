@@ -522,6 +522,30 @@ input[type='email']::placeholder {
     );
 }
 
+@keyframes fadeInOutRight {
+    0% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+
+.animate-fadeInOutRight {
+    animation: fadeInOutRight 2s ease-in-out forwards;
+}
+
+
 @media (max-width: 576px) {
     ::-webkit-scrollbar {
         display: block !important;
