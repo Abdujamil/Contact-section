@@ -2,22 +2,59 @@
 import styles from "@/app/page.module.scss";
 import React from "react";
 import Image from "next/image";
+import CountUp from "@/components/CountUp/countUp";
 
 const stats = [
     {
-        percent: "30%",
+        percent: (
+            <CountUp
+                from={0}
+                to={30}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+            />
+        ),
         text: "сделок срываются, потому что менеджер «забыл перезвонить»",
     },
     {
-        percent: "56%",
+        percent: (
+            <CountUp
+                from={0}
+                to={56}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+            />
+        ),
         text: "клиентов не возвращаются, потому что им не ответили вовремя",
     },
     {
-        percent: "80%",
+        percent: (
+            <CountUp
+                from={0}
+                to={80}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+            />
+        ),
         text: "потерь происходят не из-за цен, а из-за слабых переговоров",
     },
     {
-        percent: "95%",
+        percent: (
+            <CountUp
+                from={0}
+                to={95}
+                separator=","
+                direction="up"
+                duration={1}
+                className="count-up-text"
+            />
+        ),
         text: "совещаний не дают результата, потому что выводы не фиксируются",
     },
     {
@@ -83,7 +120,7 @@ export default function OrganizationWhereDoYouLoseContent() {
                                             className="w-full max-w-[390px] h-full md:max-h-[133px] p-[20px] rounded-[6px] backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]"
                                         >
                                             <h5 className={`w-fit font-[Rubik] text-[48px] mb-[15px] leading-[75%] ${styles.txtGradientTitle}`}>
-                                                {item.percent}
+                                                {item.percent}%
                                             </h5>
                                             <p className="!mb-0">{item.text}</p>
                                         </div>
