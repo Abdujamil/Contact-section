@@ -5,6 +5,9 @@ import Image from "next/image";
 import HeaderStyles from "../header/Header.module.css";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Close from "@/components/closeIcon/close";
+// import $ from "jquery";
+// import 'jquery.easing';
+import {motion} from "framer-motion";
 
 
 interface SlideItem {
@@ -66,81 +69,74 @@ export default function PolicyLicenseContent() {
         if (!isOpen) return null;
 
         return (
-            <div
-                className="fixed inset-0 z-[9999999] w-full flex items-center justify-center bg-black/20 backdrop-blur-[2px]"
-                onClick={onClose}
-            >
-                {/* Фон модального окна */}
                 <div
-                    className="absolute inset-0 bg-black/70 transition-opacity duration-300"
+                    className="fixed inset-0 z-[9999999] w-full flex items-center justify-center bg-black/20 backdrop-blur-[2px]"
                     onClick={onClose}
-                />
-
-                {/* Контейнер изображения */}
-                <div
-                    className="relative max-w-[95vw] max-h-[95vh] p-4"
-                    onClick={(e) => e.stopPropagation()}
                 >
-                    {/* Кнопка закрытия */}
-                    {/*<button*/}
-                    {/*    onClick={onClose}*/}
-                    {/*    className="absolute md:top-[22px]  top-[5px]  -right-2 z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 backdrop-blur-sm border border-white/20"*/}
-                    {/*    aria-label="Закрыть"*/}
-                    {/*>*/}
-                    {/*    <svg*/}
-                    {/*        width="20"*/}
-                    {/*        height="20"*/}
-                    {/*        viewBox="0 0 24 24"*/}
-                    {/*        fill="none"*/}
-                    {/*        stroke="white"*/}
-                    {/*        strokeWidth="2"*/}
-                    {/*        className="transition-transform duration-200 hover:scale-110"*/}
-                    {/*    >*/}
-                    {/*        <path d="M6 6l12 12M6 18L18 6"/>*/}
-                    {/*    </svg>*/}
-                    {/*</button>*/}
+                    {/* Фон модального окна */}
+                    <div
+                        className="absolute inset-0 bg-black/70 transition-opacity duration-300"
+                        onClick={onClose}
+                    />
 
-                    <Close onClick={onClose}/>
+                    {/* Контейнер изображения */}
+                    <motion.div
+                        initial={{y: -200}}
+                        animate={{y: 0}}
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 10,
+                        }}
+                    >
+                    <div
+                        className="relative max-w-[95vw] max-h-[95vh] p-4"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Кнопка закрытия */}
+                        <Close onClick={onClose}/>
 
-                    {/* Изображение */}
-                    <div className="w-[624px] rounded-lg shadow-2xl">
-                        <div className="relative flex items-center md:justify-center justify-start">
-                            {/* Заголовок изображения */}
-                            <div
-                                className="md:w-full w-[350px] absolute top-[-70px] left-0 right-0 bg-gradient-to-t to-transparent md:p-4 p-2">
-                                <h3 className="text-center text-white md:text-[20px] text-[16px] font-bold">
-                                    {slides[currentImageIndex].alt}
-                                </h3>
-                            </div>
-                            <Image
-                                src={slides[currentImageIndex].src}
-                                alt={slides[currentImageIndex].alt}
-                                width={800}
-                                height={1000}
-                                className="w-[480px] h-auto max-w-[90vw] max-h-[85vh] object-contain"
-                                priority
-                            />
-                        </div>
-                    </div>
-
-                    {/* Индикатор загрузки (опционально для будущих изображений) */}
-                    {slides.length > 1 && (
-                        <div className="flex justify-center mt-4 gap-2">
-                            {slides.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentImageIndex(index)}
-                                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                                        index === currentImageIndex
-                                            ? "bg-white"
-                                            : "bg-white/40 hover:bg-white/70"
-                                    }`}
+                        {/* Изображение */}
+                        <div className="w-[624px] rounded-lg shadow-2xl">
+                            <div className="relative flex items-center md:justify-center justify-start">
+                                {/* Заголовок изображения */}
+                                <div
+                                    className="md:w-full w-[350px] absolute top-[-70px] left-0 right-0 bg-gradient-to-t to-transparent md:p-4 p-2">
+                                    <h3 className="text-center text-white md:text-[20px] text-[16px] font-bold">
+                                        {slides[currentImageIndex].alt}
+                                    </h3>
+                                </div>
+                                <Image
+                                    src={slides[currentImageIndex].src}
+                                    alt={slides[currentImageIndex].alt}
+                                    width={800}
+                                    height={1000}
+                                    className="w-[480px] h-auto max-w-[90vw] max-h-[85vh] object-contain"
+                                    priority
                                 />
-                            ))}
+                            </div>
                         </div>
-                    )}
+
+                        {/* Индикатор загрузки (опционально для будущих изображений) */}
+                        {slides.length > 1 && (
+                            <div className="flex justify-center mt-4 gap-2">
+                                {slides.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentImageIndex(index)}
+                                        className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                                            index === currentImageIndex
+                                                ? "bg-white"
+                                                : "bg-white/40 hover:bg-white/70"
+                                        }`}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    </motion.div>
+
                 </div>
-            </div>
         );
     };
 
