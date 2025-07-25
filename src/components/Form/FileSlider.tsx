@@ -24,8 +24,8 @@ const FileSlider = ({uploadedFiles}: { uploadedFiles: File[] }) => {
                         onClick={scrollLeft}
                         className="absolute left-[-25px] top-1/2 -translate-y-1/2 z-10 p-2.5 cursor-pointer"
                     >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13 7V9H16V7H13ZM7.03233 15L8.47092 13.5692L3.89081 9.01287H10V6.98815H3.89081L8.47092 2.43177L7.03233 1L0 8L0.717771 8.71538L1.43656 9.43177L7.03233 15Z" fill="#ADADAD"/>
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 12.7451L1.24719 5.95076L0 7.20562L6.75281 14L8 12.7451ZM8 1.25486L6.75281 0L3.16208 3.74341L4.41015 4.99827L8 1.25486Z" fill="#ADADAD"/>
                         </svg>
                     </button>
                 )}
@@ -52,10 +52,8 @@ const FileSlider = ({uploadedFiles}: { uploadedFiles: File[] }) => {
                         onClick={scrollRight}
                         className="absolute right-[-25px] top-1/2 -translate-y-1/2 z-10 p-2.5  cursor-pointer"
                     >
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M3 9V7H0V9H3ZM8.96767 1L7.52908 2.43076L12.1092 6.98713H6V9.01185H12.1092L7.52908 13.5682L8.96767 15L16 8L15.2822 7.28462L14.5634 6.56823L8.96767 1Z"
-                                fill="#ADADAD"/>
+                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z" fill="#ADADAD"/>
                         </svg>
                     </button>
                 )}

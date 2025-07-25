@@ -40,7 +40,7 @@ const FooterSubscriptionForm: React.FC = () => {
                         className="flex items-center gap-[10px] max-h-[40px]"
                     >
                         <AppInput
-                            className={`${styles.footerInpt} !w-[227px] z-[2] mb-[34px] max-h-[40px] !bg-[#101010] focus:!bg-[#20272A] !py-[8px] !pr-[10px] !pl-[13px]`}
+                            className={`${styles.footerInpt} !w-[232px] z-[2] mb-[34px] max-h-[40px] !bg-[#101010] focus:!bg-[#20272A] !py-[8px] !pr-[10px] !pl-[13px]`}
                             title="Email"
                             inputName="email"
                             required
