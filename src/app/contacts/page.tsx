@@ -402,6 +402,7 @@ export default function Contacts() {
                                                 type="file"
                                                 multiple
                                                 ref={fileInputRef}
+                                                disabled={uploadedFiles.length >= 2}
                                                 onChange={(e) =>
                                                     handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
                                                 }
