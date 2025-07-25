@@ -66,8 +66,6 @@ const stats = [
         text: "не знаете, кто приносит прибыль, а кто теряет клиентов.",
     },
 ];
-
-
 const benefits = [
     "Менеджеры работают эффективнее — ни одной потерянной сделки. Система подсказывает, где менеджер упустил клиента, помогает корректировать действия и делает работу более осознанной и результативной.",
     "Вы видите, кто реально приносит прибыль, а кто срывает переговоры. Аналитика по каждому сотруднику показывает, на каком этапе происходит провал, и позволяет усиливать команду точечно.",
@@ -82,7 +80,7 @@ export default function OrganizationWhereDoYouLoseContent() {
         <>
             <div>
                 <div
-                    className={`${styles.BlogPageContent} mb-[40px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
+                    className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                 >
                     <div className="oferta-content policy-content">
                         <section id="communication-loss-costs">
@@ -495,7 +493,7 @@ export default function OrganizationWhereDoYouLoseContent() {
 
                                 <div
                                     className={`max-w-[600px] m-auto rounded-[8px] flex items-center justify-center mb-[30px]`}>
-                                    <img className={`w-full object-cover`} src="./organization/organization-img.png"
+                                    <img className={`w-full object-cover`} src="/organization/organization-img.png"
                                          alt="img1"/>
                                 </div>
                             </div>
@@ -607,7 +605,7 @@ export default function OrganizationWhereDoYouLoseContent() {
 
                             <div
                                 className={`max-w-[600px] m-auto rounded-[8px] flex items-center justify-center mb-[30px]`}>
-                                <img className={`w-full object-cover`} src="./organization/organization-img1.png"
+                                <img className={`w-full object-cover`} src="/organization/organization-img1.png"
                                      alt="img1"/>
                             </div>
                         </section>

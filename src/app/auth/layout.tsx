@@ -1,5 +1,4 @@
 'use client';
-// app/(auth)/layout.tsx
 import Link from "next/link";
 import React, {ReactNode} from "react";
 import Bg from "@/components/background/bg";

@@ -94,7 +94,7 @@ export default function OrganizationWhereDoYouLoseContent() {
         <>
             <div>
                 <div
-                    className={`${styles.BlogPageContent} mb-[40px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
+                    className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                 >
                     <div className="oferta-content policy-content">
                         {/*Блок попробовать*/}
@@ -192,7 +192,7 @@ export default function OrganizationWhereDoYouLoseContent() {
                             <div
                                 className="max-w-[600px] m-auto rounded-[8px] flex items-center justify-center my-[30px]">
                                 <img className="w-full object-cover" alt="img1"
-                                     src="./organization/organization-img2.png"/></div>
+                                     src="/organization/organization-img2.png"/></div>
                         </section>
 
                         <section id="api-capabilities">

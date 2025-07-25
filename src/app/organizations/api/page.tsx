@@ -45,7 +45,7 @@ export default function OrganizationApiContent() {
             )}
 
             <div
-                className={`${styles.BlogPageContent} mb-[40px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
+                className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
             >
                 <div className="oferta-content policy-content">
                     <section id="introduction">
