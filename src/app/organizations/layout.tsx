@@ -6,7 +6,6 @@ import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
 import {usePathname} from "next/navigation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
-import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import BlogAside from "@/components/blogPageCard/blogAside";
 import {organizationData} from "@/data/organization";
 
