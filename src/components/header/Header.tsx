@@ -6,7 +6,6 @@ import {usePathname} from "next/navigation";
 import styles from "./Header.module.css";
 import {useAuth} from "@/components/context/AuthContext";
 import HeaderMenu from "@/components/header/HeaderMenu";
-import GlassSurface from "@/components/header/MenuGlass";
 
 interface MenuItem {
     label: string;
@@ -180,13 +179,7 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className={`${styles.header} flex items-center justify-center w-full h-[70px]`}>
-                <GlassSurface
-                    width={1240}
-                    height={60}
-                    borderRadius={6}
-                    className={`w-full`}
-                >
+            <header className={`${styles.header} flex items-center w-full h-[70px]`}>
                     <div className="flex items-center justify-between w-full px-[30px]">
                         <Link
                             href="/"
@@ -604,7 +597,6 @@ const Header: React.FC = () => {
                             />
                         </div>
                     </div>
-                </GlassSurface>
             </header>
         </>
     );
