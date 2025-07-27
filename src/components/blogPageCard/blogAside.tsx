@@ -1,103 +1,10 @@
-
-// SmoothScroll
-// "use client";
-// import {useScrollSpy} from "../useScrollSpy";
-// import React, {useState, useEffect} from "react";
-// import styles from "@/app/page.module.scss";
-// import HeaderStyles from "../header/Header.module.css";
-// import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
-//
-// type AsideItem = {
-//     id: string;
-//     title: string;
-//     subtitle?: string[];
-// };
-//
-// export default function BlogAside({items}: { items: AsideItem[] }) {
-//     const [clickedHash, setClickedHash] = useState<string | null>(null);
-//     const [lastActiveHash, setLastActiveHash] = useState<string>("");
-//
-//     const sectionIds = items.map((item) => item.id);
-//     const scrollSpyHash = useScrollSpy({sectionIds, offset: 100});
-//
-//     useEffect(() => {
-//         if (clickedHash && scrollSpyHash === clickedHash) {
-//             setClickedHash(null);
-//         }
-//     }, [clickedHash, scrollSpyHash]);
-//
-//     useEffect(() => {
-//         if (scrollSpyHash && scrollSpyHash !== lastActiveHash) {
-//             setLastActiveHash(scrollSpyHash);
-//         }
-//     }, [scrollSpyHash, lastActiveHash]);
-//
-//
-//     const activeHash = clickedHash || lastActiveHash;
-//
-//     const handleAnchorClick = (
-//         href: string,
-//         index: number,
-//         e: React.MouseEvent
-//     ) => {
-//         e.preventDefault();
-//
-//         const targetElement = document.querySelector(href);
-//         if (targetElement) {
-//             const offset = 100;
-//             const targetPosition = (targetElement as HTMLElement).offsetTop - offset;
-//
-//             window.scrollTo({
-//                 top: targetPosition,
-//                 behavior: "smooth",
-//             });
-//
-//             setClickedHash(href);
-//         }
-//     };
-//
-//     return (
-//         <ul className="space-y-[10px]">
-//             {items.map((item, index) => {
-//                 const baseId = item.id.startsWith("#") ? item.id : `#${item.id}`;
-//
-//                 return (
-//                     <li key={baseId}>
-//                         <a
-//                             href={baseId}
-//                             onClick={(e) => handleAnchorClick(baseId, index, e)}
-//                             className={`relative font-[Rubik] !text-[16px] !font-light text-[#adadad] !leading-[130%] text-balance
-//                             group
-//                              ${styles["blogAsideBtn"]}
-//                              ${HeaderStyles["login-button"]}
-//                              ${styles["faqTryBtn"]}
-//                              w-full !h-full flex items-center !justify-start !text-left
-//                              text-[16px] ease-in duration-150 !p-[12px] !rounded-[6px]
-//                              ${
-//                                 activeHash === baseId
-//                                     ? `${styles.blogAsideBtnActive} !border-[#adadad]`
-//                                     : "!border-transparent hover:!border-[#353535] group-hover:!text-[#ccc]"
-//                             }
-//                                 active:will-change-transform
-//                               `}
-//                             onMouseMove={handleMouseMove}
-//                             onMouseLeave={handleMouseLeave}
-//                         >
-//                             {item.title}
-//                         </a>
-//                     </li>
-//                 );
-//             })}
-//         </ul>
-//     );
-// }
-
 "use client";
 import {useScrollSpy} from "../useScrollSpy";
 import React, {useState, useEffect} from "react";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "../header/Header.module.css";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+// import GlassSurface from "@/components/header/MenuGlass";
 
 type AsideItem = {
     id: string;
@@ -188,15 +95,20 @@ export default function BlogAside({items, variant = 'default'}: BlogAsideProps) 
 
                 return (
                     <li key={baseId}>
-                        <a
-                            href={href}
-                            onClick={(e) => handleAnchorClick(href, index, e)}
-                            className={getItemClasses(href)}
-                            onMouseMove={handleMouseMove}
-                            onMouseLeave={handleMouseLeave}
-                        >
-                            {item.title}
-                        </a>
+                        {/*<GlassSurface*/}
+                        {/*    width={260}*/}
+                        {/*    height={70}*/}
+                        {/*>*/}
+                            <a
+                                href={href}
+                                onClick={(e) => handleAnchorClick(href, index, e)}
+                                className={getItemClasses(href)}
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
+                            >
+                                {item.title}
+                            </a>
+                        {/*</GlassSurface>*/}
                     </li>
                 );
             })}

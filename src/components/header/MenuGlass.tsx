@@ -389,7 +389,7 @@ const GlassSurface = ({
                 </defs>
             </svg>
 
-            <div className="w-full h-full flex items-center justify-between py-4 px-6 relative z-10">
+            <div className="w-full h-full flex px-[12px] items-center justify-between relative z-10">
                 {children}
             </div>
         </div>

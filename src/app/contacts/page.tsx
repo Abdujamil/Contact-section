@@ -209,7 +209,6 @@ export default function Contacts() {
 
 
     // Функция для показа политики при фокусе на поля
-
     const onSubmit = async (data: Record<string, unknown>) => {
         const formData = new FormData();
 
@@ -470,7 +469,7 @@ export default function Contacts() {
                                                       </span>
 
                                                     <svg
-                                                        className={`transition-transform duration-200 ${
+                                                        className={`z-[999999] transition-transform duration-200 ${
                                                             isSelectOpen ? "rotate-180" : ""
                                                         }`}
                                                         width="16" height="10" viewBox="0 0 16 10" fill="none"
@@ -488,7 +487,6 @@ export default function Contacts() {
                                                             }
                                                         />
                                                     </svg>
-
                                                 </div>
 
                                                 <AnimatePresence>
@@ -504,7 +502,7 @@ export default function Contacts() {
                                                                 damping: 6,
                                                                 mass: 0.3,
                                                             }}
-                                                            className={`${styles.selectOption} absolute right-[17px] p-[26px] px-[26px] pb-[11px] top-[30px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
+                                                            className={`${styles.selectOption} absolute right-[10px] p-[26px] px-[26px] pb-[11px] top-[8px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
                                                         >
                                                             {options.map((option, index) => (
                                                                 <div
