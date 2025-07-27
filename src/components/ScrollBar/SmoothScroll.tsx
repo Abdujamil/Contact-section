@@ -70,7 +70,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
 
     const getScrollOffset = () => {
-        if (pathname.includes('/politic') || pathname.includes('/organizations')) {
+        if (pathname.includes('/policy') || pathname.includes('/organizations')) {
             return -130;
         }
         if (pathname.includes('/blog')) {

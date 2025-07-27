@@ -74,7 +74,6 @@ export default function OrganizationsLayout({children}: { children: ReactNode })
             <div
                 className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[110px]`}
             >
-                <Breadcrumbs organizationUrl={true}/>
                 <h1
                     className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] leading-[110%] mb-[20px]
                             md:text-[48px] md:mb-[40px]`}

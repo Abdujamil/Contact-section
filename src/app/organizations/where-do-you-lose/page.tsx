@@ -3,6 +3,7 @@ import styles from "@/app/page.module.scss";
 import React from "react";
 import Image from "next/image";
 import CountUp from "@/components/CountUp/countUp";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 const stats = [
     {
@@ -78,6 +79,7 @@ const benefits = [
 export default function OrganizationWhereDoYouLoseContent() {
     return (
         <>
+            <Breadcrumbs organizationWhereDoYouLose={true}/>
             <div>
                 <div
                     className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}

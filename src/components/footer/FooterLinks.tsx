@@ -9,9 +9,9 @@ import { Check } from "lucide-react";
 const links = [
   { href: "/contacts", label: "Контакты" },
   { href: "https://t.me/idsvvs", label: "Telegram", isTelegram: true },
-  { href: "/politic?tab=politic", label: "Политика" },
-  { href: "/politic?tab=license", label: "Лицензии" },
-  { href: "/politic?tab=oferta", label: "Оферта" },
+  { href: "/policy?tab=policy", label: "Политика" },
+  { href: "/policy?tab=license", label: "Лицензии" },
+  { href: "/policy?tab=oferta", label: "Оферта" },
   { href: "/blog", label: "Блог" },
 ];
 

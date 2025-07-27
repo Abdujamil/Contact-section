@@ -2,10 +2,12 @@
 import React from "react";
 import styles from "@/app/page.module.scss";
 import TryBlock from "@/components/TryBlock/page";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 export default function About() {
     return (
         <>
+            <Breadcrumbs organizationAbout={true}/>
             <div>
                 <div
                     className={`${styles.BlogPageContent} mb-[40px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}

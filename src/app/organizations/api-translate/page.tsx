@@ -3,6 +3,7 @@ import styles from "@/app/page.module.scss";
 import React from "react";
 import HeaderStyles from "@/components/header/Header.module.css";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 const apiCards = [
     {
@@ -92,6 +93,7 @@ const miniCards = [
 export default function OrganizationWhereDoYouLoseContent() {
     return (
         <>
+            <Breadcrumbs organizationApiTranslate={true}/>
             <div>
                 <div
                     className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}

@@ -283,7 +283,7 @@ export default function ScrollWrapper({
   const easeRef = useRef(scrollEaseFactor);
 
   const getScrollOffset = () => {
-    if (pathname.includes('/politic')) {
+    if (pathname.includes('/policy')) {
       return 110; // Меньший offset для страницы политики
     }
     if (pathname.includes('/blog')) {

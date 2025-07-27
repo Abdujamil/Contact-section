@@ -1,6 +1,7 @@
 "use client";
 import styles from "@/app/page.module.scss";
 import React, {useRef, useState} from "react";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 export default function OrganizationApiContent() {
     const preRef = useRef<HTMLPreElement>(null);
@@ -22,6 +23,8 @@ export default function OrganizationApiContent() {
     };
 
     return (
+        <>
+            <Breadcrumbs organizationApi={true}/>
         <div>
             {/* Всплывающее уведомление */}
             {copied && (
@@ -505,5 +508,6 @@ export default function OrganizationApiContent() {
                 </div>
             </div>
         </div>
+        </>
     );
 }
