@@ -92,7 +92,7 @@ export default function OrganizationsLayout({children}: { children: ReactNode })
                                             href={item.href}
                                             onMouseMove={handleMouseMove}
                                             onMouseLeave={handleMouseLeave}
-                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
+                                            className={`${styles["btn"]} ${index === 1 ? styles["hoverActive"] : ''}  ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
                                             style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                         >
                                     <span

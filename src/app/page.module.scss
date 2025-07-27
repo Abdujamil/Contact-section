@@ -17,17 +17,10 @@
     }
 
     .contactRightContent {
-      //background: rgba(0, 0, 0, 0.07);
-
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
 
       .fileIcon {
         background: rgba(255, 255, 255, 0.1);
-      }
-
-      input {
-        //user-select: none;
-        //pointer-events: none;
       }
 
       form {
@@ -256,7 +249,7 @@
   }
 }
 
-.btn.register-button{
+.btn.register-button {
   &:hover {
     span {
       transform: translateX(-27px) !important;
@@ -318,6 +311,19 @@
     }
   }
 }
+
+.btn.hoverActive {
+  .sendIconLeft2 {
+    transform: translateX(58px) translateY(42px);
+  }
+  &:hover {
+    .sendIconLeft2 {
+      transform: translateX(58px) translateY(0) !important;
+      opacity: 1;
+    }
+  }
+}
+
 
 
 .linear {
@@ -609,17 +615,17 @@
   }
 }
 
-.btn.policyBtn1{
-  &:hover{
-    span{
+.btn.policyBtn1 {
+  &:hover {
+    span {
       transform: translateX(-23px);
     }
   }
 }
 
-.btn.policyBtn2{
-  &:hover{
-    span{
+.btn.policyBtn2 {
+  &:hover {
+    span {
       transform: translateX(-16px);
     }
   }
@@ -699,9 +705,6 @@
 }
 
 
-
-
-
 @media screen and (max-width: 768px) {
   .authorBlock {
 
@@ -752,10 +755,10 @@
     }
   }
 
-  .auth-content{
-    .licenseBtns{
+  .auth-content {
+    .licenseBtns {
       backdrop-filter: blur(0);
-      background:transparent;
+      background: transparent;
       box-shadow: none;
     }
   }
