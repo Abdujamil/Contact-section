@@ -13,6 +13,7 @@ interface BreadcrumbsProps {
     offerUrl?: boolean;
     licenseUrl?: boolean;
     contactUrl?: boolean;
+    detailsUrl?: boolean;
     inBlog?: boolean;
     editorPage?: boolean;
     faq?: boolean;
@@ -22,10 +23,14 @@ interface BreadcrumbsProps {
     organizationApiTranslate?: boolean;
     organizationWhereDoYouLose?: boolean;
     loginUrl?: boolean;
+    registerUrl?: boolean;
+    forgotPasswordrUrl?: boolean;
 }
 
 export default function Breadcrumbs({
                                         loginUrl,
+                                        registerUrl,
+                                        forgotPasswordrUrl,
                                         editorName,
                                         editorId,
                                         blogTitle,
@@ -33,6 +38,7 @@ export default function Breadcrumbs({
                                         editorPage,
                                         blogUrl,
                                         contactUrl,
+                                        detailsUrl,
                                         policy,
                                         policyOferta,
                                         policyUrLicense,
@@ -67,6 +73,30 @@ export default function Breadcrumbs({
                         </li>
                         <li className={`text-[#3D9ED6]`}>
                             Войти
+                        </li>
+                    </>
+                )}
+                {registerUrl && (
+                    <>
+                        <li className={`flex items-center justify-center`}>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            </svg>
+                        </li>
+                        <li className={`text-[#3D9ED6]`}>
+                            Регистрация
+                        </li>
+                    </>
+                )}
+                {forgotPasswordrUrl && (
+                    <>
+                        <li className={`flex items-center justify-center`}>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            </svg>
+                        </li>
+                        <li className={`text-[#3D9ED6]`}>
+                            Забыли пароль
                         </li>
                     </>
                 )}
@@ -131,7 +161,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            Организациям
+                            Что такое Api
                         </li>
                     </>
                 )}
@@ -159,8 +189,6 @@ export default function Breadcrumbs({
                         </li>
                     </>
                 )}
-
-
 
                 {offerUrl && (
                     <>
@@ -197,6 +225,19 @@ export default function Breadcrumbs({
                         </li>
                         <li className={`text-[#3D9ED6]`}>
                             Контакты
+                        </li>
+                    </>
+                )}
+
+                {detailsUrl && (
+                    <>
+                        <li className={`flex items-center justify-center`}>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            </svg>
+                        </li>
+                        <li className={`text-[#3D9ED6]`}>
+                            Реквизиты
                         </li>
                     </>
                 )}

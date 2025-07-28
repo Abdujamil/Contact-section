@@ -6,8 +6,6 @@ import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
 import {usePathname} from "next/navigation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
-import {motion} from "framer-motion";
-import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 
 const navItems = [
@@ -66,7 +64,6 @@ export default function AuthLayout({children}: { children: ReactNode }) {
     return (
         <>
             <Bg/>
-            <Breadcrumbs loginUrl={true}/>
             <div
                 className={`${styles['auth-content']} pt-[61px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
@@ -122,21 +119,8 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             </div>
                         </aside>
 
-                        <div className={`relative md:pb-0 pb-20`}>
-                            <motion.div
-                                key={pathname}
-                                initial={{opacity: 0, y: -30}}
-                                animate={{opacity: 1, y: 0}}
-                                transition={{
-                                    type: "spring",
-                                    stiffness: 300,
-                                    damping: 6,
-                                    mass: 0.3,
-                                }}
-                                className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
-                            >
+                        <div className={` md:pb-0 pb-20`}>
                                 {children}
-                            </motion.div>
                         </div>
                     </div>
                 </div>

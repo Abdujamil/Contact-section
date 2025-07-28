@@ -1,5 +1,4 @@
 'use client'
-// app/(auth)/forgot-password/page.tsx
 import {useForm, FormProvider, SubmitHandler} from "react-hook-form";
 import AppInput from "@/components/forms/elements/AppInput";
 import styles from "@/app/page.module.scss";
@@ -11,17 +10,41 @@ import HeaderStyles from "@/components/header/Header.module.css";
 import {motion} from "framer-motion";
 import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
+import {usePathname} from "next/navigation";
+import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
 type ForgotPasswordFormValues = {
     email: string;
 };
 
 export default function ForgotPasswordPage() {
+    const pathname = usePathname();
     const methods = useForm<ForgotPasswordFormValues>();
     const {register, handleSubmit} = methods;
 
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+
+    const [emailStatus, setEmailStatus] = useState<"found" | "not_found" | null>(null);
+
+// Замените это на реальную проверку (fetch или axios)
+    const checkEmail = async (email: string) => {
+        // Здесь вместо setTimeout будет реальный запрос
+        return new Promise<"found" | "not_found">((resolve) => {
+            setTimeout(() => {
+                const knownEmails = ["test@example.com", "user@mail.ru"];
+                resolve(knownEmails.includes(email.toLowerCase()) ? "found" : "not_found");
+            }, 500);
+        });
+    };
+
+    const handleEmailBlur = async (value: string) => {
+        if (!emailRegex.test(value)) return;
+
+        const result = await checkEmail(value.trim());
+        setEmailStatus(result);
+    };
+
 
     useEffect(() => {
         // Регистрируем email с кастомной валидацией
@@ -38,19 +61,6 @@ export default function ForgotPasswordPage() {
         setShowPolicy(true); // показываем политику
 
         try {
-            // const res = await fetch('/api/forgot-password', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data),
-            // });
-            //
-            // const result = await res.json();
-            //
-            // if (!res.ok) {
-            //     alert(result.error || 'Ошибка восстановления пароля');
-            //     return;
-            // }
-
             console.log("Forgot password submitted:", data);
             setSubmitted(true); // Показываем сообщение
         } catch (error) {
@@ -65,23 +75,55 @@ export default function ForgotPasswordPage() {
 
 
     return (
-        <div className={`relative`}>
-
+        <>
+        <Breadcrumbs forgotPasswordrUrl={true}/>
+        <motion.div
+            key={pathname}
+            initial={{opacity: 0, y: -30}}
+            animate={{opacity: 1, y: 0}}
+            transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 6,
+                mass: 0.3,
+            }}
+            className={`${styles.BlogPageContent} w-full md:w-[860px] max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+        >
             {!submitted ? (
                 <>
-                    <div className={`w-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
-                        <div className={`w-full md:max-w-[375px]`}>
+                    <div
+                        className={`w-full h-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
+                        <div className={`w-full h-full flex flex-col items-center justify-between  md:max-w-[375px]`}>
                             <FormProvider {...methods}>
 
                                 <form onSubmit={handleSubmit(onSubmit)} onClick={handleFormInteraction}
-                                      className="w-full space-y-4">
-                                    <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[375px] mb-[30px] mt-[20px] md:mt-0`}
-                                        type={"email"}
-                                        title={"E-mail"}
-                                        inputName="email"
-                                        required={true}
-                                    />
+                                      className="w-full">
+                                        <AppInput
+                                            className={`${styles.bounceElem} mb-[54px] w-full md:w-[375px] mt-[20px] md:mt-0`}
+                                            type={"email"}
+                                            title={"E-mail"}
+                                            inputName="email"
+                                            required={true}
+                                            onBlur={handleEmailBlur}
+                                        />
+                                        {emailStatus === "found" && (
+                                            <p className="flex items-center gap-[7px] absolute left-[52px] text-[#34C759] mt-[-48px] mb-5 md:mb-0 text-[14px] font-[Rubik]">
+                                                E-mail найден
+                                                <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7516 0.178704C16.0539 0.441363 16.0845 0.897636 15.82 1.19782L5.63823 12.7534C5.50569 12.9038 5.31628 12.9929 5.11511 12.9996C4.91393 13.0063 4.71898 12.9298 4.57665 12.7885L0.213013 8.45514C-0.0710044 8.17309 -0.0710044 7.7158 0.213013 7.43376C0.497031 7.15171 0.957514 7.15171 1.24153 7.43376L5.05548 11.2212L14.7254 0.246645C14.9899 -0.0535365 15.4494 -0.0839547 15.7516 0.178704Z" fill="#34C759"/>
+                                                </svg>
+
+                                            </p>
+                                        )}
+                                        {emailStatus === "not_found" && (
+                                            <p className="absolute left-[52px] text-[#FF3030] mt-[-48px] mb-5 md:mb-0 text-[14px] font-[Rubik]">
+                                                *Данный e-mail не зарегистрирован
+                                            </p>
+                                        )}
+
+                                    <pre className={`absolute left-3 top-[-6%]  text-[#353535] right-0 text-center`}>
+                                        Пример тестовых email-адресов: test@example.com, user@mail.ru.
+                                    </pre>
 
                                     <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
                                         <button
@@ -108,6 +150,38 @@ export default function ForgotPasswordPage() {
                                     </div>
                                 </form>
                             </FormProvider>
+
+                            <div>
+                                <p className={`!leading-[120%] mb-5 text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+                                    <svg className={`mt-[4px]`} width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="6" cy="6" r="5.625" stroke="#3C404A" stroke-width="0.75"/>
+                                        <circle cx="6" cy="6" r="3" fill="#3C404A"/>
+                                    </svg>
+
+                                    Временный пароль будет отправлен <br/> на вашу почту.
+                                </p>
+                                <svg width="370" height="1" viewBox="0 0 370 1" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <line y1="0.5" x2="370" y2="0.5" stroke="url(#paint0_linear_5340_3200)"/>
+                                    <defs>
+                                        <linearGradient id="paint0_linear_5340_3200" x1="0" y1="1.5" x2="370" y2="1.5"
+                                                        gradientUnits="userSpaceOnUse">
+                                            <stop stop-color="#9C9C9C"/>
+                                            <stop offset="1" stop-color="#9C9C9C" stop-opacity="0"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <p className={`!leading-[120%] mt-5 text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+                                    <svg className={`mt-[4px]`} width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="6" cy="6" r="5.625" stroke="#3C404A" stroke-width="0.75"/>
+                                        <circle cx="6" cy="6" r="3" fill="#3C404A"/>
+                                    </svg>
+
+                                    После авторизации рекомендуем заменить пароль.
+                                </p>
+                            </div>
                         </div>
 
                         <div className={`h-full`}>
@@ -119,7 +193,7 @@ export default function ForgotPasswordPage() {
 
                     {/* Анимированный блок с политикой */}
                     <motion.div
-                        className={`w-full absolute bottom-[-15%] left-1/2 transform -translate-x-1/2`}
+                        className={`w-full absolute bottom-[-6%] left-1/2 transform -translate-x-1/2`}
                         initial={{y: 20, opacity: 0}}
                         animate={
                             showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}
@@ -155,8 +229,7 @@ export default function ForgotPasswordPage() {
                     subText="Рекомендуем после авторизации заменить пароль."
                 />
             )}
-
-
-        </div>
+        </motion.div>
+        </>
     );
 }

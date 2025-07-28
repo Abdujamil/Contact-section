@@ -112,7 +112,7 @@ export default function CountUp({
                 );
 
                 ref.current.textContent = separator
-                    ? formattedNumber.replace(/,/g, separator)
+                    ? formattedNumber.replace(/,/g, separator) + '%'
                     : formattedNumber;
             }
         });

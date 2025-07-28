@@ -120,7 +120,7 @@ export default function OrganizationWhereDoYouLoseContent() {
                                             className="w-full max-w-[390px] h-full md:max-h-[133px] p-[20px] rounded-[6px] backdrop-blur-[2px] border border-[#353535] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]"
                                         >
                                             <h5 className={`w-fit font-[Rubik] text-[48px] mb-[15px] leading-[75%] ${styles.txtGradientTitle}`}>
-                                                {item.percent}%
+                                                {item.percent}
                                             </h5>
                                             <p className="!mb-0">{item.text}</p>
                                         </div>

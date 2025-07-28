@@ -9,9 +9,9 @@ import { Check } from "lucide-react";
 const links = [
   { href: "/contacts", label: "Контакты" },
   { href: "https://t.me/idsvvs", label: "Telegram", isTelegram: true },
-  { href: "/policy?tab=policy", label: "Политика" },
-  { href: "/policy?tab=license", label: "Лицензии" },
-  { href: "/policy?tab=oferta", label: "Оферта" },
+  { href: "/politic/policy", label: "Политика" },
+  { href: "/politic/license", label: "Лицензии" },
+  { href: "/politic/oferta", label: "Оферта" },
   { href: "/blog", label: "Блог" },
 ];
 
@@ -306,7 +306,7 @@ const FooterLinks: React.FC = () => {
 
             <div className="relative">
               <Link
-                  href="/politic?tab=license"
+                  href="/politic/license"
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseLeave}
@@ -321,7 +321,7 @@ const FooterLinks: React.FC = () => {
 
             <div className="relative">
               <Link
-                  href="/politic?tab=oferta"
+                  href="/politic/oferta"
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseLeave}
@@ -336,7 +336,7 @@ const FooterLinks: React.FC = () => {
 
             <div className="relative">
               <Link
-                  href="/politic?tab=politic"
+                  href="/politic/policy"
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseLeave}
