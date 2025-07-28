@@ -83,7 +83,7 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[25px]`}>
+                                <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[12px]`}>
                                     <AppInput
                                         className={`${styles.bounceElem} w-full md:w-[375px]`}
                                         type={"password"}
@@ -92,7 +92,7 @@ export default function LoginPage() {
                                         required={true}
                                     />
                                     <Link
-                                        className={`${styles['menu-item']} w-fit mr-4 leading-[70%] font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}
+                                        className={`${styles['menu-item']} w-fit mr-4  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}
                                         href="/auth/forgot-password">Забыли пароль?</Link>
                                 </div>
                                 <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
