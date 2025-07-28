@@ -19,7 +19,7 @@ const menuItems: MenuItem[] = [
     {label: "FAQ", href: "/faqPage/1?from=header"},
     {label: "Организациям", href: "/organizations/about"},
     {label: "Блог", href: "/blog"},
-    {label: "Контакты", href: "/contacts"},
+    {label: "Контакты", href: "/contacts/contact"},
 ];
 
 const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
