@@ -1,3 +1,4 @@
+// var-1
 'use client'
 import {useEffect, useRef, useState, useId, ReactNode, CSSProperties} from "react";
 
@@ -45,13 +46,13 @@ const GlassSurface = ({
                           children,
                           width = 200,
                           height = 80,
-                          borderRadius = 20,
+                          borderRadius = 6,
                           borderWidth = 0.07,
                           brightness = 50,
                           opacity = 0.93,
                           blur = 11,
                           displace = 0,
-                          backgroundOpacity = 0,
+                          backgroundOpacity = 0.7,
                           saturation = 1,
                           distortionScale = -180,
                           redOffset = 0,
@@ -222,13 +223,33 @@ const GlassSurface = ({
         if (svgSupported) {
             return {
                 ...baseStyles,
+                // background: isDarkMode
+                //     ? `hsl(0 0% 0% / ${backgroundOpacity})`
+                // backdropFilter: `url(#${filterId}) saturate(${saturation})`,
                 background: isDarkMode
-                    ? `hsl(0 0% 0% / ${backgroundOpacity})`
+                    ? `rgba(61,158,214,.07)`
                     : `hsl(0 0% 100% / ${backgroundOpacity})`,
-                backdropFilter: `url(#${filterId}) saturate(${saturation})`,
+                backdropFilter: `5px`,
+             //    boxShadow: isDarkMode
+             //        ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
+             // 0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
+             // 0px 4px 16px rgba(17, 17, 26, 0.05),
+             // 0px 8px 24px rgba(17, 17, 26, 0.05),
+             // 0px 16px 56px rgba(17, 17, 26, 0.05),
+             // 0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+             // 0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+             // 0px 16px 56px rgba(17, 17, 26, 0.05) inset`
+             //        : `0 0 2px 1px color-mix(in oklch, black, transparent 85%) inset,
+             // 0 0 10px 4px color-mix(in oklch, black, transparent 90%) inset,
+             // 0px 4px 16px rgba(17, 17, 26, 0.05),
+             // 0px 8px 24px rgba(17, 17, 26, 0.05),
+             // 0px 16px 56px rgba(17, 17, 26, 0.05),
+             // 0px 4px 16px rgba(17, 17, 26, 0.05) inset,
+             // 0px 8px 24px rgba(17, 17, 26, 0.05) inset,
+             // 0px 16px 56px rgba(17, 17, 26, 0.05) inset`,
                 boxShadow: isDarkMode
                     ? `0 0 2px 1px color-mix(in oklch, white, transparent 65%) inset,
-             0 0 10px 4px color-mix(in oklch, white, transparent 85%) inset,
+             0 0 10px 4px color-mix(in oklch, #353535, transparent 85%) inset,
              0px 4px 16px rgba(17, 17, 26, 0.05),
              0px 8px 24px rgba(17, 17, 26, 0.05),
              0px 16px 56px rgba(17, 17, 26, 0.05),
@@ -250,7 +271,7 @@ const GlassSurface = ({
                     return {
                         ...baseStyles,
                         background: "rgba(0, 0, 0, 0.4)",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
+                        // border: "1px solid rgba(255, 255, 255, 0.2)",
                         boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
                         inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`,
                     };
@@ -260,7 +281,7 @@ const GlassSurface = ({
                         background: "rgba(255, 255, 255, 0.1)",
                         backdropFilter: "blur(12px) saturate(1.8) brightness(1.2)",
                         WebkitBackdropFilter: "blur(12px) saturate(1.8) brightness(1.2)",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
+                        // border: "1px solid rgba(255, 255, 255, 0.2)",
                         boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
                         inset 0 -1px 0 0 rgba(255, 255, 255, 0.1)`,
                     };
@@ -270,7 +291,7 @@ const GlassSurface = ({
                     return {
                         ...baseStyles,
                         background: "rgba(255, 255, 255, 0.4)",
-                        border: "1px solid rgba(255, 255, 255, 0.3)",
+                        // border: "1px solid rgba(255, 255, 255, 0.3)",
                         boxShadow: `inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
                         inset 0 -1px 0 0 rgba(255, 255, 255, 0.3)`,
                     };
@@ -280,7 +301,7 @@ const GlassSurface = ({
                         background: "rgba(255, 255, 255, 0.25)",
                         backdropFilter: "blur(12px) saturate(1.8) brightness(1.1)",
                         WebkitBackdropFilter: "blur(12px) saturate(1.8) brightness(1.1)",
-                        border: "1px solid rgba(255, 255, 255, 0.3)",
+                        // border: "1px solid rgba(255, 255, 255, 0.3)",
                         boxShadow: `0 8px 32px 0 rgba(31, 38, 135, 0.2),
                         0 2px 16px 0 rgba(31, 38, 135, 0.1),
                         inset 0 1px 0 0 rgba(255, 255, 255, 0.4),
@@ -389,7 +410,7 @@ const GlassSurface = ({
                 </defs>
             </svg>
 
-            <div className="w-full h-full flex px-[12px] items-center justify-between relative z-10">
+            <div className="w-full h-full flex  items-center justify-between relative z-10">
                 {children}
             </div>
         </div>
@@ -397,3 +418,5 @@ const GlassSurface = ({
 };
 
 export default GlassSurface;
+
+
