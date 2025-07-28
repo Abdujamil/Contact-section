@@ -94,7 +94,7 @@
 //         switch (name.toLowerCase()) {
 //             case 'name':
 //                 return 'name';
-//             case 'contact':
+//             case 'connection':
 //                 return type === 'tel' ? 'tel' : 'email';
 //             case 'email':
 //                 return 'email';
@@ -361,7 +361,7 @@
 //         switch (name.toLowerCase()) {
 //             case 'name':
 //                 return 'name';
-//             case 'contact':
+//             case 'connection':
 //                 return type === 'tel' ? 'tel' : 'email';
 //             case 'email':
 //                 return 'email';
@@ -694,7 +694,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         switch (name.toLowerCase()) {
             case 'name':
                 return 'name';
-            case 'contact':
+            case 'connection':
                 return type === 'tel' ? 'tel' : 'email';
             case 'email':
                 return 'email';

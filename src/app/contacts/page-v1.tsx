@@ -39,8 +39,8 @@ export default function Contacts() {
         reset,
     } = methods;
 
-    const [activeTab, setActiveTab] = useState<"contact" | "requisite">(
-        "contact"
+    const [activeTab, setActiveTab] = useState<"connection" | "requisite">(
+        "connection"
     );
     // Upload file
     const [text, setText] = useState("");
@@ -193,7 +193,7 @@ export default function Contacts() {
 
     useEffect(() => {
         setFailCheck(false);
-        setFocus("contact");
+        setFocus("connection");
     }, [isPhone, isEmail]);
 
     useEffect(() => {
@@ -360,7 +360,7 @@ export default function Contacts() {
                                 animate={controls}
                                 className={`${styles.contactRightContent} w-full max-w-[860px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative`}
                                 style={{
-                                    display: activeTab !== "contact" ? "none" : "block",
+                                    display: activeTab !== "connection" ? "none" : "block",
                                 }}
                             >
                                 <FormProvider {...methods}>

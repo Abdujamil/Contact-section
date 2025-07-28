@@ -12,7 +12,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     const pathname = usePathname();
 
     // useEffect(() => {
-    //     const isContact = pathname === '/contact';
+    //     const isContact = pathname === '/connection';
     //     const isPricing = pathname === '/pricing';
     //     const isOrganization = pathname === '/organizations';
     //
@@ -35,7 +35,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     useEffect(() => {
         const hideScrollPaths = [
-            '/contact',
+            '/connection',
             '/pricing',
             '/organizations',
             ...pathname.startsWith("/auth") ? [pathname] : []
@@ -192,7 +192,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
             const maxScroll = scrollHeight - clientHeight;
 
-            const hideScrollPaths = ['/contact', '/pricing'];
+            const hideScrollPaths = ['/connection', '/pricing'];
             const shouldHide = hideScrollPaths.some(path => pathname.includes(path)) || pathname.startsWith("/auth");
 
             setShowScrollbar(!shouldHide);

@@ -10,7 +10,7 @@ import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 
 const navItems = [
     {
-        href: "/contacts/contact", label: "Связаться",
+        href: "/contacts/connection", label: "Связаться",
         icon: (
             <svg
                 width="30"

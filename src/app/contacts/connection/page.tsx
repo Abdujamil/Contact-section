@@ -34,7 +34,7 @@ export default function Contacts() {
         reset,
     } = methods;
 
-    const activeTab = "contact"
+    const activeTab = "connection"
     // Upload file
     const [text, setText] = useState("");
     const [showPolicy, setShowPolicy] = useState(false);
@@ -186,7 +186,7 @@ export default function Contacts() {
 
     useEffect(() => {
         setFailCheck(false);
-        setFocus("contact");
+        setFocus("connection");
     }, [isPhone, isEmail]);
 
     useEffect(() => {
