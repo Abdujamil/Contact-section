@@ -274,7 +274,7 @@ const FooterLinks: React.FC = () => {
 
             <div className="relative">
               <Link
-                  href="/contacts"
+                  href="/contacts/contact"
                   onMouseMove={handleMouseMove}
                   onMouseUp={handleMouseUp}
                   onMouseLeave={handleMouseLeave}
