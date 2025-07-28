@@ -35,6 +35,10 @@ export default function Contacts() {
     } = methods;
 
     const activeTab = "connection"
+    useEffect(() => {
+        bounceActiveBlock(activeTab, controls);
+    }, [activeTab]);
+
     // Upload file
     const [text, setText] = useState("");
     const [showPolicy, setShowPolicy] = useState(false);
@@ -179,10 +183,6 @@ export default function Contacts() {
             setEmailError(false);
         }
     }, [contactValue]);
-
-    useEffect(() => {
-        bounceActiveBlock(activeTab, controls);
-    }, [activeTab]);
 
     useEffect(() => {
         setFailCheck(false);

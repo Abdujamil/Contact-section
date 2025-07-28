@@ -46,8 +46,8 @@ const runMotionEffect = (controls: ReturnType<typeof useAnimation>) => {
         },
     });
 };
-export const bounceActiveBlock = (activeTab: 'contact' | 'requisite', controls: ReturnType<typeof useAnimation>) => {
-    const block = activeTab === 'contact'
+export const bounceActiveBlock = (activeTab: 'connection' | 'requisite', controls: ReturnType<typeof useAnimation>) => {
+    const block = activeTab === 'connection'
         ? document.getElementById('form-main')
         : document.getElementById('requisite-block');
 

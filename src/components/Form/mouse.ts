@@ -49,7 +49,7 @@ export const setLastClickPosition = (e: React.MouseEvent<HTMLButtonElement>) => 
 
 // Функция для переключения на новую вкладку
 export const switchTab = (
-    tab: "contact" | "requisite",
+    tab: "connection" | "requisite",
     setActiveTab: React.Dispatch<React.SetStateAction<"connection" | "requisite">>,
     controls: AnimationControls,
     styles: Record<string, string>
@@ -57,7 +57,7 @@ export const switchTab = (
     setActiveTab(tab);
 
     setTimeout(() => {
-        const targetButton = tab === "contact"
+        const targetButton = tab === "connection"
             ? document.querySelector(`.${styles["connection-btn"]}`) as HTMLButtonElement
             : document.querySelector(`.${styles["requisite-btn"]}`) as HTMLButtonElement;
 
@@ -65,7 +65,7 @@ export const switchTab = (
             initializeMousePosition(targetButton);
         }
 
-        const targetBlock = tab === "contact"
+        const targetBlock = tab === "connection"
             ? document.getElementById("form-main")
             : document.getElementById("requisite-block");
 
@@ -77,7 +77,7 @@ export const switchTab = (
 
 // Функция только для анимации уже активного блока
 export const animateActiveBlock = (
-    tab: "contact" | "requisite",
+    tab: "connection" | "requisite",
     controls: AnimationControls
 ) => {
     // Запускаем анимацию без переключения вкладки
@@ -86,11 +86,11 @@ export const animateActiveBlock = (
 
 // Обновленная функция обработки клика
 export const handleTabClick = (
-    tab: "contact" | "requisite",
+    tab: "connection" | "requisite",
     setActiveTab: React.Dispatch<React.SetStateAction<"connection" | "requisite">>,
     controls: AnimationControls,
     styles: Record<string, string>,
-    currentActiveTab: "contact" | "requisite" // Добавляем текущую активную вкладку
+    currentActiveTab: "connection" | "requisite" // Добавляем текущую активную вкладку
 ) => (e: React.MouseEvent<HTMLButtonElement>) => {
     setLastClickPosition(e);
 

@@ -7,7 +7,7 @@ import {
 import {AnimationControls} from "framer-motion";
 import CustomButton from "@/components/CustomButton/CustomButtom";
 
-type Tab = "contact" | "requisite";
+type Tab = "connection" | "requisite";
 type BtnsProps = {
     activeTab: Tab;
     setActiveTab: React.Dispatch<React.SetStateAction<Tab>>;
@@ -65,9 +65,9 @@ const Btns: React.FC<BtnsProps> = ({activeTab, setActiveTab, controls}) => {
                 label="Связаться"
                 iconLeft={IconContact}
                 iconRight={IconContact}
-                isActive={activeTab === "contact"}
+                isActive={activeTab === "connection"}
                 onClick={handleTabClick(
-                    "contact",
+                    "connection",
                     setActiveTab,
                     controls,
                     styles,
