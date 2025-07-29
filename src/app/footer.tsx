@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from '../app/page.module.scss';
-import FooterSubscriptionForm from "../components/footer/FooterSubscriptionForm";
+// import FooterSubscriptionForm from "../components/footer/FooterSubscriptionForm";
 import FooterCompanyInfo from "../components/footer/FooterCompanyInfo";
 import FooterLinks from "../components/footer/FooterLinks";
 

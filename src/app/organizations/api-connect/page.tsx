@@ -3,7 +3,7 @@ import styles from "@/app/page.module.scss";
 import React, {useRef, useState} from "react";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
-export default function page() {
+export default function Page() {
     const preRef = useRef<HTMLPreElement>(null);
     const [copied, setCopied] = useState(false);
 
