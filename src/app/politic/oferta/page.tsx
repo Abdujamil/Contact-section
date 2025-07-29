@@ -7,7 +7,7 @@ import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 export default function Page() {
     return (
         <>
-            <Breadcrumbs policy={true}/>
+            <Breadcrumbs policyOferta={true}/>
             <div
                 className={`${styles.BlogPageContent} mb-[120px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
             >

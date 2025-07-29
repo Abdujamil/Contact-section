@@ -1,513 +1,337 @@
 "use client";
 import styles from "@/app/page.module.scss";
-import React, {useRef, useState} from "react";
+import React from "react";
+import HeaderStyles from "@/components/header/Header.module.css";
+import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import Link from "next/link";
 
-export default function OrganizationApiContent() {
-    const preRef = useRef<HTMLPreElement>(null);
-    const [copied, setCopied] = useState(false);
+const apiCards = [
+    {
+        title: "Бизнес",
+        items: [
+            "Автоматизация встреч и звонков.",
+            "Быстрое формирование отчётов.",
+            "Интеграция с CRM, чат-ботами и внутренними сервисами",
+        ],
+        description: "Ускорение коммуникаций и снижение издержек на рутинные задачи.",
+    },
+    {
+        title: "Образование",
+        items: [
+            "Транскрибация лекций и семинаров.",
+            "Создание субтитров учебных материалов.",
+            "Повышение доступности контента для иностранных слушателей.",
+        ],
+        description: "Цифровизация образовательного контента без лишней нагрузки на преподавателей.",
+    },
+    {
+        title: "Call-центр",
+        items: [
+            "Расшифровка звонков и построение диалогов.",
+            "Контроль качества обслуживания и выявление нарушений.",
+            "Анализ клиентских запросов и скриптов.",
+        ],
+        description: "Прозрачность работы операторов и усиление контроля за клиентским опытом.",
+    },
+    {
+        title: "Журналистика",
+        items: [
+            "Точное преобразование интервью, комментариев, подкастов в текст.",
+            "Ускорение публикаций и монтажей.",
+            "Добавление субтитров к видео для соцсетей.",
+        ],
+        description: "Экономия времени при подготовке материалов и рост охвата.",
+    },
+    {
+        title: "Юриспруденция",
+        items: [
+            "Протоколирование судебных заседаний, допросов, слушаний.",
+            "Хранение стенограмм с таймкодами и спикерами.",
+            "Обеспечение юридической точности.",
+        ],
+        description: "Надёжная текстовая фиксация для работы с доказательствами и документами.",
+    },
+    {
+        title: "Бюро переводов",
+        items: [
+            "Расшифровка аудио- и видеофайлов для последующего перевода.",
+            "Возможность автоматического перевода и озвучки.",
+            "Форматы: DOCX, SRT, TXT для локализации.",
+        ],
+        description: "Снижение трудозатрат при адаптации мультимедийного контента.",
+    },
+    {
+        title: "Здравоохранение",
+        items: [
+            "Преобразование голосовых записей врачей в текст.",
+            "Подготовка медицинских протоколов, заключений, рекомендаций.",
+            "Использование в телемедицине и приёмах с диктофоном.",
+        ],
+        description: "Минимизация ручного труда и повышение точности медицинской документации.",
+    },
+    {
+        title: "Гос. учреждения",
+        items: [
+            "Протоколирование заседаний, совещаний, интервью.",
+            "Ведение стенограмм в контролируемой среде.",
+            "Интеграция в информационные системы и документооборот.",
+        ],
+        description: "Соблюдение требований регламента и усиление контроля.",
+    },
+];
 
-    const handleCopy = () => {
-        if (!preRef.current) return;
+const miniCards = [
+    "95% точности при распознавании речи",
+    "100+ языков, включая русский и английский",
+    "Автоматическая расстановка пунктуации",
+    "Форматы вывода: TXT, DOCX, SRT, VTT, JSON",
+    "Определение спикеров транскрибации",
+    "Поддержка обработки видеоконференций",
+];
 
-        const textToCopy = preRef.current.innerText;
 
-        navigator.clipboard.writeText(textToCopy)
-            .then(() => {
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000); // Уведомление исчезает через 2 секунды
-            })
-            .catch(err => {
-                console.error("Ошибка копирования:", err);
-            });
-    };
-
+export default function page() {
     return (
         <>
-            <Breadcrumbs organizationApi={true}/>
-        <div>
-            {/* Всплывающее уведомление */}
-            {copied && (
+            <Breadcrumbs organizationApiTranslate={true}/>
+            <div>
                 <div
-                    className={`fixed bottom-[60px] right-[50px] z-[999] flex items-center gap-3 px-5 py-3 rounded-lg
-                text-sm text-[#ccc] shadow-lg backdrop-blur-md bg-white/10
-                transition-opacity duration-300 animate-fadeInOutRight`}
+                    className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 text-green-400 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"/>
-                    </svg>
-                    <span>Скопировано</span>
-                </div>
-            )}
+                    <div className="oferta-content policy-content">
+                        {/*Блок попробовать*/}
+                        <div className={`w-full flex items-center justify-center mb-[20px] md:mb-[30px]`}>
+                            <div
+                                className={`${styles.editorTryBlockApi} ${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[8px] border !border-[#353535]`}
+                            >
+                                <h3
+                                    className={`${styles.txtGradientRight} w-fit m-auto !text-[32px] !md:text-[32px] !leading-[120%] !mb-[20px]`}
+                                >
+                                    Хотите подключить API?
+                                </h3>
+                                <p className={`max-w-[352px] m-auto text-[#adadad] !leading-[140%] md:!text-[18px] text-[16px] !mb-[20px]`}>
+                                    Упростите транскрибацию уже сегодня — с помощью API для бизнеса
+                                </p>
 
-            <div
-                className={`${styles.BlogPageContent} mb-[115px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
-            >
-                <div className="oferta-content policy-content">
-                    <section id="introduction">
-                        <h2>Введение</h2>
+                                <div className="relative w-full max-w-[220px] m-auto h-[51px] !overflow-hidden ">
+                                    <Link href="/organizations/api-connect"
+                                          className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["blogTryBtn"]} border !border-[#353535] w-full !h-full group flex items-center !justify-between md:!justify-center`}
+                                          data-text=""
+                                          onMouseMove={handleMouseMove}
+                                          onMouseLeave={handleMouseLeave}
+                                    >
+                                    <span
+                                        className="font-normal md:text-[20px] text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
+                                      Документация
+                                    </span>
 
-                        <p>
-                            Документ описывает возможности REST API для системы преобразования аудио-записей в текст
-                            путём
-                            отправки запросов через Internet. Эта инструкция поможет вам подключиться к API AudioSector
-                            и
-                            автоматически расшифровывать аудиофайлы в текст. Подходит для разработчиков, интеграторов,
-                            создателей CRM-систем, маркетплейсов и других сервисов.
-                        </p>
-                    </section>
-                    <section id="workflow">
-                        <h2>Порядок работы</h2>
-
-                        <h3>Получение токена авторизации</h3>
-                        <p>Для начала работы необходимо зарегистрироваться на сайте https://audiosector.ru Затем в
-                            личном кабинете (ЛК) зайти в профиль и получить API-токен для авторизации запросов. Токен
-                            необходимо скопировать и сохранить. Просмотреть повторно его невозможно, с целью
-                            безопасности он не сохраняется в системе, можно только повторно сгенерировать новый.</p>
-
-                        <h3>Авторизация при запросах</h3>
-                        <p>Токен должен быть указан в каждом запросе в виде заголовка «api_key:».</p>
-
-                        <h3>
-                            Пополнение баланса
-                        </h3>
-                        <p>Пополнить баланс вы можете в ЛК. Списание по заказам происходит с лицевого счета
-                            аккаунта.</p>
-
-                        <h3>Ограничения</h3>
-                        <p>
-                            Максимальный размер файла для обработки: 5000 МБ.
-                        </p>
-                    </section>
-                    <section id="base-url">
-                        <h2>Базовый URL — https://rest.audiosector.ru/v1</h2>
-                    </section>
-                    <section id="endpoints" className="!mb-0">
-                        <h2>Эндпоинты</h2>
-
-                        <h3>Общие коды возвращаемых ошибок</h3>
-                        <p>
-                            HTTP_422 – Ошибка валидации параметров (некорректные значения или не полный набор)
-                        </p>
-                        <p>
-                            HTTP_401 – Ошибка авторизации
-                        </p>
-                        <p>
-                            HTTP_402 – Ошибка: недостаточная сумма на лицевом счету
-                        </p>
-                        <p>
-                            HTTP_500 – Внутренняя ошибка сервера
-                        </p>
-
-                        <h3>Передать файл на обработку</h3>
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto my-5">
-  <pre>
-    {`POST /task/file`}
-  </pre>
-                        </div>
-
-                        {/* Блок пример */}
-                        <div className={`w-full flex items-start justify-between`}>
-                            <h3>Пример</h3>
-                            <div onClick={handleCopy}
-                                 className={`flex items-center gap-2.5 font-[Rubik] !text-[14px] cursor-pointer`}>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4.40039 7.59801C4.40039 5.78068 4.40039 4.87201 4.96239 4.30734C5.52506 3.74268 6.42972 3.74268 8.24039 3.74268H10.1604C11.9704 3.74268 12.8757 3.74268 13.4377 4.30734C14.0004 4.87201 14.0004 5.78068 14.0004 7.59801V10.8113C14.0004 12.6287 14.0004 13.5373 13.4377 14.102C12.8757 14.6667 11.9704 14.6667 10.1604 14.6667H8.24039C6.42972 14.6667 5.52506 14.6667 4.96239 14.102C4.39972 13.5373 4.40039 12.6287 4.40039 10.8113V7.59801Z"
-                                        fill="#878787"/>
-                                    <path opacity="0.5"
-                                          d="M2.78133 2.11459C2 2.89525 2 4.15259 2 6.66659V7.99992C2 10.5139 2 11.7713 2.78133 12.5519C3.19267 12.9639 3.73667 13.1586 4.528 13.2506C4.4 12.6906 4.4 11.9199 4.4 10.8106V7.59792C4.4 5.78059 4.4 4.87192 4.962 4.30725C5.52467 3.74259 6.42933 3.74259 8.24 3.74259H10.16C11.2613 3.74259 12.0267 3.74259 12.5853 3.86925C12.4933 3.07392 12.2987 2.52792 11.8853 2.11459C11.1047 1.33325 9.84733 1.33325 7.33333 1.33325C4.81933 1.33325 3.562 1.33325 2.78133 2.11459Z"
-                                          fill="#878787"/>
-                                </svg>
-
-                                <span className={`${styles['menu-item']} `}>
-
-                                </span>
+                                        <svg
+                                            className={`${styles.sendIconLeft}  transition-all !duration-[.13s] ease-in`}
+                                            width="18"
+                                            height="24"
+                                            viewBox="0 0 18 24"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M11.625 0.871195V1.74239L14.7964 1.75176L17.9732 1.76581L17.9893 11.9859L18 22.2108H14.8125H11.625V23.1054V24L11.5018 23.9766C11.4375 23.9625 8.94643 23.5691 5.97321 23.1007C2.99464 22.637 0.433928 22.2342 0.27857 22.2061L0 22.1593V11.9953C0 6.4075 0.0160713 1.83607 0.0375004 1.83607C0.0857143 1.83607 11.3571 0.0562077 11.5018 0.0234203L11.625 1.90735e-06V0.871195ZM11.625 12V20.5714H13.8482H16.0714V12V3.42857H13.8482H11.625V12ZM9.39107 11.2974C9.13929 11.4286 9.03214 11.6393 9.03214 12C9.03214 12.3607 9.13929 12.5714 9.39107 12.7026C9.63214 12.8337 9.86786 12.8197 10.0768 12.6698C10.2911 12.5105 10.3929 12.2998 10.3929 12C10.3929 11.7002 10.2911 11.4895 10.0768 11.3302C9.86786 11.1803 9.63214 11.1663 9.39107 11.2974Z"
+                                                fill="#adadad"
+                                            />
+                                        </svg>
+                                    </Link>
+                                    <div className={styles.highlight}/>
+                                </div>
                             </div>
                         </div>
+                        <section id="what-is-api">
+                            <h2>Что такое API</h2>
+                            <p>
+                                API (Application Programming Interface) — это инструмент, который позволяет вашей
+                                системе автоматически взаимодействовать с нашей платформой. Это как «цифровой мост»,
+                                благодаря которому процессы проходят без ручного вмешательства: быстро, стабильно и
+                                точно.
+                            </p>
+                            <h3>
+                                Простой пример
+                            </h3>
 
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-5">
-<pre ref={preRef}>
-  {"curl — X 'POST' \\\n"}
-    {"'https://rest.audiosector.ru/v1/task/file' \\\n"}
-    {"  -H 'accept: application/json' \\\n"}
-    {"  -H 'api_key: "}
-    <strong className="font-bold">токен_авторизации</strong>
-    {"' \\\n"}
-    {"  -H 'Content-Type: multipart/form-data' \\\n"}
-    {"  -F 'uploaded_file=@test_file.mp3;type=audio/mpeg'"}
-</pre>
-                        </div>
+                            <p>
+                                Допустим, вы принимаете звонки или собираете голосовые сообщения от клиентов — например,
+                                на горячей линии, в телеграм-боте, в call-центр или через CRM. Обычно такие записи нужно
+                                выгружать вручную и передавать на расшифровку, что отнимает время и требует
+                                человеческого участия.
+                            </p>
+                            <p>
+                                С API всё проще: ваша система автоматически отправляет запись — наша платформа её
+                                расшифровывает и возвращает готовый текст. Это может происходить с каждым новым звонком,
+                                сообщением или файлом — без пауз и ожиданий. Вы получаете точный текст прямо в нужный
+                                вам инструмент: CRM, таблицу, документ или чат.
+                            </p>
+                        </section>
 
-                        <div className={`w-full flex items-start justify-between`}>
-                            <h3>Пример на python</h3>
-                            <div onClick={handleCopy}
-                                 className={`flex items-center gap-2.5 font-[Rubik] !text-[14px] cursor-pointer`}>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4.40039 7.59801C4.40039 5.78068 4.40039 4.87201 4.96239 4.30734C5.52506 3.74268 6.42972 3.74268 8.24039 3.74268H10.1604C11.9704 3.74268 12.8757 3.74268 13.4377 4.30734C14.0004 4.87201 14.0004 5.78068 14.0004 7.59801V10.8113C14.0004 12.6287 14.0004 13.5373 13.4377 14.102C12.8757 14.6667 11.9704 14.6667 10.1604 14.6667H8.24039C6.42972 14.6667 5.52506 14.6667 4.96239 14.102C4.39972 13.5373 4.40039 12.6287 4.40039 10.8113V7.59801Z"
-                                        fill="#878787"/>
-                                    <path opacity="0.5"
-                                          d="M2.78133 2.11459C2 2.89525 2 4.15259 2 6.66659V7.99992C2 10.5139 2 11.7713 2.78133 12.5519C3.19267 12.9639 3.73667 13.1586 4.528 13.2506C4.4 12.6906 4.4 11.9199 4.4 10.8106V7.59792C4.4 5.78059 4.4 4.87192 4.962 4.30725C5.52467 3.74259 6.42933 3.74259 8.24 3.74259H10.16C11.2613 3.74259 12.0267 3.74259 12.5853 3.86925C12.4933 3.07392 12.2987 2.52792 11.8853 2.11459C11.1047 1.33325 9.84733 1.33325 7.33333 1.33325C4.81933 1.33325 3.562 1.33325 2.78133 2.11459Z"
-                                          fill="#878787"/>
-                                </svg>
+                        <section id="target-audience">
+                            <h2>Для кого разработан API</h2>
 
-                                <span className={`${styles['menu-item']} !text-[14px] `}>
-                                    Скопировать код
-                                </span>
+                            <div className={`flex flex-wrap items-center gap-5`}>
+                                {apiCards.map((card, index) => (
+                                    <div
+                                        key={index}
+                                        className={`${styles.apiCard} p-[20px] w-full md:max-w-[388px] rounded-[6px] border border-[#353535]`}
+                                    >
+                                        <h4 className="text-[#adadad] text-[24px] leading-[120%] mb-[15px]">{card.title}</h4>
+
+                                        <ul className="text-[16px] space-y-[5px] list-disc pl-[20px] text-[#ccc] mb-[15px]">
+                                            {card.items.map((item, idx) => (
+                                                <li key={idx}>{item}</li>
+                                            ))}
+                                        </ul>
+
+                                        <p className="!text-[#878787] text-[16px] !mb-0">{card.description}</p>
+                                    </div>
+                                ))}
                             </div>
-                        </div>
 
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-[30px]">
-<pre>
-  {"import requests\n\n"}
-    {"import json\n\n\n"}
-    {'api_url = "https://rest.audiosector.ru/v1"\n\n'}
-    {'file_path = "test_file.mp3"\n\n'}
-    {'token = "'}
-    <strong className="font-bold">токен_авторизации</strong>
-    {'"\n\n'}
-    {'headers = {"accept": "application/json", "api_key": token}\n\n'}
-    {"with open(file_path, 'rb') as f:\n\n"}
-    {"    files = {'file': (file_path, f)}\n\n"}
-    {'    response = requests.post(f"{api_url}/task/file", headers=headers, files=files)\n\n'}
-    {'    res = response.json()\n\n'}
-    {'    print(res)'}
-</pre>
+                            <div
+                                className="max-w-[600px] m-auto rounded-[8px] flex items-center justify-center my-[30px]">
+                                <img className="w-full object-cover" alt="img1"
+                                     src="/organization/organization-img2.png"/></div>
+                        </section>
 
-                        </div>
+                        <section id="api-capabilities">
+                            <h2>Возможности AUDIOSECTOR API</h2>
 
-                        <h3>Ответы</h3>
-                        <p>
-                            HTTP_200 - Возвращается id принятой задачи в очереди на обработку
-                        </p>
+                            <div
+                                className="flex flex-wrap items-center gap-2 mb-[16px] justify-center md:justify-start">
+                                {miniCards.map((text, index) => (
+                                    <div
+                                        key={index}
+                                        className="w-full max-w-[260px] h-[134px] rounded-[6px] border p-5 flex flex-col items-center justify-center text-center border-[#353535] backdrop-blur-[2px] bg-[rgba(0,0,0,0.07)] shadow-[0px_0px_10px_rgba(0,0,0,0.6),_inset_0px_0px_6px_rgba(255,255,255,0.1)]"
+                                    >
+                                        <svg
+                                            width="28"
+                                            height="18"
+                                            viewBox="0 0 28 18"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <path
+                                                d="M26.1875 1.5L13.0625 16.5L7.4375 10.875M7.4375 16.5L1.8125 10.875M20.5625 1.5L12.5938 10.6406"
+                                                stroke="#CCCCCC"
+                                                strokeWidth="1.875"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
 
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto my-5">
- <pre>
-    {`{
-    
- "task_id": "01JRF7CTHEFMF5ERH3PQYFTPC0"
- "account_balance": 360
- 
-}`}
-  </pre>
-                        </div>
-
-                        <h3>
-                            Передать URL на обработку
-                        </h3>
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto my-5">
-  <pre>
-    {`POST /task/url`}
-  </pre>
-                        </div>
-
-                        <h3>
-                            Предварительная настройка
-                        </h3>
-                        <p>Перед использованием данного типа запросов сайт-источник должен быть подтверждён в личном
-                            кабинете. Только для подтверждённого сайта можно указывать URL для скачивания файлов на
-                            обработку.</p>
-
-                        {/* Блок пример */}
-                        <div className={`w-full flex items-start justify-between`}>
-                            <h3>Пример</h3>
-                            <span onClick={handleCopy}
-                                  className={`flex items-center gap-2.5 font-[Rubik] !text-[14px] cursor-pointer`}>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.40039 7.59801C4.40039 5.78068 4.40039 4.87201 4.96239 4.30734C5.52506 3.74268 6.42972 3.74268 8.24039 3.74268H10.1604C11.9704 3.74268 12.8757 3.74268 13.4377 4.30734C14.0004 4.87201 14.0004 5.78068 14.0004 7.59801V10.8113C14.0004 12.6287 14.0004 13.5373 13.4377 14.102C12.8757 14.6667 11.9704 14.6667 10.1604 14.6667H8.24039C6.42972 14.6667 5.52506 14.6667 4.96239 14.102C4.39972 13.5373 4.40039 12.6287 4.40039 10.8113V7.59801Z"
-                                            fill="#878787"/>
-                                        <path opacity="0.5"
-                                              d="M2.78133 2.11459C2 2.89525 2 4.15259 2 6.66659V7.99992C2 10.5139 2 11.7713 2.78133 12.5519C3.19267 12.9639 3.73667 13.1586 4.528 13.2506C4.4 12.6906 4.4 11.9199 4.4 10.8106V7.59792C4.4 5.78059 4.4 4.87192 4.962 4.30725C5.52467 3.74259 6.42933 3.74259 8.24 3.74259H10.16C11.2613 3.74259 12.0267 3.74259 12.5853 3.86925C12.4933 3.07392 12.2987 2.52792 11.8853 2.11459C11.1047 1.33325 9.84733 1.33325 7.33333 1.33325C4.81933 1.33325 3.562 1.33325 2.78133 2.11459Z"
-                                              fill="#878787"/>
-                                </svg>
-
-                                  <span className={`${styles['menu-item']} !text-[14px] `}>
-                                    Скопировать код
-                                </span>
-                            </span>
-                        </div>
-
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-5">
- <pre>
-  {"curl — X 'POST' \\\n\n"}
-     {"'https://rest.audiosector.ru/v1/task/file' \\\n\n"}
-     {"  -H 'accept: application/json' \\\n\n"}
-     {"  -H 'api_key: "}
-     <strong>токен_авторизации</strong>
-     {"' \\\n\n"}
-     {"  -d '{\n«url»: «https://example.com/collection/test.file.mp3»\n}'"}
-</pre>
-
-                        </div>
-
-
-                        {/* Блок пример */}
-                        <div className={`w-full flex items-start justify-between`}>
-                            <h3>Пример на python</h3>
-                            <div onClick={handleCopy}
-                                 className={`flex items-center gap-2.5 font-[Rubik] !text-[14px] cursor-pointer`}>
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4.40039 7.59801C4.40039 5.78068 4.40039 4.87201 4.96239 4.30734C5.52506 3.74268 6.42972 3.74268 8.24039 3.74268H10.1604C11.9704 3.74268 12.8757 3.74268 13.4377 4.30734C14.0004 4.87201 14.0004 5.78068 14.0004 7.59801V10.8113C14.0004 12.6287 14.0004 13.5373 13.4377 14.102C12.8757 14.6667 11.9704 14.6667 10.1604 14.6667H8.24039C6.42972 14.6667 5.52506 14.6667 4.96239 14.102C4.39972 13.5373 4.40039 12.6287 4.40039 10.8113V7.59801Z"
-                                        fill="#878787"/>
-                                    <path opacity="0.5"
-                                          d="M2.78133 2.11459C2 2.89525 2 4.15259 2 6.66659V7.99992C2 10.5139 2 11.7713 2.78133 12.5519C3.19267 12.9639 3.73667 13.1586 4.528 13.2506C4.4 12.6906 4.4 11.9199 4.4 10.8106V7.59792C4.4 5.78059 4.4 4.87192 4.962 4.30725C5.52467 3.74259 6.42933 3.74259 8.24 3.74259H10.16C11.2613 3.74259 12.0267 3.74259 12.5853 3.86925C12.4933 3.07392 12.2987 2.52792 11.8853 2.11459C11.1047 1.33325 9.84733 1.33325 7.33333 1.33325C4.81933 1.33325 3.562 1.33325 2.78133 2.11459Z"
-                                          fill="#878787"/>
-                                </svg>
-                                <span className={`${styles['menu-item']} !text-[14px] `}>
-                                    Скопировать код
-                                </span>
+                                        <p className="mt-[10px] !mb-0 text-[#ccc] text-[14px] leading-[120%]">{text}</p>
+                                    </div>
+                                ))}
                             </div>
-                        </div>
 
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-[30px]">
- <pre>
-  {"import requests\n\n\n"}
-     {"import json\n\n"}
-     {'api_url = «https://rest.audiosector.ru/v1»\n\n'}
-     {'file_url = «https://example.com/collection/test_file.mp3»\n\n'}
-     {'payload = {«url»: file_url}\n\n'}
-     {"token ='"}
-     <strong>токен_авторизации</strong>
-     {"'\n\n"}
-     {'headers = {«accept»: «application/json», «api_key»: token}\n\n'}
-     {'response = requests.post(f“{api_url}/task/url“,headers=headers,json=payload)\n\n'}
-     {'res = response.json()\n\n'}
-     {'print(res)'}
-</pre>
-                        </div>
-
-                        <h3>Ответы</h3>
-                        <p>
-                            HTTP_200 - Возвращается id принятой задачи в очереди на обработку
-                        </p>
-
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto my-5">
- <pre>
-    {`{
-    
-  "task_id": "01JRF7CTHEFMF5ERH3PQYFTPC0"
-  "account_balance": 360
- 
-}`}
-  </pre>
-                        </div>
-
-
-                        <h3>Получить результат</h3>
-                        <div
-                            className={`text-sm p-5 border border-[#353535] rounded-[6px] bg-transparent mb-[30px]`}>
-                            <pre>
-                                {`GET /task/result/{task_id}`}
-                            </pre>
-                        </div>
-
-                        <h3>Пример</h3>
-
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-5">
-  <pre>
-    {`curl — X 'GET' \\
-
-'https://rest.audiosector.ru/v1/task/result/01JRF7CTHEFMF5ERH3PQYFTPC0' \\
-
-  -H 'accept: application/json' \\`}
-  </pre>
-                        </div>
-
-                        <h3>Ответы</h3>
-                        <p>
-                            HTTP_204 - Результат еще не готов
-                        </p>
-                        <p>
-                            HTTP_200 - Возвращается json с результатом расшифровки следующего вида.
-                        </p>
-
-                        <div
-                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mt-5">
-  <pre>
-    {`{
-
-«segments»: [{
-
-«start»: 0.983,
-
-«end»: 1.731,
-
-«text»: « Раз, два, три».,
-
-«words»: [{
-«word»: «Раз,», «start»: 0.983, «end»: 1.165, «score»: 0.916
-
-},
-
-{
-
-«word»: «два,», «start»: 1.185, «end»: 1.307, «score»: 0.537
-
-},
-
-{
-
-«word»: «три»., «start»: 1.367, «end»: 1.731, «score»: 0.734
-
-}]
-
-},
-
-{
-
-«start»: 1.772,
-
-«end»: 2.56,
-
-«text»: «Проверка связи».,
-
-«words»: [{
-
-«word»: «Проверка», «start»: 1.772, «end»: 2.237, «score»: 0.927
-
-},
-
-{
-
-«word»: «связи»., «start»: 2.277, «end»: 2.56, «score»: 0.454
-
-}]
-
-}],
-
-«language»: «ru»
-
-}`}
-  </pre>
-                        </div>
-
-                    </section>
-
-                    {/*                    <section id="error-codes">*/}
-                    {/*                        <h2>Общие коды возвращаемых ошибок</h2>*/}
-                    {/*                        <p>*/}
-                    {/*                            HTTP_422 — Ошибка валидации параметров (некорректные значения или не полный набор)*/}
-                    {/*                        </p>*/}
-                    {/*                        <p>*/}
-                    {/*                            HTTP_401 — Ошибка авторизации*/}
-                    {/*                        </p>*/}
-                    {/*                        <p>*/}
-                    {/*                            HTTP_402 — Ошибка: недостаточная сумма на лицевом счёту*/}
-                    {/*                        </p>*/}
-                    {/*                        <p>*/}
-                    {/*                            HTTP_500 — Внутренняя ошибка сервера*/}
-                    {/*                        </p>*/}
-
-
-                    {/*                        <p className={`mt-5`}>*/}
-                    {/*                            HTTP_200 — Возвращается id принятой задачи в очереди на обработку*/}
-                    {/*                        </p>*/}
-                    {/*                        <div*/}
-                    {/*                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto my-5">*/}
-                    {/*  <pre>*/}
-                    {/*    {`{*/}
-                    {/*    */}
-                    {/*«task_id»: «01JRF7CTHEFMF5ERH3PQYFTPC0»*/}
-
-                    {/*«account_balance»: 360*/}
-
-                    {/*}`}*/}
-                    {/*  </pre>*/}
-                    {/*                        </div>*/}
-
-                    {/*                        <p>*/}
-                    {/*                            HTTP_204 — Результат ещё не готов*/}
-                    {/*                        </p>*/}
-                    {/*                        <p>*/}
-                    {/*                            HTTP_200 — Возвращается json с результатом расшифровки следующего вида.*/}
-                    {/*                        </p>*/}
-                    {/*                        <div*/}
-                    {/*                            className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mt-5">*/}
-                    {/*  <pre>*/}
-                    {/*    {`{*/}
-
-                    {/*«segments»: [{*/}
-
-                    {/*«start»: 0.983,*/}
-
-                    {/*«end»: 1.731,*/}
-
-                    {/*«text»: « Раз, два, три».,*/}
-
-                    {/*«words»: [{*/}
-                    {/*«word»: «Раз,», «start»: 0.983, «end»: 1.165, «score»: 0.916*/}
-
-                    {/*},*/}
-
-                    {/*{*/}
-
-                    {/*«word»: «два,», «start»: 1.185, «end»: 1.307, «score»: 0.537*/}
-
-                    {/*},*/}
-
-                    {/*{*/}
-
-                    {/*«word»: «три»., «start»: 1.367, «end»: 1.731, «score»: 0.734*/}
-
-                    {/*}]*/}
-
-                    {/*},*/}
-
-                    {/*{*/}
-
-                    {/*«start»: 1.772,*/}
-
-                    {/*«end»: 2.56,*/}
-
-                    {/*«text»: «Проверка связи».,*/}
-
-                    {/*«words»: [{*/}
-
-                    {/*«word»: «Проверка», «start»: 1.772, «end»: 2.237, «score»: 0.927*/}
-
-                    {/*},*/}
-
-                    {/*{*/}
-
-                    {/*«word»: «связи»., «start»: 2.277, «end»: 2.56, «score»: 0.454*/}
-
-                    {/*}]*/}
-
-                    {/*}],*/}
-
-                    {/*«language»: «ru»*/}
-
-                    {/*}`}*/}
-                    {/*  </pre>*/}
-                    {/*                        </div>*/}
-
-                    {/*                    </section>*/}
+                            <p>
+                                Интерфейс API поддерживает работу как с одиночными файлами, так и с массовыми
+                                загрузками, включая потоковые сценарии. Гибкая настройка параметров позволяет
+                                адаптировать систему под любые задачи: от расшифровки интервью до локализации
+                                мультимедийного архива.
+                            </p>
+
+                        </section>
+
+                        <section id="integration-process" className={`!mb-0`}>
+                            <h2>Простая и быстрая интеграция</h2>
+                            <p>
+                                Мы предлагаем два удобных варианта подключения — в зависимости от структуры вашей
+                                компании:
+                            </p>
+
+                            <ul className={`list-disc pl-[20px] mb-[16px]`}>
+                                <li>
+                                    Подключение по серверу. Доступ к API получает один конкретный сервер. Подходит для
+                                    компаний с централизованной инфраструктурой, когда запросы поступают из одного
+                                    места.
+                                </li>
+                                <li>
+                                    Подключение по организации. API можно использовать с разных серверов, если они
+                                    принадлежат одному юридическому лицу. Это удобно для компаний с филиалами,
+                                    региональными офисами или распределёнными командами.
+                                </li>
+                            </ul>
+
+                            <h3>
+                                Как работает API транскрибации
+                            </h3>
+                            <p>
+                                Существует два способа передать файл на расшифровку:
+                            </p>
+
+                            <p>
+                                1. Передача файла в теле запроса
+                            </p>
+                            <p>
+                                Вы сразу отправляете аудио- или видеофайл — он поступает в обработку и в течение
+                                короткого времени возвращается в виде текста.
+                            </p>
+
+                            <p>
+                                2. Передача ссылки на файл
+                            </p>
+                            <p>
+                                Вы указываете прямую ссылку на файл (например, из вашего хранилища), и система сама его
+                                скачивает и расшифровывает. Это удобно, если вы не хотите перегружать основной сервер.
+                            </p>
+                            <p>
+                                По умолчанию мы возвращаем результат в структурированном формате JSON — это удобно для
+                                любой автоматической обработки и интеграции с другими системами (например, для создания
+                                задач, аналитики или отчётов).
+                            </p>
+
+
+                            <p>
+                                Дополнительно мы можем отдавать готовый текст и в привычных форматах:
+                            </p>
+
+                            <ul className={`list-disc pl-[18px] mb-[16px]`}>
+                                <li>
+                                    Word (.docx)
+                                </li>
+                                <li>
+                                    Excel (.xlsx)
+                                </li>
+                                <li>
+                                    PDF
+                                </li>
+                                <li>
+                                    TXT
+                                </li>
+                                <li>
+                                    SRT (формат субтитров для видео)
+                                </li>
+                            </ul>
+
+                            <p className={`!mb-5`}>
+                                Интеграция занимает от 1 часа до 1 дня — в зависимости от ваших задач. Команда поддержки
+                                поможет адаптировать API под ваш продукт, инфраструктуру и целевую нагрузку
+                            </p>
+
+                            <div className={`relative !w-[220px] !overflow-hidden`}>
+                                <button
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                    className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-center`}
+                                >
+                                    <span
+                                        className={`!w-full text-[20px] !transition-all !duration-[.13s] !ease-in `}
+                                    >
+                                      Получить ключ API
+                                    </span>
+                                </button>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
-        </div>
+
         </>
-    );
+    )
 }

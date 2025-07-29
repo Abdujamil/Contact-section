@@ -38,7 +38,7 @@
     left: calc(50% - 1px);
     display: block;
     width: 1.5px;
-    height: 20px;
+    height: 16px;
     transform-origin: bottom center;
     background: rgba(125, 125, 125, 1);
     transition: all ease-out 280ms;

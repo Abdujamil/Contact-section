@@ -20,8 +20,8 @@ const FooterCompanyInfo: React.FC = () => {
         console.log("Выбранный язык:", language);
     };
     return (
-        <div className={`md:w-auto w-full flex items-end md:items-center justify-between`}>
-            <div className="mx-[10px] text-center flex flex-col items-start md:items-center h-[89px] justify-between">
+        <div className={`md:w-auto w-full flex items-start md:items-center justify-between`}>
+            <div className="mx-[10px] text-left flex flex-col items-start md:items-start h-[89px] justify-between">
                 <p className="font-[400] text-[#adadad] text-[16px] leading-[110%]">ИНН 6000005874</p>
                 <p className="text-[18px] leading-[110%]">ООО &quot;АУДИОСЕКТОР&quot;</p>
                 <p className="font-[400] text-[#adadad] text-[16px] leading-[110%]">© 2025 Audiosector</p>

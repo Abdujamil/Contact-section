@@ -11,6 +11,7 @@ import {organizationData} from "@/data/organization";
 
 const organizationNavItems = [
     {
+        title: 'О компании',
         href: "/organizations/about", label: "О компании",
         icon: (
             <svg width="27" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +22,9 @@ const organizationNavItems = [
         ),
     },
     {
-        href: "/organizations/where-do-you-lose", label: "Где вы теряете",
+        title: 'Где вы теряете',
+        href: "/organizations/where-do-you-lose",
+        label: "Где вы теряете",
         icon: (
             <svg width="27" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -34,7 +37,9 @@ const organizationNavItems = [
         ),
     },
     {
-        href: "/organizations/api", label: "Что такое API",
+        title: 'Транскрибация с помощью API',
+        href: "/organizations/api",
+        label: "Что такое API",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -44,7 +49,9 @@ const organizationNavItems = [
         ),
     },
     {
-        href: "/organizations/api-connect", label: "Подключить API",
+        title: 'Документация REST API Audiosector',
+        href: "/organizations/api-connect",
+        label: "Подключить API",
         icon: (
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -77,7 +84,7 @@ export default function OrganizationsLayout({children}: { children: ReactNode })
                     className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] leading-[110%] mb-[20px]
                             md:text-[48px] md:mb-[40px]`}
                 >
-                    {currentNavItem?.label ?? "Организация"}
+                    {currentNavItem?.title ?? "Организация"}
                 </h1>
                 <div className="w-full md:grid gap-[40px] grid-cols-[260px_1fr]">
                     <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] max-w-[320px] m-auto md:m-0">

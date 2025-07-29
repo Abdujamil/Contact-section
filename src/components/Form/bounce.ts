@@ -5,13 +5,6 @@ import {useAnimation} from "framer-motion";
 
 export const bounceElements = () => {
     const myElement = document.getElementById('bounce-checkbox');
-    // const selectElement = document.querySelector('.relative.mb-\\[34px\\] > div');
-
-    // Анимация для селекта
-    // if (selectElement instanceof HTMLElement) {
-    //     selectElement.style.animation = 'bounce-input .4s ease';
-    //     setTimeout(() => selectElement.style.animation = '', 100);
-    // }
 
     // Анимация для чекбоксов
     if (myElement) {
@@ -59,32 +52,7 @@ export const bounceActiveBlock = (activeTab: 'connection' | 'requisite', control
         block.style.animation = 'none';
         void block.offsetHeight; // Trigger reflow
 
-        // BounceEffect(block, {
-        //     startPosition: "-50px",
-        //     endPosition: `${5}px`,
-        //     duration: 500,
-        //     easing: "ease",
-        //     direction: 'vertical',
-        //     distanceCoficent: -1
-        // });
-
-        // const target = {
-        //     y: block ? animationSettings.openY : animationSettings.closeY,
-        //     opacity: block ? [0, 1, 1, 1, 1] : [1, 1, 1, 1, 0],
-        //     transition: {
-        //         duration: animationSettings.duration,
-        //         ease: animationSettings.ease,
-        //         times: animationSettings.times,
-        //     },
-        // };
-        // controls.start(target);
-
         runMotionEffect(controls);
 
-        // if (activeTab === 'bounceEffect') {
-        //     runBounceEffect(block);
-        // } else {
-        //     runMotionEffect();
-        // }
     }
 };

@@ -11,7 +11,7 @@ const Footer: React.FC = () => (
         w-full h-full md:max-h-[127px] py-[20px] pl-[30px] px-[30px] rounded-[4px] flex flex-col md:flex-row items-center justify-between
         
         `}>
-            <FooterSubscriptionForm />
+            {/*<FooterSubscriptionForm />*/}
             <FooterCompanyInfo />
             <FooterLinks />
         </div>

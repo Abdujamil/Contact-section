@@ -162,6 +162,7 @@ import HeaderStyles from "../header/Header.module.css";
 import {useAuth} from "@/components/context/AuthContext";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import {motion, AnimatePresence} from "framer-motion";
+import Link from "next/link";
 
 export default function FaqPageContent({
                                            id,
@@ -243,7 +244,7 @@ export default function FaqPageContent({
                                 При регистрации дарим 30 минут!
                             </h3>
                             <div className="relative w-[220px] m-auto h-[51px] !overflow-hidden">
-                                <button
+                                <Link href="/auth/login"
                                     className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535]  w-full !h-full group flex items-center !justify-between md:!justify-center`}
                                     data-text=""
                                     onMouseMove={handleMouseMove}
@@ -266,7 +267,7 @@ export default function FaqPageContent({
                                         className="font-normal text-[18px] md:text-[20px] leading-[120%] !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc]">
                                       Попробовать
                                     </span>
-                                </button>
+                                </Link>
                                 <div className={styles.highlight}/>
                             </div>
                         </div>
