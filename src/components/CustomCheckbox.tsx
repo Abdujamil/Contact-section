@@ -53,7 +53,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                   cursor-pointer ${fail && '!border-[#FF3030]'}`}
 
             >
-                <span className="hidden group-active:block">
+                {/*<span className="hidden group-active:block">*/}
+                <span className={`${successful ? 'block' : 'hidden'}`}>
                     <svg
                         className={`group-active:*:fill-[#FFF] ${!successful && '*:fill-[#FFF]'} transition-all duration-300`}
                         width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

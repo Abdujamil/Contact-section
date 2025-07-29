@@ -70,6 +70,7 @@ export default function Contacts() {
         fileInputRef,
         textareaRef,
     } = useFormRefs();
+    const [phoneSuccessful, setPhoneSuccessful] = useState(false);
 
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
@@ -95,48 +96,76 @@ export default function Contacts() {
     // Validation
     const {setFocus} = methods;
 
+    // const validContactt = (value: string) => {
+    //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    //     const phoneRegex =
+    //         /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
+    //
+    //     if (
+    //         (!emailRegex.test(value.trim()) && isEmail) ||
+    //         (!phoneRegex.test(value.trim()) && isPhone)
+    //     ) {
+    //         setEmailError(true);
+    //         setEmailSuccessful(false);
+    //
+    //         if (isEmail) {
+    //             setContactData((prev) => ({
+    //                 ...prev,
+    //                 email: "",
+    //             }));
+    //         } else {
+    //             setContactData((prev) => ({
+    //                 ...prev,
+    //                 phone: "",
+    //             }));
+    //         }
+    //
+    //         return;
+    //     } else {
+    //         setEmailError(false);
+    //         setEmailSuccessful(true);
+    //
+    //         if (isEmail) {
+    //             setContactData((prev) => ({
+    //                 ...prev,
+    //                 email: value.trim(),
+    //             }));
+    //         } else {
+    //             setContactData((prev) => ({
+    //                 ...prev,
+    //                 phone: value.trim(),
+    //             }));
+    //         }
+    //     }
+    // };
+
     const validContactt = (value: string) => {
+        const trimmedValue = value.trim();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const phoneRegex =
-            /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
+        const phoneRegex = /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
 
-        if (
-            (!emailRegex.test(value.trim()) && isEmail) ||
-            (!phoneRegex.test(value.trim()) && isPhone)
-        ) {
-            setEmailError(true);
-            setEmailSuccessful(false);
+        if (isEmail) {
+            const isValidEmail = emailRegex.test(trimmedValue);
+            setEmailError(!isValidEmail);
+            setEmailSuccessful(isValidEmail);
 
-            if (isEmail) {
-                setContactData((prev) => ({
-                    ...prev,
-                    email: "",
-                }));
-            } else {
-                setContactData((prev) => ({
-                    ...prev,
-                    phone: "",
-                }));
-            }
+            setContactData((prev) => ({
+                ...prev,
+                email: isValidEmail ? trimmedValue : "",
+            }));
+        }
 
-            return;
-        } else {
-            setEmailError(false);
-            setEmailSuccessful(true);
+        if (isPhone) {
+            const isValidPhone = phoneRegex.test(trimmedValue);
+            setPhoneSuccessful(isValidPhone);
 
-            if (isEmail) {
-                setContactData((prev) => ({
-                    ...prev,
-                    email: value.trim(),
-                }));
-            } else {
-                setContactData((prev) => ({
-                    ...prev,
-                    phone: value.trim(),
-                }));
-            }
+            setContactData((prev) => ({
+                ...prev,
+                phone: isValidPhone ? trimmedValue : "",
+            }));
         }
     };
+
 
     const [emailCheckboxError, setEmailCheckboxError] = useState(false);
     const [phoneCheckboxError, setPhoneCheckboxError] = useState(false);
@@ -177,18 +206,15 @@ export default function Contacts() {
             validContactt(contactValue);
         }
     }, [submitCount, contactData.email, contactData.phone]);
-
     useEffect(() => {
         if (emailError && contactValue.length > 0) {
             setEmailError(false);
         }
     }, [contactValue]);
-
     useEffect(() => {
         setFailCheck(false);
         setFocus("connection");
     }, [isPhone, isEmail]);
-
     useEffect(() => {
         const isValidEmail = isEmail && emailRegex.test(contactValue.trim());
         const isValidPhone = phoneRegex.test(contactValue.trim());
@@ -278,13 +304,11 @@ export default function Contacts() {
         setVisibleError(false);
         setTimeout(() => setVisibleError(true), 30);
     }, [submitCount]);
-
     useEffect(() => {
         if (selectedOption === "Тема") {
             setSelectError(false);
         }
     }, [selectedOption]);
-
     useEffect(() => {
         // Сбрасываем все ошибки и состояния
         setSelectError(false);
@@ -307,7 +331,6 @@ export default function Contacts() {
             fileInputRef.current.value = "";
         }
     }, [activeTab]);
-
     useEffect(() => {
         const isValidEmail = emailRegex.test(contactData.email.trim());
         const isValidPhone = phoneRegex.test(contactData.phone.trim());
@@ -538,9 +561,6 @@ export default function Contacts() {
                                     fail={
                                         visibleError && failCheck && !isPhone && !isEmail
                                     }
-                                    // fail={emailError}
-                                    // required={true}
-                                    // message={false}
                                     disable={!isPhone && !isEmail}
                                     value={contactValue}
                                     onChange={(value) => setContactValue(value)}
@@ -555,9 +575,11 @@ export default function Contacts() {
                             >
                                 <CustomCheckbox
                                     id="check-email"
-                                    successful={emailSuccessful && isEmail}
+                                    successful={emailSuccessful}
                                     fail={emailCheckboxError} // Используем отдельное состояние ошибки для email
-                                    checked={isEmail || contactData.email !== ""}
+                                    // checked={isEmail || contactData.email !== ""}
+                                    checked={isEmail}
+
                                     onChange={(value) => {
                                         setFailCheck(false);
                                         setEmailCheckboxError(false); // Сбрасываем ошибку при изменении
@@ -576,16 +598,18 @@ export default function Contacts() {
                                                 contactInputRef.current?.click();
                                                 contactInputRef.current?.focus();
                                             }, 0);
-                                            setEmailSuccessful(false);
+                                            // setEmailSuccessful(false);
                                         }
                                     }}
                                     label="Email"
                                 />
                                 <CustomCheckbox
                                     id="check-phone"
-                                    successful={emailSuccessful && isPhone}
+                                    successful={phoneSuccessful}
                                     fail={phoneCheckboxError} // Используем отдельное состояние ошибки для телефона
-                                    checked={isPhone || contactData.phone !== ""}
+                                    // checked={isPhone || contactData.phone !== ""}
+                                    checked={isPhone}
+
                                     onChange={(value) => {
                                         setFailCheck(false);
                                         setPhoneCheckboxError(false); // Сбрасываем ошибку при изменении
@@ -604,7 +628,7 @@ export default function Contacts() {
                                                 contactInputRef.current?.click();
                                                 contactInputRef.current?.focus();
                                             }, 0);
-                                            setEmailSuccessful(false);
+                                            // setEmailSuccessful(false);
                                         }
                                     }}
                                     label="Телефон"
