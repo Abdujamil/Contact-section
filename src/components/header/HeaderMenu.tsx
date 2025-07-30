@@ -34,30 +34,30 @@ const navigationData: NavigationItem[] = [
         title: 'Организациям',
         children: [
             {
-                id: 'cert-compliance', title: 'О компании', href: '/organization'
+                id: 'cert-compliance', title: 'О компании', href: '/organizations/about'
             },
             {
-                id: 'decl-compliance', title: 'Где вы теряете', href: '/organization'
+                id: 'decl-compliance', title: 'Где вы теряете', href: '/organizations/where-you-lose'
             },
             {
-                id: 'cert-agro', title: 'API ', href: '/organization'
+                id: 'cert-agro', title: 'API ', href: '/organizations/api'
             }
         ]
     },
     {
         id: 'blog',
         title: 'Блог',
-        href: '/'
+        href: '/blog'
     },
     {
         id: 'contacts',
         title: 'Контакты',
         children: [
             {
-                id: 'cert-compliance', title: 'Связаться', href: '/contacts'
+                id: 'cert-compliance', title: 'Связаться', href: '/contacts/connection'
             },
             {
-                id: 'decl-compliance', title: 'Реквизиты', href: '/contacts'
+                id: 'decl-compliance', title: 'Реквизиты', href: '/contacts/details'
             }
         ]
     }

@@ -11,33 +11,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     const [showScrollbar, setShowScrollbar] = useState(true);
     const pathname = usePathname();
 
-    // useEffect(() => {
-    //     const isContact = pathname === '/connection';
-    //     const isPricing = pathname === '/pricing';
-    //     const isOrganization = pathname === '/organizations';
-    //
-    //     document.body.style.overflow = isContact || isPricing || isOrganization ? 'hidden' : '';
-    //     setShowScrollbar(!isContact);
-    //
-    //     const timeout1 = setTimeout(() => {
-    //         window.dispatchEvent(new Event('scroll'));
-    //     }, 50);
-    //     const timeout2 = setTimeout(() => {
-    //         window.dispatchEvent(new Event('scroll'));
-    //     }, 200);
-    //
-    //     return () => {
-    //         clearTimeout(timeout1);
-    //         clearTimeout(timeout2);
-    //         document.body.style.overflow = '';
-    //     };
-    // }, [pathname]);
-
     useEffect(() => {
         const hideScrollPaths = [
             '/contacts/connection',
             '/pricing',
-            // '/organizations',
             '/auth/login',
             '/auth/register', 
             '/auth/forgot-password'
