@@ -1104,8 +1104,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         let currentScroll = 0;
         let targetScroll = 0;
         let isScrolling = false;
-        // const scrollStopThreshold = 0.5; // Уменьшил порог остановки
-        const scrollStopThreshold = 0.10; // Уменьшил порог остановки
+        const scrollStopThreshold = 0.5; // Уменьшил порог остановки
+        // const scrollStopThreshold = 0.10; // Уменьшил порог остановки
         
         // Немного увеличил скорость
         const getAdaptiveEasing = () => {
