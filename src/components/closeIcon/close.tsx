@@ -20,7 +20,7 @@ export const Close = ({ onClick }: { onClick: () => void }) => {
             onClick={onClick} 
             className="animated-close absolute md:top-[22px]  !top-[35px]  !right-[108px] z-10"
             width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0_5371_3270)">
+                <g clipPath="url(#clip0_5371_3270)">
                     <mask id="mask0_5371_3270" style={{maskType: 'luminance'}} maskUnits="userSpaceOnUse" x="-1" y="-1" width="16" height="16">
                         <path d="M15 -1H-1V15H15V-1Z" fill="white" />
                     </mask>

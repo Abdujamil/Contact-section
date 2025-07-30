@@ -714,6 +714,326 @@
 // }
 
 
+// 'use client'
+// import React, {useEffect, useRef, useState} from "react";
+// import {usePathname} from "next/navigation";
+
+// interface SmoothScrollProps {
+//     children: React.ReactNode;
+// }
+
+// export default function SmoothScroll({children}: SmoothScrollProps) {
+//     const scrollbarRef = useRef<HTMLDivElement>(null);
+//     const [showScrollbar, setShowScrollbar] = useState(true);
+//     const pathname = usePathname();
+
+//     useEffect(() => {
+//         const hideScrollPaths = [
+//             '/contacts/connection',
+//             '/pricing',
+//             '/auth/login',
+//             '/auth/register', 
+//             '/auth/forgot-password'
+//         ];
+
+//         const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
+
+//         document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
+//         setShowScrollbar(!shouldHideScrollbar);
+
+//         // Force scroll update after DOM changes
+//         const timeout1 = setTimeout(() => {
+//             window.dispatchEvent(new Event('scroll'));
+//         }, 100);
+//         const timeout2 = setTimeout(() => {
+//             window.dispatchEvent(new Event('scroll'));
+//         }, 300);
+
+//         return () => {
+//             clearTimeout(timeout1);
+//             clearTimeout(timeout2);
+//             document.body.style.overflow = '';
+//         };
+//     }, [pathname]);
+
+//     useEffect(() => {
+//         if (pathname.startsWith('/auth')) {
+//             window.scrollTo(0, 0);
+//             document.documentElement.scrollTop = 0;
+//         }
+//     }, [pathname]);
+
+//     const getScrollOffset = React.useCallback(() => {
+//         if (pathname.includes('/policy') || pathname.includes('/organizations')) {
+//             return -130;
+//         }
+//         if (pathname.includes('/blog')) {
+//             return -188;
+//         }
+//         if (pathname.includes('/editors')) {
+//             return 90;
+//         }
+//         return 120;
+//     }, [pathname]);
+
+//     useEffect(() => {
+//         if (!scrollbarRef.current) return;
+
+//         let targetScroll = window.scrollY;
+//         let animationId: number | null = null;
+        
+//         // Much simpler and more responsive easing
+//         // const scrollEaseFactor = 0.25;
+//         const scrollEaseFactor = 0.50;
+        
+//         const smoothScrollTo = (target: number) => {
+//             const current = window.scrollY;
+//             const diff = target - current;
+            
+//             // If difference is small enough, just set it directly
+//             if (Math.abs(diff) < 2) {
+//                 window.scrollTo(0, target);
+//                 animationId = null;
+//                 return;
+//             }
+            
+//             // Adaptive easing - faster when close to target
+//             const distance = Math.abs(diff);
+//             let easeFactor = scrollEaseFactor;
+            
+//             if (distance < 50) {
+//                 // Speed up when very close to target
+//                 easeFactor = Math.max(0.4, scrollEaseFactor + (50 - distance) * 0.008);
+//             }
+            
+//             const next = current + diff * easeFactor;
+//             window.scrollTo(0, next);
+            
+//             animationId = requestAnimationFrame(() => smoothScrollTo(target));
+//         };
+
+//         // Custom event handlers
+//         const handleCustomScrollToTop = () => {
+//             targetScroll = 0;
+//             if (animationId) cancelAnimationFrame(animationId);
+//             smoothScrollTo(targetScroll);
+//         };
+
+//         const handleSetTargetScroll = (e: CustomEvent) => {
+//             targetScroll = e.detail.targetScroll || 0;
+//             if (animationId) cancelAnimationFrame(animationId);
+//             smoothScrollTo(targetScroll);
+//         };
+
+//         // Simplified wheel handler - let browser handle most of the work
+//         const handleWheel = (e: WheelEvent) => {
+//             const target = e.target as HTMLElement;
+
+//             // Allow native scroll in specific elements
+//             if (target.closest('textarea') || target.closest('.allow-native-scroll')) {
+//                 return;
+//             }
+
+//             // Only apply custom smooth scroll for large scroll movements
+//             const scrollDelta = Math.abs(e.deltaY);
+            
+//             // For small movements, let browser handle natively for better performance
+//             if (scrollDelta < 100) {
+//                 return;
+//             }
+
+//             e.preventDefault();
+            
+//             targetScroll += e.deltaY;
+//             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+//             if (animationId) cancelAnimationFrame(animationId);
+//             smoothScrollTo(targetScroll);
+//         };
+
+//         const handleAnchorClick = (e: MouseEvent) => {
+//             const target = e.target as HTMLElement;
+//             if (target.tagName === "A") {
+//                 const anchor = target.getAttribute("href");
+//                 if (anchor?.startsWith("#")) {
+//                     const el = document.querySelector(anchor);
+//                     if (el) {
+//                         e.preventDefault();
+
+//                         const offset = getScrollOffset();
+//                         const elTop = (el as HTMLElement).offsetTop - offset;
+
+//                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//                         targetScroll = Math.max(0, Math.min(elTop, maxScroll));
+
+//                         if (animationId) cancelAnimationFrame(animationId);
+//                         smoothScrollTo(targetScroll);
+//                     }
+//                 }
+//             }
+//         };
+
+//         // Update target when user scrolls naturally (without interfering)
+//         const handleNativeScroll = () => {
+//             if (!animationId) {
+//                 targetScroll = window.scrollY;
+//             }
+//         };
+
+//         // Scrollbar logic
+//         let isTicking = false;
+//         let isDragging = false;
+//         let startY = 0;
+//         let startScrollTop = 0;
+//         const scrollPadding = 4;
+//         const scrollbar = scrollbarRef.current;
+
+//         function updateScrollbar() {
+//             const scrollTop = window.scrollY || window.pageYOffset;
+//             const scrollHeight = document.documentElement.scrollHeight;
+//             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
+//             const maxScroll = scrollHeight - clientHeight;
+
+//             const hideScrollPaths = [
+//                 '/contacts/connection',
+//                 '/pricing', 
+//                 '/auth/login',
+//                 '/auth/register',
+//                 '/auth/forgot-password'
+//             ];
+//             const shouldHide = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
+
+//             setShowScrollbar(!shouldHide);
+
+//             if (maxScroll <= 0) return;
+
+//             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;  
+//             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
+//             const topPercent = (scrollTop / maxScroll) * maxTop;
+
+//             if (scrollbar) {
+//                 scrollbar.style.setProperty('--scrollY', `${topPercent}px`);
+//                 scrollbar.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
+//             }
+//         }
+
+//         function scrollMove(e: TouchEvent | MouseEvent) {
+//             if (!isDragging) return;
+
+//             const scrollHeight = document.documentElement.scrollHeight;
+//             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
+//             const maxScrollDrag = scrollHeight - clientHeight;
+//             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
+//             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
+
+//             let clientY = 0;
+//             if (e instanceof TouchEvent) {
+//                 clientY = e.touches[0].clientY;
+//             } else {
+//                 clientY = e.clientY;
+//             }
+
+//             const deltaY = clientY - startY;
+//             const scrollDelta = (deltaY / maxTop) * maxScrollDrag;
+
+//             targetScroll = Math.max(0, Math.min(startScrollTop + scrollDelta, maxScrollDrag));
+
+//             if (animationId) cancelAnimationFrame(animationId);
+//             smoothScrollTo(targetScroll);
+//         }
+
+//         function startScroll(e: TouchEvent | MouseEvent) {
+//             isDragging = true;
+//             let clientY = 0;
+
+//             if (e instanceof TouchEvent) {
+//                 clientY = e.touches[0].clientY;
+//             } else {
+//                 clientY = e.clientY;
+//             }
+
+//             startY = clientY;
+//             startScrollTop = window.scrollY || window.pageYOffset;
+//             e.preventDefault();
+//         }
+
+//         function stopScroll() {
+//             isDragging = false;
+//         }
+
+//         const scrollHandler = () => {
+//             handleNativeScroll();
+
+//             if (!isTicking) {
+//                 requestAnimationFrame(() => {
+//                     updateScrollbar();
+//                     isTicking = false;
+//                 });
+//                 isTicking = true;
+//             }
+//         };
+
+//         updateScrollbar();
+
+//         // Event listeners
+//         window.addEventListener('customScrollToTop', handleCustomScrollToTop);
+//         window.addEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
+//         window.addEventListener('wheel', handleWheel, {passive: false});
+//         window.addEventListener('scroll', scrollHandler, {passive: true});
+//         document.addEventListener('click', handleAnchorClick);
+//         window.addEventListener('resize', updateScrollbar);
+
+//         if (scrollbar) {
+//             scrollbar.addEventListener('mousedown', startScroll);
+//             scrollbar.addEventListener('touchstart', startScroll);
+//         }
+
+//         document.addEventListener('mousemove', scrollMove);
+//         document.addEventListener('mouseup', stopScroll);
+//         document.addEventListener('touchmove', scrollMove);
+//         document.addEventListener('touchend', stopScroll);
+
+//         return () => {
+//             if (animationId) cancelAnimationFrame(animationId);
+            
+//             window.removeEventListener('customScrollToTop', handleCustomScrollToTop);
+//             window.removeEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
+//             window.removeEventListener('wheel', handleWheel);
+//             window.removeEventListener('scroll', scrollHandler);
+//             document.removeEventListener('click', handleAnchorClick);
+//             window.removeEventListener('resize', updateScrollbar);
+
+//             if (scrollbar) {
+//                 scrollbar.removeEventListener('mousedown', startScroll);
+//                 scrollbar.removeEventListener('touchstart', startScroll);
+//             }
+
+//             document.removeEventListener('mousemove', scrollMove);
+//             document.removeEventListener('mouseup', stopScroll);
+//             document.removeEventListener('touchmove', scrollMove);
+//             document.removeEventListener('touchend', stopScroll);
+//         };
+//     }, [pathname, getScrollOffset]);
+
+//     useEffect(() => {
+//         window.scrollTo(0, 0);
+//         document.documentElement.scrollTop = 0;
+//         document.body.scrollTop = 0;
+        
+//         setTimeout(() => {
+//             window.dispatchEvent(new Event('scroll'));
+//         }, 50);
+//     }, [pathname]);
+
+//     return (
+//         <>
+//             {children}
+//             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
+//         </>
+//     );
+// }
+
 'use client'
 import React, {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
@@ -758,10 +1078,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     useEffect(() => {
         if (pathname.startsWith('/auth')) {
+            // Принудительно прокручиваем наверх
             window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
+            document.documentElement.scrollTop = 0; // на всякий случай
         }
     }, [pathname]);
+
 
     const getScrollOffset = React.useCallback(() => {
         if (pathname.includes('/policy') || pathname.includes('/organizations')) {
@@ -779,76 +1101,88 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     useEffect(() => {
         if (!scrollbarRef.current) return;
 
-        let targetScroll = window.scrollY;
-        let animationId: number | null = null;
+        let currentScroll = 0;
+        let targetScroll = 0;
+        let isScrolling = false;
+        // const scrollStopThreshold = 0.5; // Уменьшил порог остановки
+        const scrollStopThreshold = 0.10; // Уменьшил порог остановки
         
-        // Much simpler and more responsive easing
-        const scrollEaseFactor = 0.25;
-        
-        const smoothScrollTo = (target: number) => {
-            const current = window.scrollY;
-            const diff = target - current;
+        // Немного увеличил скорость
+        const getAdaptiveEasing = () => {
+            const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches || 
+                                    window.devicePixelRatio > 1.5;
             
-            // If difference is small enough, just set it directly
-            if (Math.abs(diff) < 2) {
-                window.scrollTo(0, target);
-                animationId = null;
-                return;
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (prefersReducedMotion) {
+                return 0.5; // Быстрее для accessibility
             }
             
-            // Adaptive easing - faster when close to target
-            const distance = Math.abs(diff);
-            let easeFactor = scrollEaseFactor;
+            const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
+            const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
             
-            if (distance < 50) {
-                // Speed up when very close to target
-                easeFactor = Math.max(0.4, scrollEaseFactor + (50 - distance) * 0.008);
+            if (isSlowConnection) {
+                return 0.4;
             }
             
-            const next = current + diff * easeFactor;
-            window.scrollTo(0, next);
-            
-            animationId = requestAnimationFrame(() => smoothScrollTo(target));
+            return isHighRefreshRate ? 0.25 : 0.35; // Увеличил скорость
+        };
+        
+        const scrollEaseFactor = getAdaptiveEasing();
+
+        const initScroll = () => {
+            currentScroll = window.scrollY;
+            targetScroll = currentScroll;
         };
 
-        // Custom event handlers
+        const smoothScroll = () => {
+            const diff = targetScroll - currentScroll;
+            if (Math.abs(diff) < scrollStopThreshold) {
+                currentScroll = targetScroll;
+                window.scrollTo(0, currentScroll);
+                isScrolling = false;
+                return;
+            }
+            currentScroll += diff * scrollEaseFactor;
+            window.scrollTo(0, currentScroll);
+            requestAnimationFrame(smoothScroll);
+        };
+
+        // Custom events
         const handleCustomScrollToTop = () => {
             targetScroll = 0;
-            if (animationId) cancelAnimationFrame(animationId);
-            smoothScrollTo(targetScroll);
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
         };
 
         const handleSetTargetScroll = (e: CustomEvent) => {
             targetScroll = e.detail.targetScroll || 0;
-            if (animationId) cancelAnimationFrame(animationId);
-            smoothScrollTo(targetScroll);
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
         };
 
-        // Simplified wheel handler - let browser handle most of the work
         const handleWheel = (e: WheelEvent) => {
             const target = e.target as HTMLElement;
 
-            // Allow native scroll in specific elements
+            // Разрешаем нативный скролл внутри textarea и scrollable div
             if (target.closest('textarea') || target.closest('.allow-native-scroll')) {
                 return;
             }
 
-            // Only apply custom smooth scroll for large scroll movements
-            const scrollDelta = Math.abs(e.deltaY);
-            
-            // For small movements, let browser handle natively for better performance
-            if (scrollDelta < 100) {
-                return;
-            }
-
             e.preventDefault();
-            
             targetScroll += e.deltaY;
+
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
 
-            if (animationId) cancelAnimationFrame(animationId);
-            smoothScrollTo(targetScroll);
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
         };
 
         const handleAnchorClick = (e: MouseEvent) => {
@@ -866,17 +1200,20 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                         targetScroll = Math.max(0, Math.min(elTop, maxScroll));
 
-                        if (animationId) cancelAnimationFrame(animationId);
-                        smoothScrollTo(targetScroll);
+                        if (!isScrolling) {
+                            isScrolling = true;
+                            requestAnimationFrame(smoothScroll);
+                        }
                     }
                 }
             }
         };
 
-        // Update target when user scrolls naturally (without interfering)
-        const handleNativeScroll = () => {
-            if (!animationId) {
-                targetScroll = window.scrollY;
+        // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: не обновляем скролл если идет анимация
+        const handleScroll = () => {
+            if (!isScrolling) {
+                currentScroll = window.scrollY;
+                targetScroll = currentScroll;
             }
         };
 
@@ -905,11 +1242,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             setShowScrollbar(!shouldHide);
 
-            if (maxScroll <= 0) return;
-
-            const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;  
+            const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
-            const topPercent = (scrollTop / maxScroll) * maxTop;
+            const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
 
             if (scrollbar) {
                 scrollbar.style.setProperty('--scrollY', `${topPercent}px`);
@@ -938,8 +1273,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             targetScroll = Math.max(0, Math.min(startScrollTop + scrollDelta, maxScrollDrag));
 
-            if (animationId) cancelAnimationFrame(animationId);
-            smoothScrollTo(targetScroll);
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
         }
 
         function startScroll(e: TouchEvent | MouseEvent) {
@@ -961,18 +1298,24 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             isDragging = false;
         }
 
+        // Оптимизированный scroll handler
+        let scrollTimeout: NodeJS.Timeout;
         const scrollHandler = () => {
-            handleNativeScroll();
+            handleScroll();
 
             if (!isTicking) {
-                requestAnimationFrame(() => {
-                    updateScrollbar();
-                    isTicking = false;
-                });
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        updateScrollbar();
+                        isTicking = false;
+                    });
+                }, 8); // Уменьшил до 8ms для более отзывчивого обновления
                 isTicking = true;
             }
         };
 
+        initScroll();
         updateScrollbar();
 
         // Event listeners
@@ -994,7 +1337,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         document.addEventListener('touchend', stopScroll);
 
         return () => {
-            if (animationId) cancelAnimationFrame(animationId);
+            clearTimeout(scrollTimeout);
             
             window.removeEventListener('customScrollToTop', handleCustomScrollToTop);
             window.removeEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
@@ -1016,10 +1359,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, [pathname, getScrollOffset]);
 
     useEffect(() => {
+        // Reset scroll position on page change
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
         
+        // Force scrollbar update after navigation
         setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));
         }, 50);
