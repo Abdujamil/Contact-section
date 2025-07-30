@@ -88,6 +88,7 @@ export default function LoginPage() {
                                         title={"Пароль"}
                                         inputName="password"
                                         required={true}
+                                        showPasswordToggle={true}
                                     />
                                     <Link
                                         className={`${styles['menu-item']} w-fit mr-4  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}

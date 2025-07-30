@@ -14,6 +14,7 @@ import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
+import {DatePicker} from "@/components/DatePicker/DatePicker";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -67,6 +68,8 @@ export default function RegisterPage() {
     const {register, handleSubmit} = methods;
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [selectedDate, setSelectedDate] = useState("");
     const controls = useAnimation();
 
     const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
@@ -85,6 +88,16 @@ export default function RegisterPage() {
         if (!showPolicy) {
             setShowPolicy(true);
         }
+    };
+
+    // Date picker handlers
+    const handleDateSelect = (date: string) => {
+        setSelectedDate(date);
+        setShowDatePicker(false);
+    };
+
+    const handleDatePickerClose = () => {
+        setShowDatePicker(false);
     };
 
     useEffect(() => {
@@ -141,7 +154,7 @@ export default function RegisterPage() {
                                         required={true}
                                     />
 
-                                    <PasswordInputWithStrength className={`${styles.bounceElem} w-full md:w-[375px]`}/>
+                                    <PasswordInputWithStrength className={`${styles.bounceElem} w-full md:w-[314px]`}/>
                                     <UsernameInputWithValidation
                                         className={`${styles.bounceElem} w-full md:w-[375px]`}/>
 
@@ -152,23 +165,25 @@ export default function RegisterPage() {
                                         required={true}
                                     />
 
-                                    <div className={`relative flex w-full mb-[43px]`}>
-                                        <AppInput
-                                            className={`${styles.bounceElem} w-full md:w-[314px]`}
-                                            type={"text"}
-                                            title={"Дата рождения"}
-                                            inputName="date"
-                                            required={true}
-                                            mask="date"
-                                        />
-
+                                    <div className={`relative flex justify-between w-full mb-[43px]`}>
+                                        <div className="cursor-pointer">
+                                            <AppInput
+                                                className={`${styles.bounceElem} w-full md:w-[314px]`}
+                                                type={"text"}
+                                                title={"Дата рождения"}
+                                                inputName="date"
+                                                required={true}
+                                                value={selectedDate}
+                                                disable={false}
+                                                mask="date"
+                                                onChange={(value) => setSelectedDate(value)}
+                                            />
+                                        </div>
 
                                         <button
                                             type="button"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                            }}
-                                            className="z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010]"
+                                            onClick={() => setShowDatePicker(true)}
+                                            className="z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] transition-colors duration-200"
                                         >
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -177,7 +192,6 @@ export default function RegisterPage() {
                                                     fill="#878787"/>
                                             </svg>
                                         </button>
-
                                     </div>
 
                                     <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
@@ -250,6 +264,14 @@ export default function RegisterPage() {
                     />
                 )}
             </motion.div>
+            
+            {/* DatePicker Modal */}
+            <DatePicker
+                isVisible={showDatePicker}
+                onDateSelect={handleDateSelect}
+                onClose={handleDatePickerClose}
+                initialDate={selectedDate}
+            />
         </>
     );
 }
