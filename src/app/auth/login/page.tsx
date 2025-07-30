@@ -9,8 +9,9 @@ import {emailRegex} from "@/components/Form/validation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import HeaderStyles from "@/components/header/Header.module.css";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
-import {motion} from "framer-motion";
+import {motion, useAnimation} from "framer-motion";
 import {usePathname} from "next/navigation";
+import {bounceActiveBlock} from "@/components/Form/bounce";
 
 type LoginFormValues = {
     email: string;
@@ -21,6 +22,7 @@ export default function LoginPage() {
     const methods = useForm<LoginFormValues>();
     const {register, handleSubmit} = methods;
     const pathname = usePathname();
+    const controls = useAnimation();
 
     const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
         try {
@@ -55,19 +57,17 @@ export default function LoginPage() {
         });
     }, [register]);
 
+    useEffect(() => {
+        bounceActiveBlock('login', controls);
+    }, [controls]);
+
     return (
         <>
             <Breadcrumbs loginUrl={true}/>
             <motion.div
-                key={pathname}
-                initial={{opacity: 0, y: -30}}
-                animate={{opacity: 1, y: 0}}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 6,
-                    mass: 0.3,
-                }}
+                id="auth-login"
+                initial={{y: 20, opacity: 1}}
+                animate={controls}
                 className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
                 <div

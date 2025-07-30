@@ -217,12 +217,18 @@ export default function Contacts() {
     }, [isPhone, isEmail]);
     useEffect(() => {
         const isValidEmail = isEmail && emailRegex.test(contactValue.trim());
-        const isValidPhone = phoneRegex.test(contactValue.trim());
+        const isValidPhone = isPhone && phoneRegex.test(contactValue.trim());
 
-        if (isValidEmail || isValidPhone) {
+        if (isValidEmail) {
             setEmailSuccessful(true);
-        } else {
+        } else if (isEmail) {
             setEmailSuccessful(false);
+        }
+
+        if (isValidPhone) {
+            setPhoneSuccessful(true);
+        } else if (isPhone) {
+            setPhoneSuccessful(false);
         }
     }, [contactValue, isEmail, isPhone]);
 
@@ -335,12 +341,18 @@ export default function Contacts() {
         const isValidEmail = emailRegex.test(contactData.email.trim());
         const isValidPhone = phoneRegex.test(contactData.phone.trim());
 
-        if (isValidEmail && isValidPhone) {
+        if (isEmail && isValidEmail) {
             setEmailSuccessful(true);
-        } else {
+        } else if (isEmail) {
             setEmailSuccessful(false);
         }
-    }, [contactData]);
+
+        if (isPhone && isValidPhone) {
+            setPhoneSuccessful(true);
+        } else if (isPhone) {
+            setPhoneSuccessful(false);
+        }
+    }, [contactData, isEmail, isPhone]);
 
     return (
         <>
@@ -576,29 +588,30 @@ export default function Contacts() {
                                 <CustomCheckbox
                                     id="check-email"
                                     successful={emailSuccessful}
-                                    fail={emailCheckboxError} // Используем отдельное состояние ошибки для email
-                                    // checked={isEmail || contactData.email !== ""}
+                                    fail={emailCheckboxError}
                                     checked={isEmail}
-
                                     onChange={(value) => {
                                         setFailCheck(false);
-                                        setEmailCheckboxError(false); // Сбрасываем ошибку при изменении
-                                        setIsEmail(value || contactData.email !== "");
-                                        if (value || contactData.email !== "") {
+                                        setEmailCheckboxError(false);
+                                        
+                                        if (value) {
+                                            // When email checkbox is checked
+                                            setIsEmail(true);
                                             setIsPhone(false);
                                             setContactValue(contactData.email);
-                                        } else if (contactData.phone !== "") {
-                                            setIsPhone(true);
-                                            setContactValue(contactData.phone);
-                                        }
-                                        if (value) {
-                                            setIsPhone(false);
                                             setFocus("Contact");
                                             setTimeout(() => {
                                                 contactInputRef.current?.click();
                                                 contactInputRef.current?.focus();
                                             }, 0);
-                                            // setEmailSuccessful(false);
+                                        } else {
+                                            // When email checkbox is unchecked
+                                            setIsEmail(false);
+                                            // Only switch to phone if phone data exists
+                                            if (contactData.phone !== "") {
+                                                setIsPhone(true);
+                                                setContactValue(contactData.phone);
+                                            }
                                         }
                                     }}
                                     label="Email"
@@ -606,29 +619,30 @@ export default function Contacts() {
                                 <CustomCheckbox
                                     id="check-phone"
                                     successful={phoneSuccessful}
-                                    fail={phoneCheckboxError} // Используем отдельное состояние ошибки для телефона
-                                    // checked={isPhone || contactData.phone !== ""}
+                                    fail={phoneCheckboxError}
                                     checked={isPhone}
-
                                     onChange={(value) => {
                                         setFailCheck(false);
-                                        setPhoneCheckboxError(false); // Сбрасываем ошибку при изменении
-                                        setIsPhone(value || contactData.phone !== "");
-                                        if (value || contactData.phone !== "") {
+                                        setPhoneCheckboxError(false);
+                                        
+                                        if (value) {
+                                            // When phone checkbox is checked
+                                            setIsPhone(true);
                                             setIsEmail(false);
                                             setContactValue(contactData.phone);
-                                        } else if (contactData.email !== "") {
-                                            setIsEmail(true);
-                                            setContactValue(contactData.email);
-                                        }
-                                        if (value) {
-                                            setIsEmail(false);
                                             setFocus("Contact");
                                             setTimeout(() => {
                                                 contactInputRef.current?.click();
                                                 contactInputRef.current?.focus();
                                             }, 0);
-                                            // setEmailSuccessful(false);
+                                        } else {
+                                            // When phone checkbox is unchecked
+                                            setIsPhone(false);
+                                            // Only switch to email if email data exists
+                                            if (contactData.email !== "") {
+                                                setIsEmail(true);
+                                                setContactValue(contactData.email);
+                                            }
                                         }
                                     }}
                                     label="Телефон"

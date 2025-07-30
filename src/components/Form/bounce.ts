@@ -39,13 +39,22 @@ const runMotionEffect = (controls: ReturnType<typeof useAnimation>) => {
         },
     });
 };
-export const bounceActiveBlock = (activeTab: 'connection' | 'requisite', controls: ReturnType<typeof useAnimation>) => {
-    const block = activeTab === 'connection'
-        ? document.getElementById('form-main')
-        : document.getElementById('requisite-block');
+export const bounceActiveBlock = (activeTab: 'connection' | 'requisite' | 'login' | 'register' | 'forgot-password', controls: ReturnType<typeof useAnimation>) => {
+    let block: HTMLElement | null = null;
+    
+    if (activeTab === 'connection') {
+        block = document.getElementById('form-main');
+    } else if (activeTab === 'requisite') {
+        block = document.getElementById('requisite-block');
+    } else if (activeTab === 'login') {
+        block = document.getElementById('auth-login');
+    } else if (activeTab === 'register') {
+        block = document.getElementById('auth-register');
+    } else if (activeTab === 'forgot-password') {
+        block = document.getElementById('auth-forgot-password');
+    }
 
     if (block) {
-
         controls.stop();
         
         // Сброс анимации перед запуском новой
@@ -53,6 +62,5 @@ export const bounceActiveBlock = (activeTab: 'connection' | 'requisite', control
         void block.offsetHeight; // Trigger reflow
 
         runMotionEffect(controls);
-
     }
 };

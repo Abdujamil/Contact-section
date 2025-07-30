@@ -7,11 +7,12 @@ import {emailRegex} from "@/components/Form/validation";
 import Image from "next/image";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import HeaderStyles from "@/components/header/Header.module.css";
-import {motion} from "framer-motion";
+import {motion, useAnimation} from "framer-motion";
 import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import {usePathname} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import {bounceActiveBlock} from "@/components/Form/bounce";
 
 type ForgotPasswordFormValues = {
     email: string;
@@ -21,6 +22,7 @@ export default function ForgotPasswordPage() {
     const pathname = usePathname();
     const methods = useForm<ForgotPasswordFormValues>();
     const {register, handleSubmit} = methods;
+    const controls = useAnimation();
 
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
@@ -57,6 +59,10 @@ export default function ForgotPasswordPage() {
         });
     }, [register]);
 
+    useEffect(() => {
+        bounceActiveBlock('forgot-password', controls);
+    }, [controls]);
+
     const onSubmit: SubmitHandler<ForgotPasswordFormValues> = async (data) => {
         setShowPolicy(true); // показываем политику
 
@@ -78,18 +84,12 @@ export default function ForgotPasswordPage() {
         <>
             <Breadcrumbs forgotPasswordrUrl={true}/>
             <motion.div
-                key={pathname}
-                initial={{opacity: 0, y: -60}}
-                animate={{opacity: 1, y: 0}}
-                transition={{
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 8,
-                    mass: 0.3,
-                }}
+                id="auth-forgot-password"
+                initial={{y: 20, opacity: 1}}
+                animate={controls}
                 className={`${styles.BlogPageContent} w-full md:w-[860px] max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
-                {!submitted ? (
+                {submitted ? (
                     <>
                         <div
                             className={`w-full h-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
@@ -175,7 +175,7 @@ export default function ForgotPasswordPage() {
                                                             y2="1.5"
                                                             gradientUnits="userSpaceOnUse">
                                                 <stop stopColor="#9C9C9C"/>
-                                                <stop offset="1" stopColor="#9C9C9C" stop-opacity="0"/>
+                                                <stop offset="1" stopColor="#9C9C9C" stopOpacity="0"/>
                                             </linearGradient>
                                         </defs>
                                     </svg>

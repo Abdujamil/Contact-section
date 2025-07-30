@@ -9,11 +9,12 @@ import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import HeaderStyles from "@/components/header/Header.module.css";
 import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
 import UsernameInputWithValidation from "@/app/auth/register/UsernameInputWithValidation";
-import {motion} from "framer-motion";
+import {motion, useAnimation} from "framer-motion";
 import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {usePathname} from "next/navigation";
+import {bounceActiveBlock} from "@/components/Form/bounce";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -68,6 +69,7 @@ export default function RegisterPage() {
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const pathname = usePathname();
+    const controls = useAnimation();
 
     const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
         setShowPolicy(true);
@@ -107,19 +109,17 @@ export default function RegisterPage() {
         register("nickname", {required: "Введите никнейм"});
     }, [register]);
 
+    useEffect(() => {
+        bounceActiveBlock('register', controls);
+    }, [controls]);
+
     return (
         <>
             <Breadcrumbs registerUrl={true}/>
             <motion.div
-                key={pathname}
-                initial={{opacity: 0, y: -30}}
-                animate={{opacity: 1, y: 0}}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 6,
-                    mass: 0.3,
-                }}
+                id="auth-register"
+                initial={{y: 20, opacity: 1}}
+                animate={controls}
                 className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
 

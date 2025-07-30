@@ -28,7 +28,7 @@ const FlightSuccess = ({close, small = false, text, subText, isContactPage = fal
 
 
     return (
-        <div className="active">
+        <div className="active w-full h-full flex items-center justify-center">
 
             <div className="font-[Rubik] flex flex-col items-center">
                 <div className="flex flex-col gap-[30px] text-white text-center items-center">
@@ -63,7 +63,7 @@ const FlightSuccess = ({close, small = false, text, subText, isContactPage = fal
                 </div>
                 <p
                     className={`text-[#A4A4A4] font-light !text-[44px]  ${
-                        isContactPage ? "mt-[10px]" : "mt-[40px]"
+                        isContactPage ? "mt-[10px]" : "mt-[50px]"
                     } `}
                 >
                     {time}

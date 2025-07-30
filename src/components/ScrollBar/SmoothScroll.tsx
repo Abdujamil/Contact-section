@@ -35,10 +35,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     useEffect(() => {
         const hideScrollPaths = [
-            '/connection',
+            '/contacts/connection',
             '/pricing',
-            '/organizations',
-            ...pathname.startsWith("/auth") ? [pathname] : []
+            // '/organizations',
+            '/auth/login',
+            '/auth/register', 
+            '/auth/forgot-password'
         ];
 
         const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
@@ -46,12 +48,13 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
         setShowScrollbar(!shouldHideScrollbar);
 
+        // Force scroll update after DOM changes
         const timeout1 = setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));
-        }, 50);
+        }, 100);
         const timeout2 = setTimeout(() => {
             window.dispatchEvent(new Event('scroll'));
-        }, 200);
+        }, 300);
 
         return () => {
             clearTimeout(timeout1);
@@ -89,7 +92,32 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         let targetScroll = 0;
         let isScrolling = false;
         const scrollStopThreshold = 0.1;
-        const scrollEaseFactor = 0.2;
+        
+        // Adaptive easing based on refresh rate and device performance
+        const getAdaptiveEasing = () => {
+            // More sophisticated refresh rate detection
+            const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches || 
+                                    window.devicePixelRatio > 1.5;
+            
+            // Check for reduced motion preference
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (prefersReducedMotion) {
+                return 0.4; // Faster for accessibility
+            }
+            
+            // Adjust based on device performance hints
+            const connection = (navigator as any).connection;
+            const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+            
+            if (isSlowConnection) {
+                return 0.35; // Faster for slow connections
+            }
+            
+            return isHighRefreshRate ? 0.15 : 0.25;
+        };
+        
+        const scrollEaseFactor = getAdaptiveEasing();
 
         const initScroll = () => {
             currentScroll = window.scrollY;
@@ -192,8 +220,15 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
             const maxScroll = scrollHeight - clientHeight;
 
-            const hideScrollPaths = ['/connection', '/pricing'];
-            const shouldHide = hideScrollPaths.some(path => pathname.includes(path)) || pathname.startsWith("/auth");
+            const hideScrollPaths = [
+                '/contacts/connection',
+                '/pricing', 
+                // '/organizations',
+                '/auth/login',
+                '/auth/register',
+                '/auth/forgot-password'
+            ];
+            const shouldHide = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
 
             setShowScrollbar(!shouldHide);
 
@@ -253,14 +288,19 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             isDragging = false;
         }
 
+        // Debounced scroll handler for better performance
+        let scrollTimeout: NodeJS.Timeout;
         const scrollHandler = () => {
             handleScroll();
 
             if (!isTicking) {
-                requestAnimationFrame(() => {
-                    updateScrollbar();
-                    isTicking = false;
-                });
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    requestAnimationFrame(() => {
+                        updateScrollbar();
+                        isTicking = false;
+                    });
+                }, 16); // ~60fps
                 isTicking = true;
             }
         };
@@ -309,11 +349,22 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             document.removeEventListener('mouseup', stopScroll);
             document.removeEventListener('touchmove', scrollMove);
             document.removeEventListener('touchend', stopScroll);
+            
+            // Cleanup timeout
+            clearTimeout(scrollTimeout);
         };
     }, [pathname]);
 
     useEffect(() => {
+        // Reset scroll position on page change
         window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        
+        // Force scrollbar update after navigation
+        setTimeout(() => {
+            window.dispatchEvent(new Event('scroll'));
+        }, 50);
     }, [pathname]);
 
     return (
