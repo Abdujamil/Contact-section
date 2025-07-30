@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import React, {ReactNode, useEffect} from "react";
+import React, {ReactNode} from "react";
 import Bg from "@/components/background/bg";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";

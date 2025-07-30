@@ -72,7 +72,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, [pathname]);
 
 
-    const getScrollOffset = () => {
+    const getScrollOffset = React.useCallback(() => {
         if (pathname.includes('/policy') || pathname.includes('/organizations')) {
             return -130;
         }
@@ -83,7 +83,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             return 90;
         }
         return 120;
-    };
+    }, [pathname]);
 
     useEffect(() => {
         if (!scrollbarRef.current) return;
@@ -107,7 +107,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
             
             // Adjust based on device performance hints
-            const connection = (navigator as any).connection;
+            const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
             const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
             
             if (isSlowConnection) {
@@ -353,7 +353,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             // Cleanup timeout
             clearTimeout(scrollTimeout);
         };
-    }, [pathname]);
+    }, [pathname, getScrollOffset]);
 
     useEffect(() => {
         // Reset scroll position on page change

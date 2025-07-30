@@ -10,7 +10,6 @@ import HeaderStyles from "@/components/header/Header.module.css";
 import {motion, useAnimation} from "framer-motion";
 import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
-import {usePathname} from "next/navigation";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 
@@ -19,7 +18,6 @@ type ForgotPasswordFormValues = {
 };
 
 export default function ForgotPasswordPage() {
-    const pathname = usePathname();
     const methods = useForm<ForgotPasswordFormValues>();
     const {register, handleSubmit} = methods;
     const controls = useAnimation();

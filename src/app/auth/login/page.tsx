@@ -10,7 +10,6 @@ import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import HeaderStyles from "@/components/header/Header.module.css";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {motion, useAnimation} from "framer-motion";
-import {usePathname} from "next/navigation";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 
 type LoginFormValues = {
@@ -21,7 +20,6 @@ type LoginFormValues = {
 export default function LoginPage() {
     const methods = useForm<LoginFormValues>();
     const {register, handleSubmit} = methods;
-    const pathname = usePathname();
     const controls = useAnimation();
 
     const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {

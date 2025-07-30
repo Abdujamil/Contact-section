@@ -13,7 +13,6 @@ import {motion, useAnimation} from "framer-motion";
 import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
-import {usePathname} from "next/navigation";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 
 // Типизация данных формы
@@ -68,7 +67,6 @@ export default function RegisterPage() {
     const {register, handleSubmit} = methods;
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-    const pathname = usePathname();
     const controls = useAnimation();
 
     const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {

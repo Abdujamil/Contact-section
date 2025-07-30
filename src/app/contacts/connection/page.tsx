@@ -37,7 +37,7 @@ export default function Contacts() {
     const activeTab = "connection"
     useEffect(() => {
         bounceActiveBlock(activeTab, controls);
-    }, [activeTab]);
+    }, [activeTab, controls]);
 
     // Upload file
     const [text, setText] = useState("");
