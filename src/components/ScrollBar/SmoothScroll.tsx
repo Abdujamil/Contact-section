@@ -396,9 +396,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     useEffect(() => {
         if (pathname.startsWith('/auth')) {
-            // Принудительно прокручиваем наверх
             window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0; // на всякий случай
+            document.documentElement.scrollTop = 0;
         }
     }, [pathname]);
 
@@ -421,8 +420,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         let currentScroll = 0;
         let targetScroll = 0;
         let isScrolling = false;
-        let isUserScrolling = false; // NEW: Track if user is actively scrolling
-        const scrollStopThreshold = 0.1;
+        let isUserScrolling = false; // Track if user is actively scrolling
+        // const scrollStopThreshold = 0.1;
+        const scrollStopThreshold = 0.25;
         
         // Adaptive easing based on refresh rate and device performance
         const getAdaptiveEasing = () => {
@@ -482,7 +482,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
 
-        // NEW: Improved wheel handler with better momentum detection
+        // Improved wheel handler with better momentum detection
         let wheelTimeout: NodeJS.Timeout;
         const handleWheel = (e: WheelEvent) => {
             const target = e.target as HTMLElement;
@@ -539,7 +539,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
 
-        // FIXED: Only update scroll values when not actively scrolling
+        // Only update scroll values when not actively scrolling
         const handleScroll = () => {
             if (!isScrolling && !isUserScrolling) {
                 currentScroll = window.scrollY;

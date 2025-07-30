@@ -114,3 +114,13 @@
 .close-modal:hover {
     color: #000;
 }
+ 
+
+.animated-close {
+    transition: transform 0.2s ease, fill 0.3s ease;
+}
+
+.animated-close:hover {
+    transform: rotate(90deg) scale(1.2);
+    cursor: pointer;
+}
