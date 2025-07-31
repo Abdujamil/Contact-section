@@ -1392,7 +1392,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const pathname = usePathname();
     const [showScrollbar, setShowScrollbar] = useState(true);
     const [scrollStopThreshold, setScrollStopThreshold] = useState(0.5);
-    const [scrollEaseFactor, setScrollEaseFactor] = useState(0.35); // или любое дефолтное значение
+    const [scrollEaseFactor, setScrollEaseFactor] = useState(0.35);
+    const [minScrollStep, setMinScrollStep] = useState(30);
 
 
     useEffect(() => {
@@ -1407,7 +1408,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         if (typeof window === 'undefined') return;
 
         const storedEase = localStorage.getItem("scrollEaseFactor");
-
         if (storedEase) {
             setScrollEaseFactor(parseFloat(storedEase));
         } else {
@@ -1415,7 +1415,17 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             setScrollEaseFactor(adaptive);
             localStorage.setItem("scrollEaseFactor", adaptive.toString());
         }
+
+        const storedStep = localStorage.getItem("minScrollStep");
+        if (storedStep) {
+            setMinScrollStep(parseFloat(storedStep));
+        }
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem("minScrollStep", minScrollStep.toString());
+    }, [minScrollStep]);
+
 
     // ===== ADAPTIVE EASING =====
     function getAdaptiveEasing(): number {
@@ -1489,13 +1499,13 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             requestAnimationFrame(smoothScroll);
         };
 
-        const MIN_SCROLL_STEP = 30;
+        // const MIN_SCROLL_STEP = 30;
         const handleWheel = (e: WheelEvent) => {
             if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
 
             e.preventDefault();
 
-            const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), MIN_SCROLL_STEP);
+            const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), minScrollStep);
             targetScroll += scrollStep;
 
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
@@ -1603,7 +1613,7 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
             {/* ===== LIVE SETTINGS PANEL ===== */}
-            {process.env.NODE_ENV === 'production' && (
+            {process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' && (
                 <div
                     className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll"
                     style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
@@ -1641,6 +1651,22 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
                             className="w-full"
                         />
                     </div>
+
+                    <div className="mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Минимальный шаг скролла: {minScrollStep.toFixed(0)}px
+                        </label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="200"
+                            step="1"
+                            value={minScrollStep}
+                            onChange={(e) => setMinScrollStep(parseInt(e.target.value))}
+                            className="w-full"
+                        />
+                    </div>
+
                 </div>
             )}
         </>
