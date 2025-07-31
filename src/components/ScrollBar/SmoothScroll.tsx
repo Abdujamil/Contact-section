@@ -1033,416 +1033,20 @@
 // }
 
 // Custom
-'use client'
-import React, {useEffect, useRef, useState} from "react";
-import {usePathname} from "next/navigation";
-
-interface SmoothScrollProps {
-    children: React.ReactNode;
-}
-
-export default function SmoothScroll({children}: SmoothScrollProps) {
-    const scrollbarRef = useRef<HTMLDivElement>(null);
-    const [showScrollbar, setShowScrollbar] = useState(true);
-    const pathname = usePathname();
-
-
-    useEffect(() => {
-        const hideScrollPaths = [
-            '/contacts/connection',
-            '/pricing',
-            '/auth/login',
-            '/auth/register',
-            '/auth/forgot-password'
-        ];
-
-        const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
-
-        document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
-        setShowScrollbar(!shouldHideScrollbar);
-
-        // Force scroll update after DOM changes
-        const timeout1 = setTimeout(() => {
-            window.dispatchEvent(new Event('scroll'));
-        }, 100);
-        const timeout2 = setTimeout(() => {
-            window.dispatchEvent(new Event('scroll'));
-        }, 300);
-
-        return () => {
-            clearTimeout(timeout1);
-            clearTimeout(timeout2);
-            document.body.style.overflow = '';
-        };
-    }, [pathname]);
-
-    useEffect(() => {
-        if (pathname.startsWith('/auth')) {
-            // Принудительно прокручиваем наверх
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0; // на всякий случай
-        }
-    }, [pathname]);
-
-
-    const getScrollOffset = React.useCallback(() => {
-        if (pathname.includes('/policy') || pathname.includes('/organizations')) {
-            return -130;
-        }
-        if (pathname.includes('/blog')) {
-            return -188;
-        }
-        if (pathname.includes('/editors')) {
-            return 90;
-        }
-        return 120;
-    }, [pathname]);
-
-    useEffect(() => {
-        if (!scrollbarRef.current) return;
-
-        let currentScroll = 0;
-        let targetScroll = 0;
-        let isScrolling = false;
-        const scrollStopThreshold = 0.15; // Уменьшил порог остановки
-        // const scrollStopThreshold = 0.10; // Уменьшил порог остановки
-
-        // Немного увеличил скорость
-        const getAdaptiveEasing = () => {
-            const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
-                                    window.devicePixelRatio > 1.5;
-
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-            if (prefersReducedMotion) {
-                return 0.15; // Быстрее для accessibility
-            }
-
-            const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
-            const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
-
-            if (isSlowConnection) {
-                return 0.14;
-            }
-
-            return isHighRefreshRate ? 0.25 : 0.35; // Увеличил скорость
-        };
-
-        const scrollEaseFactor = getAdaptiveEasing();
-
-        const initScroll = () => {
-            currentScroll = window.scrollY;
-            targetScroll = currentScroll;
-        };
-
-        const smoothScroll = () => {
-            const diff = targetScroll - currentScroll;
-            if (Math.abs(diff) < scrollStopThreshold) {
-                currentScroll = targetScroll;
-                window.scrollTo(0, currentScroll);
-                isScrolling = false;
-                return;
-            }
-            currentScroll += diff * scrollEaseFactor;
-            window.scrollTo(0, currentScroll);
-            requestAnimationFrame(smoothScroll);
-        };
-
-        // Custom events
-        const handleCustomScrollToTop = () => {
-            targetScroll = 0;
-            if (!isScrolling) {
-                isScrolling = true;
-                requestAnimationFrame(smoothScroll);
-            }
-        };
-
-        const handleSetTargetScroll = (e: CustomEvent) => {
-            targetScroll = e.detail.targetScroll || 0;
-            if (!isScrolling) {
-                isScrolling = true;
-                requestAnimationFrame(smoothScroll);
-            }
-        };
-
-        const handleWheel = (e: WheelEvent) => {
-            const target = e.target as HTMLElement;
-
-            // Разрешаем нативный скролл внутри textarea и scrollable div
-            if (target.closest('textarea') || target.closest('.allow-native-scroll')) {
-                return;
-            }
-
-            e.preventDefault();
-            targetScroll += e.deltaY;
-
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-
-            if (!isScrolling) {
-                isScrolling = true;
-                requestAnimationFrame(smoothScroll);
-            }
-        };
-
-        const handleAnchorClick = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            if (target.tagName === "A") {
-                const anchor = target.getAttribute("href");
-                if (anchor?.startsWith("#")) {
-                    const el = document.querySelector(anchor);
-                    if (el) {
-                        e.preventDefault();
-
-                        const offset = getScrollOffset();
-                        const elTop = (el as HTMLElement).offsetTop - offset;
-
-                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-                        targetScroll = Math.max(0, Math.min(elTop, maxScroll));
-
-                        if (!isScrolling) {
-                            isScrolling = true;
-                            requestAnimationFrame(smoothScroll);
-                        }
-                    }
-                }
-            }
-        };
-
-        // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: не обновляем скролл если идет анимация
-        const handleScroll = () => {
-            if (!isScrolling) {
-                currentScroll = window.scrollY;
-                targetScroll = currentScroll;
-            }
-        };
-
-        // Scrollbar logic
-        let isTicking = false;
-        let isDragging = false;
-        let startY = 0;
-        let startScrollTop = 0;
-        const scrollPadding = 4;
-        const scrollbar = scrollbarRef.current;
-
-        function updateScrollbar() {
-            const scrollTop = window.scrollY || window.pageYOffset;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = window.innerHeight || document.documentElement.clientHeight;
-            const maxScroll = scrollHeight - clientHeight;
-
-            const hideScrollPaths = [
-                '/contacts/connection',
-                '/pricing',
-                '/auth/login',
-                '/auth/register',
-                '/auth/forgot-password'
-            ];
-            const shouldHide = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
-
-            setShowScrollbar(!shouldHide);
-
-            const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
-            const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
-            const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
-
-            if (scrollbar) {
-                scrollbar.style.setProperty('--scrollY', `${topPercent}px`);
-                scrollbar.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
-            }
-        }
-
-        function scrollMove(e: TouchEvent | MouseEvent) {
-            if (!isDragging) return;
-
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = window.innerHeight || document.documentElement.clientHeight;
-            const maxScrollDrag = scrollHeight - clientHeight;
-            const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
-            const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
-
-            let clientY = 0;
-            if (e instanceof TouchEvent) {
-                clientY = e.touches[0].clientY;
-            } else {
-                clientY = e.clientY;
-            }
-
-            const deltaY = clientY - startY;
-            const scrollDelta = (deltaY / maxTop) * maxScrollDrag;
-
-            targetScroll = Math.max(0, Math.min(startScrollTop + scrollDelta, maxScrollDrag));
-
-            if (!isScrolling) {
-                isScrolling = true;
-                requestAnimationFrame(smoothScroll);
-            }
-        }
-
-        function startScroll(e: TouchEvent | MouseEvent) {
-            isDragging = true;
-            let clientY = 0;
-
-            if (e instanceof TouchEvent) {
-                clientY = e.touches[0].clientY;
-            } else {
-                clientY = e.clientY;
-            }
-
-            startY = clientY;
-            startScrollTop = window.scrollY || window.pageYOffset;
-            e.preventDefault();
-        }
-
-        function stopScroll() {
-            isDragging = false;
-        }
-
-        // Оптимизированный scroll handler
-        let scrollTimeout: NodeJS.Timeout;
-        const scrollHandler = () => {
-            handleScroll();
-
-            if (!isTicking) {
-                clearTimeout(scrollTimeout);
-                scrollTimeout = setTimeout(() => {
-                    requestAnimationFrame(() => {
-                        updateScrollbar();
-                        isTicking = false;
-                    });
-                }, 8); // Уменьшил до 8ms для более отзывчивого обновления
-                isTicking = true;
-            }
-        };
-
-        initScroll();
-        updateScrollbar();
-
-        // Event listeners
-        window.addEventListener('customScrollToTop', handleCustomScrollToTop);
-        window.addEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
-        window.addEventListener('wheel', handleWheel, {passive: false});
-        window.addEventListener('scroll', scrollHandler, {passive: true});
-        document.addEventListener('click', handleAnchorClick);
-        window.addEventListener('resize', updateScrollbar);
-
-        if (scrollbar) {
-            scrollbar.addEventListener('mousedown', startScroll);
-            scrollbar.addEventListener('touchstart', startScroll);
-        }
-
-        document.addEventListener('mousemove', scrollMove);
-        document.addEventListener('mouseup', stopScroll);
-        document.addEventListener('touchmove', scrollMove);
-        document.addEventListener('touchend', stopScroll);
-
-        return () => {
-            clearTimeout(scrollTimeout);
-
-            window.removeEventListener('customScrollToTop', handleCustomScrollToTop);
-            window.removeEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
-            window.removeEventListener('wheel', handleWheel);
-            window.removeEventListener('scroll', scrollHandler);
-            document.removeEventListener('click', handleAnchorClick);
-            window.removeEventListener('resize', updateScrollbar);
-
-            if (scrollbar) {
-                scrollbar.removeEventListener('mousedown', startScroll);
-                scrollbar.removeEventListener('touchstart', startScroll);
-            }
-
-            document.removeEventListener('mousemove', scrollMove);
-            document.removeEventListener('mouseup', stopScroll);
-            document.removeEventListener('touchmove', scrollMove);
-            document.removeEventListener('touchend', stopScroll);
-        };
-    }, [pathname, getScrollOffset]);
-
-    useEffect(() => {
-        // Reset scroll position on page change
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-
-        // Force scrollbar update after navigation
-        setTimeout(() => {
-            window.dispatchEvent(new Event('scroll'));
-        }, 50);
-    }, [pathname]);
-
-    return (
-        <>
-            {children}
-            {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
-        </>
-    );
-}
-
-// Custom with settings
-// 'use client';
-// import React, { useEffect, useRef, useState } from "react";
-// import { usePathname } from "next/navigation";
+// 'use client'
+// import React, {useEffect, useRef, useState} from "react";
+// import {usePathname} from "next/navigation";
 //
 // interface SmoothScrollProps {
 //     children: React.ReactNode;
 // }
 //
-// export default function SmoothScroll({ children }: SmoothScrollProps) {
+// export default function SmoothScroll({children}: SmoothScrollProps) {
 //     const scrollbarRef = useRef<HTMLDivElement>(null);
-//     const pathname = usePathname();
 //     const [showScrollbar, setShowScrollbar] = useState(true);
-//     const [scrollStopThreshold, setScrollStopThreshold] = useState(0.15);
-//     const [scrollEaseFactor, setScrollEaseFactor] = useState(0.15);
-//     const [minScrollStep, setMinScrollStep] = useState(30);
+//     const pathname = usePathname();
 //
 //
-//     useEffect(() => {
-//         localStorage.setItem("scrollStopThreshold", scrollStopThreshold.toString());
-//     }, [scrollStopThreshold]);
-//
-//     useEffect(() => {
-//         localStorage.setItem("scrollEaseFactor", scrollEaseFactor.toString());
-//     }, [scrollEaseFactor]);
-//
-//     useEffect(() => {
-//         if (typeof window === 'undefined') return;
-//
-//         const storedEase = localStorage.getItem("scrollEaseFactor");
-//         if (storedEase) {
-//             setScrollEaseFactor(parseFloat(storedEase));
-//         } else {
-//             const adaptive = getAdaptiveEasing();
-//             setScrollEaseFactor(adaptive);
-//             localStorage.setItem("scrollEaseFactor", adaptive.toString());
-//         }
-//
-//         const storedStep = localStorage.getItem("minScrollStep");
-//         if (storedStep) {
-//             setMinScrollStep(parseFloat(storedStep));
-//         }
-//     }, []);
-//
-//     useEffect(() => {
-//         localStorage.setItem("minScrollStep", minScrollStep.toString());
-//     }, [minScrollStep]);
-//
-//
-//     // ===== ADAPTIVE EASING =====
-//     function getAdaptiveEasing(): number {
-//         const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
-//             window.devicePixelRatio > 1.5;
-//
-//         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-//         if (prefersReducedMotion) return 0.5;
-//
-//         const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
-//         const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
-//         if (isSlowConnection) return 0.4;
-//
-//         return isHighRefreshRate ? 0.25 : 0.35;
-//     }
-//
-//     // ===== HIDE SCROLLBAR ON ROUTES =====
 //     useEffect(() => {
 //         const hideScrollPaths = [
 //             '/contacts/connection',
@@ -1457,8 +1061,13 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //         document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
 //         setShowScrollbar(!shouldHideScrollbar);
 //
-//         const timeout1 = setTimeout(() => window.dispatchEvent(new Event('scroll')), 100);
-//         const timeout2 = setTimeout(() => window.dispatchEvent(new Event('scroll')), 300);
+//         // Force scroll update after DOM changes
+//         const timeout1 = setTimeout(() => {
+//             window.dispatchEvent(new Event('scroll'));
+//         }, 100);
+//         const timeout2 = setTimeout(() => {
+//             window.dispatchEvent(new Event('scroll'));
+//         }, 300);
 //
 //         return () => {
 //             clearTimeout(timeout1);
@@ -1467,19 +1076,59 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //         };
 //     }, [pathname]);
 //
+//     useEffect(() => {
+//         if (pathname.startsWith('/auth')) {
+//             // Принудительно прокручиваем наверх
+//             window.scrollTo(0, 0);
+//             document.documentElement.scrollTop = 0; // на всякий случай
+//         }
+//     }, [pathname]);
+//
+//
 //     const getScrollOffset = React.useCallback(() => {
-//         if (pathname.includes('/policy') || pathname.includes('/organizations')) return -130;
-//         if (pathname.includes('/blog')) return -188;
-//         if (pathname.includes('/editors')) return 90;
+//         if (pathname.includes('/policy') || pathname.includes('/organizations')) {
+//             return -130;
+//         }
+//         if (pathname.includes('/blog')) {
+//             return -188;
+//         }
+//         if (pathname.includes('/editors')) {
+//             return 90;
+//         }
 //         return 120;
 //     }, [pathname]);
 //
 //     useEffect(() => {
 //         if (!scrollbarRef.current) return;
 //
-//         let currentScroll = window.scrollY;
-//         let targetScroll = currentScroll;
+//         let currentScroll = 0;
+//         let targetScroll = 0;
 //         let isScrolling = false;
+//         const scrollStopThreshold = 0.5; // Уменьшил порог остановки
+//         // const scrollStopThreshold = 0.10; // Уменьшил порог остановки
+//
+//         // Немного увеличил скорость
+//         const getAdaptiveEasing = () => {
+//             const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
+//                                     window.devicePixelRatio > 1.5;
+//
+//             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+//
+//             if (prefersReducedMotion) {
+//                 return 0.5; // Быстрее для accessibility
+//             }
+//
+//             const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
+//             const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+//
+//             if (isSlowConnection) {
+//                 return 0.4;
+//             }
+//
+//             return isHighRefreshRate ? 0.25 : 0.35; // Увеличил скорость
+//         };
+//
+//         const scrollEaseFactor = getAdaptiveEasing();
 //
 //         const initScroll = () => {
 //             currentScroll = window.scrollY;
@@ -1499,14 +1148,33 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             requestAnimationFrame(smoothScroll);
 //         };
 //
-//         // const MIN_SCROLL_STEP = 30;
+//         // Custom events
+//         const handleCustomScrollToTop = () => {
+//             targetScroll = 0;
+//             if (!isScrolling) {
+//                 isScrolling = true;
+//                 requestAnimationFrame(smoothScroll);
+//             }
+//         };
+//
+//         const handleSetTargetScroll = (e: CustomEvent) => {
+//             targetScroll = e.detail.targetScroll || 0;
+//             if (!isScrolling) {
+//                 isScrolling = true;
+//                 requestAnimationFrame(smoothScroll);
+//             }
+//         };
+//
 //         const handleWheel = (e: WheelEvent) => {
-//             if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+//             const target = e.target as HTMLElement;
+//
+//             // Разрешаем нативный скролл внутри textarea и scrollable div
+//             if (target.closest('textarea') || target.closest('.allow-native-scroll')) {
+//                 return;
+//             }
 //
 //             e.preventDefault();
-//
-//             const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), minScrollStep);
-//             targetScroll += scrollStep;
+//             targetScroll += e.deltaY;
 //
 //             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 //             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
@@ -1514,26 +1182,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             if (!isScrolling) {
 //                 isScrolling = true;
 //                 requestAnimationFrame(smoothScroll);
-//             }
-//         };
-//         // const handleWheel = (e: WheelEvent) => {
-//         //     if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
-//         //
-//         //     e.preventDefault();
-//         //     targetScroll += e.deltaY;
-//         //     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-//         //     targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
-//         //
-//         //     if (!isScrolling) {
-//         //         isScrolling = true;
-//         //         requestAnimationFrame(smoothScroll);
-//         //     }
-//         // };
-//
-//         const handleScroll = () => {
-//             if (!isScrolling) {
-//                 currentScroll = window.scrollY;
-//                 targetScroll = currentScroll;
 //             }
 //         };
 //
@@ -1545,8 +1193,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     const el = document.querySelector(anchor);
 //                     if (el) {
 //                         e.preventDefault();
+//
 //                         const offset = getScrollOffset();
 //                         const elTop = (el as HTMLElement).offsetTop - offset;
+//
 //                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 //                         targetScroll = Math.max(0, Math.min(elTop, maxScroll));
 //
@@ -1559,49 +1209,162 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             }
 //         };
 //
-//         const scrollHandler = () => {
-//             handleScroll();
-//             requestAnimationFrame(updateScrollbar);
+//         // КЛЮЧЕВОЕ ИСПРАВЛЕНИЕ: не обновляем скролл если идет анимация
+//         const handleScroll = () => {
+//             if (!isScrolling) {
+//                 currentScroll = window.scrollY;
+//                 targetScroll = currentScroll;
+//             }
 //         };
 //
-//         const updateScrollbar = () => {
-//             const scrollTop = window.scrollY;
+//         // Scrollbar logic
+//         let isTicking = false;
+//         let isDragging = false;
+//         let startY = 0;
+//         let startScrollTop = 0;
+//         const scrollPadding = 4;
+//         const scrollbar = scrollbarRef.current;
+//
+//         function updateScrollbar() {
+//             const scrollTop = window.scrollY || window.pageYOffset;
 //             const scrollHeight = document.documentElement.scrollHeight;
-//             const clientHeight = window.innerHeight;
+//             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
 //             const maxScroll = scrollHeight - clientHeight;
 //
+//             const hideScrollPaths = [
+//                 '/contacts/connection',
+//                 '/pricing',
+//                 '/auth/login',
+//                 '/auth/register',
+//                 '/auth/forgot-password'
+//             ];
+//             const shouldHide = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
+//
+//             setShowScrollbar(!shouldHide);
+//
 //             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
-//             const maxTop = clientHeight - scrollbarHeight - 8;
+//             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
 //             const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
 //
-//             if (scrollbarRef.current) {
-//                 scrollbarRef.current.style.setProperty('--scrollY', `${topPercent}px`);
-//                 scrollbarRef.current.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
+//             if (scrollbar) {
+//                 scrollbar.style.setProperty('--scrollY', `${topPercent}px`);
+//                 scrollbar.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
+//             }
+//         }
+//
+//         function scrollMove(e: TouchEvent | MouseEvent) {
+//             if (!isDragging) return;
+//
+//             const scrollHeight = document.documentElement.scrollHeight;
+//             const clientHeight = window.innerHeight || document.documentElement.clientHeight;
+//             const maxScrollDrag = scrollHeight - clientHeight;
+//             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
+//             const maxTop = clientHeight - scrollbarHeight - scrollPadding * 2;
+//
+//             let clientY = 0;
+//             if (e instanceof TouchEvent) {
+//                 clientY = e.touches[0].clientY;
+//             } else {
+//                 clientY = e.clientY;
+//             }
+//
+//             const deltaY = clientY - startY;
+//             const scrollDelta = (deltaY / maxTop) * maxScrollDrag;
+//
+//             targetScroll = Math.max(0, Math.min(startScrollTop + scrollDelta, maxScrollDrag));
+//
+//             if (!isScrolling) {
+//                 isScrolling = true;
+//                 requestAnimationFrame(smoothScroll);
+//             }
+//         }
+//
+//         function startScroll(e: TouchEvent | MouseEvent) {
+//             isDragging = true;
+//             let clientY = 0;
+//
+//             if (e instanceof TouchEvent) {
+//                 clientY = e.touches[0].clientY;
+//             } else {
+//                 clientY = e.clientY;
+//             }
+//
+//             startY = clientY;
+//             startScrollTop = window.scrollY || window.pageYOffset;
+//             e.preventDefault();
+//         }
+//
+//         function stopScroll() {
+//             isDragging = false;
+//         }
+//
+//         // Оптимизированный scroll handler
+//         let scrollTimeout: NodeJS.Timeout;
+//         const scrollHandler = () => {
+//             handleScroll();
+//
+//             if (!isTicking) {
+//                 clearTimeout(scrollTimeout);
+//                 scrollTimeout = setTimeout(() => {
+//                     requestAnimationFrame(() => {
+//                         updateScrollbar();
+//                         isTicking = false;
+//                     });
+//                 }, 8); // Уменьшил до 8ms для более отзывчивого обновления
+//                 isTicking = true;
 //             }
 //         };
 //
 //         initScroll();
 //         updateScrollbar();
 //
-//         window.addEventListener('wheel', handleWheel, { passive: false });
-//         window.addEventListener('scroll', scrollHandler, { passive: true });
+//         // Event listeners
+//         window.addEventListener('customScrollToTop', handleCustomScrollToTop);
+//         window.addEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
+//         window.addEventListener('wheel', handleWheel, {passive: false});
+//         window.addEventListener('scroll', scrollHandler, {passive: true});
 //         document.addEventListener('click', handleAnchorClick);
-//
 //         window.addEventListener('resize', updateScrollbar);
 //
+//         if (scrollbar) {
+//             scrollbar.addEventListener('mousedown', startScroll);
+//             scrollbar.addEventListener('touchstart', startScroll);
+//         }
+//
+//         document.addEventListener('mousemove', scrollMove);
+//         document.addEventListener('mouseup', stopScroll);
+//         document.addEventListener('touchmove', scrollMove);
+//         document.addEventListener('touchend', stopScroll);
+//
 //         return () => {
+//             clearTimeout(scrollTimeout);
+//
+//             window.removeEventListener('customScrollToTop', handleCustomScrollToTop);
+//             window.removeEventListener('setTargetScroll', handleSetTargetScroll as EventListener);
 //             window.removeEventListener('wheel', handleWheel);
 //             window.removeEventListener('scroll', scrollHandler);
 //             document.removeEventListener('click', handleAnchorClick);
 //             window.removeEventListener('resize', updateScrollbar);
+//
+//             if (scrollbar) {
+//                 scrollbar.removeEventListener('mousedown', startScroll);
+//                 scrollbar.removeEventListener('touchstart', startScroll);
+//             }
+//
+//             document.removeEventListener('mousemove', scrollMove);
+//             document.removeEventListener('mouseup', stopScroll);
+//             document.removeEventListener('touchmove', scrollMove);
+//             document.removeEventListener('touchend', stopScroll);
 //         };
-//     }, [scrollStopThreshold, scrollEaseFactor, pathname, getScrollOffset]);
+//     }, [pathname, getScrollOffset]);
 //
 //     useEffect(() => {
+//         // Reset scroll position on page change
 //         window.scrollTo(0, 0);
 //         document.documentElement.scrollTop = 0;
 //         document.body.scrollTop = 0;
 //
+//         // Force scrollbar update after navigation
 //         setTimeout(() => {
 //             window.dispatchEvent(new Event('scroll'));
 //         }, 50);
@@ -1611,67 +1374,304 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //         <>
 //             {children}
 //             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
-//
-//             {/* ===== LIVE SETTINGS PANEL ===== */}
-//             {process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' && (
-//                 <div
-//                     className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll"
-//                     style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
-//                 >
-//                     <div className="flex justify-between items-center mb-4">
-//                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Настройки прокрутки</h3>
-//                     </div>
-//
-//                     <div className="mb-4">
-//                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-//                             Порог остановки: {scrollStopThreshold.toFixed(2)}
-//                         </label>
-//                         <input
-//                             type="range"
-//                             min="0.01"
-//                             max="5"
-//                             step="0.01"
-//                             value={scrollStopThreshold}
-//                             onChange={(e) => setScrollStopThreshold(parseFloat(e.target.value))}
-//                             className="w-full"
-//                         />
-//                     </div>
-//
-//                     <div className="mb-2">
-//                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-//                             Фактор плавности: {scrollEaseFactor.toFixed(2)}
-//                         </label>
-//                         <input
-//                             type="range"
-//                             min="0.01"
-//                             max="1"
-//                             step="0.01"
-//                             value={scrollEaseFactor}
-//                             onChange={(e) => setScrollEaseFactor(parseFloat(e.target.value))}
-//                             className="w-full"
-//                         />
-//                     </div>
-//
-//                     <div className="mb-2">
-//                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-//                             Минимальный шаг скролла: {minScrollStep.toFixed(0)}px
-//                         </label>
-//                         <input
-//                             type="range"
-//                             min="1"
-//                             max="200"
-//                             step="1"
-//                             value={minScrollStep}
-//                             onChange={(e) => setMinScrollStep(parseInt(e.target.value))}
-//                             className="w-full"
-//                         />
-//                     </div>
-//
-//                 </div>
-//             )}
 //         </>
 //     );
 // }
+
+// Custom with settings
+'use client';
+import React, { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+
+interface SmoothScrollProps {
+    children: React.ReactNode;
+}
+
+export default function SmoothScroll({ children }: SmoothScrollProps) {
+    const scrollbarRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
+    const [showScrollbar, setShowScrollbar] = useState(true);
+    const [scrollStopThreshold, setScrollStopThreshold] = useState(0.15);
+    const [scrollEaseFactor, setScrollEaseFactor] = useState(0.15);
+    const [minScrollStep, setMinScrollStep] = useState(30);
+
+
+    useEffect(() => {
+        localStorage.setItem("scrollStopThreshold", scrollStopThreshold.toString());
+    }, [scrollStopThreshold]);
+
+    useEffect(() => {
+        localStorage.setItem("scrollEaseFactor", scrollEaseFactor.toString());
+    }, [scrollEaseFactor]);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const storedEase = localStorage.getItem("scrollEaseFactor");
+        if (storedEase) {
+            setScrollEaseFactor(parseFloat(storedEase));
+        } else {
+            const adaptive = getAdaptiveEasing();
+            setScrollEaseFactor(adaptive);
+            localStorage.setItem("scrollEaseFactor", adaptive.toString());
+        }
+
+        const storedStep = localStorage.getItem("minScrollStep");
+        if (storedStep) {
+            setMinScrollStep(parseFloat(storedStep));
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("minScrollStep", minScrollStep.toString());
+    }, [minScrollStep]);
+
+
+    // ===== ADAPTIVE EASING =====
+    function getAdaptiveEasing(): number {
+        const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
+            window.devicePixelRatio > 1.5;
+
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) return 0.5;
+
+        const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
+        const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+        if (isSlowConnection) return 0.4;
+
+        return isHighRefreshRate ? 0.25 : 0.35;
+    }
+
+    // ===== HIDE SCROLLBAR ON ROUTES =====
+    useEffect(() => {
+        const hideScrollPaths = [
+            '/contacts/connection',
+            '/pricing',
+            '/auth/login',
+            '/auth/register',
+            '/auth/forgot-password'
+        ];
+
+        const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
+
+        document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
+        setShowScrollbar(!shouldHideScrollbar);
+
+        const timeout1 = setTimeout(() => window.dispatchEvent(new Event('scroll')), 100);
+        const timeout2 = setTimeout(() => window.dispatchEvent(new Event('scroll')), 300);
+
+        return () => {
+            clearTimeout(timeout1);
+            clearTimeout(timeout2);
+            document.body.style.overflow = '';
+        };
+    }, [pathname]);
+
+    const getScrollOffset = React.useCallback(() => {
+        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -130;
+        if (pathname.includes('/blog')) return -188;
+        if (pathname.includes('/editors')) return 90;
+        return 120;
+    }, [pathname]);
+
+    useEffect(() => {
+        if (!scrollbarRef.current) return;
+
+        let currentScroll = window.scrollY;
+        let targetScroll = currentScroll;
+        let isScrolling = false;
+
+        const initScroll = () => {
+            currentScroll = window.scrollY;
+            targetScroll = currentScroll;
+        };
+
+        const smoothScroll = () => {
+            const diff = targetScroll - currentScroll;
+            if (Math.abs(diff) < scrollStopThreshold) {
+                currentScroll = targetScroll;
+                window.scrollTo(0, currentScroll);
+                isScrolling = false;
+                return;
+            }
+            currentScroll += diff * scrollEaseFactor;
+            window.scrollTo(0, currentScroll);
+            requestAnimationFrame(smoothScroll);
+        };
+
+        // const MIN_SCROLL_STEP = 30;
+        const handleWheel = (e: WheelEvent) => {
+            if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+
+            e.preventDefault();
+
+            const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), minScrollStep);
+            targetScroll += scrollStep;
+
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+
+            if (!isScrolling) {
+                isScrolling = true;
+                requestAnimationFrame(smoothScroll);
+            }
+        };
+        // const handleWheel = (e: WheelEvent) => {
+        //     if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+        //
+        //     e.preventDefault();
+        //     targetScroll += e.deltaY;
+        //     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        //     targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+        //
+        //     if (!isScrolling) {
+        //         isScrolling = true;
+        //         requestAnimationFrame(smoothScroll);
+        //     }
+        // };
+
+        const handleScroll = () => {
+            if (!isScrolling) {
+                currentScroll = window.scrollY;
+                targetScroll = currentScroll;
+            }
+        };
+
+        const handleAnchorClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === "A") {
+                const anchor = target.getAttribute("href");
+                if (anchor?.startsWith("#")) {
+                    const el = document.querySelector(anchor);
+                    if (el) {
+                        e.preventDefault();
+                        const offset = getScrollOffset();
+                        const elTop = (el as HTMLElement).offsetTop - offset;
+                        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                        targetScroll = Math.max(0, Math.min(elTop, maxScroll));
+
+                        if (!isScrolling) {
+                            isScrolling = true;
+                            requestAnimationFrame(smoothScroll);
+                        }
+                    }
+                }
+            }
+        };
+
+        const scrollHandler = () => {
+            handleScroll();
+            requestAnimationFrame(updateScrollbar);
+        };
+
+        const updateScrollbar = () => {
+            const scrollTop = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = window.innerHeight;
+            const maxScroll = scrollHeight - clientHeight;
+
+            const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
+            const maxTop = clientHeight - scrollbarHeight - 8;
+            const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
+
+            if (scrollbarRef.current) {
+                scrollbarRef.current.style.setProperty('--scrollY', `${topPercent}px`);
+                scrollbarRef.current.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
+            }
+        };
+
+        initScroll();
+        updateScrollbar();
+
+        window.addEventListener('wheel', handleWheel, { passive: false });
+        window.addEventListener('scroll', scrollHandler, { passive: true });
+        document.addEventListener('click', handleAnchorClick);
+
+        window.addEventListener('resize', updateScrollbar);
+
+        return () => {
+            window.removeEventListener('wheel', handleWheel);
+            window.removeEventListener('scroll', scrollHandler);
+            document.removeEventListener('click', handleAnchorClick);
+            window.removeEventListener('resize', updateScrollbar);
+        };
+    }, [scrollStopThreshold, scrollEaseFactor, pathname, getScrollOffset]);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+
+        setTimeout(() => {
+            window.dispatchEvent(new Event('scroll'));
+        }, 50);
+    }, [pathname]);
+
+    return (
+        <>
+            {children}
+            {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
+
+            {/* ===== LIVE SETTINGS PANEL ===== */}
+            {process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'development' && (
+                <div
+                    className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll"
+                    style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+                >
+                    <div className="flex justify-between items-center mb-4">
+                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Настройки прокрутки</h3>
+                    </div>
+
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Порог остановки: {scrollStopThreshold.toFixed(2)}
+                        </label>
+                        <input
+                            type="range"
+                            min="0.01"
+                            max="5"
+                            step="0.01"
+                            value={scrollStopThreshold}
+                            onChange={(e) => setScrollStopThreshold(parseFloat(e.target.value))}
+                            className="w-full"
+                        />
+                    </div>
+
+                    <div className="mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Фактор плавности: {scrollEaseFactor.toFixed(2)}
+                        </label>
+                        <input
+                            type="range"
+                            min="0.01"
+                            max="1"
+                            step="0.01"
+                            value={scrollEaseFactor}
+                            onChange={(e) => setScrollEaseFactor(parseFloat(e.target.value))}
+                            className="w-full"
+                        />
+                    </div>
+
+                    <div className="mb-2">
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                            Минимальный шаг скролла: {minScrollStep.toFixed(0)}px
+                        </label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="200"
+                            step="1"
+                            value={minScrollStep}
+                            onChange={(e) => setMinScrollStep(parseInt(e.target.value))}
+                            className="w-full"
+                        />
+                    </div>
+
+                </div>
+            )}
+        </>
+    );
+}
 
 
 // 'use client'
