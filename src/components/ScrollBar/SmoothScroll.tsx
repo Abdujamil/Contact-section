@@ -1489,11 +1489,15 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             requestAnimationFrame(smoothScroll);
         };
 
+        const MIN_SCROLL_STEP = 30;
         const handleWheel = (e: WheelEvent) => {
             if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
 
             e.preventDefault();
-            targetScroll += e.deltaY;
+
+            const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), MIN_SCROLL_STEP);
+            targetScroll += scrollStep;
+
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
 
@@ -1502,6 +1506,19 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
                 requestAnimationFrame(smoothScroll);
             }
         };
+        // const handleWheel = (e: WheelEvent) => {
+        //     if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+        //
+        //     e.preventDefault();
+        //     targetScroll += e.deltaY;
+        //     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        //     targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+        //
+        //     if (!isScrolling) {
+        //         isScrolling = true;
+        //         requestAnimationFrame(smoothScroll);
+        //     }
+        // };
 
         const handleScroll = () => {
             if (!isScrolling) {
