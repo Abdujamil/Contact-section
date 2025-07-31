@@ -87,7 +87,7 @@ export default function ForgotPasswordPage() {
                 animate={controls}
                 className={`${styles.BlogPageContent} w-full md:w-[860px] max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
-                {submitted ? (
+                {!submitted ? (
                     <>
                         <div
                             className={`w-full h-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
@@ -156,7 +156,7 @@ export default function ForgotPasswordPage() {
 
                                 <div>
                                     <p className={`!leading-[120%] mb-5 text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
-                                        <svg className={`mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
+                                        <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="6" cy="6" r="5.625" stroke="#3C404A" strokeWidth="0.75"/>
@@ -178,7 +178,7 @@ export default function ForgotPasswordPage() {
                                         </defs>
                                     </svg>
                                     <p className={`!leading-[120%] mt-5 text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
-                                        <svg className={`mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
+                                        <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="6" cy="6" r="5.625" stroke="#3C404A" strokeWidth="0.75"/>

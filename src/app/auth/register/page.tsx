@@ -154,7 +154,7 @@ export default function RegisterPage() {
                                         required={true}
                                     />
 
-                                    <PasswordInputWithStrength className={`${styles.bounceElem} w-full md:w-[314px]`}/>
+                                    <PasswordInputWithStrength className={`${styles.bounceElem}`}/>
                                     <UsernameInputWithValidation
                                         className={`${styles.bounceElem} w-full md:w-[375px]`}/>
 

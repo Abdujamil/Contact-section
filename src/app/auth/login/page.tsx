@@ -11,6 +11,7 @@ import HeaderStyles from "@/components/header/Header.module.css";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
+import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
 
 type LoginFormValues = {
     email: string;
@@ -81,18 +82,22 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col items-end md:w-[375px] mb-[12px]`}>
-                                    <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[375px]`}
-                                        type={"password"}
-                                        title={"Пароль"}
-                                        inputName="password"
-                                        required={true}
-                                        showPasswordToggle={true}
-                                    />
-                                    <Link
-                                        className={`${styles['menu-item']} w-fit mr-4  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}
-                                        href="/auth/forgot-password">Забыли пароль?</Link>
+                                <div className={`relative w-full flex flex-col justify-between mb-[12px]`}>
+                                    {/*<AppInput*/}
+                                    {/*    className={`${styles.bounceElem} w-full md:w-[375px]`}*/}
+                                    {/*    type={"password"}*/}
+                                    {/*    title={"Пароль"}*/}
+                                    {/*    inputName="password"*/}
+                                    {/*    required={true}*/}
+                                    {/*    showPasswordToggle={true}*/}
+                                    {/*/>*/}
+
+                                    <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
+                                    <div className={`relative inline-flex items-center justify-end`}>
+                                        <Link
+                                            className={`${styles['menu-item']}  w-fit mr-4 !max-w-[122px]  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}
+                                            href="/auth/forgot-password">Забыли пароль?</Link>
+                                    </div>
                                 </div>
                                 <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
                                     <button

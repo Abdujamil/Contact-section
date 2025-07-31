@@ -94,29 +94,6 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         return formatted;
     };
 
-    // Функция для преобразования DD.MM.YYYY в объект для пикера
-    // const parseDisplayDateToPickerValue = (displayDate: string) => {
-    //     if (!displayDate || displayDate.length !== 10) {
-    //         return {
-    //             year: '2000',
-    //             month: '01',
-    //             day: '01',
-    //         };
-    //     }
-
-    //     const [day, month, year] = displayDate.split('.');
-    //     return {
-    //         year: year || '2000',
-    //         month: month || '01',
-    //         day: day || '01',
-    //     };
-    // };
-
-    // Функция для преобразования объекта пикера в DD.MM.YYYY
-    // const formatPickerValueToDisplay = (dateObj: PickerValue) => {
-    //     return `${dateObj.day}.${dateObj.month}.${dateObj.year}`;
-    // };
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value;
 
@@ -181,29 +158,6 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         return '';
     };
 
-    // const formatDateMask = (value: string) => {
-    //     const digits = value.replace(/\D/g, "").slice(0, 8); // только цифры, максимум 8
-    //     const parts = [];
-    //
-    //     if (digits.length >= 2) {
-    //         parts.push(digits.slice(0, 2)); // день
-    //     } else if (digits.length) {
-    //         parts.push(digits);
-    //     }
-    //
-    //     if (digits.length >= 4) {
-    //         parts.push(digits.slice(2, 4)); // месяц
-    //     } else if (digits.length > 2) {
-    //         parts.push(digits.slice(2));
-    //     }
-    //
-    //     if (digits.length > 4) {
-    //         parts.push(digits.slice(4)); // год
-    //     }
-    //
-    //     return parts.join(".");
-    // };
-
     useEffect(() => {
         setVisibleError(false);
         setTimeout(() => setVisibleError(true), 30);
@@ -244,7 +198,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         register(inputName, {required}).ref(el);
                     }}
                     type={inputType}
-                    className={`field__input ${className} ${fail && 'error !text-[red]'}
+                    className={`field__input ${className} dark:text-[#adadad] ${fail && 'error !text-[red]'}
                     ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} focus:!bg-[#20272A] active:bg-[#20272A]'}`}
                     placeholder={getPlaceholder()}
                     autoComplete={getAutocompleteName(inputName) || autocomplete}
