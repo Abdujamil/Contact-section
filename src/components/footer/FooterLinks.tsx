@@ -141,7 +141,7 @@ const FooterLinks: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
                         >
-                        <span className="font-normal text-[18px] leading-[120%] mt-[1px]">
+                        <span className="font-normal text-[18px] leading-[75%]">
                           info@audiosector.ru
                         </span>
                         </a>
@@ -157,7 +157,7 @@ const FooterLinks: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
                         >
-              <span className="font-normal text-[18px] leading-[120%] mt-[1px]">
+              <span className="font-normal text-[18px] leading-[75%]">
                 Контакты
               </span>
                         </Link>
@@ -173,7 +173,7 @@ const FooterLinks: React.FC = () => {
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >
-                          <span className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in mt-[1px]">
+                          <span className="font-normal text-[18px] leading-[75%] !transition-all !duration-[.13s] !ease-in">
                             Telegram
                           </span>
                         </button>
@@ -318,7 +318,7 @@ const FooterLinks: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
                         >
-                      <span className="font-normal text-[18px] leading-[120%] mt-[1px]">
+                      <span className="font-normal text-[18px] leading-[75%]">
                         Политика конфиденциальности
                       </span>
                         </Link>
@@ -333,7 +333,7 @@ const FooterLinks: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
                         >
-              <span className="font-normal text-[18px] leading-[120%]">
+              <span className="font-normal text-[18px] leading-[75%]">
                 Публичная оферта
               </span>
                         </Link>
@@ -348,7 +348,7 @@ const FooterLinks: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
                         >
-              <span className="font-normal text-[18px] leading-[120%] mt-[1px]">
+              <span className="font-normal text-[18px] leading-[75%]">
                 Лицензии
               </span>
                         </Link>

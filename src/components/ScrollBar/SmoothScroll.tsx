@@ -1391,22 +1391,6 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const scrollbarRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
     const [showScrollbar, setShowScrollbar] = useState(true);
-
-    // ===== LIVE SETTINGS =====
-    // const [scrollStopThreshold, setScrollStopThreshold] = useState(() => {
-    //     if (typeof window !== "undefined") {
-    //         return parseFloat(localStorage.getItem("scrollStopThreshold") || "0.5");
-    //     }
-    //     return 0.5;
-    // });
-    //
-    // const [scrollEaseFactor, setScrollEaseFactor] = useState(() => {
-    //     if (typeof window !== "undefined") {
-    //         return parseFloat(localStorage.getItem("scrollEaseFactor") || getAdaptiveEasing().toString());
-    //     }
-    //     return getAdaptiveEasing();
-    // });
-
     const [scrollStopThreshold, setScrollStopThreshold] = useState(0.5);
     const [scrollEaseFactor, setScrollEaseFactor] = useState(0.35); // или любое дефолтное значение
 
