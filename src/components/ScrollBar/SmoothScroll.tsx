@@ -2736,7 +2736,7 @@ export default function SmoothScroll({
         try {
             localStorage.setItem('smoothScrollSettings', JSON.stringify(newSettings));
         } catch (e) {
-            // Handle localStorage errors silently
+            console.error(e);
         }
     };
 
@@ -2751,7 +2751,7 @@ export default function SmoothScroll({
                 onSettingsChange?.(merged);
             }
         } catch (e) {
-            // Handle localStorage errors silently
+            console.error(e);
         }
     }, []);
 
