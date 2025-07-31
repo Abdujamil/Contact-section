@@ -1393,19 +1393,23 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const [showScrollbar, setShowScrollbar] = useState(true);
 
     // ===== LIVE SETTINGS =====
-    const [scrollStopThreshold, setScrollStopThreshold] = useState(() => {
-        if (typeof window !== "undefined") {
-            return parseFloat(localStorage.getItem("scrollStopThreshold") || "0.5");
-        }
-        return 0.5;
-    });
+    // const [scrollStopThreshold, setScrollStopThreshold] = useState(() => {
+    //     if (typeof window !== "undefined") {
+    //         return parseFloat(localStorage.getItem("scrollStopThreshold") || "0.5");
+    //     }
+    //     return 0.5;
+    // });
+    //
+    // const [scrollEaseFactor, setScrollEaseFactor] = useState(() => {
+    //     if (typeof window !== "undefined") {
+    //         return parseFloat(localStorage.getItem("scrollEaseFactor") || getAdaptiveEasing().toString());
+    //     }
+    //     return getAdaptiveEasing();
+    // });
 
-    const [scrollEaseFactor, setScrollEaseFactor] = useState(() => {
-        if (typeof window !== "undefined") {
-            return parseFloat(localStorage.getItem("scrollEaseFactor") || getAdaptiveEasing().toString());
-        }
-        return getAdaptiveEasing();
-    });
+    const [scrollStopThreshold, setScrollStopThreshold] = useState(0.5);
+    const [scrollEaseFactor, setScrollEaseFactor] = useState(0.35); // или любое дефолтное значение
+
 
     useEffect(() => {
         localStorage.setItem("scrollStopThreshold", scrollStopThreshold.toString());
@@ -1415,14 +1419,22 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         localStorage.setItem("scrollEaseFactor", scrollEaseFactor.toString());
     }, [scrollEaseFactor]);
 
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+
+        const storedEase = localStorage.getItem("scrollEaseFactor");
+
+        if (storedEase) {
+            setScrollEaseFactor(parseFloat(storedEase));
+        } else {
+            const adaptive = getAdaptiveEasing();
+            setScrollEaseFactor(adaptive);
+            localStorage.setItem("scrollEaseFactor", adaptive.toString());
+        }
+    }, []);
+
     // ===== ADAPTIVE EASING =====
     function getAdaptiveEasing(): number {
-
-        if (typeof window === 'undefined') {
-            return 0.25; // default easing value
-        }
-
-
         const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
             window.devicePixelRatio > 1.5;
 
