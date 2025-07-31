@@ -83,6 +83,35 @@ export const organizationData: organizationItem[] = [
 
         aside: [
             {
+                id: "what-is-api",
+                title: "Что такое API",
+            },
+            {
+                id: "target-audience",
+                title: "Для кого разработан API",
+            },
+            {
+                id: "api-capabilities",
+                title: "Возможности AUDIOSECTOR API",
+            },
+            {
+                id: "integration-process",
+                title: "Простая и быстрая интеграция",
+            },
+        ],
+
+    },
+    {
+        id: 3,
+        num: "3",
+        fullAnswer: (
+            <>
+
+            </>
+        ),
+
+        aside: [
+            {
                 id: "introduction",
                 title: "Введение",
             },
@@ -102,35 +131,6 @@ export const organizationData: organizationItem[] = [
             //     id: "error-codes",
             //     title: "Общие коды возвращаемых ошибок",
             // },
-        ],
-
-    },
-    {
-        id: 3,
-        num: "3",
-        fullAnswer: (
-            <>
-
-            </>
-        ),
-
-        aside: [
-            {
-                id: "what-is-api",
-                title: "Что такое API",
-            },
-            {
-                id: "target-audience",
-                title: "Для кого разработан API",
-            },
-            {
-                id: "api-capabilities",
-                title: "Возможности AUDIOSECTOR API",
-            },
-            {
-                id: "integration-process",
-                title: "Простая и быстрая интеграция",
-            },
         ],
     },
 ];

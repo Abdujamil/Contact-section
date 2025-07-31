@@ -107,11 +107,11 @@ input[type="date"]::-webkit-datetime-edit {
 }
 
 input:-webkit-autofill {
-    color: #adadad !important;
+    color: #CCCCCC !important;
 }
 
 input:-webkit-autofill::first-line {
-    color: #adadad;
+    color: #CCCCCC;
 }
 
 /*Scrollbar*/
