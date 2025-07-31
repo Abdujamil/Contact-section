@@ -5,7 +5,7 @@ import Header from "@/components/header/Header";
 import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
 import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
-import  FootCondition  from '@/components/ConditionalFooter/page'
+import FootCondition from '@/components/ConditionalFooter/page'
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -28,14 +28,16 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
         >
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <AuthProvider>
-            <SmoothScroll>
+            <SmoothScroll
+                showSettingsPanel={true}
+            >
                 <Header/>
                 <main className="flex-grow">
                     {children}
                 </main>
-                <FootCondition />
+                <FootCondition/>
             </SmoothScroll>
         </AuthProvider>
         </body>
