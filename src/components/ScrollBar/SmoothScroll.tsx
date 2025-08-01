@@ -1379,7 +1379,6 @@
 // }
 
 
-
 // Custom with settings(РАБОТАЕТ КОРРЕКТНО)
 // 'use client';
 // import React, { useEffect, useRef, useState } from "react";
@@ -1737,16 +1736,68 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Определение типа устройства ввода
     useEffect(() => {
-        const detectTrackpad = (e: WheelEvent) => {
-            // Trackpad events обычно маленькие по delta и очень частые
-            const isProbablyTrackpad = Math.abs(e.deltaY) < 50 && e.deltaMode === 0;
-            setIsTrackpad(isProbablyTrackpad);
+        let wheelEvents: number[] = [];
+        let detectionTimeout: NodeJS.Timeout;
+
+        const detectInputDevice = (e: WheelEvent) => {
+            // Сохраняем последние 5 значений deltaY
+            wheelEvents.push(Math.abs(e.deltaY));
+            if (wheelEvents.length > 5) {
+                wheelEvents.shift();
+            }
+
+            // Очищаем предыдущий таймаут
+            clearTimeout(detectionTimeout);
+
+            // Анализируем через небольшую задержку
+            detectionTimeout = setTimeout(() => {
+                if (wheelEvents.length >= 3) {
+                    const avgDelta = wheelEvents.reduce((a, b) => a + b, 0) / wheelEvents.length;
+                    const maxDelta = Math.max(...wheelEvents);
+                    const minDelta = Math.min(...wheelEvents);
+                    const deltaVariance = maxDelta - minDelta;
+
+                    // Определяем устройство на основе нескольких факторов:
+                    const isLikelyTrackpad =
+                        // 1. Малые значения delta (обычно < 50 для тачпада)
+                        avgDelta < 50 &&
+                        // 2. Низкая вариативность (плавные движения)
+                        deltaVariance < 30 &&
+                        // 3. deltaMode === 0 (пиксели, а не строки/страницы)
+                        e.deltaMode === 0;
+
+                    const isLikelyMouse =
+                        // 1. Большие значения delta (обычно 100+ для колесика мыши)
+                        avgDelta > 80 ||
+                        // 2. Высокая вариативность или фиксированные значения
+                        deltaVariance > 50 ||
+                        // 3. deltaMode !== 0 (строки или страницы)
+                        e.deltaMode !== 0;
+
+                    if (isLikelyTrackpad) {
+                        setIsTrackpad(true);
+                    } else if (isLikelyMouse) {
+                        setIsTrackpad(false);
+                    }
+                    // Если не уверены, оставляем текущее состояние
+                }
+            }, 100);
         };
 
-        window.addEventListener('wheel', detectTrackpad, {passive: true, once: true});
+        // Дополнительная проверка по User Agent для MacOS
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0 ||
+            navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+
+        // На Mac по умолчанию предполагаем тачпад
+        if (isMac) {
+            setIsTrackpad(true);
+        }
+
+        window.addEventListener('wheel', detectInputDevice, {passive: true});
 
         return () => {
-            window.removeEventListener('wheel', detectTrackpad);
+            window.removeEventListener('wheel', detectInputDevice);
+            clearTimeout(detectionTimeout);
         };
     }, []);
 
@@ -1939,7 +1990,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             {/* ===== LIVE SETTINGS PANEL ===== */}
             {process.env.NODE_ENV === 'production' && (
-                <div className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
+                <div
+                    className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                         Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
                     </h3>
@@ -1947,11 +1999,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     <div className="mb-6">
                         <h4 className="text-sm font-bold mb-2 text-blue-600">Настройки для мышки</h4>
 
-                        <label className="block text-xs mb-1">Порог остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
+                        <label className="block text-xs mb-1">Порог
+                            остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
                         <input
                             type="range"
                             min="0.01"
-                            max="10"
+                            max="5"
                             step="0.01"
                             value={mouseSettings.scrollStopThreshold}
                             onChange={(e) => setMouseSettings({
@@ -1961,7 +2014,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full mb-2"
                         />
 
-                        <label className="block text-xs mb-1">Фактор плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
+                        <label className="block text-xs mb-1">Фактор
+                            плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
                         <input
                             type="range"
                             min="0.01"
@@ -1993,7 +2047,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     <div>
                         <h4 className="text-sm font-bold mb-2 text-green-600">Настройки для тачпада</h4>
 
-                        <label className="block text-xs mb-1">Порог остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
+                        <label className="block text-xs mb-1">Порог
+                            остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
                         <input
                             type="range"
                             min="0.01"
@@ -2007,7 +2062,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full mb-2"
                         />
 
-                        <label className="block text-xs mb-1">Фактор плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
+                        <label className="block text-xs mb-1">Фактор
+                            плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
                         <input
                             type="range"
                             min="0.01"
@@ -2021,7 +2077,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full mb-2"
                         />
 
-                        <label className="block text-xs mb-1">Минимальный шаг: {trackpadSettings.minScrollStep}px</label>
+                        <label className="block text-xs mb-1">Минимальный
+                            шаг: {trackpadSettings.minScrollStep}px</label>
                         <input
                             type="range"
                             min="1"
