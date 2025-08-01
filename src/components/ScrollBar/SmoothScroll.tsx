@@ -1394,8 +1394,8 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
     const pathname = usePathname();
     const [showScrollbar, setShowScrollbar] = useState(true);
     const [scrollStopThreshold, setScrollStopThreshold] = useState(0.15);
-    const [scrollEaseFactor, setScrollEaseFactor] = useState(0.15);
-    const [minScrollStep, setMinScrollStep] = useState(30);
+    const [scrollEaseFactor, setScrollEaseFactor] = useState(0.30);
+    const [minScrollStep, setMinScrollStep] = useState(10);
 
 
     useEffect(() => {
