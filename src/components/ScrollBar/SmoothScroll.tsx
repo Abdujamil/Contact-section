@@ -1736,7 +1736,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Определение типа устройства ввода
     useEffect(() => {
-        let wheelEvents: number[] = [];
+        const wheelEvents: number[] = [];
         let detectionTimeout: NodeJS.Timeout;
 
         const detectInputDevice = (e: WheelEvent) => {
