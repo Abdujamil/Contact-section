@@ -122,13 +122,12 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                 <button
                                     className='px-[6px]'
                                     onClick={handleGoBack}>
-                                    <Image
-                                        className='rotate-[180deg] h-5'
-                                        src={ArrowIcon} alt='back' width={20} height={20} />
+                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 12.7451L1.24719 5.95076L0 7.20562L6.75281 14L8 12.7451ZM8 1.25486L6.75281 0L3.16208 3.74341L4.41015 4.99827L8 1.25486Z" fill="#ADADAD"/>
+                                    </svg>
                                 </button>
 
                                 <span className=' text-[24px] text-center text-[#adadad]'>{currentLevel.title}</span>
-
                             </>
                         }
                     </div>
@@ -157,7 +156,11 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                                 <span className="text-[18px] text-[#adadad]">{item.title}</span>
                                             </div>
                                             {item.children && (
-                                                <Image src={ArrowIcon} alt="more" width={20} height={20} />
+                                                // <Image src={ArrowIcon} alt="more" width={20} height={20} />
+
+                                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z" fill="#ADADAD"/>
+                                                </svg>
                                             )}
                                         </Link>
                                     ) : (
@@ -173,9 +176,9 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                                 <span className="text-[18px] text-[#adadad]">{item.title}</span>
                                             </div>
                                             {item.children && (
-                                                <Image
-                                                    className='translate-x-[5px]'
-                                                    src={ArrowIcon} alt="more" width={20} height={20} />
+                                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z" fill="#ADADAD"/>
+                                                </svg>
                                             )}
                                         </button>
                                     )
@@ -189,7 +192,8 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
 
                     <div className="flex items-center mt-[13px] gap-[10px]">
                         <div className="overflow-hidden">
-                            <button
+                            <Link
+                                href={`/auth/login`}
                                 className={`${styles["login-button"]} group flex items-center justify-center`}
                                 data-text={showRegisterPromo ? "Войти" : "Выйти"}
                                 onClick={toggleRegisterPromo}
@@ -215,7 +219,7 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                       </span>
                                 </div>
                                 <div className={styles.highlight} />
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

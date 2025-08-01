@@ -1704,35 +1704,35 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     });
 
     // Инициализация настроек из localStorage
-    useEffect(() => {
-        const storedMouse = {
-            scrollStopThreshold: parseFloat(localStorage.getItem('mouse_scrollStopThreshold') || '0.15'),
-            scrollEaseFactor: parseFloat(localStorage.getItem('mouse_scrollEaseFactor') || '0.20'),
-            minScrollStep: parseInt(localStorage.getItem('mouse_minScrollStep') || '10')
-        };
-        setMouseSettings(storedMouse);
-
-        const storedTrackpad = {
-            scrollStopThreshold: parseFloat(localStorage.getItem('trackpad_scrollStopThreshold') || '0.5'),
-            scrollEaseFactor: parseFloat(localStorage.getItem('trackpad_scrollEaseFactor') || '0.20'),
-            minScrollStep: parseInt(localStorage.getItem('trackpad_minScrollStep') || '1')
-        };
-        setTrackpadSettings(storedTrackpad);
-    }, []);
+    // useEffect(() => {
+    //     const storedMouse = {
+    //         scrollStopThreshold: parseFloat(localStorage.getItem('mouse_scrollStopThreshold') || '0.15'),
+    //         scrollEaseFactor: parseFloat(localStorage.getItem('mouse_scrollEaseFactor') || '0.20'),
+    //         minScrollStep: parseInt(localStorage.getItem('mouse_minScrollStep') || '10')
+    //     };
+    //     setMouseSettings(storedMouse);
+    //
+    //     const storedTrackpad = {
+    //         scrollStopThreshold: parseFloat(localStorage.getItem('trackpad_scrollStopThreshold') || '0.5'),
+    //         scrollEaseFactor: parseFloat(localStorage.getItem('trackpad_scrollEaseFactor') || '0.20'),
+    //         minScrollStep: parseInt(localStorage.getItem('trackpad_minScrollStep') || '1')
+    //     };
+    //     setTrackpadSettings(storedTrackpad);
+    // }, []);
 
     // Сохранение настроек мыши в localStorage
-    useEffect(() => {
-        localStorage.setItem('mouse_scrollStopThreshold', mouseSettings.scrollStopThreshold.toString());
-        localStorage.setItem('mouse_scrollEaseFactor', mouseSettings.scrollEaseFactor.toString());
-        localStorage.setItem('mouse_minScrollStep', mouseSettings.minScrollStep.toString());
-    }, [mouseSettings]);
-
-    // Сохранение настроек тачпада в localStorage
-    useEffect(() => {
-        localStorage.setItem('trackpad_scrollStopThreshold', trackpadSettings.scrollStopThreshold.toString());
-        localStorage.setItem('trackpad_scrollEaseFactor', trackpadSettings.scrollEaseFactor.toString());
-        localStorage.setItem('trackpad_minScrollStep', trackpadSettings.minScrollStep.toString());
-    }, [trackpadSettings]);
+    // useEffect(() => {
+    //     localStorage.setItem('mouse_scrollStopThreshold', mouseSettings.scrollStopThreshold.toString());
+    //     localStorage.setItem('mouse_scrollEaseFactor', mouseSettings.scrollEaseFactor.toString());
+    //     localStorage.setItem('mouse_minScrollStep', mouseSettings.minScrollStep.toString());
+    // }, [mouseSettings]);
+    //
+    // // Сохранение настроек тачпада в localStorage
+    // useEffect(() => {
+    //     localStorage.setItem('trackpad_scrollStopThreshold', trackpadSettings.scrollStopThreshold.toString());
+    //     localStorage.setItem('trackpad_scrollEaseFactor', trackpadSettings.scrollEaseFactor.toString());
+    //     localStorage.setItem('trackpad_minScrollStep', trackpadSettings.minScrollStep.toString());
+    // }, [trackpadSettings]);
 
     // Определение типа устройства ввода
     useEffect(() => {
@@ -1989,7 +1989,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
             {/* ===== LIVE SETTINGS PANEL ===== */}
-            {process.env.NODE_ENV === 'production' && (
+            {process.env.NODE_ENV === 'development' && (
                 <div
                     className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
@@ -2003,7 +2003,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setMouseSettings({
                                         ...mouseSettings,
@@ -2028,7 +2028,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                 className="w-full"
                             />
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setMouseSettings({
                                         ...mouseSettings,
@@ -2044,7 +2044,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setMouseSettings({
                                         ...mouseSettings,
@@ -2069,7 +2069,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                 className="w-full"
                             />
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setMouseSettings({
                                         ...mouseSettings,
@@ -2084,7 +2084,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
                         <div className="flex items-center gap-2 mb-6">
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setMouseSettings({
                                         ...mouseSettings,
@@ -2109,7 +2109,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                 className="w-full"
                             />
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setMouseSettings({
                                         ...mouseSettings,
@@ -2129,7 +2129,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setTrackpadSettings({
                                         ...trackpadSettings,
@@ -2154,7 +2154,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                 className="w-full"
                             />
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setTrackpadSettings({
                                         ...trackpadSettings,
@@ -2170,7 +2170,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setTrackpadSettings({
                                         ...trackpadSettings,
@@ -2195,7 +2195,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                 className="w-full"
                             />
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setTrackpadSettings({
                                         ...trackpadSettings,
@@ -2211,7 +2211,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             шаг: {trackpadSettings.minScrollStep}px</label>
                         <div className="flex items-center gap-2">
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setTrackpadSettings({
                                         ...trackpadSettings,
@@ -2236,7 +2236,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                 className="w-full"
                             />
                             <button
-                                className="px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded"
+                                className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
                                 onClick={() =>
                                     setTrackpadSettings({
                                         ...trackpadSettings,
@@ -2766,7 +2766,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     step="0.1"
 //                     value={settings.mouseScrollSpeed}
 //                     onChange={(e) => handleChange('mouseScrollSpeed', parseFloat(e.target.value))}
-//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                 />
 //                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                     <span>Slow</span>
@@ -2786,7 +2786,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     step="0.05"
 //                     value={settings.mouseScrollSmoothing}
 //                     onChange={(e) => handleChange('mouseScrollSmoothing', parseFloat(e.target.value))}
-//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                 />
 //                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                     <span>More Smooth</span>
@@ -2806,7 +2806,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     step="10"
 //                     value={settings.maxMouseScrollSpeed}
 //                     onChange={(e) => handleChange('maxMouseScrollSpeed', parseInt(e.target.value))}
-//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                 />
 //                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                     <span>50px</span>
@@ -2821,7 +2821,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         type="checkbox"
 //                         checked={settings.enableMouseAcceleration}
 //                         onChange={(e) => handleChange('enableMouseAcceleration', e.target.checked)}
-//                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+//                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-[#333333] dark:border-gray-600"
 //                     />
 //                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
 //                         Enable Mouse Acceleration
@@ -2836,7 +2836,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             <div className="flex space-x-2">
 //                 <button
 //                     onClick={resetToDefaults}
-//                     className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded text-sm"
+//                     className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-[#333333] dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded text-sm"
 //                 >
 //                     Reset to Defaults
 //                 </button>
@@ -3415,7 +3415,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     step="0.1"
 //                     value={settings.mouseScrollSpeed}
 //                     onChange={(e) => handleChange('mouseScrollSpeed', parseFloat(e.target.value))}
-//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                 />
 //                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                     <span>Slow</span>
@@ -3435,7 +3435,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     step="0.05"
 //                     value={settings.mouseScrollSmoothing}
 //                     onChange={(e) => handleChange('mouseScrollSmoothing', parseFloat(e.target.value))}
-//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                 />
 //                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                     <span>More Smooth</span>
@@ -3455,7 +3455,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                     step="10"
 //                     value={settings.maxMouseScrollSpeed}
 //                     onChange={(e) => handleChange('maxMouseScrollSpeed', parseInt(e.target.value))}
-//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                 />
 //                 <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                     <span>50px</span>
@@ -3470,7 +3470,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         type="checkbox"
 //                         checked={settings.enableMouseAcceleration}
 //                         onChange={(e) => handleChange('enableMouseAcceleration', e.target.checked)}
-//                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+//                         className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-[#333333] dark:border-gray-600"
 //                     />
 //                     <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
 //                         Enable Mouse Acceleration
@@ -3499,7 +3499,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         step="0.1"
 //                         value={settings.touchpadScrollSpeed}
 //                         onChange={(e) => handleChange('touchpadScrollSpeed', parseFloat(e.target.value))}
-//                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                     />
 //                     <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                         <span>Slow</span>
@@ -3519,7 +3519,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         step="0.05"
 //                         value={settings.touchpadScrollSmoothing}
 //                         onChange={(e) => handleChange('touchpadScrollSmoothing', parseFloat(e.target.value))}
-//                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+//                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-[#333333]"
 //                     />
 //                     <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
 //                         <span>More Smooth</span>
@@ -3534,7 +3534,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                             type="checkbox"
 //                             checked={settings.touchpadInertia}
 //                             onChange={(e) => handleChange('touchpadInertia', e.target.checked)}
-//                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+//                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-[#333333] dark:border-gray-600"
 //                         />
 //                         <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
 //                             Enable Touchpad Inertia
@@ -3552,7 +3552,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                             type="checkbox"
 //                             checked={settings.touchpadPrecisionMode}
 //                             onChange={(e) => handleChange('touchpadPrecisionMode', e.target.checked)}
-//                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+//                             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-[#333333] dark:border-gray-600"
 //                         />
 //                         <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
 //                             Precision Mode
@@ -3568,7 +3568,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             <div className="flex space-x-2">
 //                 <button
 //                     onClick={resetToDefaults}
-//                     className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded text-sm"
+//                     className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-[#333333] dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded text-sm"
 //                 >
 //                     Reset to Defaults
 //                 </button>
