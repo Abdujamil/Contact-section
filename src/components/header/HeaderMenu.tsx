@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import ArrowIcon from '@/../public/arrow.svg'
+// import ArrowIcon from '@/../public/arrow.svg'
 import React, { useEffect, useState } from 'react';
 import styles from "./Header.module.css";
 import Image, { StaticImageData } from 'next/image';
