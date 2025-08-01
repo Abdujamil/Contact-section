@@ -83,15 +83,6 @@ export default function LoginPage() {
                                     required={true}
                                 />
                                 <div className={`relative w-full flex flex-col justify-between mb-[12px]`}>
-                                    {/*<AppInput*/}
-                                    {/*    className={`${styles.bounceElem} w-full md:w-[375px]`}*/}
-                                    {/*    type={"password"}*/}
-                                    {/*    title={"Пароль"}*/}
-                                    {/*    inputName="password"*/}
-                                    {/*    required={true}*/}
-                                    {/*    showPasswordToggle={true}*/}
-                                    {/*/>*/}
-
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
