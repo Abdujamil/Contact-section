@@ -1751,19 +1751,19 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, []);
 
     // ===== ADAPTIVE EASING =====
-    function getAdaptiveEasing(): number {
-        const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
-            window.devicePixelRatio > 1.5;
-
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) return 0.5;
-
-        const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
-        const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
-        if (isSlowConnection) return 0.4;
-
-        return isHighRefreshRate ? 0.25 : 0.35;
-    }
+    // function getAdaptiveEasing(): number {
+    //     const isHighRefreshRate = window.matchMedia('(min-resolution: 120dpi)').matches ||
+    //         window.devicePixelRatio > 1.5;
+    //
+    //     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    //     if (prefersReducedMotion) return 0.5;
+    //
+    //     const connection = (navigator as Navigator & { connection?: { effectiveType: string } }).connection;
+    //     const isSlowConnection = connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+    //     if (isSlowConnection) return 0.4;
+    //
+    //     return isHighRefreshRate ? 0.25 : 0.35;
+    // }
 
     // ===== HIDE SCROLLBAR ON ROUTES =====
     useEffect(() => {
