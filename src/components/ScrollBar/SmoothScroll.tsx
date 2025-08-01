@@ -1707,14 +1707,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     useEffect(() => {
         const storedMouse = {
             scrollStopThreshold: parseFloat(localStorage.getItem('mouse_scrollStopThreshold') || '0.15'),
-            scrollEaseFactor: parseFloat(localStorage.getItem('mouse_scrollEaseFactor') || '0.3'),
+            scrollEaseFactor: parseFloat(localStorage.getItem('mouse_scrollEaseFactor') || '0.30'),
             minScrollStep: parseInt(localStorage.getItem('mouse_minScrollStep') || '10')
         };
         setMouseSettings(storedMouse);
 
         const storedTrackpad = {
-            scrollStopThreshold: parseFloat(localStorage.getItem('trackpad_scrollStopThreshold') || '0.01'),
-            scrollEaseFactor: parseFloat(localStorage.getItem('trackpad_scrollEaseFactor') || '1.0'),
+            scrollStopThreshold: parseFloat(localStorage.getItem('trackpad_scrollStopThreshold') || '0.5'),
+            scrollEaseFactor: parseFloat(localStorage.getItem('trackpad_scrollEaseFactor') || '0.30'),
             minScrollStep: parseInt(localStorage.getItem('trackpad_minScrollStep') || '1')
         };
         setTrackpadSettings(storedTrackpad);
