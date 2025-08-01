@@ -1989,7 +1989,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
             {/* ===== LIVE SETTINGS PANEL ===== */}
-            {process.env.NODE_ENV === 'production' (
+            {process.env.NODE_ENV === 'production' && (
                 <div
                     className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
