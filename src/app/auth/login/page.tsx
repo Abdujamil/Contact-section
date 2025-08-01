@@ -19,7 +19,9 @@ type LoginFormValues = {
 };
 
 export default function LoginPage() {
-    const methods = useForm<LoginFormValues>();
+    const methods = useForm<LoginFormValues>({
+        shouldFocusError: false
+    });
     const {register, handleSubmit} = methods;
     const controls = useAnimation();
 

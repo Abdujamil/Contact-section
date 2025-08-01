@@ -18,7 +18,9 @@ type ForgotPasswordFormValues = {
 };
 
 export default function ForgotPasswordPage() {
-    const methods = useForm<ForgotPasswordFormValues>();
+    const methods = useForm<ForgotPasswordFormValues>({
+        shouldFocusError: false
+    });
     const {register, handleSubmit} = methods;
     const controls = useAnimation();
 

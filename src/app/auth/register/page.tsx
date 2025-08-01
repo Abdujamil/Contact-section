@@ -64,7 +64,9 @@ const validateDate = (value: string) => {
 };
 
 export default function RegisterPage() {
-    const methods = useForm<RegisterFormValues>();
+    const methods = useForm<RegisterFormValues>({
+        shouldFocusError: false
+    });
     const {register, handleSubmit} = methods;
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
