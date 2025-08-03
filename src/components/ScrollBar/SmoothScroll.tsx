@@ -913,17 +913,44 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         minScrollStep: 1
     });
 
-    // Новые настройки для Windows Dell
     const [dellSettings, setDellSettings] = useState({
         MIN_DELTA: 5,
         TOUCHPAD_SENSITIVITY: 5,
         MAX_VELOCITY: 10,
         DEBOUNCE_TIME: 100,
         MACBOOK_DEBOUNCE_TIME: 100,
-        WHEEL_THROTTLE: 16, // 60fps
-        TOUCHPAD_WHEEL_THROTTLE: 33, // 30fps
+        WHEEL_THROTTLE: 16,
+        TOUCHPAD_WHEEL_THROTTLE: 33,
         MOUSE_AFTER_TOUCHPAD_COOLDOWN: 50
     });
+
+    // ИСПОЛЬЗУЕМ REF ДЛЯ АКТУАЛЬНЫХ НАСТРОЕК
+    const mouseSettingsRef = useRef(mouseSettings);
+    const trackpadSettingsRef = useRef(trackpadSettings);
+    const dellSettingsRef = useRef(dellSettings);
+    const isTrackpadRef = useRef(isTrackpad);
+    const currentStateRef = useRef(currentState);
+
+    // Обновляем ref при изменении настроек
+    useEffect(() => {
+        mouseSettingsRef.current = mouseSettings;
+    }, [mouseSettings]);
+
+    useEffect(() => {
+        trackpadSettingsRef.current = trackpadSettings;
+    }, [trackpadSettings]);
+
+    useEffect(() => {
+        dellSettingsRef.current = dellSettings;
+    }, [dellSettings]);
+
+    useEffect(() => {
+        isTrackpadRef.current = isTrackpad;
+    }, [isTrackpad]);
+
+    useEffect(() => {
+        currentStateRef.current = currentState;
+    }, [currentState]);
 
     // Определение ОС и устройства
     const [isWindows, setIsWindows] = useState(false);
@@ -939,7 +966,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         setIsWindows(windowsDetected);
         setIsMac(macDetected);
 
-        // На Mac по умолчанию предполагаем тачпад
         if (macDetected) {
             setIsTrackpad(true);
         }
@@ -953,15 +979,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const currentTime = Date.now();
             const deltaY = Math.abs(e.deltaY);
 
-            // Сохраняем последние события для анализа
             wheelEventsRef.current.push(deltaY);
             if (wheelEventsRef.current.length > 5) {
                 wheelEventsRef.current.shift();
             }
 
-            // Проверяем интервал между событиями
             const timeSinceLastWheel = currentTime - lastWheelTimeRef.current;
-            lastWheelTimeRef.current = currentTime;
 
             clearTimeout(detectionTimeout);
 
@@ -972,23 +995,17 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     const minDelta = Math.min(...wheelEventsRef.current);
                     const deltaVariance = maxDelta - minDelta;
 
-                    // Для Mac - более простая логика
                     if (isMac) {
                         const isLikelyTrackpad = avgDelta < 50 && deltaVariance < 30 && e.deltaMode === 0;
                         setIsTrackpad(isLikelyTrackpad);
                         return;
                     }
 
-                    // Для Windows - расширенная логика
                     if (isWindows) {
                         const isLikelyTrackpad =
-                            // Маленькие значения deltaY (меньше 40)
                             avgDelta < 40 &&
-                            // Частые события (интервал меньше 110ms для Windows)
                             timeSinceLastWheel < 110 &&
-                            // Низкая вариативность
                             deltaVariance < 30 &&
-                            // Пиксельный режим
                             e.deltaMode === 0;
 
                         const isLikelyMouse =
@@ -1003,7 +1020,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             setIsTrackpad(false);
                         }
                     } else {
-                        // Для других ОС - стандартная логика
                         const isLikelyTrackpad = avgDelta < 50 && deltaVariance < 30 && e.deltaMode === 0;
                         const isLikelyMouse = avgDelta > 80 || deltaVariance > 50 || e.deltaMode !== 0;
 
@@ -1057,12 +1073,20 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         return 120;
     }, [pathname]);
 
+    // Функция для сброса состояния (полезно при изменении настроек)
+    const resetScrollState = React.useCallback(() => {
+        setCurrentState(TouchpadState.IDLE);
+        touchpadLockReleaseTimeRef.current = 0;
+        lastWheelTimeRef.current = 0;
+    }, []);
+
     useEffect(() => {
         if (!scrollbarRef.current) return;
 
         let currentScroll = window.scrollY;
         let targetScroll = currentScroll;
         let isScrolling = false;
+        let animationId: number | null = null;
 
         const initScroll = () => {
             currentScroll = window.scrollY;
@@ -1074,22 +1098,27 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             const currentTime = Date.now();
 
-            // Проверка throttling
-            const throttleTime = isTrackpad ? dellSettings.TOUCHPAD_WHEEL_THROTTLE : dellSettings.WHEEL_THROTTLE;
+            // ИСПОЛЬЗУЕМ АКТУАЛЬНЫЕ ЗНАЧЕНИЯ ИЗ REF
+            const currentIsTrackpad = isTrackpadRef.current;
+            const currentDellSettings = dellSettingsRef.current;
+            const currentCurrentState = currentStateRef.current;
+
+            // Проверка throttling - уменьшаем throttle для более отзывчивых настроек
+            const throttleTime = currentIsTrackpad ? Math.max(8, currentDellSettings.TOUCHPAD_WHEEL_THROTTLE) : Math.max(8, currentDellSettings.WHEEL_THROTTLE);
             if (currentTime - lastWheelTimeRef.current < throttleTime) {
                 return;
             }
 
             // Для Windows: если тачпад в состоянии ANIMATING, игнорируем все события
-            if (isWindows && isTrackpad && currentState === TouchpadState.ANIMATING) {
+            if (isWindows && currentIsTrackpad && currentCurrentState === TouchpadState.ANIMATING) {
                 e.preventDefault();
                 return;
             }
 
             // Для Windows: защита от конфликтов мыши после тачпада
-            if (isWindows && !isTrackpad) {
+            if (isWindows && !currentIsTrackpad) {
                 const timeSinceTouchpadRelease = currentTime - touchpadLockReleaseTimeRef.current;
-                if (timeSinceTouchpadRelease < dellSettings.MOUSE_AFTER_TOUCHPAD_COOLDOWN) {
+                if (timeSinceTouchpadRelease < currentDellSettings.MOUSE_AFTER_TOUCHPAD_COOLDOWN) {
                     return;
                 }
             }
@@ -1098,21 +1127,21 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             lastWheelTimeRef.current = currentTime;
 
             // Устанавливаем состояние скроллинга
-            if (isTrackpad) {
+            if (currentIsTrackpad) {
                 setCurrentState(TouchpadState.SCROLLING);
             }
 
-            // ВАЖНО: Используем настройки в зависимости от типа устройства
-            const settings = isTrackpad ? trackpadSettings : mouseSettings;
+            // ИСПОЛЬЗУЕМ АКТУАЛЬНЫЕ НАСТРОЙКИ ИЗ REF
+            const settings = currentIsTrackpad ? trackpadSettingsRef.current : mouseSettingsRef.current;
 
             // Для Windows Dell применяем минимальный порог deltaY
             const deltaY = e.deltaY;
-            if (isWindows && Math.abs(deltaY) < dellSettings.MIN_DELTA) {
+            if (isWindows && Math.abs(deltaY) < currentDellSettings.MIN_DELTA) {
                 return;
             }
 
-            const scrollStep = isTrackpad && isWindows
-                ? Math.sign(deltaY) * Math.max(Math.abs(deltaY) * dellSettings.TOUCHPAD_SENSITIVITY, settings.minScrollStep)
+            const scrollStep = currentIsTrackpad && isWindows
+                ? Math.sign(deltaY) * Math.max(Math.abs(deltaY) * currentDellSettings.TOUCHPAD_SENSITIVITY, settings.minScrollStep)
                 : Math.sign(deltaY) * Math.max(Math.abs(deltaY), settings.minScrollStep);
 
             targetScroll += scrollStep;
@@ -1120,48 +1149,57 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
 
+            // Останавливаем предыдущую анимацию если есть
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+
             if (!isScrolling) {
                 isScrolling = true;
 
-                if (isTrackpad && isWindows) {
-                    // Для тачпада на Windows - упрощенная анимация через requestAnimationFrame
+                if (currentIsTrackpad && isWindows) {
                     setCurrentState(TouchpadState.ANIMATING);
 
                     const animate = () => {
+                        // Получаем актуальные настройки на каждом кадре
+                        const currentSettings = trackpadSettingsRef.current;
                         const diff = targetScroll - currentScroll;
-                        if (Math.abs(diff) < settings.scrollStopThreshold) {
+                        if (Math.abs(diff) < currentSettings.scrollStopThreshold) {
                             currentScroll = targetScroll;
                             window.scrollTo(0, currentScroll);
                             isScrolling = false;
+                            animationId = null;
                             setCurrentState(TouchpadState.IDLE);
 
-                            // Устанавливаем время освобождения для дебаунса
-                            touchpadLockReleaseTimeRef.current = Date.now() + (isMac ? dellSettings.MACBOOK_DEBOUNCE_TIME : dellSettings.DEBOUNCE_TIME);
+                            touchpadLockReleaseTimeRef.current = Date.now() + (isMac ? dellSettingsRef.current.MACBOOK_DEBOUNCE_TIME : dellSettingsRef.current.DEBOUNCE_TIME);
                             return;
                         }
-                        currentScroll += diff * settings.scrollEaseFactor;
+                        currentScroll += diff * currentSettings.scrollEaseFactor;
                         window.scrollTo(0, currentScroll);
-                        requestAnimationFrame(animate);
+                        animationId = requestAnimationFrame(animate);
                     };
-                    requestAnimationFrame(animate);
+                    animationId = requestAnimationFrame(animate);
                 } else {
-                    // Стандартная анимация для мыши и других случаев
                     const animate = () => {
+                        // Получаем актуальные настройки на каждом кадре
+                        const currentSettings = currentIsTrackpad ? trackpadSettingsRef.current : mouseSettingsRef.current;
                         const diff = targetScroll - currentScroll;
-                        if (Math.abs(diff) < settings.scrollStopThreshold) {
+                        if (Math.abs(diff) < currentSettings.scrollStopThreshold) {
                             currentScroll = targetScroll;
                             window.scrollTo(0, currentScroll);
                             isScrolling = false;
-                            if (isTrackpad) {
+                            animationId = null;
+                            if (currentIsTrackpad) {
                                 setCurrentState(TouchpadState.IDLE);
                             }
                             return;
                         }
-                        currentScroll += diff * settings.scrollEaseFactor;
+                        currentScroll += diff * currentSettings.scrollEaseFactor;
                         window.scrollTo(0, currentScroll);
-                        requestAnimationFrame(animate);
+                        animationId = requestAnimationFrame(animate);
                     };
-                    requestAnimationFrame(animate);
+                    animationId = requestAnimationFrame(animate);
                 }
             }
         };
@@ -1186,23 +1224,29 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
                         targetScroll = Math.max(0, Math.min(elTop, maxScroll));
 
-                        const settings = isTrackpad ? trackpadSettings : mouseSettings;
+                        // Останавливаем предыдущую анимацию
+                        if (animationId) {
+                            cancelAnimationFrame(animationId);
+                            animationId = null;
+                        }
 
                         if (!isScrolling) {
                             isScrolling = true;
                             const animate = () => {
+                                const currentSettings = isTrackpadRef.current ? trackpadSettingsRef.current : mouseSettingsRef.current;
                                 const diff = targetScroll - currentScroll;
-                                if (Math.abs(diff) < settings.scrollStopThreshold) {
+                                if (Math.abs(diff) < currentSettings.scrollStopThreshold) {
                                     currentScroll = targetScroll;
                                     window.scrollTo(0, currentScroll);
                                     isScrolling = false;
+                                    animationId = null;
                                     return;
                                 }
-                                currentScroll += diff * settings.scrollEaseFactor;
+                                currentScroll += diff * currentSettings.scrollEaseFactor;
                                 window.scrollTo(0, currentScroll);
-                                requestAnimationFrame(animate);
+                                animationId = requestAnimationFrame(animate);
                             };
-                            requestAnimationFrame(animate);
+                            animationId = requestAnimationFrame(animate);
                         }
                     }
                 }
@@ -1243,8 +1287,13 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             window.removeEventListener('scroll', scrollHandler);
             document.removeEventListener('click', handleAnchorClick);
             window.removeEventListener('resize', updateScrollbar);
+            
+            // Очищаем анимацию при размонтировании
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
         };
-    }, [isTrackpad, trackpadSettings, mouseSettings, dellSettings, pathname, getScrollOffset, currentState, isWindows, isMac]);
+    }, [pathname, getScrollOffset, isWindows, isMac]); // Добавил основные зависимости обратно
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -1262,7 +1311,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
             {/* ===== LIVE SETTINGS PANEL ===== */}
-            {process.env.NODE_ENV === 'production' && (
+            {process.env.NODE_ENV === 'development' && (
                 <div className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                         Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
@@ -1272,6 +1321,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         ОС: {isWindows ? 'Windows' : isMac ? 'Mac' : 'Other'} |
                         Состояние: {currentState}
                     </div>
+
+                    {/* Кнопка сброса состояния */}
+                    <button
+                        onClick={resetScrollState}
+                        className="mb-4 px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600"
+                    >
+                        Сбросить состояние
+                    </button>
 
                     {/* Dell Windows Settings */}
                     <div className="mb-6">
