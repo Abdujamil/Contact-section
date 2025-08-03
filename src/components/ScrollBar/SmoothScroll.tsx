@@ -900,8 +900,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     // Временные переменные для обнаружения
     const lastWheelTimeRef = useRef<number>(0);
     const touchpadLockReleaseTimeRef = useRef<number>(0);
-    const wheelEventsRef = useRef<number[]>([]);
-    const wheelTimestampsRef = useRef<number[]>([]);
+    // const wheelEventsRef = useRef<number[]>([]);
+    // const wheelTimestampsRef = useRef<number[]>([]);
 
     // Настройки
     const [settings, setSettings] = useState({
@@ -939,7 +939,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Определение типа устройства ввода (упрощенная версия)
     const detectInputDevice = React.useCallback((e: WheelEvent) => {
-        const currentTime = Date.now();
+        // const currentTime = Date.now();
         const deltaY = Math.abs(e.deltaY);
 
         // Простая логика определения без сложных вычислений
