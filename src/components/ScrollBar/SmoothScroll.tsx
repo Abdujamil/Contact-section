@@ -937,47 +937,31 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }
     }, []);
 
-    // Определение типа устройства ввода
+    // Определение типа устройства ввода (упрощенная версия)
     const detectInputDevice = React.useCallback((e: WheelEvent) => {
         const currentTime = Date.now();
         const deltaY = Math.abs(e.deltaY);
 
-        // Сохраняем последние события
-        wheelEventsRef.current.push(deltaY);
-        wheelTimestampsRef.current.push(currentTime);
+        // Простая логика определения без сложных вычислений
+        const isLikelyTouchpad =
+            // Маленькие значения deltaY (меньше 40)
+            deltaY < 40 &&
+            // deltaMode === 0 (пиксели)
+            e.deltaMode === 0;
 
-        if (wheelEventsRef.current.length > 5) {
-            wheelEventsRef.current.shift();
-            wheelTimestampsRef.current.shift();
+        const isLikelyMouse =
+            // Большие значения delta (больше 80)
+            deltaY > 80 ||
+            // deltaMode !== 0 (строки или страницы)
+            e.deltaMode !== 0;
+
+        // На Mac сразу считаем тачпадом, иначе определяем по событию
+        if (isMac || isLikelyTouchpad) {
+            if (!isTrackpad) setIsTrackpad(true);
+        } else if (isLikelyMouse) {
+            if (isTrackpad) setIsTrackpad(false);
         }
-
-        if (wheelEventsRef.current.length >= 3) {
-            const avgDelta = wheelEventsRef.current.reduce((a, b) => a + b, 0) / wheelEventsRef.current.length;
-
-            // Определяем интервалы между событиями
-            const intervals = [];
-            for (let i = 1; i < wheelTimestampsRef.current.length; i++) {
-                intervals.push(wheelTimestampsRef.current[i] - wheelTimestampsRef.current[i - 1]);
-            }
-            const avgInterval = intervals.length > 0 ? intervals.reduce((a, b) => a + b, 0) / intervals.length : 0;
-
-            // Логика определения тачпада
-            const isLikelyTouchpad =
-                // Маленькие значения deltaY (меньше 40)
-                avgDelta < 40 &&
-                // Частые события (интервал меньше 110ms для Windows или 10ms для Mac)
-                (isMac ? avgInterval < 10 : avgInterval < 110) &&
-                // Дополнительная проверка для Mac
-                e.deltaMode === 0;
-
-            // На Mac сразу считаем тачпадом
-            if (isMac || isLikelyTouchpad) {
-                setIsTrackpad(true);
-            } else if (avgDelta > 80 || avgInterval > 150) {
-                setIsTrackpad(false);
-            }
-        }
-    }, [isMac]);
+    }, [isMac, isTrackpad]);
 
     // ===== HIDE SCROLLBAR ON ROUTES =====
     useEffect(() => {
@@ -1024,12 +1008,16 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         };
 
         const handleWheel = (e: WheelEvent) => {
-            if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+            // Проверяем, находится ли курсор над элементами, где нужен нативный скролл
+            const target = e.target as HTMLElement;
+            if (target.closest('textarea, .allow-native-scroll')) {
+                return; // Не preventDefault для этих элементов
+            }
+
+            // Определяем устройство (но не мешаем скроллу)
+            detectInputDevice(e);
 
             const currentTime = Date.now();
-
-            // Определяем устройство
-            detectInputDevice(e);
 
             // Блокировка событий в состоянии ANIMATING для тачпада
             if (isTrackpad && currentState === TouchpadState.ANIMATING) {
@@ -1069,10 +1057,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             if (isTrackpad) {
                 // Для тачпада - упрощенная логика с состояниями
-                if (currentState === TouchpadState.IDLE) {
-                    setCurrentState(TouchpadState.SCROLLING);
-                }
-
                 if (!isScrolling) {
                     isScrolling = true;
                     setCurrentState(TouchpadState.ANIMATING);
@@ -1084,12 +1068,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             window.scrollTo(0, currentScroll);
                             isScrolling = false;
 
-                            // Дебаунс после анимации
-                            const debounceTime = isMac ? settings.MACBOOK_DEBOUNCE_TIME : settings.DEBOUNCE_TIME;
-                            setTimeout(() => {
-                                setCurrentState(TouchpadState.IDLE);
-                                touchpadLockReleaseTimeRef.current = Date.now();
-                            }, debounceTime);
+                            // Возвращаемся в IDLE состояние
+                            setCurrentState(TouchpadState.IDLE);
+                            touchpadLockReleaseTimeRef.current = Date.now();
                             return;
                         }
                         currentScroll += diff * scrollSettings.scrollEaseFactor;
@@ -1097,9 +1078,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         requestAnimationFrame(animate);
                     };
                     requestAnimationFrame(animate);
+                } else {
+                    // Если уже скроллим, просто обновляем цель
+                    setCurrentState(TouchpadState.SCROLLING);
                 }
             } else {
-                // Для мыши - более сложная логика (пока оставляем текущую)
+                // Для мыши
                 if (!isScrolling) {
                     isScrolling = true;
                     const animate = () => {
@@ -1215,7 +1199,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
             {/* ===== LIVE SETTINGS PANEL ===== */}
-            {process.env.NODE_ENV === 'production' && (
+            {process.env.NODE_ENV === 'development' && (
                 <div className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                         Настройки прокрутки
@@ -1226,7 +1210,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             Устройство: <span className="font-bold">{isTrackpad ? 'Тачпад' : 'Мышь'}</span>
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
-                            Состояние: <span className="font-bold">{currentState}</span>
+                            {/*Состояние: <span className="font-bold">{currentState}</span>*/}
                         </p>
                         <p className="text-sm text-gray-600 dark:text-gray-300">
                             ОС: <span className="font-bold">{isMac ? 'macOS' : 'Windows/Linux'}</span>
@@ -1237,7 +1221,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     <div className="mb-6">
                         <h4 className="text-sm border-b font-bold mb-3 text-gray-600 dark:text-gray-300">Основные настройки</h4>
 
-                        <label className="block text-xs mb-1">MIN_DELTA: {settings.MIN_DELTA}</label>
+                        <label className="block text-xs mb-1">Минимальное изменение: {settings.MIN_DELTA}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
@@ -1254,7 +1238,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             >+</button>
                         </div>
 
-                        <label className="block text-xs mb-1">TOUCHPAD_SENSITIVITY: {settings.TOUCHPAD_SENSITIVITY}</label>
+                        <label className="block text-xs mb-1">Чувствительность тачпада: {settings.TOUCHPAD_SENSITIVITY}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
@@ -1271,7 +1255,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             >+</button>
                         </div>
 
-                        <label className="block text-xs mb-1">MAX_VELOCITY: {settings.MAX_VELOCITY}</label>
+                        <label className="block text-xs mb-1">Максимальная скорость: {settings.MAX_VELOCITY}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
@@ -1288,7 +1272,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             >+</button>
                         </div>
 
-                        <label className="block text-xs mb-1">DEBOUNCE_TIME: {settings.DEBOUNCE_TIME}ms</label>
+                        <label className="block text-xs mb-1">Время подавления дребезга: {settings.DEBOUNCE_TIME}ms</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
@@ -1305,7 +1289,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             >+</button>
                         </div>
 
-                        <label className="block text-xs mb-1">MACBOOK_DEBOUNCE_TIME: {settings.MACBOOK_DEBOUNCE_TIME}ms</label>
+                        <label className="block text-xs mb-1">Время подавления дребезга (MacBook): {settings.MACBOOK_DEBOUNCE_TIME}ms</label>
                         <div className="flex items-center gap-2 mb-4">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
