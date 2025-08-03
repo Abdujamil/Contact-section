@@ -126,7 +126,7 @@ export default function RegisterPage() {
         bounceActiveBlock('register', controls);
     }, [controls]);
 
-    const [value, onChange] = useState(new Date());
+    // const [value, onChange] = useState(new Date());
 
     return (
         <>

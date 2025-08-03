@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '@/app/page.module.scss';
-import Close from "@/components/closeIcon/close";
+// import Close from "@/components/closeIcon/close";
 
 interface DatePickerProps {
     isVisible: boolean;
@@ -165,6 +165,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         };
     };
 
+    if (isScrolling) return null;
     if (!isVisible) return null;
 
     return (
