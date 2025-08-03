@@ -50,27 +50,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const monthRef = useRef<HTMLDivElement | null>(null);
     const yearRef = useRef<HTMLDivElement | null>(null);
 
-    const [isScrolling, setIsScrolling] = useState(false);
     const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Get current days array based on selected month and year
     const currentDays = Array.from({ length: getDaysInMonth(selectedMonth, selectedYear) }, (_, i) => i + 1);
-
-    // Adjust selected day if it's invalid for current month/year
-    useEffect(() => {
-        const maxDays = getDaysInMonth(selectedMonth, selectedYear);
-        if (selectedDay > maxDays) {
-            setSelectedDay(maxDays);
-        }
-    }, [selectedMonth, selectedYear, selectedDay]);
-
-    useEffect(() => {
-        if (isVisible) {
-            setTimeout(() => {
-                scrollToSelected();
-            }, 100);
-        }
-    }, [isVisible]);
 
     const scrollToSelected = () => {
         const itemHeight = 44; // Consistent item height
@@ -92,6 +75,22 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     };
 
+    // Adjust selected day if it's invalid for current month/year
+    useEffect(() => {
+        const maxDays = getDaysInMonth(selectedMonth, selectedYear);
+        if (selectedDay > maxDays) {
+            setSelectedDay(maxDays);
+        }
+    }, [selectedMonth, selectedYear, selectedDay]);
+
+    useEffect(() => {
+        if (isVisible) {
+            setTimeout(() => {
+                scrollToSelected();
+            }, 100);
+        }
+    }, [isVisible]);
+
     const handleConfirm = () => {
         const formattedDate = `${selectedDay.toString().padStart(2, '0')}.${(selectedMonth + 1).toString().padStart(2, '0')}.${selectedYear}`;
         onDateSelect(formattedDate);
@@ -106,14 +105,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     ) => {
         if (!ref.current) return;
 
-        setIsScrolling(true);
-
         if (scrollTimeoutRef.current) {
             clearTimeout(scrollTimeoutRef.current);
         }
 
         scrollTimeoutRef.current = setTimeout(() => {
-            setIsScrolling(false);
 
             if (!ref.current) return;
 
@@ -165,7 +161,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         };
     };
 
-    if (isScrolling) return null;
     if (!isVisible) return null;
 
     return (
