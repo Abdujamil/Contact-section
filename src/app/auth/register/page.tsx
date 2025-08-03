@@ -126,6 +126,8 @@ export default function RegisterPage() {
         bounceActiveBlock('register', controls);
     }, [controls]);
 
+    const [value, onChange] = useState(new Date());
+
     return (
         <>
             <Breadcrumbs registerUrl={true}/>
@@ -195,6 +197,7 @@ export default function RegisterPage() {
                                             </svg>
                                         </button>
                                     </div>
+
 
                                     <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
                                         <button

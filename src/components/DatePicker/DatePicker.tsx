@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from '@/app/page.module.scss';
+import Close from "@/components/closeIcon/close";
 
 interface DatePickerProps {
     isVisible: boolean;
@@ -9,11 +10,11 @@ interface DatePickerProps {
 }
 
 export const DatePicker: React.FC<DatePickerProps> = ({
-                                                          isVisible,
-                                                          onDateSelect,
-                                                          onClose,
-                                                          initialDate
-                                                      }) => {
+    isVisible,
+    onDateSelect,
+    onClose,
+    initialDate
+}) => {
     const months = [
         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
@@ -21,7 +22,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
-    const days = Array.from({ length: 31 }, (_, i) => i + 1);
+
+    // Get days for specific month and year
+    const getDaysInMonth = (month: number, year: number) => {
+        return new Date(year, month + 1, 0).getDate();
+    };
 
     const parseInitialDate = (dateString?: string) => {
         if (!dateString) return { day: 1, month: 0, year: currentYear - 25 };
@@ -48,6 +53,17 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const [isScrolling, setIsScrolling] = useState(false);
     const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+    // Get current days array based on selected month and year
+    const currentDays = Array.from({ length: getDaysInMonth(selectedMonth, selectedYear) }, (_, i) => i + 1);
+
+    // Adjust selected day if it's invalid for current month/year
+    useEffect(() => {
+        const maxDays = getDaysInMonth(selectedMonth, selectedYear);
+        if (selectedDay > maxDays) {
+            setSelectedDay(maxDays);
+        }
+    }, [selectedMonth, selectedYear, selectedDay]);
+
     useEffect(() => {
         if (isVisible) {
             setTimeout(() => {
@@ -57,7 +73,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     }, [isVisible]);
 
     const scrollToSelected = () => {
-        const itemHeight = 44;
+        const itemHeight = 44; // Consistent item height
 
         if (dayRef.current) {
             const targetScroll = (selectedDay - 1) * itemHeight;
@@ -102,7 +118,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             if (!ref.current) return;
 
             const container = ref.current;
-            const itemHeight = 44;
+            const itemHeight = 44; // Consistent item height
             const scrollTop = container.scrollTop;
             const centerIndex = Math.round(scrollTop / itemHeight);
             const clampedIndex = Math.max(0, Math.min(centerIndex, items.length - 1));
@@ -122,24 +138,24 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }, 100);
     };
 
-    const getItemStyle = (index: number, p0: number, containerRef: React.RefObject<HTMLDivElement | null>) => {
+    const getItemStyle = (index: number, selectedIndex: number, containerRef: React.RefObject<HTMLDivElement | null>) => {
         if (!containerRef.current) return {};
 
-        const itemHeight = 70;
+        const itemHeight = 44; // Consistent item height
         const containerHeight = containerRef.current.clientHeight;
         const scrollTop = containerRef.current.scrollTop;
         const itemTop = index * itemHeight;
         const itemCenter = itemTop + itemHeight / 2;
-        const containerCenter = scrollTop + containerHeight / 4;
+        const containerCenter = scrollTop + containerHeight / 2;
 
         const distance = Math.abs(itemCenter - containerCenter);
         const maxDistance = containerHeight / 2;
         const normalizedDistance = Math.min(distance / maxDistance, 1);
 
         // 3D rotation effect
-        const rotationX = normalizedDistance * 25; // Max 45 degrees
-        const scale = 1 - normalizedDistance * 0.1; // Scale from 1 to 0.7
-        const opacity = 1 - normalizedDistance * 0.6; // Opacity from 1 to 0.4
+        const rotationX = normalizedDistance * 25;
+        const scale = 1 - normalizedDistance * 0.1;
+        const opacity = 1 - normalizedDistance * 0.3;
 
         return {
             transform: `perspective(1000px) rotateX(${rotationX}deg) scale(${scale})`,
@@ -152,31 +168,50 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     if (!isVisible) return null;
 
     return (
-        <div className="font-[Rubik] fixed inset-0 z-50 flex items-center justify-center  bg-opacity-50">
-            <div className={`${styles.datePicker} ${isScrolling} rounded-lg shadow-2xl w-80 max-w-sm mx-4 overflow-hidden`}>
-                {/* Header */}
-                <div className="flex items-center justify-between p-3 border-b border-[#232324] ">
-                    <button
-                        onClick={onClose}
-                        className="text-[#3D9ED6] font-medium text-base cursor-pointer transition-colors"
-                    >
-                        Отмена
-                    </button>
-                    <h3 className="text-sm font-semibold text-gray-900">Дата рождения</h3>
-                    <button
-                        onClick={handleConfirm}
-                        className="text-[#3D9ED6] font-medium text-base cursor-pointer transition-colors"
-                    >
-                        Готово
-                    </button>
-                </div>
+        <div className="font-[Rubik] fixed inset-0 z-50 flex items-center justify-center backdrop-blur-[4px] bg-[#0000005e] bg-opacity-50">
+            <div className="rounded-lg shadow-2xl w-80 max-w-sm mx-4 overflow-hidden">
+                <div className="relative h-[253px] overflow-hidden">
+                    <div className={`${styles.datePicker} text-center pb-[46px] px-[1px] pt-[5px] border border-[#353535] rounded-[8px] mb-[38px]`}>
+                        {/* Header */}
+                        <div className="flex items-center justify-end p-3">
+                            <button
+                                onClick={onClose}
+                                className="text-[#3D9ED6] font-medium text-base cursor-pointer transition-colors"
+                            >
+                                <svg
+                                    className="animated-close"
+                                    width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clipPath="url(#clip0_5371_3270)">
+                                        <mask id="mask0_5371_3270" style={{ maskType: 'luminance' }}
+                                            maskUnits="userSpaceOnUse"
+                                            x="-1" y="-1" width="16" height="16">
+                                            <path d="M15 -1H-1V15H15V-1Z" fill="white" />
+                                        </mask>
+                                        <g mask="url(#mask0_5371_3270)">
+                                            <path
+                                                d="M0.636568 2.05093L11.9503 13.3646L13.3645 11.9504L2.05078 0.636719L0.636568 2.05093Z"
+                                                fill="#ADADAD" />
+                                            <path
+                                                d="M2.05093 13.3647L8.41489 7.00069L7.00068 5.58648L0.636719 11.9504L2.05093 13.3647ZM10.5362 4.87937L13.3646 2.05094L11.9504 0.636731L9.122 3.46516L10.5362 4.87937Z"
+                                                fill="#ADADAD" />
+                                        </g>
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_5371_3270">
+                                            <rect width="14" height="14" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
 
-                {/* Date Picker Wheels */}
-                <div className="relative h-52  overflow-hidden">
                     {/* Selection indicator */}
-                    <div className="absolute inset-x-0 top-1/2 transform -translate-y-1/2 h-11 border-t border-b border-[#0d1319]  border-white-100 pointer-events-none z-10"></div>
+                    <div className={`${styles.datePicker} absolute inset-x-0 top-[43%] transform -translate-y-1/2 h-11 border-l border-r border-[#353535] bg-[#3D9ED6] bg-opacity-5 backdrop-blur-[6px] scale-[.90] pointer-events-none`}>
+                    </div>
 
-                    <div className="flex h-full">
+                    <div className="flex w-full h-full max-h-[138px] absolute top-[45px] z-[9]">
                         {/* Day wheel */}
                         <div className="flex-1 relative overflow-hidden">
                             <div
@@ -186,15 +221,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                     scrollSnapType: 'y mandatory',
                                     perspective: '1000px'
                                 }}
-                                onScroll={() => handleScroll(dayRef, setSelectedDay, days, 'day')}
+                                onScroll={() => handleScroll(dayRef, setSelectedDay, currentDays, 'day')}
                             >
                                 <div className="py-20">
-                                    {days.map((day, index) => (
+                                    {currentDays.map((day, index) => (
                                         <div
                                             key={day}
-                                            className={`h-11 flex items-center justify-center text-[16px] font-medium transition-all duration-200 cursor-pointer ${
-                                                selectedDay === day ? 'text-[#3D9ED6] !text-[20px]' : 'text-[#adadad]'
-                                            }`}
+                                            className={`h-11 flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${selectedDay === day ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                                }`}
                                             style={{
                                                 scrollSnapAlign: 'center',
                                                 ...getItemStyle(index, selectedDay - 1, dayRef)
@@ -203,7 +237,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                 setSelectedDay(day);
                                                 if (dayRef.current) {
                                                     dayRef.current.scrollTo({
-                                                        top: index * 20,
+                                                        top: index * 44,
                                                         behavior: 'smooth'
                                                     });
                                                 }
@@ -231,9 +265,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                     {months.map((month, index) => (
                                         <div
                                             key={month}
-                                            className={`h-11 flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${
-                                                selectedMonth === index ? 'text-[#3D9ED6] !text-[20px]' : 'text-[#adadad]'
-                                            }`}
+                                            className={`h-11 flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${selectedMonth === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                                }`}
                                             style={{
                                                 scrollSnapAlign: 'center',
                                                 ...getItemStyle(index, selectedMonth, monthRef)
@@ -262,7 +295,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                 className="h-full overflow-y-auto scrollbar-hide"
                                 style={{
                                     scrollSnapType: 'y mandatory',
-                                    // perspective: '1000px'
+                                    perspective: '1000px'
                                 }}
                                 onScroll={() => handleScroll(yearRef, setSelectedYear, years, 'year')}
                             >
@@ -270,9 +303,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                     {years.map((year, index) => (
                                         <div
                                             key={year}
-                                            className={`h-11 flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${
-                                                selectedYear === year ? 'text-[#3D9ED6] !text-[20px]' : 'text-[#adadad]'
-                                            }`}
+                                            className={`h-11 flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${selectedYear === year ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                                }`}
                                             style={{
                                                 scrollSnapAlign: 'center',
                                                 ...getItemStyle(index, years.indexOf(selectedYear), yearRef)
@@ -294,6 +326,18 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                             </div>
                         </div>
                     </div>
+
+                    {/* Footer */}
+                    <div className={`${styles.datePicker} text-center pt-[46px] px-[24px] pb-[5px] border border-[#353535] rounded-[8px]`}>
+                        <div className="flex p-3">
+                            <button
+                                onClick={handleConfirm}
+                                className={`${styles['menu-item']} !max-w-[50px] m-auto text-[#3D9ED6] font-medium text-base cursor-pointer transition-colors`}
+                            >
+                                Готово
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -302,6 +346,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     -ms-overflow-style: none;
                     scrollbar-width: none;
                 }
+
                 .scrollbar-hide::-webkit-scrollbar {
                     display: none;
                 }
