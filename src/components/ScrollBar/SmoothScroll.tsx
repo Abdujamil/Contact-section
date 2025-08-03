@@ -1277,7 +1277,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     <div className="mb-6">
                         <h4 className="text-sm border-b font-bold mb-2 text-white-600">Dell Windows настройки</h4>
 
-                        <label className="block text-xs mb-1">MIN_DELTA: {dellSettings.MIN_DELTA}</label>
+                        <label className="block text-xs mb-1">Минимальный дельта-сдвиг: {dellSettings.MIN_DELTA}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
@@ -1294,7 +1294,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             >+</button>
                         </div>
 
-                        <label className="block text-xs mb-1">TOUCHPAD_SENSITIVITY: {dellSettings.TOUCHPAD_SENSITIVITY}</label>
+                        <label className="block text-xs mb-1">Чувствительность тачпада: {dellSettings.TOUCHPAD_SENSITIVITY}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
@@ -1311,7 +1311,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             >+</button>
                         </div>
 
-                        <label className="block text-xs mb-1">DEBOUNCE_TIME: {dellSettings.DEBOUNCE_TIME}ms</label>
+                        <label className="block text-xs mb-1">Время подавления дребезга: {dellSettings.DEBOUNCE_TIME}ms</label>
                         <div className="flex items-center gap-2 mb-4">
                             <button
                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
