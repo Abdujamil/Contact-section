@@ -1672,6 +1672,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     const scrollbarRef = useRef<HTMLDivElement>(null);
     const pathname = usePathname();
     const [showScrollbar, setShowScrollbar] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
     const [isTrackpad, setIsTrackpad] = useState(false);
     const [trackpadDebugInfo, setTrackpadDebugInfo] = useState<TrackpadDebugInfo>({
@@ -2085,379 +2086,403 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             {children}
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
+            {/* Кнопки управления */}
+            <div className="fixed top-[90%] right-4 z-[10000000000] flex gap-2">
+                {!isOpen ? (
+                    <button
+                        onClick={() => setIsOpen(true)}
+                        className="bg-blue-600 text-white px-2 py-1 rounded-lg text-sm cursor-pointer shadow hover:bg-blue-700 transition"
+                    >
+                        Open
+                    </button>
+                ) : (
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="bg-red-600 text-white px-2 py-1 rounded-lg text-sm cursor-pointer shadow hover:bg-red-700 transition"
+                    >
+                        Close
+                    </button>
+                )}
+            </div>
+
             {/* ===== ENHANCED SETTINGS PANEL ===== */}
-            <div
-                className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
-                <h3 className="text-lg font-semibold ">
-                    Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
-                </h3>
+            {isOpen && (
+                <div
+                    className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
+                    <h3 className="text-lg font-semibold ">
+                        Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
+                    </h3>
 
-                {/* ===== TRACKPAD DEBUG INFO ===== */}
-                <div className="mb-6 p-3  bg-gray-800 rounded-lg">
-                    <h4 className="text-sm font-bold mb-2 text-gray-800 ">Отладка трекпада</h4>
+                    {/* ===== TRACKPAD DEBUG INFO ===== */}
+                    <div className="mb-6 p-3  bg-gray-800 rounded-lg">
+                        <h4 className="text-sm font-bold mb-2 ">Отладка трекпада</h4>
 
-                    {/* OS Detection */}
-                    <div className="mb-2 p-2 bg-blue-900/20 rounded text-xs">
-                        <strong>ОС:</strong> {
-                        navigator.platform.toLowerCase().includes('win') || navigator.userAgent.toLowerCase().includes('windows') ? 'Windows' :
-                            navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? 'macOS' : 'Other'
-                    } | <strong>Платформа:</strong> {navigator.platform}
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div>deltaY: <span className="font-mono">{trackpadDebugInfo.deltaY.toFixed(1)}</span></div>
-                        <div>deltaX: <span className="font-mono">{trackpadDebugInfo.deltaX.toFixed(1)}</span></div>
-                        <div>deltaMode: <span className="font-mono">{trackpadDebugInfo.deltaMode}</span></div>
-                        <div>Частота: <span className="font-mono">{trackpadDebugInfo.frequency.toFixed(1)}Hz</span>
+                        {/* OS Detection */}
+                        <div className="mb-2 p-2 bg-blue-900/20 rounded text-xs">
+                            <strong>ОС:</strong> {
+                            navigator.platform.toLowerCase().includes('win') || navigator.userAgent.toLowerCase().includes('windows') ? 'Windows' :
+                                navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? 'macOS' : 'Other'
+                        } | <strong>Платформа:</strong> {navigator.platform}
                         </div>
-                        <div>Среднее Δ: <span className="font-mono">{trackpadDebugInfo.avgDelta.toFixed(1)}</span></div>
-                        <div>Вариация: <span className="font-mono">{trackpadDebugInfo.deltaVariance.toFixed(1)}</span>
-                        </div>
-                        <div>Событий: <span className="font-mono">{trackpadDebugInfo.eventCount}</span></div>
-                        <div>Мин/Макс: <span
-                            className="font-mono">{trackpadDebugInfo.minDelta.toFixed(1)}/{trackpadDebugInfo.maxDelta.toFixed(1)}</span>
-                        </div>
-                    </div>
 
-                    {/* Device Detection Logic */}
-                    <div className="mt-2 p-2 bg-yellow-900/20 rounded text-xs">
-                        <div className="flex justify-between">
-                            <span>Детекция:</span>
-                            <span className={`font-bold ${isTrackpad ? 'text-green-600' : 'text-blue-600'}`}>
+                        <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div>deltaY: <span className="font-mono">{trackpadDebugInfo.deltaY.toFixed(1)}</span></div>
+                            <div>deltaX: <span className="font-mono">{trackpadDebugInfo.deltaX.toFixed(1)}</span></div>
+                            <div>deltaMode: <span className="font-mono">{trackpadDebugInfo.deltaMode}</span></div>
+                            <div>Частота: <span className="font-mono">{trackpadDebugInfo.frequency.toFixed(1)}Hz</span>
+                            </div>
+                            <div>Среднее Δ: <span className="font-mono">{trackpadDebugInfo.avgDelta.toFixed(1)}</span>
+                            </div>
+                            <div>Вариация: <span
+                                className="font-mono">{trackpadDebugInfo.deltaVariance.toFixed(1)}</span>
+                            </div>
+                            <div>Событий: <span className="font-mono">{trackpadDebugInfo.eventCount}</span></div>
+                            <div>Мин/Макс: <span
+                                className="font-mono">{trackpadDebugInfo.minDelta.toFixed(1)}/{trackpadDebugInfo.maxDelta.toFixed(1)}</span>
+                            </div>
+                        </div>
+
+                        {/* Device Detection Logic */}
+                        <div className="mt-2 p-2 bg-yellow-900/20 rounded text-xs">
+                            <div className="flex justify-between">
+                                <span>Детекция:</span>
+                                <span className={`font-bold ${isTrackpad ? 'text-green-600' : 'text-blue-600'}`}>
                                 {isTrackpad ? 'Тачпад' : 'Мышь'}
                             </span>
-                        </div>
-                        {navigator.platform.toLowerCase().includes('win') && (
-                            <div className="text-xs text-gray-400 mt-1">
-                                Windows критерии: avgΔ{trackpadDebugInfo.avgDelta < 120 ? '<120✓' : '≥120✗'},
-                                var{trackpadDebugInfo.deltaVariance < 100 ? '<100✓' : '≥100✗'},
-                                freq{trackpadDebugInfo.frequency > 33 ? '>33Hz✓' : '≤33Hz✗'}
                             </div>
-                        )}
-                    </div>
-                </div>
-
-                {/* ===== DELAY SETTINGS ===== */}
-                <div className="mb-6">
-                    <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1">Управление
-                        задержками</h4>
-
-                    {Object.entries(delaySettings).map(([key, setting]) => {
-                        const labels = {
-                            detectionDelay: 'Детекция устройства',
-                            scrollAnimationDelay: 'Анимация скролла',
-                            routeChangeDelay: 'Смена маршрута',
-                            resizeDelay: 'Изменение размера'
-                        };
-
-                        return (
-                            <div key={key} className="mb-3 p-2 bg-gray-700 rounded">
-                                <div className="flex items-center justify-between mb-2">
-                                    <label className="text-xs font-medium">
-                                        {labels[key as keyof typeof labels]}
-                                    </label>
-                                    <label className="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            checked={setting.enabled}
-                                            onChange={(e) => updateDelaySetting(key as keyof DelaySettings, 'enabled', e.target.checked)}
-                                            className="mr-1"
-                                        />
-                                        <span className="text-xs">Включено</span>
-                                    </label>
+                            {navigator.platform.toLowerCase().includes('win') && (
+                                <div className="text-xs text-gray-400 mt-1">
+                                    Windows критерии: avgΔ{trackpadDebugInfo.avgDelta < 120 ? '<120✓' : '≥120✗'},
+                                    var{trackpadDebugInfo.deltaVariance < 100 ? '<100✓' : '≥100✗'},
+                                    freq{trackpadDebugInfo.frequency > 33 ? '>33Hz✓' : '≤33Hz✗'}
                                 </div>
+                            )}
+                        </div>
+                    </div>
 
-                                <div className="flex items-center gap-2">
-                                    <button
-                                        className="px-2 py-1 bg-gray-600 rounded text-xs"
-                                        disabled={!setting.enabled}
-                                        onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.max(0, setting.value - (key === 'scrollAnimationDelay' ? 1 : 10)))}
-                                    >
-                                        –
-                                    </button>
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        max={key === 'scrollAnimationDelay' ? '60' : '500'}
-                                        step={key === 'scrollAnimationDelay' ? '1' : '10'}
-                                        value={setting.value}
-                                        disabled={!setting.enabled}
-                                        onChange={(e) => updateDelaySetting(key as keyof DelaySettings, 'value', parseInt(e.target.value))}
-                                        className="flex-1"
-                                    />
-                                    <button
-                                        className="px-2 py-1  bg-gray-600 rounded text-xs"
-                                        disabled={!setting.enabled}
-                                        onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.min(key === 'scrollAnimationDelay' ? 60 : 500, setting.value + (key === 'scrollAnimationDelay' ? 1 : 10)))}
-                                    >
-                                        +
-                                    </button>
-                                    <span className="text-xs font-mono w-12 text-right">
+                    {/* ===== DELAY SETTINGS ===== */}
+                    <div className="mb-6">
+                        <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1">Управление
+                            задержками</h4>
+
+                        {Object.entries(delaySettings).map(([key, setting]) => {
+                            const labels = {
+                                detectionDelay: 'Детекция устройства',
+                                scrollAnimationDelay: 'Анимация скролла',
+                                routeChangeDelay: 'Смена маршрута',
+                                resizeDelay: 'Изменение размера'
+                            };
+
+                            return (
+                                <div key={key} className="mb-3 p-2 bg-gray-700 rounded">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <label className="text-xs font-medium">
+                                            {labels[key as keyof typeof labels]}
+                                        </label>
+                                        <label className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                checked={setting.enabled}
+                                                onChange={(e) => updateDelaySetting(key as keyof DelaySettings, 'enabled', e.target.checked)}
+                                                className="mr-1"
+                                            />
+                                            <span className="text-xs">Включено</span>
+                                        </label>
+                                    </div>
+
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            className="px-2 py-1 bg-gray-600 rounded text-xs"
+                                            disabled={!setting.enabled}
+                                            onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.max(0, setting.value - (key === 'scrollAnimationDelay' ? 1 : 10)))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="0"
+                                            max={key === 'scrollAnimationDelay' ? '60' : '500'}
+                                            step={key === 'scrollAnimationDelay' ? '1' : '10'}
+                                            value={setting.value}
+                                            disabled={!setting.enabled}
+                                            onChange={(e) => updateDelaySetting(key as keyof DelaySettings, 'value', parseInt(e.target.value))}
+                                            className="flex-1"
+                                        />
+                                        <button
+                                            className="px-2 py-1  bg-gray-600 rounded text-xs"
+                                            disabled={!setting.enabled}
+                                            onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.min(key === 'scrollAnimationDelay' ? 60 : 500, setting.value + (key === 'scrollAnimationDelay' ? 1 : 10)))}
+                                        >
+                                            +
+                                        </button>
+                                        <span className="text-xs font-mono w-12 text-right">
                                         {setting.value}{key === 'scrollAnimationDelay' ? 'f' : 'ms'}
                                     </span>
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
+
+                    {/* ===== MOUSE SETTINGS ===== */}
+                    <div className="mb-6">
+                        <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
+                            мышки</h4>
+
+                        <label className="block text-xs mb-1">Порог
+                            остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
+                        <div className="flex items-center gap-2 mb-2">
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        scrollStopThreshold: Math.max(0.01, mouseSettings.scrollStopThreshold - 0.01),
+                                    })
+                                }
+                            >
+                                –
+                            </button>
+                            <input
+                                type="range"
+                                min="0.01"
+                                max="5"
+                                step="0.01"
+                                value={mouseSettings.scrollStopThreshold}
+                                onChange={(e) =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        scrollStopThreshold: parseFloat(e.target.value),
+                                    })
+                                }
+                                className="w-full"
+                            />
+                            <button
+                                className="px-2 py-1 dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        scrollStopThreshold: Math.min(5, mouseSettings.scrollStopThreshold + 0.01),
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <label className="block text-xs mb-1">Фактор
+                            плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
+                        <div className="flex items-center gap-2 mb-2">
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        scrollEaseFactor: Math.max(0.01, mouseSettings.scrollEaseFactor - 0.01),
+                                    })
+                                }
+                            >
+                                –
+                            </button>
+                            <input
+                                type="range"
+                                min="0.01"
+                                max="1"
+                                step="0.01"
+                                value={mouseSettings.scrollEaseFactor}
+                                onChange={(e) =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        scrollEaseFactor: parseFloat(e.target.value),
+                                    })
+                                }
+                                className="w-full"
+                            />
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        scrollEaseFactor: Math.min(1, mouseSettings.scrollEaseFactor + 0.01),
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
+                        <div className="flex items-center gap-2 mb-6">
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        minScrollStep: Math.max(1, mouseSettings.minScrollStep - 1),
+                                    })
+                                }
+                            >
+                                –
+                            </button>
+                            <input
+                                type="range"
+                                min="1"
+                                max="200"
+                                step="1"
+                                value={mouseSettings.minScrollStep}
+                                onChange={(e) =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        minScrollStep: parseInt(e.target.value),
+                                    })
+                                }
+                                className="w-full"
+                            />
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setMouseSettings({
+                                        ...mouseSettings,
+                                        minScrollStep: Math.min(200, mouseSettings.minScrollStep + 1),
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* ===== TRACKPAD SETTINGS ===== */}
+                    <div>
+                        <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
+                            тачпада</h4>
+
+                        <label className="block text-xs mb-1">Порог
+                            остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
+                        <div className="flex items-center gap-2 mb-2">
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        scrollStopThreshold: Math.max(0.01, trackpadSettings.scrollStopThreshold - 0.01),
+                                    })
+                                }
+                            >
+                                –
+                            </button>
+                            <input
+                                type="range"
+                                min="0.01"
+                                max="5"
+                                step="0.01"
+                                value={trackpadSettings.scrollStopThreshold}
+                                onChange={(e) =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        scrollStopThreshold: parseFloat(e.target.value),
+                                    })
+                                }
+                                className="w-full"
+                            />
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        scrollStopThreshold: Math.min(5, trackpadSettings.scrollStopThreshold + 0.01),
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <label className="block text-xs mb-1">Фактор
+                            плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
+                        <div className="flex items-center gap-2 mb-2">
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        scrollEaseFactor: Math.max(0.01, trackpadSettings.scrollEaseFactor - 0.01),
+                                    })
+                                }
+                            >
+                                –
+                            </button>
+                            <input
+                                type="range"
+                                min="0.01"
+                                max="1"
+                                step="0.01"
+                                value={trackpadSettings.scrollEaseFactor}
+                                onChange={(e) =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        scrollEaseFactor: parseFloat(e.target.value),
+                                    })
+                                }
+                                className="w-full"
+                            />
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        scrollEaseFactor: Math.min(1, trackpadSettings.scrollEaseFactor + 0.01),
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        <label className="block text-xs mb-1">Минимальный
+                            шаг: {trackpadSettings.minScrollStep}px</label>
+                        <div className="flex items-center gap-2">
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        minScrollStep: Math.max(1, trackpadSettings.minScrollStep - 1),
+                                    })
+                                }
+                            >
+                                –
+                            </button>
+                            <input
+                                type="range"
+                                min="1"
+                                max="200"
+                                step="1"
+                                value={trackpadSettings.minScrollStep}
+                                onChange={(e) =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        minScrollStep: parseInt(e.target.value),
+                                    })
+                                }
+                                className="w-full"
+                            />
+                            <button
+                                className="px-2 py-1  dark:bg-[#333333] rounded"
+                                onClick={() =>
+                                    setTrackpadSettings({
+                                        ...trackpadSettings,
+                                        minScrollStep: Math.min(200, trackpadSettings.minScrollStep + 1),
+                                    })
+                                }
+                            >
+                                +
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
-
-                {/* ===== MOUSE SETTINGS ===== */}
-                <div className="mb-6">
-                    <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
-                        мышки</h4>
-
-                    <label className="block text-xs mb-1">Порог
-                        остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
-                    <div className="flex items-center gap-2 mb-2">
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    scrollStopThreshold: Math.max(0.01, mouseSettings.scrollStopThreshold - 0.01),
-                                })
-                            }
-                        >
-                            –
-                        </button>
-                        <input
-                            type="range"
-                            min="0.01"
-                            max="5"
-                            step="0.01"
-                            value={mouseSettings.scrollStopThreshold}
-                            onChange={(e) =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    scrollStopThreshold: parseFloat(e.target.value),
-                                })
-                            }
-                            className="w-full"
-                        />
-                        <button
-                            className="px-2 py-1 dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    scrollStopThreshold: Math.min(5, mouseSettings.scrollStopThreshold + 0.01),
-                                })
-                            }
-                        >
-                            +
-                        </button>
-                    </div>
-
-                    <label className="block text-xs mb-1">Фактор
-                        плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
-                    <div className="flex items-center gap-2 mb-2">
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    scrollEaseFactor: Math.max(0.01, mouseSettings.scrollEaseFactor - 0.01),
-                                })
-                            }
-                        >
-                            –
-                        </button>
-                        <input
-                            type="range"
-                            min="0.01"
-                            max="1"
-                            step="0.01"
-                            value={mouseSettings.scrollEaseFactor}
-                            onChange={(e) =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    scrollEaseFactor: parseFloat(e.target.value),
-                                })
-                            }
-                            className="w-full"
-                        />
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    scrollEaseFactor: Math.min(1, mouseSettings.scrollEaseFactor + 0.01),
-                                })
-                            }
-                        >
-                            +
-                        </button>
-                    </div>
-
-                    <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
-                    <div className="flex items-center gap-2 mb-6">
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    minScrollStep: Math.max(1, mouseSettings.minScrollStep - 1),
-                                })
-                            }
-                        >
-                            –
-                        </button>
-                        <input
-                            type="range"
-                            min="1"
-                            max="200"
-                            step="1"
-                            value={mouseSettings.minScrollStep}
-                            onChange={(e) =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    minScrollStep: parseInt(e.target.value),
-                                })
-                            }
-                            className="w-full"
-                        />
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setMouseSettings({
-                                    ...mouseSettings,
-                                    minScrollStep: Math.min(200, mouseSettings.minScrollStep + 1),
-                                })
-                            }
-                        >
-                            +
-                        </button>
-                    </div>
-                </div>
-
-                {/* ===== TRACKPAD SETTINGS ===== */}
-                <div>
-                    <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
-                        тачпада</h4>
-
-                    <label className="block text-xs mb-1">Порог
-                        остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
-                    <div className="flex items-center gap-2 mb-2">
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    scrollStopThreshold: Math.max(0.01, trackpadSettings.scrollStopThreshold - 0.01),
-                                })
-                            }
-                        >
-                            –
-                        </button>
-                        <input
-                            type="range"
-                            min="0.01"
-                            max="5"
-                            step="0.01"
-                            value={trackpadSettings.scrollStopThreshold}
-                            onChange={(e) =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    scrollStopThreshold: parseFloat(e.target.value),
-                                })
-                            }
-                            className="w-full"
-                        />
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    scrollStopThreshold: Math.min(5, trackpadSettings.scrollStopThreshold + 0.01),
-                                })
-                            }
-                        >
-                            +
-                        </button>
-                    </div>
-
-                    <label className="block text-xs mb-1">Фактор
-                        плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
-                    <div className="flex items-center gap-2 mb-2">
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    scrollEaseFactor: Math.max(0.01, trackpadSettings.scrollEaseFactor - 0.01),
-                                })
-                            }
-                        >
-                            –
-                        </button>
-                        <input
-                            type="range"
-                            min="0.01"
-                            max="1"
-                            step="0.01"
-                            value={trackpadSettings.scrollEaseFactor}
-                            onChange={(e) =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    scrollEaseFactor: parseFloat(e.target.value),
-                                })
-                            }
-                            className="w-full"
-                        />
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    scrollEaseFactor: Math.min(1, trackpadSettings.scrollEaseFactor + 0.01),
-                                })
-                            }
-                        >
-                            +
-                        </button>
-                    </div>
-
-                    <label className="block text-xs mb-1">Минимальный шаг: {trackpadSettings.minScrollStep}px</label>
-                    <div className="flex items-center gap-2">
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    minScrollStep: Math.max(1, trackpadSettings.minScrollStep - 1),
-                                })
-                            }
-                        >
-                            –
-                        </button>
-                        <input
-                            type="range"
-                            min="1"
-                            max="200"
-                            step="1"
-                            value={trackpadSettings.minScrollStep}
-                            onChange={(e) =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    minScrollStep: parseInt(e.target.value),
-                                })
-                            }
-                            className="w-full"
-                        />
-                        <button
-                            className="px-2 py-1  dark:bg-[#333333] rounded"
-                            onClick={() =>
-                                setTrackpadSettings({
-                                    ...trackpadSettings,
-                                    minScrollStep: Math.min(200, trackpadSettings.minScrollStep + 1),
-                                })
-                            }
-                        >
-                            +
-                        </button>
-                    </div>
-
-                </div>
-            </div>
+            )}
         </>
     );
 }

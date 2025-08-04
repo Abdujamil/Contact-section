@@ -97,7 +97,12 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     // Date picker handlers
     const handleDateSelect = (date: string) => {
         setSelectedDate(date);
+        setInternalValue(date); // Добавить эту строку
+        setValue(inputName, date); // Добавить эту строку
         setShowDatePicker(false);
+        if (onChange) {
+            onChange(date); // Добавить эту строку
+        }
     };
 
     const handleDatePickerClose = () => {

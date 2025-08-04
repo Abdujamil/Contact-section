@@ -21,7 +21,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     ];
 
     const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
+    const years = Array.from({ length: 120 }, (_, i) => currentYear - i);
 
     // Get days for specific month and year
     const getDaysInMonth = (month: number, year: number) => {
@@ -54,6 +54,53 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     // Get current days array based on selected month and year
     const currentDays = Array.from({ length: getDaysInMonth(selectedMonth, selectedYear) }, (_, i) => i + 1);
+
+    const [centerDayIndex, setCenterDayIndex] = useState(selectedDay - 1);
+    const [centerMonthIndex, setCenterMonthIndex] = useState(selectedMonth);
+    const [centerYearIndex, setCenterYearIndex] = useState(years.indexOf(selectedYear));
+
+    useEffect(() => {
+        const handleScrollCheck = () => {
+            if (dayRef.current) {
+                const index = getCenteredIndex(dayRef.current);
+                if (index !== -1) setCenterDayIndex(index);
+            }
+            if (monthRef.current) {
+                const index = getCenteredIndex(monthRef.current);
+                if (index !== -1) setCenterMonthIndex(index);
+            }
+            if (yearRef.current) {
+                const index = getCenteredIndex(yearRef.current);
+                if (index !== -1) setCenterYearIndex(index);
+            }
+
+            requestAnimationFrame(handleScrollCheck);
+        };
+
+        requestAnimationFrame(handleScrollCheck);
+    }, []);
+
+    const getCenteredIndex = (container: HTMLDivElement | null) => {
+        if (!container) return -1;
+
+        const containerRect = container.getBoundingClientRect();
+        const centerY = containerRect.top + containerRect.height / 2;
+
+        const items = Array.from(container.children[0].children) as HTMLDivElement[];
+
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            const itemRect = item.getBoundingClientRect();
+            const itemCenterY = itemRect.top + itemRect.height / 2;
+
+            // Допустимая погрешность ~4px
+            if (Math.abs(itemCenterY - centerY) < 6) {
+                return i;
+            }
+        }
+        return -1;
+    };
+
 
     const scrollToSelected = () => {
         const itemHeight = 28; // Consistent item height
@@ -168,7 +215,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         <div className="font-[Rubik] fixed inset-0 z-50 flex items-center justify-center backdrop-blur-[4px] bg-[#0000005e] bg-opacity-50">
             <div className="w-full max-w-[294px] rounded-lg shadow-2xl mx-4 overflow-hidden">
                 <div className="relative h-[253px] overflow-hidden">
-                    <div className={`${styles.datePicker} text-center pb-[50px] px-[1px] pt-[5px] border border-[#353535] rounded-[8px] mb-[35px]`}>
+                    <div className={`${styles.datePicker} text-center pb-[50px] px-[1px] pt-[5px] border border-[#353535] rounded-[8px] mb-[33px]`}>
                         {/* Header */}
                         <div className="flex items-center justify-end p-3">
                             <button
@@ -208,7 +255,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     <div className={`${styles.datePicker} max-h-[36px] absolute inset-x-0 top-[44%] transform -translate-y-1/2 h-11 border-l border-r border-[#353535] bg-[#3D9ED6] bg-opacity-5 backdrop-blur-[6px] scale-[.90] pointer-events-none`}>
                     </div>
 
-                    <div className="flex w-full h-full max-h-[160px] absolute top-[30px] z-[9]">
+                    <div className="flex w-full h-full max-h-[160px] absolute top-[31px] z-[9]">
                         {/* Day wheel */}
                         <div className="flex-1 relative overflow-hidden">
                             <div
@@ -220,11 +267,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                 }}
                                 onScroll={() => handleScroll(dayRef, setSelectedDay, currentDays, 'day')}
                             >
-                                <div className="py-20 flex flex-col gap-[8px]">
+                                <div className="py-20 flex flex-col gap-[10px]">
                                     {currentDays.map((day, index) => (
                                         <div
                                             key={day}
-                                            className={` flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${selectedDay === day ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                            className={`max-h-[20px] flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer
+                                             ${centerDayIndex === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
                                                 }`}
                                             style={{
                                                 scrollSnapAlign: 'center',
@@ -258,11 +306,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                 }}
                                 onScroll={() => handleScroll(monthRef, setSelectedMonth, months, 'month')}
                             >
-                                <div className="py-20 flex flex-col gap-[8px]">
+                                <div className="py-20 flex flex-col gap-[10px]">
                                     {months.map((month, index) => (
                                         <div
                                             key={month}
-                                            className={` flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${selectedMonth === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                            className={`max-h-[20px] flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer 
+                                            ${centerMonthIndex === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
                                                 }`}
                                             style={{
                                                 scrollSnapAlign: 'center',
@@ -296,11 +345,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                 }}
                                 onScroll={() => handleScroll(yearRef, setSelectedYear, years, 'year')}
                             >
-                                <div className="py-20 flex flex-col gap-[8px]">
+                                <div className="py-20 flex flex-col gap-[10px]">
                                     {years.map((year, index) => (
                                         <div
                                             key={year}
-                                            className={` flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer ${selectedYear === year ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                            className={`max-h-[20px] flex items-center justify-center text-lg font-medium transition-all duration-200 cursor-pointer 
+                                            ${centerYearIndex === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
                                                 }`}
                                             style={{
                                                 scrollSnapAlign: 'center',
