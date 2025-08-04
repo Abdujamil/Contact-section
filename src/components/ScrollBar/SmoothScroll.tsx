@@ -2245,7 +2245,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             </button>
                             <input
                                 type="range"
-                                min="0.01"
+                                min="0.001"
                                 max="5"
                                 step="0.01"
                                 value={mouseSettings.scrollStopThreshold}
@@ -2286,7 +2286,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             </button>
                             <input
                                 type="range"
-                                min="0.01"
+                                min="0"
                                 max="1"
                                 step="0.01"
                                 value={mouseSettings.scrollEaseFactor}
@@ -2373,7 +2373,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             </button>
                             <input
                                 type="range"
-                                min="0.01"
+                                min="0.001"
                                 max="5"
                                 step="0.01"
                                 value={trackpadSettings.scrollStopThreshold}
