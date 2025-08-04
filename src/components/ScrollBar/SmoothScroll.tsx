@@ -621,7 +621,7 @@
 //                         остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
 //                     <div className="flex items-center gap-2 mb-2">
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setMouseSettings({
 //                                     ...mouseSettings,
@@ -646,7 +646,7 @@
 //                             className="w-full"
 //                         />
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setMouseSettings({
 //                                     ...mouseSettings,
@@ -662,7 +662,7 @@
 //                         плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
 //                     <div className="flex items-center gap-2 mb-2">
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setMouseSettings({
 //                                     ...mouseSettings,
@@ -687,7 +687,7 @@
 //                             className="w-full"
 //                         />
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setMouseSettings({
 //                                     ...mouseSettings,
@@ -702,7 +702,7 @@
 //                     <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
 //                     <div className="flex items-center gap-2 mb-6">
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setMouseSettings({
 //                                     ...mouseSettings,
@@ -727,7 +727,7 @@
 //                             className="w-full"
 //                         />
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setMouseSettings({
 //                                     ...mouseSettings,
@@ -747,7 +747,7 @@
 //                         остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
 //                     <div className="flex items-center gap-2 mb-2">
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setTrackpadSettings({
 //                                     ...trackpadSettings,
@@ -772,7 +772,7 @@
 //                             className="w-full"
 //                         />
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setTrackpadSettings({
 //                                     ...trackpadSettings,
@@ -788,7 +788,7 @@
 //                         плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
 //                     <div className="flex items-center gap-2 mb-2">
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setTrackpadSettings({
 //                                     ...trackpadSettings,
@@ -813,7 +813,7 @@
 //                             className="w-full"
 //                         />
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setTrackpadSettings({
 //                                     ...trackpadSettings,
@@ -829,7 +829,7 @@
 //                         шаг: {trackpadSettings.minScrollStep}px</label>
 //                     <div className="flex items-center gap-2">
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setTrackpadSettings({
 //                                     ...trackpadSettings,
@@ -854,7 +854,7 @@
 //                             className="w-full"
 //                         />
 //                         <button
-//                             className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
 //                             onClick={() =>
 //                                 setTrackpadSettings({
 //                                     ...trackpadSettings,
@@ -872,7 +872,760 @@
 //     );
 // }
 
-// New
+// New with settings
+// 'use client';
+// import React, {useEffect, useRef, useState} from "react";
+// import {usePathname} from "next/navigation";
+//
+// interface SmoothScrollProps {
+//     children: React.ReactNode;
+// }
+//
+// interface TrackpadDebugInfo {
+//     deltaY: number;
+//     deltaX: number;
+//     deltaZ: number;
+//     deltaMode: number;
+//     avgDelta: number;
+//     maxDelta: number;
+//     minDelta: number;
+//     deltaVariance: number;
+//     eventCount: number;
+//     lastEventTime: number;
+//     frequency: number;
+// }
+//
+// interface DelaySettings {
+//     detectionDelay: {
+//         enabled: boolean;
+//         value: number;
+//     };
+//     scrollAnimationDelay: {
+//         enabled: boolean;
+//         value: number;
+//     };
+//     routeChangeDelay: {
+//         enabled: boolean;
+//         value: number;
+//     };
+//     resizeDelay: {
+//         enabled: boolean;
+//         value: number;
+//     };
+// }
+//
+// export default function SmoothScroll({children}: SmoothScrollProps) {
+//     const scrollbarRef = useRef<HTMLDivElement>(null);
+//     const pathname = usePathname();
+//     const [showScrollbar, setShowScrollbar] = useState(true);
+//
+//     const [isTrackpad, setIsTrackpad] = useState(false);
+//     const [trackpadDebugInfo, setTrackpadDebugInfo] = useState<TrackpadDebugInfo>({
+//         deltaY: 0,
+//         deltaX: 0,
+//         deltaZ: 0,
+//         deltaMode: 0,
+//         avgDelta: 0,
+//         maxDelta: 0,
+//         minDelta: 0,
+//         deltaVariance: 0,
+//         eventCount: 0,
+//         lastEventTime: 0,
+//         frequency: 0
+//     });
+//
+//     const [mouseSettings, setMouseSettings] = useState({
+//         scrollStopThreshold: 0.15,
+//         scrollEaseFactor: 0.50,
+//         minScrollStep: 1
+//     });
+//
+//     const [trackpadSettings, setTrackpadSettings] = useState({
+//         scrollStopThreshold: 0.01,
+//         scrollEaseFactor: 1.0,
+//         minScrollStep: 1
+//     });
+//
+//     const [delaySettings, setDelaySettings] = useState<DelaySettings>({
+//         detectionDelay: {
+//             enabled: true,
+//             value: 100
+//         },
+//         scrollAnimationDelay: {
+//             enabled: true,
+//             value: 16 // requestAnimationFrame delay
+//         },
+//         routeChangeDelay: {
+//             enabled: true,
+//             value: 50
+//         },
+//         resizeDelay: {
+//             enabled: true,
+//             value: 100
+//         }
+//     });
+//
+//     // Определение типа устройства ввода с улучшенной отладкой
+//     useEffect(() => {
+//         const wheelEvents: number[] = [];
+//         let detectionTimeout: NodeJS.Timeout;
+//         // let eventStartTime = Date.now();
+//
+//         const detectInputDevice = (e: WheelEvent) => {
+//             const currentTime = Date.now();
+//             const timeDiff = currentTime - trackpadDebugInfo.lastEventTime;
+//
+//             // Обновляем отладочную информацию
+//             setTrackpadDebugInfo(prev => {
+//                 const newEventCount = prev.eventCount + 1;
+//                 const frequency = timeDiff > 0 ? 1000 / timeDiff : 0;
+//
+//                 return {
+//                     ...prev,
+//                     deltaY: e.deltaY,
+//                     deltaX: e.deltaX,
+//                     deltaZ: e.deltaZ,
+//                     deltaMode: e.deltaMode,
+//                     eventCount: newEventCount,
+//                     lastEventTime: currentTime,
+//                     frequency: frequency
+//                 };
+//             });
+//
+//             // Сохраняем последние 5 значений deltaY
+//             wheelEvents.push(Math.abs(e.deltaY));
+//             if (wheelEvents.length > 5) {
+//                 wheelEvents.shift();
+//             }
+//
+//             // Очищаем предыдущий таймаут
+//             clearTimeout(detectionTimeout);
+//
+//             // Анализируем через настраиваемую задержку
+//             const delayValue = delaySettings.detectionDelay.enabled ?
+//                 delaySettings.detectionDelay.value : 0;
+//
+//             detectionTimeout = setTimeout(() => {
+//                 if (wheelEvents.length >= 3) {
+//                     const avgDelta = wheelEvents.reduce((a, b) => a + b, 0) / wheelEvents.length;
+//                     const maxDelta = Math.max(...wheelEvents);
+//                     const minDelta = Math.min(...wheelEvents);
+//                     const deltaVariance = maxDelta - minDelta;
+//
+//                     // Обновляем статистику
+//                     setTrackpadDebugInfo(prev => ({
+//                         ...prev,
+//                         avgDelta,
+//                         maxDelta,
+//                         minDelta,
+//                         deltaVariance
+//                     }));
+//
+//                     // Определяем устройство на основе нескольких факторов:
+//                     const isLikelyTrackpad =
+//                         // 1. Малые значения delta (обычно < 50 для тачпада)
+//                         avgDelta < 50 &&
+//                         // 2. Низкая вариативность (плавные движения)
+//                         deltaVariance < 30 &&
+//                         // 3. deltaMode === 0 (пиксели, а не строки/страницы)
+//                         e.deltaMode === 0;
+//
+//                     const isLikelyMouse =
+//                         // 1. Большие значения delta (обычно 100+ для колесика мыши)
+//                         avgDelta > 80 ||
+//                         // 2. Высокая вариативность или фиксированные значения
+//                         deltaVariance > 50 ||
+//                         // 3. deltaMode !== 0 (строки или страницы)
+//                         e.deltaMode !== 0;
+//
+//                     if (isLikelyTrackpad) {
+//                         setIsTrackpad(true);
+//                     } else if (isLikelyMouse) {
+//                         setIsTrackpad(false);
+//                     }
+//                     // Если не уверены, оставляем текущее состояние
+//                 }
+//             }, delayValue);
+//         };
+//
+//         // Дополнительная проверка по User Agent для MacOS
+//         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0 ||
+//             navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
+//
+//         // На Mac по умолчанию предполагаем тачпад
+//         if (isMac) {
+//             setIsTrackpad(true);
+//         }
+//
+//         window.addEventListener('wheel', detectInputDevice, {passive: true});
+//
+//         return () => {
+//             window.removeEventListener('wheel', detectInputDevice);
+//             clearTimeout(detectionTimeout);
+//         };
+//     }, [delaySettings.detectionDelay]);
+//
+//     // ===== HIDE SCROLLBAR ON ROUTES =====
+//     useEffect(() => {
+//         const hideScrollPaths = [
+//             '/contacts/connection',
+//             '/pricing',
+//             '/auth/login',
+//             '/auth/register',
+//             '/auth/forgot-password'
+//         ];
+//
+//         const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
+//
+//         document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
+//         setShowScrollbar(!shouldHideScrollbar);
+//
+//         const routeDelay = delaySettings.routeChangeDelay.enabled ?
+//             delaySettings.routeChangeDelay.value : 0;
+//
+//         const timeout1 = setTimeout(() => window.dispatchEvent(new Event('scroll')), routeDelay);
+//         const timeout2 = setTimeout(() => window.dispatchEvent(new Event('scroll')), routeDelay * 6);
+//
+//         return () => {
+//             clearTimeout(timeout1);
+//             clearTimeout(timeout2);
+//             document.body.style.overflow = '';
+//         };
+//     }, [pathname, delaySettings.routeChangeDelay]);
+//
+//     const getScrollOffset = React.useCallback(() => {
+//         if (pathname.includes('/policy') || pathname.includes('/organizations')) return -130;
+//         if (pathname.includes('/blog')) return -188;
+//         if (pathname.includes('/editors')) return 90;
+//         return 120;
+//     }, [pathname]);
+//
+//     useEffect(() => {
+//         if (!scrollbarRef.current) return;
+//
+//         let currentScroll = window.scrollY;
+//         let targetScroll = currentScroll;
+//         let isScrolling = false;
+//
+//         const initScroll = () => {
+//             currentScroll = window.scrollY;
+//             targetScroll = currentScroll;
+//         };
+//
+//         const handleWheel = (e: WheelEvent) => {
+//             if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+//
+//             e.preventDefault();
+//
+//             // ВАЖНО: Используем настройки в зависимости от типа устройства
+//             const settings = isTrackpad ? trackpadSettings : mouseSettings;
+//
+//             const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), settings.minScrollStep);
+//             targetScroll += scrollStep;
+//
+//             const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//             targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+//
+//             if (!isScrolling) {
+//                 isScrolling = true;
+//                 const animate = () => {
+//                     const diff = targetScroll - currentScroll;
+//                     if (Math.abs(diff) < settings.scrollStopThreshold) {
+//                         currentScroll = targetScroll;
+//                         window.scrollTo(0, currentScroll);
+//                         isScrolling = false;
+//                         return;
+//                     }
+//                     currentScroll += diff * settings.scrollEaseFactor;
+//                     window.scrollTo(0, currentScroll);
+//
+//                     if (delaySettings.scrollAnimationDelay.enabled) {
+//                         setTimeout(() => requestAnimationFrame(animate), delaySettings.scrollAnimationDelay.value);
+//                     } else {
+//                         requestAnimationFrame(animate);
+//                     }
+//                 };
+//
+//                 if (delaySettings.scrollAnimationDelay.enabled) {
+//                     setTimeout(() => requestAnimationFrame(animate), delaySettings.scrollAnimationDelay.value);
+//                 } else {
+//                     requestAnimationFrame(animate);
+//                 }
+//             }
+//         };
+//
+//         const handleScroll = () => {
+//             if (!isScrolling) {
+//                 currentScroll = window.scrollY;
+//                 targetScroll = currentScroll;
+//             }
+//         };
+//
+//         const handleAnchorClick = (e: MouseEvent) => {
+//             const target = e.target as HTMLElement;
+//             if (target.tagName === "A") {
+//                 const anchor = target.getAttribute("href");
+//                 if (anchor?.startsWith("#")) {
+//                     const el = document.querySelector(anchor);
+//                     if (el) {
+//                         e.preventDefault();
+//                         const offset = getScrollOffset();
+//                         const elTop = (el as HTMLElement).offsetTop - offset;
+//                         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+//                         targetScroll = Math.max(0, Math.min(elTop, maxScroll));
+//
+//                         // Используем настройки для анимации к якорю
+//                         const settings = isTrackpad ? trackpadSettings : mouseSettings;
+//
+//                         if (!isScrolling) {
+//                             isScrolling = true;
+//                             const animate = () => {
+//                                 const diff = targetScroll - currentScroll;
+//                                 if (Math.abs(diff) < settings.scrollStopThreshold) {
+//                                     currentScroll = targetScroll;
+//                                     window.scrollTo(0, currentScroll);
+//                                     isScrolling = false;
+//                                     return;
+//                                 }
+//                                 currentScroll += diff * settings.scrollEaseFactor;
+//                                 window.scrollTo(0, currentScroll);
+//
+//                                 if (delaySettings.scrollAnimationDelay.enabled) {
+//                                     setTimeout(() => requestAnimationFrame(animate), delaySettings.scrollAnimationDelay.value);
+//                                 } else {
+//                                     requestAnimationFrame(animate);
+//                                 }
+//                             };
+//
+//                             if (delaySettings.scrollAnimationDelay.enabled) {
+//                                 setTimeout(() => requestAnimationFrame(animate), delaySettings.scrollAnimationDelay.value);
+//                             } else {
+//                                 requestAnimationFrame(animate);
+//                             }
+//                         }
+//                     }
+//                 }
+//             }
+//         };
+//
+//         const scrollHandler = () => {
+//             handleScroll();
+//             if (delaySettings.scrollAnimationDelay.enabled) {
+//                 setTimeout(() => requestAnimationFrame(updateScrollbar), delaySettings.scrollAnimationDelay.value);
+//             } else {
+//                 requestAnimationFrame(updateScrollbar);
+//             }
+//         };
+//
+//         const updateScrollbar = () => {
+//             const scrollTop = window.scrollY;
+//             const scrollHeight = document.documentElement.scrollHeight;
+//             const clientHeight = window.innerHeight;
+//             const maxScroll = scrollHeight - clientHeight;
+//
+//             const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
+//             const maxTop = clientHeight - scrollbarHeight - 8;
+//             const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
+//
+//             if (scrollbarRef.current) {
+//                 scrollbarRef.current.style.setProperty('--scrollY', `${topPercent}px`);
+//                 scrollbarRef.current.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
+//             }
+//         };
+//
+//         const handleResize = () => {
+//             const resizeDelay = delaySettings.resizeDelay.enabled ?
+//                 delaySettings.resizeDelay.value : 0;
+//
+//             if (resizeDelay > 0) {
+//                 setTimeout(updateScrollbar, resizeDelay);
+//             } else {
+//                 updateScrollbar();
+//             }
+//         };
+//
+//         initScroll();
+//         updateScrollbar();
+//
+//         window.addEventListener('wheel', handleWheel, {passive: false});
+//         window.addEventListener('scroll', scrollHandler, {passive: true});
+//         document.addEventListener('click', handleAnchorClick);
+//         window.addEventListener('resize', handleResize);
+//
+//         return () => {
+//             window.removeEventListener('wheel', handleWheel);
+//             window.removeEventListener('scroll', scrollHandler);
+//             document.removeEventListener('click', handleAnchorClick);
+//             window.removeEventListener('resize', handleResize);
+//         };
+//     }, [isTrackpad, trackpadSettings, mouseSettings, pathname, getScrollOffset, delaySettings]);
+//
+//     useEffect(() => {
+//         window.scrollTo(0, 0);
+//         document.documentElement.scrollTop = 0;
+//         document.body.scrollTop = 0;
+//
+//         const routeDelay = delaySettings.routeChangeDelay.enabled ?
+//             delaySettings.routeChangeDelay.value : 0;
+//
+//         setTimeout(() => {
+//             window.dispatchEvent(new Event('scroll'));
+//         }, routeDelay);
+//     }, [pathname, delaySettings.routeChangeDelay]);
+//
+//     const updateDelaySetting = (key: keyof DelaySettings, property: 'enabled' | 'value', value: boolean | number) => {
+//         setDelaySettings(prev => ({
+//             ...prev,
+//             [key]: {
+//                 ...prev[key],
+//                 [property]: value
+//             }
+//         }));
+//     };
+//
+//     return (
+//         <>
+//             {children}
+//             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
+//
+//             {/* ===== ENHANCED SETTINGS PANEL ===== */}
+//             <div className=" fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
+//                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+//                     Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
+//                 </h3>
+//
+//                 {/* ===== TRACKPAD DEBUG INFO ===== */}
+//                 <div className="mb-6 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
+//                     <h4 className="text-sm font-bold mb-2 text-gray-800 dark:text-gray-200">Отладка трекпада</h4>
+//                     <div className="grid grid-cols-2 gap-2 text-xs">
+//                         <div>deltaY: <span className="font-mono">{trackpadDebugInfo.deltaY.toFixed(1)}</span></div>
+//                         <div>deltaX: <span className="font-mono">{trackpadDebugInfo.deltaX.toFixed(1)}</span></div>
+//                         <div>deltaMode: <span className="font-mono">{trackpadDebugInfo.deltaMode}</span></div>
+//                         <div>Частота: <span className="font-mono">{trackpadDebugInfo.frequency.toFixed(1)}Hz</span></div>
+//                         <div>Среднее Δ: <span className="font-mono">{trackpadDebugInfo.avgDelta.toFixed(1)}</span></div>
+//                         <div>Вариация: <span className="font-mono">{trackpadDebugInfo.deltaVariance.toFixed(1)}</span></div>
+//                         <div>Событий: <span className="font-mono">{trackpadDebugInfo.eventCount}</span></div>
+//                         <div>Мин/Макс: <span className="font-mono">{trackpadDebugInfo.minDelta.toFixed(1)}/{trackpadDebugInfo.maxDelta.toFixed(1)}</span></div>
+//                     </div>
+//                 </div>
+//
+//                 {/* ===== DELAY SETTINGS ===== */}
+//                 <div className="mb-6">
+//                     <h4 className="text-sm font-bold mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">Управление задержками</h4>
+//
+//                     {Object.entries(delaySettings).map(([key, setting]) => {
+//                         const labels = {
+//                             detectionDelay: 'Детекция устройства',
+//                             scrollAnimationDelay: 'Анимация скролла',
+//                             routeChangeDelay: 'Смена маршрута',
+//                             resizeDelay: 'Изменение размера'
+//                         };
+//
+//                         return (
+//                             <div key={key} className="mb-3 p-2 bg-gray-50 dark:bg-gray-700 rounded">
+//                                 <div className="flex items-center justify-between mb-2">
+//                                     <label className="text-xs font-medium">
+//                                         {labels[key as keyof typeof labels]}
+//                                     </label>
+//                                     <label className="flex items-center">
+//                                         <input
+//                                             type="checkbox"
+//                                             checked={setting.enabled}
+//                                             onChange={(e) => updateDelaySetting(key as keyof DelaySettings, 'enabled', e.target.checked)}
+//                                             className="mr-1"
+//                                         />
+//                                         <span className="text-xs">Включено</span>
+//                                     </label>
+//                                 </div>
+//
+//                                 <div className="flex items-center gap-2">
+//                                     <button
+//                                         className="px-2 py-1  bg-gray-600 rounded text-xs"
+//                                         disabled={!setting.enabled}
+//                                         onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.max(0, setting.value - (key === 'scrollAnimationDelay' ? 1 : 10)))}
+//                                     >
+//                                         –
+//                                     </button>
+//                                     <input
+//                                         type="range"
+//                                         min="0"
+//                                         max={key === 'scrollAnimationDelay' ? '60' : '500'}
+//                                         step={key === 'scrollAnimationDelay' ? '1' : '10'}
+//                                         value={setting.value}
+//                                         disabled={!setting.enabled}
+//                                         onChange={(e) => updateDelaySetting(key as keyof DelaySettings, 'value', parseInt(e.target.value))}
+//                                         className="flex-1"
+//                                     />
+//                                     <button
+//                                         className="px-2 py-1  bg-gray-600 rounded text-xs"
+//                                         disabled={!setting.enabled}
+//                                         onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.min(key === 'scrollAnimationDelay' ? 60 : 500, setting.value + (key === 'scrollAnimationDelay' ? 1 : 10)))}
+//                                     >
+//                                         +
+//                                     </button>
+//                                     <span className="text-xs font-mono w-12 text-right">
+//                                         {setting.value}{key === 'scrollAnimationDelay' ? 'f' : 'ms'}
+//                                     </span>
+//                                 </div>
+//                             </div>
+//                         );
+//                     })}
+//                 </div>
+//
+//                 {/* ===== MOUSE SETTINGS ===== */}
+//                 <div className="mb-6">
+//                     <h4 className="text-sm border-b font-bold mb-2 text-gray-600 dark:text-gray-300">Настройки для мышки</h4>
+//
+//                     <label className="block text-xs mb-1">Порог остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
+//                     <div className="flex items-center gap-2 mb-2">
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     scrollStopThreshold: Math.max(0.01, mouseSettings.scrollStopThreshold - 0.01),
+//                                 })
+//                             }
+//                         >
+//                             –
+//                         </button>
+//                         <input
+//                             type="range"
+//                             min="0.01"
+//                             max="5"
+//                             step="0.01"
+//                             value={mouseSettings.scrollStopThreshold}
+//                             onChange={(e) =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     scrollStopThreshold: parseFloat(e.target.value),
+//                                 })
+//                             }
+//                             className="w-full"
+//                         />
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     scrollStopThreshold: Math.min(5, mouseSettings.scrollStopThreshold + 0.01),
+//                                 })
+//                             }
+//                         >
+//                             +
+//                         </button>
+//                     </div>
+//
+//                     <label className="block text-xs mb-1">Фактор плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
+//                     <div className="flex items-center gap-2 mb-2">
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     scrollEaseFactor: Math.max(0.01, mouseSettings.scrollEaseFactor - 0.01),
+//                                 })
+//                             }
+//                         >
+//                             –
+//                         </button>
+//                         <input
+//                             type="range"
+//                             min="0.01"
+//                             max="1"
+//                             step="0.01"
+//                             value={mouseSettings.scrollEaseFactor}
+//                             onChange={(e) =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     scrollEaseFactor: parseFloat(e.target.value),
+//                                 })
+//                             }
+//                             className="w-full"
+//                         />
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     scrollEaseFactor: Math.min(1, mouseSettings.scrollEaseFactor + 0.01),
+//                                 })
+//                             }
+//                         >
+//                             +
+//                         </button>
+//                     </div>
+//
+//                     <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
+//                     <div className="flex items-center gap-2 mb-6">
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     minScrollStep: Math.max(1, mouseSettings.minScrollStep - 1),
+//                                 })
+//                             }
+//                         >
+//                             –
+//                         </button>
+//                         <input
+//                             type="range"
+//                             min="1"
+//                             max="200"
+//                             step="1"
+//                             value={mouseSettings.minScrollStep}
+//                             onChange={(e) =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     minScrollStep: parseInt(e.target.value),
+//                                 })
+//                             }
+//                             className="w-full"
+//                         />
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setMouseSettings({
+//                                     ...mouseSettings,
+//                                     minScrollStep: Math.min(200, mouseSettings.minScrollStep + 1),
+//                                 })
+//                             }
+//                         >
+//                             +
+//                         </button>
+//                     </div>
+//                 </div>
+//
+//                 {/* ===== TRACKPAD SETTINGS ===== */}
+//                 <div>
+//                     <h4 className="text-sm border-b font-bold mb-2 text-gray-600 dark:text-gray-300">Настройки для тачпада</h4>
+//
+//                     <label className="block text-xs mb-1">Порог остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
+//                     <div className="flex items-center gap-2 mb-2">
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     scrollStopThreshold: Math.max(0.01, trackpadSettings.scrollStopThreshold - 0.01),
+//                                 })
+//                             }
+//                         >
+//                             –
+//                         </button>
+//                         <input
+//                             type="range"
+//                             min="0.01"
+//                             max="5"
+//                             step="0.01"
+//                             value={trackpadSettings.scrollStopThreshold}
+//                             onChange={(e) =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     scrollStopThreshold: parseFloat(e.target.value),
+//                                 })
+//                             }
+//                             className="w-full"
+//                         />
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     scrollStopThreshold: Math.min(5, trackpadSettings.scrollStopThreshold + 0.01),
+//                                 })
+//                             }
+//                         >
+//                             +
+//                         </button>
+//                     </div>
+//
+//                     <label className="block text-xs mb-1">Фактор плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
+//                     <div className="flex items-center gap-2 mb-2">
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     scrollEaseFactor: Math.max(0.01, trackpadSettings.scrollEaseFactor - 0.01),
+//                                 })
+//                             }
+//                         >
+//                             –
+//                         </button>
+//                         <input
+//                             type="range"
+//                             min="0.01"
+//                             max="1"
+//                             step="0.01"
+//                             value={trackpadSettings.scrollEaseFactor}
+//                             onChange={(e) =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     scrollEaseFactor: parseFloat(e.target.value),
+//                                 })
+//                             }
+//                             className="w-full"
+//                         />
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     scrollEaseFactor: Math.min(1, trackpadSettings.scrollEaseFactor + 0.01),
+//                                 })
+//                             }
+//                         >
+//                             +
+//                         </button>
+//                     </div>
+//
+//                     <label className="block text-xs mb-1">Минимальный шаг: {trackpadSettings.minScrollStep}px</label>
+//                     <div className="flex items-center gap-2">
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     minScrollStep: Math.max(1, trackpadSettings.minScrollStep - 1),
+//                                 })
+//                             }
+//                         >
+//                             –
+//                         </button>
+//                         <input
+//                             type="range"
+//                             min="1"
+//                             max="200"
+//                             step="1"
+//                             value={trackpadSettings.minScrollStep}
+//                             onChange={(e) =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     minScrollStep: parseInt(e.target.value),
+//                                 })
+//                             }
+//                             className="w-full"
+//                         />
+//                         <button
+//                             className="px-2 py-1  dark:bg-[#333333] rounded"
+//                             onClick={() =>
+//                                 setTrackpadSettings({
+//                                     ...trackpadSettings,
+//                                     minScrollStep: Math.min(200, trackpadSettings.minScrollStep + 1),
+//                                 })
+//                             }
+//                         >
+//                             +
+//                         </button>
+//                     </div>
+//
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
 
 'use client';
 import React, {useEffect, useRef, useState} from "react";
@@ -936,41 +1689,41 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     });
 
     const [mouseSettings, setMouseSettings] = useState({
-        scrollStopThreshold: 0.15,
-        scrollEaseFactor: 0.50,
+        scrollStopThreshold: 0.10,
+        scrollEaseFactor: 0.40,
         minScrollStep: 1
     });
 
     const [trackpadSettings, setTrackpadSettings] = useState({
-        scrollStopThreshold: 0.01,
-        scrollEaseFactor: 1.0,
+        scrollStopThreshold: 0.10,
+        scrollEaseFactor: 0.40,
         minScrollStep: 1
     });
 
     const [delaySettings, setDelaySettings] = useState<DelaySettings>({
         detectionDelay: {
             enabled: true,
-            value: 100
+            value: 40
         },
         scrollAnimationDelay: {
             enabled: true,
-            value: 16 // requestAnimationFrame delay
+            value: 1 // requestAnimationFrame delay
         },
         routeChangeDelay: {
             enabled: true,
-            value: 50
+            value: 40
         },
         resizeDelay: {
             enabled: true,
-            value: 100
+            value: 40
         }
     });
 
-    // Определение типа устройства ввода с улучшенной отладкой
+    // Определение типа устройства ввода с улучшенной отладкой (поддержка Windows)
     useEffect(() => {
         const wheelEvents: number[] = [];
+        const wheelTimestamps: number[] = [];
         let detectionTimeout: NodeJS.Timeout;
-        // let eventStartTime = Date.now();
 
         const detectInputDevice = (e: WheelEvent) => {
             const currentTime = Date.now();
@@ -993,10 +1746,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 };
             });
 
-            // Сохраняем последние 5 значений deltaY
+            // Сохраняем последние 10 значений deltaY и временные метки
             wheelEvents.push(Math.abs(e.deltaY));
-            if (wheelEvents.length > 5) {
+            wheelTimestamps.push(currentTime);
+            if (wheelEvents.length > 10) {
                 wheelEvents.shift();
+                wheelTimestamps.shift();
             }
 
             // Очищаем предыдущий таймаут
@@ -1007,11 +1762,19 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 delaySettings.detectionDelay.value : 0;
 
             detectionTimeout = setTimeout(() => {
-                if (wheelEvents.length >= 3) {
+                if (wheelEvents.length >= 5) {
                     const avgDelta = wheelEvents.reduce((a, b) => a + b, 0) / wheelEvents.length;
                     const maxDelta = Math.max(...wheelEvents);
                     const minDelta = Math.min(...wheelEvents);
                     const deltaVariance = maxDelta - minDelta;
+
+                    // Анализ временных интервалов между событиями
+                    const intervals = [];
+                    for (let i = 1; i < wheelTimestamps.length; i++) {
+                        intervals.push(wheelTimestamps[i] - wheelTimestamps[i - 1]);
+                    }
+                    const avgInterval = intervals.length > 0 ?
+                        intervals.reduce((a, b) => a + b, 0) / intervals.length : 0;
 
                     // Обновляем статистику
                     setTrackpadDebugInfo(prev => ({
@@ -1022,22 +1785,51 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         deltaVariance
                     }));
 
-                    // Определяем устройство на основе нескольких факторов:
-                    const isLikelyTrackpad =
-                        // 1. Малые значения delta (обычно < 50 для тачпада)
-                        avgDelta < 50 &&
-                        // 2. Низкая вариативность (плавные движения)
-                        deltaVariance < 30 &&
-                        // 3. deltaMode === 0 (пиксели, а не строки/страницы)
-                        e.deltaMode === 0;
+                    // Определение операционной системы
+                    const isWindows = navigator.platform.toLowerCase().includes('win') ||
+                        navigator.userAgent.toLowerCase().includes('windows');
+                    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0 ||
+                        navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
 
-                    const isLikelyMouse =
-                        // 1. Большие значения delta (обычно 100+ для колесика мыши)
-                        avgDelta > 80 ||
-                        // 2. Высокая вариативность или фиксированные значения
-                        deltaVariance > 50 ||
-                        // 3. deltaMode !== 0 (строки или страницы)
-                        e.deltaMode !== 0;
+                    // Улучшенная логика определения устройства для разных ОС
+                    let isLikelyTrackpad = false;
+                    let isLikelyMouse = false;
+
+                    if (isMac) {
+                        // На macOS: более строгие критерии
+                        isLikelyTrackpad =
+                            avgDelta < 50 &&
+                            deltaVariance < 30 &&
+                            e.deltaMode === 0 &&
+                            avgInterval < 50; // Высокая частота событий для тачпада
+
+                        isLikelyMouse =
+                            avgDelta > 80 ||
+                            deltaVariance > 50 ||
+                            e.deltaMode !== 0 ||
+                            avgInterval > 100; // Низкая частота для мыши
+                    } else if (isWindows) {
+                        // На Windows: адаптированные критерии
+                        isLikelyTrackpad =
+                            (avgDelta < 120 && deltaVariance < 100 && avgInterval < 30) || // Precision touchpad
+                            (avgDelta < 30 && e.deltaMode === 0); // Smooth scrolling
+
+                        isLikelyMouse =
+                            (avgDelta >= 120 && (deltaVariance > 100 || avgInterval > 50)) || // Traditional wheel
+                            (e.deltaMode === 1) || // Line mode (обычно мышь)
+                            (avgDelta === 120 && deltaVariance === 0); // Фиксированные значения колесика
+                    } else {
+                        // Для других ОС: универсальные критерии
+                        isLikelyTrackpad =
+                            avgDelta < 80 &&
+                            deltaVariance < 60 &&
+                            e.deltaMode === 0;
+
+                        isLikelyMouse =
+                            avgDelta > 100 ||
+                            deltaVariance > 80 ||
+                            e.deltaMode !== 0;
+                    }
 
                     if (isLikelyTrackpad) {
                         setIsTrackpad(true);
@@ -1049,13 +1841,17 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }, delayValue);
         };
 
-        // Дополнительная проверка по User Agent для MacOS
+        // Установка начального состояния в зависимости от ОС
+        const isWindows = navigator.platform.toLowerCase().includes('win') ||
+            navigator.userAgent.toLowerCase().includes('windows');
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0 ||
             navigator.userAgent.toUpperCase().indexOf('MAC') >= 0;
 
-        // На Mac по умолчанию предполагаем тачпад
+        // Начальные предположения по ОС
         if (isMac) {
-            setIsTrackpad(true);
+            setIsTrackpad(true); // На Mac чаще тачпад
+        } else if (isWindows) {
+            setIsTrackpad(false); // На Windows чаще мышь
         }
 
         window.addEventListener('wheel', detectInputDevice, {passive: true});
@@ -1290,29 +2086,61 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             {showScrollbar && <div ref={scrollbarRef} className="scrollbar md:block hidden"></div>}
 
             {/* ===== ENHANCED SETTINGS PANEL ===== */}
-            <div className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+            <div
+                className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
+                <h3 className="text-lg font-semibold ">
                     Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
                 </h3>
 
                 {/* ===== TRACKPAD DEBUG INFO ===== */}
-                <div className="mb-6 p-3 bg-gray-100 dark:bg-gray-800 rounded-lg">
-                    <h4 className="text-sm font-bold mb-2 text-gray-800 dark:text-gray-200">Отладка трекпада</h4>
+                <div className="mb-6 p-3  bg-gray-800 rounded-lg">
+                    <h4 className="text-sm font-bold mb-2 text-gray-800 ">Отладка трекпада</h4>
+
+                    {/* OS Detection */}
+                    <div className="mb-2 p-2 bg-blue-900/20 rounded text-xs">
+                        <strong>ОС:</strong> {
+                        navigator.platform.toLowerCase().includes('win') || navigator.userAgent.toLowerCase().includes('windows') ? 'Windows' :
+                            navigator.platform.toUpperCase().indexOf('MAC') >= 0 ? 'macOS' : 'Other'
+                    } | <strong>Платформа:</strong> {navigator.platform}
+                    </div>
+
                     <div className="grid grid-cols-2 gap-2 text-xs">
                         <div>deltaY: <span className="font-mono">{trackpadDebugInfo.deltaY.toFixed(1)}</span></div>
                         <div>deltaX: <span className="font-mono">{trackpadDebugInfo.deltaX.toFixed(1)}</span></div>
                         <div>deltaMode: <span className="font-mono">{trackpadDebugInfo.deltaMode}</span></div>
-                        <div>Частота: <span className="font-mono">{trackpadDebugInfo.frequency.toFixed(1)}Hz</span></div>
+                        <div>Частота: <span className="font-mono">{trackpadDebugInfo.frequency.toFixed(1)}Hz</span>
+                        </div>
                         <div>Среднее Δ: <span className="font-mono">{trackpadDebugInfo.avgDelta.toFixed(1)}</span></div>
-                        <div>Вариация: <span className="font-mono">{trackpadDebugInfo.deltaVariance.toFixed(1)}</span></div>
+                        <div>Вариация: <span className="font-mono">{trackpadDebugInfo.deltaVariance.toFixed(1)}</span>
+                        </div>
                         <div>Событий: <span className="font-mono">{trackpadDebugInfo.eventCount}</span></div>
-                        <div>Мин/Макс: <span className="font-mono">{trackpadDebugInfo.minDelta.toFixed(1)}/{trackpadDebugInfo.maxDelta.toFixed(1)}</span></div>
+                        <div>Мин/Макс: <span
+                            className="font-mono">{trackpadDebugInfo.minDelta.toFixed(1)}/{trackpadDebugInfo.maxDelta.toFixed(1)}</span>
+                        </div>
+                    </div>
+
+                    {/* Device Detection Logic */}
+                    <div className="mt-2 p-2 bg-yellow-900/20 rounded text-xs">
+                        <div className="flex justify-between">
+                            <span>Детекция:</span>
+                            <span className={`font-bold ${isTrackpad ? 'text-green-600' : 'text-blue-600'}`}>
+                                {isTrackpad ? 'Тачпад' : 'Мышь'}
+                            </span>
+                        </div>
+                        {navigator.platform.toLowerCase().includes('win') && (
+                            <div className="text-xs text-gray-400 mt-1">
+                                Windows критерии: avgΔ{trackpadDebugInfo.avgDelta < 120 ? '<120✓' : '≥120✗'},
+                                var{trackpadDebugInfo.deltaVariance < 100 ? '<100✓' : '≥100✗'},
+                                freq{trackpadDebugInfo.frequency > 33 ? '>33Hz✓' : '≤33Hz✗'}
+                            </div>
+                        )}
                     </div>
                 </div>
 
                 {/* ===== DELAY SETTINGS ===== */}
                 <div className="mb-6">
-                    <h4 className="text-sm font-bold mb-3 border-b border-gray-300 dark:border-gray-600 pb-1">Управление задержками</h4>
+                    <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1">Управление
+                        задержками</h4>
 
                     {Object.entries(delaySettings).map(([key, setting]) => {
                         const labels = {
@@ -1323,7 +2151,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         };
 
                         return (
-                            <div key={key} className="mb-3 p-2 bg-gray-50 dark:bg-gray-700 rounded">
+                            <div key={key} className="mb-3 p-2 bg-gray-700 rounded">
                                 <div className="flex items-center justify-between mb-2">
                                     <label className="text-xs font-medium">
                                         {labels[key as keyof typeof labels]}
@@ -1341,7 +2169,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                                 <div className="flex items-center gap-2">
                                     <button
-                                        className="px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded text-xs"
+                                        className="px-2 py-1 bg-gray-600 rounded text-xs"
                                         disabled={!setting.enabled}
                                         onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.max(0, setting.value - (key === 'scrollAnimationDelay' ? 1 : 10)))}
                                     >
@@ -1358,7 +2186,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                                         className="flex-1"
                                     />
                                     <button
-                                        className="px-2 py-1 bg-gray-200 dark:bg-gray-600 rounded text-xs"
+                                        className="px-2 py-1  bg-gray-600 rounded text-xs"
                                         disabled={!setting.enabled}
                                         onClick={() => updateDelaySetting(key as keyof DelaySettings, 'value', Math.min(key === 'scrollAnimationDelay' ? 60 : 500, setting.value + (key === 'scrollAnimationDelay' ? 1 : 10)))}
                                     >
@@ -1375,12 +2203,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                 {/* ===== MOUSE SETTINGS ===== */}
                 <div className="mb-6">
-                    <h4 className="text-sm border-b font-bold mb-2 text-gray-600 dark:text-gray-300">Настройки для мышки</h4>
+                    <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
+                        мышки</h4>
 
-                    <label className="block text-xs mb-1">Порог остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
+                    <label className="block text-xs mb-1">Порог
+                        остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
                     <div className="flex items-center gap-2 mb-2">
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setMouseSettings({
                                     ...mouseSettings,
@@ -1405,7 +2235,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full"
                         />
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1 dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setMouseSettings({
                                     ...mouseSettings,
@@ -1417,10 +2247,11 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         </button>
                     </div>
 
-                    <label className="block text-xs mb-1">Фактор плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
+                    <label className="block text-xs mb-1">Фактор
+                        плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
                     <div className="flex items-center gap-2 mb-2">
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setMouseSettings({
                                     ...mouseSettings,
@@ -1445,7 +2276,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full"
                         />
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setMouseSettings({
                                     ...mouseSettings,
@@ -1460,7 +2291,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
                     <div className="flex items-center gap-2 mb-6">
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setMouseSettings({
                                     ...mouseSettings,
@@ -1485,7 +2316,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full"
                         />
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setMouseSettings({
                                     ...mouseSettings,
@@ -1500,12 +2331,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                 {/* ===== TRACKPAD SETTINGS ===== */}
                 <div>
-                    <h4 className="text-sm border-b font-bold mb-2 text-gray-600 dark:text-gray-300">Настройки для тачпада</h4>
+                    <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
+                        тачпада</h4>
 
-                    <label className="block text-xs mb-1">Порог остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
+                    <label className="block text-xs mb-1">Порог
+                        остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
                     <div className="flex items-center gap-2 mb-2">
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setTrackpadSettings({
                                     ...trackpadSettings,
@@ -1530,7 +2363,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full"
                         />
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setTrackpadSettings({
                                     ...trackpadSettings,
@@ -1542,10 +2375,11 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         </button>
                     </div>
 
-                    <label className="block text-xs mb-1">Фактор плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
+                    <label className="block text-xs mb-1">Фактор
+                        плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
                     <div className="flex items-center gap-2 mb-2">
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setTrackpadSettings({
                                     ...trackpadSettings,
@@ -1570,7 +2404,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full"
                         />
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setTrackpadSettings({
                                     ...trackpadSettings,
@@ -1585,7 +2419,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     <label className="block text-xs mb-1">Минимальный шаг: {trackpadSettings.minScrollStep}px</label>
                     <div className="flex items-center gap-2">
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setTrackpadSettings({
                                     ...trackpadSettings,
@@ -1610,7 +2444,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             className="w-full"
                         />
                         <button
-                            className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+                            className="px-2 py-1  dark:bg-[#333333] rounded"
                             onClick={() =>
                                 setTrackpadSettings({
                                     ...trackpadSettings,
@@ -2067,7 +2901,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             {/* ===== LIVE SETTINGS PANEL ===== */}
 //             {process.env.NODE_ENV === 'production' && (
 //                 <div className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
-//                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+//                     <h3 className="text-lg font-semibold text-gray-900 ">
 //                         Настройки прокрутки ({isTrackpad ? 'Тачпад' : 'Мышка'})
 //                     </h3>
 //
@@ -2091,7 +2925,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Минимальный дельта-сдвиг: {dellSettings.MIN_DELTA}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setDellSettings({...dellSettings, MIN_DELTA: Math.max(1, dellSettings.MIN_DELTA - 1)})}
 //                             >–</button>
 //                             <input
@@ -2100,7 +2934,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setDellSettings({...dellSettings, MIN_DELTA: Math.min(20, dellSettings.MIN_DELTA + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2108,7 +2942,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Чувствительность тачпада: {dellSettings.TOUCHPAD_SENSITIVITY}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setDellSettings({...dellSettings, TOUCHPAD_SENSITIVITY: Math.max(1, dellSettings.TOUCHPAD_SENSITIVITY - 1)})}
 //                             >–</button>
 //                             <input
@@ -2117,7 +2951,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setDellSettings({...dellSettings, TOUCHPAD_SENSITIVITY: Math.min(20, dellSettings.TOUCHPAD_SENSITIVITY + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2125,7 +2959,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Время подавления дребезга: {dellSettings.DEBOUNCE_TIME}ms</label>
 //                         <div className="flex items-center gap-2 mb-4">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setDellSettings({...dellSettings, DEBOUNCE_TIME: Math.max(10, dellSettings.DEBOUNCE_TIME - 10)})}
 //                             >–</button>
 //                             <input
@@ -2134,7 +2968,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setDellSettings({...dellSettings, DEBOUNCE_TIME: Math.min(500, dellSettings.DEBOUNCE_TIME + 10)})}
 //                             >+</button>
 //                         </div>
@@ -2146,7 +2980,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Порог остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollStopThreshold: Math.max(0.01, mouseSettings.scrollStopThreshold - 0.01)})}
 //                             >–</button>
 //                             <input
@@ -2155,7 +2989,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollStopThreshold: Math.min(5, mouseSettings.scrollStopThreshold + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2163,7 +2997,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Фактор плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollEaseFactor: Math.max(0.01, mouseSettings.scrollEaseFactor - 0.01)})}
 //                             >–</button>
 //                             <input
@@ -2172,7 +3006,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollEaseFactor: Math.min(1, mouseSettings.scrollEaseFactor + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2180,7 +3014,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
 //                         <div className="flex items-center gap-2 mb-6">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setMouseSettings({...mouseSettings, minScrollStep: Math.max(1, mouseSettings.minScrollStep - 1)})}
 //                             >–</button>
 //                             <input
@@ -2189,7 +3023,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setMouseSettings({...mouseSettings, minScrollStep: Math.min(200, mouseSettings.minScrollStep + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2201,7 +3035,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Порог остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollStopThreshold: Math.max(0.01, trackpadSettings.scrollStopThreshold - 0.01)})}
 //                             >–</button>
 //                             <input
@@ -2210,7 +3044,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollStopThreshold: Math.min(5, trackpadSettings.scrollStopThreshold + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2218,7 +3052,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Фактор плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollEaseFactor: Math.max(0.01, trackpadSettings.scrollEaseFactor - 0.01)})}
 //                             >–</button>
 //                             <input
@@ -2227,7 +3061,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollEaseFactor: Math.min(1, trackpadSettings.scrollEaseFactor + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2235,7 +3069,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Минимальный шаг: {trackpadSettings.minScrollStep}px</label>
 //                         <div className="flex items-center gap-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, minScrollStep: Math.max(1, trackpadSettings.minScrollStep - 1)})}
 //                             >–</button>
 //                             <input
@@ -2244,7 +3078,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, minScrollStep: Math.min(200, trackpadSettings.minScrollStep + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2539,7 +3373,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //             {/* ===== LIVE SETTINGS PANEL ===== */}
 //             {process.env.NODE_ENV === 'development' && (
 //                 <div className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-80 max-h-[80vh] overflow-y-auto allow-native-scroll">
-//                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+//                     <h3 className="text-lg font-semibold text-gray-900 ">
 //                         Настройки прокрутки
 //                     </h3>
 //
@@ -2562,7 +3396,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">MIN_DELTA: {settings.MIN_DELTA}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, MIN_DELTA: Math.max(1, settings.MIN_DELTA - 1)})}
 //                             >–</button>
 //                             <input
@@ -2571,7 +3405,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full h-1"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, MIN_DELTA: Math.min(20, settings.MIN_DELTA + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2579,7 +3413,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">TOUCHPAD_SENSITIVITY: {settings.TOUCHPAD_SENSITIVITY}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, TOUCHPAD_SENSITIVITY: Math.max(1, settings.TOUCHPAD_SENSITIVITY - 1)})}
 //                             >–</button>
 //                             <input
@@ -2588,7 +3422,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full h-1"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, TOUCHPAD_SENSITIVITY: Math.min(20, settings.TOUCHPAD_SENSITIVITY + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2596,7 +3430,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">MAX_VELOCITY: {settings.MAX_VELOCITY}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, MAX_VELOCITY: Math.max(1, settings.MAX_VELOCITY - 1)})}
 //                             >–</button>
 //                             <input
@@ -2605,7 +3439,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full h-1"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, MAX_VELOCITY: Math.min(50, settings.MAX_VELOCITY + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2613,7 +3447,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">DEBOUNCE_TIME: {settings.DEBOUNCE_TIME}ms</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, DEBOUNCE_TIME: Math.max(10, settings.DEBOUNCE_TIME - 10)})}
 //                             >–</button>
 //                             <input
@@ -2622,7 +3456,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full h-1"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, DEBOUNCE_TIME: Math.min(1000, settings.DEBOUNCE_TIME + 10)})}
 //                             >+</button>
 //                         </div>
@@ -2630,7 +3464,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">MACBOOK_DEBOUNCE_TIME: {settings.MACBOOK_DEBOUNCE_TIME}ms</label>
 //                         <div className="flex items-center gap-2 mb-4">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, MACBOOK_DEBOUNCE_TIME: Math.max(10, settings.MACBOOK_DEBOUNCE_TIME - 10)})}
 //                             >–</button>
 //                             <input
@@ -2639,7 +3473,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                                 className="w-full h-1"
 //                             />
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setSettings({...settings, MACBOOK_DEBOUNCE_TIME: Math.min(1000, settings.MACBOOK_DEBOUNCE_TIME + 10)})}
 //                             >+</button>
 //                         </div>
@@ -2652,14 +3486,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Порог остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollStopThreshold: Math.max(0.01, mouseSettings.scrollStopThreshold - 0.01)})}
 //                             >–</button>
 //                             <input type="range" min="0.01" max="5" step="0.01" value={mouseSettings.scrollStopThreshold}
 //                                    onChange={(e) => setMouseSettings({...mouseSettings, scrollStopThreshold: parseFloat(e.target.value)})}
 //                                    className="w-full h-1"/>
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollStopThreshold: Math.min(5, mouseSettings.scrollStopThreshold + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2667,14 +3501,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Фактор плавности: {mouseSettings.scrollEaseFactor.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollEaseFactor: Math.max(0.01, mouseSettings.scrollEaseFactor - 0.01)})}
 //                             >–</button>
 //                             <input type="range" min="0.01" max="1" step="0.01" value={mouseSettings.scrollEaseFactor}
 //                                    onChange={(e) => setMouseSettings({...mouseSettings, scrollEaseFactor: parseFloat(e.target.value)})}
 //                                    className="w-full h-1"/>
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setMouseSettings({...mouseSettings, scrollEaseFactor: Math.min(1, mouseSettings.scrollEaseFactor + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2682,14 +3516,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Минимальный шаг: {mouseSettings.minScrollStep}px</label>
 //                         <div className="flex items-center gap-2 mb-4">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setMouseSettings({...mouseSettings, minScrollStep: Math.max(1, mouseSettings.minScrollStep - 1)})}
 //                             >–</button>
 //                             <input type="range" min="1" max="200" step="1" value={mouseSettings.minScrollStep}
 //                                    onChange={(e) => setMouseSettings({...mouseSettings, minScrollStep: parseInt(e.target.value)})}
 //                                    className="w-full h-1"/>
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setMouseSettings({...mouseSettings, minScrollStep: Math.min(200, mouseSettings.minScrollStep + 1)})}
 //                             >+</button>
 //                         </div>
@@ -2702,14 +3536,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Порог остановки: {trackpadSettings.scrollStopThreshold.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollStopThreshold: Math.max(0.01, trackpadSettings.scrollStopThreshold - 0.01)})}
 //                             >–</button>
 //                             <input type="range" min="0.01" max="5" step="0.01" value={trackpadSettings.scrollStopThreshold}
 //                                    onChange={(e) => setTrackpadSettings({...trackpadSettings, scrollStopThreshold: parseFloat(e.target.value)})}
 //                                    className="w-full h-1"/>
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollStopThreshold: Math.min(5, trackpadSettings.scrollStopThreshold + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2717,14 +3551,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Фактор плавности: {trackpadSettings.scrollEaseFactor.toFixed(2)}</label>
 //                         <div className="flex items-center gap-2 mb-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollEaseFactor: Math.max(0.01, trackpadSettings.scrollEaseFactor - 0.01)})}
 //                             >–</button>
 //                             <input type="range" min="0.01" max="1" step="0.01" value={trackpadSettings.scrollEaseFactor}
 //                                    onChange={(e) => setTrackpadSettings({...trackpadSettings, scrollEaseFactor: parseFloat(e.target.value)})}
 //                                    className="w-full h-1"/>
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, scrollEaseFactor: Math.min(1, trackpadSettings.scrollEaseFactor + 0.01)})}
 //                             >+</button>
 //                         </div>
@@ -2732,14 +3566,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 //                         <label className="block text-xs mb-1">Минимальный шаг: {trackpadSettings.minScrollStep}px</label>
 //                         <div className="flex items-center gap-2">
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, minScrollStep: Math.max(1, trackpadSettings.minScrollStep - 1)})}
 //                             >–</button>
 //                             <input type="range" min="1" max="200" step="1" value={trackpadSettings.minScrollStep}
 //                                    onChange={(e) => setTrackpadSettings({...trackpadSettings, minScrollStep: parseInt(e.target.value)})}
 //                                    className="w-full h-1"/>
 //                             <button
-//                                 className="px-2 py-1 bg-gray-200 dark:bg-[#333333] rounded text-xs"
+//                                 className="px-2 py-1  dark:bg-[#333333] rounded text-xs"
 //                                 onClick={() => setTrackpadSettings({...trackpadSettings, minScrollStep: Math.min(200, trackpadSettings.minScrollStep + 1)})}
 //                             >+</button>
 //                         </div>
