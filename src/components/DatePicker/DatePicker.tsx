@@ -137,10 +137,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const getItemStyle = (index: number, selectedIndex: number, containerRef: React.RefObject<HTMLDivElement | null>) => {
         if (!containerRef.current) return {};
 
-        const itemHeight = 28; // Consistent item height
+        // const itemHeight = 28; // Consistent item height
         // const containerHeight = containerRef.current.clientHeight;
         // const scrollTop = containerRef.current.scrollTop;
-        const itemTop = index * itemHeight;
+        // const itemTop = index * itemHeight;
         // const itemCenter = itemTop + itemHeight / 2;
         // const containerCenter = scrollTop + containerHeight / 2;
 
