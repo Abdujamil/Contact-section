@@ -30,9 +30,7 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <AuthProvider>
-            <SmoothScroll
-                // showSettingsPanel={true}
-            >
+            <SmoothScroll>
                 <Header/>
                 <main className="flex-grow">
                     {children}

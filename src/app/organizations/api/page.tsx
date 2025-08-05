@@ -170,13 +170,13 @@ export default function page() {
                                 {apiCards.map((card, index) => (
                                     <div
                                         key={index}
-                                        className={`${styles.apiCard} p-[20px] w-full md:max-w-[388px] rounded-[6px] border border-[#353535]`}
+                                        className={`${styles.apiCard} p-[20px] w-full md:max-w-[388px] h-[290px] rounded-[6px] border border-[#353535]`}
                                     >
                                         <h4 className="text-[#adadad] text-[24px] leading-[120%] mb-[15px]">{card.title}</h4>
 
                                         <ul className="text-[16px] space-y-[5px] list-disc pl-[20px] text-[#ccc] mb-[15px]">
                                             {card.items.map((item, idx) => (
-                                                <li key={idx}>{item}</li>
+                                                <li className={``} key={idx}>{item}</li>
                                             ))}
                                         </ul>
 
