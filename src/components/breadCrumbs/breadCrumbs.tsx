@@ -161,7 +161,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            Что такое Api
+                            Подключить Api
                         </li>
                     </>
                 )}
@@ -173,7 +173,7 @@ export default function Breadcrumbs({
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                            Подключить API
+                            Что такое Api
                         </li>
                     </>
                 )}

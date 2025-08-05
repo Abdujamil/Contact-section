@@ -1696,8 +1696,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     });
 
     const [trackpadSettings, setTrackpadSettings] = useState({
-        scrollStopThreshold: 0.10,
-        scrollEaseFactor: 0.40,
+        scrollStopThreshold: 0.00,
+        scrollEaseFactor: 0.20,
         minScrollStep: 1
     });
 
@@ -2245,7 +2245,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             </button>
                             <input
                                 type="range"
-                                min="0.001"
+                                // min="0.001"
                                 max="5"
                                 step="0.01"
                                 value={mouseSettings.scrollStopThreshold}
@@ -2373,7 +2373,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             </button>
                             <input
                                 type="range"
-                                min="0.001"
+                                // min="0.001"
                                 max="5"
                                 step="0.01"
                                 value={trackpadSettings.scrollStopThreshold}
