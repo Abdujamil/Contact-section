@@ -212,7 +212,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     if (!isVisible) return null;
 
     return (
-        <div className="font-[Rubik] fixed inset-0 z-50 flex items-center justify-center backdrop-blur-[4px] bg-[#0000005e] bg-opacity-50">
+        <div className="font-[Rubik] fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
             <div className="w-full max-w-[294px] rounded-lg shadow-2xl mx-4 overflow-hidden">
                 <div className="relative h-[253px] overflow-hidden">
                     <div className={`${styles.datePicker} text-center pb-[50px] px-[1px] pt-[5px] border border-[#353535] rounded-[8px] mb-[33px]`}>
