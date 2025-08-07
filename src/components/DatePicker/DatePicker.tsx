@@ -676,10 +676,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     if (!isVisible) return null;
 
     return (
-        <div className="font-sans fixed inset-0 z-50 flex top-auto bottom-[130px] left-[33px]">
-            <div className="w-full max-w-[294px] rounded-lg shadow-2xl mx-4 overflow-hidden">
-                <div className="relative h-[253px] overflow-hidden">
-                    <div className="text-center pb-[50px] px-[1px] h-[108px] pt-[5px] border-2 border-[#353535] rounded-[8px] mb-[33px] bg-black/0 backdrop-blur-sm">
+        <div className=" w-full !font-[Rubik] absolute z-[9] flex top-auto bottom-[30.5%] left-[30%]">
+            <div className="w-full max-w-[294px] mx-4">
+                <div className="relative h-[253px]">
+                    <div className={`${styles.datePicker} text-center pb-[50px] px-[1px] h-[108px] pt-[5px] border-1 border-[#353535] rounded-[8px] mb-[33px]`}>
                         {/* Header */}
                         <div className="flex items-center justify-end p-[11px]">
                             <button
@@ -716,10 +716,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     </div>
 
                     {/* Selection indicator - more visible borders */}
-                    <div className="max-h-[36px] absolute inset-x-0 top-[49.2%] transform -translate-y-1/2 h-11 border-l-2 border-r-2 border-[#353535] bg-[#3d9ed607] bg-opacity-10 backdrop-blur-[6px] scale-[.90] pointer-events-none">
+                    <div className={`w-full max-h-[36px] absolute top-[42.2%] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612] backdrop-blur-[15px]  scale-[.90] pointer-events-none`}>
                     </div>
 
-                    <div className="flex w-full h-full max-h-[160px] absolute top-[45px] z-[9]">
+                    <div className="flex w-full h-full max-h-[160px] absolute top-[45px] z-1">
                         {/* Day wheel */}
                         <div className="flex-1 relative overflow-hidden">
                             <div
@@ -855,12 +855,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     </div>
 
                     {/* Footer */}
-                    <div className="flex flex-col items-center justify-end h-[108px] text-center pt-[50px] px-[24px] pb-[5px] border-2 border-[#353535] rounded-[8px] bg-black/10 backdrop-blur-sm">
-
+                    <div className={`${styles.datePicker} flex flex-col items-center justify-end h-[108px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[8px] `}>
                         <div className={`w-full flex flex-col items-end justify-end`}>
                             <button
                                 onClick={handleConfirm}
-                                className={`${styles['menu-item']} max-w-[54px] m-auto mb-[2px] text-[#3D9ED6] text-base cursor-pointer transition-colors hover:text-[#5BADDB] bg-transparent border-0`}
+                                className={`${styles['menu-item']} max-w-[54px] m-auto mb-[2px] text-[#3D9ED6] text-base cursor-pointer transition-colors`}
                             >
                                 Готово
                             </button>

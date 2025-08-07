@@ -780,7 +780,13 @@
   background: rgba(53, 53, 53, 0.1);
   box-shadow: inset 0px 0px 6px rgba(255, 255, 255, 0.1);
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.6));
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(15px);
+
+
+  //box-shadow: inset 0px 0px 6px rgba(255, 255, 255, 0.1);
+  //filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.6));
+  //backdrop-filter: blur(15px);
+  ///* Note: backdrop-filter has minimal browser support */
 
   //border: 1px solid #353535;
   //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
@@ -803,20 +809,6 @@
   }
 
   .footerTop {
-
-    &::before {
-      background-image: url('/noise1.png');
-      content: "";
-      // filter: brightness(.6) contrast(1) saturate(2);
-      left: 0;
-      position: absolute;
-      bottom: auto;
-      top: 0;
-      right: 0;
-      z-index: -1;
-      height: 265px;
-    }
-
 
     .form {
 
@@ -937,5 +929,27 @@
       transform: translateX(0);
     }
   }
+
+  .footer {
+    &::before {
+      border-radius: 4px;
+    }
+
+    .footerTop {
+      &::before {
+        background-image: url('/noise1.png');
+        content: "";
+        // filter: brightness(.6) contrast(1) saturate(2);
+        left: 0;
+        position: absolute;
+        bottom: auto;
+        top: 0;
+        right: 0;
+        z-index: -1;
+        height: 337px;
+      }
+    }
+  }
 }
+
 

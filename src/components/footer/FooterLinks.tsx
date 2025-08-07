@@ -157,9 +157,9 @@ const FooterLinks: React.FC = () => {
                             onMouseLeave={handleMouseLeave}
                             className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
                         >
-              <span className="font-normal text-[18px] leading-[75%]">
-                Контакты
-              </span>
+                      <span className="font-normal text-[18px] leading-[75%]">
+                        Контакты
+                      </span>
                         </Link>
                         <div className={styles.highlight}/>
                     </div>

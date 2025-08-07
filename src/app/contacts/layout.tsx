@@ -76,7 +76,7 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                     Контакты
                                 </h2>
                                 <aside
-                                    className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
+                                    className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start md:mt-25 mb-5">
                                     <div
                                         className={`${styles.btns} flex flex-col items-start justify-start w-full md:max-w-[260px] max-w-full  p-[19px] gap-[10px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
                                     >

@@ -532,9 +532,9 @@ input[type='email']::placeholder {
     body {
         overflow-x: auto !important;
     }
-    ::-webkit-scrollbar {
-        display: block !important;
-    }
+    /*::-webkit-scrollbar {*/
+    /*    display: block !important;*/
+    /*}*/
 
     /*.scrollbar{*/
     /*    display: none;*/
