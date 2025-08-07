@@ -140,7 +140,7 @@ export default function RegisterPage() {
                 id="auth-register"
                 initial={{y: 20, opacity: 1}}
                 animate={controls}
-                className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+                className={`${styles.registerContent} ${styles.BlogPageContent} relative !backdrop-blur-0 w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
 
                 {!submitted ? (
@@ -286,8 +286,6 @@ export default function RegisterPage() {
                         subText="Чтобы полноценно работать в личном кабинете, необходимо активировать ваш аккаунт."
                     />
                 )}
-            </motion.div>
-
             {/* DataPicker */}
             <DatePicker
                 isVisible={showDatePicker}
@@ -295,6 +293,8 @@ export default function RegisterPage() {
                 onClose={handleDatePickerClose}
                 initialDate={selectedDate}
             />
+            </motion.div>
+
         </>
     );
 }

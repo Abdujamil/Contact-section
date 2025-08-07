@@ -1172,9 +1172,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     };
 
     if (!isVisible) return null;
-
+//bottom-[32.1%] left-[30.3%
     return (
-        <div className=" w-full !font-[Rubik] absolute z-[9] flex top-auto bottom-[32.1%] left-[30.3%]">
+        <div className=" w-full !font-[Rubik] absolute z-[9] flex top-auto bottom-[25.1%] left-[4.05%]">
             <div className="w-full max-w-[294px] mx-4">
                 <div className="relative h-[253px]">
                     <div className={`${styles.datePicker} text-center pb-[50px] px-[1px] h-[108px] pt-[5px] border-1 border-[#353535] rounded-[8px] mb-[33px]`}>
