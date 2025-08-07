@@ -2768,8 +2768,11 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
         const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
 
-        document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
-        setShowScrollbar(!shouldHideScrollbar);
+        if(window.screen.width > 768) {
+            document.body.style.overflow = shouldHideScrollbar ? 'hidden' : '';
+            setShowScrollbar(!shouldHideScrollbar);
+        }
+
 
         const routeDelay = delaySettings.routeChangeDelay.enabled ?
             delaySettings.routeChangeDelay.value : 0;
@@ -2785,7 +2788,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, [pathname, delaySettings.routeChangeDelay]);
 
     const getScrollOffset = React.useCallback(() => {
-        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -130;
+        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
         if (pathname.includes('/blog')) return -188;
         if (pathname.includes('/editors')) return 90;
         return 120;

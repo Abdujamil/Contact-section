@@ -529,6 +529,9 @@ input[type='email']::placeholder {
 
 
 @media (max-width: 576px) {
+    body {
+        overflow-x: auto !important;
+    }
     ::-webkit-scrollbar {
         display: block !important;
     }

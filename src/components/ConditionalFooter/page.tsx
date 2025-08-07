@@ -15,7 +15,7 @@ export default function ConditionalFooter() {
             <div className="hidden md:block">
                 <Footer/>
             </div>
-            <div className="md:hidden">
+            <div className="md:hidden px-[6px] pb-[6px]">
                 <FooterMob/>
             </div>
         </>

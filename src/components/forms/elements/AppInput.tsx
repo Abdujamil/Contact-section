@@ -93,15 +93,17 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     //     return true;
     // };
     const [showDatePicker, setShowDatePicker] = useState(false);
-    const [selectedDate, setSelectedDate] = useState("");
+    // const [selectedDate, setSelectedDate] = useState("");
+
     // Date picker handlers
     const handleDateSelect = (date: string) => {
-        setSelectedDate(date);
-        setInternalValue(date); // Добавить эту строку
-        setValue(inputName, date); // Добавить эту строку
+        // setSelectedDate(date);
+        setInternalValue(date);
+        setValue(inputName, date);
         setShowDatePicker(false);
+
         if (onChange) {
-            onChange(date); // Добавить эту строку
+            onChange(date);
         }
     };
 
@@ -191,6 +193,9 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         if (onFocus) {
             onFocus();
         }
+        if (inputName === 'date') {
+            setShowDatePicker(true);
+        }
     };
 
     const getAutocompleteName = (name: string): string => {
@@ -242,6 +247,19 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     useEffect(() => {
         setValue(inputName, defaultValue || '')
     }, [title])
+
+    useEffect(() => {
+        if (showDatePicker && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [showDatePicker]);
+
+    useEffect(() => {
+        if (propValue !== undefined) {
+            setInternalValue(propValue);
+        }
+    }, [propValue]);
+
 
     return (
         <div
@@ -319,7 +337,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     <button
                         type="button"
                         onClick={() => setShowDatePicker(true)}
-                        // className="z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] transition-colors duration-200"
+
                         className="absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-[56px] max-h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] transition-colors duration-200"
 
                     >
@@ -338,7 +356,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 isVisible={showDatePicker}
                 onDateSelect={handleDateSelect}
                 onClose={handleDatePickerClose}
-                initialDate={selectedDate}
+                initialDate={defaultValue}
             />
         </div>
     );

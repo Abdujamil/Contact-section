@@ -316,6 +316,7 @@
   .sendIconLeft2 {
     transform: translateX(58px) translateY(42px);
   }
+
   &:hover {
     .sendIconLeft2 {
       transform: translateX(58px) translateY(0) !important;
@@ -323,7 +324,6 @@
     }
   }
 }
-
 
 
 .linear {
@@ -799,10 +799,25 @@
     bottom: 0;
     right: 0;
     z-index: -1;
-    height: 127px;
+    height: 143px;
   }
-  
+
   .footerTop {
+
+    &::before {
+      background-image: url('/noise1.png');
+      content: "";
+      // filter: brightness(.6) contrast(1) saturate(2);
+      left: 0;
+      position: absolute;
+      bottom: auto;
+      top: 0;
+      right: 0;
+      z-index: -1;
+      height: 265px;
+    }
+
+
     .form {
 
       form:has(input:focus) button {
@@ -901,6 +916,7 @@
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) -60%, #000000 100%);
   }
 }
+
 @media screen and (max-width: 768px) {
   .btn.telegramBtn {
 
