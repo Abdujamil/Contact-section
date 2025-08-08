@@ -71,23 +71,18 @@ body {
 }
 
 textarea::-webkit-scrollbar {
-    /*display: block !important;*/
+    scrollbar-width: thin;
+    display: block !important;
 }
 textarea::-webkit-scrollbar {
     width: 6px;
 }
-
 
 textarea::-webkit-scrollbar-thumb {
     background: rgba(119, 156, 177, 0.25098);
     border: 1px solid #5C5C5C;
     border-radius: 50px;
 }
-
-
-textarea::-webkit-scrollbar-thumb:hover {
-}
-
 
 h1, h2, h3, h4{
     font-family: "Rubik" !important;
@@ -117,7 +112,6 @@ input:-webkit-autofill::first-line {
 .scrollbar {
     --scrollY: 0px;
     --scrollbarHeight: 100px;
-    /*z-index: 1000;x*/
     right: 0;
     top: 0;
     height: 100%;
