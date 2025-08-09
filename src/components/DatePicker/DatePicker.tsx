@@ -1254,7 +1254,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                     damping: 6,
                     mass: 0.3,
                 }}
-                className=" w-full !font-[Rubik] absolute z-[99] flex top-auto bottom-[59.5%] md::bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
+                className=" w-full !font-[Rubik] absolute z-[99] flex top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
                 <div className="w-full max-w-[296px] mx-4">
                     <div className="relative h-[253px]">
                         <div
