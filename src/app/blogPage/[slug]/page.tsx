@@ -6,6 +6,7 @@ import BlogPageContent from "@/components/blogPageCard/BlogPageContent";
 // import Footer from "@/app/footer";
 import Bg from "@/components/background/bg";
 import {createSlug} from "@/components/utils/createSlug";
+import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 
 
 export async function generateStaticParams() {
@@ -107,18 +108,20 @@ export default async function BlogPage({
         return (
             <>
                 <Bg/>
-                <div className={`mt-[110px]`}>
-                    <h1
-                        className={`${styles.txtGradientRight} w-fit
+                <SmoothScroll>
+                    <div className={`mt-[110px]`}>
+                        <h1
+                            className={`${styles.txtGradientRight} w-fit
                          max-w-[862px] text-center m-auto text-[28px] leading-[110%] mb-[20px]
                         md:text-[48px] md:mb-[40px]`}
-                    >
-                        {blogItem.title}
-                    </h1>
-                    <div className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] grid">
-                        <BlogPageContent fromHeader={fromHeader} id={blogItem.id}/>
+                        >
+                            {blogItem.title}
+                        </h1>
+                        <div className="w-full max-w-[1180px] h-auto min-h-lvh mx-auto px-[10px] mb-[100px] grid">
+                            <BlogPageContent fromHeader={fromHeader} id={blogItem.id}/>
+                        </div>
                     </div>
-                </div>
+                </SmoothScroll>
             </>
         );
     } catch (error) {

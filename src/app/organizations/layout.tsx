@@ -8,6 +8,7 @@ import {usePathname} from "next/navigation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import BlogAside from "@/components/blogPageCard/blogAside";
 import {organizationData} from "@/data/organization";
+import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 
 const organizationNavItems = [
     {
@@ -77,33 +78,34 @@ export default function OrganizationsLayout({children}: { children: ReactNode })
     return (
         <>
             <Bg/>
-            <div
-                className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[110px]`}
-            >
-                <h1
-                    className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] leading-[110%] mb-[20px]
-                            md:text-[48px] md:mb-[40px]`}
+            <SmoothScroll>
+                <div
+                    className={`${styles.politic} w-full max-w-[1180px] px-[10px] m-auto h-auto min-h-dvh mt-[110px]`}
                 >
-                    {currentNavItem?.title ?? "Организация"}
-                </h1>
-                <div className="w-full md:grid gap-[40px] grid-cols-[260px_1fr]">
-                    <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] max-w-[320px] m-auto md:m-0">
-                        <div
-                            className={`${styles.btns} ${styles.licenseBtns} m-auto md:m-0 md:mb-[20px] mb-[20px] flex flex-col items-start justify-start w-full max-w-full md:max-w-[260px] p-[20px] gap-[10px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
-                        >
-                            {organizationNavItems.map((item, index) => {
-                                const isActive = pathname === item.href;
-                                const isFirst = index === 0;
+                    <h1
+                        className={`${styles.txtGradientTitle} w-fit m-auto text-center text-[28px] leading-[110%] mb-[20px]
+                            md:text-[48px] md:mb-[40px]`}
+                    >
+                        {currentNavItem?.title ?? "Организация"}
+                    </h1>
+                    <div className="w-full md:grid gap-[40px] grid-cols-[260px_1fr]">
+                        <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] max-w-[320px] m-auto md:m-0">
+                            <div
+                                className={`${styles.btns} ${styles.licenseBtns} m-auto md:m-0 md:mb-[20px] mb-[20px] flex flex-col items-start justify-start w-full max-w-full md:max-w-[260px] p-[20px] gap-[10px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+                            >
+                                {organizationNavItems.map((item, index) => {
+                                    const isActive = pathname === item.href;
+                                    const isFirst = index === 0;
 
-                                return (
-                                    <div key={item.label} className={`relative !w-[220px] m-auto !overflow-hidden`}>
-                                        <Link
-                                            href={item.href}
-                                            onMouseMove={handleMouseMove}
-                                            onMouseLeave={handleMouseLeave}
-                                            className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
-                                            style={{color: isActive ? "#3D9ED6" : "#adadad"}}
-                                        >
+                                    return (
+                                        <div key={item.label} className={`relative !w-[220px] m-auto !overflow-hidden`}>
+                                            <Link
+                                                href={item.href}
+                                                onMouseMove={handleMouseMove}
+                                                onMouseLeave={handleMouseLeave}
+                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
+                                                style={{color: isActive ? "#3D9ED6" : "#adadad"}}
+                                            >
                                     <span
                                         className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
                                             isActive ? "!text-[#3D9ED6]" : "#adadad"}
@@ -112,31 +114,32 @@ export default function OrganizationsLayout({children}: { children: ReactNode })
                                     >
                                       {item.label}
                                     </span>
-                                            <span
-                                                className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                <span
+                                                    className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                               {item.icon}
                                             </span>
 
-                                            <span
-                                                className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                <span
+                                                    className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                               {item.icon}
                                             </span>
-                                        </Link>
+                                            </Link>
 
-                                        <div className={styles.highlight}/>
-                                    </div>
-                                );
-                            })}
-                        </div>
+                                            <div className={styles.highlight}/>
+                                        </div>
+                                    );
+                                })}
+                            </div>
 
-                        <div className={`md:mb-25  mb-20`}>
-                            <BlogAside items={currentBlogItem?.aside ?? []}/>
-                        </div>
-                    </aside>
+                            <div className={`md:mb-25  mb-20`}>
+                                <BlogAside items={currentBlogItem?.aside ?? []}/>
+                            </div>
+                        </aside>
 
-                    {children}
+                        {children}
+                    </div>
                 </div>
-            </div>
+            </SmoothScroll>
         </>
 
     );

@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/header/Header";
 import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
-import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
+// import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 import FootCondition from '@/components/ConditionalFooter/page'
 
 const geistSans = Geist({
@@ -30,13 +30,13 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
         <AuthProvider>
-            <SmoothScroll>
+            {/*<SmoothScroll>*/}
                 <Header/>
                 <main className="flex-grow">
                     {children}
                 </main>
                 <FootCondition/>
-            </SmoothScroll>
+            {/*</SmoothScroll>*/}
         </AuthProvider>
         </body>
         </html>

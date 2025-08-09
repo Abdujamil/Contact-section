@@ -74,6 +74,7 @@ textarea::-webkit-scrollbar {
     scrollbar-width: thin;
     display: block !important;
 }
+
 textarea::-webkit-scrollbar {
     width: 6px;
 }
@@ -84,13 +85,13 @@ textarea::-webkit-scrollbar-thumb {
     border-radius: 50px;
 }
 
-h1, h2, h3, h4{
+h1, h2, h3, h4 {
     font-family: "Rubik" !important;
     font-weight: 400;
 }
 
 a span,
-button > span{
+button > span {
     font-family: "Rubik" !important;
     /*font-weight: 400;*/
 }
@@ -203,8 +204,8 @@ input:-webkit-autofill::first-line {
     caret-color: #ccc !important;
 }
 
-.field__input:focus~.field__title-top,
-.field__textarea:focus~.field__title-top {
+.field__input:focus ~ .field__title-top,
+.field__textarea:focus ~ .field__title-top {
     top: -25px;
 }
 
@@ -212,14 +213,14 @@ input:-webkit-autofill::first-line {
     z-index: -1;
 }
 
-.field__input:focus~.field__title,
-.field__input:hover~.field__title,
-.field__textarea:focus~.field__title,
-.field__textarea:hover~.field__title {
+.field__input:focus ~ .field__title,
+.field__input:hover ~ .field__title,
+.field__textarea:focus ~ .field__title,
+.field__textarea:hover ~ .field__title {
     opacity: 0;
 }
 
-.field__input:not(:placeholder-shown):not(:focus)~.field__title {
+.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {
     z-index: -1;
 }
 
@@ -236,8 +237,8 @@ input:-webkit-autofill::first-line {
     text-overflow: ellipsis;
 }
 
-.field__input:not(:placeholder-shown):not(:focus)~.field__title,
-.field__textarea:not(:placeholder-shown):not(:focus)~.field__title {
+.field__input:not(:placeholder-shown):not(:focus) ~ .field__title,
+.field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {
     z-index: -1;
 }
 
@@ -317,7 +318,7 @@ input[type='email']::placeholder {
         margin-bottom: 10px;
     }
 
-    ul>li,
+    ul > li,
     p {
         font-weight: 400;
         font-size: 16px;
@@ -326,17 +327,18 @@ input[type='email']::placeholder {
     }
 
     @media screen and (max-width: 768px) {
-        h2{
+        h2 {
             font-size: 20px;
         }
-        h3{
+
+        h3 {
             font-size: 18px;
         }
     }
 }
 
-.oferta-content{
-    p{
+.oferta-content {
+    p {
         margin-bottom: 15px;
     }
 }
@@ -351,11 +353,13 @@ input[type='email']::placeholder {
     overflow: visible;
     width: 100%;
 }
+
 .wheel--perspective-right .wheel__inner {
     perspective-origin: calc(50% + 100px) 50%;
     transform: translateX(10px);
     -webkit-transform: translateX(10px);
 }
+
 .wheel--perspective-left .wheel__inner {
     perspective-origin: calc(50% - 100px) 50%;
     transform: translateX(-10px);
@@ -489,6 +493,7 @@ input[type='email']::placeholder {
             rgba(255, 63, 63, 1) 100%
     );
 }
+
 .number-slide6 {
     background: rgb(64, 76, 255);
     background: linear-gradient(
@@ -521,16 +526,53 @@ input[type='email']::placeholder {
     animation: fadeInOutRight 2s ease-in-out forwards;
 }
 
+/* Скрытие скроллбара только для desktop */
+@media (min-width: 769px) {
+    ::-webkit-scrollbar {
+        display: none;
+    }
 
+    body {
+        /* Только на desktop блокируем touch-action */
+        touch-action: none;
+    }
+}
+
+/* На мобилках разрешаем нативный скролл */
+@media (max-width: 768px) {
+    html,
+    body {
+        /* Убираем touch-action: none для мобилок */
+        touch-action: auto;
+        /* Разрешаем overflow */
+        overflow-x: auto !important;
+        overflow-y: auto !important;
+    }
+
+    /* На мобилках показываем нативный скроллбар */
+    ::-webkit-scrollbar {
+        display: block;
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* Дополнительные стили для мобилок */
 @media (max-width: 576px) {
     body {
         overflow-x: auto !important;
+        overflow-y: auto !important;
     }
-    /*::-webkit-scrollbar {*/
-    /*    display: block !important;*/
-    /*}*/
-
-    /*.scrollbar{*/
-    /*    display: none;*/
-    /*}*/
 }

@@ -187,7 +187,7 @@ export default function RegisterPage() {
                                             value={selectedDate}
                                             onChange={setSelectedDate}
                                             onFocus={handleDateInputFocus}
-                                            className={`${styles.bounceElem} w-full md:w-[314px]`}
+                                            className={`${styles.bounceElem} w-[290px] md:w-[314px]`}
                                         />
 
                                         <button

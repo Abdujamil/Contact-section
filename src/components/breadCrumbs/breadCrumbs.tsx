@@ -53,7 +53,9 @@ export default function Breadcrumbs({
                                     }: BreadcrumbsProps) {
 
     return (
-        <nav className="w-full absolute font-[Rubik] !text-[12px] md:!text-[16px] top-[70px] md:top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
+        // <nav className="w-full absolute z-[99999999] font-[Rubik] !text-[12px] md:!text-[16px] top-[70px] md:top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
+        <nav
+            className="w-full absolute z-[99999999] font-[Rubik] !text-[12px] md:!text-[16px] pt-[10px] md:pt-0 backdrop-blur-[10px] md:backdrop-blur-none top-[60px] md:top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
             <ul className="w-full flex flex-nowrap gap-2 pl-[30px] !text-[12px] md:!text-[16px] mb-2.5 md:mb-0">
                 <li>
                     <Link
@@ -67,8 +69,11 @@ export default function Breadcrumbs({
                 {loginUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -79,8 +84,11 @@ export default function Breadcrumbs({
                 {registerUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -91,8 +99,11 @@ export default function Breadcrumbs({
                 {forgotPasswordrUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -104,8 +115,11 @@ export default function Breadcrumbs({
                 {policy && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -114,15 +128,18 @@ export default function Breadcrumbs({
                     </>
                 )}
 
-                    {policyOferta && (
+                {policyOferta && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
-                           Публичная оферта
+                            Публичная оферта
                         </li>
                     </>
                 )}
@@ -130,8 +147,11 @@ export default function Breadcrumbs({
                 {policyUrLicense && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -143,8 +163,11 @@ export default function Breadcrumbs({
                 {organizationAbout && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -156,8 +179,11 @@ export default function Breadcrumbs({
                 {organizationApi && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -168,8 +194,11 @@ export default function Breadcrumbs({
                 {organizationApiTranslate && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -180,8 +209,11 @@ export default function Breadcrumbs({
                 {organizationWhereDoYouLose && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -193,8 +225,11 @@ export default function Breadcrumbs({
                 {offerUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
@@ -206,8 +241,11 @@ export default function Breadcrumbs({
                 {licenseUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
@@ -219,8 +257,11 @@ export default function Breadcrumbs({
                 {contactUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -232,8 +273,11 @@ export default function Breadcrumbs({
                 {detailsUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -245,8 +289,11 @@ export default function Breadcrumbs({
                 {faq && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -258,8 +305,11 @@ export default function Breadcrumbs({
                 {blogUrl && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -271,8 +321,11 @@ export default function Breadcrumbs({
                 {faqPage && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className={`text-[#3D9ED6]`}>
@@ -284,8 +337,11 @@ export default function Breadcrumbs({
                 {editorName && editorId && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
@@ -315,8 +371,11 @@ export default function Breadcrumbs({
                 {inBlog && (
                     <>
                         <li className="flex items-center justify-center">
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
@@ -332,24 +391,30 @@ export default function Breadcrumbs({
 
                 {editorPage && (
                     <>
-                    <li className="flex items-center justify-center">
-                        <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
-                        </svg>
-                    </li>
-                    <li
-                        className={`!text-[#3D9ED6] `}
-                    >
-                        Редакторы
-                    </li>
+                        <li className="flex items-center justify-center">
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
+                            </svg>
+                        </li>
+                        <li
+                            className={`!text-[#3D9ED6] `}
+                        >
+                            Редакторы
+                        </li>
                     </>
-                    )}
+                )}
 
                 {blogTitle && (
                     <>
                         <li className="flex items-center justify-center">
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li>
@@ -366,8 +431,11 @@ export default function Breadcrumbs({
                 {blogTitle && (
                     <>
                         <li className={`flex items-center justify-center`}>
-                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z" fill="#ADADAD"/>
+                            <svg width="7" height="10" viewBox="0 0 7 10" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0.5 9.11625L5.285 4.33125L6.16875 5.215L1.38375 10L0.5 9.11625ZM0.5 1.02412L1.38375 0.140375L3.92812 2.7767L3.04374 3.66045L0.5 1.02412Z"
+                                    fill="#ADADAD"/>
                             </svg>
                         </li>
                         <li className="text-[#3D9ED6] ">{blogTitle}</li>

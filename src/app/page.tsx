@@ -5,6 +5,7 @@ import styles from './faq/faq.module.scss';
 import FaqCard from '../components/FaqCard/index'
 import {faqData} from "@/data/faq";
 import Bg from "@/components/background/bg";
+import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 
 const Home: React.FC = () => {
     const [openId, setOpenId] = useState<number | null>(null);
@@ -27,33 +28,36 @@ const Home: React.FC = () => {
     return (
         <>
             <Bg/>
-            <main className={`${styles.main} w-full `}>
-                <div className={`w-full h-full mb-[80px] mt-[110px]`}>
-                    <section className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] mb-[100px] px-[20px]`}>
-                        <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[28px] text-center m-auto text-[#ccc] mb-[20px]
+            <SmoothScroll>
+                <main className={`${styles.main} w-full `}>
+                    <div className={`w-full h-full mb-[80px] mt-[110px]`}>
+                        <section
+                            className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] mb-[100px] px-[20px]`}>
+                            <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[28px] text-center m-auto text-[#ccc] mb-[20px]
                         md:text-[48px] md:mb-[40px]
                         `}>
-                            Ответы на главные вопросы
-                        </h2>
-                        <div className={`flex flex-col gap-[5px] h-full`}>
-                            {faqData.map((item) => (
-                                <FaqCard
-                                    id={item.id}
-                                    key={item.id}
-                                    num={item.num}
-                                    question={item.question}
-                                    answer={item.answer}
-                                    fullAnswer={""}
-                                    src={item.src}
-                                    isOpen={openId === item.id}
-                                    onToggle={handleToggle}
-                                    animationSettings={animationSettings}
-                                />
-                            ))}
-                        </div>
-                    </section>
-                </div>
-            </main>
+                                Ответы на главные вопросы
+                            </h2>
+                            <div className={`flex flex-col gap-[5px] h-full`}>
+                                {faqData.map((item) => (
+                                    <FaqCard
+                                        id={item.id}
+                                        key={item.id}
+                                        num={item.num}
+                                        question={item.question}
+                                        answer={item.answer}
+                                        fullAnswer={""}
+                                        src={item.src}
+                                        isOpen={openId === item.id}
+                                        onToggle={handleToggle}
+                                        animationSettings={animationSettings}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    </div>
+                </main>
+            </SmoothScroll>
         </>
     );
 };
