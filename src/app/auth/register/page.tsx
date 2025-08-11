@@ -193,7 +193,7 @@ export default function RegisterPage() {
                                         <button
                                             type="button"
                                             onClick={togglePicker}
-                                            className="active:scale-[.95] absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-[56px] max-h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] transition-colors duration-300"
+                                            className={`active:scale-[.95] absolute right-0 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-[56px] max-h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] transition-colors duration-300`}
                                         >
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -290,7 +290,7 @@ export default function RegisterPage() {
                         subText="Чтобы полноценно работать в личном кабинете, необходимо активировать ваш аккаунт."
                     />
                 )}
-            {/* DataPicker */}
+                {/* DataPicker */}
                 <DatePicker
                     isVisible={showDatePicker}
                     onDateSelect={handleDateSelect}

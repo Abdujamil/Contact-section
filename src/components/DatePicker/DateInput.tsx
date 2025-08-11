@@ -82,7 +82,6 @@ const DateInput: React.FC<DateInputProps> = ({
         setVisibleError(false);
         setTimeout(() => setVisibleError(true), 30);
     }, [submitCount]);
-
     useEffect(() => {
         const subscription = watch((value, {name}) => {
             if (name === inputName && !value[inputName]) {
@@ -91,22 +90,12 @@ const DateInput: React.FC<DateInputProps> = ({
         });
         return () => subscription.unsubscribe();
     }, [inputName, watch]);
-
-
     useEffect(() => {
         setValue(inputName, defaultValue || '');
         if (defaultValue) {
             setInternalValue(defaultValue);
         }
     }, [inputName, defaultValue, setValue]);
-
-
-    // useEffect(() => {
-    //     const initialDate = defaultValue || new Date().toLocaleDateString('ru-RU');
-    //     setValue(inputName, initialDate);
-    //     setInternalValue(initialDate);
-    // }, [inputName, defaultValue, setValue]);
-
     useEffect(() => {
         if (propValue !== undefined) {
             setInternalValue(propValue);
