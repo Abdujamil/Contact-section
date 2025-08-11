@@ -1840,9 +1840,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }, 100);
     };
 
-    // Стиль без каких-либо эффектов при скролле - все элементы одинаковые
+    // Стиль без каких-либо эффектов при скролле
     const getItemStyle = () => {
-        // Просто возвращаем базовые стили без изменений
         return {
             opacity: 1,
             transform: 'none',
@@ -1855,20 +1854,22 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     return (
         <AnimatePresence>
             <motion.div
-                initial={{opacity: 0, y: -30}}
-                animate={{opacity: 1, y: 0}}
-                transition={{
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 6,
-                    mass: 0.3,
-                }}
-                className=" w-full !font-[Rubik] absolute z-[99] flex top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
+                // initial={{opacity: 0, y: -30}}
+                // animate={{opacity: 1, y: 0}}
+                // transition={{
+                //     type: "spring",
+                //     stiffness: 200,
+                //     damping: 6,
+                //     mass: 0.3,
+                // }}
+                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
                 <div className="w-full max-w-[296px] mx-4">
                     <div className="relative h-[253px]">
                         <div
-                            className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[8px] mb-[33px]`}>
-
+                            className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[8px] mb-[33px]`}>
+                        </div>
+                        <div
+                            className={` w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[8px] mb-[33px]`}>
                         </div>
 
                         {/* Selection indicator - more visible borders */}
@@ -1930,26 +1931,25 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`day-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                             ${centerDayIndex === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                                ${centerDayIndex === index ? 'text-[#3D9ED6] ' : 'text-[#adadad]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
                                                     ...getItemStyle()
                                                 }}
                                                 onClick={() => {
-                                                    setSelectedDay(day);
+                                                    // setSelectedDay(day);
                                                     setCenterDayIndex(index);
 
-                                                    if (dayRef.current) {
-                                                        // Исправляем расчет скролла - учитываем padding
-                                                        const containerHeight = dayRef.current.clientHeight;
-                                                        const scrollTop = index * (ITEM_HEIGHT + 15) - (containerHeight / 2) + (ITEM_HEIGHT / 2);
-
-                                                        dayRef.current.scrollTo({
-                                                            top: scrollTop,
-                                                            behavior: 'smooth'
-                                                        });
-                                                    }
+                                                    // if (dayRef.current) {
+                                                    //     const containerHeight = dayRef.current.clientHeight;
+                                                    //     const scrollTop = index * (ITEM_HEIGHT + 15) - (containerHeight / 2) + (ITEM_HEIGHT / 2);
+                                                    //
+                                                    //     dayRef.current.scrollTo({
+                                                    //         top: scrollTop,
+                                                    //         behavior: 'smooth'
+                                                    //     });
+                                                    // }
                                                 }}
                                             >
                                                 {day}
@@ -1987,15 +1987,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                 onClick={() => {
                                                     setSelectedMonth(index % 12);
                                                     setCenterMonthIndex(index);
-                                                    if (monthRef.current) {
-                                                        // Исправляем расчет скролла - учитываем padding и gap
-                                                        const containerHeight = monthRef.current.clientHeight;
-                                                        const scrollTop = index * (ITEM_HEIGHT + 15) - (containerHeight / 2) + (ITEM_HEIGHT / 2);
-                                                        monthRef.current.scrollTo({
-                                                            top: scrollTop,
-                                                            behavior: 'smooth'
-                                                        });
-                                                    }
+                                                    // if (monthRef.current) {
+                                                    //     const containerHeight = monthRef.current.clientHeight;
+                                                    //     const scrollTop = index * (ITEM_HEIGHT + 15) - (containerHeight / 2) + (ITEM_HEIGHT / 2);
+                                                    //     monthRef.current.scrollTo({
+                                                    //         top: scrollTop,
+                                                    //         behavior: 'smooth'
+                                                    //     });
+                                                    // }
                                                 }}
                                             >
                                                 {month}
@@ -2033,15 +2032,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                                 onClick={() => {
                                                     setSelectedYear(year);
                                                     setCenterYearIndex(index);
-                                                    if (yearRef.current) {
-                                                        // Исправляем расчет скролла - учитываем padding и gap
-                                                        const containerHeight = yearRef.current.clientHeight;
-                                                        const scrollTop = index * (ITEM_HEIGHT + 15) - (containerHeight / 2) + (ITEM_HEIGHT / 2);
-                                                        yearRef.current.scrollTo({
-                                                            top: scrollTop,
-                                                            behavior: 'smooth'
-                                                        });
-                                                    }
+                                                    // if (yearRef.current) {
+                                                    //     const containerHeight = yearRef.current.clientHeight;
+                                                    //     const scrollTop = index * (ITEM_HEIGHT + 15) - (containerHeight / 2) + (ITEM_HEIGHT / 2);
+                                                    //     yearRef.current.scrollTo({
+                                                    //         top: scrollTop,
+                                                    //         behavior: 'smooth'
+                                                    //     });
+                                                    // }
                                                 }}
                                             >
                                                 {year}
@@ -2063,10 +2061,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Footer */}
                         <div
-                            className={`${styles.datePicker} flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[8px] `}>
-                            <div className={`w-full flex flex-col items-end justify-end`}>
+                            className={`${styles.datePicker} flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] rounded-[8px] `}>
 
-                            </div>
+                        </div>
+
+                        <div
+                            className={`absolute bottom-0 w-full flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[8px] `}>
+
                         </div>
                     </div>
                 </div>
