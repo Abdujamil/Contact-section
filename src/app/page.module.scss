@@ -793,9 +793,9 @@
 .datePickerHeader::before {
   content: '';
   position: absolute;
-  top: -43px;
+  top: -44px;
   left: 1px;
-  width: 99%;
+  width: 294px;
   height: 120px;
   background: linear-gradient(to bottom, black, rgba(255, 255, 255, 0));
   pointer-events: none;
@@ -809,7 +809,7 @@
   position: absolute;
   bottom: -47px;
   left: 1px;
-  width: 99%;
+  width: 294px;
   height: 120px;
   background: linear-gradient(to top, black, rgba(255, 255, 255, 0));
   pointer-events: none;
