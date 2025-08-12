@@ -16,7 +16,6 @@ import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import DateInput from "@/components/DatePicker/DateInput";
 import {DatePicker} from "@/components/DatePicker/DatePicker";
-
 // Типизация данных формы
 type RegisterFormValues = {
     email: string;
@@ -97,10 +96,14 @@ export default function RegisterPage() {
         setShowDatePicker(!showDatePicker);
     }
 
-    // Обработчики для DatePicker
+    // ИСПРАВЛЕННЫЕ обработчики для DatePicker
     const handleDateSelect = (date: string) => {
+        console.log("Selected date:", date); // для отладки
         setSelectedDate(date);
-        methods.setValue("date", date);
+        // Используем setTimeout чтобы избежать конфликтов с состоянием
+        setTimeout(() => {
+            methods.setValue("date", date);
+        }, 0);
         setShowDatePicker(false);
     };
 
@@ -112,6 +115,11 @@ export default function RegisterPage() {
         setShowDatePicker(true);
     };
 
+    const handleDateInputChange = (value: string) => {
+        methods.setValue("date", value);
+    };
+
+    // ВАЖНО: убираем перерегистрацию полей при каждом рендере
     useEffect(() => {
         register("email", {
             required: "Введите email",
@@ -126,16 +134,19 @@ export default function RegisterPage() {
             validate: validateDate
         });
 
-        // Регистрируем остальные поля
         register("password", {required: "Введите пароль"});
         register("username", {required: "Введите имя пользователя"});
         register("nickname", {required: "Введите никнейм"});
-    }, [register]);
+
+        // Если есть начальная дата, устанавливаем ее
+        if (selectedDate) {
+            methods.setValue("date", selectedDate);
+        }
+    }, [register]); // Убираем selectedDate из зависимостей
 
     useEffect(() => {
         bounceActiveBlock('register', controls);
     }, [controls]);
-
 
     return (
         <>
@@ -183,9 +194,8 @@ export default function RegisterPage() {
                                             title="Дата рождения"
                                             inputName="date"
                                             required
-                                            defaultValue={selectedDate}
-                                            value={selectedDate}
-                                            onChange={setSelectedDate}
+                                            value={methods.watch("date") || ""} // Только значение из формы
+                                            onChange={handleDateInputChange}
                                             onFocus={handleDateInputFocus}
                                             className={`${styles.bounceElem} w-[290px] md:w-[314px]`}
                                         />
@@ -290,12 +300,13 @@ export default function RegisterPage() {
                         subText="Чтобы полноценно работать в личном кабинете, необходимо активировать ваш аккаунт."
                     />
                 )}
+
                 {/* DataPicker */}
                 <DatePicker
                     isVisible={showDatePicker}
                     onDateSelect={handleDateSelect}
                     onClose={handleDatePickerClose}
-                    initialDate={selectedDate}
+                    initialDate={methods.watch("date") || ""}
                 />
             </motion.div>
 
