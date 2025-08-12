@@ -784,10 +784,16 @@
 
 .datePicker {
   background: rgba(53, 53, 53, 0.1);
+  //background: #101010;
   box-shadow: inset 0px 0px 6px rgba(255, 255, 255, 0.1);
   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.6));
   backdrop-filter: blur(15px);
+
+
 }
+//.datePickerIndicator{
+//  background: linear-gradient(0deg, #20272A, #20272A), linear-gradient(0deg, rgba(61, 158, 214, 0.07), rgba(61, 158, 214, 0.07)), linear-gradient(0deg, #101010, #101010), #20272A;
+//}
 
 /* Верхний градиент */
 .datePickerHeader::before {
@@ -797,7 +803,7 @@
   left: 1px;
   width: 294px;
   height: 120px;
-  background: linear-gradient(to bottom, black, rgba(255, 255, 255, 0));
+  background: linear-gradient(to bottom, #101010, rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: 999;
   border-radius: 8px;
@@ -811,7 +817,7 @@
   left: 1px;
   width: 294px;
   height: 120px;
-  background: linear-gradient(to top, black, rgba(255, 255, 255, 0));
+  background: linear-gradient(to top, #101010, rgba(255, 255, 255, 0));
   pointer-events: none;
   z-index: 999;
   border-radius: 8px;

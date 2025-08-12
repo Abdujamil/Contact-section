@@ -2077,8 +2077,7 @@
 // };
 
 
-
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 import styles from '@/app/page.module.scss'
 import {AnimatePresence, motion} from "framer-motion";
 
@@ -2193,8 +2192,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         element.addEventListener('mousemove', onMouseMove);
         element.addEventListener('mouseup', onMouseUp);
         element.addEventListener('mouseleave', onMouseLeave);
-        element.addEventListener('touchstart', onTouchStart, { passive: false });
-        element.addEventListener('touchmove', onTouchMove, { passive: false });
+        element.addEventListener('touchstart', onTouchStart, {passive: false});
+        element.addEventListener('touchmove', onTouchMove, {passive: false});
         element.addEventListener('touchend', onTouchEnd);
 
         return () => {
@@ -2327,18 +2326,32 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     };
 
     // Обновляем состояние только при открытии датапикера с новой датой
-    useEffect(() => {
-        if (isVisible) {
-            const parsed = parseInitialDate(initialDate);
-            setSelectedDay(parsed.day);
-            setSelectedMonth(parsed.month);
-            setSelectedYear(parsed.year);
+    // useEffect(() => {
+    //     if (isVisible) {
+    //         const parsed = parseInitialDate(initialDate);
+    //         setSelectedDay(parsed.day);
+    //         setSelectedMonth(parsed.month);
+    //         setSelectedYear(parsed.year);
+    //
+    //         setTimeout(() => {
+    //             scrollToSelected();
+    //         }, 10);
+    //     }
+    // }, [isVisible, initialDate]);
 
-            setTimeout(() => {
-                scrollToSelected();
-            }, 100);
+    useLayoutEffect(() => {
+        const parsed = parseInitialDate(initialDate);
+        setSelectedDay(parsed.day);
+        setSelectedMonth(parsed.month);
+        setSelectedYear(parsed.year);
+
+        // Проверяем, что контейнеры уже отрисованы
+        if (dayRef.current && monthRef.current && yearRef.current) {
+            scrollToSelected();
         }
     }, [isVisible, initialDate]);
+
+
 
     // Функция для получения количества дней в месяце
     const getDaysInMonth = (month: number, year: number) => {
@@ -2420,6 +2433,15 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     return (
         <AnimatePresence>
             <motion.div
+                key="date-picker"
+                initial={{y: -30,}}
+                animate={{y: 0,}}
+                transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 6,
+                    mass: 0.3,
+                }}
                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
                 <div className="w-full max-w-[296px] mx-4">
                     <div className="relative h-[253px]">
@@ -2432,7 +2454,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Selection indicator - more visible borders */}
                         <div
-                            className={`w-[274px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612] backdrop-blur-[15px]  pointer-events-none`}>
+                            className={`${styles.datePickerIndicator} w-[274px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
                         </div>
 
                         <div
@@ -2489,7 +2511,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`day-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                                ${centerDayIndex === index ? 'text-[#3D9ED6] ' : 'text-[#adadad]'
+                                                ${centerDayIndex === index ? 'text-[#3D9ED6] ' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -2522,7 +2544,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`month-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-start text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerMonthIndex === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                            ${centerMonthIndex === index ? 'text-[#3D9ED6]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -2555,7 +2577,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`year-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerYearIndex === index ? 'text-[#3D9ED6]' : 'text-[#adadad]'
+                                            ${centerYearIndex === index ? 'text-[#3D9ED6]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
