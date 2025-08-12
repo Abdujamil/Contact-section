@@ -2446,10 +2446,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 <div className="w-full max-w-[296px] mx-4">
                     <div className="relative h-[253px]">
                         <div
-                            className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[8px] mb-[33px]`}>
+                            className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[6px] mb-[33px]`}>
                         </div>
                         <div
-                            className={` w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[8px] mb-[33px]`}>
+                            className={` w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[6px] mb-[33px]`}>
                         </div>
 
                         {/* Selection indicator - more visible borders */}

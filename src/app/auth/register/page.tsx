@@ -1,6 +1,6 @@
 'use client'
 import {useForm, FormProvider, SubmitHandler} from "react-hook-form";
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {emailRegex} from "@/components/Form/validation";
 import AppInput from "@/components/forms/elements/AppInput";
 import styles from "@/app/page.module.scss";
@@ -16,6 +16,7 @@ import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import DateInput from "@/components/DatePicker/DateInput";
 import {DatePicker} from "@/components/DatePicker/DatePicker";
+
 // Типизация данных формы
 type RegisterFormValues = {
     email: string;
@@ -74,6 +75,8 @@ export default function RegisterPage() {
     const [showDatePicker, setShowDatePicker] = useState(false);
     const controls = useAnimation();
 
+    const dateInputRef = useRef<HTMLInputElement | null>(null);
+
     const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
         setShowPolicy(true);
         try {
@@ -93,8 +96,14 @@ export default function RegisterPage() {
     };
 
     const togglePicker = () => {
-        setShowDatePicker(!showDatePicker);
-    }
+        setShowDatePicker(prev => {
+            const newState = !prev;
+            if (newState) {
+                setTimeout(() => dateInputRef.current?.focus(), 0);
+            }
+            return newState;
+        });
+    };
 
     // ИСПРАВЛЕННЫЕ обработчики для DatePicker
     const handleDateSelect = (date: string) => {
@@ -118,6 +127,7 @@ export default function RegisterPage() {
     const handleDateInputChange = (value: string) => {
         methods.setValue("date", value);
     };
+
 
     // ВАЖНО: убираем перерегистрацию полей при каждом рендере
     useEffect(() => {
@@ -165,7 +175,6 @@ export default function RegisterPage() {
                             <FormProvider {...methods}>
                                 <form
                                     onSubmit={handleSubmit(onSubmit)}
-                                    // className="w-full md:w-[375px] space-y-[34.5px] h-full"
                                     className="w-full md:w-[375px] h-full"
                                     onFocus={handleFormInteraction}
                                     onClick={handleFormInteraction}
@@ -191,10 +200,11 @@ export default function RegisterPage() {
 
                                     <div className={`relative mb-[43px]`}>
                                         <DateInput
+                                            ref={dateInputRef}
                                             title="Дата рождения"
                                             inputName="date"
                                             required
-                                            value={methods.watch("date") || ""} // Только значение из формы
+                                            value={methods.watch("date") || ""}
                                             onChange={handleDateInputChange}
                                             onFocus={handleDateInputFocus}
                                             className={`${styles.bounceElem} w-[290px] md:w-[314px]`}
@@ -214,23 +224,6 @@ export default function RegisterPage() {
                                         </button>
                                     </div>
 
-                                    {/*<div className={`relative mb-[43px]`}>*/}
-                                    {/*    <div className="cursor-pointer">*/}
-                                    {/*        <AppInput*/}
-                                    {/*            className={`${styles.bounceElem} w-full md:w-[314px]`}*/}
-                                    {/*            type={"text"}*/}
-                                    {/*            title={"Дата рождения"}*/}
-                                    {/*            inputName="date"*/}
-                                    {/*            required={true}*/}
-                                    {/*            value={selectedDate}*/}
-                                    {/*            disable={false}*/}
-                                    {/*            mask="date"*/}
-                                    {/*            onChange={(value) => setSelectedDate(value)}*/}
-                                    {/*        />*/}
-                                    {/*    </div>*/}
-                                    {/*</div>*/}
-
-
                                     <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
                                         <button
                                             type="submit"
@@ -239,10 +232,10 @@ export default function RegisterPage() {
                                             className={`${styles.btn} ${styles["register-button"]} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
                                             data-text=""
                                         >
-                                <span
-                                    className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
-                                    Регистрация
-                                </span>
+                                            <span
+                                                className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                                Регистрация
+                                            </span>
                                             <svg
                                                 className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
                                                 width="16" height="17" viewBox="0 0 16 17" fill="none"
