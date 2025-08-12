@@ -2113,14 +2113,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     // Create static days array (1-31, without month dependency)
     const baseDays = Array.from({length: 31}, (_, i) => i + 1);
-    const infiniteDays = createInfiniteArray(baseDays, 15);
+    const infiniteDays = createInfiniteArray(baseDays, 20);
 
     // Months repeated
-    const infiniteMonths = createInfiniteArray(months, 15);
+    const infiniteMonths = createInfiniteArray(months, 20);
 
     // Years from 1900
     const baseYears = Array.from({length: currentYear - 1900 + 1}, (_, i) => currentYear - i).filter(year => year >= 1900);
-    const infiniteYears = createInfiniteArray(baseYears, 5);
+    const infiniteYears = createInfiniteArray(baseYears, 20);
 
     const parseInitialDate = (dateString?: string) => {
         if (!dateString) return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
