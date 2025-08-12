@@ -3496,8 +3496,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     });
 
     const [trackpadSettings, setTrackpadSettings] = useState({
-        scrollStopThreshold: 0.1,
-        scrollEaseFactor: 0.15,
+        scrollStopThreshold: 0.0,
+        scrollEaseFactor: 0.50,
         minScrollStep: 1
     });
 
