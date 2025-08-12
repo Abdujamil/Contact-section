@@ -2511,7 +2511,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`day-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                                ${centerDayIndex === index ? 'text-[#3D9ED6] ' : 'text-[#878787]'
+                                                ${centerDayIndex === index ? 'text-[#ссс] ' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -2544,7 +2544,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`month-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-start text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerMonthIndex === index ? 'text-[#3D9ED6]' : 'text-[#878787]'
+                                            ${centerMonthIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -2577,7 +2577,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`year-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerYearIndex === index ? 'text-[#3D9ED6]' : 'text-[#878787]'
+                                            ${centerYearIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
