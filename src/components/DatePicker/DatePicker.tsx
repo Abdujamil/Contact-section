@@ -2076,10 +2076,656 @@
 //     );
 // };
 
+// Предпоследняя версия
+
+// import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
+// import styles from '@/app/page.module.scss'
+// import {AnimatePresence, motion, useAnimation} from "framer-motion";
+//
+// interface DatePickerProps {
+//     isVisible: boolean;
+//     onDateSelect: (date: string) => void;
+//     onClose: () => void;
+//     initialDate?: string;
+// }
+//
+// export const DatePicker: React.FC<DatePickerProps> = ({
+//                                                           isVisible,
+//                                                           onDateSelect,
+//                                                           onClose,
+//                                                           initialDate
+//                                                       }) => {
+//     const months = [
+//         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+//         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+//     ];
+//     const controls = useAnimation();
+//     const currentYear = new Date().getFullYear();
+//
+//     // Create infinite arrays for seamless scrolling
+//     const createInfiniteArray = <T, >(baseArray: T[], repeatCount: number = 10): T[] => {
+//         const result: T[] = [];
+//         for (let i = 0; i < repeatCount; i++) {
+//             result.push(...baseArray);
+//         }
+//         return result;
+//     };
+//
+//     // Create static days array (1-31, without month dependency)
+//     const baseDays = Array.from({length: 31}, (_, i) => i + 1);
+//     const infiniteDays = createInfiniteArray(baseDays, 20);
+//
+//     // Months repeated
+//     const infiniteMonths = createInfiniteArray(months, 20);
+//
+//     // Years from 1900
+//     const baseYears = Array.from({length: currentYear - 1900 + 1}, (_, i) => currentYear - i).filter(year => year >= 1900);
+//     const infiniteYears = createInfiniteArray(baseYears, 20);
+//
+//     const parseInitialDate = (dateString?: string) => {
+//         if (!dateString) return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
+//
+//         const parts = dateString.split('.');
+//         if (parts.length === 3) {
+//             const day = parseInt(parts[0]) || 1;
+//             const month = (parseInt(parts[1]) || 1) - 1;
+//             const year = Math.max(1900, parseInt(parts[2]) || currentYear - 25);
+//             return {day, month, year};
+//         }
+//         return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
+//     };
+//
+//     const initial = parseInitialDate(initialDate);
+//     const [selectedDay, setSelectedDay] = useState(initial.day);
+//     const [selectedMonth, setSelectedMonth] = useState(initial.month);
+//     const [selectedYear, setSelectedYear] = useState(initial.year);
+//
+//     const dayRef = useRef<HTMLDivElement | null>(null);
+//     const monthRef = useRef<HTMLDivElement | null>(null);
+//     const yearRef = useRef<HTMLDivElement | null>(null);
+//
+//     // Реализация drag scroll
+//
+//     // const setupDragScroll = (element: HTMLDivElement) => {
+//     //     let isDown = false;
+//     //     let startY = 0;
+//     //     let scrollTop = 0;
+//     //
+//     //     const handleStart = (clientY: number) => {
+//     //         isDown = true;
+//     //         startY = clientY;
+//     //         scrollTop = element.scrollTop;
+//     //         element.style.cursor = 'grabbing';
+//     //         element.style.userSelect = 'none';
+//     //     };
+//     //
+//     //     const handleMove = (clientY: number) => {
+//     //         if (!isDown) return;
+//     //         const y = clientY;
+//     //         const walk = (startY - y) * 2;
+//     //         element.scrollTop = scrollTop + walk;
+//     //     };
+//     //
+//     //     const handleEnd = () => {
+//     //         isDown = false;
+//     //         element.style.cursor = 'grab';
+//     //         element.style.userSelect = '';
+//     //     };
+//     //
+//     //     // Mouse events
+//     //     const onMouseDown = (e: MouseEvent) => handleStart(e.clientY);
+//     //     const onMouseMove = (e: MouseEvent) => handleMove(e.clientY);
+//     //     const onMouseUp = () => handleEnd();
+//     //     const onMouseLeave = () => handleEnd();
+//     //
+//     //     // Touch events
+//     //     const onTouchStart = (e: TouchEvent) => {
+//     //         e.preventDefault();
+//     //         handleStart(e.touches[0].clientY);
+//     //     };
+//     //     const onTouchMove = (e: TouchEvent) => {
+//     //         e.preventDefault();
+//     //         handleMove(e.touches[0].clientY);
+//     //     };
+//     //     const onTouchEnd = () => handleEnd();
+//     //
+//     //     element.style.cursor = 'grab';
+//     //     element.addEventListener('mousedown', onMouseDown);
+//     //     element.addEventListener('mousemove', onMouseMove);
+//     //     element.addEventListener('mouseup', onMouseUp);
+//     //     element.addEventListener('mouseleave', onMouseLeave);
+//     //     element.addEventListener('touchstart', onTouchStart, {passive: false});
+//     //     element.addEventListener('touchmove', onTouchMove, {passive: false});
+//     //     element.addEventListener('touchend', onTouchEnd);
+//     //
+//     //     return () => {
+//     //         element.removeEventListener('mousedown', onMouseDown);
+//     //         element.removeEventListener('mousemove', onMouseMove);
+//     //         element.removeEventListener('mouseup', onMouseUp);
+//     //         element.removeEventListener('mouseleave', onMouseLeave);
+//     //         element.removeEventListener('touchstart', onTouchStart);
+//     //         element.removeEventListener('touchmove', onTouchMove);
+//     //         element.removeEventListener('touchend', onTouchEnd);
+//     //     };
+//     // };
+//
+//     const setupDragScroll = (element: HTMLDivElement, itemHeight = 36) => {
+//         let isDown = false;
+//         let startY = 0;
+//         let scrollTop = 0;
+//         let velocity = 0;
+//         let lastY = 0;
+//         let lastTime = 0;
+//         let animationFrame: number | null = null;
+//
+//         const stopMomentumScroll = () => {
+//             if (animationFrame) {
+//                 cancelAnimationFrame(animationFrame);
+//                 animationFrame = null;
+//             }
+//         };
+//
+//         const snapToNearest = () => {
+//             const currentScroll = element.scrollTop;
+//             const nearestIndex = Math.round(currentScroll / itemHeight);
+//             const targetScroll = nearestIndex * itemHeight;
+//
+//             element.scrollTo({
+//                 top: targetScroll,
+//                 behavior: 'smooth'
+//             });
+//         };
+//
+//         const momentumScroll = () => {
+//             element.scrollTop += velocity;
+//             velocity *= 0.975; // трение
+//
+//             if (Math.abs(velocity) > 0.1) {
+//                 animationFrame = requestAnimationFrame(momentumScroll);
+//             } else {
+//                 stopMomentumScroll();
+//                 snapToNearest();
+//             }
+//         };
+//
+//         const handleStart = (clientY: number) => {
+//             isDown = true;
+//             startY = clientY;
+//             lastY = clientY;
+//             lastTime = performance.now();
+//             scrollTop = element.scrollTop;
+//             velocity = 0;
+//             stopMomentumScroll();
+//             element.style.cursor = 'grabbing';
+//             element.style.userSelect = 'none';
+//         };
+//
+//         const handleMove = (clientY: number) => {
+//             if (!isDown) return;
+//
+//             const now = performance.now();
+//             const deltaY = clientY - lastY;
+//             const deltaTime = now - lastTime;
+//
+//             velocity = deltaY / deltaTime * 16; // px/frame
+//
+//             lastY = clientY;
+//             lastTime = now;
+//
+//             const walk = (startY - clientY) * 1.5;
+//             element.scrollTop = scrollTop + walk;
+//         };
+//
+//         const handleEnd = () => {
+//             if (!isDown) return;
+//             isDown = false;
+//             element.style.cursor = 'grab';
+//             element.style.userSelect = '';
+//             momentumScroll();
+//         };
+//
+//         // Mouse events
+//         const onMouseDown = (e: MouseEvent) => handleStart(e.clientY);
+//         const onMouseMove = (e: MouseEvent) => handleMove(e.clientY);
+//         const onMouseUp = () => handleEnd();
+//         const onMouseLeave = () => handleEnd();
+//
+//         // Touch events
+//         const onTouchStart = (e: TouchEvent) => handleStart(e.touches[0].clientY);
+//         const onTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientY);
+//         const onTouchEnd = () => handleEnd();
+//
+//         element.style.cursor = 'grab';
+//         element.addEventListener('mousedown', onMouseDown);
+//         element.addEventListener('mousemove', onMouseMove);
+//         element.addEventListener('mouseup', onMouseUp);
+//         element.addEventListener('mouseleave', onMouseLeave);
+//         element.addEventListener('touchstart', onTouchStart, { passive: true });
+//         element.addEventListener('touchmove', onTouchMove, { passive: true });
+//         element.addEventListener('touchend', onTouchEnd);
+//
+//         return () => {
+//             stopMomentumScroll();
+//             element.removeEventListener('mousedown', onMouseDown);
+//             element.removeEventListener('mousemove', onMouseMove);
+//             element.removeEventListener('mouseup', onMouseUp);
+//             element.removeEventListener('mouseleave', onMouseLeave);
+//             element.removeEventListener('touchstart', onTouchStart);
+//             element.removeEventListener('touchmove', onTouchMove);
+//             element.removeEventListener('touchend', onTouchEnd);
+//         };
+//     };
+//
+//     useEffect(() => {
+//         const cleanupFunctions: (() => void)[] = [];
+//
+//         if (dayRef.current) {
+//             cleanupFunctions.push(setupDragScroll(dayRef.current, 28));
+//         }
+//         if (monthRef.current) {
+//             cleanupFunctions.push(setupDragScroll(monthRef.current, 28));
+//         }
+//         if (yearRef.current) {
+//             cleanupFunctions.push(setupDragScroll(yearRef.current, 28));
+//         }
+//
+//         return () => {
+//             cleanupFunctions.forEach(cleanup => cleanup());
+//         };
+//     }, [isVisible]);
+//
+//
+//     const isScrollingRef = useRef(false);
+//     const ITEM_HEIGHT = 28;
+//
+//     // Вычисляем центральные индексы только один раз при открытии
+//     const [centerDayIndex, setCenterDayIndex] = useState(() => {
+//         const middleIndex = Math.floor(infiniteDays.length / 2);
+//         return middleIndex + initial.day - 1;
+//     });
+//     const [centerMonthIndex, setCenterMonthIndex] = useState(() => {
+//         const middleIndex = Math.floor(infiniteMonths.length / 2);
+//         return middleIndex + initial.month;
+//     });
+//     const [centerYearIndex, setCenterYearIndex] = useState(() => {
+//         const middleIndex = Math.floor(infiniteYears.length / 2);
+//         const yearOffset = baseYears.findIndex(y => y === initial.year);
+//         return yearOffset !== -1 ? middleIndex + yearOffset : middleIndex;
+//     });
+//
+//     // Optimized scroll handler with throttling
+//     const throttledScrollHandler = useRef<{ [key: string]: NodeJS.Timeout }>({});
+//
+//     const getCenteredIndex = (container: HTMLDivElement | null) => {
+//         if (!container) return -1;
+//
+//         const containerRect = container.getBoundingClientRect();
+//         const centerY = containerRect.top + containerRect.height / 2;
+//
+//         const items = Array.from(container.children[0].children) as HTMLDivElement[];
+//
+//         let closestIndex = -1;
+//         let minDistance = Infinity;
+//
+//         for (let i = 0; i < items.length; i++) {
+//             const item = items[i];
+//             const itemRect = item.getBoundingClientRect();
+//             const itemCenterY = itemRect.top + itemRect.height / 2;
+//             const distance = Math.abs(itemCenterY - centerY);
+//
+//             if (distance < minDistance) {
+//                 minDistance = distance;
+//                 closestIndex = i;
+//             }
+//         }
+//
+//         return closestIndex;
+//     };
+//
+//     useEffect(() => {
+//         const handleScrollCheck = () => {
+//             if (!isScrollingRef.current) {
+//                 if (dayRef.current) {
+//                     const index = getCenteredIndex(dayRef.current);
+//                     if (index !== -1) setCenterDayIndex(index);
+//                 }
+//                 if (monthRef.current) {
+//                     const index = getCenteredIndex(monthRef.current);
+//                     if (index !== -1) setCenterMonthIndex(index);
+//                 }
+//                 if (yearRef.current) {
+//                     const index = getCenteredIndex(yearRef.current);
+//                     if (index !== -1) setCenterYearIndex(index);
+//                 }
+//             }
+//             requestAnimationFrame(handleScrollCheck);
+//         };
+//
+//         if (isVisible) {
+//             handleScrollCheck();
+//         }
+//     }, [isVisible]);
+//
+//     const scrollToSelected = () => {
+//         if (dayRef.current) {
+//             const middleIndex = Math.floor(infiniteDays.length / 2);
+//             const dayIndex = middleIndex + selectedDay - 1;
+//             const targetScroll = dayIndex * ITEM_HEIGHT;
+//             dayRef.current.scrollTo({top: targetScroll});
+//             setCenterDayIndex(dayIndex);
+//         }
+//
+//         if (monthRef.current) {
+//             const middleIndex = Math.floor(infiniteMonths.length / 2);
+//             const monthIndex = middleIndex + selectedMonth;
+//             const targetScroll = monthIndex * ITEM_HEIGHT;
+//             monthRef.current.scrollTo({top: targetScroll});
+//             setCenterMonthIndex(monthIndex);
+//         }
+//
+//         if (yearRef.current) {
+//             const middleIndex = Math.floor(infiniteYears.length / 2);
+//             const yearOffset = baseYears.findIndex(y => y === selectedYear);
+//             if (yearOffset !== -1) {
+//                 const yearIndex = middleIndex + yearOffset;
+//                 const targetScroll = yearIndex * ITEM_HEIGHT;
+//                 yearRef.current.scrollTo({top: targetScroll});
+//                 setCenterYearIndex(yearIndex);
+//             }
+//         }
+//     };
+//
+//     // Обновляем состояние только при открытии датапикера с новой датой
+//     // useEffect(() => {
+//     //     if (isVisible) {
+//     //         const parsed = parseInitialDate(initialDate);
+//     //         setSelectedDay(parsed.day);
+//     //         setSelectedMonth(parsed.month);
+//     //         setSelectedYear(parsed.year);
+//     //
+//     //         setTimeout(() => {
+//     //             scrollToSelected();
+//     //         }, 10);
+//     //     }
+//     // }, [isVisible, initialDate]);
+//
+//     useLayoutEffect(() => {
+//         const parsed = parseInitialDate(initialDate);
+//         setSelectedDay(parsed.day);
+//         setSelectedMonth(parsed.month);
+//         setSelectedYear(parsed.year);
+//
+//         // Проверяем, что контейнеры уже отрисованы
+//         if (dayRef.current && monthRef.current && yearRef.current) {
+//             scrollToSelected();
+//         }
+//     }, [isVisible, initialDate]);
+//
+//
+//
+//     // Функция для получения количества дней в месяце
+//     const getDaysInMonth = (month: number, year: number) => {
+//         return new Date(year, month + 1, 0).getDate();
+//     };
+//
+//     const handleConfirm = () => {
+//         const year = infiniteYears[centerYearIndex];
+//         const day = infiniteDays[centerDayIndex];
+//         const month = centerMonthIndex % 12;
+//
+//         // Проверяем максимальное количество дней в выбранном месяце
+//         const maxDays = getDaysInMonth(month, year);
+//         const validDay = Math.min(day, maxDays);
+//
+//         const formattedDate = `${validDay.toString().padStart(2, '0')}.${(month + 1).toString().padStart(2, '0')}.${year}`;
+//
+//         setSelectedDay(validDay);
+//         setSelectedMonth(month);
+//         setSelectedYear(year);
+//
+//         onDateSelect(formattedDate);
+//         onClose();
+//     };
+//
+//     const handleScroll = (
+//         ref: React.RefObject<HTMLDivElement | null>,
+//         setValue: (value: number) => void,
+//         items: (number | string)[],
+//         type: 'day' | 'month' | 'year'
+//     ) => {
+//         if (!ref.current) return;
+//
+//         const key = `${type}_scroll`;
+//
+//         if (throttledScrollHandler.current[key]) {
+//             clearTimeout(throttledScrollHandler.current[key]);
+//         }
+//
+//         isScrollingRef.current = true;
+//
+//         throttledScrollHandler.current[key] = setTimeout(() => {
+//             if (!ref.current) return;
+//
+//             const container = ref.current;
+//             const scrollTop = container.scrollTop;
+//             const centerIndex = Math.round(scrollTop / ITEM_HEIGHT);
+//             const clampedIndex = Math.max(0, Math.min(centerIndex, items.length - 1));
+//
+//             const targetScroll = clampedIndex * ITEM_HEIGHT;
+//             container.scrollTo({top: targetScroll, behavior: 'smooth'});
+//
+//             if (type === 'day') {
+//                 const dayValue = items[clampedIndex] as number;
+//                 setValue(dayValue);
+//             } else if (type === 'month') {
+//                 const monthValue = clampedIndex % 12;
+//                 setValue(monthValue);
+//             } else if (type === 'year') {
+//                 const yearValue = items[clampedIndex] as number;
+//                 setValue(yearValue);
+//             }
+//
+//             isScrollingRef.current = false;
+//         }, 100);
+//     };
+//
+//     // Стиль без каких-либо эффектов при скролле
+//     const getItemStyle = () => {
+//         return {
+//             opacity: 1,
+//             transform: 'none',
+//             transformOrigin: 'center center',
+//             pointerEvents: 'auto' as const
+//         };
+//     };
+//
+//     if (!isVisible) return null;
+//     return (
+//         <AnimatePresence>
+//             <motion.div
+//                 key="date-picker"
+//                 initial={{y: 20, opacity: 1}}
+//                 animate={controls}
+//                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
+//                 <div className="w-full max-w-[296px] mx-4">
+//                     <div className="relative h-[253px]">
+//                         <div
+//                             className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[4px] mb-[33px]`}>
+//                         </div>
+//                         <div
+//                             className={` w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[4px] mb-[33px]`}>
+//                         </div>
+//
+//                         {/* Selection indicator - more visible borders */}
+//                         <div
+//                             className={`${styles.datePickerIndicator} w-[274px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
+//                         </div>
+//
+//                         <div
+//                             className="flex  justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[45px] z-[9]">
+//
+//                             {/*Close icon*/}
+//                             <button onClick={onClose}
+//                                     className="absolute top-[-33px] right-[11px] z-[999999] text-[#3D9ED6]  text-base cursor-pointer transition-colors hover:text-[#5BADDB]"
+//                             >
+//                                 <svg
+//                                     className="animated-close"
+//                                     width="14" height="14" viewBox="0 0 14 14" fill="none"
+//                                     xmlns="http://www.w3.org/2000/svg">
+//                                     <g clipPath="url(#clip0_5371_3270)">
+//                                         <mask id="mask0_5371_3270" style={{maskType: 'luminance'}}
+//                                               maskUnits="userSpaceOnUse"
+//                                               x="-1" y="-1" width="16" height="16">
+//                                             <path d="M15 -1H-1V15H15V-1Z" fill="white"/>
+//                                         </mask>
+//                                         <g mask="url(#mask0_5371_3270)">
+//                                             <path
+//                                                 d="M0.636568 2.05093L11.9503 13.3646L13.3645 11.9504L2.05078 0.636719L0.636568 2.05093Z"
+//                                                 fill="#ADADAD"/>
+//                                             <path
+//                                                 d="M2.05093 13.3647L8.41489 7.00069L7.00068 5.58648L0.636719 11.9504L2.05093 13.3647ZM10.5362 4.87937L13.3646 2.05094L11.9504 0.636731L9.122 3.46516L10.5362 4.87937Z"
+//                                                 fill="#ADADAD"/>
+//                                         </g>
+//                                     </g>
+//                                     <defs>
+//                                         <clipPath id="clip0_5371_3270">
+//                                             <rect width="14" height="14" fill="white"/>
+//                                         </clipPath>
+//                                     </defs>
+//                                 </svg>
+//                             </button>
+//                             <div className={`${styles.datePickerHeader}`}></div>
+//
+//                             {/* Day wheel */}
+//                             <div className="w-[25px] relative overflow-hidden">
+//                                 <div
+//                                     ref={dayRef}
+//                                     className="h-full overflow-y-auto"
+//                                     style={{
+//                                         scrollSnapType: 'y mandatory',
+//                                         perspective: '1000px',
+//                                         scrollbarWidth: 'none',
+//                                         msOverflowStyle: 'none',
+//                                         WebkitOverflowScrolling: 'touch'
+//                                     }}
+//                                     onScroll={() => handleScroll(dayRef, setSelectedDay, infiniteDays, 'day')}
+//                                 >
+//                                     <div className="py-20 flex flex-col gap-[15px]">
+//                                         {infiniteDays.map((day, index) => (
+//                                             <div
+//                                                 key={`day-${index}`}
+//                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
+//                                                 ${centerDayIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
+//                                                 }`}
+//                                                 style={{
+//                                                     scrollSnapAlign: 'center',
+//                                                     ...getItemStyle()
+//                                                 }}
+//                                             >
+//                                                 {day}
+//                                             </div>
+//                                         ))}
+//                                     </div>
+//                                 </div>
+//                             </div>
+//
+//                             {/* Month wheel */}
+//                             <div className="w-[100px] relative overflow-hidden">
+//                                 <div
+//                                     ref={monthRef}
+//                                     className="h-full overflow-y-auto"
+//                                     style={{
+//                                         scrollSnapType: 'y mandatory',
+//                                         perspective: '1000px',
+//                                         scrollbarWidth: 'none',
+//                                         msOverflowStyle: 'none',
+//                                         WebkitOverflowScrolling: 'touch'
+//                                     }}
+//                                     onScroll={() => handleScroll(monthRef, setSelectedMonth, infiniteMonths, 'month')}
+//                                 >
+//                                     <div className="py-20 flex flex-col gap-[15px]">
+//                                         {infiniteMonths.map((month, index) => (
+//                                             <div
+//                                                 key={`month-${index}`}
+//                                                 className={`max-h-[20px] flex items-center justify-start text-lg  transition-all duration-200 cursor-pointer select-none
+//                                             ${centerMonthIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
+//                                                 }`}
+//                                                 style={{
+//                                                     scrollSnapAlign: 'center',
+//                                                     ...getItemStyle()
+//                                                 }}
+//                                             >
+//                                                 {month}
+//                                             </div>
+//                                         ))}
+//                                     </div>
+//                                 </div>
+//                             </div>
+//
+//                             {/* Year wheel */}
+//                             <div className="w-[60px] relative overflow-hidden">
+//                                 <div
+//                                     ref={yearRef}
+//                                     className="h-full overflow-y-auto"
+//                                     style={{
+//                                         scrollSnapType: 'y mandatory',
+//                                         perspective: '1000px',
+//                                         scrollbarWidth: 'none',
+//                                         msOverflowStyle: 'none',
+//                                         WebkitOverflowScrolling: 'touch'
+//                                     }}
+//                                     onScroll={() => handleScroll(yearRef, setSelectedYear, infiniteYears, 'year')}
+//                                 >
+//                                     <div className="py-20 flex flex-col gap-[15px]">
+//                                         {infiniteYears.map((year, index) => (
+//                                             <div
+//                                                 key={`year-${index}`}
+//                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
+//                                             ${centerYearIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
+//                                                 }`}
+//                                                 style={{
+//                                                     scrollSnapAlign: 'center',
+//                                                     ...getItemStyle()
+//                                                 }}
+//                                             >
+//                                                 {year}
+//                                             </div>
+//                                         ))}
+//                                     </div>
+//                                 </div>
+//                             </div>
+//
+//                             <div className={`${styles.datePickerFooter}`}></div>
+//
+//                             <button
+//                                 onClick={handleConfirm}
+//                                 className={`${styles['menu-item']} !absolute bottom-[-52px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6] text-base cursor-pointer transition-colors`}
+//                             >
+//                                 Готово
+//                             </button>
+//                         </div>
+//
+//                         {/* Footer */}
+//                         <div
+//                             className={`${styles.datePicker} flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] rounded-[4px] `}>
+//
+//                         </div>
+//
+//                         <div
+//                             className={`absolute bottom-0 w-full flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[4px] `}>
+//
+//                         </div>
+//                     </div>
+//                 </div>
+//             </motion.div>
+//         </AnimatePresence>
+//     );
+// };
+
 
 import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 import styles from '@/app/page.module.scss'
-import {AnimatePresence, motion} from "framer-motion";
+import {AnimatePresence, motion, useAnimation} from "framer-motion";
 
 interface DatePickerProps {
     isVisible: boolean;
@@ -2098,7 +2744,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
     ];
-
+    const controls = useAnimation();
     const currentYear = new Date().getFullYear();
 
     // Create infinite arrays for seamless scrolling
@@ -2143,35 +2789,121 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const monthRef = useRef<HTMLDivElement | null>(null);
     const yearRef = useRef<HTMLDivElement | null>(null);
 
-    // Реализация drag scroll прямо здесь
-    const setupDragScroll = (element: HTMLDivElement) => {
+    const setupDragScroll = (element: HTMLDivElement, itemHeight = 36) => {
         let isDown = false;
         let startY = 0;
         let scrollTop = 0;
+        let velocity = 0;
+        let lastY = 0;
+        let lastTime = 0;
+        let animationFrame: number | null = null;
+        let wheelTimeout: NodeJS.Timeout | null = null;
+
+        const stopMomentumScroll = () => {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+                animationFrame = null;
+            }
+        };
+
+        const snapToNearest = () => {
+            const currentScroll = element.scrollTop;
+            const nearestIndex = Math.round(currentScroll / itemHeight);
+            const targetScroll = nearestIndex * itemHeight;
+
+            element.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+        };
+
+        const momentumScroll = () => {
+            element.scrollTop += velocity;
+            velocity *= 0.975; // трение
+
+            if (Math.abs(velocity) > 0.1) {
+                animationFrame = requestAnimationFrame(momentumScroll);
+            } else {
+                stopMomentumScroll();
+                snapToNearest();
+            }
+        };
 
         const handleStart = (clientY: number) => {
             isDown = true;
             startY = clientY;
+            lastY = clientY;
+            lastTime = performance.now();
             scrollTop = element.scrollTop;
+            velocity = 0;
+            stopMomentumScroll();
             element.style.cursor = 'grabbing';
             element.style.userSelect = 'none';
         };
 
         const handleMove = (clientY: number) => {
             if (!isDown) return;
-            const y = clientY;
-            const walk = (startY - y) * 2;
+
+            const now = performance.now();
+            const deltaY = clientY - lastY;
+            const deltaTime = now - lastTime;
+
+            velocity = deltaY / deltaTime * 16; // px/frame
+
+            lastY = clientY;
+            lastTime = now;
+
+            const walk = (startY - clientY) * 1.5;
             element.scrollTop = scrollTop + walk;
         };
 
         const handleEnd = () => {
+            if (!isDown) return;
             isDown = false;
             element.style.cursor = 'grab';
             element.style.userSelect = '';
+            momentumScroll();
+        };
+
+        // Wheel event handler
+        const handleWheel = (e: WheelEvent) => {
+            // Detect if it's a trackpad (smooth scrolling) or mouse wheel (discrete steps)
+            const isTrackpad = Math.abs(e.deltaY) < 50 && e.deltaMode === 0;
+
+            if (isTrackpad) {
+                // For trackpad, let the drag scroll logic handle it
+                // Don't prevent default, let it scroll naturally
+                return;
+            }
+
+            // For mouse wheel only
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Clear any existing wheel timeout
+            if (wheelTimeout) {
+                clearTimeout(wheelTimeout);
+            }
+
+            stopMomentumScroll();
+
+            // Apply wheel scroll for mouse wheel
+            const delta = e.deltaY;
+            const scrollAmount = delta * 0.8; // Adjust sensitivity for mouse wheel
+            element.scrollTop += scrollAmount;
+
+            // Snap to nearest after wheel scroll stops
+            wheelTimeout = setTimeout(() => {
+                snapToNearest();
+                wheelTimeout = null;
+            }, 200);
         };
 
         // Mouse events
-        const onMouseDown = (e: MouseEvent) => handleStart(e.clientY);
+        const onMouseDown = (e: MouseEvent) => {
+            e.preventDefault();
+            handleStart(e.clientY);
+        };
         const onMouseMove = (e: MouseEvent) => handleMove(e.clientY);
         const onMouseUp = () => handleEnd();
         const onMouseLeave = () => handleEnd();
@@ -2188,15 +2920,22 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         const onTouchEnd = () => handleEnd();
 
         element.style.cursor = 'grab';
+
+        // Add all event listeners
         element.addEventListener('mousedown', onMouseDown);
         element.addEventListener('mousemove', onMouseMove);
         element.addEventListener('mouseup', onMouseUp);
         element.addEventListener('mouseleave', onMouseLeave);
-        element.addEventListener('touchstart', onTouchStart, {passive: false});
-        element.addEventListener('touchmove', onTouchMove, {passive: false});
+        element.addEventListener('touchstart', onTouchStart, { passive: false });
+        element.addEventListener('touchmove', onTouchMove, { passive: false });
         element.addEventListener('touchend', onTouchEnd);
+        element.addEventListener('wheel', handleWheel, { passive: true });
 
         return () => {
+            stopMomentumScroll();
+            if (wheelTimeout) {
+                clearTimeout(wheelTimeout);
+            }
             element.removeEventListener('mousedown', onMouseDown);
             element.removeEventListener('mousemove', onMouseMove);
             element.removeEventListener('mouseup', onMouseUp);
@@ -2204,6 +2943,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             element.removeEventListener('touchstart', onTouchStart);
             element.removeEventListener('touchmove', onTouchMove);
             element.removeEventListener('touchend', onTouchEnd);
+            element.removeEventListener('wheel', handleWheel);
         };
     };
 
@@ -2211,13 +2951,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         const cleanupFunctions: (() => void)[] = [];
 
         if (dayRef.current) {
-            cleanupFunctions.push(setupDragScroll(dayRef.current));
+            cleanupFunctions.push(setupDragScroll(dayRef.current, 28));
         }
         if (monthRef.current) {
-            cleanupFunctions.push(setupDragScroll(monthRef.current));
+            cleanupFunctions.push(setupDragScroll(monthRef.current, 28));
         }
         if (yearRef.current) {
-            cleanupFunctions.push(setupDragScroll(yearRef.current));
+            cleanupFunctions.push(setupDragScroll(yearRef.current, 28));
         }
 
         return () => {
@@ -2325,20 +3065,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     };
 
-    // Обновляем состояние только при открытии датапикера с новой датой
-    // useEffect(() => {
-    //     if (isVisible) {
-    //         const parsed = parseInitialDate(initialDate);
-    //         setSelectedDay(parsed.day);
-    //         setSelectedMonth(parsed.month);
-    //         setSelectedYear(parsed.year);
-    //
-    //         setTimeout(() => {
-    //             scrollToSelected();
-    //         }, 10);
-    //     }
-    // }, [isVisible, initialDate]);
-
     useLayoutEffect(() => {
         const parsed = parseInitialDate(initialDate);
         setSelectedDay(parsed.day);
@@ -2350,8 +3076,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             scrollToSelected();
         }
     }, [isVisible, initialDate]);
-
-
 
     // Функция для получения количества дней в месяце
     const getDaysInMonth = (month: number, year: number) => {
@@ -2434,14 +3158,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         <AnimatePresence>
             <motion.div
                 key="date-picker"
-                initial={{y: -30,}}
-                animate={{y: 0,}}
-                transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 6,
-                    mass: 0.3,
-                }}
+                // initial={{y: 20, opacity: 1}}
+                // animate={controls}
                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
                 <div className="w-full max-w-[296px] mx-4">
                     <div className="relative h-[253px]">
@@ -2511,7 +3229,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`day-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                                ${centerDayIndex === index ? 'text-[#ссс] ' : 'text-[#878787]'
+                                                ${centerDayIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -2544,7 +3262,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`month-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-start text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerMonthIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
+                                            ${centerMonthIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -2577,7 +3295,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`year-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerYearIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
+                                            ${centerYearIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',

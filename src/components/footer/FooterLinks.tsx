@@ -3,9 +3,10 @@ import Link from "next/link";
 import styles from "../../app/page.module.scss";
 import headerStyles from "../../components/header/Header.module.css";
 import {useMouseTracking} from "../hooks/useMouseTracking";
-import {motion, AnimatePresence} from "framer-motion";
+import {motion, AnimatePresence, useAnimation} from "framer-motion";
 import {Check} from "lucide-react";
 import Close from "@/components/closeIcon/close";
+import {bounceActiveBlock} from "@/components/Form/bounce";
 
 const links = [
     {href: "/contacts", label: "Контакты"},
@@ -17,6 +18,7 @@ const links = [
 ];
 
 const FooterLinks: React.FC = () => {
+    const controls = useAnimation();
     const selectRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -34,6 +36,12 @@ const FooterLinks: React.FC = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+
+    const activeTab = "options"
+    useEffect(() => {
+        bounceActiveBlock(activeTab, controls);
+    }, [activeTab, controls]);
 
     // Select
     const [isSelectOpen, setIsSelectOpen] = useState(false);
@@ -221,14 +229,8 @@ const FooterLinks: React.FC = () => {
                             {isSelectOpen && (
                                 <motion.div
                                     key="select-options"
-                                    initial={{opacity: 0, y: -30}}
-                                    animate={{opacity: 1, y: 0}}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 300,
-                                        damping: 6,
-                                        mass: 0.3,
-                                    }}
+                                    initial={{y: 20, opacity: 1}}
+                                    animate={controls}
                                     className={`${styles.selectOption} !bg-[#353535]/10
                   backdrop-blur-[5px]
                   absolute w-[191px] right-0 bottom-[40px] p-[26px] px-[26px] pb-[11px] max-w-[210px] max-h-[300px] overflow-auto mt-1 border border-[#353535] rounded-[4px]`}

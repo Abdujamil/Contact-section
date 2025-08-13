@@ -71,7 +71,6 @@ export default function Contacts() {
         textareaRef,
     } = useFormRefs();
     const [phoneSuccessful, setPhoneSuccessful] = useState(false);
-
     const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
     // Select

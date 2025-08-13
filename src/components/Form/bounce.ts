@@ -39,11 +39,13 @@ const runMotionEffect = (controls: ReturnType<typeof useAnimation>) => {
         },
     });
 };
-export const bounceActiveBlock = (activeTab: 'connection' | 'requisite' | 'login' | 'register' | 'forgot-password', controls: ReturnType<typeof useAnimation>) => {
+export const bounceActiveBlock = (activeTab: 'connection' | 'requisite' | 'login' | 'register' | 'forgot-password' | 'options' | 'dataPicker', controls: ReturnType<typeof useAnimation>) => {
     let block: HTMLElement | null = null;
-    
+
     if (activeTab === 'connection') {
         block = document.getElementById('form-main');
+    } else if (activeTab === 'options') {
+        block = document.getElementById('select-options');
     } else if (activeTab === 'requisite') {
         block = document.getElementById('requisite-block');
     } else if (activeTab === 'login') {
@@ -56,7 +58,7 @@ export const bounceActiveBlock = (activeTab: 'connection' | 'requisite' | 'login
 
     if (block) {
         controls.stop();
-        
+
         // Сброс анимации перед запуском новой
         block.style.animation = 'none';
         void block.offsetHeight; // Trigger reflow
