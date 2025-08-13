@@ -55,7 +55,7 @@ export default function Breadcrumbs({
     return (
         // <nav className="w-full absolute z-[99999999] font-[Rubik] !text-[12px] md:!text-[16px] top-[70px] md:top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
         <nav
-            className="w-full absolute z-[99999999] font-[Rubik] !text-[12px] md:!text-[16px] pt-[10px] md:pt-0 backdrop-blur-[10px] md:backdrop-blur-none top-[60px] md:top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
+            className="w-full absolute md:fixed  z-[99999999] font-[Rubik] !text-[12px] md:!text-[16px] pt-[10px] md:pt-0 backdrop-blur-[10px] md:backdrop-blur-none top-[60px] md:top-[63px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
             <ul className="w-full flex flex-nowrap gap-2 pl-[30px] !text-[12px] md:!text-[16px] mb-2.5 md:mb-0">
                 <li>
                     <Link

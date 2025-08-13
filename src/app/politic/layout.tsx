@@ -80,7 +80,7 @@ export default function OrganizationsLayout({children}: { children: ReactNode })
                         {currentNavItem?.title ?? "Политика"}
                     </h1>
                     <div className="w-full md:grid gap-[40px] grid-cols-[260px_1fr]">
-                        <aside className="md:sticky top-[80px] h-fit z-[10] md:w-[260px] w-[320px] m-auto md:m-0">
+                        <aside className="md:sticky top-[110px] h-fit z-[10] md:w-[260px] w-[320px] m-auto md:m-0">
                             <div
                                 className={`${styles.btns} ${styles.licenseBtns} mb-[20px] flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[20px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
                             >

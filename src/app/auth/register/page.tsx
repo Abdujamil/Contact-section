@@ -128,8 +128,25 @@ export default function RegisterPage() {
         methods.setValue("date", value);
     };
 
+    // Хук для удержания фокуса на инпуте
+    useEffect(() => {
+        const keepFocus = (e: MouseEvent) => {
+            if (showDatePicker && dateInputRef.current) {
+                const target = e.target as HTMLElement;
+                // Если кликнули не по самому инпуту
+                if (target !== dateInputRef.current) {
+                    e.preventDefault(); // Не даём браузеру забрать фокус
+                    dateInputRef.current.focus();
+                }
+            }
+        };
 
-    // ВАЖНО: убираем перерегистрацию полей при каждом рендере
+        document.addEventListener("mousedown", keepFocus, true);
+        return () => document.removeEventListener("mousedown", keepFocus, true);
+    }, [showDatePicker]);
+
+
+    // убираем перерегистрацию полей при каждом рендере
     useEffect(() => {
         register("email", {
             required: "Введите email",
@@ -198,7 +215,7 @@ export default function RegisterPage() {
                                         required={true}
                                     />
 
-                                    <div className={`relative mb-[43px] flex`}>
+                                    <div className={`relative mb-[43px] flex items-center justify-between`}>
                                         <DateInput
                                             ref={dateInputRef}
                                             title="Дата рождения"

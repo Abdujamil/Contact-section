@@ -289,7 +289,7 @@ export default function Editors() {
 
                         <div className={`md:flex gap-[40px] mb-[50px]`}>
                             <aside
-                                className="md:sticky top-[90px] h-fit z-[10] max-w-[320px] md:w-[260px] m-auto mb-5 md:m-0">
+                                className="md:sticky top-[120px] h-fit z-[10] max-w-[320px] md:w-[260px] m-auto mb-5 md:m-0">
                                 <BlogAside items={items} variant="editors"/>
                             </aside>
 

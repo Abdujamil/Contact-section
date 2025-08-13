@@ -233,7 +233,7 @@ export default function FaqPageContent({
                 className="w-full max-w-[1180px] h-auto mx-auto px-[10px] mb-[100px] block md:grid md:grid-cols-4 gap-[40px]">
 
                 <aside
-                    className="md:sticky top-[80px] h-fit max-w-[320px]  md:w-[260px] md:px-0 m-auto md:m-0 backdrop-blur-sm z-[9999]">
+                    className="md:sticky top-[110px] h-fit max-w-[320px]  md:w-[260px] md:px-0 m-auto md:m-0 backdrop-blur-sm z-[9999]">
                     {/* Промо блок */}
                     {showRegisterPromo && (
                         <div

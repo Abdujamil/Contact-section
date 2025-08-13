@@ -132,8 +132,8 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(function Da
     ].filter(Boolean).join(' ');
 
     return (
-        <div className={`relative w-full z-[2] max-h-[51px] ${disable ? 'active:scale-[0.95]' : ''} ${visibleError && (errors[inputName] || fail) && isSubmitted ? 'bounce' : ''} !transition-all !duration-300`}>
-            <label htmlFor={inputName} className={`field ${disable ? 'pointer-events-none' : ''} ${visibleError && (errors[inputName] || fail) && isSubmitted ? 'bounce' : ''}`}>
+        <div className={`relative w-full md:w-[314px] z-[2] max-h-[51px] ${disable ? 'active:scale-[0.95]' : ''} ${visibleError && (errors[inputName] || fail) && isSubmitted ? 'bounce' : ''} !transition-all !duration-300`}>
+            <label htmlFor={inputName}  className={`field ${disable ? 'pointer-events-none' : ''} ${visibleError && (errors[inputName] || fail) && isSubmitted ? 'bounce' : ''}`}>
                 <input
                     id={inputName}
                     {...regProps}
