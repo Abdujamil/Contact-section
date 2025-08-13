@@ -2725,7 +2725,7 @@
 
 import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 import styles from '@/app/page.module.scss'
-import {AnimatePresence, motion, useAnimation} from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 
 interface DatePickerProps {
     isVisible: boolean;
@@ -2744,7 +2744,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
     ];
-    const controls = useAnimation();
+    // const controls = useAnimation();
     const currentYear = new Date().getFullYear();
 
     // Create infinite arrays for seamless scrolling
