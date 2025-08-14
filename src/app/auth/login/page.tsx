@@ -88,7 +88,7 @@ export default function LoginPage() {
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
-                                            className={`${styles['menu-item']}  w-fit mr-4 !max-w-[122px]  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[14px]`}
+                                            className={`${styles['menu-item']}  w-fit mr-4 !max-w-[122px]  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[10px]`}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>

@@ -564,7 +564,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     <button
                         type="button"
                         onClick={() => setShowPasswordInternal(!showPasswordInternal)}
-                        className="active:scale-[.95] flex items-center justify-center max-h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] transition-colors duration-300"
+                        className="active:scale-[.95] flex items-center justify-center h-[51px] w-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] bg-[#101010] hover:bg-[#20272A] hover:border-[#737373] transition-colors duration-300"
                         aria-label={showPasswordInternal ? "Hide password" : "Show password"}
                         tabIndex={-1}
                     >

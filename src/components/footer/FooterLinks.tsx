@@ -228,8 +228,9 @@ const FooterLinks: React.FC = () => {
                         <AnimatePresence>
                             {isSelectOpen && (
                                 <motion.div
+                                    id="select-options"
                                     key="select-options"
-                                    initial={{y: 20, opacity: 1}}
+                                    initial={{y: 0, opacity: 1}}
                                     animate={controls}
                                     className={`${styles.selectOption} !bg-[#353535]/10
                   backdrop-blur-[5px]

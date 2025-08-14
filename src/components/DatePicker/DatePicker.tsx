@@ -2081,6 +2081,8 @@
 // import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 // import styles from '@/app/page.module.scss'
 // import {AnimatePresence, motion, useAnimation} from "framer-motion";
+// import gsap from "gsap";
+// import { Observer } from "gsap/Observer";
 //
 // interface DatePickerProps {
 //     isVisible: boolean;
@@ -2099,6 +2101,8 @@
 //         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
 //         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
 //     ];
+//
+//     gsap.registerPlugin(Observer);
 //     const controls = useAnimation();
 //     const currentYear = new Date().getFullYear();
 //
@@ -2113,14 +2117,14 @@
 //
 //     // Create static days array (1-31, without month dependency)
 //     const baseDays = Array.from({length: 31}, (_, i) => i + 1);
-//     const infiniteDays = createInfiniteArray(baseDays, 20);
+//     const infiniteDays = createInfiniteArray(baseDays, 2);
 //
 //     // Months repeated
-//     const infiniteMonths = createInfiniteArray(months, 20);
+//     const infiniteMonths = createInfiniteArray(months, 2);
 //
 //     // Years from 1900
 //     const baseYears = Array.from({length: currentYear - 1900 + 1}, (_, i) => currentYear - i).filter(year => year >= 1900);
-//     const infiniteYears = createInfiniteArray(baseYears, 20);
+//     const infiniteYears = createInfiniteArray(baseYears, 1);
 //
 //     const parseInitialDate = (dateString?: string) => {
 //         if (!dateString) return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
@@ -2144,71 +2148,10 @@
 //     const monthRef = useRef<HTMLDivElement | null>(null);
 //     const yearRef = useRef<HTMLDivElement | null>(null);
 //
+//     const isScrollingRef = useRef(false);
+//     const ITEM_HEIGHT = 28;
+//
 //     // Реализация drag scroll
-//
-//     // const setupDragScroll = (element: HTMLDivElement) => {
-//     //     let isDown = false;
-//     //     let startY = 0;
-//     //     let scrollTop = 0;
-//     //
-//     //     const handleStart = (clientY: number) => {
-//     //         isDown = true;
-//     //         startY = clientY;
-//     //         scrollTop = element.scrollTop;
-//     //         element.style.cursor = 'grabbing';
-//     //         element.style.userSelect = 'none';
-//     //     };
-//     //
-//     //     const handleMove = (clientY: number) => {
-//     //         if (!isDown) return;
-//     //         const y = clientY;
-//     //         const walk = (startY - y) * 2;
-//     //         element.scrollTop = scrollTop + walk;
-//     //     };
-//     //
-//     //     const handleEnd = () => {
-//     //         isDown = false;
-//     //         element.style.cursor = 'grab';
-//     //         element.style.userSelect = '';
-//     //     };
-//     //
-//     //     // Mouse events
-//     //     const onMouseDown = (e: MouseEvent) => handleStart(e.clientY);
-//     //     const onMouseMove = (e: MouseEvent) => handleMove(e.clientY);
-//     //     const onMouseUp = () => handleEnd();
-//     //     const onMouseLeave = () => handleEnd();
-//     //
-//     //     // Touch events
-//     //     const onTouchStart = (e: TouchEvent) => {
-//     //         e.preventDefault();
-//     //         handleStart(e.touches[0].clientY);
-//     //     };
-//     //     const onTouchMove = (e: TouchEvent) => {
-//     //         e.preventDefault();
-//     //         handleMove(e.touches[0].clientY);
-//     //     };
-//     //     const onTouchEnd = () => handleEnd();
-//     //
-//     //     element.style.cursor = 'grab';
-//     //     element.addEventListener('mousedown', onMouseDown);
-//     //     element.addEventListener('mousemove', onMouseMove);
-//     //     element.addEventListener('mouseup', onMouseUp);
-//     //     element.addEventListener('mouseleave', onMouseLeave);
-//     //     element.addEventListener('touchstart', onTouchStart, {passive: false});
-//     //     element.addEventListener('touchmove', onTouchMove, {passive: false});
-//     //     element.addEventListener('touchend', onTouchEnd);
-//     //
-//     //     return () => {
-//     //         element.removeEventListener('mousedown', onMouseDown);
-//     //         element.removeEventListener('mousemove', onMouseMove);
-//     //         element.removeEventListener('mouseup', onMouseUp);
-//     //         element.removeEventListener('mouseleave', onMouseLeave);
-//     //         element.removeEventListener('touchstart', onTouchStart);
-//     //         element.removeEventListener('touchmove', onTouchMove);
-//     //         element.removeEventListener('touchend', onTouchEnd);
-//     //     };
-//     // };
-//
 //     const setupDragScroll = (element: HTMLDivElement, itemHeight = 36) => {
 //         let isDown = false;
 //         let startY = 0;
@@ -2316,28 +2259,6 @@
 //         };
 //     };
 //
-//     useEffect(() => {
-//         const cleanupFunctions: (() => void)[] = [];
-//
-//         if (dayRef.current) {
-//             cleanupFunctions.push(setupDragScroll(dayRef.current, 28));
-//         }
-//         if (monthRef.current) {
-//             cleanupFunctions.push(setupDragScroll(monthRef.current, 28));
-//         }
-//         if (yearRef.current) {
-//             cleanupFunctions.push(setupDragScroll(yearRef.current, 28));
-//         }
-//
-//         return () => {
-//             cleanupFunctions.forEach(cleanup => cleanup());
-//         };
-//     }, [isVisible]);
-//
-//
-//     const isScrollingRef = useRef(false);
-//     const ITEM_HEIGHT = 28;
-//
 //     // Вычисляем центральные индексы только один раз при открытии
 //     const [centerDayIndex, setCenterDayIndex] = useState(() => {
 //         const middleIndex = Math.floor(infiniteDays.length / 2);
@@ -2382,30 +2303,6 @@
 //         return closestIndex;
 //     };
 //
-//     useEffect(() => {
-//         const handleScrollCheck = () => {
-//             if (!isScrollingRef.current) {
-//                 if (dayRef.current) {
-//                     const index = getCenteredIndex(dayRef.current);
-//                     if (index !== -1) setCenterDayIndex(index);
-//                 }
-//                 if (monthRef.current) {
-//                     const index = getCenteredIndex(monthRef.current);
-//                     if (index !== -1) setCenterMonthIndex(index);
-//                 }
-//                 if (yearRef.current) {
-//                     const index = getCenteredIndex(yearRef.current);
-//                     if (index !== -1) setCenterYearIndex(index);
-//                 }
-//             }
-//             requestAnimationFrame(handleScrollCheck);
-//         };
-//
-//         if (isVisible) {
-//             handleScrollCheck();
-//         }
-//     }, [isVisible]);
-//
 //     const scrollToSelected = () => {
 //         if (dayRef.current) {
 //             const middleIndex = Math.floor(infiniteDays.length / 2);
@@ -2436,6 +2333,7 @@
 //     };
 //
 //     // Обновляем состояние только при открытии датапикера с новой датой
+//
 //     // useEffect(() => {
 //     //     if (isVisible) {
 //     //         const parsed = parseInitialDate(initialDate);
@@ -2461,7 +2359,47 @@
 //         }
 //     }, [isVisible, initialDate]);
 //
+//     useEffect(() => {
+//         const cleanupFunctions: (() => void)[] = [];
 //
+//         if (dayRef.current) {
+//             cleanupFunctions.push(setupDragScroll(dayRef.current, 28));
+//         }
+//         if (monthRef.current) {
+//             cleanupFunctions.push(setupDragScroll(monthRef.current, 28));
+//         }
+//         if (yearRef.current) {
+//             cleanupFunctions.push(setupDragScroll(yearRef.current, 28));
+//         }
+//
+//         return () => {
+//             cleanupFunctions.forEach(cleanup => cleanup());
+//         };
+//     }, [isVisible]);
+//
+//     useEffect(() => {
+//         const handleScrollCheck = () => {
+//             if (!isScrollingRef.current) {
+//                 if (dayRef.current) {
+//                     const index = getCenteredIndex(dayRef.current);
+//                     if (index !== -1) setCenterDayIndex(index);
+//                 }
+//                 if (monthRef.current) {
+//                     const index = getCenteredIndex(monthRef.current);
+//                     if (index !== -1) setCenterMonthIndex(index);
+//                 }
+//                 if (yearRef.current) {
+//                     const index = getCenteredIndex(yearRef.current);
+//                     if (index !== -1) setCenterYearIndex(index);
+//                 }
+//             }
+//             requestAnimationFrame(handleScrollCheck);
+//         };
+//
+//         if (isVisible) {
+//             handleScrollCheck();
+//         }
+//     }, [isVisible]);
 //
 //     // Функция для получения количества дней в месяце
 //     const getDaysInMonth = (month: number, year: number) => {
@@ -2539,12 +2477,13 @@
 //         };
 //     };
 //
+//
 //     if (!isVisible) return null;
 //     return (
 //         <AnimatePresence>
 //             <motion.div
 //                 key="date-picker"
-//                 initial={{y: 20, opacity: 1}}
+//                 initial={{y: 0, opacity: 1}}
 //                 animate={controls}
 //                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
 //                 <div className="w-full max-w-[296px] mx-4">
@@ -2725,7 +2664,10 @@
 
 import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 import styles from '@/app/page.module.scss'
-import {AnimatePresence, motion} from "framer-motion";
+import {AnimatePresence, motion, useAnimation} from "framer-motion";
+import gsap from "gsap";
+import { Observer } from "gsap/Observer";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 interface DatePickerProps {
     isVisible: boolean;
@@ -2744,11 +2686,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
     ];
-    // const controls = useAnimation();
+
+    gsap.registerPlugin(Observer);
+    gsap.registerPlugin(Observer, ScrollToPlugin);
+    const controls = useAnimation();
     const currentYear = new Date().getFullYear();
 
-    // Create infinite arrays for seamless scrolling
-    const createInfiniteArray = <T, >(baseArray: T[], repeatCount: number = 10): T[] => {
+    // Create infinite arrays for seamless scrolling - оптимизированная версия
+    const createInfiniteArray = <T, >(baseArray: T[], repeatCount: number = 2): T[] => {
         const result: T[] = [];
         for (let i = 0; i < repeatCount; i++) {
             result.push(...baseArray);
@@ -2758,14 +2703,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     // Create static days array (1-31, without month dependency)
     const baseDays = Array.from({length: 31}, (_, i) => i + 1);
-    const infiniteDays = createInfiniteArray(baseDays, 20);
+    const infiniteDays = createInfiniteArray(baseDays, 2);
 
     // Months repeated
-    const infiniteMonths = createInfiniteArray(months, 20);
+    const infiniteMonths = createInfiniteArray(months, 2);
 
-    // Years from 1900
+    // Years from 1900 - только одна копия как ты просил
     const baseYears = Array.from({length: currentYear - 1900 + 1}, (_, i) => currentYear - i).filter(year => year >= 1900);
-    const infiniteYears = createInfiniteArray(baseYears, 20);
+    const infiniteYears = createInfiniteArray(baseYears, 1);
 
     const parseInitialDate = (dateString?: string) => {
         if (!dateString) return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
@@ -2789,7 +2734,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const monthRef = useRef<HTMLDivElement | null>(null);
     const yearRef = useRef<HTMLDivElement | null>(null);
 
-    const setupDragScroll = (element: HTMLDivElement, itemHeight = 36) => {
+    const isScrollingRef = useRef(false);
+    const ITEM_HEIGHT = 28;
+
+    const setupDragScroll = <T,> (element: HTMLDivElement, itemHeight = 28, itemsArray?: T[]) => {
         let isDown = false;
         let startY = 0;
         let scrollTop = 0;
@@ -2797,13 +2745,38 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         let lastY = 0;
         let lastTime = 0;
         let animationFrame: number | null = null;
-        let wheelTimeout: NodeJS.Timeout | null = null;
+
+        const totalHeight = itemsArray ? itemsArray.length * itemHeight : 0;
+        const bufferHeight = totalHeight * 0.15; // Уменьшил буфер до 15%
 
         const stopMomentumScroll = () => {
             if (animationFrame) {
                 cancelAnimationFrame(animationFrame);
                 animationFrame = null;
             }
+        };
+
+        // Функция для бесконечного скролла
+        const checkInfiniteScroll = () => {
+            if (!itemsArray || itemsArray.length <= 31) return element.scrollTop;
+
+            const currentScroll = element.scrollTop;
+
+            // Если приближаемся к началу, плавно перемещаем в конец
+            if (currentScroll < bufferHeight) {
+                const newPosition = currentScroll + (totalHeight - bufferHeight * 2);
+                element.scrollTop = newPosition;
+                return newPosition;
+            }
+
+            // Если приближаемся к концу, плавно перемещаем в начало
+            if (currentScroll > totalHeight - bufferHeight) {
+                const newPosition = currentScroll - (totalHeight - bufferHeight * 2);
+                element.scrollTop = newPosition;
+                return newPosition;
+            }
+
+            return currentScroll;
         };
 
         const snapToNearest = () => {
@@ -2819,6 +2792,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
         const momentumScroll = () => {
             element.scrollTop += velocity;
+
+            // Проверяем бесконечный скролл после изменения позиции
+            checkInfiniteScroll();
+
             velocity *= 0.975; // трение
 
             if (Math.abs(velocity) > 0.1) {
@@ -2855,6 +2832,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
             const walk = (startY - clientY) * 1.5;
             element.scrollTop = scrollTop + walk;
+
+            // Проверяем бесконечный скролл во время движения
+            checkInfiniteScroll();
         };
 
         const handleEnd = () => {
@@ -2865,77 +2845,28 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             momentumScroll();
         };
 
-        // Wheel event handler
-        const handleWheel = (e: WheelEvent) => {
-            // Detect if it's a trackpad (smooth scrolling) or mouse wheel (discrete steps)
-            const isTrackpad = Math.abs(e.deltaY) < 50 && e.deltaMode === 0;
-
-            if (isTrackpad) {
-                // For trackpad, let the drag scroll logic handle it
-                // Don't prevent default, let it scroll naturally
-                return;
-            }
-
-            // For mouse wheel only
-            e.preventDefault();
-            e.stopPropagation();
-
-            // Clear any existing wheel timeout
-            if (wheelTimeout) {
-                clearTimeout(wheelTimeout);
-            }
-
-            stopMomentumScroll();
-
-            // Apply wheel scroll for mouse wheel
-            const delta = e.deltaY;
-            const scrollAmount = delta * 0.8; // Adjust sensitivity for mouse wheel
-            element.scrollTop += scrollAmount;
-
-            // Snap to nearest after wheel scroll stops
-            wheelTimeout = setTimeout(() => {
-                snapToNearest();
-                wheelTimeout = null;
-            }, 200);
-        };
-
         // Mouse events
-        const onMouseDown = (e: MouseEvent) => {
-            e.preventDefault();
-            handleStart(e.clientY);
-        };
+        const onMouseDown = (e: MouseEvent) => handleStart(e.clientY);
         const onMouseMove = (e: MouseEvent) => handleMove(e.clientY);
         const onMouseUp = () => handleEnd();
         const onMouseLeave = () => handleEnd();
 
         // Touch events
-        const onTouchStart = (e: TouchEvent) => {
-            e.preventDefault();
-            handleStart(e.touches[0].clientY);
-        };
-        const onTouchMove = (e: TouchEvent) => {
-            e.preventDefault();
-            handleMove(e.touches[0].clientY);
-        };
+        const onTouchStart = (e: TouchEvent) => handleStart(e.touches[0].clientY);
+        const onTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientY);
         const onTouchEnd = () => handleEnd();
 
         element.style.cursor = 'grab';
-
-        // Add all event listeners
         element.addEventListener('mousedown', onMouseDown);
         element.addEventListener('mousemove', onMouseMove);
         element.addEventListener('mouseup', onMouseUp);
         element.addEventListener('mouseleave', onMouseLeave);
-        element.addEventListener('touchstart', onTouchStart, { passive: false });
-        element.addEventListener('touchmove', onTouchMove, { passive: false });
+        element.addEventListener('touchstart', onTouchStart, { passive: true });
+        element.addEventListener('touchmove', onTouchMove, { passive: true });
         element.addEventListener('touchend', onTouchEnd);
-        element.addEventListener('wheel', handleWheel, { passive: true });
 
         return () => {
             stopMomentumScroll();
-            if (wheelTimeout) {
-                clearTimeout(wheelTimeout);
-            }
             element.removeEventListener('mousedown', onMouseDown);
             element.removeEventListener('mousemove', onMouseMove);
             element.removeEventListener('mouseup', onMouseUp);
@@ -2943,30 +2874,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             element.removeEventListener('touchstart', onTouchStart);
             element.removeEventListener('touchmove', onTouchMove);
             element.removeEventListener('touchend', onTouchEnd);
-            element.removeEventListener('wheel', handleWheel);
         };
     };
-
-    useEffect(() => {
-        const cleanupFunctions: (() => void)[] = [];
-
-        if (dayRef.current) {
-            cleanupFunctions.push(setupDragScroll(dayRef.current, 28));
-        }
-        if (monthRef.current) {
-            cleanupFunctions.push(setupDragScroll(monthRef.current, 28));
-        }
-        if (yearRef.current) {
-            cleanupFunctions.push(setupDragScroll(yearRef.current, 28));
-        }
-
-        return () => {
-            cleanupFunctions.forEach(cleanup => cleanup());
-        };
-    }, [isVisible]);
-
-    const isScrollingRef = useRef(false);
-    const ITEM_HEIGHT = 28;
 
     // Вычисляем центральные индексы только один раз при открытии
     const [centerDayIndex, setCenterDayIndex] = useState(() => {
@@ -3012,30 +2921,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         return closestIndex;
     };
 
-    useEffect(() => {
-        const handleScrollCheck = () => {
-            if (!isScrollingRef.current) {
-                if (dayRef.current) {
-                    const index = getCenteredIndex(dayRef.current);
-                    if (index !== -1) setCenterDayIndex(index);
-                }
-                if (monthRef.current) {
-                    const index = getCenteredIndex(monthRef.current);
-                    if (index !== -1) setCenterMonthIndex(index);
-                }
-                if (yearRef.current) {
-                    const index = getCenteredIndex(yearRef.current);
-                    if (index !== -1) setCenterYearIndex(index);
-                }
-            }
-            requestAnimationFrame(handleScrollCheck);
-        };
-
-        if (isVisible) {
-            handleScrollCheck();
-        }
-    }, [isVisible]);
-
     const scrollToSelected = () => {
         if (dayRef.current) {
             const middleIndex = Math.floor(infiniteDays.length / 2);
@@ -3077,6 +2962,48 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     }, [isVisible, initialDate]);
 
+    useEffect(() => {
+        const cleanupFunctions: (() => void)[] = [];
+
+        if (dayRef.current) {
+            cleanupFunctions.push(setupDragScroll(dayRef.current, 28, infiniteDays));
+        }
+        if (monthRef.current) {
+            cleanupFunctions.push(setupDragScroll(monthRef.current, 28, infiniteMonths));
+        }
+        if (yearRef.current) {
+            cleanupFunctions.push(setupDragScroll(yearRef.current, 28, infiniteYears));
+        }
+
+        return () => {
+            cleanupFunctions.forEach(cleanup => cleanup());
+        };
+    }, [isVisible]);
+
+    useEffect(() => {
+        const handleScrollCheck = () => {
+            if (!isScrollingRef.current) {
+                if (dayRef.current) {
+                    const index = getCenteredIndex(dayRef.current);
+                    if (index !== -1) setCenterDayIndex(index);
+                }
+                if (monthRef.current) {
+                    const index = getCenteredIndex(monthRef.current);
+                    if (index !== -1) setCenterMonthIndex(index);
+                }
+                if (yearRef.current) {
+                    const index = getCenteredIndex(yearRef.current);
+                    if (index !== -1) setCenterYearIndex(index);
+                }
+            }
+            requestAnimationFrame(handleScrollCheck);
+        };
+
+        if (isVisible) {
+            handleScrollCheck();
+        }
+    }, [isVisible]);
+
     // Функция для получения количества дней в месяце
     const getDaysInMonth = (month: number, year: number) => {
         return new Date(year, month + 1, 0).getDate();
@@ -3101,6 +3028,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         onClose();
     };
 
+    // 2. Исправь функцию handleScroll (замени на эту версию):
     const handleScroll = (
         ref: React.RefObject<HTMLDivElement | null>,
         setValue: (value: number) => void,
@@ -3124,9 +3052,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             const scrollTop = container.scrollTop;
             const centerIndex = Math.round(scrollTop / ITEM_HEIGHT);
             const clampedIndex = Math.max(0, Math.min(centerIndex, items.length - 1));
-
-            const targetScroll = clampedIndex * ITEM_HEIGHT;
-            container.scrollTo({top: targetScroll, behavior: 'smooth'});
 
             if (type === 'day') {
                 const dayValue = items[clampedIndex] as number;
@@ -3154,12 +3079,13 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     };
 
     if (!isVisible) return null;
+
     return (
         <AnimatePresence>
             <motion.div
                 key="date-picker"
-                // initial={{y: 20, opacity: 1}}
-                // animate={controls}
+                initial={{y: 0, opacity: 1}}
+                animate={controls}
                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]">
                 <div className="w-full max-w-[296px] mx-4">
                     <div className="relative h-[253px]">
@@ -3335,3 +3261,209 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         </AnimatePresence>
     );
 };
+
+// import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
+// import styles from '@/app/page.module.scss'
+// import {AnimatePresence, motion, useAnimation} from "framer-motion";
+// import gsap from "gsap";
+// import {Observer} from "gsap/Observer";
+// import InfiniteWheel from "@/components/ScrollBar/InfiniteWheel";
+//
+// interface DatePickerProps {
+//     isVisible: boolean;
+//     onDateSelect: (date: string) => void;
+//     onClose: () => void;
+//     initialDate?: string;
+// }
+//
+// export const DatePicker: React.FC<DatePickerProps> = ({
+//                                                           isVisible,
+//                                                           onDateSelect,
+//                                                           onClose,
+//                                                           initialDate
+//                                                       }) => {
+//     const months = [
+//         'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+//         'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+//     ];
+//
+//     gsap.registerPlugin(Observer);
+//     const controls = useAnimation();
+//     const currentYear = new Date().getFullYear();
+//
+//     const parseInitialDate = (dateString?: string) => {
+//         if (!dateString) return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
+//
+//         const parts = dateString.split('.');
+//         if (parts.length === 3) {
+//             const day = parseInt(parts[0]) || 1;
+//             const month = (parseInt(parts[1]) || 1) - 1;
+//             const year = Math.max(1900, parseInt(parts[2]) || currentYear - 25);
+//             return {day, month, year};
+//         }
+//         return {day: 1, month: 0, year: Math.max(1900, currentYear - 25)};
+//     };
+//
+//     const initial = parseInitialDate(initialDate);
+//     const [selectedDay, setSelectedDay] = useState(initial.day);
+//     const [selectedMonth, setSelectedMonth] = useState(initial.month);
+//     const [selectedYear, setSelectedYear] = useState(initial.year);
+//
+//     // Создаем массивы для колес
+//     const days = Array.from({length: 31}, (_, i) => String(i + 1).padStart(2, "0"));
+//     const years = Array.from({length: currentYear - 1900 + 1}, (_, i) => String(currentYear - i));
+//     const monthStrings = months;
+//
+//     // Функция для получения количества дней в месяце
+//     const getDaysInMonth = (month: number, year: number) => {
+//         return new Date(year, month + 1, 0).getDate();
+//     };
+//
+//     // Обработчики выбора для каждого колеса
+//     const handleDaySelect = (dayStr: string) => {
+//         const day = parseInt(dayStr);
+//         setSelectedDay(day);
+//     };
+//
+//     const handleMonthSelect = (monthStr: string) => {
+//         const monthIndex = months.indexOf(monthStr);
+//         setSelectedMonth(monthIndex);
+//     };
+//
+//     const handleYearSelect = (yearStr: string) => {
+//         const year = parseInt(yearStr);
+//         setSelectedYear(year);
+//     };
+//
+//     const handleConfirm = () => {
+//         // Проверяем максимальное количество дней в выбранном месяце
+//         const maxDays = getDaysInMonth(selectedMonth, selectedYear);
+//         const validDay = Math.min(selectedDay, maxDays);
+//
+//         const formattedDate = `${validDay.toString().padStart(2, '0')}.${(selectedMonth + 1).toString().padStart(2, '0')}.${selectedYear}`;
+//
+//         // Обновляем состояние с валидным днем
+//         setSelectedDay(validDay);
+//
+//         // Передаем отформатированную дату
+//         onDateSelect(formattedDate);
+//         onClose();
+//     };
+//
+//     // Обновляем состояние при изменении initialDate
+//     useEffect(() => {
+//         if (isVisible) {
+//             const parsed = parseInitialDate(initialDate);
+//             setSelectedDay(parsed.day);
+//             setSelectedMonth(parsed.month);
+//             setSelectedYear(parsed.year);
+//         }
+//     }, [isVisible, initialDate]);
+//
+//     if (!isVisible) return null;
+//
+//     return (
+//         <AnimatePresence>
+//             <motion.div
+//                 key="date-picker"
+//                 initial={{y: 0, opacity: 1}}
+//                 animate={controls}
+//                 className="w-[310px] !font-[Rubik] absolute z-[99] top-auto bottom-[59.5%] md:bottom-[25.8%] left-[2.94%] md:left-[3.94%]"
+//             >
+//                 <div className="w-full max-w-[296px] mx-4">
+//                     <div className="relative h-[253px]">
+//                         {/* Фон датапикера */}
+//                         <div
+//                             className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[4px] mb-[33px]`}/>
+//
+//                         {/* Selection indicator - more visible borders */}
+//                         <div
+//                             className={`${styles.datePickerIndicator} w-[274px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
+//                         </div>
+//                         <div
+//                             className="w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[4px] mb-[33px]"/>
+//
+//                         {/* Контейнер с колесами */}
+//                         <div
+//                             className="flex justify-center gap-[20px] w-full h-full max-h-[160px] absolute top-[45px] z-[9]">
+//
+//                             {/* Кнопка закрытия */}
+//                             <button
+//                                 onClick={onClose}
+//                                 className="absolute top-[-33px] right-[11px] z-[999999] text-[#3D9ED6] text-base cursor-pointer transition-colors hover:text-[#5BADDB]"
+//                             >
+//                                 <svg
+//                                     className="animated-close"
+//                                     width="14" height="14" viewBox="0 0 14 14" fill="none"
+//                                     xmlns="http://www.w3.org/2000/svg"
+//                                 >
+//                                     <g clipPath="url(#clip0_5371_3270)">
+//                                         <mask id="mask0_5371_3270" style={{maskType: 'luminance'}}
+//                                               maskUnits="userSpaceOnUse" x="-1" y="-1" width="16" height="16">
+//                                             <path d="M15 -1H-1V15H15V-1Z" fill="white"/>
+//                                         </mask>
+//                                         <g mask="url(#mask0_5371_3270)">
+//                                             <path
+//                                                 d="M0.636568 2.05093L11.9503 13.3646L13.3645 11.9504L2.05078 0.636719L0.636568 2.05093Z"
+//                                                 fill="#ADADAD"/>
+//                                             <path
+//                                                 d="M2.05093 13.3647L8.41489 7.00069L7.00068 5.58648L0.636719 11.9504L2.05093 13.3647ZM10.5362 4.87937L13.3646 2.05094L11.9504 0.636731L9.122 3.46516L10.5362 4.87937Z"
+//                                                 fill="#ADADAD"/>
+//                                         </g>
+//                                     </g>
+//                                     <defs>
+//                                         <clipPath id="clip0_5371_3270">
+//                                             <rect width="14" height="14" fill="white"/>
+//                                         </clipPath>
+//                                     </defs>
+//                                 </svg>
+//                             </button>
+//
+//                             {/* День */}
+//                             <div className="w-[60px]">
+//                                 <InfiniteWheel
+//                                     items={days}
+//                                     onSelect={handleDaySelect}
+//                                     initialIndex={selectedDay - 1}
+//                                 />
+//                             </div>
+//
+//                             {/* Месяц */}
+//                             <div className="w-[100px]">
+//                                 <InfiniteWheel
+//                                     items={monthStrings}
+//                                     onSelect={handleMonthSelect}
+//                                     initialIndex={selectedMonth}
+//                                 />
+//                             </div>
+//
+//                             {/* Год */}
+//                             <div className="w-[60px]">
+//                                 <InfiniteWheel
+//                                     items={years}
+//                                     onSelect={handleYearSelect}
+//                                     initialIndex={years.indexOf(String(selectedYear))}
+//                                 />
+//                             </div>
+//
+//                             {/* Кнопка подтверждения */}
+//                             <button
+//                                 onClick={handleConfirm}
+//                                 className={`${styles['menu-item']} !absolute bottom-[-52px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6] text-base cursor-pointer transition-colors`}
+//                             >
+//                                 Готово
+//                             </button>
+//                         </div>
+//
+//
+//                         {/* Нижний фон */}
+//                         <div
+//                             className={`${styles.datePicker} flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] rounded-[4px]`}/>
+//                         <div
+//                             className="absolute bottom-0 w-full flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[4px]"/>
+//                     </div>
+//                 </div>
+//             </motion.div>
+//         </AnimatePresence>
+//     );
+// };

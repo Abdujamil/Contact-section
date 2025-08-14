@@ -54,6 +54,8 @@ export const bounceActiveBlock = (activeTab: 'connection' | 'requisite' | 'login
         block = document.getElementById('auth-register');
     } else if (activeTab === 'forgot-password') {
         block = document.getElementById('auth-forgot-password');
+    } else if (activeTab === 'dataPicker') {
+        block = document.getElementById('date-picker');
     }
 
     if (block) {
