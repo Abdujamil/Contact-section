@@ -2668,6 +2668,7 @@ import {AnimatePresence, motion, useAnimation} from "framer-motion";
 import gsap from "gsap";
 import { Observer } from "gsap/Observer";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import {bounceActiveBlock} from "@/components/Form/bounce";
 
 interface DatePickerProps {
     isVisible: boolean;
@@ -3078,11 +3079,23 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         };
     };
 
+    useEffect(() => {
+        if (isVisible) {
+            // Небольшая задержка чтобы элемент успел появиться в DOM
+            const timer = setTimeout(() => {
+                bounceActiveBlock('dataPicker', controls);
+            }, 10);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isVisible, controls]);
+
     if (!isVisible) return null;
 
     return (
         <AnimatePresence>
             <motion.div
+                id={`date-picker`}
                 key="date-picker"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}

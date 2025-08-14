@@ -108,13 +108,6 @@
     opacity: 1;
 }
 
-.login-button span {
-    color: inherit;
-    /*transition: color 0.08s ease;*/
-    /*transform: translateY(-0.06em);*/
-    /*margin-top: 1.5px;*/
-}
-
 .menu-item-active {
     color: #3d9ed6;
     font-size: 18px;
@@ -140,8 +133,12 @@
 }
 
 .menu-item-active:active {
+    transform: scale(0.95);
+    transform-origin: center;
+    will-change: transform, color;
+    transition: transform 0.08s ease;
     color: #4a738c;
-    border-color: #737373;
+    background: none;
 }
 
 .menu-item-active::after {
@@ -177,6 +174,45 @@
     background: none;
 }
 
+.menu-item-active:active span,
+.menu-item-active.fast-click span {
+    color: #4a738c !important;
+    transition: color 0.08s ease, -webkit-text-fill-color 0.08s ease;
+    will-change: color, -webkit-text-fill-color;
+    background: none !important;
+    -webkit-background-clip: none !important;
+    background-clip: none !important;
+    -webkit-text-fill-color: #4a738c !important;
+}
+
+.menu-item-active:active::before,
+.menu-item-active.fast-click::before {
+    color: #4a738c !important;
+    transition: color 0.08s ease, -webkit-text-fill-color 0.08s ease;
+    will-change: color, -webkit-text-fill-color;
+    background: none !important;
+    -webkit-background-clip: none !important;
+    background-clip: none !important;
+    -webkit-text-fill-color: #4a738c !important;
+}
+
+.menu-item-active:active::after,
+.menu-item-active.fast-click::after {
+    opacity: 1;
+}
+
+.menu-item-active:hover {
+    color: #3d9ed6;
+    border-color: #737373;
+}
+
+
+.login-button span {
+    color: inherit;
+    /*transition: color 0.08s ease;*/
+    /*transform: translateY(-0.06em);*/
+    /*margin-top: 1.5px;*/
+}
 /* Кнопка входа */
 .login-button {
     /*font-family: "Rubik" !important;*/
@@ -285,46 +321,6 @@ footer .login-button {
     background: none;
 }
 
-.menu-item-active:active {
-    transform: scale(0.95);
-    transform-origin: center;
-    will-change: transform, color;
-    transition: transform 0.08s ease;
-    color: #4a738c;
-    background: none;
-}
-
-.menu-item-active:active span,
-.menu-item-active.fast-click span {
-    color: #4a738c !important;
-    transition: color 0.08s ease, -webkit-text-fill-color 0.08s ease;
-    will-change: color, -webkit-text-fill-color;
-    background: none !important;
-    -webkit-background-clip: none !important;
-    background-clip: none !important;
-    -webkit-text-fill-color: #4a738c !important;
-}
-
-.menu-item-active:active::before,
-.menu-item-active.fast-click::before {
-    color: #4a738c !important;
-    transition: color 0.08s ease, -webkit-text-fill-color 0.08s ease;
-    will-change: color, -webkit-text-fill-color;
-    background: none !important;
-    -webkit-background-clip: none !important;
-    background-clip: none !important;
-    -webkit-text-fill-color: #4a738c !important;
-}
-
-.menu-item-active:active::after,
-.menu-item-active.fast-click::after {
-    opacity: 1;
-}
-
-.menu-item-active:hover {
-    color: #3d9ed6;
-    border-color: #737373;
-}
 
 .login-button:active .login-icon,
 .login-button.fast-click .login-icon {

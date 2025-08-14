@@ -37,12 +37,6 @@ const FooterLinks: React.FC = () => {
         };
     }, []);
 
-
-    const activeTab = "options"
-    useEffect(() => {
-        bounceActiveBlock(activeTab, controls);
-    }, [activeTab, controls]);
-
     // Select
     const [isSelectOpen, setIsSelectOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<string>("");
@@ -67,6 +61,16 @@ const FooterLinks: React.FC = () => {
             setTimeout(() => setCopied(false), 2000);
         });
     };
+
+    useEffect(() => {
+        if (isSelectOpen) {
+            const timer = setTimeout(() => {
+                bounceActiveBlock('options', controls);
+            }, 10);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isSelectOpen, controls]);
 
     return (
         <div className={`${styles.links} m-auto sm:m-0`}>
