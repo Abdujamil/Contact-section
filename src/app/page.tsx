@@ -33,11 +33,11 @@ const Home: React.FC = () => {
                     <div className={`w-full h-full mb-[80px] mt-[110px]`}>
                         <section
                             className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] mb-[100px] px-[10px]`}>
-                            <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[28px] text-center m-auto text-[#ccc] mb-[20px]
+                            <h1 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[28px] text-center m-auto text-[#ccc] mb-[20px]
                         md:text-[48px] md:mb-[40px]
                         `}>
                                 Ответы на главные вопросы
-                            </h2>
+                            </h1>
                             <div className={`flex flex-col gap-[5px] h-full`}>
                                 {faqData.map((item) => (
                                     <FaqCard

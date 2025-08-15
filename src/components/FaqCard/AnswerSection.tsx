@@ -46,10 +46,7 @@ const AnswerSection: React.FC<Props> = ({
       className={`${styles.answer} rounded-[6px] md:py-[30px] md:pl-[80px] md:pr-[90px] ${isOpen ? 'p-5' : '!p-0' }`}
       style={{
         height: isOpen ? "auto" : "0px",
-        // paddingTop: isOpen ? "30px" : "0px",
         paddingBottom: isOpen ? "30px" : "0px",
-        // paddingRight: isOpen ? "90px" : "0px",
-        // paddingLeft: isOpen ? "80px" : "0px",
         borderTopRightRadius: isOpen ? "0" : "4px",
         borderTopLeftRadius: isOpen ? "0" : "4px",
         border: isOpen ? "1px solid #CCCCCC" : "",
@@ -65,7 +62,6 @@ const AnswerSection: React.FC<Props> = ({
           className="w-[155px] max-h-[155px] mt-[5px] hidden md:block"
           initial={{ y: 20, opacity: 0 }}
           animate={controls}
-          // style={{ display: isOpen ? "block" : "none" }}
         >
           <img
             src={typeof src === "string" ? src : src.src}
@@ -130,7 +126,7 @@ const AnswerSection: React.FC<Props> = ({
             </defs>
           </svg>
         </button>
-        <div className={styles.highlight} />
+        {/*<div className={styles.highlight} />*/}
       </motion.div>
 
       {/*</div>*/}
