@@ -3167,7 +3167,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         {infiniteDays.map((day, index) => (
                                             <div
                                                 key={`day-${index}`}
-                                                className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
+                                                className={`max-h-[20px] flex items-center justify-center text-lg  cursor-pointer select-none
                                                 ${centerDayIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
@@ -3200,7 +3200,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         {infiniteMonths.map((month, index) => (
                                             <div
                                                 key={`month-${index}`}
-                                                className={`max-h-[20px] flex items-center justify-start text-lg  transition-all duration-200 cursor-pointer select-none
+                                                className={`max-h-[20px] flex items-center justify-start text-lg  cursor-pointer select-none
                                             ${centerMonthIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
@@ -3233,7 +3233,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         {infiniteYears.map((year, index) => (
                                             <div
                                                 key={`year-${index}`}
-                                                className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
+                                                className={`max-h-[20px] flex items-center justify-center text-lg  cursor-pointer select-none
                                             ${centerYearIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
