@@ -2841,7 +2841,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         const handleEnd = () => {
             if (!isDown) return;
             isDown = false;
-            element.style.cursor = 'grab';
+            // element.style.cursor = 'grab';
             element.style.userSelect = '';
             momentumScroll();
         };
@@ -2857,7 +2857,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         const onTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientY);
         const onTouchEnd = () => handleEnd();
 
-        element.style.cursor = 'grab';
+        // element.style.cursor = 'grab';
         element.addEventListener('mousedown', onMouseDown);
         element.addEventListener('mousemove', onMouseMove);
         element.addEventListener('mouseup', onMouseUp);
@@ -3168,7 +3168,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`day-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                                ${centerDayIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
+                                                ${centerDayIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -3201,7 +3201,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`month-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-start text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerMonthIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
+                                            ${centerMonthIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
@@ -3234,7 +3234,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                             <div
                                                 key={`year-${index}`}
                                                 className={`max-h-[20px] flex items-center justify-center text-lg  transition-all duration-200 cursor-pointer select-none
-                                            ${centerYearIndex === index ? 'text-[#ссс] text-[20px]' : 'text-[#878787]'
+                                            ${centerYearIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center',
