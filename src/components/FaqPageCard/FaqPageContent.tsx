@@ -215,7 +215,7 @@ export default function FaqPageContent({
             <div className={`flex justify-center px-[10px]`}>
                 {/*<div className={`w-[270px] hidden md:block`}></div>*/}
 
-                <h2
+                <h1
                     className={`${styles.title} ${styles.txtGradientRight} 
                         w-fit mb-[20px] mt-[-8px] font-normal leading-[110%] text-center text-[28px] text-[#CCCCCC]
                         md:text-[48px] md:m-0 md:mb-[40px] m-auto md:max-w-full
@@ -226,7 +226,7 @@ export default function FaqPageContent({
                     на
                     главные
                     вопросы
-                </h2>
+                </h1>
             </div>
 
             <div

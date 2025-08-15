@@ -119,7 +119,7 @@ const AnswerSection: React.FC<Props> = ({
               />
             </g>
             <defs>
-              <clipPath id="clip0_3069_1633">
+              <clipPath>
                 <rect
                     width="17.4147"
                     height="17.4147"

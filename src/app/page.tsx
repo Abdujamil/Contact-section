@@ -29,10 +29,10 @@ const Home: React.FC = () => {
         <>
             <Bg/>
             <SmoothScroll>
-                <main className={`${styles.main} w-full `}>
+                <div className={`${styles.main} w-full `}>
                     <div className={`w-full h-full mb-[80px] mt-[110px]`}>
                         <section
-                            className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] mb-[100px] px-[20px]`}>
+                            className={`${styles.accordion} w-full mx-auto max-w-[1180px] pr-[10px] mb-[100px] px-[10px]`}>
                             <h2 className={`${styles.title} ${styles.txtGradientRight} w-fit font-normal leading-[110%] mt-[-8px] text-[28px] text-center m-auto text-[#ccc] mb-[20px]
                         md:text-[48px] md:mb-[40px]
                         `}>
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
                             </div>
                         </section>
                     </div>
-                </main>
+                </div>
             </SmoothScroll>
         </>
     );

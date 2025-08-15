@@ -142,47 +142,55 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                 key={index}
                                 className={`${styles["header-nav__list"]} font-[Rubik] flex min-w-full flex-shrink-0`}
                             >
-                                {level.items.map((item, index_item) =>
-                                    item.href ? (
-                                        <Link
-                                            key={item.id}
-                                            href={item.href}
-                                            className={`${index_item === 0 ? 'first-child' : ''} ${item.img ? 'have-img' : ''} ${styles["header__menu-mob-item"]}`}
-                                        >
-                                            <div className="flex items-center gap-[20px]">
-                                                {item.img &&
-                                                    <Image src={item.img} alt="document" width={43} height={60} />
-                                                }
-                                                <span className="text-[18px] text-[#adadad]">{item.title}</span>
-                                            </div>
-                                            {item.children && (
-                                                // <Image src={ArrowIcon} alt="more" width={20} height={20} />
+                                <li>
+                                    {level.items.map((item, index_item) =>
+                                        item.href ? (
+                                            <Link
+                                                key={item.id}
+                                                href={item.href}
+                                                className={`${index_item === 0 ? 'first-child' : ''} ${item.img ? 'have-img' : ''} ${styles["header__menu-mob-item"]}`}
+                                            >
+                                                <div className="flex items-center gap-[20px]">
+                                                    {item.img &&
+                                                        <Image src={item.img} alt="document" width={43} height={60}/>
+                                                    }
+                                                    <span className="text-[18px] text-[#adadad]">{item.title}</span>
+                                                </div>
+                                                {item.children && (
+                                                    // <Image src={ArrowIcon} alt="more" width={20} height={20} />
 
-                                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z" fill="#ADADAD"/>
-                                                </svg>
-                                            )}
-                                        </Link>
-                                    ) : (
-                                        <button
-                                            key={item.id}
-                                            onClick={() => handleItemClick(item)}
-                                            className={`${index_item === 0 ? 'first-child' : ''} ${item.img ? 'have-img' : ''} ${styles["header__menu-mob-item"]}`}
-                                        >
-                                            <div className="flex items-center gap-[20px]">
-                                                {item.img &&
-                                                    <Image src={item.img} alt="document" width={43} height={60} />
-                                                }
-                                                <span className="text-[18px] text-[#adadad]">{item.title}</span>
-                                            </div>
-                                            {item.children && (
-                                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z" fill="#ADADAD"/>
-                                                </svg>
-                                            )}
-                                        </button>
-                                    )
-                                )}
+                                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z"
+                                                            fill="#ADADAD"/>
+                                                    </svg>
+                                                )}
+                                            </Link>
+                                        ) : (
+                                            <button
+                                                key={item.id}
+                                                onClick={() => handleItemClick(item)}
+                                                className={`${index_item === 0 ? 'first-child' : ''} ${item.img ? 'have-img' : ''} ${styles["header__menu-mob-item"]}`}
+                                            >
+                                                <div className="flex items-center gap-[20px]">
+                                                    {item.img &&
+                                                        <Image src={item.img} alt="document" width={43} height={60}/>
+                                                    }
+                                                    <span className="text-[18px] text-[#adadad]">{item.title}</span>
+                                                </div>
+                                                {item.children && (
+                                                    <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M0 12.7451L6.75281 5.95076L8 7.20562L1.24719 14L0 12.7451ZM0 1.25486L1.24719 0L4.83792 3.74341L3.58985 4.99827L0 1.25486Z"
+                                                            fill="#ADADAD"/>
+                                                    </svg>
+                                                )}
+                                            </button>
+                                        )
+                                    )}
+                                </li>
                             </ul>
                         ))}
                     </div>

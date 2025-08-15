@@ -16,6 +16,7 @@ import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import DateInput from "@/components/DatePicker/DateInput";
 import {DatePicker} from "@/components/DatePicker/DatePicker";
+import {useWatch} from "react-hook-form";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -71,10 +72,12 @@ export default function RegisterPage() {
     const {register, handleSubmit} = methods;
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+
     const [selectedDate, setSelectedDate] = useState("");
     const [showDatePicker, setShowDatePicker] = useState(false);
     const controls = useAnimation();
 
+    const dateValue = useWatch({control: methods.control, name: "date"});
     const dateInputRef = useRef<HTMLInputElement | null>(null);
 
     const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
@@ -105,7 +108,7 @@ export default function RegisterPage() {
         });
     };
 
-    // ИСПРАВЛЕННЫЕ обработчики для DatePicker
+    // обработчики для DatePicker
     const handleDateSelect = (date: string) => {
         console.log("Selected date:", date); // для отладки
         setSelectedDate(date);
@@ -116,9 +119,10 @@ export default function RegisterPage() {
         setShowDatePicker(false);
     };
 
-    const handleDatePickerClose = () => {
-        setShowDatePicker(false);
-    };
+
+    // const handleDatePickerClose = () => {
+    //     setShowDatePicker(false);
+    // };
 
     const handleDateInputFocus = () => {
         setShowDatePicker(true);
@@ -146,7 +150,6 @@ export default function RegisterPage() {
     }, [showDatePicker]);
 
 
-    // убираем перерегистрацию полей при каждом рендере
     useEffect(() => {
         register("email", {
             required: "Введите email",
@@ -171,9 +174,30 @@ export default function RegisterPage() {
         }
     }, [register]); // Убираем selectedDate из зависимостей
 
+
+    // Синхронизируем selectedDate с dateValue из формы
+    useEffect(() => {
+        if (dateValue && dateValue !== selectedDate) {
+            setSelectedDate(dateValue);
+        }
+    }, [dateValue]);
+
+// Устанавливаем начальное значение selectedDate из dateValue
+    useEffect(() => {
+        if (dateValue) {
+            setSelectedDate(dateValue);
+        }
+    }, []); // Выполняется только при монтировании
+
     useEffect(() => {
         bounceActiveBlock('register', controls);
     }, [controls]);
+
+    useEffect(() => {
+        if (selectedDate) {
+            methods.setValue("date", selectedDate);
+        }
+    }, [register]);
 
     return (
         <>
@@ -230,7 +254,7 @@ export default function RegisterPage() {
                                         <button
                                             type="button"
                                             onClick={togglePicker}
-                                            className={`active:scale-[.95] ${showDatePicker ? 'border-[#737373] !bg-[#20272a]' : '' }  flex items-center justify-center w-[51px] max-h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] hover:border-[#737373] transition-colors duration-300`}
+                                            className={`active:scale-[.95] ${showDatePicker ? 'border-[#737373] !bg-[#20272a]' : ''}  flex items-center justify-center w-[51px] max-h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px] p-[15px] bg-[#101010] hover:bg-[#20272A] hover:border-[#737373] transition-colors duration-300`}
                                         >
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
@@ -315,9 +339,10 @@ export default function RegisterPage() {
                 <DatePicker
                     isVisible={showDatePicker}
                     onDateSelect={handleDateSelect}
-                    onClose={handleDatePickerClose}
-                    initialDate={methods.watch("date") || ""}
+                    onClose={() => setShowDatePicker(false)}
+                    initialDate={selectedDate || ""}
                 />
+
             </motion.div>
 
         </>
