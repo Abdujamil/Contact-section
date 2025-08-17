@@ -128,7 +128,7 @@ export default function LoginPage() {
                                     <defs>
                                         <linearGradient id="paint0_linear_4682_3632" x1="119" y1="0" x2="0" y2="0"
                                                         gradientUnits="userSpaceOnUse">
-                                            <stop stopColor="#9C9C9C"/>
+                                            <stop offset="0" stopColor="#9C9C9C"/>
                                             <stop offset="1" stopColor="#9C9C9C" stopOpacity="0"/>
                                         </linearGradient>
                                     </defs>
@@ -144,7 +144,7 @@ export default function LoginPage() {
                                     <defs>
                                         <linearGradient id="paint0_linear_4682_3634" x1="4.37114e-08" y1="2" x2="119"
                                                         y2="1.99999" gradientUnits="userSpaceOnUse">
-                                            <stop stopColor="#9C9C9C"/>
+                                            <stop offset="0" stopColor="#9C9C9C"/>
                                             <stop offset="1" stopColor="#9C9C9C" stopOpacity="0"/>
                                         </linearGradient>
                                     </defs>

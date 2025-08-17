@@ -243,7 +243,7 @@ const FooterMob: React.FC = () => {
                     <defs>
                         <linearGradient id="paint0_linear_5511_3251" x1="4.37114e-08" y1="1.5" x2="303" y2="1.49997"
                                         gradientUnits="userSpaceOnUse">
-                            <stop stopColor="#9C9C9C"/>
+                            <stop offset="0" stopColor="#9C9C9C"/>
                             <stop offset="1" stopColor="#9C9C9C" stopOpacity="0"/>
                         </linearGradient>
                     </defs>

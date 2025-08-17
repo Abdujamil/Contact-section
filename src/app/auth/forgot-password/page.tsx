@@ -174,7 +174,7 @@ export default function ForgotPasswordPage() {
                                             <linearGradient id="paint0_linear_5340_3200" x1="0" y1="1.5" x2="370"
                                                             y2="1.5"
                                                             gradientUnits="userSpaceOnUse">
-                                                <stop stopColor="#9C9C9C"/>
+                                                <stop offset="0" stopColor="#9C9C9C"/>
                                                 <stop offset="1" stopColor="#9C9C9C" stopOpacity="0"/>
                                             </linearGradient>
                                         </defs>

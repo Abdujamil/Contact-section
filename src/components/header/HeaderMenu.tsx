@@ -173,12 +173,12 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                                 onClick={() => handleItemClick(item)}
                                                 className={`${index_item === 0 ? 'first-child' : ''} ${item.img ? 'have-img' : ''} ${styles["header__menu-mob-item"]}`}
                                             >
-                                                <div className="flex items-center gap-[20px]">
+                                                <span className="flex items-center gap-[20px]">
                                                     {item.img &&
                                                         <Image src={item.img} alt="document" width={43} height={60}/>
                                                     }
                                                     <span className="text-[18px] text-[#adadad]">{item.title}</span>
-                                                </div>
+                                                </span>
                                                 {item.children && (
                                                     <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
                                                          xmlns="http://www.w3.org/2000/svg">
