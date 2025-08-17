@@ -592,7 +592,7 @@ export default function Contacts() {
                                     onChange={(value) => {
                                         setFailCheck(false);
                                         setEmailCheckboxError(false);
-                                        
+
                                         if (value) {
                                             // When email checkbox is checked
                                             setIsEmail(true);
@@ -623,7 +623,7 @@ export default function Contacts() {
                                     onChange={(value) => {
                                         setFailCheck(false);
                                         setPhoneCheckboxError(false);
-                                        
+
                                         if (value) {
                                             // When phone checkbox is checked
                                             setIsPhone(true);
@@ -675,7 +675,6 @@ export default function Contacts() {
                                 {/* Скрытый input для загрузки файла */}
                                 <input
                                     type="file"
-                                    placeholder={text}
                                     ref={fileInputRef}
                                     onChange={(e) =>
                                         handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
