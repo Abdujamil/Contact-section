@@ -17,11 +17,11 @@
     </g>
     <defs>
         <linearGradient id="D" x1="14.942" x2="48.475" y1="4.57" y2="29.819" href="#H">
-            <stop offset="1" stop-color="#c5c5c5"/>
-            <stop stop-color="#7c7c7c"/>
+            <stop offset="0" stop-color="#c5c5c5"/>
+            <stop offset="1" stop-color="#7c7c7c"/>
         </linearGradient>
         <linearGradient id="E" x1="15.993" x2="39.948" y1="4.57" y2="39.608" href="#H">
-            <stop stop-color="#fff"/>
+            <stop offset="0" stop-color="#fff"/>
             <stop offset="1" stop-color="#747474"/>
         </linearGradient>
         <linearGradient id="F" x1="10.937" x2="36.368" y1="20.926" y2="34.078" href="#H">
@@ -30,7 +30,7 @@
             <stop offset="1" stop-color="#df0011"/>
         </linearGradient>
         <linearGradient id="G" x1="23.688" x2="31.432" y1="20.926" y2="33.987" href="#H">
-            <stop stop-color="#f0f0f0"/>
+            <stop offset="0" stop-color="#f0f0f0"/>
             <stop offset="1" stop-color="#7c7c7c"/>
         </linearGradient>
         <linearGradient id="H" gradientUnits="userSpaceOnUse"/>
