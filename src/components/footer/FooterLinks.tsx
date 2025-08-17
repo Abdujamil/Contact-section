@@ -207,6 +207,7 @@ const FooterLinks: React.FC = () => {
                     <div className={`relative`} ref={selectRef}>
                         <div className="w-[62px] max-w-[220px] m-auto !h-[36px]">
                             <button
+                                aria-label="Выбор языка"
                                 onClick={() => {
                                     setIsSelectOpen(!isSelectOpen);
                                 }}
