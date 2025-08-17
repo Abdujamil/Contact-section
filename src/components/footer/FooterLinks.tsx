@@ -107,8 +107,8 @@ const FooterLinks: React.FC = () => {
                                         <defs>
                                             <linearGradient id="paint0_linear_3868_3123" x1="494.461" y1="5.94531"
                                                             x2="494.461" y2="831.274" gradientUnits="userSpaceOnUse">
-                                                <stop offset="0" stop-color="#2AABEE"/>
-                                                <stop offset="1" stop-color="#229ED9"/>
+                                                <stop offset="0" stopColor="#2AABEE"/>
+                                                <stop offset="1" stopColor="#229ED9"/>
                                             </linearGradient>
                                         </defs>
 
