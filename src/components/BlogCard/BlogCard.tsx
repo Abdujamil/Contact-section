@@ -66,11 +66,11 @@ const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) 
         </div>
 
         <div className={`${styles.cardBody} py-[20px] px-[15px]`}>
-          <h3
-            className={`${styles.cardTitle} line-clamp-3 text-[19.5px] text-[#adadad] leading-[120%] mb-[52px]`}
+          <h2
+            className={`${styles.cardTitle} line-clamp-3 text-[19.5px] !text-[#adadad] leading-[120%] mb-[52px] `}
           >
             {title}
-          </h3>
+          </h2>
 
           <div
             className={`${styles.cardBody} w-full flex  items-end justify-between`}
