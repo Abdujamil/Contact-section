@@ -41,6 +41,7 @@ export default function Contacts() {
 
     // Upload file
     const [text, setText] = useState("");
+
     const [showPolicy, setShowPolicy] = useState(false);
 
     const {
@@ -675,7 +676,9 @@ export default function Contacts() {
                                 {/* Скрытый input для загрузки файла */}
                                 <input
                                     type="file"
+                                    // placeholder={text}
                                     ref={fileInputRef}
+                                    aria-label={text}
                                     onChange={(e) =>
                                         handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
                                     }
@@ -788,5 +791,5 @@ export default function Contacts() {
             </motion.div>
 
         </>
-    );
+    )
 }
