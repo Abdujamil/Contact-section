@@ -105,11 +105,11 @@ export default function page() {
                             <div
                                 className={`${styles.editorTryBlockApi} ${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[8px] border !border-[#353535]`}
                             >
-                                <h3
+                                <h2
                                     className={`${styles.txtGradientRight} w-fit m-auto !text-[32px] !md:text-[32px] !leading-[120%] !mb-[20px]`}
                                 >
                                     Хотите подключить API?
-                                </h3>
+                                </h2>
                                 <p className={`max-w-[352px] m-auto text-[#adadad] !leading-[140%] md:!text-[18px] text-[16px] !mb-[20px]`}>
                                     Упростите транскрибацию уже сегодня — с помощью API для бизнеса
                                 </p>
@@ -172,7 +172,7 @@ export default function page() {
                                         key={index}
                                         className={`${styles.apiCard} p-[20px] w-full md:max-w-[388px] h-[290px] rounded-[6px] border border-[#353535]`}
                                     >
-                                        <h4 className="text-[#adadad] text-[24px] leading-[120%] mb-[15px]">{card.title}</h4>
+                                        <h3 className="text-[#adadad] text-[24px] leading-[120%] mb-[15px]">{card.title}</h3>
 
                                         <ul className="text-[16px] space-y-[5px] list-disc pl-[20px] text-[#ccc] mb-[15px]">
                                             {card.items.map((item, idx) => (
