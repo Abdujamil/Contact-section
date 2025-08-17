@@ -52,7 +52,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                     <p className={`font-[300] w-[45px] text-[22px] transition-all ease duration-[.1s] relative left-0`}>{num}</p>
                 </div>
                 <div className={`${styles.answerContainer} w-full`}>
-                    <h3 className={`w-full font-[400] text-[18px] md:text-[20px] transition-all ease-in-out duration-[0.3s] text-[#adadad]`}>{question}</h3>
+                    <h2 className={`w-full font-[400] text-[18px] md:text-[20px] transition-all ease-in-out duration-[0.3s] text-[#adadad]`}>{question}</h2>
                 </div>
 
                 <div className={`${styles.arrow} md:block hidden`}>
