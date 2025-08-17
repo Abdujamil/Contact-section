@@ -71,7 +71,7 @@ const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
         onMouseLeave={handleMouseLeave}
       >
         <span>{item.label}</span>
-        <div className={styles.highlight} />
+        {/*<div className={styles.highlight} />*/}
       </Link>
     );
   }

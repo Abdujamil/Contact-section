@@ -15,7 +15,6 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
     return (
         <div
             style={{
-                // height: isOpen ? "68px" : "68px",
                 alignItems: isOpen ? "start" : "center",
                 border: isOpen ? "1px solid #CCCCCC" : "",
                 background: isOpen ? "rgba(61,158,214,0.07)" : "",

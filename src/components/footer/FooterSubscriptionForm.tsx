@@ -59,7 +59,7 @@ const FooterSubscriptionForm: React.FC = () => {
                                     height={24}
                                 />
                             </button>
-                            <div className={styles.highlight} />
+                            {/*<div className={styles.highlight} />*/}
                         </div>
                     </form>
                 </FormProvider>

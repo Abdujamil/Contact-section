@@ -51,7 +51,7 @@ export default function page({ title, content, buttonText='Попробоват�
               />
             </svg>
           </Link>
-          <div className={styles.highlight} />
+          {/*<div className={styles.highlight} />*/}
         </div>
       </div>
     </div>

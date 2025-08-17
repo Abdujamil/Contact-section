@@ -658,7 +658,7 @@ export default function BlogPageContent({
                     Предыдущая
                   </span>
                   </button>
-                  <div className={styles.highlight} />
+                  {/*<div className={styles.highlight} />*/}
                 </div>
                 <div className="relative w-full max-w-[260px] md:m-0  m-auto h-[51px] !overflow-hidden">
                   <button
@@ -716,7 +716,7 @@ export default function BlogPageContent({
                       </defs>
                     </svg>
                   </button>
-                  <div className={styles.highlight} />
+                  {/*<div className={styles.highlight} />*/}
                 </div>
               </div>
 

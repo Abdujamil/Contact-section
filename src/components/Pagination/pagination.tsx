@@ -132,7 +132,7 @@ const Pagination: React.FC<PaginationProps> = ({
             Предыдущая
           </span>
         </button>
-        <div className={styles.highlight} />
+        {/*<div className={styles.highlight} />*/}
       </div>
 
       {/* Номера страниц */}
@@ -222,7 +222,7 @@ const Pagination: React.FC<PaginationProps> = ({
             </defs>
           </svg>
         </button>
-        <div className={styles.highlight} />
+        {/*<div className={styles.highlight} />*/}
       </div>
     </div>
   );

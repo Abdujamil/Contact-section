@@ -70,7 +70,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                         />
                     </svg>
                 </button>
-                <div className={styles.highlight} />
+                {/*<div className={styles.highlight} />*/}
             </div>
 
             <AnimatePresence>

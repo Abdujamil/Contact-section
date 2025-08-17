@@ -87,10 +87,10 @@ const FooterLinks: React.FC = () => {
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
                                 >
-                      <span
-                          className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in">
-                        {link.label}
-                      </span>
+                                      <span
+                                          className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in">
+                                        {link.label}
+                                      </span>
                                     <svg
                                         className={`${styles.sendIconLeft} ml-2 transition-all !duration-[.13s] ease-in`}
                                         width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -107,10 +107,11 @@ const FooterLinks: React.FC = () => {
                                         <defs>
                                             <linearGradient id="paint0_linear_3868_3123" x1="494.461" y1="5.94531"
                                                             x2="494.461" y2="831.274" gradientUnits="userSpaceOnUse">
-                                                <stop stopColor="#2AABEE"/>
-                                                <stop offset="1" stopColor="#229ED9"/>
+                                                <stop offset="0" stop-color="#2AABEE"/>
+                                                <stop offset="1" stop-color="#229ED9"/>
                                             </linearGradient>
                                         </defs>
+
                                     </svg>
                                 </button>
                             ) : (
@@ -121,9 +122,9 @@ const FooterLinks: React.FC = () => {
                                     onMouseLeave={handleMouseLeave}
                                     className={`${headerStyles["login-button"]} group !h-[50px] flex items-center justify-center w-full`}
                                 >
-                  <span className="font-normal text-[18px] leading-[120%]">
-                    {link.label}
-                  </span>
+                                  <span className="font-normal text-[18px] leading-[120%]">
+                                    {link.label}
+                                  </span>
                                 </Link>
                             )}
                             <div className={styles.highlight}/>

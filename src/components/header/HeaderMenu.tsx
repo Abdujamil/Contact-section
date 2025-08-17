@@ -226,7 +226,7 @@ const HeaderMenu = ({ active }: HeaderMenuProps) => {
                                          {showRegisterPromo ? "Войти" : "Выйти"}
                                       </span>
                                 </div>
-                                <div className={styles.highlight} />
+                                {/*<div className={styles.highlight} />*/}
                             </Link>
                         </div>
                     </div>
