@@ -56,8 +56,8 @@ const AnswerSection: React.FC<Props> = ({
         overflow: "hidden",
       }}
     >
-      <div className={`${styles.texts} flex gap-[40px] mb-[24px]`}>
-        <p className="text-[16px] font-normal leading-[140%]">{answer}</p>
+      <div className={`${styles.texts} flex justify-between gap-[40px] mb-[24px]`}>
+        <p className="max-w-[760px] text-[16px] font-normal leading-[140%]">{answer}</p>
         <motion.div
             className="w-[155px] h-[155px] mt-[5px] hidden md:block"
             initial={{ y: 20, opacity: 0 }}

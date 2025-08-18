@@ -239,10 +239,10 @@ export default function FaqPageContent({
                         <div
                             className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[6px]`}
                         >
-                            <h3 className={`${styles.text} max-w-[220px] m-auto mb-[16px] text-[#3D9ED6] text-[18px] md:text-[20px] font-[400] leading-[110%]`}
+                            <h2 className={`${styles.text} max-w-[220px] m-auto mb-[16px] text-[#3D9ED6] text-[18px] md:text-[20px] font-[400] leading-[110%]`}
                             >
                                 При регистрации дарим 30 минут!
-                            </h3>
+                            </h2>
                             <div className="relative w-[220px] m-auto h-[51px] !overflow-hidden">
                                 <Link href="/auth/login"
                                     className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["faqTryBtn"]} border !border-[#353535]  w-full !h-full group flex items-center !justify-between md:!justify-center`}
