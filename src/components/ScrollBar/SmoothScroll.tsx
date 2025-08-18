@@ -1526,7 +1526,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     className="scrollbar md:block hidden"
                     onMouseDown={handleMouseDown}
                     style={{
-                        cursor: isDragging ? 'grabbing' : 'grab',
                         userSelect: 'none'
                     }}
                 />
