@@ -34,7 +34,8 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                 <Image
                     src={src}
                     alt="FAQ image"
-                    fill
+                    width={155}
+                    height={153}
                     className="rounded-[4px] transition-all ease-in-out duration-[.3s]"
                     style={{objectFit: "contain", aspectRatio: "1 / 1"}}
                 />
