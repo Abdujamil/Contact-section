@@ -284,14 +284,14 @@ export default function EditorPage() {
                                     <div className="bg-gray-700 w-full h-full"/>
                                 )}
 
-                                <h3 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px] block md:hidden">
+                                <h1 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px] block md:hidden">
                                     {currentEditor.name}
-                                </h3>
+                                </h1>
                             </div>
                             <div>
-                                <h3 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px] hidden md:block">
+                                <h1 className="text-[#3D9ED6] text-[20px] leading-[120%] mb-[10px] hidden md:block">
                                     {currentEditor.name}
-                                </h3>
+                                </h1>
                                 <p className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}>
                                     {currentEditor.bio ??
                                         "Редактор этого материала. Больше информации вы найдёте на его странице."}
@@ -337,31 +337,6 @@ export default function EditorPage() {
                                             ))}
                                         </div>
                                     </div>
-
-                                    {/* Кнопки навигации */}
-                                    {/*{editorArticles.length > 1 && (*/}
-                                    {/*    <>*/}
-                                    {/*      <button*/}
-                                    {/*          onClick={prevSlide}*/}
-                                    {/*          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"*/}
-                                    {/*          disabled={currentSlide === 0}*/}
-                                    {/*      >*/}
-                                    {/*        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
-                                    {/*          <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>*/}
-                                    {/*        </svg>*/}
-                                    {/*      </button>*/}
-
-                                    {/*      <button*/}
-                                    {/*          onClick={nextSlide}*/}
-                                    {/*          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"*/}
-                                    {/*          disabled={currentSlide === editorArticles.length - 1}*/}
-                                    {/*      >*/}
-                                    {/*        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
-                                    {/*          <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>*/}
-                                    {/*        </svg>*/}
-                                    {/*      </button>*/}
-                                    {/*    </>*/}
-                                    {/*)}*/}
 
                                     {/* Индикаторы */}
                                     {editorArticles.length > 1 && (

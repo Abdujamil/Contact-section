@@ -319,14 +319,14 @@ export default function Editors() {
                                                     ) : (
                                                         <div className="bg-gray-700 w-full h-full"/>
                                                     )}
-                                                    <h3 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px] block md:hidden">
+                                                    <h2 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px] block md:hidden">
                                                         {editor.name}
-                                                    </h3>
+                                                    </h2>
                                                 </div>
                                                 <div>
-                                                    <h3 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px] hidden md:block">
+                                                    <h2 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px] hidden md:block">
                                                         {editor.name}
-                                                    </h3>
+                                                    </h2>
                                                     <p className={`${styles.authorDesc} text-[#adadad] text-[16px] leading-[130%]`}>
                                                         {editor.bio}
                                                     </p>
