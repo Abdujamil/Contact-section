@@ -7,7 +7,7 @@ import { AnimationSettings } from "../utils/types";
 import HeaderStyles from "../header/Header.module.css";
 import { StaticImageData } from "next/image";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
-
+import Image from "next/image";
 
 interface Props {
   id: number;
@@ -59,16 +59,19 @@ const AnswerSection: React.FC<Props> = ({
       <div className={`${styles.texts} flex gap-[40px] mb-[24px]`}>
         <p className="text-[16px] font-normal leading-[140%]">{answer}</p>
         <motion.div
-          className="w-[155px] max-h-[155px] mt-[5px] hidden md:block"
-          initial={{ y: 20, opacity: 0 }}
-          animate={controls}
+            className="w-[155px] h-[155px] mt-[5px] hidden md:block"
+            initial={{ y: 20, opacity: 0 }}
+            animate={controls}
         >
-          <img
-            src={typeof src === "string" ? src : src.src}
-            alt="FAQ image"
-            className="w-full min-w-[157px] h-[155px] border border-[#CCCCCC] rounded-[6px]"
+          <Image
+              src={typeof src === "string" ? src : src.src}
+              alt="FAQ image"
+              width={155}
+              height={155}
+              className="border border-[#CCCCCC] rounded-[6px] object-contain"
           />
         </motion.div>
+
       </div>
 
       <motion.div
