@@ -410,6 +410,7 @@ export default function EditorPage() {
                                                         {editor.name}
                                                     </h3>
                                                 </div>
+
                                                 <div>
                                                     <h3 className="text-[#adadad] text-[20px] leading-[120%] mb-[10px] hidden md:block">
                                                         {editor.name}

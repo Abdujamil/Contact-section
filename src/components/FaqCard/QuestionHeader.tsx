@@ -25,7 +25,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
         >
 
             <div
-                className={`${styles.logoOnHover} absolute right-[8%] translate-x-[4px] overflow-hidden hidden z-[9999] w-[157px] h-[157px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
+                className={`${styles.logoOnHover} absolute aspect-square right-[8%] translate-x-[4px] overflow-hidden hidden z-[9999] w-[157px] h-[157px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
                 style={{
                     display: isOpen ? "none" : "",
                 }}
@@ -34,8 +34,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                 <Image
                     src={src}
                     alt="FAQ image"
-                    width={155}
-                    height={155}
+                    fill
                     className="rounded-[4px] transition-all ease-in-out duration-[.3s]"
                     style={{objectFit: "contain", aspectRatio: "1 / 1"}}
                 />
