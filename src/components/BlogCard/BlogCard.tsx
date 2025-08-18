@@ -41,7 +41,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) 
 
   return (
     <div
-      className={`${styles.card} ${styles.shadowcards} group w-full max-w-[260px] m-auto h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[8px] overflow-hidden cursor-pointer`}
+      className={`${styles.card} ${styles.shadowcards} group w-full max-w-[260px] m-auto h-[348px] border border-[#353535] hover:border-[#CCCCCC] rounded-[6px] overflow-hidden cursor-pointer`}
       style={{
         willChange: "transform",
         transform: "translateZ(0)",

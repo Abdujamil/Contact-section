@@ -160,7 +160,7 @@ export const blogData: BlogItem[] = [
             дополнительное время редакторов, если требуется идеальная точность.
           </p>
           <div
-            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[8px] mt-[10px] mb-[30px]`}
+            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[6px] mt-[10px] mb-[30px]`}
           >
             <img
               className={`w-full h-full object-cover`}
@@ -366,7 +366,7 @@ export const blogData: BlogItem[] = [
           </ul>
 
           <div
-            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[8px] mt-[30px] mb-[30px]`}
+            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[6px] mt-[30px] mb-[30px]`}
           >
             <img
               className={`w-full h-full object-cover`}

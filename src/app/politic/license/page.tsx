@@ -400,7 +400,7 @@ export default function Page() {
                             Убедитесь сами: юридическая прозрачность, технологическая точность и удобство
                         </p>
                         <div
-                            className={`max-w-[600px] m-auto rounded-[8px] flex items-center justify-center mt-[30px]`}>
+                            className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mt-[30px]`}>
                             <img className={`w-full object-cover`} src="/policy/image3.png" alt="img1"/>
                         </div>
                     </section>

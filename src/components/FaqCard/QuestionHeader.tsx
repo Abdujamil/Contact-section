@@ -20,7 +20,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                 background: isOpen ? "rgba(61,158,214,0.07)" : "",
             }}
             className={`${styles.question} md:h-[68px]
-            w-full flex flex-row cursor-pointer items-center border border-[#353535] active:bg-[#20272b07] rounded-[8px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
+            w-full flex flex-row cursor-pointer items-center border border-[#353535] active:bg-[#20272b07] rounded-[6px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
             onClick={handleClick}
         >
 

@@ -477,7 +477,7 @@ export default function Page() {
                             </p>
 
                             <div
-                                className={`max-w-[600px] m-auto rounded-[8px] flex items-center justify-center mt-[30px]`}>
+                                className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mt-[30px]`}>
                                 <img className={`w-full object-cover`} src="/policy/image2.png" alt="img1"/>
                             </div>
                         </section>

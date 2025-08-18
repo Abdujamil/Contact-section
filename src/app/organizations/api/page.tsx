@@ -103,7 +103,7 @@ export default function page() {
                         {/*Блок попробовать*/}
                         <div className={`w-full flex items-center justify-center mb-[20px] md:mb-[30px]`}>
                             <div
-                                className={`${styles.editorTryBlockApi} ${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[8px] border !border-[#353535]`}
+                                className={`${styles.editorTryBlockApi} ${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[6px] border !border-[#353535]`}
                             >
                                 <h2
                                     className={`${styles.txtGradientRight} w-fit m-auto !text-[32px] !md:text-[32px] !leading-[120%] !mb-[20px]`}
@@ -186,7 +186,7 @@ export default function page() {
                             </div>
 
                             <div
-                                className="max-w-[600px] m-auto rounded-[8px] flex items-center justify-center my-[30px]">
+                                className="max-w-[600px] m-auto rounded-[6px] flex items-center justify-center my-[30px]">
                                 <img className="w-full object-cover" alt="img1"
                                      src="/organization/organization-img2.png"/></div>
                         </section>

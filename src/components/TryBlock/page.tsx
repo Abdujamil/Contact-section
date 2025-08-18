@@ -15,7 +15,7 @@ export default function page({ title, content, buttonText='Попробоват�
   return (
     <div className={`${className} w-full flex items-center justify-center  mb-[80px] md:mb-[100px]`}>
       <div
-        className={`${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[8px] border !border-[#353535]`}
+        className={`${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[6px] border !border-[#353535]`}
       >
         <h3
           className={`${styles.txtGradientRight} w-fit m-auto !text-[24px] !md:text-[32px] !leading-[120%] !mb-[20px]`}

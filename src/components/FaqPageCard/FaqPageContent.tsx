@@ -237,7 +237,7 @@ export default function FaqPageContent({
                     {/* Промо блок */}
                     {showRegisterPromo && (
                         <div
-                            className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[8px]`}
+                            className={`${styles.registerBlock} mb-[20px] p-[20px] text-center border border-[#353535] rounded-[6px]`}
                         >
                             <h3 className={`${styles.text} max-w-[220px] m-auto mb-[16px] text-[#3D9ED6] text-[18px] md:text-[20px] font-[400] leading-[110%]`}
                             >
@@ -286,14 +286,14 @@ export default function FaqPageContent({
                                     damping: 6,
                                     mass: 0.3,
                                 }}
-                                className="relative w-full h-[320px] md:h-[260px] mb-[20px] rounded-[8px] border border-[#353535]"
+                                className="relative w-full h-[320px] md:h-[260px] mb-[20px] rounded-[6px] border border-[#353535]"
                             >
                                 <Image
                                     src={openFaqItem.largeImgSrc}
                                     alt={openFaqItem.question}
                                     fill
                                     sizes="260px"
-                                    className="rounded-[8px] object-cover"
+                                    className="rounded-[6px] object-cover"
                                     priority={openFaqItem.id === id}
                                     quality={85}
                                     onLoadingComplete={() =>
@@ -304,17 +304,17 @@ export default function FaqPageContent({
                                     }
                                 />
                                 {!loadedImages[openFaqItem.id] && (
-                                    <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-[8px]"/>
+                                    <div className="absolute inset-0 bg-gray-700 animate-pulse rounded-[6px]"/>
                                 )}
                             </motion.div>
                         ) : (
-                            <div className="relative w-full h-[260px] mb-[20px] rounded-[8px] border border-[#353535]">
+                            <div className="relative w-full h-[260px] mb-[20px] rounded-[6px] border border-[#353535]">
                                 <Image
                                     src="/faq-default-img.png"
                                     alt="Изображение по умолчанию"
                                     fill
                                     sizes="260px"
-                                    className="rounded-[8px] object-cover"
+                                    className="rounded-[6px] object-cover"
                                     quality={85}
                                     priority
                                 />
