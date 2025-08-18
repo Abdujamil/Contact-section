@@ -1,6 +1,6 @@
 import Image, {StaticImageData} from "next/image";
 import styles from '../../app/faq/faq.module.scss';
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 interface Props {
     id: number;
@@ -12,22 +12,6 @@ interface Props {
 }
 
 const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClick}) => {
-    const [hasInteracted, setHasInteracted] = useState(false);
-
-    useEffect(() => {
-        const handleInteraction = () => setHasInteracted(true);
-
-        window.addEventListener("mousemove", handleInteraction, {once: true});
-        window.addEventListener("keydown", handleInteraction, {once: true});
-        window.addEventListener("scroll", handleInteraction, {once: true});
-
-        return () => {
-            window.removeEventListener("mousemove", handleInteraction);
-            window.removeEventListener("keydown", handleInteraction);
-            window.removeEventListener("scroll", handleInteraction);
-        };
-    }, []);
-
     return (
         <div
             style={{
@@ -40,24 +24,22 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
             onClick={handleClick}
         >
 
-            {hasInteracted && (
-                <div
-                    className={`${styles.logoOnHover} absolute aspect-square right-[8%] translate-x-[4px] overflow-hidden hidden z-[9999] w-[155px] h-[155px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
-                    style={{
-                        display: isOpen ? "none" : "",
-                    }}
-                >
+            <div
+                className={`${styles.logoOnHover} absolute aspect-square right-[8%] translate-x-[4px] overflow-hidden hidden z-[9999] w-[155px] h-[155px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
+                style={{
+                    display: isOpen ? "none" : "",
+                }}
+            >
 
-                    <Image
-                        src={src}
-                        alt="FAQ image"
-                        fill
-                        className="rounded-[4px] transition-all ease-in-out duration-[.3s]"
-                        style={{objectFit: "contain", aspectRatio: "1 / 1"}}
-                    />
-                </div>
-
-            )}
+                <Image
+                    src={src}
+                    alt="FAQ image"
+                    width={155}
+                    height={153}
+                    className="rounded-[4px] transition-all ease-in-out duration-[.3s]"
+                    style={{objectFit: "contain", aspectRatio: "1 / 1"}}
+                />
+            </div>
 
             <div
                 className={`${styles.questionContainer} relative z-[-1] w-full h-full p-3 md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
@@ -74,11 +56,8 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                 </div>
 
                 <div className={`${styles.arrow} md:block hidden`}>
-                    <svg className={`transition-all duration-[.2s] ease-in-out`} width="14" height="16"
-                         viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M6 3H8V0H6L6 3ZM14 8.96767L12.5692 7.52908L8.01287 12.1092V6H5.98815V12.1092L1.43177 7.52908L0 8.96767L7 16L7.71538 15.2822L8.43177 14.5634L14 8.96767Z"
-                            fill="#ADADAD"/>
+                    <svg className={`transition-all duration-[.2s] ease-in-out`} width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 3H8V0H6L6 3ZM14 8.96767L12.5692 7.52908L8.01287 12.1092V6H5.98815V12.1092L1.43177 7.52908L0 8.96767L7 16L7.71538 15.2822L8.43177 14.5634L14 8.96767Z" fill="#ADADAD"/>
                     </svg>
                 </div>
             </div>
