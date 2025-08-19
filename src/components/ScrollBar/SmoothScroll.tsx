@@ -916,7 +916,6 @@
 //     );
 // }
 
-
 'use client';
 import React, {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
@@ -965,10 +964,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
-    // Состояние для drag scrolling
+    // Состояния для drag-to-scroll
     const [isDragging, setIsDragging] = useState(false);
     const [dragStartY, setDragStartY] = useState(0);
-    const [dragStartScroll, setDragStartScroll] = useState(0);
+    const [dragStartScrollTop, setDragStartScrollTop] = useState(0);
 
     const [isTrackpad, setIsTrackpad] = useState(false);
     const [trackpadDebugInfo, setTrackpadDebugInfo] = useState<TrackpadDebugInfo>({
@@ -984,6 +983,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         lastEventTime: 0,
         frequency: 0
     });
+
 
     const [mouseSettings, setMouseSettings] = useState({
         scrollStopThreshold: 0.5,
@@ -1210,48 +1210,52 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         return 120;
     }, [pathname]);
 
-    // Drag scrolling functionality
-    const handleMouseDown = (e: React.MouseEvent) => {
+
+    // Также добавьте поддержку touch событий из хука:
+    const handleTouchStart = (e: React.TouchEvent) => {
         if (isMobile) return;
 
-        setIsDragging(true);
-        setDragStartY(e.clientY);
-        setDragStartScroll(window.scrollY);
-
-        // Предотвращаем выделение текста при перетаскивании
         e.preventDefault();
+
+        setIsDragging(true);
+        setDragStartY(e.touches[0].clientY);
+        setDragStartScrollTop(window.scrollY);
+
         document.body.style.userSelect = 'none';
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-        if (!isDragging || isMobile) return;
+    const handleMouseMove = React.useCallback((e: MouseEvent) => {
+        if (!isDragging) return;
+
+        e.preventDefault();
 
         const deltaY = e.clientY - dragStartY;
         const scrollHeight = document.documentElement.scrollHeight;
         const clientHeight = window.innerHeight;
         const maxScroll = scrollHeight - clientHeight;
 
-        // Вычисляем новую позицию скролла на основе движения мыши
+        // Вычисляем коэффициент прокрутки
         const scrollRatio = deltaY / clientHeight;
-        const newScrollPosition = dragStartScroll + (scrollRatio * scrollHeight);
+        const newScrollTop = dragStartScrollTop + (scrollRatio * scrollHeight);
 
-        // Ограничиваем скролл в пределах документа
-        const clampedScroll = Math.max(0, Math.min(newScrollPosition, maxScroll));
+        // Ограничиваем значения
+        const clampedScrollTop = Math.max(0, Math.min(newScrollTop, maxScroll));
 
-        window.scrollTo(0, clampedScroll);
-    };
+        window.scrollTo(0, clampedScrollTop);
+    }, [isDragging, dragStartY, dragStartScrollTop]);
 
-    const handleMouseUp = () => {
+    const handleMouseUp = React.useCallback(() => {
         if (!isDragging) return;
 
         setIsDragging(false);
+
+        // Возвращаем нормальный курсор
+        document.body.style.cursor = '';
         document.body.style.userSelect = '';
-    };
+    }, [isDragging]);
 
-    // Добавляем глобальные обработчики для drag scrolling
+    // Добавляем обработчики мыши для drag-to-scroll
     useEffect(() => {
-        if (isMobile) return;
-
         if (isDragging) {
             document.addEventListener('mousemove', handleMouseMove);
             document.addEventListener('mouseup', handleMouseUp);
@@ -1261,7 +1265,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 document.removeEventListener('mouseup', handleMouseUp);
             };
         }
-    }, [isDragging, dragStartY, dragStartScroll, isMobile]);
+    }, [isDragging, handleMouseMove, handleMouseUp]);
 
     useEffect(() => {
         // На мобилках используем нативный скролл
@@ -1269,25 +1273,19 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
         if (!scrollbarRef.current) return;
 
-        // Принудительно сбрасываем состояние скролла при смене страницы
-        let currentScroll = 0;
-        let targetScroll = 0;
+        let currentScroll = window.scrollY;
+        let targetScroll = currentScroll;
         let isScrolling = false;
         let lastUpdateTime = 0;
         let rafId: number | null = null;
 
-        // Сбрасываем позицию скролла
-        // window.scrollTo(0, 0);
-        currentScroll = 0;
-        targetScroll = 0;
-
         const initScroll = () => {
             currentScroll = window.scrollY;
-            targetScroll = window.scrollY;
+            targetScroll = currentScroll;
         };
 
         const handleWheel = (e: WheelEvent) => {
-            // Не обрабатываем wheel события если идет перетаскивание
+            // Игнорируем wheel события во время drag
             if (isDragging) return;
 
             if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
@@ -1449,17 +1447,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         initScroll();
         updateScrollbar();
 
-        // Небольшая задержка для инициализации после смены роута
-        const routeInitDelay = delaySettings.routeChangeDelay.enabled ?
-            delaySettings.routeChangeDelay.value : 50;
-
-        setTimeout(() => {
-            initScroll();
-            updateScrollbar();
-            // Принудительно обновляем состояние скролла
-            window.dispatchEvent(new Event('scroll'));
-        }, routeInitDelay);
-
         window.addEventListener('wheel', handleWheel, {passive: false});
         window.addEventListener('scroll', scrollHandler, {passive: true});
         document.addEventListener('click', handleAnchorClick);
@@ -1478,33 +1465,16 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, [isTrackpad, trackpadSettings, mouseSettings, pathname, getScrollOffset, delaySettings, isMobile, isDragging]);
 
     useEffect(() => {
-        // Принудительный сброс скролла при смене роута
         window.scrollTo(0, 0);
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
 
-        // Сбрасываем состояние drag
-        setIsDragging(false);
-        document.body.style.userSelect = '';
-
         const routeDelay = delaySettings.routeChangeDelay.enabled ?
             delaySettings.routeChangeDelay.value : 0;
 
-        // Множественные попытки обновления скролла для надежности
         setTimeout(() => {
-            window.scrollTo(0, 0);
             window.dispatchEvent(new Event('scroll'));
         }, routeDelay);
-
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-            window.dispatchEvent(new Event('scroll'));
-        }, routeDelay + 100);
-
-        setTimeout(() => {
-            window.scrollTo(0, 0);
-            window.dispatchEvent(new Event('scroll'));
-        }, routeDelay + 200);
     }, [pathname, delaySettings.routeChangeDelay]);
 
     const updateDelaySetting = (key: keyof DelaySettings, property: 'enabled' | 'value', value: boolean | number) => {
@@ -1517,20 +1487,31 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }));
     };
 
+    const handleScrollbarMouseDown = (e: React.MouseEvent) => {
+        if (isMobile) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        setIsDragging(true);
+        setDragStartY(e.clientY);
+        setDragStartScrollTop(window.scrollY);
+
+        document.body.style.userSelect = 'none';
+    };
+
     return (
         <>
             {children}
             {showScrollbar && !isMobile && (
                 <div
                     ref={scrollbarRef}
-                    className="scrollbar md:block hidden"
-                    onMouseDown={handleMouseDown}
-                    style={{
-                        userSelect: 'none'
-                    }}
+                    // ref={customScrollbarRef}
+                    className={`scrollbar md:block hidden`}
+                    onMouseDown={handleScrollbarMouseDown}
+                    onTouchStart={handleTouchStart}
                 />
             )}
-
 
             {/* Кнопки управления */}
             <div className="fixed top-[90%] right-4 z-[10000000000] hidden gap-2">
@@ -1939,3 +1920,4 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         </>
     );
 }
+
