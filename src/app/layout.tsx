@@ -1,21 +1,17 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono} from "next/font/google";
+// import {Rubik} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/Header";
 import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
-// import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 import FootCondition from '@/components/ConditionalFooter/page'
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+// const Rubik_mono = Rubik({
+//     variable: "--font-rubik-mono",
+//     subsets: ["latin"],
+//     weight: ["400", "500", "600", "700"],
+//     display: "swap",
+// });
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -25,17 +21,31 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="ru">
+        <head>
+            <link
+                rel="preload"
+                href="/fonts/Rubik-Regular.ttf"
+                as="font"
+                type="font/ttf"
+                crossOrigin="anonymous"
+            />
+            <link
+                rel="preload"
+                href="/fonts/Rubik-Light.ttf"
+                as="font"
+                type="font/ttf"
+                crossOrigin="anonymous"
+            />
+        </head>
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+            className={`antialiased min-h-screen flex flex-col`}
         >
         <AuthProvider>
-            {/*<SmoothScroll>*/}
-                <Header/>
-                <main className="flex-grow">
-                    {children}
-                </main>
-                <FootCondition/>
-            {/*</SmoothScroll>*/}
+            <Header/>
+            <main className="flex-grow">
+                {children}
+            </main>
+            <FootCondition/>
         </AuthProvider>
         </body>
         </html>

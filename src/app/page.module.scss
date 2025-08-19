@@ -833,17 +833,21 @@
 
 //-------------------------------- Footer --------------------------------//
 .footer {
-  &::before {
-    background-image: url('/noise1.png');
-    content: "";
-    // filter: brightness(.6) contrast(1) saturate(2);
-    left: 0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
-    height: 143px;
-  }
+  background-image: url('/noise1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  //&::before {
+  //  background-image: url('/noise1.png');
+  //  content: "";
+  //  // filter: brightness(.6) contrast(1) saturate(2);
+  //  left: 0;
+  //  position: absolute;
+  //  bottom: 0;
+  //  right: 0;
+  //  z-index: -1;
+  //  height: 143px;
+  //}
 
   .footerTop {
 

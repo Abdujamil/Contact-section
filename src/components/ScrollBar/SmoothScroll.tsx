@@ -1226,22 +1226,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         };
     }, [pathname, delaySettings.routeChangeDelay, isMobile]);
 
-
-
-
-    // Также добавьте поддержку touch событий из хука:
-    // const handleTouchStart = (e: React.TouchEvent) => {
-    //     if (isMobile) return;
-    //
-    //     e.preventDefault();
-    //
-    //     setIsDragging(true);
-    //     setDragStartY(e.touches[0].clientY);
-    //     setDragStartScrollTop(window.scrollY);
-    //
-    //     document.body.style.userSelect = 'none';
-    // };
-
     const handleMouseMove = React.useCallback((e: MouseEvent) => {
         if (!isDragging) return;
 
@@ -1505,18 +1489,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }));
     };
 
-    // const handleScrollbarMouseDown = (e: React.MouseEvent) => {
-    //     if (isMobile) return;
-    //
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //
-    //     setIsDragging(true);
-    //     setDragStartY(e.clientY);
-    //     setDragStartScrollTop(window.scrollY);
-    //
-    //     document.body.style.userSelect = 'none';
-    // };
 
     return (
         <>
@@ -1549,7 +1521,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     </button>
                 )}
             </div>
-            {/* ===== ENHANCED SETTINGS PANEL ===== */}
+            {/*  ENHANCED SETTINGS PANEL */}
             {isOpen && (
                 <div
                     className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
