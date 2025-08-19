@@ -1017,10 +1017,26 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }
     });
 
+    // const { scrollbarRef: customScrollbarRef } = useCustomScroll({
+    //     smoothScrollFactor: isTrackpad ? trackpadSettings.scrollEaseFactor : mouseSettings.scrollEaseFactor,
+    //     enabled: showScrollbar && !isMobile,
+    //     target: 'window'
+    // });
+
+    const getScrollOffset = React.useCallback(() => {
+        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
+        if (pathname.includes('/blogPage')) return -170;
+        if (pathname.includes('/organizations/where-do-you-lose')) return -110;
+        if (pathname.includes('/editors')) return 90;
+        return 120;
+    }, [pathname]);
+
     const { scrollbarRef: customScrollbarRef } = useCustomScroll({
         smoothScrollFactor: isTrackpad ? trackpadSettings.scrollEaseFactor : mouseSettings.scrollEaseFactor,
+        scrollPadding: 2, // или ваше значение
         enabled: showScrollbar && !isMobile,
-        target: 'window'
+        target: 'window',
+        getScrollOffset // Передаем вашу функцию offset
     });
 
     // Определение мобильного устройства
@@ -1210,12 +1226,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         };
     }, [pathname, delaySettings.routeChangeDelay, isMobile]);
 
-    const getScrollOffset = React.useCallback(() => {
-        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
-        if (pathname.includes('/blog')) return -188;
-        if (pathname.includes('/editors')) return 90;
-        return 120;
-    }, [pathname]);
+
 
 
     // Также добавьте поддержку touch событий из хука:
