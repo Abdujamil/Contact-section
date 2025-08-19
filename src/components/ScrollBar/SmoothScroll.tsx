@@ -919,6 +919,7 @@
 'use client';
 import React, {useEffect, useRef, useState} from "react";
 import {usePathname} from "next/navigation";
+import {useCustomScroll} from "@/components/hooks/useCustomScroll";
 
 interface SmoothScrollProps {
     children: React.ReactNode;
@@ -1014,6 +1015,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             enabled: true,
             value: 40
         }
+    });
+
+    const { scrollbarRef: customScrollbarRef } = useCustomScroll({
+        smoothScrollFactor: isTrackpad ? trackpadSettings.scrollEaseFactor : mouseSettings.scrollEaseFactor,
+        enabled: showScrollbar && !isMobile,
+        target: 'window'
     });
 
     // Определение мобильного устройства
@@ -1212,17 +1219,17 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
 
     // Также добавьте поддержку touch событий из хука:
-    const handleTouchStart = (e: React.TouchEvent) => {
-        if (isMobile) return;
-
-        e.preventDefault();
-
-        setIsDragging(true);
-        setDragStartY(e.touches[0].clientY);
-        setDragStartScrollTop(window.scrollY);
-
-        document.body.style.userSelect = 'none';
-    };
+    // const handleTouchStart = (e: React.TouchEvent) => {
+    //     if (isMobile) return;
+    //
+    //     e.preventDefault();
+    //
+    //     setIsDragging(true);
+    //     setDragStartY(e.touches[0].clientY);
+    //     setDragStartScrollTop(window.scrollY);
+    //
+    //     document.body.style.userSelect = 'none';
+    // };
 
     const handleMouseMove = React.useCallback((e: MouseEvent) => {
         if (!isDragging) return;
@@ -1487,29 +1494,29 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }));
     };
 
-    const handleScrollbarMouseDown = (e: React.MouseEvent) => {
-        if (isMobile) return;
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        setIsDragging(true);
-        setDragStartY(e.clientY);
-        setDragStartScrollTop(window.scrollY);
-
-        document.body.style.userSelect = 'none';
-    };
+    // const handleScrollbarMouseDown = (e: React.MouseEvent) => {
+    //     if (isMobile) return;
+    //
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //
+    //     setIsDragging(true);
+    //     setDragStartY(e.clientY);
+    //     setDragStartScrollTop(window.scrollY);
+    //
+    //     document.body.style.userSelect = 'none';
+    // };
 
     return (
         <>
             {children}
             {showScrollbar && !isMobile && (
                 <div
-                    ref={scrollbarRef}
-                    // ref={customScrollbarRef}
+                    // ref={scrollbarRef}
+                    ref={customScrollbarRef}
                     className={`scrollbar md:block hidden`}
-                    onMouseDown={handleScrollbarMouseDown}
-                    onTouchStart={handleTouchStart}
+                    // onMouseDown={handleScrollbarMouseDown}
+                    // onTouchStart={handleTouchStart}
                 />
             )}
 
