@@ -1025,7 +1025,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     const getScrollOffset = React.useCallback(() => {
         if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
-        if (pathname.includes('/blogPage')) return -170;
+        if (pathname.includes('/blogPage')) return -174;
         if (pathname.includes('/organizations/where-do-you-lose')) return -110;
         if (pathname.includes('/editors')) return 90;
         return 120;
