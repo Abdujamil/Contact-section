@@ -66,23 +66,58 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
+/*::-webkit-scrollbar {*/
+/*    display: none;*/
+/*}*/
 
-textarea::-webkit-scrollbar {
+/* Базовые стили */
+textarea {
     scrollbar-width: thin;
-    display: block !important;
+    scrollbar-color: rgba(119, 156, 177, 0.25098) transparent;
 }
 
+/* Основные стили скроллбара */
 textarea::-webkit-scrollbar {
-    width: 6px;
+    width: 6px !important;
+    height: 6px !important;
+    display: block !important;
+    background: transparent !important;
 }
 
-textarea::-webkit-scrollbar-thumb {
-    background: rgba(119, 156, 177, 0.25098);
-    border: 1px solid #5C5C5C;
-    border-radius: 50px;
+/* Трек (дорожка) */
+textarea::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track:hover,
+textarea::-webkit-scrollbar-track:active {
+    background: transparent !important;
+    margin: 0 10px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Полоса прокрутки */
+textarea::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:active {
+    background: rgba(119, 156, 177, 0.25098) !important;
+    border: 1px solid #5C5C5C !important;
+    border-radius: 50px !important;
+    box-shadow: none !important;
+}
+
+/* Углы */
+textarea::-webkit-scrollbar-corner,
+textarea::-webkit-scrollbar-corner:hover {
+    background: transparent !important;
+}
+
+/* Кнопки */
+textarea::-webkit-scrollbar-button {
+    display: none !important;
+}
+
+/* Дополнительная защита от браузерных стилей */
+textarea::-webkit-scrollbar-track-piece {
+    background: transparent !important;
 }
 
 h1, h2, h3, h4 {

@@ -379,7 +379,7 @@ export default function Contacts() {
                                               name="comment"
                                               value={comment}
                                               onChange={(e) => setComment(e.target.value)}
-                                              className={`${styles.bounceElem}
+                                              className={`txtarea-scrollbar ${styles.bounceElem}
                                                placeholder:!text-[#ccc] w-full md:w-[375px] h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                pr-[54px]
                                                ${

@@ -1192,7 +1192,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     useEffect(() => {
         const hideScrollPaths = [
-            '/contacts/connection',
+            // '/contacts/connection',
             '/pricing',
             '/auth/login',
             '/auth/register',

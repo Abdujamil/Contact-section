@@ -2738,6 +2738,146 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     const isScrollingRef = useRef(false);
     const ITEM_HEIGHT = 28;
 
+    // Realization drag scroll
+    // const setupDragScroll = <T,> (element: HTMLDivElement, itemHeight = 28, itemsArray?: T[]) => {
+    //     let isDown = false;
+    //     let startY = 0;
+    //     let scrollTop = 0;
+    //     let velocity = 0;
+    //     let lastY = 0;
+    //     let lastTime = 0;
+    //     let animationFrame: number | null = null;
+    //
+    //     const totalHeight = itemsArray ? itemsArray.length * itemHeight : 0;
+    //     const bufferHeight = totalHeight * 0.15; // Уменьшил буфер до 15%
+    //
+    //     const stopMomentumScroll = () => {
+    //         if (animationFrame) {
+    //             cancelAnimationFrame(animationFrame);
+    //             animationFrame = null;
+    //         }
+    //     };
+    //
+    //     // Функция для бесконечного скролла
+    //     const checkInfiniteScroll = () => {
+    //         if (!itemsArray || itemsArray.length <= 31) return element.scrollTop;
+    //
+    //         const currentScroll = element.scrollTop;
+    //
+    //         // Если приближаемся к началу, плавно перемещаем в конец
+    //         if (currentScroll < bufferHeight) {
+    //             const newPosition = currentScroll + (totalHeight - bufferHeight * 2);
+    //             element.scrollTop = newPosition;
+    //             return newPosition;
+    //         }
+    //
+    //         // Если приближаемся к концу, плавно перемещаем в начало
+    //         if (currentScroll > totalHeight - bufferHeight) {
+    //             const newPosition = currentScroll - (totalHeight - bufferHeight * 2);
+    //             element.scrollTop = newPosition;
+    //             return newPosition;
+    //         }
+    //
+    //         return currentScroll;
+    //     };
+    //
+    //     const snapToNearest = () => {
+    //         const currentScroll = element.scrollTop;
+    //         const nearestIndex = Math.round(currentScroll / itemHeight);
+    //         const targetScroll = nearestIndex * itemHeight;
+    //
+    //         element.scrollTo({
+    //             top: targetScroll,
+    //             behavior: 'smooth'
+    //         });
+    //     };
+    //
+    //     const momentumScroll = () => {
+    //         element.scrollTop += velocity;
+    //
+    //         // Проверяем бесконечный скролл после изменения позиции
+    //         checkInfiniteScroll();
+    //
+    //         velocity *= 0.975; // трение
+    //
+    //         if (Math.abs(velocity) > 0.1) {
+    //             animationFrame = requestAnimationFrame(momentumScroll);
+    //         } else {
+    //             stopMomentumScroll();
+    //             snapToNearest();
+    //         }
+    //     };
+    //
+    //     const handleStart = (clientY: number) => {
+    //         isDown = true;
+    //         startY = clientY;
+    //         lastY = clientY;
+    //         lastTime = performance.now();
+    //         scrollTop = element.scrollTop;
+    //         velocity = 0;
+    //         stopMomentumScroll();
+    //         element.style.cursor = 'grabbing';
+    //         element.style.userSelect = 'none';
+    //     };
+    //
+    //     const handleMove = (clientY: number) => {
+    //         if (!isDown) return;
+    //
+    //         const now = performance.now();
+    //         const deltaY = clientY - lastY;
+    //         const deltaTime = now - lastTime;
+    //
+    //         velocity = deltaY / deltaTime * 16; // px/frame
+    //
+    //         lastY = clientY;
+    //         lastTime = now;
+    //
+    //         const walk = (startY - clientY) * 1.5;
+    //         element.scrollTop = scrollTop + walk;
+    //
+    //         // Проверяем бесконечный скролл во время движения
+    //         checkInfiniteScroll();
+    //     };
+    //
+    //     const handleEnd = () => {
+    //         if (!isDown) return;
+    //         isDown = false;
+    //         element.style.userSelect = '';
+    //         momentumScroll();
+    //     };
+    //
+    //     // Mouse events
+    //     const onMouseDown = (e: MouseEvent) => handleStart(e.clientY);
+    //     const onMouseMove = (e: MouseEvent) => handleMove(e.clientY);
+    //     const onMouseUp = () => handleEnd();
+    //     const onMouseLeave = () => handleEnd();
+    //
+    //     // Touch events
+    //     const onTouchStart = (e: TouchEvent) => handleStart(e.touches[0].clientY);
+    //     const onTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientY);
+    //     const onTouchEnd = () => handleEnd();
+    //
+    //     // element.style.cursor = 'grab';
+    //     element.addEventListener('mousedown', onMouseDown);
+    //     element.addEventListener('mousemove', onMouseMove);
+    //     element.addEventListener('mouseup', onMouseUp);
+    //     element.addEventListener('mouseleave', onMouseLeave);
+    //     element.addEventListener('touchstart', onTouchStart, { passive: true });
+    //     element.addEventListener('touchmove', onTouchMove, { passive: true });
+    //     element.addEventListener('touchend', onTouchEnd);
+    //
+    //     return () => {
+    //         stopMomentumScroll();
+    //         element.removeEventListener('mousedown', onMouseDown);
+    //         element.removeEventListener('mousemove', onMouseMove);
+    //         element.removeEventListener('mouseup', onMouseUp);
+    //         element.removeEventListener('mouseleave', onMouseLeave);
+    //         element.removeEventListener('touchstart', onTouchStart);
+    //         element.removeEventListener('touchmove', onTouchMove);
+    //         element.removeEventListener('touchend', onTouchEnd);
+    //     };
+    // };
+
     const setupDragScroll = <T,> (element: HTMLDivElement, itemHeight = 28, itemsArray?: T[]) => {
         let isDown = false;
         let startY = 0;
@@ -2748,7 +2888,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         let animationFrame: number | null = null;
 
         const totalHeight = itemsArray ? itemsArray.length * itemHeight : 0;
-        const bufferHeight = totalHeight * 0.15; // Уменьшил буфер до 15%
+        const bufferHeight = totalHeight * 0.15;
 
         const stopMomentumScroll = () => {
             if (animationFrame) {
@@ -2763,14 +2903,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
             const currentScroll = element.scrollTop;
 
-            // Если приближаемся к началу, плавно перемещаем в конец
             if (currentScroll < bufferHeight) {
                 const newPosition = currentScroll + (totalHeight - bufferHeight * 2);
                 element.scrollTop = newPosition;
                 return newPosition;
             }
 
-            // Если приближаемся к концу, плавно перемещаем в начало
             if (currentScroll > totalHeight - bufferHeight) {
                 const newPosition = currentScroll - (totalHeight - bufferHeight * 2);
                 element.scrollTop = newPosition;
@@ -2793,11 +2931,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
         const momentumScroll = () => {
             element.scrollTop += velocity;
-
-            // Проверяем бесконечный скролл после изменения позиции
             checkInfiniteScroll();
-
-            velocity *= 0.975; // трение
+            velocity *= 0.975;
 
             if (Math.abs(velocity) > 0.1) {
                 animationFrame = requestAnimationFrame(momentumScroll);
@@ -2805,6 +2940,55 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 stopMomentumScroll();
                 snapToNearest();
             }
+        };
+
+        // ДОБАВЛЯЕМ ОБРАБОТКУ КОЛЕСИКА МЫШИ
+        let wheelTimeout: NodeJS.Timeout | null = null;
+        const handleWheel = (e: WheelEvent) => {
+            // Предотвращаем стандартное поведение только для дискретных событий мыши
+            // Для тачпада macOS позволяем нативную плавность
+            const isDiscreteWheel = e.deltaMode === 1 || Math.abs(e.deltaY) >= 100;
+
+            if (isDiscreteWheel) {
+                e.preventDefault();
+
+                // Очищаем предыдущий таймаут для предотвращения множественных срабатываний
+                if (wheelTimeout) {
+                    clearTimeout(wheelTimeout);
+                }
+
+                wheelTimeout = setTimeout(() => {
+                    // Останавливаем momentum scroll
+                    stopMomentumScroll();
+
+                    // Определяем направление (нормализуем для разных браузеров)
+                    const direction = e.deltaY > 0 ? 1 : -1;
+
+                    // Получаем текущую позицию и вычисляем целевую
+                    const currentScroll = element.scrollTop;
+                    const currentIndex = Math.round(currentScroll / itemHeight);
+                    const targetIndex = currentIndex + direction;
+
+                    // Ограничиваем в пределах массива
+                    const maxIndex = itemsArray ? itemsArray.length - 1 : 0;
+                    const clampedIndex = Math.max(0, Math.min(targetIndex, maxIndex));
+
+                    const targetScroll = clampedIndex * itemHeight;
+
+                    // Плавный переход к целевой позиции
+                    element.scrollTo({
+                        top: targetScroll,
+                        behavior: 'smooth'
+                    });
+
+                    // Проверяем бесконечный скролл после анимации
+                    setTimeout(() => {
+                        checkInfiniteScroll();
+                    }, 200);
+
+                }, 10); // Небольшая задержка для группировки событий
+            }
+            // Для тачпада (macOS) не preventDefault - позволяем нативную плавность
         };
 
         const handleStart = (clientY: number) => {
@@ -2826,7 +3010,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             const deltaY = clientY - lastY;
             const deltaTime = now - lastTime;
 
-            velocity = deltaY / deltaTime * 16; // px/frame
+            velocity = deltaY / deltaTime * 16;
 
             lastY = clientY;
             lastTime = now;
@@ -2834,14 +3018,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             const walk = (startY - clientY) * 1.5;
             element.scrollTop = scrollTop + walk;
 
-            // Проверяем бесконечный скролл во время движения
             checkInfiniteScroll();
         };
 
         const handleEnd = () => {
             if (!isDown) return;
             isDown = false;
-            // element.style.cursor = 'grab';
             element.style.userSelect = '';
             momentumScroll();
         };
@@ -2857,7 +3039,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         const onTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientY);
         const onTouchEnd = () => handleEnd();
 
-        // element.style.cursor = 'grab';
+        // Добавляем все обработчики
         element.addEventListener('mousedown', onMouseDown);
         element.addEventListener('mousemove', onMouseMove);
         element.addEventListener('mouseup', onMouseUp);
@@ -2865,9 +3047,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         element.addEventListener('touchstart', onTouchStart, { passive: true });
         element.addEventListener('touchmove', onTouchMove, { passive: true });
         element.addEventListener('touchend', onTouchEnd);
+        element.addEventListener('wheel', handleWheel, { passive: false });
 
         return () => {
             stopMomentumScroll();
+            if (wheelTimeout) clearTimeout(wheelTimeout);
             element.removeEventListener('mousedown', onMouseDown);
             element.removeEventListener('mousemove', onMouseMove);
             element.removeEventListener('mouseup', onMouseUp);
@@ -2875,10 +3059,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             element.removeEventListener('touchstart', onTouchStart);
             element.removeEventListener('touchmove', onTouchMove);
             element.removeEventListener('touchend', onTouchEnd);
+            element.removeEventListener('wheel', handleWheel);
         };
     };
 
-    // Вычисляем центральные индексы только один раз при открытии
+    // Calculate centered indices only once when the date picker is opened
     const [centerDayIndex, setCenterDayIndex] = useState(() => {
         const middleIndex = Math.floor(infiniteDays.length / 2);
         return middleIndex + initial.day - 1;
@@ -3005,7 +3190,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }
     }, [isVisible]);
 
-    // Функция для получения количества дней в месяце
+    // function for getting the number of days in a month
     const getDaysInMonth = (month: number, year: number) => {
         return new Date(year, month + 1, 0).getDate();
     };
@@ -3029,7 +3214,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         onClose();
     };
 
-    // 2. Исправь функцию handleScroll (замени на эту версию):
     const handleScroll = (
         ref: React.RefObject<HTMLDivElement | null>,
         setValue: (value: number) => void,
@@ -3069,7 +3253,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         }, 100);
     };
 
-    // Стиль без каких-либо эффектов при скролле
+    // Style without any effects during scroll
     const getItemStyle = () => {
         return {
             opacity: 1,
@@ -3081,7 +3265,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
     useEffect(() => {
         if (isVisible) {
-            // Небольшая задержка чтобы элемент успел появиться в DOM
             const timer = setTimeout(() => {
                 bounceActiveBlock('dataPicker', controls);
             }, 10);
