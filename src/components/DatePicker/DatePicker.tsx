@@ -2666,8 +2666,8 @@ import React, {useState, useEffect, useRef, useLayoutEffect} from 'react';
 import styles from '@/app/page.module.scss'
 import {AnimatePresence, motion, useAnimation} from "framer-motion";
 import gsap from "gsap";
-import { Observer } from "gsap/Observer";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import {Observer} from "gsap/Observer";
+import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 
 interface DatePickerProps {
@@ -2878,7 +2878,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     //     };
     // };
 
-    const setupDragScroll = <T,> (element: HTMLDivElement, itemHeight = 28, itemsArray?: T[]) => {
+    const setupDragScroll = <T, >(element: HTMLDivElement, itemHeight = 28, itemsArray?: T[]) => {
         let isDown = false;
         let startY = 0;
         let scrollTop = 0;
@@ -3044,10 +3044,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         element.addEventListener('mousemove', onMouseMove);
         element.addEventListener('mouseup', onMouseUp);
         element.addEventListener('mouseleave', onMouseLeave);
-        element.addEventListener('touchstart', onTouchStart, { passive: true });
-        element.addEventListener('touchmove', onTouchMove, { passive: true });
+        element.addEventListener('touchstart', onTouchStart, {passive: true});
+        element.addEventListener('touchmove', onTouchMove, {passive: true});
         element.addEventListener('touchend', onTouchEnd);
-        element.addEventListener('wheel', handleWheel, { passive: false });
+        element.addEventListener('wheel', handleWheel, {passive: false});
 
         return () => {
             stopMomentumScroll();
@@ -3189,6 +3189,43 @@ export const DatePicker: React.FC<DatePickerProps> = ({
             handleScrollCheck();
         }
     }, [isVisible]);
+
+    useEffect(() => {
+        const ITEM_HEIGHT = 28; // высота строки
+
+        const attachWheelHandler = (ref: React.RefObject<HTMLDivElement | null>) => {
+            if (!ref.current) return;
+
+            const handleWheel = (e: WheelEvent) => {
+                if (Math.abs(e.deltaY) < 50) return; // тачпад пропускаем
+                e.preventDefault();
+
+                const direction = e.deltaY > 0 ? 1 : -1;
+
+                ref.current!.scrollTo({
+                    top: ref.current!.scrollTop + direction * ITEM_HEIGHT,
+                    behavior: "smooth",
+                });
+            };
+
+            ref.current.addEventListener("wheel", handleWheel, {passive: false});
+
+            return () => {
+                ref.current?.removeEventListener("wheel", handleWheel);
+            };
+        };
+
+        const cleanups = [
+            attachWheelHandler(dayRef),
+            attachWheelHandler(monthRef),
+            attachWheelHandler(yearRef),
+        ].filter(Boolean) as (() => void)[];
+
+        return () => {
+            cleanups.forEach((cleanup) => cleanup());
+        };
+    }, [dayRef, monthRef, yearRef]);
+
 
     // function for getting the number of days in a month
     const getDaysInMonth = (month: number, year: number) => {

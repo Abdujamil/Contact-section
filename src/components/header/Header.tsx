@@ -80,16 +80,30 @@ const Header: React.FC = () => {
     const [isIconVisible, setIsIconVisible] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+    // const renderMenuItems = useMemo(() => {
+    //     return menuItems.map((item) => {
+    //         const isActive =
+    //             item.href === "/"
+    //                 ? pathname === item.href
+    //                 : pathname?.startsWith(item.href);
+    //
+    //         return <MenuItem key={item.href} item={item} isActive={isActive}/>;
+    //     });
+    // }, [pathname]);
+
     const renderMenuItems = useMemo(() => {
         return menuItems.map((item) => {
+            const cleanHref = item.href.split("?")[0];
+
             const isActive =
                 item.href === "/"
-                    ? pathname === item.href
-                    : pathname?.startsWith(item.href);
+                    ? pathname === cleanHref
+                    : pathname?.startsWith(cleanHref);
 
-            return <MenuItem key={item.href} item={item} isActive={isActive}/>;
+            return <MenuItem key={item.href} item={item} isActive={isActive} />;
         });
     }, [pathname]);
+
 
     useEffect(() => {
         const addMouseEffect = (elements: NodeListOf<Element>) => {
@@ -163,7 +177,6 @@ const Header: React.FC = () => {
     // Login
     const {toggleRegisterPromo, showRegisterPromo} = useAuth();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    // const [hoverDirection, setHoverDirection] = useState<string | null>(null);
 
     useEffect(() => {
         const saved = localStorage.getItem("isLoggedIn");
