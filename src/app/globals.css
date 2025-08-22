@@ -538,6 +538,7 @@ input[type='email']::placeholder {
     );
 }
 
+
 @keyframes fadeInOutRight {
     0% {
         opacity: 0;

@@ -277,9 +277,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         const hideScrollPaths = [
             // '/contacts/connection',
             '/pricing',
-            '/auth/login',
-            '/auth/register',
-            '/auth/forgot-password'
+            // '/auth/login',
+            // '/auth/register',
+            // '/auth/forgot-password'
         ];
 
         const shouldHideScrollbar = hideScrollPaths.some(path => pathname === path || pathname.startsWith(path));
