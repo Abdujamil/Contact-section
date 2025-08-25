@@ -993,6 +993,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 }
 
 // Оптимизированный код для SmoothScroll компонента
+
 // 'use client';
 // import React, { useEffect, useState, useCallback } from "react";
 // import { usePathname } from "next/navigation";
