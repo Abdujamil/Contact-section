@@ -212,16 +212,16 @@ export default function RegisterPage() {
                 {!submitted ? (
                     <div
                         className={`w-full relative flex md:flex-nowrap flex-wrap gap-[30px] items-start justify-between`}>
-                        <div className={`h-full w-full md:w-[375px]`}>
+                        <div className={`h-full w-full md:w-[373px]`}>
                             <FormProvider {...methods}>
                                 <form
                                     onSubmit={handleSubmit(onSubmit)}
-                                    className="w-full md:w-[375px] h-full"
+                                    className="w-full md:w-[373px] h-full"
                                     onFocus={handleFormInteraction}
                                     onClick={handleFormInteraction}
                                 >
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[375px] mb-[31px] mt-5 md:mt-0`}
+                                        className={`${styles.bounceElem} w-full md:w-[373px] mb-[33px] mt-5 md:mt-0`}
                                         type={"email"}
                                         title={"E-mail"}
                                         inputName="email"
@@ -230,10 +230,10 @@ export default function RegisterPage() {
 
                                     <PasswordInputWithStrength className={`${styles.bounceElem}`}/>
                                     <UsernameInputWithValidation
-                                        className={`${styles.bounceElem} w-full md:w-[375px]`}/>
+                                        className={`${styles.bounceElem} w-full md:w-[373px]`}/>
 
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[375px] my-[34px]`}
+                                        className={`${styles.bounceElem} w-full md:w-[373px] my-[33px]`}
                                         title={"Ваш никнейм"}
                                         inputName="Nickname"
                                         required={true}
@@ -248,7 +248,7 @@ export default function RegisterPage() {
                                             value={methods.watch("date") || ""}
                                             onChange={handleDateInputChange}
                                             onFocus={handleDateInputFocus}
-                                            className={`${styles.bounceElem} w-[290px] md:w-[314px]`}
+                                            className={`${styles.bounceElem} w-[290px] md:w-[312px]`}
                                         />
 
                                         <button
@@ -293,7 +293,7 @@ export default function RegisterPage() {
                         </div>
                         <div className={`w-full h-full`}>
                             <Image
-                                className={`md:min-w-[375px] m-auto h-full md:h-[481px] rounded-[4px] border border-[#353535]`}
+                                className={`md:min-w-[373px] m-auto h-full md:h-[481px] rounded-[4px] border border-[#353535]`}
                                 src='/auth/02.png' alt='03' width={375} height={481}/>
                         </div>
 
