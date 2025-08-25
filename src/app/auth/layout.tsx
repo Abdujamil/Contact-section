@@ -68,7 +68,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                 className={`${styles['auth-content']} pt-[61px] h-full w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <div className="w-full flex items-center justify-center h-full">
-                    <div className={`md:flex gap-[40px] md:pt-[60px] md:pb-[60px] ml-[1.5px]`}>
+                    <div className={`md:flex gap-[40px] md:pt-[60px] md:pb-[60px]`}>
                         <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                             <h2
                                 className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[24px] mb-[20px] mt-[0]`}
@@ -119,7 +119,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             </div>
                         </aside>
 
-                        <div className={` md:pb-0 pb-20`}>
+                        <div className={`md:pb-0 pb-20 pr-[1px]`}>
                                 {children}
                         </div>
                     </div>

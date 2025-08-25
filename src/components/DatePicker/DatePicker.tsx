@@ -802,8 +802,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 key="date-picker"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
-                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.4%] left-[2.98%] md:left-[3.98%]">
-                <div className="w-full max-w-[296px] mx-4">
+                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.4%] left-[2.98%] md:left-[4%]">
+                <div className="w-full max-w-[290px] mx-4">
                     <div className="relative h-[253px]">
                         <div
                             className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[4px] mb-[33px]`}>

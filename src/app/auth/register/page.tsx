@@ -291,10 +291,10 @@ export default function RegisterPage() {
                                 </form>
                             </FormProvider>
                         </div>
-                        <div className={`w-full h-full`}>
+                        <div className={`relative w-[375px] h-[479px]`}>
                             <Image
-                                className={`md:min-w-[373px] m-auto h-full md:h-[481px] rounded-[4px] border border-[#353535]`}
-                                src='/auth/02.png' alt='03' width={375} height={481}/>
+                                className={` rounded-[4px] border border-[#353535]`}
+                                src='/auth/02.png' alt='03' fill/>
                         </div>
 
                         {/* Анимированный блок с политикой */}
