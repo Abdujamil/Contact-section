@@ -212,16 +212,16 @@ export default function RegisterPage() {
                 {!submitted ? (
                     <div
                         className={`w-full relative flex md:flex-nowrap flex-wrap gap-[30px] items-start justify-between`}>
-                        <div className={`h-full w-full md:w-[373px]`}>
+                        <div className={`h-full w-full md:w-[374px]`}>
                             <FormProvider {...methods}>
                                 <form
                                     onSubmit={handleSubmit(onSubmit)}
-                                    className="w-full md:w-[373px] h-full"
+                                    className="w-full md:w-[374px] h-full"
                                     onFocus={handleFormInteraction}
                                     onClick={handleFormInteraction}
                                 >
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[373px] mb-[33px] mt-5 md:mt-0`}
+                                        className={`${styles.bounceElem} w-full md:w-[374px] mb-[33px] mt-5 md:mt-0`}
                                         type={"email"}
                                         title={"E-mail"}
                                         inputName="email"
@@ -230,16 +230,16 @@ export default function RegisterPage() {
 
                                     <PasswordInputWithStrength className={`${styles.bounceElem}`}/>
                                     <UsernameInputWithValidation
-                                        className={`${styles.bounceElem} w-full md:w-[373px]`}/>
+                                        className={`${styles.bounceElem} w-full md:w-[374px]`}/>
 
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[373px] my-[33px]`}
+                                        className={`${styles.bounceElem} w-full md:w-[374px] my-[33px]`}
                                         title={"Ваш никнейм"}
                                         inputName="Nickname"
                                         required={true}
                                     />
 
-                                    <div className={`relative mb-[43px] flex items-center justify-between`}>
+                                    <div className={`relative mb-[41px] flex items-center justify-between`}>
                                         <DateInput
                                             ref={dateInputRef}
                                             title="Дата рождения"
@@ -248,7 +248,7 @@ export default function RegisterPage() {
                                             value={methods.watch("date") || ""}
                                             onChange={handleDateInputChange}
                                             onFocus={handleDateInputFocus}
-                                            className={`${styles.bounceElem} w-[290px] md:w-[312px]`}
+                                            className={`${styles.bounceElem} w-[290px] md:w-[313px]`}
                                         />
 
                                         <button
@@ -291,7 +291,7 @@ export default function RegisterPage() {
                                 </form>
                             </FormProvider>
                         </div>
-                        <div className={`relative w-[375px] h-[479px]`}>
+                        <div className={`relative w-[374px] h-[479px]`}>
                             <Image
                                 className={` rounded-[4px] border border-[#353535]`}
                                 src='/auth/02.png' alt='03' fill/>
@@ -299,7 +299,7 @@ export default function RegisterPage() {
 
                         {/* Анимированный блок с политикой */}
                         <motion.div
-                            className={`w-full absolute bottom-[-15%] left-1/2 transform -translate-x-1/2`}
+                            className={`w-full absolute bottom-[-14.5%] left-1/2 transform -translate-x-1/2`}
                             initial={{y: 20, opacity: 0}}
                             animate={
                                 showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}

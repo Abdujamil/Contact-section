@@ -802,9 +802,9 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 key="date-picker"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
-                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.4%] left-[2.98%] md:left-[4%]">
+                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.5%] left-[2.98%] md:left-[4.1%]">
                 <div className="w-full max-w-[290px] mx-4">
-                    <div className="relative h-[253px]">
+                    <div className="relative h-[256px]">
                         <div
                             className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[4px] mb-[33px]`}>
                         </div>
@@ -814,11 +814,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Selection indicator - more visible borders */}
                         <div
-                            className={`${styles.datePickerIndicator} w-[274px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
+                            className={`${styles.datePickerIndicator} w-[270px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
                         </div>
 
                         <div
-                            className="flex  justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[45px] z-[9]">
+                            className="flex  justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[48px] z-[9]">
 
                             {/*Close icon*/}
                             <button onClick={onClose}
@@ -963,13 +963,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Footer */}
                         <div
-                            className={`${styles.datePicker} flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] rounded-[4px] `}>
+                            className={`${styles.datePicker} relative -bottom-1 flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] rounded-[4px] `}>
 
                         </div>
 
                         <div
                             className={`absolute bottom-0 w-full flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[4px] `}>
-
                         </div>
                     </div>
                 </div>
