@@ -818,11 +818,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                         </div>
 
                         <div
-                            className="flex  justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[48px] z-[9]">
+                            className="flex  justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[47px] z-[9]">
 
                             {/*Close icon*/}
                             <button onClick={onClose}
-                                    className="absolute top-[-37px] right-[11px] z-[999999] text-[#3D9ED6]  text-base cursor-pointer transition-colors hover:text-[#5BADDB]"
+                                    className="absolute top-[-36px] right-[11px] z-[999999] text-[#3D9ED6]  text-base cursor-pointer transition-colors hover:text-[#5BADDB]"
                             >
                                 <svg
                                     className="animated-close"
@@ -886,7 +886,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                             </div>
 
                             {/* Month wheel */}
-                            <div className="w-[100px] left-[-4px] relative overflow-hidden">
+                            <div className="w-[100px] left-[-5px] relative overflow-hidden">
                                 <div
                                     ref={monthRef}
                                     className="w-full min-w-[100px] h-full overflow-y-auto"
