@@ -111,8 +111,11 @@ textarea::-webkit-scrollbar-corner:hover {
 }
 
 /* Кнопки */
-textarea::-webkit-scrollbar-button {
+textarea::-webkit-scrollbar-button,
+textarea::-webkit-scrollbar-button:single-button {
     display: none !important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
 /* Дополнительная защита от браузерных стилей */
@@ -537,6 +540,7 @@ input[type='email']::placeholder {
             rgba(174, 63, 255, 1) 100%
     );
 }
+
 
 
 @keyframes fadeInOutRight {

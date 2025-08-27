@@ -96,49 +96,6 @@ export default function Contacts() {
     // Validation
     const {setFocus} = methods;
 
-    // const validContactt = (value: string) => {
-    //     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    //     const phoneRegex =
-    //         /^(?:\+7|8)?[\s(-]*\d[\s(-]*\d{2}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}$/;
-    //
-    //     if (
-    //         (!emailRegex.test(value.trim()) && isEmail) ||
-    //         (!phoneRegex.test(value.trim()) && isPhone)
-    //     ) {
-    //         setEmailError(true);
-    //         setEmailSuccessful(false);
-    //
-    //         if (isEmail) {
-    //             setContactData((prev) => ({
-    //                 ...prev,
-    //                 email: "",
-    //             }));
-    //         } else {
-    //             setContactData((prev) => ({
-    //                 ...prev,
-    //                 phone: "",
-    //             }));
-    //         }
-    //
-    //         return;
-    //     } else {
-    //         setEmailError(false);
-    //         setEmailSuccessful(true);
-    //
-    //         if (isEmail) {
-    //             setContactData((prev) => ({
-    //                 ...prev,
-    //                 email: value.trim(),
-    //             }));
-    //         } else {
-    //             setContactData((prev) => ({
-    //                 ...prev,
-    //                 phone: value.trim(),
-    //             }));
-    //         }
-    //     }
-    // };
-
     const validContactt = (value: string) => {
         const trimmedValue = value.trim();
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

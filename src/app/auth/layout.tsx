@@ -76,39 +76,43 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                 Вход
                             </h2>
                             <div
-                                className={`${styles.btns} ${styles.licenseBtns} h-[213px] flex flex-col items-start justify-start w-full max-w-[320[px] md:max-w-[260px] p-[18px] gap-[10px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
+                                className={`${styles.btns} ${styles.licenseBtns} 
+                                h-[213px] flex flex-col items-start justify-start w-full max-w-[320px] 
+                                md:max-w-[260px] gap-2.5 p-[20px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
                             >
                                 {navItems.map((item, index) => {
                                     const isActive = pathname === item.href;
                                     const isFirst = index === 0;
 
                                     return (
-                                        <div key={item.label} className={`relative !w-[220px] m-auto !overflow-hidden`}>
+                                        <div key={item.label} className={`relative !w-[220px]`}>
                                             <Link
                                                 href={item.href}
                                                 onMouseMove={handleMouseMove}
                                                 onMouseLeave={handleMouseLeave}
-                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
+                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} !overflow-hidden
+                                                border !border-[#353535] transition-all !duration-[.13s] ease-in !py-[13px] !px-[15px]
+                                                cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center gap-2.5`}
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
-                                    <span
-                                        className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
-                                            isActive ? "!text-[#3D9ED6]" : "#adadad"} 
-                                        ${isFirst ? "!w-[190px]" : ""}
-                                        `}
-                                    >
-                                      {item.label}
-                                    </span>
+                                                <span
+                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
+                                                        isActive ? "!text-[#3D9ED6]" : "#adadad"} 
+                                                    ${isFirst ? "!w-[190px]" : ""}
+                                                    `}
+                                                >
+                                                  {item.label}
+                                                </span>
 
                                                 <span
                                                     className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
-                                          {item.icon}
-                                        </span>
+                                                  {item.icon}
+                                                </span>
 
                                                 <span
                                                     className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
-                                          {item.icon}
-                                        </span>
+                                                  {item.icon}
+                                                </span>
                                             </Link>
 
                                             <div className={styles.highlight}/>

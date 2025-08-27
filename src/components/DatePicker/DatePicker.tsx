@@ -804,12 +804,12 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 animate={controls}
                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.5%] left-[2.98%] md:left-[4.1%]">
                 <div className="w-full max-w-[290px] mx-4">
-                    <div className="relative h-[256px]">
+                    <div className={`${styles.datePickerContainer} relative h-[253px]`}>
                         <div
-                            className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] rounded-[4px] mb-[33px]`}>
+                            className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[108px] pt-[5px] rounded-[4px] mb-[33px]`}>
                         </div>
                         <div
-                            className={` w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[110px] pt-[5px] border-1 border-[#353535] rounded-[4px] mb-[33px]`}>
+                            className={`w-full pointer-events-none absolute top-0 z-[9999] text-center pb-[50px] px-[1px] h-[108px] pt-[5px] border-1 border-[#353535] rounded-[4px] mb-[33px]`}>
                         </div>
 
                         {/* Selection indicator - more visible borders */}
@@ -822,7 +822,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                             {/*Close icon*/}
                             <button onClick={onClose}
-                                    className="absolute top-[-33px] right-[11px] z-[999999] text-[#3D9ED6]  text-base cursor-pointer transition-colors hover:text-[#5BADDB]"
+                                    className="absolute top-[-37px] right-[11px] z-[999999] text-[#3D9ED6]  text-base cursor-pointer transition-colors hover:text-[#5BADDB]"
                             >
                                 <svg
                                     className="animated-close"
@@ -853,10 +853,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                             <div className={`${styles.datePickerHeader}`}></div>
 
                             {/* Day wheel */}
-                            <div className="w-[25px] relative overflow-hidden">
+                            <div className="w-[25px] left-[-7px] relative overflow-hidden">
                                 <div
                                     ref={dayRef}
-                                    className="h-full overflow-y-auto"
+                                    className="w-full min-w-[25px] h-full overflow-y-auto"
                                     style={{
                                         scrollSnapType: 'y mandatory', // ВАЖНО: возвращаем scroll-snap для трекпада
                                         perspective: '1000px',
@@ -886,10 +886,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                             </div>
 
                             {/* Month wheel */}
-                            <div className="w-[100px] relative overflow-hidden">
+                            <div className="w-[100px] left-[-4px] relative overflow-hidden">
                                 <div
                                     ref={monthRef}
-                                    className="h-full overflow-y-auto"
+                                    className="w-full min-w-[100px] h-full overflow-y-auto"
                                     style={{
                                         scrollSnapType: 'y mandatory', // ВАЖНО: возвращаем scroll-snap для трекпада
                                         perspective: '1000px',
@@ -919,10 +919,10 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                             </div>
 
                             {/* Year wheel */}
-                            <div className="w-[60px] relative overflow-hidden">
+                            <div className="w-[60px] right-[-2px] relative overflow-hidden">
                                 <div
                                     ref={yearRef}
-                                    className="h-full overflow-y-auto"
+                                    className="w-full min-w-[60px] h-full overflow-y-auto"
                                     style={{
                                         scrollSnapType: 'y mandatory', // ВАЖНО: возвращаем scroll-snap для трекпада
                                         perspective: '1000px',
@@ -963,12 +963,11 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Footer */}
                         <div
-                            className={`${styles.datePicker} relative -bottom-1 flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] rounded-[4px] `}>
-
+                            className={`${styles.datePicker} relative -bottom-1 flex flex-col items-center justify-end h-[109px] text-center pt-[50px] border-1 border-transparent px-[24px] pb-[5px] rounded-[4px] `}>
                         </div>
 
                         <div
-                            className={`absolute bottom-0 w-full flex flex-col items-center justify-end h-[110px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[4px] `}>
+                            className={`absolute bottom-0 w-full flex flex-col items-center justify-end h-[109px] text-center pt-[50px] px-[24px] pb-[5px] border-1 border-[#353535] rounded-[4px] `}>
                         </div>
                     </div>
                 </div>
