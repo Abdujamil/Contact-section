@@ -830,7 +830,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Selection indicator - more visible borders */}
                         <div
-                            className={`${styles.datePickerIndicator} w-[270px] m-auto max-h-[36px] absolute top-[43%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
+                            className={`${styles.datePickerIndicator} w-[270px] m-auto max-h-[36px] absolute top-[42.5%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
                         </div>
 
                         <div
@@ -971,7 +971,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                             <button
                                 onClick={handleConfirm}
-                                className={`${styles['menu-item']} !absolute bottom-[-52px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6] text-base cursor-pointer transition-colors`}
+                                className={`${styles['menu-item']} !absolute bottom-[-47px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6] text-base cursor-pointer transition-colors`}
                             >
                                 Готово
                             </button>
