@@ -801,16 +801,103 @@
   backdrop-filter: blur(15px);
 }
 
-.datePicker,
-.datePickerIndicator{
-  -webkit-box-shadow: -10px 0 15px -5px rgba(0, 0, 0, 0.3),
-  10px 0 15px -5px rgba(0, 0, 0, 0.29);;
 
-  -moz-box-shadow: -10px 0 15px -5px rgba(0, 0, 0, 0.3),
-  10px 0 15px -5px rgba(0, 0, 0, 0.29);
+.datePickerIndicator,
+.datePicker {
+  //-webkit-box-shadow:
+  //        -10px 0 15px -5px rgba(0, 0, 0, 0.8),
+  //        10px 0 15px -5px rgba(0, 0, 0, 0.8);
+  //
+  //-moz-box-shadow:
+  //        -10px 0 15px -5px rgba(0, 0, 0, 0.8),
+  //        10px 0 15px -5px rgba(0, 0, 0, 0.8);
 
-  box-shadow: -10px 0 15px -5px rgba(0, 0, 0, 0.3), /* слева */
-  10px 0 15px -5px rgba(0, 0, 0, 0.29); /* справа */
+  //box-shadow:
+  //        -10px 0 15px -5px rgba(0, 0, 0, 0.8), /* слева */
+  //        10px 0 15px -5px rgba(0, 0, 0, 0.8); /* справа */
+
+
+  //background: linear-gradient(90deg, rgba(2, 5, 6, 0) 0%, rgba(2, 5, 6, 0.8) 100%);
+
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(2px);
+}
+
+.rectangle, .rectangle2, .rectangle3, .rectangle4, .rectangle5,
+.rectangle6,{
+  width: 7px;
+  height: 1px;
+  background: linear-gradient(90deg, #02050600 0%, #020506cc 100%);
+  position: absolute;
+}
+
+.rectangle7, .rectangle8, .rectangle9, .rectangle10, .rectangle11, .rectangle12 {
+  width: 7px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(2, 5, 6, 0) 0%, rgba(2, 5, 6, 0.8) 100%);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  position: absolute;
+}
+
+.rectangle {
+  top: 213px;
+  left: 9px;
+}
+
+.rectangle2{
+  top: 178px;
+  left: 8px;
+}
+
+.rectangle3{
+  top: 94px;
+  left: 10px;
+}
+
+.rectangle4{
+  left: 9px;
+  top: 44px;
+}
+
+.rectangle5{
+  left: 9px;
+  top: 10px;
+}
+
+.rectangle6{
+  top: 128px;
+  left: 19px;
+}
+
+// right reactangle
+.rectangle7 {
+  top: 213px;
+  right: -2px;
+}
+
+.rectangle8{
+  top: 178px;
+  right: -2px;
+}
+
+.rectangle9{
+  top: 94px;
+  right: -2px;
+}
+
+.rectangle10{
+  right: -2px;
+  top: 44px;
+}
+
+.rectangle11{
+  right: -2px;
+  top: 10px;
+}
+
+.rectangle12{
+  top: 128.5px;
+  right: 5px;
 }
 
 .datePickerIndicator {

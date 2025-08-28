@@ -804,6 +804,22 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 animate={controls}
                 className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.5%] left-[2.98%] md:left-[4.1%]">
                 <div className="w-full max-w-[290px] mx-4">
+                    {/* маленькие тени */}
+                    <div className={`${styles.rectangle}`}></div>
+                    <div className={`${styles.rectangle2}`}></div>
+                    <div className={`${styles.rectangle3}`}></div>
+                    <div className={`${styles.rectangle4}`}></div>
+                    <div className={`${styles.rectangle5}`}></div>
+                    <div className={`${styles.rectangle6}`}></div>
+
+                    <div className={`${styles.rectangle7}`}></div>
+                    <div className={`${styles.rectangle8}`}></div>
+                    <div className={`${styles.rectangle9}`}></div>
+                    <div className={`${styles.rectangle10}`}></div>
+                    <div className={`${styles.rectangle11}`}></div>
+                    <div className={`${styles.rectangle12}`}></div>
+
+
                     <div className={`${styles.datePickerContainer} relative h-[253px]`}>
                         <div
                             className={`${styles.datePicker} relative z-[2] text-center pb-[50px] px-[1px] h-[108px] pt-[5px] rounded-[4px] mb-[33px]`}>
