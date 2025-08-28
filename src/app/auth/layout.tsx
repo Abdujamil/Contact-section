@@ -91,7 +91,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 onMouseMove={handleMouseMove}
                                                 onMouseLeave={handleMouseLeave}
                                                 className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} !overflow-hidden
-                                                border !border-[#353535] transition-all !duration-[.13s] ease-in !py-[13px] !px-[15px]
+                                                border !border-[#353535] transition-all !duration-[.13s] ease-in !py-[13px] !px-[15px] !pl-[14px] !pb-[14px]
                                                 cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center gap-2.5`}
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
