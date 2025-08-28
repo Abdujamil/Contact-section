@@ -266,7 +266,7 @@ input:-webkit-autofill::first-line {
 .field__title-top {
     transition: all .2s ease-in-out 0s;
     position: absolute;
-    top: 13px;
+    top: 12px;
     left: 12px;
     font-size: 16px;
     color: #ccc;
