@@ -247,7 +247,7 @@ export default function RegisterPage() {
                                             required
                                             value={methods.watch("date") || ""}
                                             onChange={handleDateInputChange}
-                                            onFocus={handleDateInputFocus}
+                                            // onFocus={handleDateInputFocus}
                                             className={`${styles.bounceElem} w-[290px] md:w-[313px]`}
                                         />
 

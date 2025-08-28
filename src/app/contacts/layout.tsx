@@ -107,7 +107,6 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                                             className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                           {item.icon}
                                         </span>
-
                                                         <span
                                                             className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                           {item.icon}

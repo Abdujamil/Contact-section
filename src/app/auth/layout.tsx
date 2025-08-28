@@ -105,7 +105,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 </span>
 
                                                 <span
-                                                    className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                    className={`${styles.sendIconLeft2} ${isFirst ? "!w-[152px]" : ""} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                                   {item.icon}
                                                 </span>
 
