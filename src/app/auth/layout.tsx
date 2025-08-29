@@ -71,7 +71,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                     <div className={`md:flex gap-[40px] md:pt-[60px] md:pb-[60px]`}>
                         <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                             <h2
-                                className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[24px] mb-[20px] mt-[0]`}
+                                className={`${styles.txtGradientRight} hidden md:block leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[23px] mb-[20px] mt-[0]`}
                             >
                                 Вход
                             </h2>
