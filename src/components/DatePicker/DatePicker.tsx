@@ -830,7 +830,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                         {/* Selection indicator - more visible borders */}
                         <div
-                            className={`${styles.datePickerIndicator} z-[9] w-[270px] m-auto max-h-[36px] absolute top-[42.8%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
+                            className={`${styles.datePickerIndicator} z-[9] w-[270px] m-auto max-h-[36px] absolute top-[42.7%] left-[10px] h-11 border-l-1 border-r-1 border-[#353535] bg-[#3d9ed612]  backdrop-blur-[15px]  pointer-events-none`}>
                         </div>
 
                         <div

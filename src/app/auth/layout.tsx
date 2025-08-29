@@ -78,7 +78,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             <div
                                 className={`${styles.btns} ${styles.licenseBtns} 
                                 h-[213px] flex flex-col items-start justify-start w-full max-w-[320px] 
-                                md:max-w-[260px] gap-2.5 pl-[19px] p-[18px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
+                                md:max-w-[260px] gap-2.5 pl-[19px] py-[19px] p-[18px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
                             >
                                 {navItems.map((item, index) => {
                                     const isActive = pathname === item.href;
