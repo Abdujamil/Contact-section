@@ -972,7 +972,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                             <button
                                 onClick={handleConfirm}
                                 className={`${styles['menu-item']}  leading-[19px]
-                                !absolute bottom-[-47px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6]
+                                !absolute bottom-[-46px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6]
                                  text-base cursor-pointer transition-colors`}
                             >
                                 Готово
