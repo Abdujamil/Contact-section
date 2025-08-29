@@ -96,7 +96,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
                                                 <span
-                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
+                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] ${
                                                         isActive ? "!text-[#3D9ED6]" : "#adadad"} 
                                                     ${isFirst ? "!w-[190px]" : ""}
                                                     `}
