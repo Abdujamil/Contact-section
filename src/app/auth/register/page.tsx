@@ -212,16 +212,16 @@ export default function RegisterPage() {
                 {!submitted ? (
                     <div
                         className={`w-full relative flex md:flex-nowrap flex-wrap gap-[30px] items-start justify-between`}>
-                        <div className={`h-full w-full md:w-[374px]`}>
+                        <div className={`h-full w-full md:w-[375px] ml-[-1px] mt-[-1px]`}>
                             <FormProvider {...methods}>
                                 <form
                                     onSubmit={handleSubmit(onSubmit)}
-                                    className="w-full md:w-[374px] h-full"
+                                    className="w-full md:w-[375px] h-full"
                                     onFocus={handleFormInteraction}
                                     onClick={handleFormInteraction}
                                 >
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[374px] mb-[33px] mt-5 md:mt-0`}
+                                        className={`${styles.bounceElem} w-full md:w-[375px] mb-[33px] mt-5 md:mt-0`}
                                         type={"email"}
                                         title={"E-mail"}
                                         inputName="email"
@@ -230,16 +230,16 @@ export default function RegisterPage() {
 
                                     <PasswordInputWithStrength className={`${styles.bounceElem}`}/>
                                     <UsernameInputWithValidation
-                                        className={`${styles.bounceElem} w-full md:w-[374px]`}/>
+                                        className={`${styles.bounceElem} w-full md:w-[375px]`}/>
 
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[374px] my-[33px]`}
+                                        className={`${styles.bounceElem} w-full md:w-[375px] my-[33px]`}
                                         title={"Ваш никнейм"}
                                         inputName="Nickname"
                                         required={true}
                                     />
 
-                                    <div className={`relative mb-[41px] flex items-center justify-between`}>
+                                    <div className={`relative mb-[44px] flex items-center justify-between`}>
                                         <DateInput
                                             ref={dateInputRef}
                                             title="Дата рождения"
@@ -289,9 +289,9 @@ export default function RegisterPage() {
                                 </form>
                             </FormProvider>
                         </div>
-                        <div className={`relative w-[374px] h-[479px]`}>
+                        <div className={`relative w-[375px] h-[480px]`}>
                             <Image
-                                className={` rounded-[4px] border border-[#353535]`}
+                                className={` rounded-[4px]`}
                                 src='/auth/02.png' alt='03' fill/>
                         </div>
 

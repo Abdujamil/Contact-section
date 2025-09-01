@@ -78,7 +78,7 @@ export default function LoginPage() {
                         <FormProvider {...methods}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                                 <AppInput
-                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[32px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[33px]`}
                                     type={"email"}
                                     title={"E-mail"}
                                     inputName="email"
@@ -120,7 +120,7 @@ export default function LoginPage() {
                             </form>
                         </FormProvider>
 
-                        <div className={`max-w-[280px] md:max-w-[375px]`}>
+                        <div className={`max-w-[280px] md:max-w-[374px]`}>
                             {/* вход с помощью */}
                             <div className={`flex items-center gap-[7px] justify-between mt-[10px]`}>
                                 <svg width="119" height="2" viewBox="0 0 119 2" fill="none"
@@ -138,7 +138,9 @@ export default function LoginPage() {
                                 <p className={`whitespace-nowrap text-[#adadad] text-[16px] font-[Rubik] !leading-[70%]`}>вход
                                     с помощью</p>
 
-                                <svg width="119" height="2" viewBox="0 0 119 2" fill="none"
+                                <svg
+                                    className={`mb-[1px]`}
+                                    width="119" height="2" viewBox="0 0 119 2" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <line x1="-4.37114e-08" y1="1" x2="119" y2="0.99999"
                                           stroke="url(#paint0_linear_4682_3634)"/>
@@ -153,13 +155,13 @@ export default function LoginPage() {
                             </div>
 
                             {/*  Icons  */}
-                            <div>
+                            <div className={`mb-[-2px]`}>
                                 <div
-                                    className="w-full mt-2 flex flex-col md:flex-row items-center justify-center md:gap-[2px] gap-[4px]">
+                                    className="w-full mt-[9px] flex flex-col md:flex-row items-center justify-between md:gap-[2px] gap-[4px]">
 
                                     <div className={`flex items-center md:gap-[2px] gap-[4px]`}>
                                         <div
-                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95] `}
+                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60.83px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95] `}
                                         >
                                             <svg
                                                 className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 md:group-hover:translate-y-[-50px] md:group-hover:opacity-0`}
@@ -214,7 +216,7 @@ export default function LoginPage() {
 
                                         </div>
                                         <div
-                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95] `}
+                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60.83px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95] `}
                                         >
                                             <svg
                                                 className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 md:group-hover:translate-y-[-50px] md:group-hover:opacity-0`}
@@ -250,7 +252,7 @@ export default function LoginPage() {
                                             </svg>
                                         </div>
                                         <div
-                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
+                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60.83px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
                                         >
                                             <svg
                                                 className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 md:group-hover:translate-y-[-50px] md:group-hover:opacity-0`}
@@ -282,7 +284,7 @@ export default function LoginPage() {
 
                                     <div className={`flex items-center md:gap-[2px] gap-[4px]`}>
                                         <div
-                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
+                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60.83px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
                                         >
 
                                             <svg
@@ -304,7 +306,7 @@ export default function LoginPage() {
 
                                         </div>
                                         <div
-                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
+                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60.83px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
                                         >
                                             <svg
                                                 className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 md:group-hover:translate-y-[-50px] md:group-hover:opacity-0`}
@@ -325,7 +327,7 @@ export default function LoginPage() {
 
                                         </div>
                                         <div
-                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
+                                            className={`group overflow-hidden relative cursor-pointer flex items-center justify-center w-[90px] md:w-[60.83px] h-[50px] bg-[#20272A] rounded-[4px] border border-transparent active:border-[#ccc] active:scale-[.95]`}
                                         >
                                             <svg
                                                 className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 md:group-hover:translate-y-[-50px] md:group-hover:opacity-0`}
@@ -349,9 +351,9 @@ export default function LoginPage() {
                                 </div>
 
                                 <div
-                                    className="md:mt-[2px] mt-[4px] flex items-center justify-center md:gap-[2px] gap-[4px]">
+                                    className="md:mt-[2px] mt-[4px] flex items-center justify-between md:gap-[2px] gap-[4px]">
                                     <div
-                                        className="group overflow-hidden flex items-center justify-center w-full max-w-[137px] md:max-w-[184px] h-[50px] bg-[#20272A] rounded-[4px] relative cursor-pointer border border-transparent active:border-[#ccc] active:scale-[.95]"
+                                        className="group overflow-hidden flex items-center justify-center w-full max-w-[137px] md:max-w-[186.5px] h-[50px] bg-[#20272A] rounded-[4px] relative cursor-pointer border border-transparent active:border-[#ccc] active:scale-[.95]"
                                     >
                                         <svg
                                             className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 md:group-hover:translate-y-[-50px] md:group-hover:opacity-0`}
@@ -379,7 +381,7 @@ export default function LoginPage() {
                                     </div>
 
                                     <div
-                                        className="group overflow-hidden flex items-center justify-center w-full max-w-[137px] md:max-w-[184px] h-[50px] bg-[#20272A] rounded-[4px] relative cursor-pointer border border-transparent active:border-[#ccc] active:scale-[.95]"
+                                        className="group overflow-hidden flex items-center justify-center w-full max-w-[137px] md:max-w-[186.5px] h-[50px] bg-[#20272A] rounded-[4px] relative cursor-pointer border border-transparent active:border-[#ccc] active:scale-[.95]"
                                     >
                                         <svg
                                             className={`absolute transition-all duration-150 ease-in md:opacity-100 md:translate-y-0 gmd:roup-hover:translate-y-[-50px] md:group-hover:opacity-0`}
