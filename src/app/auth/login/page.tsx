@@ -72,9 +72,9 @@ export default function LoginPage() {
                 className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
                 <div
-                    className={`h-full flex md:flex-row flex-col gap-[30px] items-start justify-between`}>
+                    className={`md:w-[780px] h-full flex md:flex-row flex-col gap-[30px] items-start justify-between`}>
                     <div
-                        className={`h-full md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between`}>
+                        className={`h-full md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between ml-[-1px] mt-[-1px]`}>
                         <FormProvider {...methods}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                                 <AppInput
@@ -84,11 +84,12 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[12px]`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[30px]`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
+
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
-                                            className={`${styles['menu-item']}  w-fit mr-4 !max-w-[122px]  font-[Rubik] !text-[16px] text-[#adadad] !text-end mt-[10px]`}
+                                            className={`${styles['menu-item']}  w-fit mr-[14px] mt-[7.5px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[12px] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
@@ -502,9 +503,9 @@ export default function LoginPage() {
                             </div>
                         </div>
                     </div>
-                    <div className='w-full md:max-w-[375px]'>
+                    <div className='relative w-full md:max-w-[375px] md:max-h-[481px] rounded-[4px] mt-[-1px] mr-[1px]'>
                         <Image
-                            className={`md:min-w-[375px] m-auto h-full rounded-[4px] border border-[#353535]`}
+                            className={`md:min-w-[375px] m-auto h-full rounded-[4px]`}
                             src='/auth/01.png' alt='01' width={375} height={488}/>
                     </div>
                 </div>

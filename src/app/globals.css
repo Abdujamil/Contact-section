@@ -262,6 +262,10 @@ input:-webkit-autofill::first-line {
     z-index: -1;
 }
 
+.field__title{
+    left: 10px !important;
+}
+
 .field__title,
 .field__title-top {
     transition: all .2s ease-in-out 0s;
