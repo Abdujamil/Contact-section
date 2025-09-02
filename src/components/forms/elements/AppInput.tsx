@@ -569,7 +569,9 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         tabIndex={-1}
                     >
                         {showPasswordInternal ? (
-                            <svg shapeRendering="geometricPrecision"
+                            <svg
+                                className={`mt-[1px] ml-[2px]`}
+                                shapeRendering="geometricPrecision"
                                  width="24" height="24" viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -577,7 +579,9 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                     fill="#878787"/>
                             </svg>
                         ) : (
-                            <svg shapeRendering="geometricPrecision"
+                            <svg
+                                className={`mt-[1px] ml-[2px]`}
+                                shapeRendering="geometricPrecision"
                                  width="24" height="24"
                                  viewBox="0 0 24 24" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">

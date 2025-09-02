@@ -74,7 +74,7 @@ export default function LoginPage() {
                 <div
                     className={`md:w-[780px] h-full flex md:flex-row flex-col gap-[30px] items-start justify-between`}>
                     <div
-                        className={`h-full md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between`}>
+                        className={`h-full md:max-w-[374px] max-w-full w-full flex flex-col items-center justify-between`}>
                         <FormProvider {...methods}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                                 <AppInput
@@ -89,7 +89,7 @@ export default function LoginPage() {
 
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
-                                            className={`${styles['menu-item']}  w-fit mr-[15px] mt-[9.5px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[12px] text-[#adadad] !text-end `}
+                                            className={`${styles['menu-item']}  w-fit mr-[14px] mt-[9.5px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[12px] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@ export default function LoginPage() {
                                                     Войти в аккаунт
                                                   </span>
                                         <svg
-                                            className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
+                                            className={`${styles.sendIconRight} mt-[1px] transition-all !duration-[.13s] ease-in`}
                                             width="16" height="17" viewBox="0 0 16 17" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
