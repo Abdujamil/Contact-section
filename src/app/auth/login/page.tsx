@@ -78,7 +78,7 @@ export default function LoginPage() {
                         <FormProvider {...methods}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                                 <AppInput
-                                    className={`${styles.bounceElem} w-full md:w-[375px] mb-[33px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[374px] mb-[33px]`}
                                     type={"email"}
                                     title={"E-mail"}
                                     inputName="email"
