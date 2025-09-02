@@ -94,13 +94,13 @@ export default function ForgotPasswordPage() {
                         <div
                             className={`w-full h-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
                             <div
-                                className={`w-full h-full flex flex-col items-center justify-between  md:max-w-[375px]`}>
+                                className={`w-full h-full flex flex-col items-center justify-between  md:max-w-[375px] ml-[-1px]`}>
                                 <FormProvider {...methods}>
 
                                     <form onSubmit={handleSubmit(onSubmit)} onClick={handleFormInteraction}
                                           className="w-full">
                                         <AppInput
-                                            className={`${styles.bounceElem} mb-[53px] w-full md:w-[375px] mt-[20px] md:mt-0`}
+                                            className={`${styles.bounceElem} mb-[54px] w-full md:w-[375px] mt-[20px] md:mt-0`}
                                             type={"email"}
                                             title={"E-mail"}
                                             inputName="email"
@@ -112,7 +112,7 @@ export default function ForgotPasswordPage() {
                                                 E-mail найден
                                                 <svg width="16" height="13" viewBox="0 0 16 13" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    <path fillRule="evenodd" clipRule="evenodd"
                                                           d="M15.7516 0.178704C16.0539 0.441363 16.0845 0.897636 15.82 1.19782L5.63823 12.7534C5.50569 12.9038 5.31628 12.9929 5.11511 12.9996C4.91393 13.0063 4.71898 12.9298 4.57665 12.7885L0.213013 8.45514C-0.0710044 8.17309 -0.0710044 7.7158 0.213013 7.43376C0.497031 7.15171 0.957514 7.15171 1.24153 7.43376L5.05548 11.2212L14.7254 0.246645C14.9899 -0.0535365 15.4494 -0.0839547 15.7516 0.178704Z"
                                                           fill="#34C759"/>
                                                 </svg>
@@ -127,8 +127,8 @@ export default function ForgotPasswordPage() {
 
                                         <pre
                                             className={`absolute left-3 top-[-6%]  text-[#353535] right-0 text-center`}>
-                                        Пример тестовых email-адресов: test@example.com, user@mail.ru.
-                                    </pre>
+                                            Пример тестовых email-адресов: test@example.com, user@mail.ru.
+                                        </pre>
 
                                         <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
                                             <button
@@ -143,7 +143,7 @@ export default function ForgotPasswordPage() {
                                                     Отправить
                                                   </span>
                                                 <svg
-                                                    className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
+                                                    className={`${styles.sendIconRight} mt-[1px] ml-[2px] transition-all !duration-[.13s] ease-in`}
                                                     width="16" height="17" viewBox="0 0 16 17" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path
@@ -156,8 +156,8 @@ export default function ForgotPasswordPage() {
                                     </form>
                                 </FormProvider>
 
-                                <div>
-                                    <p className={`!leading-[120%] mb-5 text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+                                <div className={`flex flex-col  mb-[3px] ml-[1px]`}>
+                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -167,7 +167,10 @@ export default function ForgotPasswordPage() {
 
                                         Временный пароль будет отправлен <br/> на вашу почту.
                                     </p>
-                                    <svg width="370" height="1" viewBox="0 0 370 1" fill="none"
+
+                                    <svg
+                                        className={`mt-[24px] mb-[16px]`}
+                                        width="370" height="1" viewBox="0 0 370 1" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <line y1="0.5" x2="370" y2="0.5" stroke="url(#paint0_linear_5340_3200)"/>
                                         <defs>
@@ -179,7 +182,8 @@ export default function ForgotPasswordPage() {
                                             </linearGradient>
                                         </defs>
                                     </svg>
-                                    <p className={`!leading-[120%] mt-5 text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+
+                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -192,10 +196,10 @@ export default function ForgotPasswordPage() {
                                 </div>
                             </div>
 
-                            <div className={`h-full`}>
+                            <div className={`h-full md:h-[480px]`}>
                                 <Image
-                                    className={`md:min-w-[375px] h-full rounded-[4px] border border-[#353535]`}
-                                    src='/auth/03.png' alt='02' width={375} height={509}/>
+                                    className={`md:min-w-[375px] h-full rounded-[4px]`}
+                                    src='/auth/03.png' alt='02' width={375} height={510}/>
                             </div>
                         </div>
 

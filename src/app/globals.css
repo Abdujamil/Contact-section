@@ -263,7 +263,7 @@ input:-webkit-autofill::first-line {
 }
 
 .field__title{
-    left: 10px !important;
+    /*left: 13px !important;*/
 }
 
 .field__title,

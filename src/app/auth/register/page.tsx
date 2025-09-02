@@ -212,7 +212,7 @@ export default function RegisterPage() {
                 {!submitted ? (
                     <div
                         className={`w-full relative flex md:flex-nowrap flex-wrap gap-[30px] items-start justify-between`}>
-                        <div className={`h-full w-full md:w-[375px] ml-[-1px] mt-[-1px]`}>
+                        <div className={`h-full w-full md:w-[375px]`}>
                             <FormProvider {...methods}>
                                 <form
                                     onSubmit={handleSubmit(onSubmit)}
@@ -239,7 +239,7 @@ export default function RegisterPage() {
                                         required={true}
                                     />
 
-                                    <div className={`relative mb-[44px] flex items-center justify-between`}>
+                                    <div className={`relative mb-[41px] flex items-center justify-between`}>
                                         <DateInput
                                             ref={dateInputRef}
                                             title="Дата рождения"
@@ -247,7 +247,6 @@ export default function RegisterPage() {
                                             required
                                             value={methods.watch("date") || ""}
                                             onChange={handleDateInputChange}
-                                            // onFocus={handleDateInputFocus}
                                             className={`${styles.bounceElem} w-[290px] md:w-[313px]`}
                                         />
 

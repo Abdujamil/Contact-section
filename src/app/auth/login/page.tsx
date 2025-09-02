@@ -74,7 +74,7 @@ export default function LoginPage() {
                 <div
                     className={`md:w-[780px] h-full flex md:flex-row flex-col gap-[30px] items-start justify-between`}>
                     <div
-                        className={`h-full md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between ml-[-1px] mt-[-1px]`}>
+                        className={`h-full md:max-w-[375px] max-w-full w-full flex flex-col items-center justify-between`}>
                         <FormProvider {...methods}>
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
                                 <AppInput
@@ -84,12 +84,12 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[30px]`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[29px]`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
 
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
-                                            className={`${styles['menu-item']}  w-fit mr-[14px] mt-[7.5px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[12px] text-[#adadad] !text-end `}
+                                            className={`${styles['menu-item']}  w-fit mr-[15px] mt-[9.5px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[12px] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
@@ -157,7 +157,7 @@ export default function LoginPage() {
                             {/*  Icons  */}
                             <div className={`mb-[-2px]`}>
                                 <div
-                                    className="w-full mt-[9px] flex flex-col md:flex-row items-center justify-between md:gap-[2px] gap-[4px]">
+                                    className="w-full mt-[11px] flex flex-col md:flex-row items-center justify-between md:gap-[2px] gap-[4px]">
 
                                     <div className={`flex items-center md:gap-[2px] gap-[4px]`}>
                                         <div
@@ -505,7 +505,7 @@ export default function LoginPage() {
                             </div>
                         </div>
                     </div>
-                    <div className='relative w-full md:max-w-[375px] md:max-h-[481px] rounded-[4px] mt-[-1px] mr-[1px]'>
+                    <div className='relative w-full md:max-w-[375px] md:max-h-[480px] rounded-[4px]  mr-[1px]'>
                         <Image
                             className={`md:min-w-[375px] m-auto h-full rounded-[4px]`}
                             src='/auth/01.png' alt='01' width={375} height={488}/>
