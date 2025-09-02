@@ -120,7 +120,7 @@ export default function LoginPage() {
                             </form>
                         </FormProvider>
 
-                        <div className={`max-w-[280px] md:max-w-[374px]`}>
+                        <div className={`max-w-[280px] md:max-w-[374px] ml-[-1px] mb-[2px]`}>
                             {/* вход с помощью */}
                             <div className={`flex items-center gap-[7px] justify-between mt-[10px]`}>
                                 <svg width="119" height="2" viewBox="0 0 119 2" fill="none"
@@ -157,7 +157,7 @@ export default function LoginPage() {
                             {/*  Icons  */}
                             <div className={`mb-[-2px]`}>
                                 <div
-                                    className="w-full mt-[11px] flex flex-col md:flex-row items-center justify-between md:gap-[2px] gap-[4px]">
+                                    className="w-full mt-[9px] flex flex-col md:flex-row items-center justify-between md:gap-[2px] gap-[4px]">
 
                                     <div className={`flex items-center md:gap-[2px] gap-[4px]`}>
                                         <div
@@ -505,9 +505,9 @@ export default function LoginPage() {
                             </div>
                         </div>
                     </div>
-                    <div className='relative w-full md:max-w-[375px] md:max-h-[480px] rounded-[4px]  mr-[1px]'>
+                    <div className='relative w-full md:max-w-[374px] md:max-h-[480px] rounded-[4px] mr-[2px] ml-[-1px]'>
                         <Image
-                            className={`md:min-w-[375px] m-auto h-full rounded-[4px]`}
+                            className={`md:min-w-[374px] m-auto h-full rounded-[4px]`}
                             src='/auth/01.png' alt='01' width={375} height={488}/>
                     </div>
                 </div>
