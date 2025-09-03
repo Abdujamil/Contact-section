@@ -66,14 +66,63 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/*::-webkit-scrollbar {*/
-/*    display: none;*/
-/*}*/
 
-/* Базовые стили */
-textarea {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(119, 156, 177, 0.25098) transparent;
+
+/* Reset and base styles  */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:link, a:visited  {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: none;
+}
+
+ul, ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+address {
+    font-style: normal;
+}
+
+
+input:focus, input:active,
+button:focus, button:active {
+    outline: none;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+label {
+    cursor: pointer;
+}
+
+legend {
+    display: block;
+}
+
+input[type='file'] {
+    max-width: 100%;
 }
 
 /* Основные стили скроллбара */

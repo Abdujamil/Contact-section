@@ -99,7 +99,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
                                                 <span
-                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] ${
+                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
                                                         isActive ? "!text-[#3D9ED6]" : "#adadad"} 
                                                     ${isFirst ? "!w-[190px]" : ""}
                                                     `}
@@ -108,12 +108,12 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 </span>
 
                                                 <span
-                                                    className={`${styles.sendIconLeft2} ${isFirst ? "!w-[152px]" : ""} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                    className={`${styles.sendIconLeft2} ${isFirst ? "!w-[152px]" : ""} mr-[-1px] mb-[-2px] flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                                   {item.icon}
                                                 </span>
 
                                                 <span
-                                                    className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                    className={`${styles.sendIconRight2} mr-[-1px] mb-[-2px] flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
                                                   {item.icon}
                                                 </span>
                                             </Link>

@@ -94,14 +94,14 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                                         className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
                                                         style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                                     >
-                                    <span
-                                        className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
-                                            isActive ? "!text-[#3D9ED6]" : "#adadad"} 
-                                        ${isFirst ? "!w-[190px]" : ""}
-                                        `}
-                                    >
-                                      {item.label}
-                                    </span>
+                                                    <span
+                                                        className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
+                                                            isActive ? "!text-[#3D9ED6]" : "#adadad"} 
+                                                        ${isFirst ? "!w-[190px]" : ""}
+                                                        `}
+                                                    >
+                                                      {item.label}
+                                                    </span>
 
                                                         <span
                                                             className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in`}>

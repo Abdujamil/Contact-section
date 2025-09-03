@@ -84,12 +84,12 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[29px]`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[26px]`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
 
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
-                                            className={`${styles['menu-item']}  w-fit mr-[14px] mt-[9.5px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[12px] text-[#adadad] !text-end `}
+                                            className={`${styles['menu-item']}  w-fit mr-[14px] mt-[8.6px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[100%] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
@@ -102,11 +102,11 @@ export default function LoginPage() {
                                         data-text=""
                                     >
                                                   <span
-                                                      className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                                      className=" mt-[1px] !transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
                                                     Войти в аккаунт
                                                   </span>
                                         <svg
-                                            className={`${styles.sendIconRight} mt-[1px] transition-all !duration-[.13s] ease-in`}
+                                            className={`${styles.sendIconRight} mt-[3px] transition-all !duration-[.13s] ease-in`}
                                             width="16" height="17" viewBox="0 0 16 17" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path
