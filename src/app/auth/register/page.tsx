@@ -288,9 +288,9 @@ export default function RegisterPage() {
                                 </form>
                             </FormProvider>
                         </div>
-                        <div className={`relative w-[375px] h-[480px]`}>
+                        <div className={`relative w-[375px] h-[479px]`}>
                             <Image
-                                className={` rounded-[4px]`}
+                                className={`rounded-[4px]`}
                                 src='/auth/02.png' alt='03' fill/>
                         </div>
 

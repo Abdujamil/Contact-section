@@ -307,9 +307,7 @@ input:-webkit-autofill::first-line {
     opacity: 0;
 }
 
-.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {
-    z-index: -1;
-}
+
 
 .field__title{
     /*left: 13px !important;*/
@@ -328,10 +326,14 @@ input:-webkit-autofill::first-line {
     text-overflow: ellipsis;
 }
 
-.field__input:not(:placeholder-shown):not(:focus) ~ .field__title,
-.field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {
-    z-index: -1;
-}
+/*.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {*/
+/*    z-index: -1;*/
+/*}*/
+
+/*.field__input:not(:placeholder-shown):not(:focus) ~ .field__title,*/
+/*.field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {*/
+/*    z-index: -1;*/
+/*}*/
 
 input::placeholder {
     opacity: 0;
