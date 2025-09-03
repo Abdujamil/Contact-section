@@ -102,7 +102,7 @@ export default function LoginPage() {
                                         data-text=""
                                     >
                                                   <span
-                                                      className=" mt-[1px] !transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                                      className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
                                                     Войти в аккаунт
                                                   </span>
                                         <svg
