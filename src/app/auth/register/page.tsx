@@ -275,7 +275,7 @@ export default function RegisterPage() {
                                                 Регистрация
                                             </span>
                                             <svg
-                                                className={`${styles.sendIconRight} transition-all !duration-[.13s] ease-in`}
+                                                className={`${styles.sendIconRight} mt-[4px] transition-all !duration-[.13s] ease-in`}
                                                 width="16" height="17" viewBox="0 0 16 17" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
