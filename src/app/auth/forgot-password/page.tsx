@@ -94,13 +94,13 @@ export default function ForgotPasswordPage() {
                         <div
                             className={`w-full h-full flex flex-wrap md:flex-nowrap gap-[30px] items-start justify-between`}>
                             <div
-                                className={`w-full h-full flex flex-col items-center justify-between  md:max-w-[375px] ml-[0px]`}>
+                                className={`w-full h-full flex flex-col items-center justify-between  md:max-w-[374px] ml-[0px]`}>
                                 <FormProvider {...methods}>
 
                                     <form onSubmit={handleSubmit(onSubmit)} onClick={handleFormInteraction}
                                           className="w-full">
                                         <AppInput
-                                            className={`${styles.bounceElem} mb-[54px] w-full md:w-[374px] mt-[20px] md:mt-0`}
+                                            className={`${styles.bounceElem} mb-[53px] w-full md:w-[374px] mt-[20px] md:mt-0`}
                                             type={"email"}
                                             title={"E-mail"}
                                             inputName="email"
@@ -183,7 +183,7 @@ export default function ForgotPasswordPage() {
                                         </defs>
                                     </svg>
 
-                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5 mb-[1px]`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -196,10 +196,10 @@ export default function ForgotPasswordPage() {
                                 </div>
                             </div>
 
-                            <div className={`h-full md:h-[479px]`}>
+                            <div className={`relative w-[374px] h-[479px]`}>
                                 <Image
-                                    className={`md:min-w-[375px] h-full rounded-[4px]`}
-                                    src='/auth/03.png' alt='02' width={375} height={510}/>
+                                    className={`rounded-[4px]`}
+                                    src='/auth/03.png' alt='03' fill/>
                             </div>
                         </div>
 

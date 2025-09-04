@@ -20,12 +20,17 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                 background: isOpen ? "rgba(61,158,214,0.07)" : "",
             }}
             className={`${styles.question} md:h-[68px]
-            w-full flex flex-row cursor-pointer items-center border border-[#353535] active:bg-[#20272b07] rounded-[6px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
+            w-full flex flex-row cursor-pointer items-center border border-[#353535] 
+            active:bg-[#20272b07] rounded-[6px] 
+            active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
             onClick={handleClick}
         >
 
             <div
-                className={`${styles.logoOnHover} absolute aspect-square right-[8%] translate-x-[4px] overflow-hidden hidden z-[9999] w-[155px] h-[155px] border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
+                className={`${styles.logoOnHover} 
+                absolute aspect-square right-[8%] translate-x-[4px] 
+                overflow-hidden hidden z-[9999] w-[155px] h-[155px] 
+                border border-[#CCCCCC] rounded-[4px] transition-all ease-in-out duration-[0.3s]`}
                 style={{
                     display: isOpen ? "none" : "",
                 }}
@@ -42,7 +47,8 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
             </div>
 
             <div
-                className={`${styles.questionContainer} relative z-[-1] w-full h-full p-3 md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
+                className={`${styles.questionContainer} 
+                relative z-[-1] w-full h-full p-3 md:p-[22px] md:pl-[30px] inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
                 <div className={`${styles.number} p-[6px]`}
                      style={{
                          position: isOpen ? "relative" : "initial",

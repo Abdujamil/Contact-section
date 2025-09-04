@@ -32,7 +32,9 @@ export default function Contacts() {
                             Полное наименование
                         </label>
                         <p
-                            className="w-full md:w-[559px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap overflow-auto cursor-not-allowed  border border-[#353535] rounded-[4px] px-[10px] py-3 text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
+                            className="w-full flex items-center justify-start md:w-[559px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap
+                            overflow-auto cursor-not-allowed  border border-[#353535]
+                            rounded-[4px] px-[10px] py-[18px] text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                         >
                             Общество с ограниченной ответственностью «АУДИОСЕКТОР»
                         </p>
@@ -67,7 +69,8 @@ export default function Contacts() {
                         Юридический адрес
                     </label>
                     <p
-                        className="w-full md:max-h-[51px] text-[#ссс] !text-[18px] cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
+                        className="w-full flex items-center justify-start md:max-h-[51px] text-[#ссс] !text-[18px] cursor-not-allowed
+                        bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
                     >
                         180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв.
                         44
@@ -82,7 +85,8 @@ export default function Contacts() {
                                 ИНН
                             </label>
                             <p
-                                className="w-full max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                className="w-full flex items-center justify-start max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed
+                                bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
                             >
                                 6000005874
                             </p>
@@ -94,7 +98,9 @@ export default function Contacts() {
                                 ОГРН
                             </label>
                             <p
-                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                className="w-full flex items-center justify-start
+                                 md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border
+                                 border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
                             >
                                 1236000004569
                             </p>
@@ -108,7 +114,7 @@ export default function Contacts() {
                                 Генеральный директор
                             </label>
                             <p
-                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                className="w-full flex items-center justify-start md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
                             >
                                 Владимиров Владимир Михайлович
                             </p>
@@ -120,7 +126,7 @@ export default function Contacts() {
                                 Почта
                             </label>
                             <p
-                                className="w-full md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-3  focus:outline-none focus:border-[#5F5F5F]"
+                                className="w-full flex items-center justify-start md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
                             >
                                 info@audiosector.ru
                             </p>

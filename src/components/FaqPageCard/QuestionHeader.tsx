@@ -15,7 +15,9 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
     return (
         <div
             className={`${styles.question}
-                    w-full flex flex-row cursor-pointer items-center border border-[#737373] active:bg-[#20272b07] rounded-[6px] active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
+                    w-full h-[68px] flex flex-row cursor-pointer 
+                    items-center border border-[#737373] active:bg-[#20272b07] rounded-[6px] 
+                    active:shadow-[2px_2px_4px_0px_#000000CC_inset,-2px_-2px_4px_0px_#000000CC_inset]`}
             onClick={handleClick}
             style={{
                 alignItems: isOpen ? "start" : "center",
@@ -25,7 +27,8 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
         >
 
             <div
-                className={`${styles.questionContainer} relative z-[99] w-full h-full px-[15px] py-[12px] md:p-5 inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
+                className={`${styles.questionContainer} relative z-[99] 
+                w-full h-full px-[15px] py-[12px] md:p-[22px] md:pl-[30px] inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
 
                 <div className={`${styles.answerContainer} w-full`}>
                     <h3 className={`w-full font-[400] text-[18px] md:text-[20px] text-[#adadad]`}

@@ -370,7 +370,7 @@ export default function Contacts() {
                                 className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-[12px] cursor-pointer  transition-colors duration-200`}
                             >
                                 <svg
-                                    className={`min-w-[32px]`}
+                                    className={`min-w-[18.8px]`}
                                     width="20" height="20" viewBox="0 0 20 20" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path

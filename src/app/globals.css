@@ -12,7 +12,6 @@
     font-family: 'Rubik';
     src: url('./fonts/Rubik-Light.ttf') format('truetype');
     font-weight: 300;
-    /* Light */
     font-style: normal;
     font-display: swap;
 }
@@ -46,7 +45,9 @@ html,
 body {
     /* overscroll-behavior: none; */
     height: 100%;
+    -ms-scroll-chaining: none;
     overscroll-behavior: none;
+    -ms-touch-action: none;
     touch-action: none;
 }
 
@@ -57,21 +58,26 @@ html {
 body {
     background: hwb(0deg 0% 100% / 95%);
     color: #ccc;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
 
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-tap-highlight-color: transparent;
-}
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /*line-height: 120%;*/
+}
 
 
 /* Reset and base styles  */
 *,
 *::before,
 *::after {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -140,6 +146,7 @@ textarea::-webkit-scrollbar-track:active {
     background: transparent !important;
     margin: 0 10px !important;
     border: none !important;
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
 
@@ -150,6 +157,7 @@ textarea::-webkit-scrollbar-thumb:active {
     background: rgba(119, 156, 177, 0.25098) !important;
     border: 1px solid #5C5C5C !important;
     border-radius: 50px !important;
+    -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
 
@@ -219,6 +227,8 @@ input:-webkit-autofill::first-line {
     border-radius: 5px;
     border: 1px solid #5c5c5c;
     background: hsl(202deg 27% 58% / 25%) !important;
+    -webkit-transition: background .2s linear !important;
+    -o-transition: background .2s linear !important;
     transition: background .2s linear !important;
 }
 
@@ -240,6 +250,8 @@ input:-webkit-autofill::first-line {
     opacity: 1 !important;
     border-radius: 3px;
     background: hsl(202deg 27% 58% / 25%) !important;
+    -webkit-transition: background .2s linear !important;
+    -o-transition: background .2s linear !important;
     transition: background .2s linear !important;
 }
 
@@ -249,6 +261,7 @@ input:-webkit-autofill::first-line {
 
 .field__input:focus,
 .field__textarea:focus {
+    -webkit-box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     border: 1px solid #737373;
     z-index: 1;
@@ -259,6 +272,8 @@ input:-webkit-autofill::first-line {
     /*margin-top: 25px;*/
     font-family: "Rubik";
     z-index: 1;
+    -webkit-transition: all .2s ease-in-out 0s;
+    -o-transition: all .2s ease-in-out 0s;
     transition: all .2s ease-in-out 0s;
     display: block;
     height: 51px;
@@ -315,6 +330,8 @@ input:-webkit-autofill::first-line {
 
 .field__title,
 .field__title-top {
+    -webkit-transition: all .2s ease-in-out 0s;
+    -o-transition: all .2s ease-in-out 0s;
     transition: all .2s ease-in-out 0s;
     position: absolute;
     top: 12px;
@@ -323,6 +340,7 @@ input:-webkit-autofill::first-line {
     color: #ccc;
     max-width: calc(100% - 40px);
     overflow: hidden;
+    -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
 }
 
@@ -335,12 +353,60 @@ input:-webkit-autofill::first-line {
 /*    z-index: -1;*/
 /*}*/
 
+input::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+input::-moz-placeholder {
+    opacity: 0;
+}
+
+input:-ms-input-placeholder {
+    opacity: 0;
+}
+
+input::-ms-input-placeholder {
+    opacity: 0;
+}
+
 input::placeholder {
     opacity: 0;
 }
 
+input:focus::-webkit-input-placeholder {
+    opacity: 1 !important;
+}
+
+input:focus::-moz-placeholder {
+    opacity: 1 !important;
+}
+
+input:focus:-ms-input-placeholder {
+    opacity: 1 !important;
+}
+
+input:focus::-ms-input-placeholder {
+    opacity: 1 !important;
+}
+
 input:focus::placeholder {
     opacity: 1 !important;
+}
+
+input[type='email']::-webkit-input-placeholder {
+    opacity: 1;
+}
+
+input[type='email']::-moz-placeholder {
+    opacity: 1;
+}
+
+input[type='email']:-ms-input-placeholder {
+    opacity: 1;
+}
+
+input[type='email']::-ms-input-placeholder {
+    opacity: 1;
 }
 
 input[type='email']::placeholder {
@@ -357,35 +423,75 @@ input[type='email']::placeholder {
 }
 
 
-@keyframes bounce-input {
+@-webkit-keyframes bounce-input {
     0% {
+        -webkit-transform: translateX(0);
         transform: translateX(0);
     }
 
     30% {
+        -webkit-transform: translateX(5px);
         transform: translateX(5px);
     }
 
     50% {
+        -webkit-transform: translateX(-2px);
         transform: translateX(-2px);
     }
 
     70% {
+        -webkit-transform: translateX(2px);
         transform: translateX(2px);
     }
 
     100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes bounce-input {
+    0% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    30% {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+
+    50% {
+        -webkit-transform: translateX(-2px);
+        transform: translateX(-2px);
+    }
+
+    70% {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+
+    100% {
+        -webkit-transform: translateX(0);
         transform: translateX(0);
     }
 }
 
 .bounce {
+    -webkit-animation: bounce-input .4s ease;
     animation: bounce-input .4s ease;
+    -webkit-transition: -webkit-transform .2s ease;
+    transition: -webkit-transform .2s ease;
+    -o-transition: transform .2s ease;
     transition: transform .2s ease;
+    transition: transform .2s ease, -webkit-transform .2s ease;
 }
 
 .\!duration-200 {
     --tw-duration: 200ms !important;
+    -webkit-transition-duration: .15ms !important;
+    -o-transition-duration: .15ms !important;
     transition-duration: .15ms !important;
 }
 
@@ -438,7 +544,6 @@ input[type='email']::placeholder {
 
 
 /* Wheel */
-
 .wheel {
     display: block;
     color: #fff;
@@ -448,22 +553,34 @@ input[type='email']::placeholder {
 }
 
 .wheel--perspective-right .wheel__inner {
+    -webkit-perspective-origin: calc(50% + 100px) 50%;
     perspective-origin: calc(50% + 100px) 50%;
+    -ms-transform: translateX(10px);
     transform: translateX(10px);
     -webkit-transform: translateX(10px);
 }
 
 .wheel--perspective-left .wheel__inner {
+    -webkit-perspective-origin: calc(50% - 100px) 50%;
     perspective-origin: calc(50% - 100px) 50%;
+    -ms-transform: translateX(-10px);
     transform: translateX(-10px);
     -webkit-transform: translateX(-10px);
 }
 
 .wheel__inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-perspective: 1000px;
     perspective: 1000px;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     height: 16%;
     width: 100%;
@@ -477,6 +594,17 @@ input[type='email']::placeholder {
 
 .wheel__shadow-top,
 .wheel__shadow-bottom {
+    background: -webkit-gradient(
+            linear,
+            left top, left bottom,
+            from(rgba(0, 0, 0, 0.9)),
+            to(rgba(0, 0, 0, 0.5))
+    );
+    background: -o-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.5) 100%
+    );
     background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0.9) 0%,
@@ -492,6 +620,17 @@ input[type='email']::placeholder {
 }
 
 .wheel__shadow-bottom {
+    background: -webkit-gradient(
+            linear,
+            left top, left bottom,
+            from(rgba(0, 0, 0, 0.5)),
+            to(rgba(0, 0, 0, 0.9))
+    );
+    background: -o-linear-gradient(
+            top,
+            rgba(0, 0, 0, 0.5) 0%,
+            rgba(0, 0, 0, 0.9) 100%
+    );
     background: linear-gradient(
             to bottom,
             rgba(0, 0, 0, 0.5) 0%,
@@ -511,15 +650,21 @@ input[type='email']::placeholder {
 }
 
 .wheel__slide {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     font-size: 20px;
     font-weight: 400;
     height: 100%;
     width: 100%;
     position: absolute;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
 }
 
@@ -527,8 +672,14 @@ input[type='email']::placeholder {
 [class^='number-slide'],
 [class*=' number-slide'] {
     background: grey;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     font-size: 50px;
     color: #fff;
@@ -539,6 +690,11 @@ input[type='email']::placeholder {
 
 .number-slide1 {
     background: rgb(64, 175, 255);
+    background: -o-linear-gradient(
+            322deg,
+            rgba(64, 175, 255, 1) 0%,
+            rgba(63, 97, 255, 1) 100%
+    );
     background: linear-gradient(
             128deg,
             rgba(64, 175, 255, 1) 0%,
@@ -548,6 +704,11 @@ input[type='email']::placeholder {
 
 .number-slide2 {
     background: rgb(255, 75, 64);
+    background: -o-linear-gradient(
+            322deg,
+            rgba(255, 154, 63, 1) 0%,
+            rgba(255, 75, 64, 1) 100%
+    );
     background: linear-gradient(
             128deg,
             rgba(255, 154, 63, 1) 0%,
@@ -557,10 +718,20 @@ input[type='email']::placeholder {
 
 .number-slide3 {
     background: rgb(182, 255, 64);
+    background: -o-linear-gradient(
+            322deg,
+            rgba(182, 255, 64, 1) 0%,
+            rgba(63, 255, 71, 1) 100%
+    );
     background: linear-gradient(
             128deg,
             rgba(182, 255, 64, 1) 0%,
             rgba(63, 255, 71, 1) 100%
+    );
+    background: -o-linear-gradient(
+            322deg,
+            rgba(189, 255, 83, 1) 0%,
+            rgba(43, 250, 82, 1) 100%
     );
     background: linear-gradient(
             128deg,
@@ -571,6 +742,11 @@ input[type='email']::placeholder {
 
 .number-slide4 {
     background: rgb(64, 255, 242);
+    background: -o-linear-gradient(
+            322deg,
+            rgba(64, 255, 242, 1) 0%,
+            rgba(63, 188, 255, 1) 100%
+    );
     background: linear-gradient(
             128deg,
             rgba(64, 255, 242, 1) 0%,
@@ -580,6 +756,11 @@ input[type='email']::placeholder {
 
 .number-slide5 {
     background: rgb(255, 64, 156);
+    background: -o-linear-gradient(
+            322deg,
+            rgba(255, 64, 156, 1) 0%,
+            rgba(255, 63, 63, 1) 100%
+    );
     background: linear-gradient(
             128deg,
             rgba(255, 64, 156, 1) 0%,
@@ -589,6 +770,11 @@ input[type='email']::placeholder {
 
 .number-slide6 {
     background: rgb(64, 76, 255);
+    background: -o-linear-gradient(
+            322deg,
+            rgba(64, 76, 255, 1) 0%,
+            rgba(174, 63, 255, 1) 100%
+    );
     background: linear-gradient(
             128deg,
             rgba(64, 76, 255, 1) 0%,
@@ -596,28 +782,54 @@ input[type='email']::placeholder {
     );
 }
 
-
-
-@keyframes fadeInOutRight {
+@-webkit-keyframes fadeInOutRight {
     0% {
         opacity: 0;
+        -webkit-transform: translateX(20px);
         transform: translateX(20px);
     }
     10% {
         opacity: 1;
+        -webkit-transform: translateX(0);
         transform: translateX(0);
     }
     90% {
         opacity: 1;
+        -webkit-transform: translateX(0);
         transform: translateX(0);
     }
     100% {
         opacity: 0;
+        -webkit-transform: translateX(20px);
+        transform: translateX(20px);
+    }
+}
+
+@keyframes fadeInOutRight {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
+        transform: translateX(20px);
+    }
+    10% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    90% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(20px);
         transform: translateX(20px);
     }
 }
 
 .animate-fadeInOutRight {
+    -webkit-animation: fadeInOutRight 2s ease-in-out forwards;
     animation: fadeInOutRight 2s ease-in-out forwards;
 }
 
@@ -629,6 +841,7 @@ input[type='email']::placeholder {
 
     body {
         /* Только на desktop блокируем touch-action */
+        -ms-touch-action: none;
         touch-action: none;
     }
 }
@@ -638,6 +851,7 @@ input[type='email']::placeholder {
     html,
     body {
         /* Убираем touch-action: none для мобилок */
+        -ms-touch-action: auto;
         touch-action: auto;
         /* Разрешаем overflow */
         overflow-x: auto !important;
