@@ -205,7 +205,7 @@ export default function ForgotPasswordPage() {
 
                         {/* Анимированный блок с политикой */}
                         <motion.div
-                            className={`w-full absolute bottom-[-6%] left-1/2 transform -translate-x-1/2`}
+                            className={`w-full absolute bottom-[-5%] left-1/2 transform -translate-x-1/2`}
                             initial={{y: 20, opacity: 0}}
                             animate={
                                 showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}
@@ -220,9 +220,9 @@ export default function ForgotPasswordPage() {
                             <p
                                 className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
                             >
-                                Нажимая на кнопку «Отправить» вы соглашаетесь с
+                                Нажимая кнопку «Отправить» вы соглашаетесь с
                                 <Link
-                                    href="/politic"
+                                    href="/politic/policy"
                                     className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
                                 >
                                     политикой конфиденциальности

@@ -4,7 +4,7 @@ import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider, SubmitHandler} from "react-hook-form";
 import Link from "next/link";
 import styles from "@/app/page.module.scss";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {emailRegex} from "@/components/Form/validation";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import HeaderStyles from "@/components/header/Header.module.css";
@@ -24,8 +24,10 @@ export default function LoginPage() {
     });
     const {register, handleSubmit} = methods;
     const controls = useAnimation();
+    const [showPolicy, setShowPolicy] = useState(false);
 
     const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
+        setShowPolicy(true)
         try {
             const res = await fetch('/api/login/route.ts', {
                 method: 'POST',
@@ -47,6 +49,14 @@ export default function LoginPage() {
             alert('Ошибка сервера');
         }
     };
+
+    // Добавляем обработчик для показа политики при взаимодействии с формой
+    const handleFormInteraction = () => {
+        if (!showPolicy) {
+            setShowPolicy(true);
+        }
+    };
+
     useEffect(() => {
         // Регистрируем email с кастомной валидацией
         register("email", {
@@ -76,7 +86,12 @@ export default function LoginPage() {
                     <div
                         className={`h-full md:max-w-[374px] max-w-full w-full flex flex-col items-center justify-between`}>
                         <FormProvider {...methods}>
-                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
+                            <form
+                                onSubmit={handleSubmit(onSubmit)}
+                                className="space-y-4 w-full"
+                                onFocus={handleFormInteraction}
+                                onClick={handleFormInteraction}
+                            >
                                 <AppInput
                                     className={`${styles.bounceElem} w-full md:w-[374px] mb-[33px]`}
                                     type={"email"}
@@ -510,6 +525,33 @@ export default function LoginPage() {
                             className={`md:min-w-[374px] m-auto h-full rounded-[4px]`}
                             src='/auth/01.png' alt='01' width={375} height={488}/>
                     </div>
+
+                    {/* Анимированный блок с политикой */}
+                    <motion.div
+                        className={`w-full absolute bottom-[-5%] left-[50%] transform -translate-x-1/2`}
+                        initial={{y: 20, opacity: 0}}
+                        animate={
+                            showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}
+                        }
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 4, // Меньше значение = больше отскок
+                            mass: 0.3, // Добавляем массу для более "пружинистого" эффекта
+                        }}
+                    >
+                        <p
+                            className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
+                        >
+                            Нажимая кнопку «Войти в аккаунт» вы соглашаетесь с
+                            <Link
+                                href="/politic/policy"
+                                className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                            >
+                                политикой конфиденциальности
+                            </Link>
+                        </p>
+                    </motion.div>
                 </div>
             </motion.div>
         </>
