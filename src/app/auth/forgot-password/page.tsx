@@ -169,7 +169,7 @@ export default function ForgotPasswordPage() {
                                     </p>
 
                                     <svg
-                                        className={`mt-[24px] mb-[16px]`}
+                                        className={`mt-[23px] mb-[16px]`}
                                         width="370" height="1" viewBox="0 0 370 1" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
                                         <line y1="0.5" x2="370" y2="0.5" stroke="url(#paint0_linear_5340_3200)"/>
@@ -183,7 +183,7 @@ export default function ForgotPasswordPage() {
                                         </defs>
                                     </svg>
 
-                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5 mb-[1px]`}>
+                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
