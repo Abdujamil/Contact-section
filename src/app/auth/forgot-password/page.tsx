@@ -156,7 +156,7 @@ export default function ForgotPasswordPage() {
                                     </form>
                                 </FormProvider>
 
-                                <div className={`flex flex-col  mb-[3px] ml-0`}>
+                                <div className={`flex flex-col  mb-[2.5px] ml-0`}>
                                     <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
