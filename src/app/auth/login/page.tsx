@@ -99,7 +99,7 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[26px]`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[25px]`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
 
                                     <div className={`relative inline-flex items-center justify-end`}>
