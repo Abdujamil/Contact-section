@@ -522,8 +522,11 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
         <div
             className={`relative w-full z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
             <label
-                htmlFor={inputName}
+                // htmlFor={inputName}
                 className={`field ${isPasswordType ? 'flex items-center justify-between' : ''} ${disable && 'pointer-events-none'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
+
+                <span className="sr-only">{title}</span>
+
                 <input
                     id={inputName}
                     {...register(inputName, {required})}
