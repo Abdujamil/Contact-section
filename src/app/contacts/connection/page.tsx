@@ -330,27 +330,27 @@ export default function Contacts() {
                     >
                         {/* Textarea */}
                         <div className="relative w-full overflow-y-auto md:w-[375px] hidden md:block">
-                                          <label htmlFor="comment" className="sr-only">Комментарий</label>
-                                          <textarea
-                                              id='comment'
-                                              name="comment"
-                                              value={comment}
-                                              onChange={(e) => setComment(e.target.value)}
-                                              className={`txtarea-scrollbar ${styles.bounceElem}
+                            <label htmlFor="comment" className="sr-only">Комментарий</label>
+                            <textarea
+                                id='comment'
+                                name="comment"
+                                value={comment}
+                                onChange={(e) => setComment(e.target.value)}
+                                className={`txtarea-scrollbar ${styles.bounceElem}
                                                placeholder:!text-[#ccc] w-full md:w-[375px] h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                pr-[54px]
                                                ${
-                                                  comment
-                                                      ? "!bg-[#20272A] border-[#353535]"
-                                                      : "bg-[#101010] border-[#353535]"
-                                              }
+                                    comment
+                                        ? "!bg-[#20272A] border-[#353535]"
+                                        : "bg-[#101010] border-[#353535]"
+                                }
                                                `}
-                                          ></textarea>
-                                            <span
-                                                className={`absolute z-[9] left-[3%] top-[3%] pointer-events-none transition-opacity duration-200 ${
-                                                    comment.trim() ? "opacity-0" : "opacity-100"
-                                                }`}
-                                            >
+                            ></textarea>
+                            <span
+                                className={`absolute z-[9] left-[3%] top-[3%] pointer-events-none transition-opacity duration-200 ${
+                                    comment.trim() ? "opacity-0" : "opacity-100"
+                                }`}
+                            >
                                                 Комментарий
                                               </span>
 
@@ -360,6 +360,7 @@ export default function Contacts() {
                                 htmlFor={"fileUpload"}
                                 className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-[12px] cursor-pointer  transition-colors duration-200`}
                             >
+                                <span className="sr-only">Загрузить файлы</span>
                                 <svg
                                     className={`min-w-[18.8px]`}
                                     width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -610,20 +611,22 @@ export default function Contacts() {
 
                             {/* Textarea */}
                             <div className="relative w-full mt-[34px] md:hidden">
-                                                  <textarea
-                                                      name="comment"
-                                                      value={comment}
-                                                      onChange={(e) => setComment(e.target.value)}
-                                                      className={`${styles.bounceElem}
+                                <label htmlFor="comment" className="sr-only">Комментарий</label>
+                                <textarea
+                                    id='comment'
+                                    name="comment"
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    className={`${styles.bounceElem}
                                                        placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                        pr-[54px]
                                                        ${
-                                                          comment
-                                                              ? "!bg-[#20272A] border-[#353535]"
-                                                              : "bg-[#101010] border-[#353535]"
-                                                      }
+                                        comment
+                                            ? "!bg-[#20272A] border-[#353535]"
+                                            : "bg-[#101010] border-[#353535]"
+                                    }
                                                        `}
-                                                  ></textarea>
+                                ></textarea>
                                 <span
                                     className={`absolute z-[9] left-[3%] top-[4%] pointer-events-none transition-opacity duration-200 ${
                                         comment.trim() ? "opacity-0" : "opacity-100"
@@ -633,22 +636,13 @@ export default function Contacts() {
                                               </span>
 
                                 {/* Скрытый input для загрузки файла */}
-                                <input
-                                    type="file"
-                                    // placeholder={text}
-                                    ref={fileInputRef}
-                                    aria-label={text}
-                                    onChange={(e) =>
-                                        handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
-                                    }
-                                    accept=".txt,.text,.md,.csv,.json,.xml,.html,.log" // Можно указать нужные форматы
-                                    className="hidden"
-                                />
 
-                                <div
+                                <label
+                                    htmlFor={"fileUpload"}
                                     onClick={() => fileInputRef.current?.click()}
                                     className={`${styles.fileIcon} w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-5 right-5 cursor-pointer hover:bg-[#20272A] transition-colors duration-200`}
                                 >
+                                    <span className="sr-only">Загрузить файлы</span>
                                     <svg
                                         width="21"
                                         height="22"
@@ -673,7 +667,20 @@ export default function Contacts() {
                                             fill="#adadad"
                                         />
                                     </svg>
-                                </div>
+                                </label>
+
+                                <input
+                                    id="fileUpload"
+                                    type="file"
+                                    // placeholder={text}
+                                    ref={fileInputRef}
+                                    aria-label={text}
+                                    onChange={(e) =>
+                                        handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
+                                    }
+                                    accept=".txt,.text,.md,.csv,.json,.xml,.html,.log" // Можно указать нужные форматы
+                                    className="hidden"
+                                />
 
                             </div>
 
