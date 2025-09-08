@@ -523,7 +523,10 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
             className={`relative w-full z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
             <label
                 htmlFor={inputName}
-                className={`field ${isPasswordType ? 'flex items-center justify-between' : ''} ${disable && 'pointer-events-none'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
+                className={`field 
+                ${isPasswordType ? 'flex items-center justify-between' : ''} 
+                ${disable && 'pointer-events-none'} 
+                ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
 
                 <span className="sr-only">{title}</span>
             </label>
@@ -554,6 +557,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     }}
                     onFocus={handleFocus}
                     aria-label={title}
+                    aria-labelledby={`${inputName}-label`}
                 />
                 <span
                     className={`${styles.titleTop} !text-[18px] font-[Rubik] field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
