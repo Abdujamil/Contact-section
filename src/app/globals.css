@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: 'Simple-Square';
-    src: url('../../public/fonts/ST-SimpleSquare.woff2') format('woff2');
+    src: url('/public/fonts/ST-SimpleSquare.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: 'Rubik';
-    src: url('../../public/fonts/Rubik-Light.ttf') format('truetype');
+    src: url('/public/fonts/Rubik-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -18,7 +18,7 @@
 
 @font-face {
     font-family: 'Rubik-Regular';
-    src: url('../../public/fonts/Rubik-Regular.ttf') format('truetype');
+    src: url('/public/fonts/Rubik-Regular.ttf') format('truetype');
 }
 
 :root {
@@ -58,7 +58,7 @@ html {
 body {
     background: hwb(0deg 0% 100% / 95%);
     color: #ccc;
-    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: Arial, Helvetica, sans-serif;
 
     user-select: none;
     -webkit-user-select: none;

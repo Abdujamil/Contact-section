@@ -21,22 +21,6 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="ru">
-        <head>
-            <link
-                rel="preload"
-                href="/public/fonts/Rubik-Regular.ttf"
-                as="font"
-                type="font/ttf"
-                crossOrigin="anonymous"
-            />
-            <link
-                rel="preload"
-                href="/public/fonts/Rubik-Light.ttf"
-                as="font"
-                type="font/ttf"
-                crossOrigin="anonymous"
-            />
-        </head>
         <body
             className={`antialiased min-h-screen flex flex-col`}
         >
