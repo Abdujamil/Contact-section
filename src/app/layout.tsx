@@ -24,14 +24,14 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
         <head>
             <link
                 rel="preload"
-                href="/fonts/Rubik-Regular.ttf"
+                href="/public/fonts/Rubik-Regular.ttf"
                 as="font"
                 type="font/ttf"
                 crossOrigin="anonymous"
             />
             <link
                 rel="preload"
-                href="/fonts/Rubik-Light.ttf"
+                href="/public/fonts/Rubik-Light.ttf"
                 as="font"
                 type="font/ttf"
                 crossOrigin="anonymous"

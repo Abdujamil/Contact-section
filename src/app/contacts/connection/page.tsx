@@ -20,7 +20,6 @@ import Link from "next/link";
 import FileSlider from "@/components/Form/FileSlider";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 
-
 export default function Contacts() {
     const controls = useAnimation();
     const methods = useForm({
@@ -28,6 +27,7 @@ export default function Contacts() {
         reValidateMode: "onChange",
         shouldFocusError: false,
     });
+
     const {
         handleSubmit,
         formState: {submitCount},
@@ -123,7 +123,6 @@ export default function Contacts() {
         }
     };
 
-
     const [emailCheckboxError, setEmailCheckboxError] = useState(false);
     const [phoneCheckboxError, setPhoneCheckboxError] = useState(false);
 
@@ -188,7 +187,6 @@ export default function Contacts() {
             setPhoneSuccessful(false);
         }
     }, [contactValue, isEmail, isPhone]);
-
 
     // Функция для показа политики при фокусе на поля
     const onSubmit = async (data: Record<string, unknown>) => {
