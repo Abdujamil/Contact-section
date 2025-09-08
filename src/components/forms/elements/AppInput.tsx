@@ -556,7 +556,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         }
                     }}
                     onFocus={handleFocus}
-                    aria-label={title}
+                    // aria-label={title}
                     aria-labelledby={`${inputName}-label`}
                 />
                 <span

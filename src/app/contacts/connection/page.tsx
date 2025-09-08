@@ -527,7 +527,7 @@ export default function Contacts() {
                                     }
                                     ref={contactInputRef}
                                     className={`${styles.bounceElem} w-full focus:!bg-[#20272A] !placeholder-opacity-0`}
-                                    title={isPhone ? "Телефон" : isEmail ? "Email" : ""}
+                                    title={isPhone ? "Телефон" : isEmail ? "Email" : "Контактные данные"}
                                     inputName="Contact"
                                     mask={isPhone ? "phone" : ""}
                                     type={isPhone ? "tel" : "text"}
@@ -538,6 +538,7 @@ export default function Contacts() {
                                     value={contactValue}
                                     onChange={(value) => setContactValue(value)}
                                     onBlur={() => validContactt(contactValue)}
+                                    aria-hidden={!isPhone && !isEmail}
                                 />
                             </div>
 
