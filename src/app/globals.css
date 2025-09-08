@@ -344,14 +344,14 @@ input:-webkit-autofill::first-line {
     text-overflow: ellipsis;
 }
 
-/*.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {*/
-/*    z-index: -1;*/
-/*}*/
+.field__input:not(:placeholder-shown):not(:focus) ~ .field__title {
+    z-index: -1;
+}
 
-/*.field__input:not(:placeholder-shown):not(:focus) ~ .field__title,*/
-/*.field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {*/
-/*    z-index: -1;*/
-/*}*/
+.field__input:not(:placeholder-shown):not(:focus) ~ .field__title,
+.field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {
+    z-index: -1;
+}
 
 input::-webkit-input-placeholder {
     opacity: 0;
