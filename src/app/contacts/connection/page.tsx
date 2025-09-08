@@ -330,7 +330,9 @@ export default function Contacts() {
                     >
                         {/* Textarea */}
                         <div className="relative w-full overflow-y-auto md:w-[375px] hidden md:block">
+                                          <label htmlFor="comment" className="sr-only">Комментарий</label>
                                           <textarea
+                                              id='comment'
                                               name="comment"
                                               value={comment}
                                               onChange={(e) => setComment(e.target.value)}
@@ -344,27 +346,18 @@ export default function Contacts() {
                                               }
                                                `}
                                           ></textarea>
-                            <span
-                                className={`absolute z-[9] left-[3%] top-[3%] pointer-events-none transition-opacity duration-200 ${
-                                    comment.trim() ? "opacity-0" : "opacity-100"
-                                }`}
-                            >
+                                            <span
+                                                className={`absolute z-[9] left-[3%] top-[3%] pointer-events-none transition-opacity duration-200 ${
+                                                    comment.trim() ? "opacity-0" : "opacity-100"
+                                                }`}
+                                            >
                                                 Комментарий
                                               </span>
 
                             {/* Скрытый input для загрузки файла */}
-                            <input
-                                type="file"
-                                multiple
-                                ref={fileInputRef}
-                                disabled={uploadedFiles.length >= 2}
-                                onChange={(e) =>
-                                    handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
-                                }
-                                className="w-[32px] absolute z-[9] left-auto right-[4%] top-[2.5%] cursor-pointer opacity-0"
-                            />
-                            <div
-                                // onClick={() => fileInputRef.current?.click()}
+
+                            <label
+                                htmlFor={"fileUpload"}
                                 className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-[12px] cursor-pointer  transition-colors duration-200`}
                             >
                                 <svg
@@ -375,8 +368,19 @@ export default function Contacts() {
                                         d="M16.2635 9.89949L9.54597 16.617C7.78861 18.3744 4.93937 18.3744 3.18201 16.617V16.617C1.42465 14.8596 1.42465 12.0104 3.18201 10.253L11.3137 2.12132C12.4853 0.949747 14.3848 0.949747 15.5564 2.12132V2.12132C16.728 3.29289 16.728 5.19239 15.5564 6.36396L7.32364 14.5967C6.73785 15.1825 5.7881 15.1825 5.20232 14.5967V14.5967C4.61653 14.0109 4.61653 13.0612 5.20232 12.4754L12.0208 5.65685"
                                         stroke="#ADADAD" strokeWidth="1.5" strokeLinecap="round"/>
                                 </svg>
+                            </label>
 
-                            </div>
+                            <input
+                                id="fileUpload"
+                                type="file"
+                                multiple
+                                ref={fileInputRef}
+                                disabled={uploadedFiles.length >= 2}
+                                onChange={(e) =>
+                                    handleFileUpload(e, setComment, setUploadedFiles, textareaRef)
+                                }
+                                className="w-[32px] absolute z-[9] left-auto right-[4%] top-[2.5%] cursor-pointer opacity-0"
+                            />
 
                             {
                                 uploadedFiles && uploadedFiles.length > 0 && (
