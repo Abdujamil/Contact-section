@@ -6,12 +6,32 @@ import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
 import FootCondition from '@/components/ConditionalFooter/page'
 
-// const Rubik_mono = Rubik({
-//     variable: "--font-rubik-mono",
-//     subsets: ["latin"],
-//     weight: ["400", "500", "600", "700"],
-//     display: "swap",
-// });
+// import localFont from 'next/font/local'
+//
+// const simpleSquare = localFont({
+//     src: '../../public/fonts/ST-SimpleSquare.woff2',
+//     variable: '--font-simple-square',
+//     weight: '400',
+//     style: 'normal',
+//     display: 'swap',
+// })
+//
+// const rubik = localFont({
+//     src: [
+//         {
+//             path: '../../public/fonts/Rubik-Light.ttf',
+//             weight: '300',
+//             style: 'normal',
+//         },
+//         {
+//             path: '../../public/fonts/Rubik-Regular.ttf',
+//             weight: '400',
+//             style: 'normal',
+//         },
+//     ],
+//     variable: '--font-rubik',
+//     display: 'swap',
+// })
 
 export const metadata: Metadata = {
     title: "Create Next App",

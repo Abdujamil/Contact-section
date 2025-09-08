@@ -529,7 +529,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
 
                 <span className="sr-only">{title}</span>
-            </label>
+
                 <input
                     id={inputName}
                     {...register(inputName, {required})}
@@ -599,7 +599,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         )}
                     </button>
                 )}
-
+            </label>
         </div>
     );
 });

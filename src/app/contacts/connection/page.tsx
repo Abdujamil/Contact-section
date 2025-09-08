@@ -527,7 +527,7 @@ export default function Contacts() {
                                     }
                                     ref={contactInputRef}
                                     className={`${styles.bounceElem} w-full focus:!bg-[#20272A] !placeholder-opacity-0`}
-                                    title={isPhone ? "Телефон" : isEmail ? "Email" : "Контактные данные"}
+                                    title={isPhone ? "Телефон" : isEmail ? "Email" : ""}
                                     inputName="Contact"
                                     mask={isPhone ? "phone" : ""}
                                     type={isPhone ? "tel" : "text"}
