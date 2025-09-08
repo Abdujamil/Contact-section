@@ -740,7 +740,7 @@ export default function Contacts() {
                     >
                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                         <Link
-                            href="/politic"
+                            href="/politic/policy"
                             className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
                         >
                             политикой конфиденциальности
