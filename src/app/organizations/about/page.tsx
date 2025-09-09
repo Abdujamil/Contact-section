@@ -14,7 +14,12 @@ export default function About() {
                 >
                     <div className="policy-content">
                         <div className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mb-[30px]`}>
-                            <img className={`w-full object-cover`} src="/company/company-Img.png" alt="img1"/>
+                            <img
+                                className={`w-full object-cover`}
+                                src="/company/company-Img.webp"
+                                fetchPriority="high"
+                                alt="img1"
+                            />
                         </div>
                         <section id="speech-to-text" className="scroll-mt-[100px]">
                             <h2 className="">Автоматическая транскрибация речи в текст</h2>
@@ -110,7 +115,7 @@ export default function About() {
 
                             <div
                                 className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center my-[30px]`}>
-                                <img className={`w-full object-cover`} src="/company/company-Img1.png" alt="img2"/>
+                                <img className={`w-full object-cover`} src="/company/company-Img1.webp" alt="img2"/>
                             </div>
                         </section>
 
@@ -283,7 +288,7 @@ export default function About() {
 
                             <div
                                 className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center my-[30px]`}>
-                                <img className={`w-full object-cover`} src="/company/company-Img2.png" alt="img3"/>
+                                <img className={`w-full object-cover`} src="/company/company-Img2.webp" alt="img3"/>
                             </div>
 
                         </section>
