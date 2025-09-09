@@ -99,7 +99,7 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[26px]`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[27px]`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
 
                                     <div className={`relative inline-flex items-center justify-end`}>
@@ -108,6 +108,7 @@ export default function LoginPage() {
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
+
                                 <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
                                     <button
                                         type="submit"
