@@ -190,6 +190,8 @@ export default function Page() {
                                     alt="Свидетельство о регистрации"
                                     width={280}
                                     height={352}
+                                    priority
+                                    fetchPriority="high"
                                 />
                             </div>
 
