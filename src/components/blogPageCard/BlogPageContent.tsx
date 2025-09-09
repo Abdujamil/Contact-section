@@ -595,6 +595,7 @@ export default function BlogPageContent({
                           width={600}
                           height={300}
                           priority
+                          fetchPriority="high"
                       />
                     </div>
                     {currentFaqItem.fullAnswer}
