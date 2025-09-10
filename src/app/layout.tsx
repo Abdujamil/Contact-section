@@ -5,6 +5,8 @@ import Header from "@/components/header/Header";
 import React from "react";
 import {AuthProvider} from "@/components/context/AuthContext";
 import FootCondition from '@/components/ConditionalFooter/page'
+import BrowserProvider from "@/components/BrowserProvider/BrowserProvider";
+import Script from "next/script";
 
 // import localFont from 'next/font/local'
 //
@@ -51,6 +53,9 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
             </main>
             <FootCondition/>
         </AuthProvider>
+
+        {/*  Добавляем браузерный класс на <html> */}
+        <BrowserProvider/>
         </body>
         </html>
     );

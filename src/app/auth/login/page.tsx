@@ -99,12 +99,12 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[27px]`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[27px] yandex-mb-password`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
 
                                     <div className={`relative inline-flex items-center justify-end`}>
                                         <Link
-                                            className={`${styles['menu-item']}  w-fit mr-[14px] mt-[7.8px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[100%] text-[#adadad] !text-end `}
+                                            className={`${styles['menu-item']} w-fit mr-[14px] mt-[7.8px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[100%] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
@@ -287,36 +287,36 @@ export default function LoginPage() {
                                             <path d="M5.6729 5.10477L3.85524 3.06781C2.6397 4.1794 1.66828 5.53751 1.00397 7.05406C0.339676 8.5706 -0.0026656 10.2117 -0.000847287 11.871H2.7054C2.70484 10.5955 2.96872 9.334 3.47992 8.16839C3.99112 7.00282 4.73825 5.95906 5.6729 5.10477Z" fill="url(#paint5_linear_6855_41)"/>
                                             <defs>
                                                 <linearGradient id="paint0_linear_6855_41" x1="3.97758" y1="19.922" x2="0.949777" y2="11.2855" gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0.14" stop-color="#F1E813"/>
-                                                    <stop offset="0.3" stop-color="#E6E418"/>
-                                                    <stop offset="0.58" stop-color="#C9DA26"/>
-                                                    <stop offset="0.89" stop-color="#A2CC39"/>
+                                                    <stop offset="0.14" stopColor="#F1E813"/>
+                                                    <stop offset="0.3" stopColor="#E6E418"/>
+                                                    <stop offset="0.58" stopColor="#C9DA26"/>
+                                                    <stop offset="0.89" stopColor="#A2CC39"/>
                                                 </linearGradient>
                                                 <linearGradient id="paint1_linear_6855_41" x1="4.20152" y1="3.96259" x2="11.8426" y2="1.08933" gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0.06" stop-color="#0FA7DF"/>
-                                                    <stop offset="0.54" stop-color="#0098F8"/>
-                                                    <stop offset="0.92" stop-color="#0290EA"/>
+                                                    <stop offset="0.06" stopColor="#0FA7DF"/>
+                                                    <stop offset="0.54" stopColor="#0098F8"/>
+                                                    <stop offset="0.92" stopColor="#0290EA"/>
                                                 </linearGradient>
                                                 <linearGradient id="paint2_linear_6855_41" x1="10.9477" y1="22.0881" x2="19.5705" y2="20.166" gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0.12" stop-color="#A2CC39"/>
-                                                    <stop offset="0.28" stop-color="#86C239"/>
-                                                    <stop offset="0.87" stop-color="#219F38"/>
+                                                    <stop offset="0.12" stopColor="#A2CC39"/>
+                                                    <stop offset="0.28" stopColor="#86C239"/>
+                                                    <stop offset="0.87" stopColor="#219F38"/>
                                                 </linearGradient>
                                                 <linearGradient id="paint3_linear_6855_41" x1="11.1472" y1="0.918281" x2="18.5267" y2="3.16534" gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0.06" stop-color="#0290EA"/>
-                                                    <stop offset="0.79" stop-color="#0C89CA"/>
+                                                    <stop offset="0.06" stopColor="#0290EA"/>
+                                                    <stop offset="0.79" stopColor="#0C89CA"/>
                                                 </linearGradient>
                                                 <linearGradient id="paint4_linear_6855_41" x1="3.7073" y1="19.502" x2="11.7472" y2="22.4669" gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0.13" stop-color="#F1E813"/>
-                                                    <stop offset="0.3" stop-color="#EAE616"/>
-                                                    <stop offset="0.53" stop-color="#D8DF1F"/>
-                                                    <stop offset="0.8" stop-color="#BAD52D"/>
-                                                    <stop offset="0.98" stop-color="#A2CC39"/>
+                                                    <stop offset="0.13" stopColor="#F1E813"/>
+                                                    <stop offset="0.3" stopColor="#EAE616"/>
+                                                    <stop offset="0.53" stopColor="#D8DF1F"/>
+                                                    <stop offset="0.8" stopColor="#BAD52D"/>
+                                                    <stop offset="0.98" stopColor="#A2CC39"/>
                                                 </linearGradient>
                                                 <linearGradient id="paint5_linear_6855_41" x1="1.00733" y1="12.2029" x2="4.29978" y2="3.75173" gradientUnits="userSpaceOnUse">
-                                                    <stop offset="0.07" stop-color="#A2CC39"/>
-                                                    <stop offset="0.26" stop-color="#81C45E"/>
-                                                    <stop offset="0.92" stop-color="#0FA7DF"/>
+                                                    <stop offset="0.07" stopColor="#A2CC39"/>
+                                                    <stop offset="0.26" stopColor="#81C45E"/>
+                                                    <stop offset="0.92" stopColor="#0FA7DF"/>
                                                 </linearGradient>
                                             </defs>
                                         </svg>

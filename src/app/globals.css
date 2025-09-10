@@ -447,8 +447,6 @@ input[type='email']::placeholder {
         transform: translateX(0);
     }
 }
-
-
 @keyframes bounce-input {
     0% {
         -webkit-transform: translateX(0);
@@ -491,6 +489,18 @@ input[type='email']::placeholder {
     -webkit-transition-duration: .15ms !important;
     -o-transition-duration: .15ms !important;
     transition-duration: .15ms !important;
+}
+
+.is-yandex .yandex-mb-password {
+    margin-bottom: 26px !important;
+}
+
+.is-yandex .mb-\[2\.5px\] {
+    margin-bottom: 4.5px !important;
+}
+
+.is-chrome .mb-\[2\.5px\] {
+    margin-bottom: 3.5px !important;
 }
 
 /* //-------------------------------- Policy --------------------------------// */
