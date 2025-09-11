@@ -81,11 +81,11 @@ body {
 
 /* Links */
 
-a, a:link, a:visited  {
+a, a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover  {
+a:hover {
     text-decoration: none;
 }
 
@@ -321,8 +321,7 @@ input:-webkit-autofill::first-line {
 }
 
 
-
-.field__title{
+.field__title {
     /*left: 13px !important;*/
 }
 
@@ -447,6 +446,7 @@ input[type='email']::placeholder {
         transform: translateX(0);
     }
 }
+
 @keyframes bounce-input {
     0% {
         -webkit-transform: translateX(0);
@@ -503,8 +503,20 @@ input[type='email']::placeholder {
     margin-bottom: 3.5px !important;
 }
 
-.is-chrome .mt-\[7\.8px\]{
+.is-chrome .mt-\[7\.8px\] {
     margin-top: 8.8px !important;
+}
+
+.is-edge .mb-\[2\.5px\] {
+    margin-bottom: 5.5px !important;
+}
+
+.is-firefox .mb-\[2\.5px\] {
+    margin-bottom: 4.5px !important;
+}
+
+.is-firefox .mb-\[26px\] {
+    margin-bottom: 27px;
 }
 
 /* //-------------------------------- Policy --------------------------------// */
