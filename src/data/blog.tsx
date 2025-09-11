@@ -164,7 +164,7 @@ export const blogData: BlogItem[] = [
           >
             <img
               className={`w-full h-full object-cover`}
-              src="/blg.webp"
+              src="/blg-opt.webp"
               alt="blog img"
             />
           </div>
@@ -370,7 +370,7 @@ export const blogData: BlogItem[] = [
           >
             <img
               className={`w-full h-full object-cover`}
-              src="/blg.webp"
+              src="/blg-opt.webp"
               alt="blog img"
             />
           </div>
