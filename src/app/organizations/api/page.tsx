@@ -188,7 +188,7 @@ export default function page() {
                             <div
                                 className="max-w-[600px] m-auto rounded-[6px] flex items-center justify-center my-[30px]">
                                 <img className="w-full object-cover" alt="img1"
-                                     src="/organization/organization-img2.png"/></div>
+                                     src="/organization/organization-img2.webp"/></div>
                         </section>
 
                         <section id="api-capabilities">

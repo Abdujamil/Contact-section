@@ -473,7 +473,7 @@ export default function OrganizationWhereDoYouLoseContent() {
 
                                     <Image
                                         className={`md:absolute right-0 top-5`}
-                                        src="/organization/card-img3.png"
+                                        src="/organization/card-img3.webp"
                                         alt="card-img"
                                         width={398}
                                         height={112}
@@ -495,7 +495,7 @@ export default function OrganizationWhereDoYouLoseContent() {
 
                                 <div
                                     className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mb-[30px]`}>
-                                    <img className={`w-full object-cover`} src="/organization/organization-img.png"
+                                    <img className={`w-full object-cover`} src="/organization/organization-img.webp"
                                          alt="img1"/>
                                 </div>
                             </div>
@@ -607,7 +607,7 @@ export default function OrganizationWhereDoYouLoseContent() {
 
                             <div
                                 className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mb-[30px]`}>
-                                <img className={`w-full object-cover`} src="/organization/organization-img1.png"
+                                <img className={`w-full object-cover`} src="/organization/organization-img1.webp"
                                      alt="img1"/>
                             </div>
                         </section>

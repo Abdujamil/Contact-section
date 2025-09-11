@@ -934,7 +934,7 @@
 
 //-------------------------------- Footer --------------------------------//
 .footer {
-  background-image: url('/noise1.png');
+  background-image: url('/noise1.webp');
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -1079,7 +1079,7 @@
 
     .footerTop {
       &::before {
-        background-image: url('/noise1.png');
+        background-image: url('/noise1.webp');
         content: "";
         // filter: brightness(.6) contrast(1) saturate(2);
         left: 0;
