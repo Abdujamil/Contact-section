@@ -503,6 +503,10 @@ input[type='email']::placeholder {
     margin-bottom: 3.5px !important;
 }
 
+.is-chrome .mt-\[7\.8px\]{
+    margin-top: 8.8px !important;
+}
+
 /* //-------------------------------- Policy --------------------------------// */
 .policy-content {
     section {
