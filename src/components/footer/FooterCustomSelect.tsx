@@ -56,6 +56,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                     data-text=""
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
+                    aria-label="Select Language"
                 >
                     <svg
                         width="19"

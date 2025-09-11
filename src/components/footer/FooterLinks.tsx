@@ -86,6 +86,7 @@ const FooterLinks: React.FC = () => {
                                     data-text=""
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
+                                    aria-label={link.label}
                                 >
                                       <span
                                           className="font-normal text-[18px] leading-[120%] !transition-all !duration-[.13s] !ease-in">

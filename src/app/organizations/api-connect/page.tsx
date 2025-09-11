@@ -128,8 +128,8 @@ export default function Page() {
                                               fill="#878787"/>
                                     </svg>
 
-                                    <span className={`${styles['menu-item']} `}>
-
+                                    <span className={`${styles['menu-item']} !text-[14px] `}>
+                                    Скопировать код
                                 </span>
                                 </div>
                             </div>

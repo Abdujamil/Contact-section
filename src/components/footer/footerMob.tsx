@@ -8,9 +8,6 @@ import {motion, AnimatePresence} from "framer-motion";
 import Link from "next/link";
 import Close from "@/components/closeIcon/close";
 import {Check} from "lucide-react";
-// import FooterSubscriptionForm from "@/components/footer/FooterSubscriptionForm";
-// import FooterCompanyInfo from "@/components/footer/FooterCompanyInfo";
-// import FooterLinks from "@/components/footer/FooterLinks";
 
 const FooterMob: React.FC = () => {
     const selectRef = useRef<HTMLDivElement>(null);
@@ -90,6 +87,7 @@ const FooterMob: React.FC = () => {
                                     data-text=""
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
+                                    aria-label='Выбор языка'
                                 >
                                     <svg
                                         width="19"
@@ -219,6 +217,7 @@ const FooterMob: React.FC = () => {
                             data-text=""
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
+                            aria-label='Кнопка Telegram'
                         >
                           <span className="font-normal text-[18px] leading-[75%] !transition-all !duration-[.13s] !ease-in">
                             Telegram

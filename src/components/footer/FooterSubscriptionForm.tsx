@@ -50,6 +50,7 @@ const FooterSubscriptionForm: React.FC = () => {
                                 type="submit"
                                 onMouseMove={handleMouseMove}
                                 onMouseLeave={handleMouseLeave}
+                                aria-label="Отправить"
                                 className={`${headerStyles["login-button"]} absolute w-[60px] !h-[39px] bg-[#101010] z-[1] mb-[11px] border !border-[#353535] rounded-[4px] py-[8px] px-[18px] cursor-pointer group flex items-center justify-start active:scale-[.95]`}
                             >
                                 <Image
