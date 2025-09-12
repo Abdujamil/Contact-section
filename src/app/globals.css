@@ -503,9 +503,9 @@ input[type='email']::placeholder {
     margin-bottom: 3.5px !important;
 }
 
-.is-chrome .mt-\[7\.8px\] {
-    margin-top: 8.8px !important;
-}
+/*.is-chrome .mt-\[3\.8px\] {*/
+/*    margin-top: 3.8px !important;*/
+/*}*/
 
 .is-edge .mb-\[2\.5px\] {
     margin-bottom: 4.5px !important;

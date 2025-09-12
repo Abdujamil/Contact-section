@@ -99,12 +99,12 @@ export default function LoginPage() {
                                     inputName="email"
                                     required={true}
                                 />
-                                <div className={`relative w-full flex flex-col justify-between mb-[26px] yandex-mb-password`}>
+                                <div className={`relative w-full flex flex-col justify-between mb-[23px] yandex-mb-password`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>
 
-                                    <div className={`relative inline-flex items-center justify-end`}>
+                                    <div className={`relative inline-flex items-center justify-end `}>
                                         <Link
-                                            className={`${styles['menu-item']} w-fit mr-[14px] mt-[7.8px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[100%] text-[#adadad] !text-end `}
+                                            className={`${styles['menu-item']} w-fit mr-[14px] mt-[3.8px] !max-w-[122px]  font-[Rubik] !text-[16px] leading-[150%] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>

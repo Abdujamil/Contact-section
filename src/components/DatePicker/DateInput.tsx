@@ -41,7 +41,6 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(function Da
     const currentValue = propValue !== undefined ? propValue : internalValue;
     const isActive = currentValue.trim().length > 0;
 
-
     const formatDate = (value: string) => {
         const cleaned = value.replace(/\D/g, '').substring(0, 8);
         let formatted = '';
@@ -149,11 +148,11 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(function Da
                     aria-label={title}
                 />
                 <span className={`${styles.titleTop} !text-[18px] font-[Rubik] field__title ${errors[inputName] ? '!text-[#FF3030]' : ''} ${classNameTitle || ''}`}>
-          {title}
-        </span>
+                  {title}
+                </span>
                 <span className={`${styles.titleBottom} font-[Rubik] field__title-top ${classNameTitle || ''}`}>
-          {title}
-        </span>
+                  {title}
+                </span>
             </label>
         </div>
     );

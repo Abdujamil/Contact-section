@@ -547,6 +547,7 @@ export default function Contacts() {
                                 ref={checkboxContainerRef}
                                 className={`${styles.formCheckboxes} flex items-center gap-[31px] mt-[10px] ml-[8px]`}
                             >
+
                                 <CustomCheckbox
                                     id="check-email"
                                     successful={emailSuccessful}
@@ -685,7 +686,6 @@ export default function Contacts() {
                                 />
 
                             </div>
-
 
                             <div className="relative !w-[212px] md:m-0 m-auto !overflow-hidden">
                                 <button

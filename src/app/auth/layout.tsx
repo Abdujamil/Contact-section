@@ -88,19 +88,19 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                     const isFirst = index === 0;
 
                                     return (
-                                        <div key={item.label} className={`relative !w-[220px]`}>
+                                        <div key={item.label} className={`relative !w-[220px] !overflow-hidden`}>
                                             <Link
                                                 href={item.href}
                                                 onMouseMove={handleMouseMove}
                                                 onMouseLeave={handleMouseLeave}
-                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} !overflow-hidden
+                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} block
                                                 border !border-[#353535] transition-all !duration-[.13s] ease-in !py-[13px] !px-[15px] !pl-[14px] !pb-[15px]
                                                 cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center gap-2.5`}
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
                                                 <span
                                                     className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] ${
-                                                        isActive ? "!text-[#3D9ED6]" : "#adadad"} 
+                                                        isActive ? "!text-[#3D9ED6]" : "#adadad"}
                                                     ${isFirst ? "!w-[190px]" : ""}
                                                     `}
                                                 >

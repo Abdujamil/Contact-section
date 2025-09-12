@@ -58,7 +58,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
                     title="Пароль"
                     inputName="Password"
                     required
-                    showPasswordExternally={showPassword}
+                    // showPasswordExternally={showPassword}
                     onFocus={() => setIsInputFocused(true)}
                     onBlur={() => {
                         setIsInputFocused(false);
@@ -68,28 +68,28 @@ export default function PasswordInputWithStrength({className}: { className?: str
             </div>
 
             {isInputFocused && passwordStrength !== '' && (
-                <div className="mt-2.5 flex justify-start gap-2 items-center absolute bottom-[-30px]">
+                <div className="mt-2.5 flex leading-[138%] justify-start gap-2 items-center absolute bottom-[-30px]">
                 <span className="font-[Rubik] text-[16px] text-[#CCCCCC] leading-[80%]">
                 Сложность пароля:
                 </span>
                     <div className="relative">
-      <span
-          className={`font-[Rubik] text-[16px] leading-[80%] ${
-              passwordStrength === 'weak'
-                  ? 'text-[#FF3030]'
-                  : passwordStrength === 'medium'
-                      ? 'text-[#FFAA00]'
-                      : 'text-[#00C853]'
-          }`}
-          onMouseEnter={() => setShowTooltip(true)}
-          onMouseLeave={() => setShowTooltip(false)}
-      >
-        {passwordStrength === 'weak'
-            ? 'Слабый'
-            : passwordStrength === 'medium'
-                ? 'Средний'
-                : 'Сильный'}
-      </span>
+                      <span
+                          className={`font-[Rubik] text-[16px] leading-[80%] ${
+                              passwordStrength === 'weak'
+                                  ? 'text-[#FF3030]'
+                                  : passwordStrength === 'medium'
+                                      ? 'text-[#FFAA00]'
+                                      : 'text-[#00C853]'
+                          }`}
+                          onMouseEnter={() => setShowTooltip(true)}
+                          onMouseLeave={() => setShowTooltip(false)}
+                      >
+                        {passwordStrength === 'weak'
+                            ? 'Слабый'
+                            : passwordStrength === 'medium'
+                                ? 'Средний'
+                                : 'Сильный'}
+                      </span>
 
                         {isTooltipVisible && (
                             <div
