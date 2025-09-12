@@ -508,11 +508,11 @@ input[type='email']::placeholder {
 }
 
 .is-edge .mb-\[2\.5px\] {
-    margin-bottom: 5.5px !important;
+    margin-bottom: 4.5px !important;
 }
 
 .is-firefox .mb-\[2\.5px\] {
-    margin-bottom: 4.5px !important;
+    margin-bottom: 3.5px !important;
 }
 
 .is-firefox .mb-\[26px\] {
