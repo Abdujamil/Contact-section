@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import AppInput from "@/components/forms/elements/AppInput";
-import {useForm, FormProvider, SubmitHandler} from "react-hook-form";
+import {useForm, FormProvider, SubmitHandler, useWatch} from "react-hook-form";
 import Link from "next/link";
 import styles from "@/app/page.module.scss";
 import React, {useEffect, useState} from "react";
@@ -18,6 +18,23 @@ type LoginFormValues = {
     password: string;
 };
 
+// Функция для валидации email
+const validateEmail = (value: string) => {
+    const trimmedValue = value.trim();
+
+    if (!trimmedValue) {
+        return "Введите email";
+    }
+
+    const isValidEmail = emailRegex.test(trimmedValue);
+
+    if (!isValidEmail) {
+        return "Неверный формат email";
+    }
+
+    return true;
+};
+
 export default function LoginPage() {
     const methods = useForm<LoginFormValues>({
         shouldFocusError: false
@@ -25,6 +42,12 @@ export default function LoginPage() {
     const {register, handleSubmit} = methods;
     const controls = useAnimation();
     const [showPolicy, setShowPolicy] = useState(false);
+
+    // Состояния для визуальной индикации email
+    const [emailSuccessful, setEmailSuccessful] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+
+    const emailValue = useWatch({control: methods.control, name: "email"});
 
     const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
         setShowPolicy(true)
@@ -72,6 +95,19 @@ export default function LoginPage() {
         bounceActiveBlock('login', controls);
     }, [controls]);
 
+    // Отслеживание изменений email для визуальной индикации
+    useEffect(() => {
+        if (emailValue) {
+            const trimmedValue = emailValue.trim();
+            const isValidEmail = emailRegex.test(trimmedValue);
+            setEmailError(!isValidEmail && trimmedValue.length > 0);
+            setEmailSuccessful(isValidEmail);
+        } else {
+            setEmailError(false);
+            setEmailSuccessful(false);
+        }
+    }, [emailValue]);
+
     return (
         <>
             <Breadcrumbs loginUrl={true}/>
@@ -98,6 +134,8 @@ export default function LoginPage() {
                                     title={"E-mail"}
                                     inputName="email"
                                     required={true}
+                                    fail={emailError}
+                                    isValid={emailSuccessful}
                                 />
                                 <div className={`relative w-full flex flex-col justify-between mb-[23px] yandex-mb-password`}>
                                     <PasswordInputWithStrength className={`${styles.bounceElem} !mb-0`}/>

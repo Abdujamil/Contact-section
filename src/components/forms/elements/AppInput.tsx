@@ -260,6 +260,7 @@ interface AppInputProps {
     autocomplete?: string,
     showPasswordToggle?: boolean;
     showPasswordExternally?: boolean;
+    isValid?: boolean;
 }
 
 const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
@@ -278,13 +279,15 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                                                   defaultValue,
                                                                   autocomplete,
                                                                   showPasswordExternally,
-                                                                  onBlur
+                                                                  onBlur,
+                                                                  isValid
                                                               }, ref) => {
     const {register, formState: {errors, isSubmitted, submitCount}, setValue, watch} = useFormContext();
     const [visibleError, setVisibleError] = useState(false);
     const [internalValue, setInternalValue] = useState('');
     const currentValue = propValue !== undefined ? propValue : internalValue;
     const isActive = currentValue.trim().length > 0;
+    const [isFocused, setIsFocused] = useState(false);
 
     const [showPasswordInternal, setShowPasswordInternal] = useState(false);
 
@@ -404,32 +407,74 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
 
                 <span className="sr-only">{title}</span>
 
+                {/*<input*/}
+                {/*    id={inputName}*/}
+                {/*    {...register(inputName, {required})}*/}
+                {/*    ref={(el) => {*/}
+                {/*        inputRef.current = el;*/}
+                {/*        register(inputName, {required}).ref(el);*/}
+                {/*    }}*/}
+                {/*    type={inputType}*/}
+                {/*    className={`field__input ${className} dark:text-[#adadad] */}
+                {/*    ${isFocused && isValid ? '!border-[#34C759]' : ''}*/}
+                {/*    ${fail && 'error !text-[red]'}*/}
+                {/*    ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} */}
+                {/*    focus:!bg-[#20272A] active:bg-[#20272A]'}`}*/}
+
+                {/*    placeholder={getPlaceholder()}*/}
+                {/*    autoComplete={getAutocompleteName(inputName) || autocomplete}*/}
+                {/*    value={propValue !== undefined ? propValue : internalValue}*/}
+                {/*    onChange={handleChange}*/}
+                {/*    onBlur={(e) => {*/}
+                {/*        if (onBlur) onBlur(e.target.value);*/}
+                {/*        if (e.target.value) {*/}
+                {/*            e.target.value = e.target.value.trimEnd() + ' ';*/}
+
+                {/*            const selectableTypes = ['text', 'search', 'url', 'tel', 'password'];*/}
+                {/*            if (selectableTypes.includes(e.target.type)) {*/}
+                {/*                e.target.setSelectionRange(e.target.value.length, e.target.value.length);*/}
+                {/*            }*/}
+                {/*        }*/}
+                {/*    }}*/}
+                {/*    onFocus={() => {*/}
+                {/*        setIsFocused(true);*/}
+                {/*        handleFocus();*/}
+                {/*    }}*/}
+                {/*    aria-labelledby={`${inputName}-label`}*/}
+                {/*/>*/}
+
                 <input
                     id={inputName}
-                    {...register(inputName, {required})}
+                    {...register(inputName, { required })}
                     ref={(el) => {
                         inputRef.current = el;
-                        register(inputName, {required}).ref(el);
+                        register(inputName, { required }).ref(el);
                     }}
                     type={inputType}
-                    className={`field__input ${className} dark:text-[#adadad] ${fail && 'error !text-[red]'}
-                    ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} focus:!bg-[#20272A] active:bg-[#20272A]'}`}
+                    className={`field__input ${className} dark:text-[#adadad] 
+                    ${isFocused && isValid ? '!border-[#34C759]' : ''}
+                    ${fail && 'error !text-[red]'}
+                    ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} 
+                    focus:!bg-[#20272A] active:bg-[#20272A]'}`}
                     placeholder={getPlaceholder()}
                     autoComplete={getAutocompleteName(inputName) || autocomplete}
                     value={propValue !== undefined ? propValue : internalValue}
                     onChange={handleChange}
                     onBlur={(e) => {
+                        setIsFocused(false);
                         if (onBlur) onBlur(e.target.value);
                         if (e.target.value) {
                             e.target.value = e.target.value.trimEnd() + ' ';
-
                             const selectableTypes = ['text', 'search', 'url', 'tel', 'password'];
                             if (selectableTypes.includes(e.target.type)) {
                                 e.target.setSelectionRange(e.target.value.length, e.target.value.length);
                             }
                         }
                     }}
-                    onFocus={handleFocus}
+                    onFocus={() => {
+                        setIsFocused(true);
+                        handleFocus();
+                    }}
                     aria-labelledby={`${inputName}-label`}
                 />
                 <span
