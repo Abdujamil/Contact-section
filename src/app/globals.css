@@ -195,6 +195,7 @@ input[type="date"]::-webkit-datetime-edit {
 
 input:-webkit-autofill {
     color: #CCCCCC !important;
+    -webkit-text-fill-color: #CCCCCC;
 }
 
 input:-webkit-autofill::first-line {

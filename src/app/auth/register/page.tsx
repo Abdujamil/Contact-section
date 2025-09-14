@@ -735,6 +735,7 @@ import {bounceActiveBlock} from "@/components/Form/bounce";
 import DateInput from "@/components/DatePicker/DateInput";
 import {DatePicker} from "@/components/DatePicker/DatePicker";
 import {useWatch} from "react-hook-form";
+import {usePathname} from "next/navigation";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -801,8 +802,16 @@ const validateDate = (value: string) => {
 };
 
 export default function RegisterPage() {
+    const pathname = usePathname();
     const methods = useForm<RegisterFormValues>({
-        shouldFocusError: false
+        shouldFocusError: false,
+        defaultValues: {
+            email: "",
+            password: "",
+            username: "",
+            nickname: "",
+            date: ""
+        }
     });
 
     const {register, handleSubmit, formState} = methods;
@@ -949,10 +958,26 @@ export default function RegisterPage() {
         }
     }, [register]);
 
+    useEffect(() => {
+        methods.reset({
+            email: "",
+            password: "",
+            username: "",
+            nickname: "",
+            date: ""
+        });
+        setEmailSuccessful(false);
+        setEmailError(false);
+        setShowPolicy(false);
+        setSelectedDate("");
+        setShowDatePicker(false);
+    }, [pathname, methods]);
+
     return (
         <>
             <Breadcrumbs registerUrl={true}/>
             <motion.div
+                key={pathname}
                 id="auth-register"
                 initial={{y: 20, opacity: 1}}
                 animate={controls}

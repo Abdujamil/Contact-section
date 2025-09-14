@@ -12,14 +12,19 @@ import Link from "next/link";
 import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
+import {usePathname} from "next/navigation";
 
 type ForgotPasswordFormValues = {
     email: string;
 };
 
 export default function ForgotPasswordPage() {
+    const pathname = usePathname();
     const methods = useForm<ForgotPasswordFormValues>({
-        shouldFocusError: false
+        shouldFocusError: false,
+        defaultValues: {
+            email: "",
+        }
     });
     const {register, handleSubmit} = methods;
     const controls = useAnimation();
@@ -29,7 +34,7 @@ export default function ForgotPasswordPage() {
 
     const [emailStatus, setEmailStatus] = useState<"found" | "not_found" | null>(null);
 
-// Замените это на реальную проверку (fetch или axios)
+    // Замените это на реальную проверку (fetch или axios)
     const checkEmail = async (email: string) => {
         // Здесь вместо setTimeout будет реальный запрос
         return new Promise<"found" | "not_found">((resolve) => {
@@ -84,6 +89,7 @@ export default function ForgotPasswordPage() {
         <>
             <Breadcrumbs forgotPasswordrUrl={true}/>
             <motion.div
+                key={pathname}
                 id="auth-forgot-password"
                 initial={{y: 20, opacity: 1}}
                 animate={controls}

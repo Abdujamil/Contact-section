@@ -122,12 +122,12 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                         </div>
                                     );
                                 })}
-
                             </div>
                         </aside>
 
-                        <div className={`md:pb-0 pb-20 pr-[1px]`}>
-                                {children}
+                        <div key={pathname}
+                            className={`md:pb-0 pb-20 pr-[1px]`}>
+                            {children}
                         </div>
                     </div>
                 </div>

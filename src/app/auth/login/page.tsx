@@ -12,32 +12,21 @@ import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
+import {usePathname} from "next/navigation";
 
 type LoginFormValues = {
     email: string;
     password: string;
 };
 
-// Функция для валидации email
-const validateEmail = (value: string) => {
-    const trimmedValue = value.trim();
-
-    if (!trimmedValue) {
-        return "Введите email";
-    }
-
-    const isValidEmail = emailRegex.test(trimmedValue);
-
-    if (!isValidEmail) {
-        return "Неверный формат email";
-    }
-
-    return true;
-};
-
 export default function LoginPage() {
+    const pathname = usePathname();
     const methods = useForm<LoginFormValues>({
-        shouldFocusError: false
+        shouldFocusError: false,
+        defaultValues: {
+            email: "",
+            password: ""
+        }
     });
     const {register, handleSubmit} = methods;
     const controls = useAnimation();
@@ -108,10 +97,20 @@ export default function LoginPage() {
         }
     }, [emailValue]);
 
+    useEffect(() => {
+        methods.reset({
+            email: "",
+            password: ""
+        });
+        setEmailSuccessful(false);
+        setEmailError(false);
+        setShowPolicy(false);
+    }, [pathname, methods]);
     return (
         <>
             <Breadcrumbs loginUrl={true}/>
             <motion.div
+                key={pathname}
                 id="auth-login"
                 initial={{y: 20, opacity: 1}}
                 animate={controls}
