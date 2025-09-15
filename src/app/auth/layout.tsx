@@ -88,7 +88,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                     const isFirst = index === 0;
 
                                     return (
-                                        <div key={item.label} className={`relative !w-[220px] !overflow-hidden`}>
+                                        <div key={item.label} className={`relative !w-[220px] !h-[52px] !overflow-hidden`}>
                                             <Link
                                                 href={item.href}
                                                 onMouseMove={handleMouseMove}
