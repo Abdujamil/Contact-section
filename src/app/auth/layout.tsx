@@ -88,34 +88,32 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                     const isFirst = index === 0;
 
                                     return (
-                                        <div key={item.label} className={`relative !w-[220px] !h-[52px] !overflow-hidden`}>
+                                        <div key={item.label} className={`relative !overflow-hidden`}>
                                             <Link
                                                 href={item.href}
                                                 onMouseMove={handleMouseMove}
                                                 onMouseLeave={handleMouseLeave}
-                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} block
+                                                className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} 
                                                 border !border-[#353535] transition-all !duration-[.13s] ease-in !py-[13px] !px-[15px] !pl-[14px] !pb-[15px]
                                                 cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center gap-2.5`}
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
                                                 <span
-                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] ${
-                                                        isActive ? "!text-[#3D9ED6]" : "#adadad"}
+                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] 
+                                                    ${isActive ? "!text-[#3D9ED6]" : "#adadad"}
                                                     ${isFirst ? "!w-[190px]" : ""}
                                                     `}
                                                 >
                                                   {item.label}
                                                 </span>
 
-                                                <span
-                                                    className={`${styles.sendIconLeft2} ${isFirst ? "!w-[152px]" : ""} mr-[-1px] mb-[-2px] flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
-                                                  {item.icon}
-                                                </span>
+                                                    <span className={`${styles.sendIconLeft2} ${isFirst ? "!w-[152px]" : ""} mr-[-1px] mb-[-2px] flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                      {item.icon}
+                                                    </span>
 
-                                                <span
-                                                    className={`${styles.sendIconRight2} mr-[-1px] mb-[-2px] flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
-                                                  {item.icon}
-                                                </span>
+                                                    <span className={`${styles.sendIconRight2} mr-[-1px] mb-[-2px] flex items-center justify-end transition-all !duration-[.13s] ease-in`}>
+                                                      {item.icon}
+                                                    </span>
                                             </Link>
 
                                             <div className={styles.highlight}/>
@@ -126,7 +124,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                         </aside>
 
                         <div key={pathname}
-                            className={`md:pb-0 pb-20 pr-[1px]`}>
+                             className={`md:pb-0 pb-20 pr-[1px]`}>
                             {children}
                         </div>
                     </div>

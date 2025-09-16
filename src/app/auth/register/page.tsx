@@ -1040,7 +1040,7 @@ export default function RegisterPage() {
                                         </button>
                                     </div>
 
-                                    <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
+                                    <div className="relative !w-[222px] md:m-0 m-auto !overflow-hidden">
                                         <button
                                             type="submit"
                                             onMouseMove={handleMouseMove}

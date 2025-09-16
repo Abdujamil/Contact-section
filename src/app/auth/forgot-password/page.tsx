@@ -136,12 +136,14 @@ export default function ForgotPasswordPage() {
                                             Пример тестовых email-адресов: test@example.com, user@mail.ru.
                                         </pre>
 
-                                        <div className="relative !w-[220px] md:m-0 m-auto !overflow-hidden">
+                                        <div className="relative !w-[222px] md:m-0 m-auto !overflow-hidden">
                                             <button
                                                 type="submit"
                                                 onMouseMove={handleMouseMove}
                                                 onMouseLeave={handleMouseLeave}
-                                                className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
+                                                className={`${styles.btn} ${styles["send-button"]} 
+                                                ${HeaderStyles["login-button"]} 
+                                                !border-[#353535] bg-[rgb(42_42_42/0.1)] group !w-[220px] !h-[51px] flex items-center !justify-center`}
                                                 data-text=""
                                             >
                                                   <span
