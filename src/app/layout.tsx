@@ -41,20 +41,14 @@ export const metadata: Metadata = {
     manifest: "/manifest.json",
     appleWebApp: {
         capable: true,
-        statusBarStyle: "black-translucent",
+        statusBarStyle: "black-translucent", // iOS сделает статус-бар прозрачным
         title: "Audiosector",
     },
-    // icons: {
-    //     icon: [
-    //         { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
-    //         { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
-    //     ],
-    //     apple: "/icons/icon-192x192.png",
-    // },
 };
 
 export const viewport: Viewport = {
-    themeColor: "#0d0d0d",
+    // Android Chrome понимает альфу, iOS – проигнорирует и зальёт сплошным
+    themeColor: "rgba(13, 13, 13, 0.5)",
 };
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
