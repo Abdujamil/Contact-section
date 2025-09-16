@@ -1,0 +1,9 @@
+{
+  "name": "Audiosector",
+  "short_name": "Audiosector",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#0d0d0d",
+  "description": "Магазин профессионального аудиооборудования"
+}

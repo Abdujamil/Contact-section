@@ -436,6 +436,8 @@ footer .login-button {
 
 @media (max-width: 420px) {
     .header {
+        position: sticky;
+        padding: 10px 0 10px 0;
         max-width: 363px;
         margin: 0 auto;
         margin-top: 2px;
