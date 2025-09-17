@@ -39,16 +39,15 @@ export const metadata: Metadata = {
     title: "Audiosector",
     description: "Магазин профессионального аудиооборудования",
     manifest: "/manifest.json",
-    themeColor: "#4a587d",
     appleWebApp: {
         capable: true,
-        statusBarStyle: "black-translucent", // iOS сделает статус-бар прозрачным
+        statusBarStyle: "black-translucent",
         title: "Audiosector",
     },
 };
 
 export const viewport: Viewport = {
-    themeColor: "#4a587d",
+    themeColor: "#0d0d0d",
 };
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
