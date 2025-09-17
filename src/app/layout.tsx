@@ -39,6 +39,7 @@ export const metadata: Metadata = {
     title: "Audiosector",
     description: "Магазин профессионального аудиооборудования",
     manifest: "/manifest.json",
+    themeColor: "#4a587d",
     appleWebApp: {
         capable: true,
         statusBarStyle: "black-translucent", // iOS сделает статус-бар прозрачным
@@ -47,8 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-    // Android Chrome понимает альфу, iOS – проигнорирует и зальёт сплошным
-    themeColor: "rgba(13, 13, 13, 0.5)",
+    themeColor: "№4a587d",
 };
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {

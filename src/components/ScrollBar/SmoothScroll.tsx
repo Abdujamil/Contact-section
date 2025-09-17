@@ -388,9 +388,56 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             if (!isScrolling) {
                 isScrolling = true;
+                // const animate = () => {
+                //     const now = performance.now();
+                //     const timeDelta = now - lastUpdateTime;
+                //     lastUpdateTime = now;
+                //
+                //     const diff = targetScroll - currentScroll;
+                //     const absDiff = Math.abs(diff);
+                //
+                //     if (absDiff < settings.scrollStopThreshold) {
+                //         currentScroll = targetScroll;
+                //         const finalPosition = Math.round(currentScroll * 100) / 100;
+                //
+                //         window.scrollTo(0, finalPosition);
+                //
+                //         requestAnimationFrame(() => {
+                //             window.scrollTo(0, finalPosition);
+                //         });
+                //
+                //         isScrolling = false;
+                //         rafId = null;
+                //         return;
+                //     }
+                //
+                //     const timeMultiplier = Math.min(timeDelta / 16.67, 2);
+                //     const adjustedEase = settings.scrollEaseFactor * timeMultiplier;
+                //
+                //     currentScroll += diff * Math.min(adjustedEase, 0.5);
+                //     const smoothPosition = Math.round(currentScroll * 100) / 100;
+                //
+                //     window.scrollTo(0, smoothPosition);
+                //
+                //     if (delaySettings.scrollAnimationDelay.enabled) {
+                //         setTimeout(() => {
+                //             rafId = requestAnimationFrame(animate);
+                //         }, delaySettings.scrollAnimationDelay.value);
+                //     } else {
+                //         rafId = requestAnimationFrame(animate);
+                //     }
+                // };
+
                 const animate = () => {
                     const now = performance.now();
                     const timeDelta = now - lastUpdateTime;
+
+                    // Минимальная задержка между кадрами для стабилизации
+                    if (timeDelta < 8) {
+                        rafId = requestAnimationFrame(animate);
+                        return;
+                    }
+
                     lastUpdateTime = now;
 
                     const diff = targetScroll - currentScroll;
@@ -411,18 +458,33 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         return;
                     }
 
-                    const timeMultiplier = Math.min(timeDelta / 16.67, 2);
-                    const adjustedEase = settings.scrollEaseFactor * timeMultiplier;
+                    // Нормализация времени для консистентной скорости на всех FPS
+                    const targetFrameTime = 16.67; // 60 FPS в качестве базы
+                    const maxFrameTime = 33.33; // Максимум 30 FPS для предотвращения рывков
+                    const normalizedDelta = Math.min(timeDelta, maxFrameTime);
 
-                    currentScroll += diff * Math.min(adjustedEase, 0.5);
+                    // Коэффициент времени нормализованный к 60 FPS
+                    const timeMultiplier = normalizedDelta / targetFrameTime;
+
+                    // Корректируем easing factor в зависимости от времени кадра
+                    const frameRateAdjustedEase = settings.scrollEaseFactor * timeMultiplier;
+
+                    // Ограничиваем максимальный easing для предотвращения резких скачков
+                    const clampedEase = Math.min(frameRateAdjustedEase, 0.8);
+
+                    currentScroll += diff * clampedEase;
                     const smoothPosition = Math.round(currentScroll * 100) / 100;
 
                     window.scrollTo(0, smoothPosition);
 
-                    if (delaySettings.scrollAnimationDelay.enabled) {
+                    // Используем небольшую задержку для дополнительной стабилизации на высоких FPS
+                    const adaptiveDelay = timeDelta < 10 ? 4 : 0; // Добавляем задержку только на очень высоких FPS
+
+                    if (delaySettings.scrollAnimationDelay.enabled || adaptiveDelay > 0) {
+                        const totalDelay = delaySettings.scrollAnimationDelay.value + adaptiveDelay;
                         setTimeout(() => {
                             rafId = requestAnimationFrame(animate);
-                        }, delaySettings.scrollAnimationDelay.value);
+                        }, totalDelay);
                     } else {
                         rafId = requestAnimationFrame(animate);
                     }
