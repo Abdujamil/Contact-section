@@ -1103,8 +1103,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Функция для определения фактора плавности по герцовке
     const getAutoSmoothFactor = (rate: number): number => {
-        if (rate <= 99) return 0.20;
-        if (rate <= 200) return 0.15;
+        if (rate <= 129) return 0.25;
+        if (rate <= 199) return 0.20;
         return 0.10;
     };
 
