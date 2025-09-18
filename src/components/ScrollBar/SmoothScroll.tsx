@@ -1072,14 +1072,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     const [isDetectingRefreshRate, setIsDetectingRefreshRate] = useState(true);
 
     const [mouseSettings, setMouseSettings] = useState({
-        scrollStopThreshold: 0.5,
-        scrollEaseFactor: 0.25,
+        scrollStopThreshold: 0.0,
+        scrollEaseFactor: 0.10,
         minScrollStep: 1
     });
 
     const [trackpadSettings, setTrackpadSettings] = useState({
         scrollStopThreshold: 0.0,
-        scrollEaseFactor: 0.50,
+        scrollEaseFactor: 0.20,
         minScrollStep: 1
     });
 
@@ -1104,9 +1104,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Функция для определения фактора плавности по герцовке
     const getAutoSmoothFactor = (rate: number): number => {
-        if (rate <= 129) return 0.25;
-        if (rate <= 199) return 0.20;
-        return 0.10;
+        if (rate <= 129) return 0.20;
+        if (rate <= 199) return 0.15;
+        return 0.05;
     };
 
     // Определение герцовки экрана
@@ -1798,11 +1798,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                     {/* ===== MOUSE SETTINGS ===== */}
                     <div className="mb-6">
-                        <h4 className="text-sm border-b font-bold mb-2 text-gray-300">Настройки для
-                            мышки</h4>
+                        <h4 className="text-sm border-b font-bold mb-2 text-gray-300">
+                            Настройки для мышки</h4>
 
-                        <label className="block text-xs mb-1">Порог
-                            остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
+                        <label className="block text-xs mb-1">Порог остановки: {mouseSettings.scrollStopThreshold.toFixed(2)}</label>
                         <div className="flex items-center gap-2 mb-2">
                             <button
                                 className="px-2 py-1  dark:bg-[#333333] rounded"
