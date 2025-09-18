@@ -62,8 +62,8 @@ export function useRefreshRate(): RefreshRateResult {
 
     // Вычисляем фактор плавности на основе частоты обновления
     const getSmoothScrollFactor = (rate: number): number => {
-        if (rate <= 149) return 0.20;
-        if (rate <= 150) return 0.15;
+        if (rate <= 129) return 0.25;
+        if (rate <= 199) return 0.20;
         return 0.10;
     };
 
