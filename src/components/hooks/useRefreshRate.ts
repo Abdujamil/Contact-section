@@ -64,7 +64,7 @@ export function useRefreshRate(): RefreshRateResult {
     const getSmoothScrollFactor = (rate: number): number => {
         if (rate <= 129) return 0.20;
         if (rate <= 199) return 0.15;
-        return 0.10;
+        return 0.05;
     };
 
     const smoothScrollFactor = getSmoothScrollFactor(refreshRate);
