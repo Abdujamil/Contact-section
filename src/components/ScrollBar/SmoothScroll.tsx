@@ -1665,13 +1665,15 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         </div>
 
                         <div className="mt-2 text-xs text-green-200">
-                            {/*<div>Правило: ≤99Hz→0.20, ≤200Hz→0.15, 200Hz→0.10</div>*/}
                             <div className="text-green-400 mt-1">
-                                Текущий режим: {refreshRate <= 99 ? '≤99Hz (0.15)' :
-                                refreshRate <= 200 ? '≤200Hz (0.15)' :
-                                    '>200Hz (0.10)'}
+                                Текущий режим: {
+                                refreshRate <= 129 ? '≤129Hz (0.25)' :
+                                    refreshRate <= 199 ? '130–199Hz (0.20)' :
+                                        '≥200Hz (0.10)'
+                            }
                             </div>
                         </div>
+
                     </div>
 
                     <h3 className="text-lg font-semibold ">
