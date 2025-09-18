@@ -2710,7 +2710,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
             {isOpen && (
                 <div
-                    className="fixed top-[70px] right-4 backdrop-blur-2xl border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4 z-[9999999999] w-96 max-h-[80vh] overflow-y-auto allow-native-scroll">
+                    className="absolute
+                     top-[70px] right-4 backdrop-blur-2xl border
+                    border-gray-300 dark:border-gray-600 rounded-lg shadow-lg p-4
+                    z-[9999999999] w-96 overflow-y-auto allow-native-scroll">
 
                     {/* REFRESH RATE INFO */}
                     <div className="mb-6 p-3 bg-green-900/20 rounded-lg border border-green-600/30">
