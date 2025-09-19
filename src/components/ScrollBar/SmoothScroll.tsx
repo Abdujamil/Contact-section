@@ -4294,7 +4294,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                     {/* ===== macOS SETTINGS ===== */}  {/* ===== WINDOWS SETTINGS ===== */}
                     {
-                        currentOS ? (
+                        currentOS === 'macOS' ? (
                             <div className="mb-6">
                                 <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1 text-blue-300">
                                     Настройки для macOS
