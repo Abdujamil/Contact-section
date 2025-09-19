@@ -3361,7 +3361,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         },
         trackpad: {
             scrollStopThreshold: 0.0,
-            scrollEaseFactor: 0.20,
+            scrollEaseFactor: 0.15,
             minScrollStep: 1
         }
     });
@@ -3406,8 +3406,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Функция для определения фактора плавности по герцовке
     const getAutoSmoothFactor = (rate: number): number => {
-        if (rate <= 129) return 0.20;
-        if (rate <= 199) return 0.15;
+        if (rate <= 129) return 0.15;
+        if (rate <= 199) return 0.10;
         return 0.05;
     };
 
@@ -3474,17 +3474,17 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 const autoFactor = getAutoSmoothFactor(detectedRate);
 
                 // Обновляем для обеих ОС
-                setMacOSSettings(prev => ({
-                    ...prev,
-                    mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
-                    trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
-                }));
-
-                setWindowsSettings(prev => ({
-                    ...prev,
-                    mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
-                    trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
-                }));
+                // setMacOSSettings(prev => ({
+                //     ...prev,
+                //     mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
+                //     trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
+                // }));
+                //
+                // setWindowsSettings(prev => ({
+                //     ...prev,
+                //     mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
+                //     trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
+                // }));
 
                 console.log(`Detected refresh rate: ${detectedRate}Hz (measured: ${calculatedFPS}fps), auto factor: ${autoFactor}`);
             }
@@ -3538,6 +3538,137 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             window.removeEventListener('resize', checkMobile);
         };
     }, []);
+
+    // // Определение типа устройства ввода (только для desktop)
+    // useEffect(() => {
+    //     if (isMobile) return;
+    //
+    //     const wheelEvents: number[] = [];
+    //     const wheelTimestamps: number[] = [];
+    //     let detectionTimeout: NodeJS.Timeout;
+    //
+    //     const detectInputDevice = (e: WheelEvent) => {
+    //         const currentTime = Date.now();
+    //         const timeDiff = currentTime - trackpadDebugInfo.lastEventTime;
+    //
+    //         setTrackpadDebugInfo(prev => {
+    //             const newEventCount = prev.eventCount + 1;
+    //             const frequency = timeDiff > 0 ? 1000 / timeDiff : 0;
+    //
+    //             return {
+    //                 ...prev,
+    //                 deltaY: e.deltaY,
+    //                 deltaX: e.deltaX,
+    //                 deltaZ: e.deltaZ,
+    //                 deltaMode: e.deltaMode,
+    //                 eventCount: newEventCount,
+    //                 lastEventTime: currentTime,
+    //                 frequency: frequency
+    //             };
+    //         });
+    //
+    //         wheelEvents.push(Math.abs(e.deltaY));
+    //         wheelTimestamps.push(currentTime);
+    //         if (wheelEvents.length > 10) {
+    //             wheelEvents.shift();
+    //             wheelTimestamps.shift();
+    //         }
+    //
+    //         clearTimeout(detectionTimeout);
+    //
+    //         const delayValue = delaySettings.detectionDelay.enabled ?
+    //             delaySettings.detectionDelay.value : 0;
+    //
+    //         detectionTimeout = setTimeout(() => {
+    //             if (wheelEvents.length >= 5) {
+    //                 const avgDelta = wheelEvents.reduce((a, b) => a + b, 0) / wheelEvents.length;
+    //                 const maxDelta = Math.max(...wheelEvents);
+    //                 const minDelta = Math.min(...wheelEvents);
+    //                 const deltaVariance = maxDelta - minDelta;
+    //
+    //                 const intervals = [];
+    //                 for (let i = 1; i < wheelTimestamps.length; i++) {
+    //                     intervals.push(wheelTimestamps[i] - wheelTimestamps[i - 1]);
+    //                 }
+    //                 const avgInterval = intervals.length > 0 ?
+    //                     intervals.reduce((a, b) => a + b, 0) / intervals.length : 0;
+    //
+    //                 setTrackpadDebugInfo(prev => ({
+    //                     ...prev,
+    //                     avgDelta,
+    //                     maxDelta,
+    //                     minDelta,
+    //                     deltaVariance
+    //                 }));
+    //
+    //                 let isLikelyTrackpad = false;
+    //                 let isLikelyMouse = false;
+    //
+    //                 if (currentOS === 'macOS') {
+    //                     isLikelyTrackpad =
+    //                         avgDelta < 50 &&
+    //                         deltaVariance < 30 &&
+    //                         e.deltaMode === 0 &&
+    //                         avgInterval < 50;
+    //
+    //                     isLikelyMouse =
+    //                         avgDelta > 80 ||
+    //                         deltaVariance > 50 ||
+    //                         e.deltaMode !== 0 ||
+    //                         avgInterval > 100;
+    //                 } else if (currentOS === 'Windows') {
+    //                     // isLikelyTrackpad =
+    //                     //     (avgDelta < 120 && deltaVariance < 100 && avgInterval < 30) ||
+    //                     //     (avgDelta < 30 && e.deltaMode === 0);
+    //                     //
+    //                     // isLikelyMouse =
+    //                     //     (avgDelta >= 120 && (deltaVariance > 100 || avgInterval > 50)) ||
+    //                     //     (e.deltaMode === 1) ||
+    //                     //     (avgDelta === 120 && deltaVariance === 0);
+    //
+    //
+    //                     const isWheelStep = Math.abs(e.deltaY) % 120 === 0;
+    //
+    //                     isLikelyTrackpad =
+    //                         !isWheelStep &&
+    //                         avgDelta < 80 &&
+    //                         deltaVariance < 60 &&
+    //                         avgInterval < 30;
+    //
+    //                     isLikelyMouse =
+    //                         isWheelStep ||
+    //                         avgDelta >= 120 ||
+    //                         deltaVariance > 80 ||
+    //                         avgInterval > 80;
+    //
+    //                 } else {
+    //                     isLikelyTrackpad =
+    //                         avgDelta < 80 &&
+    //                         deltaVariance < 60 &&
+    //                         e.deltaMode === 0;
+    //
+    //                     isLikelyMouse =
+    //                         avgDelta > 100 ||
+    //                         deltaVariance > 80 ||
+    //                         e.deltaMode !== 0;
+    //                 }
+    //
+    //                 if (isLikelyTrackpad) {
+    //                     setIsTrackpad(true);
+    //                 } else if (isLikelyMouse) {
+    //                     setIsTrackpad(false);
+    //                 }
+    //             }
+    //         }, delayValue);
+    //     };
+    //
+    //     window.addEventListener('wheel', detectInputDevice, {passive: true});
+    //
+    //     return () => {
+    //         window.removeEventListener('wheel', detectInputDevice);
+    //         clearTimeout(detectionTimeout);
+    //     };
+    // }, [delaySettings.detectionDelay, isMobile, currentOS]);
 
     // Определение типа устройства ввода (только для desktop)
     useEffect(() => {
@@ -3605,6 +3736,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     let isLikelyMouse = false;
 
                     if (currentOS === 'macOS') {
+                        // Логика для macOS
                         isLikelyTrackpad =
                             avgDelta < 50 &&
                             deltaVariance < 30 &&
@@ -3616,32 +3748,55 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             deltaVariance > 50 ||
                             e.deltaMode !== 0 ||
                             avgInterval > 100;
+
                     } else if (currentOS === 'Windows') {
-                        // isLikelyTrackpad =
-                        //     (avgDelta < 120 && deltaVariance < 100 && avgInterval < 30) ||
-                        //     (avgDelta < 30 && e.deltaMode === 0);
-                        //
-                        // isLikelyMouse =
-                        //     (avgDelta >= 120 && (deltaVariance > 100 || avgInterval > 50)) ||
-                        //     (e.deltaMode === 1) ||
-                        //     (avgDelta === 120 && deltaVariance === 0);
+                        // Улучшенная логика для Windows
+                        const isPreciseScrolling = e.deltaMode === 0; // pixel scrolling
+                        const isLineScrolling = e.deltaMode === 1; // line scrolling
 
+                        // Проверка на "ступенчатость" мыши (обычно кратно 100 или 120)
+                        const isMouseStep = Math.abs(e.deltaY) % 100 === 0 ||
+                            Math.abs(e.deltaY) % 120 === 0;
 
-                        const isWheelStep = Math.abs(e.deltaY) % 120 === 0;
+                        // Проверка на плавность тачпада
+                        const hasSmoothDelta = Math.abs(e.deltaY) > 0 &&
+                            Math.abs(e.deltaY) < 50;
+
+                        // Проверка на высокую частоту событий (тачпад)
+                        const hasHighFrequency = intervals.length > 0 &&
+                            avgInterval < 20;
+
+                        // Проверка на низкую вариативность (тачпад)
+                        const hasLowVariance = deltaVariance < 40;
 
                         isLikelyTrackpad =
-                            !isWheelStep &&
-                            avgDelta < 80 &&
-                            deltaVariance < 60 &&
-                            avgInterval < 30;
+                            isPreciseScrolling &&
+                            hasSmoothDelta &&
+                            hasHighFrequency &&
+                            hasLowVariance &&
+                            !isMouseStep;
 
                         isLikelyMouse =
-                            isWheelStep ||
-                            avgDelta >= 120 ||
-                            deltaVariance > 80 ||
-                            avgInterval > 80;
+                            isLineScrolling ||
+                            isMouseStep ||
+                            avgDelta >= 100 ||
+                            !hasHighFrequency ||
+                            !hasLowVariance;
+
+                        // Дополнительная проверка: если deltaMode = 0 и значения очень маленькие - это точно тачпад
+                        if (isPreciseScrolling && Math.abs(e.deltaY) < 10 && Math.abs(e.deltaY) > 0) {
+                            isLikelyTrackpad = true;
+                            isLikelyMouse = false;
+                        }
+
+                        // Дополнительная проверка: если deltaMode = 1 - это точно мышь
+                        if (isLineScrolling) {
+                            isLikelyTrackpad = false;
+                            isLikelyMouse = true;
+                        }
 
                     } else {
+                        // Для других ОС
                         isLikelyTrackpad =
                             avgDelta < 80 &&
                             deltaVariance < 60 &&
@@ -3653,6 +3808,17 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             e.deltaMode !== 0;
                     }
 
+                    console.log('Detection:', {
+                        OS: currentOS,
+                        deltaY: e.deltaY,
+                        deltaMode: e.deltaMode,
+                        avgDelta,
+                        deltaVariance,
+                        avgInterval,
+                        isLikelyTrackpad,
+                        isLikelyMouse
+                    });
+
                     if (isLikelyTrackpad) {
                         setIsTrackpad(true);
                     } else if (isLikelyMouse) {
@@ -3661,6 +3827,13 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 }
             }, delayValue);
         };
+
+        // Устанавливаем начальное значение на основе платформы
+        if (currentOS === 'macOS') {
+            setIsTrackpad(true); // На macOS по умолчанию предполагаем тачпад
+        } else if (currentOS === 'Windows') {
+            setIsTrackpad(false); // На Windows по умолчанию предполагаем мышь
+        }
 
         window.addEventListener('wheel', detectInputDevice, {passive: true});
 
