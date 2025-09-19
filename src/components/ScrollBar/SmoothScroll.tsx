@@ -4292,363 +4292,370 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         })}
                     </div>
 
-                    {/* ===== macOS SETTINGS ===== */}
-                    <div className="mb-6">
-                        <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1 text-blue-300">
-                            Настройки для macOS
-                        </h4>
+                    {/* ===== macOS SETTINGS ===== */}  {/* ===== WINDOWS SETTINGS ===== */}
+                    {
+                        currentOS ? (
+                            <div className="mb-6">
+                                <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1 text-blue-300">
+                                    Настройки для macOS
+                                </h4>
 
-                        {/* macOS Mouse Settings */}
-                        <div className="mb-4 p-3 bg-blue-900/10 rounded border border-blue-600/20">
-                            <h5 className="text-xs font-bold mb-2 text-blue-400">Мышь (macOS)</h5>
+                                {/* macOS Mouse Settings */}
+                                <div className="mb-4 p-3 bg-blue-900/10 rounded border border-blue-600/20">
+                                    <h5 className="text-xs font-bold mb-2 text-blue-400">Мышь (macOS)</h5>
 
-                            <label className="block text-xs mb-1">
-                                Порог остановки: {macOSSettings.mouse.scrollStopThreshold.toFixed(2)}
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'mouse', 'scrollStopThreshold', Math.max(0.01, macOSSettings.mouse.scrollStopThreshold - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    max="5"
-                                    step="0.01"
-                                    value={macOSSettings.mouse.scrollStopThreshold}
-                                    onChange={(e) => updateOSSettings('macOS', 'mouse', 'scrollStopThreshold', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'mouse', 'scrollStopThreshold', Math.min(5, macOSSettings.mouse.scrollStopThreshold + 0.01))}
-                                >
-                                    +
-                                </button>
+                                    <label className="block text-xs mb-1">
+                                        Порог остановки: {macOSSettings.mouse.scrollStopThreshold.toFixed(2)}
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'mouse', 'scrollStopThreshold', Math.max(0.01, macOSSettings.mouse.scrollStopThreshold - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            max="5"
+                                            step="0.01"
+                                            value={macOSSettings.mouse.scrollStopThreshold}
+                                            onChange={(e) => updateOSSettings('macOS', 'mouse', 'scrollStopThreshold', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'mouse', 'scrollStopThreshold', Math.min(5, macOSSettings.mouse.scrollStopThreshold + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Фактор плавности: {macOSSettings.mouse.scrollEaseFactor.toFixed(2)}
+                                        (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'mouse', 'scrollEaseFactor', Math.max(0.01, macOSSettings.mouse.scrollEaseFactor - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="0.01"
+                                            max="1"
+                                            step="0.01"
+                                            value={macOSSettings.mouse.scrollEaseFactor}
+                                            onChange={(e) => updateOSSettings('macOS', 'mouse', 'scrollEaseFactor', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'mouse', 'scrollEaseFactor', Math.min(1, macOSSettings.mouse.scrollEaseFactor + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Минимальный шаг: {macOSSettings.mouse.minScrollStep}px
+                                    </label>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'mouse', 'minScrollStep', Math.max(1, macOSSettings.mouse.minScrollStep - 1))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="1"
+                                            max="200"
+                                            step="1"
+                                            value={macOSSettings.mouse.minScrollStep}
+                                            onChange={(e) => updateOSSettings('macOS', 'mouse', 'minScrollStep', parseInt(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'mouse', 'minScrollStep', Math.min(200, macOSSettings.mouse.minScrollStep + 1))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* macOS Trackpad Settings */}
+                                <div className="mb-4 p-3 bg-blue-900/10 rounded border border-blue-600/20">
+                                    <h5 className="text-xs font-bold mb-2 text-blue-400">Тачпад (macOS)</h5>
+
+                                    <label className="block text-xs mb-1">
+                                        Порог остановки: {macOSSettings.trackpad.scrollStopThreshold.toFixed(2)}
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollStopThreshold', Math.max(0.01, macOSSettings.trackpad.scrollStopThreshold - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            max="5"
+                                            step="0.01"
+                                            value={macOSSettings.trackpad.scrollStopThreshold}
+                                            onChange={(e) => updateOSSettings('macOS', 'trackpad', 'scrollStopThreshold', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollStopThreshold', Math.min(5, macOSSettings.trackpad.scrollStopThreshold + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Фактор плавности: {macOSSettings.trackpad.scrollEaseFactor.toFixed(2)}
+                                        (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollEaseFactor', Math.max(0.01, macOSSettings.trackpad.scrollEaseFactor - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="0.01"
+                                            max="1"
+                                            step="0.01"
+                                            value={macOSSettings.trackpad.scrollEaseFactor}
+                                            onChange={(e) => updateOSSettings('macOS', 'trackpad', 'scrollEaseFactor', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollEaseFactor', Math.min(1, macOSSettings.trackpad.scrollEaseFactor + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Минимальный шаг: {macOSSettings.trackpad.minScrollStep}px
+                                    </label>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'trackpad', 'minScrollStep', Math.max(1, macOSSettings.trackpad.minScrollStep - 1))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="1"
+                                            max="200"
+                                            step="1"
+                                            value={macOSSettings.trackpad.minScrollStep}
+                                            onChange={(e) => updateOSSettings('macOS', 'trackpad', 'minScrollStep', parseInt(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-blue-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('macOS', 'trackpad', 'minScrollStep', Math.min(200, macOSSettings.trackpad.minScrollStep + 1))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+                        ) : (
+                            <div className="mb-6">
+                                <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1 text-green-300">
+                                    Настройки для Windows
+                                </h4>
 
-                            <label className="block text-xs mb-1">
-                                Фактор плавности: {macOSSettings.mouse.scrollEaseFactor.toFixed(2)}
-                                (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'mouse', 'scrollEaseFactor', Math.max(0.01, macOSSettings.mouse.scrollEaseFactor - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="0.01"
-                                    max="1"
-                                    step="0.01"
-                                    value={macOSSettings.mouse.scrollEaseFactor}
-                                    onChange={(e) => updateOSSettings('macOS', 'mouse', 'scrollEaseFactor', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'mouse', 'scrollEaseFactor', Math.min(1, macOSSettings.mouse.scrollEaseFactor + 0.01))}
-                                >
-                                    +
-                                </button>
+                                {/* Windows Mouse Settings */}
+                                <div className="mb-4 p-3 bg-green-900/10 rounded border border-green-600/20">
+                                    <h5 className="text-xs font-bold mb-2 text-green-400">Мышь (Windows)</h5>
+
+                                    <label className="block text-xs mb-1">
+                                        Порог остановки: {windowsSettings.mouse.scrollStopThreshold.toFixed(2)}
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'mouse', 'scrollStopThreshold', Math.max(0.01, windowsSettings.mouse.scrollStopThreshold - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            max="5"
+                                            step="0.01"
+                                            value={windowsSettings.mouse.scrollStopThreshold}
+                                            onChange={(e) => updateOSSettings('Windows', 'mouse', 'scrollStopThreshold', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'mouse', 'scrollStopThreshold', Math.min(5, windowsSettings.mouse.scrollStopThreshold + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Фактор плавности: {windowsSettings.mouse.scrollEaseFactor.toFixed(2)}
+                                        (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'mouse', 'scrollEaseFactor', Math.max(0.01, windowsSettings.mouse.scrollEaseFactor - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="0.01"
+                                            max="1"
+                                            step="0.01"
+                                            value={windowsSettings.mouse.scrollEaseFactor}
+                                            onChange={(e) => updateOSSettings('Windows', 'mouse', 'scrollEaseFactor', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'mouse', 'scrollEaseFactor', Math.min(1, windowsSettings.mouse.scrollEaseFactor + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Минимальный шаг: {windowsSettings.mouse.minScrollStep}px
+                                    </label>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'mouse', 'minScrollStep', Math.max(1, windowsSettings.mouse.minScrollStep - 1))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="1"
+                                            max="200"
+                                            step="1"
+                                            value={windowsSettings.mouse.minScrollStep}
+                                            onChange={(e) => updateOSSettings('Windows', 'mouse', 'minScrollStep', parseInt(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'mouse', 'minScrollStep', Math.min(200, windowsSettings.mouse.minScrollStep + 1))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Windows Trackpad Settings */}
+                                <div className="mb-4 p-3 bg-green-900/10 rounded border border-green-600/20">
+                                    <h5 className="text-xs font-bold mb-2 text-green-400">Тачпад (Windows)</h5>
+
+                                    <label className="block text-xs mb-1">
+                                        Порог остановки: {windowsSettings.trackpad.scrollStopThreshold.toFixed(2)}
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollStopThreshold', Math.max(0.01, windowsSettings.trackpad.scrollStopThreshold - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            max="5"
+                                            step="0.01"
+                                            value={windowsSettings.trackpad.scrollStopThreshold}
+                                            onChange={(e) => updateOSSettings('Windows', 'trackpad', 'scrollStopThreshold', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollStopThreshold', Math.min(5, windowsSettings.trackpad.scrollStopThreshold + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Фактор плавности: {windowsSettings.trackpad.scrollEaseFactor.toFixed(2)}
+                                        (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
+                                    </label>
+                                    <div className="flex items-center gap-2 mb-2">
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollEaseFactor', Math.max(0.01, windowsSettings.trackpad.scrollEaseFactor - 0.01))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="0.01"
+                                            max="1"
+                                            step="0.01"
+                                            value={windowsSettings.trackpad.scrollEaseFactor}
+                                            onChange={(e) => updateOSSettings('Windows', 'trackpad', 'scrollEaseFactor', parseFloat(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollEaseFactor', Math.min(1, windowsSettings.trackpad.scrollEaseFactor + 0.01))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
+                                    <label className="block text-xs mb-1">
+                                        Минимальный шаг: {windowsSettings.trackpad.minScrollStep}px
+                                    </label>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'trackpad', 'minScrollStep', Math.max(1, windowsSettings.trackpad.minScrollStep - 1))}
+                                        >
+                                            –
+                                        </button>
+                                        <input
+                                            type="range"
+                                            min="1"
+                                            max="200"
+                                            step="1"
+                                            value={windowsSettings.trackpad.minScrollStep}
+                                            onChange={(e) => updateOSSettings('Windows', 'trackpad', 'minScrollStep', parseInt(e.target.value))}
+                                            className="w-full"
+                                        />
+                                        <button
+                                            className="px-2 py-1 bg-green-700 rounded text-xs"
+                                            onClick={() => updateOSSettings('Windows', 'trackpad', 'minScrollStep', Math.min(200, windowsSettings.trackpad.minScrollStep + 1))}
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
+                        )
+                    }
 
-                            <label className="block text-xs mb-1">
-                                Минимальный шаг: {macOSSettings.mouse.minScrollStep}px
-                            </label>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'mouse', 'minScrollStep', Math.max(1, macOSSettings.mouse.minScrollStep - 1))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="1"
-                                    max="200"
-                                    step="1"
-                                    value={macOSSettings.mouse.minScrollStep}
-                                    onChange={(e) => updateOSSettings('macOS', 'mouse', 'minScrollStep', parseInt(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'mouse', 'minScrollStep', Math.min(200, macOSSettings.mouse.minScrollStep + 1))}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
 
-                        {/* macOS Trackpad Settings */}
-                        <div className="mb-4 p-3 bg-blue-900/10 rounded border border-blue-600/20">
-                            <h5 className="text-xs font-bold mb-2 text-blue-400">Тачпад (macOS)</h5>
 
-                            <label className="block text-xs mb-1">
-                                Порог остановки: {macOSSettings.trackpad.scrollStopThreshold.toFixed(2)}
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollStopThreshold', Math.max(0.01, macOSSettings.trackpad.scrollStopThreshold - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    max="5"
-                                    step="0.01"
-                                    value={macOSSettings.trackpad.scrollStopThreshold}
-                                    onChange={(e) => updateOSSettings('macOS', 'trackpad', 'scrollStopThreshold', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollStopThreshold', Math.min(5, macOSSettings.trackpad.scrollStopThreshold + 0.01))}
-                                >
-                                    +
-                                </button>
-                            </div>
 
-                            <label className="block text-xs mb-1">
-                                Фактор плавности: {macOSSettings.trackpad.scrollEaseFactor.toFixed(2)}
-                                (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollEaseFactor', Math.max(0.01, macOSSettings.trackpad.scrollEaseFactor - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="0.01"
-                                    max="1"
-                                    step="0.01"
-                                    value={macOSSettings.trackpad.scrollEaseFactor}
-                                    onChange={(e) => updateOSSettings('macOS', 'trackpad', 'scrollEaseFactor', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'trackpad', 'scrollEaseFactor', Math.min(1, macOSSettings.trackpad.scrollEaseFactor + 0.01))}
-                                >
-                                    +
-                                </button>
-                            </div>
-
-                            <label className="block text-xs mb-1">
-                                Минимальный шаг: {macOSSettings.trackpad.minScrollStep}px
-                            </label>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'trackpad', 'minScrollStep', Math.max(1, macOSSettings.trackpad.minScrollStep - 1))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="1"
-                                    max="200"
-                                    step="1"
-                                    value={macOSSettings.trackpad.minScrollStep}
-                                    onChange={(e) => updateOSSettings('macOS', 'trackpad', 'minScrollStep', parseInt(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-blue-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('macOS', 'trackpad', 'minScrollStep', Math.min(200, macOSSettings.trackpad.minScrollStep + 1))}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* ===== WINDOWS SETTINGS ===== */}
-                    <div className="mb-6">
-                        <h4 className="text-sm font-bold mb-3 border-b border-gray-600 pb-1 text-green-300">
-                            Настройки для Windows
-                        </h4>
-
-                        {/* Windows Mouse Settings */}
-                        <div className="mb-4 p-3 bg-green-900/10 rounded border border-green-600/20">
-                            <h5 className="text-xs font-bold mb-2 text-green-400">Мышь (Windows)</h5>
-
-                            <label className="block text-xs mb-1">
-                                Порог остановки: {windowsSettings.mouse.scrollStopThreshold.toFixed(2)}
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'mouse', 'scrollStopThreshold', Math.max(0.01, windowsSettings.mouse.scrollStopThreshold - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    max="5"
-                                    step="0.01"
-                                    value={windowsSettings.mouse.scrollStopThreshold}
-                                    onChange={(e) => updateOSSettings('Windows', 'mouse', 'scrollStopThreshold', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'mouse', 'scrollStopThreshold', Math.min(5, windowsSettings.mouse.scrollStopThreshold + 0.01))}
-                                >
-                                    +
-                                </button>
-                            </div>
-
-                            <label className="block text-xs mb-1">
-                                Фактор плавности: {windowsSettings.mouse.scrollEaseFactor.toFixed(2)}
-                                (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'mouse', 'scrollEaseFactor', Math.max(0.01, windowsSettings.mouse.scrollEaseFactor - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="0.01"
-                                    max="1"
-                                    step="0.01"
-                                    value={windowsSettings.mouse.scrollEaseFactor}
-                                    onChange={(e) => updateOSSettings('Windows', 'mouse', 'scrollEaseFactor', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'mouse', 'scrollEaseFactor', Math.min(1, windowsSettings.mouse.scrollEaseFactor + 0.01))}
-                                >
-                                    +
-                                </button>
-                            </div>
-
-                            <label className="block text-xs mb-1">
-                                Минимальный шаг: {windowsSettings.mouse.minScrollStep}px
-                            </label>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'mouse', 'minScrollStep', Math.max(1, windowsSettings.mouse.minScrollStep - 1))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="1"
-                                    max="200"
-                                    step="1"
-                                    value={windowsSettings.mouse.minScrollStep}
-                                    onChange={(e) => updateOSSettings('Windows', 'mouse', 'minScrollStep', parseInt(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'mouse', 'minScrollStep', Math.min(200, windowsSettings.mouse.minScrollStep + 1))}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Windows Trackpad Settings */}
-                        <div className="mb-4 p-3 bg-green-900/10 rounded border border-green-600/20">
-                            <h5 className="text-xs font-bold mb-2 text-green-400">Тачпад (Windows)</h5>
-
-                            <label className="block text-xs mb-1">
-                                Порог остановки: {windowsSettings.trackpad.scrollStopThreshold.toFixed(2)}
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollStopThreshold', Math.max(0.01, windowsSettings.trackpad.scrollStopThreshold - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    max="5"
-                                    step="0.01"
-                                    value={windowsSettings.trackpad.scrollStopThreshold}
-                                    onChange={(e) => updateOSSettings('Windows', 'trackpad', 'scrollStopThreshold', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollStopThreshold', Math.min(5, windowsSettings.trackpad.scrollStopThreshold + 0.01))}
-                                >
-                                    +
-                                </button>
-                            </div>
-
-                            <label className="block text-xs mb-1">
-                                Фактор плавности: {windowsSettings.trackpad.scrollEaseFactor.toFixed(2)}
-                                (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
-                            </label>
-                            <div className="flex items-center gap-2 mb-2">
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollEaseFactor', Math.max(0.01, windowsSettings.trackpad.scrollEaseFactor - 0.01))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="0.01"
-                                    max="1"
-                                    step="0.01"
-                                    value={windowsSettings.trackpad.scrollEaseFactor}
-                                    onChange={(e) => updateOSSettings('Windows', 'trackpad', 'scrollEaseFactor', parseFloat(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'trackpad', 'scrollEaseFactor', Math.min(1, windowsSettings.trackpad.scrollEaseFactor + 0.01))}
-                                >
-                                    +
-                                </button>
-                            </div>
-
-                            <label className="block text-xs mb-1">
-                                Минимальный шаг: {windowsSettings.trackpad.minScrollStep}px
-                            </label>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'trackpad', 'minScrollStep', Math.max(1, windowsSettings.trackpad.minScrollStep - 1))}
-                                >
-                                    –
-                                </button>
-                                <input
-                                    type="range"
-                                    min="1"
-                                    max="200"
-                                    step="1"
-                                    value={windowsSettings.trackpad.minScrollStep}
-                                    onChange={(e) => updateOSSettings('Windows', 'trackpad', 'minScrollStep', parseInt(e.target.value))}
-                                    className="w-full"
-                                />
-                                <button
-                                    className="px-2 py-1 bg-green-700 rounded text-xs"
-                                    onClick={() => updateOSSettings('Windows', 'trackpad', 'minScrollStep', Math.min(200, windowsSettings.trackpad.minScrollStep + 1))}
-                                >
-                                    +
-                                </button>
-                            </div>
-                        </div>
-                    </div>
 
                     {/* CURRENT ACTIVE SETTINGS */}
                     <div className="mb-6 p-3 bg-purple-900/20 rounded-lg border border-purple-600/30">
