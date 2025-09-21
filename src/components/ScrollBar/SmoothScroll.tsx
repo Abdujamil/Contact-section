@@ -3471,8 +3471,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 setIsDetectingRefreshRate(false);
 
                 // Обновляем настройки с автоматическими значениями
-                const autoFactor = getAutoSmoothFactor(detectedRate);
-
                 // Обновляем для обеих ОС
                 // setMacOSSettings(prev => ({
                 //     ...prev,
@@ -3480,13 +3478,23 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 //     trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
                 // }));
                 //
-                // setWindowsSettings(prev => ({
-                //     ...prev,
-                //     mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
-                //     trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
-                // }));
+                if (currentOS === "Windows") {
+                    const autoFactor = getAutoSmoothFactor(detectedRate);
 
-                console.log(`Detected refresh rate: ${detectedRate}Hz (measured: ${calculatedFPS}fps), auto factor: ${autoFactor}`);
+                    setWindowsSettings(prev => ({
+                        ...prev,
+                        mouse: { ...prev.mouse, scrollEaseFactor: autoFactor },
+                        trackpad: { ...prev.trackpad, scrollEaseFactor: autoFactor }
+                    }));
+
+                    console.log(
+                        `Windows detected refresh rate: ${detectedRate}Hz (measured: ${calculatedFPS}fps), auto factor: ${autoFactor}`
+                    );
+                } else {
+                    console.log(
+                        `Detected refresh rate: ${detectedRate}Hz (measured: ${calculatedFPS}fps) — auto factor skipped (not Windows)`
+                    );
+                }
             }
         };
 
@@ -4200,11 +4208,20 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         <h4 className="text-sm font-bold mb-2 text-green-300">Частота обновления экрана</h4>
                         <div className="grid grid-cols-2 gap-2 text-xs">
                             <div>Частота: <span className="font-mono text-green-400">
-                                {isDetectingRefreshRate ? 'Определяется...' : `${refreshRate}Hz`}
-                            </span></div>
-                            <div>Авто-фактор: <span className="font-mono text-green-400">
-                                {getAutoSmoothFactor(refreshRate).toFixed(2)}
-                            </span></div>
+                                {isDetectingRefreshRate ? 'Определяется...' : `${refreshRate}Hz`}</span>
+                            </div>
+
+                            {
+                                currentOS === 'Windows' ? (
+                                    <div>Авто-фактор: <span className="font-mono text-green-400">
+                                        {getAutoSmoothFactor(refreshRate).toFixed(2)}
+                                    </span></div>
+                                ) : (
+                                    <div className="col-span-2 text-xs text-gray-400">
+                                        Авто-фактор доступен только для Windows
+                                    </div>
+                                )
+                            }
                         </div>
                     </div>
 
@@ -4332,7 +4349,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                                     <label className="block text-xs mb-1">
                                         Фактор плавности: {macOSSettings.mouse.scrollEaseFactor.toFixed(2)}
-                                        (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
                                     </label>
                                     <div className="flex items-center gap-2 mb-2">
                                         <button
@@ -4418,7 +4434,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                                     <label className="block text-xs mb-1">
                                         Фактор плавности: {macOSSettings.trackpad.scrollEaseFactor.toFixed(2)}
-                                        (Авто: {getAutoSmoothFactor(refreshRate).toFixed(2)})
                                     </label>
                                     <div className="flex items-center gap-2 mb-2">
                                         <button
@@ -4652,10 +4667,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             </div>
                         )
                     }
-
-
-
-
 
                     {/* CURRENT ACTIVE SETTINGS */}
                     <div className="mb-6 p-3 bg-purple-900/20 rounded-lg border border-purple-600/30">
