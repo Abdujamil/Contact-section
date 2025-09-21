@@ -3413,7 +3413,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Функция для определения фактора плавности по герцовке
     const getAutoSmoothFactor = (rate: number): number => {
-        const is4K = Math.max(window.screen.width, window.screen.height) >= 3840;
+        const is4K = Math.max(window.screen.width, window.screen.height) >= 3655;
 
         if (is4K) {
             if (rate <= 59) return 0.13;
@@ -4522,6 +4522,10 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                             <div>Устройство: <span
                                 className="font-mono text-blue-400">{isTrackpad ? 'Тачпад' : 'Мышь'}</span></div>
                         </div>
+                    </div>
+
+                    <div className="mb-6 p-3 bg-blue-900/20 rounded-lg border border-blue-600/30">
+                        <h4>Ширина экрана: {Math.max(window.screen.width)} <br/> Высота экрана: {Math.max(window.screen.height)}</h4>
                     </div>
 
                     {/* REFRESH RATE INFO */}
