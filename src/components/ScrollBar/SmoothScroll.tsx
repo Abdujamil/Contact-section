@@ -3461,11 +3461,92 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, []);
 
     // Определение герцовки экрана
+    // useEffect(() => {
+    //     let frameCount = 0;
+    //     let startTime = 0;
+    //     let animationId: number;
+    //     const framesToMeasure = 60;
+    //
+    //     const measureFrameRate = (timestamp: number) => {
+    //         if (startTime === 0) {
+    //             startTime = timestamp;
+    //         }
+    //
+    //         frameCount++;
+    //
+    //         if (frameCount < framesToMeasure) {
+    //             animationId = requestAnimationFrame(measureFrameRate);
+    //         } else {
+    //             const elapsed = timestamp - startTime;
+    //             const calculatedFPS = Math.round((frameCount * 1000) / elapsed);
+    //
+    //             // Округляем до стандартных значений refresh rate
+    //             let detectedRate = calculatedFPS;
+    //             if (calculatedFPS >= 58 && calculatedFPS <= 62) detectedRate = 60;
+    //             else if (calculatedFPS >= 70 && calculatedFPS <= 76) detectedRate = 75;
+    //             else if (calculatedFPS >= 88 && calculatedFPS <= 92) detectedRate = 90;
+    //             else if (calculatedFPS >= 118 && calculatedFPS <= 122) detectedRate = 120;
+    //             else if (calculatedFPS >= 143 && calculatedFPS <= 147) detectedRate = 144;
+    //             else if (calculatedFPS >= 163 && calculatedFPS <= 167) detectedRate = 165;
+    //             else if (calculatedFPS >= 238 && calculatedFPS <= 242) detectedRate = 240;
+    //             else if (calculatedFPS >= 358 && calculatedFPS <= 362) detectedRate = 360;
+    //
+    //             setRefreshRate(detectedRate);
+    //             setIsDetectingRefreshRate(false);
+    //
+    //             // Обновляем настройки с автоматическими значениями
+    //             // Обновляем для обеих ОС
+    //             // setMacOSSettings(prev => ({
+    //             //     ...prev,
+    //             //     mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
+    //             //     trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
+    //             // }));
+    //             //
+    //             if (currentOS === "Windows") {
+    //                 const autoFactor = getAutoSmoothFactor(detectedRate);
+    //
+    //                 setWindowsSettings(prev => ({
+    //                     ...prev,
+    //                     mouse: { ...prev.mouse, scrollEaseFactor: autoFactor },
+    //                     trackpad: { ...prev.trackpad, scrollEaseFactor: autoFactor }
+    //                 }));
+    //
+    //                 console.log(
+    //                     `Windows detected refresh rate: ${detectedRate}Hz (measured: ${calculatedFPS}fps), auto factor: ${autoFactor}`
+    //                 );
+    //             } else {
+    //                 console.log(
+    //                     `Detected refresh rate: ${detectedRate}Hz (measured: ${calculatedFPS}fps) — auto factor skipped (not Windows)`
+    //                 );
+    //             }
+    //         }
+    //     };
+    //
+    //     const timeout = setTimeout(() => {
+    //         animationId = requestAnimationFrame(measureFrameRate);
+    //     }, 100);
+    //
+    //     return () => {
+    //         clearTimeout(timeout);
+    //         if (animationId) {
+    //             cancelAnimationFrame(animationId);
+    //         }
+    //     };
+    // }, []);
+
     useEffect(() => {
         let frameCount = 0;
         let startTime = 0;
         let animationId: number;
-        const framesToMeasure = 60;
+        const framesToMeasure = 180; // больше кадров = точнее замер
+
+        const knownRates = [60, 75, 90, 120, 144, 165, 240, 360];
+
+        const snapToClosestRate = (fps: number): number => {
+            return knownRates.reduce((prev, curr) =>
+                Math.abs(curr - fps) < Math.abs(prev - fps) ? curr : prev
+            );
+        };
 
         const measureFrameRate = (timestamp: number) => {
             if (startTime === 0) {
@@ -3480,28 +3561,12 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 const elapsed = timestamp - startTime;
                 const calculatedFPS = Math.round((frameCount * 1000) / elapsed);
 
-                // Округляем до стандартных значений refresh rate
-                let detectedRate = calculatedFPS;
-                if (calculatedFPS >= 58 && calculatedFPS <= 62) detectedRate = 60;
-                else if (calculatedFPS >= 70 && calculatedFPS <= 76) detectedRate = 75;
-                else if (calculatedFPS >= 88 && calculatedFPS <= 92) detectedRate = 90;
-                else if (calculatedFPS >= 118 && calculatedFPS <= 122) detectedRate = 120;
-                else if (calculatedFPS >= 143 && calculatedFPS <= 147) detectedRate = 144;
-                else if (calculatedFPS >= 163 && calculatedFPS <= 167) detectedRate = 165;
-                else if (calculatedFPS >= 238 && calculatedFPS <= 242) detectedRate = 240;
-                else if (calculatedFPS >= 358 && calculatedFPS <= 362) detectedRate = 360;
+                // округляем к ближайшему стандартному значению
+                const detectedRate = snapToClosestRate(calculatedFPS);
 
                 setRefreshRate(detectedRate);
                 setIsDetectingRefreshRate(false);
 
-                // Обновляем настройки с автоматическими значениями
-                // Обновляем для обеих ОС
-                // setMacOSSettings(prev => ({
-                //     ...prev,
-                //     mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
-                //     trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
-                // }));
-                //
                 if (currentOS === "Windows") {
                     const autoFactor = getAutoSmoothFactor(detectedRate);
 
@@ -3532,7 +3597,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 cancelAnimationFrame(animationId);
             }
         };
-    }, []);
+    }, [currentOS]);
+
 
     const getScrollOffset = React.useCallback(() => {
         if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
