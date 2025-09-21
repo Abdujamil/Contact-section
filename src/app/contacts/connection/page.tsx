@@ -317,7 +317,8 @@ export default function Contacts() {
                 id="form-main"
                 initial={{y: 20, opacity: 1}}
                 animate={controls}
-                className={`${styles.contactRightContent} w-full max-w-[860px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative`}
+                className={`${styles.contactRightContent} 
+                w-full max-w-[860px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative md:mr-[-1px] mt-[2px]`}
             >
                 <FormProvider {...methods}>
                     <form
@@ -347,7 +348,7 @@ export default function Contacts() {
                                                `}
                             ></textarea>
                             <span
-                                className={`absolute z-[9] left-[3%] top-[3%] pointer-events-none transition-opacity duration-200 ${
+                                className={`absolute z-[9] left-[2.5%] top-[3%] pointer-events-none transition-opacity duration-200 ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
@@ -358,7 +359,7 @@ export default function Contacts() {
 
                             <label
                                 htmlFor={"fileUpload"}
-                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[6px] right-[12px] cursor-pointer  transition-colors duration-200`}
+                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[8px] right-[13px] cursor-pointer  transition-colors duration-200`}
                             >
                                 <span className="sr-only">Загрузить файлы</span>
                                 <svg
@@ -392,10 +393,10 @@ export default function Contacts() {
 
                         <div className={`${styles.formInpts} w-full md:w-[375px]`}>
                             {/* Кастомный select */}
-                            <div className={`relative mb-[32px]`}>
+                            <div className={`relative`}>
                                 <div
                                     ref={selectRef}
-                                    className={` h-[51px]
+                                    className={` h-[51px] mb-[32px]
                                       w-full border rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                       transition-border duration-200 ease-in
                                       ${
@@ -422,15 +423,15 @@ export default function Contacts() {
                                     onFocus={handleFieldFocus}
                                 >
                                                       <span
-                                                          className={
-                                                              selectError ? "text-[#FF3030]" : "text-[#CCC]"
-                                                          }
+                                                          className={`md:mt-[-3px] md:ml-[-3px]
+                                                              ${selectError ? "text-[#FF3030]" : "text-[#CCC]"}
+                                                          `}
                                                       >
                                                         {selectedOption || "Тема"}
                                                       </span>
 
                                     <svg
-                                        className={`z-[999999] transition-transform duration-200 ${
+                                        className={`mr-[-1px] z-[999999] transition-transform duration-200 ${
                                             isSelectOpen ? "rotate-180" : ""
                                         }`}
                                         width="16" height="10" viewBox="0 0 16 10" fill="none"
@@ -496,7 +497,7 @@ export default function Contacts() {
                             </div>
 
                             <AppInput
-                                className={`${styles.bounceElem} w-full mb-[33px]`}
+                                className={`${styles.bounceElem} w-full mb-[33px] !px-[10px]`}
                                 onFocus={handleFieldFocus}
                                 title={"ФИО"}
                                 inputName="name"
@@ -545,7 +546,7 @@ export default function Contacts() {
                             <div
                                 id="bounce-checkbox"
                                 ref={checkboxContainerRef}
-                                className={`${styles.formCheckboxes} flex items-center gap-[31px] mt-[10px] ml-[8px]`}
+                                className={`${styles.formCheckboxes} flex items-center gap-[30px] mt-[10px] ml-[9px]`}
                             >
 
                                 <CustomCheckbox
@@ -692,7 +693,8 @@ export default function Contacts() {
                                     type="submit"
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
-                                    className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} !border-[#353535] bg-[rgb(42_42_42/0.1)] group w-full !h-[51px] md:mt-[49px] mt-[32px] flex items-center !justify-center`}
+                                    className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} 
+                                    !border-[#353535] bg-[rgb(42_42_42/0.1)] group w-full !h-[51px] md:mt-[50px] mt-[32px] flex items-center !justify-center`}
                                     data-text=""
                                 >
                                                   <span

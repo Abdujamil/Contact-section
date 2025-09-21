@@ -3405,11 +3405,35 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     };
 
     // Функция для определения фактора плавности по герцовке
+    // const getAutoSmoothFactor = (rate: number): number => {
+    //     if (rate <= 129) return 0.15;
+    //     if (rate <= 199) return 0.10;
+    //     return 0.05;
+    // };
+
+    // Функция для определения фактора плавности по герцовке
     const getAutoSmoothFactor = (rate: number): number => {
-        if (rate <= 129) return 0.15;
-        if (rate <= 199) return 0.10;
-        return 0.05;
+        const is4K = Math.max(window.screen.width, window.screen.height) >= 3840;
+
+        if (is4K) {
+            if (rate <= 59) return 0.13;
+            if (rate <= 79) return 0.12;
+            if (rate <= 99) return 0.11;
+            if (rate <= 119) return 0.10;
+            if (rate <= 139) return 0.09;
+            if (rate <= 159) return 0.08;
+            if (rate <= 179) return 0.07;
+            if (rate <= 199) return 0.06;
+            if (rate <= 219) return 0.05;
+            return 0.04; // 220+
+        } else {
+            // старое поведение для FullHD и ниже
+            if (rate <= 129) return 0.15;
+            if (rate <= 199) return 0.10;
+            return 0.05;
+        }
     };
+
 
     // Определение ОС
     useEffect(() => {
