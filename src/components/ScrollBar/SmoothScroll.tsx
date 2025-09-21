@@ -3538,15 +3538,9 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         let frameCount = 0;
         let startTime = 0;
         let animationId: number;
-        const framesToMeasure = 180; // больше кадров = точнее замер
-
-        const knownRates = [60, 75, 90, 120, 144, 165, 240, 360];
-
-        const snapToClosestRate = (fps: number): number => {
-            return knownRates.reduce((prev, curr) =>
-                Math.abs(curr - fps) < Math.abs(prev - fps) ? curr : prev
-            );
-        };
+        // Увеличиваем количество кадров для более точного измерения
+        const framesToMeasure = 120; // было 60
+        const measureDuration = 2000; // 2 секунды максимум
 
         const measureFrameRate = (timestamp: number) => {
             if (startTime === 0) {
@@ -3554,15 +3548,31 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
 
             frameCount++;
+            const elapsed = timestamp - startTime;
 
-            if (frameCount < framesToMeasure) {
+            // Измеряем либо по количеству кадров, либо по времени
+            if (frameCount < framesToMeasure && elapsed < measureDuration) {
                 animationId = requestAnimationFrame(measureFrameRate);
             } else {
-                const elapsed = timestamp - startTime;
                 const calculatedFPS = Math.round((frameCount * 1000) / elapsed);
 
-                // округляем к ближайшему стандартному значению
-                const detectedRate = snapToClosestRate(calculatedFPS);
+                // Улучшенное округление до стандартных значений refresh rate
+                let detectedRate = calculatedFPS;
+
+                // Более точные диапазоны для округления
+                if (calculatedFPS >= 57 && calculatedFPS <= 63) detectedRate = 60;
+                else if (calculatedFPS >= 72 && calculatedFPS <= 78) detectedRate = 75;
+                else if (calculatedFPS >= 87 && calculatedFPS <= 93) detectedRate = 90;
+                else if (calculatedFPS >= 116 && calculatedFPS <= 125) detectedRate = 120;
+                else if (calculatedFPS >= 140 && calculatedFPS <= 150) detectedRate = 144;
+                else if (calculatedFPS >= 160 && calculatedFPS <= 170) detectedRate = 165;
+                else if (calculatedFPS >= 235 && calculatedFPS <= 245) detectedRate = 240; // Расширенный диапазон
+                else if (calculatedFPS >= 355 && calculatedFPS <= 365) detectedRate = 360;
+                // Добавляем поддержку других частот
+                else if (calculatedFPS >= 100 && calculatedFPS <= 106) detectedRate = 100;
+                else if (calculatedFPS >= 180 && calculatedFPS <= 186) detectedRate = 180;
+
+                console.log(`Measured FPS: ${calculatedFPS}, Detected rate: ${detectedRate}Hz`);
 
                 setRefreshRate(detectedRate);
                 setIsDetectingRefreshRate(false);
@@ -3572,8 +3582,8 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
                     setWindowsSettings(prev => ({
                         ...prev,
-                        mouse: { ...prev.mouse, scrollEaseFactor: autoFactor },
-                        trackpad: { ...prev.trackpad, scrollEaseFactor: autoFactor }
+                        mouse: {...prev.mouse, scrollEaseFactor: autoFactor},
+                        trackpad: {...prev.trackpad, scrollEaseFactor: autoFactor}
                     }));
 
                     console.log(
@@ -3598,7 +3608,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             }
         };
     }, [currentOS]);
-
 
     const getScrollOffset = React.useCallback(() => {
         if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
@@ -4010,6 +4019,203 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         }
     }, [isDragging, handleMouseMove, handleMouseUp]);
 
+    // useEffect(() => {
+    //     if (isMobile) return;
+    //
+    //     if (!scrollbarRef.current) return;
+    //
+    //     let currentScroll = window.scrollY;
+    //     let targetScroll = currentScroll;
+    //     let isScrolling = false;
+    //     let lastUpdateTime = 0;
+    //     let rafId: number | null = null;
+    //
+    //     // Получаем настройки внутри эффекта для актуального состояния
+    //     const activeSettings = currentOS === 'macOS' ?
+    //         (isTrackpad ? macOSSettings.trackpad : macOSSettings.mouse) :
+    //         (isTrackpad ? windowsSettings.trackpad : windowsSettings.mouse);
+    //
+    //     const initScroll = () => {
+    //         currentScroll = window.scrollY;
+    //         targetScroll = currentScroll;
+    //     };
+    //
+    //     const handleWheel = (e: WheelEvent) => {
+    //         if (isDragging) return;
+    //
+    //         if ((e.target as HTMLElement).closest('textarea, .allow-native-scroll')) return;
+    //
+    //         e.preventDefault();
+    //         e.stopPropagation();
+    //         e.stopImmediatePropagation();
+    //
+    //         const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), activeSettings.minScrollStep);
+    //         targetScroll += scrollStep;
+    //
+    //         const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    //         targetScroll = Math.max(0, Math.min(targetScroll, maxScroll));
+    //
+    //         if (!isScrolling) {
+    //             isScrolling = true;
+    //             const animate = () => {
+    //                 const now = performance.now();
+    //                 const timeDelta = now - lastUpdateTime;
+    //                 lastUpdateTime = now;
+    //
+    //                 const diff = targetScroll - currentScroll;
+    //                 const absDiff = Math.abs(diff);
+    //
+    //                 if (absDiff < activeSettings.scrollStopThreshold) {
+    //                     currentScroll = targetScroll;
+    //                     const finalPosition = Math.round(currentScroll * 100) / 100;
+    //
+    //                     window.scrollTo(0, finalPosition);
+    //
+    //                     requestAnimationFrame(() => {
+    //                         window.scrollTo(0, finalPosition);
+    //                     });
+    //
+    //                     isScrolling = false;
+    //                     rafId = null;
+    //                     return;
+    //                 }
+    //
+    //                 const timeMultiplier = Math.min(timeDelta / 16.67, 2);
+    //                 const adjustedEase = activeSettings.scrollEaseFactor * timeMultiplier;
+    //
+    //                 currentScroll += diff * Math.min(adjustedEase, 0.5);
+    //                 const smoothPosition = Math.round(currentScroll * 100) / 100;
+    //
+    //                 window.scrollTo(0, smoothPosition);
+    //
+    //                 if (delaySettings.scrollAnimationDelay.enabled) {
+    //                     setTimeout(() => {
+    //                         rafId = requestAnimationFrame(animate);
+    //                     }, delaySettings.scrollAnimationDelay.value);
+    //                 } else {
+    //                     rafId = requestAnimationFrame(animate);
+    //                 }
+    //             };
+    //
+    //             lastUpdateTime = performance.now();
+    //             if (delaySettings.scrollAnimationDelay.enabled) {
+    //                 setTimeout(() => {
+    //                     rafId = requestAnimationFrame(animate);
+    //                 }, delaySettings.scrollAnimationDelay.value);
+    //             } else {
+    //                 rafId = requestAnimationFrame(animate);
+    //             }
+    //         }
+    //     };
+    //
+    //     const handleScroll = () => {
+    //         if (!isScrolling && !isDragging) {
+    //             currentScroll = window.scrollY;
+    //             targetScroll = currentScroll;
+    //         }
+    //     };
+    //
+    //     const handleAnchorClick = (e: MouseEvent) => {
+    //         const target = e.target as HTMLElement;
+    //         if (target.tagName === "A") {
+    //             const anchor = target.getAttribute("href");
+    //             if (anchor?.startsWith("#")) {
+    //                 const el = document.querySelector(anchor);
+    //                 if (el) {
+    //                     e.preventDefault();
+    //                     const offset = getScrollOffset();
+    //                     const elTop = (el as HTMLElement).offsetTop - offset;
+    //                     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    //                     targetScroll = Math.max(0, Math.min(elTop, maxScroll));
+    //
+    //                     if (!isScrolling) {
+    //                         isScrolling = true;
+    //                         const animate = () => {
+    //                             const diff = targetScroll - currentScroll;
+    //                             if (Math.abs(diff) < activeSettings.scrollStopThreshold) {
+    //                                 currentScroll = targetScroll;
+    //                                 window.scrollTo(0, Math.round(currentScroll * 100) / 100);
+    //                                 isScrolling = false;
+    //                                 return;
+    //                             }
+    //
+    //                             currentScroll += diff * activeSettings.scrollEaseFactor;
+    //                             window.scrollTo(0, Math.round(currentScroll * 100) / 100);
+    //
+    //                             if (delaySettings.scrollAnimationDelay.enabled) {
+    //                                 setTimeout(() => requestAnimationFrame(animate), delaySettings.scrollAnimationDelay.value);
+    //                             } else {
+    //                                 requestAnimationFrame(animate);
+    //                             }
+    //                         };
+    //
+    //                         if (delaySettings.scrollAnimationDelay.enabled) {
+    //                             setTimeout(() => requestAnimationFrame(animate), delaySettings.scrollAnimationDelay.value);
+    //                         } else {
+    //                             requestAnimationFrame(animate);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     };
+    //
+    //     const scrollHandler = () => {
+    //         handleScroll();
+    //         if (delaySettings.scrollAnimationDelay.enabled) {
+    //             setTimeout(() => requestAnimationFrame(updateScrollbar), delaySettings.scrollAnimationDelay.value);
+    //         } else {
+    //             requestAnimationFrame(updateScrollbar);
+    //         }
+    //     };
+    //
+    //     const updateScrollbar = () => {
+    //         const scrollTop = window.scrollY;
+    //         const scrollHeight = document.documentElement.scrollHeight;
+    //         const clientHeight = window.innerHeight;
+    //         const maxScroll = scrollHeight - clientHeight;
+    //
+    //         const scrollbarHeight = (clientHeight / scrollHeight) * clientHeight;
+    //         const maxTop = clientHeight - scrollbarHeight - 8;
+    //         const topPercent = maxScroll > 0 ? (scrollTop / maxScroll) * maxTop : 0;
+    //
+    //         if (scrollbarRef.current) {
+    //             scrollbarRef.current.style.setProperty('--scrollY', `${topPercent}px`);
+    //             scrollbarRef.current.style.setProperty('--scrollbarHeight', `${scrollbarHeight}px`);
+    //         }
+    //     };
+    //
+    //     const handleResize = () => {
+    //         const resizeDelay = delaySettings.resizeDelay.enabled ?
+    //             delaySettings.resizeDelay.value : 0;
+    //
+    //         if (resizeDelay > 0) {
+    //             setTimeout(updateScrollbar, resizeDelay);
+    //         } else {
+    //             updateScrollbar();
+    //         }
+    //     };
+    //
+    //     initScroll();
+    //     updateScrollbar();
+    //
+    //     window.addEventListener('wheel', handleWheel, {passive: false});
+    //     window.addEventListener('scroll', scrollHandler, {passive: true});
+    //     document.addEventListener('click', handleAnchorClick);
+    //     window.addEventListener('resize', handleResize);
+    //
+    //     return () => {
+    //         window.removeEventListener('wheel', handleWheel);
+    //         window.removeEventListener('scroll', scrollHandler);
+    //         document.removeEventListener('click', handleAnchorClick);
+    //         window.removeEventListener('resize', handleResize);
+    //
+    //         if (rafId) {
+    //             cancelAnimationFrame(rafId);
+    //         }
+    //     };
+    // }, [isTrackpad, macOSSettings, windowsSettings, currentOS, pathname, getScrollOffset, delaySettings, isMobile, isDragging]);
+
     useEffect(() => {
         if (isMobile) return;
 
@@ -4020,11 +4226,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
         let isScrolling = false;
         let lastUpdateTime = 0;
         let rafId: number | null = null;
-
-        // Получаем настройки внутри эффекта для актуального состояния
-        const activeSettings = currentOS === 'macOS' ?
-            (isTrackpad ? macOSSettings.trackpad : macOSSettings.mouse) :
-            (isTrackpad ? windowsSettings.trackpad : windowsSettings.mouse);
 
         const initScroll = () => {
             currentScroll = window.scrollY;
@@ -4040,6 +4241,14 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
             e.stopPropagation();
             e.stopImmediatePropagation();
 
+            // ВАЖНО: Получаем актуальные настройки внутри обработчика
+            const getCurrentActiveSettings = () => {
+                const osSettings = currentOS === 'macOS' ? macOSSettings : windowsSettings;
+                return isTrackpad ? osSettings.trackpad : osSettings.mouse;
+            };
+
+            const activeSettings = getCurrentActiveSettings();
+
             const scrollStep = Math.sign(e.deltaY) * Math.max(Math.abs(e.deltaY), activeSettings.minScrollStep);
             targetScroll += scrollStep;
 
@@ -4053,10 +4262,13 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     const timeDelta = now - lastUpdateTime;
                     lastUpdateTime = now;
 
+                    // Получаем актуальные настройки в каждом кадре анимации
+                    const currentActiveSettings = getCurrentActiveSettings();
+
                     const diff = targetScroll - currentScroll;
                     const absDiff = Math.abs(diff);
 
-                    if (absDiff < activeSettings.scrollStopThreshold) {
+                    if (absDiff < currentActiveSettings.scrollStopThreshold) {
                         currentScroll = targetScroll;
                         const finalPosition = Math.round(currentScroll * 100) / 100;
 
@@ -4072,7 +4284,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                     }
 
                     const timeMultiplier = Math.min(timeDelta / 16.67, 2);
-                    const adjustedEase = activeSettings.scrollEaseFactor * timeMultiplier;
+                    const adjustedEase = currentActiveSettings.scrollEaseFactor * timeMultiplier;
 
                     currentScroll += diff * Math.min(adjustedEase, 0.5);
                     const smoothPosition = Math.round(currentScroll * 100) / 100;
@@ -4122,15 +4334,23 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         if (!isScrolling) {
                             isScrolling = true;
                             const animate = () => {
+                                // Получаем актуальные настройки для анимации якорных ссылок
+                                const getCurrentActiveSettings = () => {
+                                    const osSettings = currentOS === 'macOS' ? macOSSettings : windowsSettings;
+                                    return isTrackpad ? osSettings.trackpad : osSettings.mouse;
+                                };
+
+                                const currentActiveSettings = getCurrentActiveSettings();
+
                                 const diff = targetScroll - currentScroll;
-                                if (Math.abs(diff) < activeSettings.scrollStopThreshold) {
+                                if (Math.abs(diff) < currentActiveSettings.scrollStopThreshold) {
                                     currentScroll = targetScroll;
                                     window.scrollTo(0, Math.round(currentScroll * 100) / 100);
                                     isScrolling = false;
                                     return;
                                 }
 
-                                currentScroll += diff * activeSettings.scrollEaseFactor;
+                                currentScroll += diff * currentActiveSettings.scrollEaseFactor;
                                 window.scrollTo(0, Math.round(currentScroll * 100) / 100);
 
                                 if (delaySettings.scrollAnimationDelay.enabled) {
@@ -4205,7 +4425,18 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                 cancelAnimationFrame(rafId);
             }
         };
-    }, [isTrackpad, macOSSettings, windowsSettings, currentOS, pathname, getScrollOffset, delaySettings, isMobile, isDragging]);
+    }, [
+        // ВАЖНО: Добавляем все настройки как зависимости
+        isTrackpad,
+        macOSSettings,
+        windowsSettings,
+        currentOS,
+        pathname,
+        getScrollOffset,
+        delaySettings,
+        isMobile,
+        isDragging
+    ]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -4399,7 +4630,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
                         })}
                     </div>
 
-                    {/* ===== macOS SETTINGS ===== */}  {/* ===== WINDOWS SETTINGS ===== */}
+                    {/* ===== macOS SETTINGS ===== */} {/* ===== WINDOWS SETTINGS ===== */}
                     {
                         currentOS === 'macOS' ? (
                             <div className="mb-6">
