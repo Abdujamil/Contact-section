@@ -16,10 +16,6 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) => {
   const router = useRouter();
 
-  // const handleCardClick = () => {
-  //   router.push(`/blogPage/${id}`);
-  // };
-
   const handleCardClick = () => {
     const slug = createSlug(title);
     console.log("Original title:", title);

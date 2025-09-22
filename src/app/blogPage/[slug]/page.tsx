@@ -3,7 +3,6 @@ import {notFound} from "next/navigation";
 import {blogData} from "@/data/blog";
 import styles from "@/app/page.module.scss";
 import BlogPageContent from "@/components/blogPageCard/BlogPageContent";
-// import Footer from "@/app/footer";
 import Bg from "@/components/background/bg";
 import {createSlug} from "@/components/utils/createSlug";
 import SmoothScroll from "@/components/ScrollBar/SmoothScroll";

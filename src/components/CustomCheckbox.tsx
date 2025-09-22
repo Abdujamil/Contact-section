@@ -7,6 +7,7 @@ interface CustomCheckboxProps {
     fail?: boolean;
     successful?: boolean;
     id: string;
+    className?: string;
 }
 
 const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
@@ -15,7 +16,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                                                            label = 'Custom Checkbox',
                                                            fail,
                                                            successful,
-                                                           id
+                                                           id,
+                                                           className
                                                        }) => {
     // Генерируем уникальный id один раз при создании компонента
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +44,7 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                 ref={labelRef}
                 htmlFor={id}
                 className={`
+                    ${className}
                     before:content-['']
                     before:absolute before:top-[-2.4px] before:left-[-2.4px] before:right-[-2.4px] before:bottom-[-2.4px]  before:z-[-1]
                     relative z-[0]

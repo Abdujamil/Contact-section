@@ -6,7 +6,6 @@ import BlogCard from "@/components/BlogCard/BlogCard";
 import {blogData} from "@/data/blog";
 import Bg from "@/components/background/bg";
 import Pagination from "@/components/Pagination/pagination";
-// import Footer from "../footer";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 
@@ -80,7 +79,6 @@ const Blog = () => {
                             />
                         </div>
 
-                        {/*<Footer/>*/}
                     </div>
                 </div>
             </SmoothScroll>

@@ -396,7 +396,7 @@ export default function Contacts() {
                             <div className={`relative`}>
                                 <div
                                     ref={selectRef}
-                                    className={` h-[51px] mb-[32px]
+                                    className={` h-[51px] mb-[33px]
                                       w-full border rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                       transition-border duration-200 ease-in
                                       ${
@@ -498,6 +498,7 @@ export default function Contacts() {
 
                             <AppInput
                                 className={`${styles.bounceElem} w-full mb-[33px] !px-[10px]`}
+                                classNameTitle={`!left-[9px] !top-[11px] tracking-[-1.8px]`}
                                 onFocus={handleFieldFocus}
                                 title={"ФИО"}
                                 inputName="name"
@@ -546,7 +547,7 @@ export default function Contacts() {
                             <div
                                 id="bounce-checkbox"
                                 ref={checkboxContainerRef}
-                                className={`${styles.formCheckboxes} flex items-center gap-[30px] mt-[10px] ml-[9px]`}
+                                className={`${styles.formCheckboxes} flex items-center gap-[30px] mt-[9px] ml-[9px]`}
                             >
 
                                 <CustomCheckbox
@@ -582,6 +583,7 @@ export default function Contacts() {
                                 />
                                 <CustomCheckbox
                                     id="check-phone"
+                                    className={`ml-[1px]`}
                                     successful={phoneSuccessful}
                                     fail={phoneCheckboxError}
                                     checked={isPhone}
