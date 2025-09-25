@@ -30,7 +30,7 @@ const QuestionHeader: React.FC<Props> = ({question, isOpen, handleClick}) => {
                 className={`${styles.questionContainer} relative z-[99] 
                 w-full h-full px-[15px] py-[12px] md:p-[22px] md:pl-[30px] inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
 
-                <div className={`${styles.answerContainer} w-full`}>
+                <div className={`${styles.answerContainer} w-full ml-[-1px]`}>
                     <h3 className={`w-full font-[400] text-[18px] md:text-[20px] text-[#adadad]`}
                         style={{color: isOpen ? "#3D9ED6" : "",}}
                     >{question}</h3>

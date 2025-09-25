@@ -27,7 +27,7 @@ export const blogData: BlogItem[] = [
     editorId: 1,
     title: "Транскрибация вакансии без опыта работы для школьников?",
     slug: "transkribatsiya-lektsii",
-    date: "2020-03-01",
+    date: "10.10.2024",
     src: "/1.png",
     largeImgSrc: "/blgLg1.png",
     fullAnswer: (
@@ -645,7 +645,7 @@ export const blogData: BlogItem[] = [
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
     slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
-    date: "2020-03-01",
+    date: "10.10.2024",
     src: "/2.png",
     largeImgSrc: "/blgLg1.png",
     aside: [
@@ -772,7 +772,7 @@ export const blogData: BlogItem[] = [
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
     slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
-    date: "2020-03-01",
+    date: "10.10.2024",
     src: "/3.png",
     largeImgSrc: "/blgLg1.png",
     aside: [
@@ -899,7 +899,7 @@ export const blogData: BlogItem[] = [
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
     slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
-    date: "2020-03-01",
+    date: "10.10.2024",
     src: "/4.png",
     largeImgSrc: "/blgLg1.png",
     aside: [
@@ -1026,7 +1026,7 @@ export const blogData: BlogItem[] = [
 
     title: "Транскрибация вакансии без опыта работы для школьников?",
     slug: "transkribatsiya-vakancii-bez-opita-dlya-shkolnikov",
-    date: "2020-03-01",
+    date: "10.10.2024",
     src: "/5.png",
     largeImgSrc: "/blgLg1.png",
     aside: [
@@ -4606,8 +4606,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 33,
-    num: "33",
+    id: 34,
+    num: "34",
     editorId: 6,
     fullAnswer: (
         <>
@@ -4733,8 +4733,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 34,
-    num: "34",
+    id: 35,
+    num: "35",
     editorId: 7,
     fullAnswer: (
         <>
@@ -4860,8 +4860,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 35,
-    num: "35",
+    id: 36,
+    num: "36",
     editorId: 8,
     fullAnswer: (
         <>
@@ -4987,8 +4987,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 36,
-    num: "36",
+    id: 37,
+    num: "37",
     editorId: 9,
     fullAnswer: (
         <>
@@ -5114,8 +5114,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 37,
-    num: "37",
+    id: 38,
+    num: "38",
     editorId: 10,
     fullAnswer: (
         <>
@@ -5241,8 +5241,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 38,
-    num: "38",
+    id: 39,
+    num: "39",
     editorId: 11,
     fullAnswer: (
         <>
@@ -5368,8 +5368,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 39,
-    num: "39",
+    id: 40,
+    num: "40",
     editorId: 12,
     fullAnswer: (
         <>
@@ -5495,8 +5495,8 @@ export const blogData: BlogItem[] = [
     ],
   },
   {
-    id: 40,
-    num: "40",
+    id: 41,
+    num: "41",
     editorId: 5,
     fullAnswer: (
         <>

@@ -64,7 +64,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) 
 
         <div className={`${styles.cardBody} py-[20px] px-[15px]`}>
           <h2
-            className={`${styles.cardTitle} line-clamp-3 text-[19.5px] !text-[#adadad] leading-[120%] mb-[52px] `}
+            className={`${styles.cardTitle} ml-[-1px] mt-[-1px] tracking-[-.3px] line-clamp-3 text-[19.5px] !text-[#adadad] leading-[120%] mb-[52px] `}
           >
             {title}
           </h2>
@@ -73,7 +73,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) 
             className={`${styles.cardBody} w-full flex  items-end justify-between`}
           >
             <p
-              className={`${styles.cardBodyDate}  flex items-center gap-[4px] text-[#adadad] text-[14px] leading-[13px]`}
+              className={`${styles.cardBodyDate} tracking-[-.5px] ml-[-2px]  flex items-center gap-[4px] text-[#adadad] text-[14px] leading-[13px]`}
             >
               {date}
             </p>
@@ -83,7 +83,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ editorId, num, title, date, src }) 
                 onClick={handleAuthorClick}
                 className={`${styles.cardBodyDate} flex items-center gap-[4px] text-[#adadad] text-[14px] leading-[13px] hover:text-[#ccc] transition-colors duration-100 ease-in bg-transparent border-none cursor-pointer`}
               >
-                Автор
+                Тимур
               </button>
             </div>
           </div>

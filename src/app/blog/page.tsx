@@ -11,7 +11,7 @@ import SmoothScroll from "@/components/ScrollBar/SmoothScroll";
 
 const Blog = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const cardsPerPage = 8;
+    const cardsPerPage = 16;
 
     // Вычисляем общее количество страниц
     const totalPages = Math.ceil(blogData.length / cardsPerPage);
@@ -45,7 +45,7 @@ const Blog = () => {
                             className={`${styles.blogContainer} w-full max-w-[1180px] px-[10px] min-h-full h-auto mt-[110px] mb-[100px] mx-auto flex flex-col items-center`}
                         >
                             <h1
-                                className={`${styles.txtGradientRight} text-center text-[28px] leading-[110%] mb-[20px] mt-[-8px]
+                                className={`${styles.txtGradientRight} tracking-[-1px] text-center text-[28px] leading-[110%] mb-[20px] mt-[-8px]
                             md:text-[48px] md:m-0 md:mb-[40px]
                             `}
                             >
