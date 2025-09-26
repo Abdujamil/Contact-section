@@ -36,7 +36,7 @@ export default function Contacts() {
                             </span>
                         </label>
                         <p
-                            className="w-full flex items-center justify-start md:w-[559px] max-h-[51px] bg-[#20272A] !text-[18px] text-nowrap
+                            className="w-full flex items-center justify-start md:w-[559px] md:max-h-[51px] bg-[#20272A] !text-[18px] md:text-nowrap
                             overflow-auto cursor-not-allowed  border border-[#353535]
                             rounded-[4px] px-[10px] py-[18px] text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                         >

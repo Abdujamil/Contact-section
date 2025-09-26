@@ -934,9 +934,11 @@
 
 //-------------------------------- Footer --------------------------------//
 .footer {
-  background-image: url('/noise1.webp');
-  background-repeat: no-repeat;
-  background-size: cover;
+  //background-image: url('/noise1.webp');
+  //background-repeat: no-repeat;
+  //background-size: cover;
+
+  background: #ffffff0f;
 
   //&::before {
   //  background-image: url('/noise1.png');
@@ -1079,7 +1081,7 @@
 
     .footerTop {
       &::before {
-        background-image: url('/noise1.webp');
+        //background-image: url('/noise1.webp');
         content: "";
         // filter: brightness(.6) contrast(1) saturate(2);
         left: 0;
@@ -1094,4 +1096,8 @@
   }
 }
 
-
+@media (max-height: 1000px) and (min-width: 768px) {
+  .contact{
+    height: 85vh !important;
+  }
+}
