@@ -229,8 +229,9 @@
 
 .btn.send-button {
   .sendIconRight {
-    transform: translateX(70px);
     opacity: 0;
+    transform: translateX(70px);
+    margin-top: 1px;
   }
 
   span {
@@ -239,12 +240,12 @@
 
   &:hover {
     span {
-      transform: translateX(-35px) !important;
+      transform: translateX(-34px) !important;
     }
 
     .sendIconRight {
       opacity: 1;
-      transform: translateX(36px);
+      transform: translateX(33px);
     }
   }
 }

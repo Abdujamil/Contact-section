@@ -330,7 +330,7 @@ export default function Contacts() {
                         } !font-[Rubik] flex items-start justify-between w-full gap-[30px]`}
                     >
                         {/* Textarea */}
-                        <div className="relative w-full overflow-y-auto md:w-[375px] hidden md:block">
+                        <div className="relative w-full overflow-y-auto md:w-[375px] hidden md:block md:mt-[1px]">
                             <label htmlFor="comment" className="sr-only">Комментарий</label>
                             <textarea
                                 id='comment'
@@ -338,7 +338,8 @@ export default function Contacts() {
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 className={`txtarea-scrollbar ${styles.bounceElem}
-                                               placeholder:!text-[#ccc] w-full md:w-[375px] h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                                               placeholder:!text-[#ccc] w-full md:w-[375px] h-[350px] 
+                                               relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                pr-[54px]
                                                ${
                                     comment
@@ -348,7 +349,7 @@ export default function Contacts() {
                                                `}
                             ></textarea>
                             <span
-                                className={`absolute z-[9] left-[2.5%] top-[3%] pointer-events-none transition-opacity duration-200 ${
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] pointer-events-none transition-opacity duration-200 tracking-[1.15px] ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
@@ -359,7 +360,7 @@ export default function Contacts() {
 
                             <label
                                 htmlFor={"fileUpload"}
-                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[8px] right-[13px] cursor-pointer  transition-colors duration-200`}
+                                className={`w-[32px] h-[32px] rounded-[5px] py-[5px] pr-[4px] pl-[7px] absolute top-[12px] right-[8px] cursor-pointer  transition-colors duration-200`}
                             >
                                 <span className="sr-only">Загрузить файлы</span>
                                 <svg
@@ -391,7 +392,7 @@ export default function Contacts() {
                             }
                         </div>
 
-                        <div className={`${styles.formInpts} w-full md:w-[375px]`}>
+                        <div className={`${styles.formInpts} w-full md:w-[374px] md:mt-[1px] md:mr-[1px]`}>
                             {/* Кастомный select */}
                             <div className={`relative`}>
                                 <div
@@ -423,7 +424,7 @@ export default function Contacts() {
                                     onFocus={handleFieldFocus}
                                 >
                                                       <span
-                                                          className={`md:mt-[-3px] md:ml-[-3px]
+                                                          className={`md:mt-[1px] md:ml-[-1px] tracking-[1.2px]
                                                               ${selectError ? "text-[#FF3030]" : "text-[#CCC]"}
                                                           `}
                                                       >
@@ -431,7 +432,7 @@ export default function Contacts() {
                                                       </span>
 
                                     <svg
-                                        className={`mr-[-1px] z-[999999] transition-transform duration-200 ${
+                                        className={`mr-[-4px] z-[999999] transition-transform duration-200 ${
                                             isSelectOpen ? "rotate-180" : ""
                                         }`}
                                         width="16" height="10" viewBox="0 0 16 10" fill="none"
@@ -498,7 +499,7 @@ export default function Contacts() {
 
                             <AppInput
                                 className={`${styles.bounceElem} w-full mb-[33px] !px-[10px]`}
-                                classNameTitle={`!left-[9px] !top-[11px] tracking-[-1.8px]`}
+                                classNameTitle={`!left-[11px] !top-[13px] tracking-[.5px]`}
                                 onFocus={handleFieldFocus}
                                 title={"ФИО"}
                                 inputName="name"
@@ -547,7 +548,7 @@ export default function Contacts() {
                             <div
                                 id="bounce-checkbox"
                                 ref={checkboxContainerRef}
-                                className={`${styles.formCheckboxes} flex items-center gap-[30px] mt-[9px] ml-[9px]`}
+                                className={`${styles.formCheckboxes} flex items-center gap-[21px] mt-[8px] ml-[13px]`}
                             >
 
                                 <CustomCheckbox
@@ -583,7 +584,7 @@ export default function Contacts() {
                                 />
                                 <CustomCheckbox
                                     id="check-phone"
-                                    className={`ml-[1px]`}
+                                    className={`ml-[2px]`}
                                     successful={phoneSuccessful}
                                     fail={phoneCheckboxError}
                                     checked={isPhone}
@@ -696,7 +697,7 @@ export default function Contacts() {
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
                                     className={`${styles.btn} ${styles["send-button"]} ${HeaderStyles["login-button"]} 
-                                    !border-[#353535] bg-[rgb(42_42_42/0.1)] group w-full !h-[51px] md:mt-[50px] mt-[32px] flex items-center !justify-center`}
+                                    !border-[#353535] bg-[rgb(42_42_42/0.1)] group w-full !h-[51px] md:mt-[48px] mt-[32px] flex items-center !justify-center`}
                                     data-text=""
                                 >
                                                   <span
