@@ -155,7 +155,7 @@ export default function Contacts() {
                             <defs>
                                 <linearGradient id="paint0_linear_7308_5591" x1="374" y1="-0.5" x2="0" y2="-0.5" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#353535"/>
-                                    <stop offset="1" stop-color="#353535" stop-opacity="0"/>
+                                    <stop offset="1" stopColor="#353535" stopOpacity="0"/>
                                 </linearGradient>
                             </defs>
                         </svg>
@@ -166,7 +166,7 @@ export default function Contacts() {
                             <defs>
                                 <linearGradient id="paint0_linear_7308_5592" x1="4.37114e-08" y1="1.5" x2="373" y2="1.49997" gradientUnits="userSpaceOnUse">
                                     <stop stop-color="#353535"/>
-                                    <stop offset="1" stop-color="#353535" stop-opacity="0"/>
+                                    <stop offset="1" stopColor="#353535" stopOpacity="0"/>
                                 </linearGradient>
                             </defs>
                         </svg>
