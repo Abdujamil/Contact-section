@@ -1,12 +1,13 @@
 import React, {useState, useRef, useEffect} from "react";
 import Link from "next/link";
-import styles from "../../app/page.module.scss";
-import headerStyles from "../../components/header/Header.module.css";
+import styles from "@/app/page.module.scss";
+import headerStyles from "@/components/header/Header.module.css";
 import {useMouseTracking} from "../hooks/useMouseTracking";
 import {motion, AnimatePresence, useAnimation} from "framer-motion";
 import {Check} from "lucide-react";
 import Close from "@/components/closeIcon/close";
 import {bounceActiveBlock} from "@/components/Form/bounce";
+import {usePathname} from "next/navigation";
 
 const links = [
     {href: "/contacts", label: "Контакты"},
@@ -18,6 +19,7 @@ const links = [
 ];
 
 const FooterLinks: React.FC = () => {
+    const pathname = usePathname();
     const controls = useAnimation();
     const selectRef = useRef<HTMLDivElement>(null);
 
@@ -169,7 +171,12 @@ const FooterLinks: React.FC = () => {
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseLeave}
-                            className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
+                            className={` ${
+                                pathname.startsWith("/contacts")
+                                    ? headerStyles["menu-item-active"]
+                                    : headerStyles["login-button"]
+                            }
+                            group !h-[36px] flex items-center justify-center`}
                         >
                       <span className="font-normal text-[18px] leading-[75%]">
                         Контакты
@@ -187,7 +194,8 @@ const FooterLinks: React.FC = () => {
                             onMouseMove={handleMouseMove}
                             onMouseLeave={handleMouseLeave}
                         >
-                          <span className="font-normal text-[18px] leading-[75%] !transition-all !duration-[.13s] !ease-in">
+                          <span
+                              className="font-normal text-[18px] leading-[75%] !transition-all !duration-[.13s] !ease-in">
                             Telegram
                           </span>
                         </button>
@@ -326,7 +334,13 @@ const FooterLinks: React.FC = () => {
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseLeave}
-                            className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
+                            className={`
+                              ${
+                                pathname.startsWith("/politic/policy")
+                                    ? headerStyles["menu-item-active"]
+                                    : headerStyles["login-button"]
+                              }
+                             group !h-[36px] flex items-center justify-center`}
                         >
                       <span className="font-normal text-[18px] leading-[75%]">
                         Политика конфиденциальности
@@ -341,7 +355,11 @@ const FooterLinks: React.FC = () => {
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseLeave}
-                            className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
+                            className={`${
+                                pathname.startsWith("/politic/oferta")
+                                    ? headerStyles["menu-item-active"]
+                                    : headerStyles["login-button"]
+                            } group !h-[36px] flex items-center justify-center`}
                         >
               <span className="font-normal text-[18px] leading-[75%]">
                 Публичная оферта
@@ -356,7 +374,13 @@ const FooterLinks: React.FC = () => {
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseLeave}
-                            className={`${headerStyles["login-button"]} group !h-[36px] flex items-center justify-center`}
+                            className={`
+                             ${
+                                pathname.startsWith("/politic/license")
+                                    ? headerStyles["menu-item-active"]
+                                    : headerStyles["login-button"]
+                            }
+                             group !h-[36px] flex items-center justify-center`}
                         >
               <span className="font-normal text-[18px] leading-[75%]">
                 Лицензии

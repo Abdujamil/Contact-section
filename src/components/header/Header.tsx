@@ -10,15 +10,16 @@ import HeaderMenu from "@/components/header/HeaderMenu";
 interface MenuItem {
     label: string;
     href: string;
+    root?: string;
 }
 
 const menuItems: MenuItem[] = [
     {label: "Главная", href: "/"},
     {label: "Стоимость", href: "/pricing"},
     {label: "FAQ", href: "/faqPage/1?from=header"},
-    {label: "Организациям", href: "/organizations/about"},
+    {label: "Организациям", href: "/organizations/about", root: "/organizations"},
     {label: "Блог", href: "/blog"},
-    {label: "Контакты", href: "/contacts/connection"},
+    {label: "Контакты", href: "/contacts/connection", root: "/contacts"},
 ];
 
 const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
@@ -91,14 +92,31 @@ const Header: React.FC = () => {
     //     });
     // }, [pathname]);
 
+    // const renderMenuItems = useMemo(() => {
+    //     return menuItems.map((item) => {
+    //         const cleanHref = item.href.split("?")[0];
+    //
+    //         const isActive =
+    //             item.href === "/"
+    //                 ? pathname === cleanHref
+    //                 : pathname?.startsWith(cleanHref);
+    //
+    //         return <MenuItem key={item.href} item={item} isActive={isActive} />;
+    //     });
+    // }, [pathname]);
+
     const renderMenuItems = useMemo(() => {
         return menuItems.map((item) => {
-            const cleanHref = item.href.split("?")[0];
+            const rootPath = item.root || item.href.split("?")[0];
+            const currentPath = pathname || "";
 
-            const isActive =
-                item.href === "/"
-                    ? pathname === cleanHref
-                    : pathname?.startsWith(cleanHref);
+            let isActive = false;
+
+            if (rootPath === "/") {
+                isActive = currentPath === rootPath;
+            } else {
+                isActive = currentPath.startsWith(rootPath);
+            }
 
             return <MenuItem key={item.href} item={item} isActive={isActive} />;
         });
