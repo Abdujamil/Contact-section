@@ -133,7 +133,6 @@ export default function Contacts() {
                                 </span>
                             </p>
                         </div>
-
                         <div>
                             <label
                                 className="pl-[11px] block text-[18px] font-normal text-[#ccc] mb-[3px] leading-[98%] tracking-[-1.3px]">
@@ -159,8 +158,6 @@ export default function Contacts() {
                                 </linearGradient>
                             </defs>
                         </svg>
-
-
                         <svg width="373" height="1" viewBox="0 0 373 1" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <line x1="-4.37114e-08" y1="0.5" x2="373" y2="0.499967" stroke="url(#paint0_linear_7308_5592)"/>
                             <defs>
@@ -170,7 +167,6 @@ export default function Contacts() {
                                 </linearGradient>
                             </defs>
                         </svg>
-
                     </div>
 
                     <div className="relative !overflow-hidden block md:top-0  mt-[20px] md:hidden">

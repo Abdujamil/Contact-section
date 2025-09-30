@@ -86,7 +86,7 @@ export const blogData: BlogItem[] = [
           >
             Ключевые правила оформления транскрибации лекции:
           </h3>
-          <ul className={`list-disc pl-[15px] my-[20px]`}>
+          <ul className={`list-disc pl-[15px] mt-[20px] mb-[50px]`}>
             <li>
               Введение: постановка темы, описание целей и задач исследования.
             </li>
@@ -160,7 +160,7 @@ export const blogData: BlogItem[] = [
             дополнительное время редакторов, если требуется идеальная точность.
           </p>
           <div
-            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[6px] mt-[10px] mb-[30px]`}
+            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[6px] mt-[10px] mb-[50px]`}
           >
             <img
               className={`w-full h-full object-cover`}
@@ -366,7 +366,7 @@ export const blogData: BlogItem[] = [
           </ul>
 
           <div
-            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[6px] mt-[30px] mb-[30px]`}
+            className={`w-full h-full max-w-[600px] max-h-[300px] m-auto rounded-[6px] mt-[30px] mb-[50px]`}
           >
             <img
               className={`w-full h-full object-cover`}
@@ -475,7 +475,7 @@ export const blogData: BlogItem[] = [
         </div>
 
         <div id="conclusion" className={`scroll-mt-[80px]`}>
-          <h2 className=" mt-[24px] mb-[22px] md:text-[24px] text-[20px] leading-[120%]  text-[#3D9ED6]">
+          <h2 className=" mt-[50px] mb-[22px] md:text-[24px] text-[20px] leading-[120%]  text-[#3D9ED6]">
             Заключение
           </h2>
           <p className={`mb-[15px]`}>

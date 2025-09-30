@@ -567,6 +567,9 @@ input[type='email']::placeholder {
     }
 }
 
+#rekvizity-ispolnitelya ul li{
+    list-style: disc !important;
+}
 
 /* Wheel */
 .wheel {

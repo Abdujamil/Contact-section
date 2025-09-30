@@ -22,7 +22,7 @@ export default function page({ title, content, buttonText='Попробоват�
         >
           {title}
         </h3>
-        <p className={`text-[#A4A4A4] !leading-[140%] !md:text-[18px] !text-[16px] !mb-[20px]`}>
+        <p className={`text-[#A4A4A4] !leading-[140%] md:!text-[18px] text-[16px] !mb-[20px]`}>
           {content}
         </p>
 
