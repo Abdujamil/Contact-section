@@ -1143,13 +1143,6 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
 
     // Функция для определения фактора плавности по герцовке
     const getAutoSmoothFactor = (rate: number): number => {
-        // const width = window.screen.width;
-        // const height = window.screen.height;
-        //
-        // const is4K = width >= 3840 && height >= 2160;
-        // const is2K = width >= 2560 && height >= 1440 && !is4K;
-        // const isFHD = width >= 1920 && height >= 1080 && !is2K && !is4K;
-
         const is4K = Math.max(window.screen.width, window.screen.height) >= 3655;
 
 
@@ -1348,7 +1341,7 @@ export default function SmoothScroll({children}: SmoothScrollProps) {
     }, [currentOS]);
 
     const getScrollOffset = React.useCallback(() => {
-        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -115;
+        if (pathname.includes('/policy') || pathname.includes('/organizations')) return -95;
         if (pathname.includes('/blogPage')) return -174;
         if (pathname.includes('/organizations/where-do-you-lose')) return -110;
         if (pathname.includes('/editors')) return 90;

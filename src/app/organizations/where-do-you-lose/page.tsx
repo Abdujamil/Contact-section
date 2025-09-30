@@ -89,7 +89,7 @@ export default function OrganizationWhereDoYouLoseContent() {
                             <h2 className={`!text-[32px] !mb-[30px]`}>Потеря управления коммуникациями = потеря
                                 денег</h2>
 
-                            <div className={`mb-[30px]`}>
+                            <div className={`mb-[50px]`}>
                                 <p>
                                     Вы управляете бизнесом, где ежедневно проходят сотни, тысячи, а может, десятки тысяч
                                     звонков, встреч и переговоров.

@@ -232,7 +232,7 @@ export default function BlogPageContent({
                   <div
                       className={`${styles.BlogPageContent} text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                   >
-                    <div className="flex items-center justify-center mb-[30px]">
+                    <div className="flex items-center justify-center mb-[50px]">
                       <Image
                           className="rounded-[6px]"
                           src="/blgLg1.png"

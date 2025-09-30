@@ -13,7 +13,7 @@ export default function About() {
                     className={`${styles.BlogPageContent} mb-[40px] text-[18px] leading-relaxed whitespace-pre-line p-[30px] border border-[#353535] rounded-[6px]`}
                 >
                     <div className="policy-content">
-                        <div className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mb-[30px]`}>
+                        <div className={`max-w-[600px] m-auto rounded-[6px] flex items-center justify-center mb-[50px]`}>
                             <img
                                 className={`w-full object-cover`}
                                 src="/company/company-Img.webp"

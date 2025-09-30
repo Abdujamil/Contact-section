@@ -169,7 +169,7 @@ export default function Page() {
                             </div>
 
                             <div
-                                className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-[30px]">
+                                className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-[50px]">
 <pre>
   {"import requests\n\n"}
     {"import json\n\n\n"}
@@ -279,7 +279,7 @@ export default function Page() {
                             </div>
 
                             <div
-                                className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-[30px]">
+                                className="p-5 border border-[#353535] rounded-[6px] bg-transparent text-sm text-[#ccc] !overflow-x-auto mb-[50px]">
  <pre>
   {"import requests\n\n\n"}
      {"import json\n\n"}
@@ -316,7 +316,7 @@ export default function Page() {
 
                             <h3>Получить результат</h3>
                             <div
-                                className={`text-sm p-5 border border-[#353535] rounded-[6px] bg-transparent mb-[30px]`}>
+                                className={`text-sm p-5 border border-[#353535] rounded-[6px] bg-transparent mb-[50px]`}>
                             <pre>
                                 {`GET /task/result/{task_id}`}
                             </pre>

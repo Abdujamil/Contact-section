@@ -17,7 +17,7 @@ export default function page() {
                 >
                     <div className="oferta-content policy-content">
                         {/*Блок попробовать*/}
-                        <div className={`w-full flex items-center justify-center mb-[20px] md:mb-[30px]`}>
+                        <div className={`w-full flex items-center justify-center mb-[20px] md:mb-[50px]`}>
                             <div
                                 className={`${styles.editorTryBlockApi} ${styles.editorTryBlock} w-full max-w-[560px] text-center px-[39px] py-[40px] rounded-[6px] border !border-[#353535]`}
                             >
