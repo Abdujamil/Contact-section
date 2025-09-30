@@ -520,6 +520,26 @@ input[type='email']::placeholder {
     margin-bottom: 27px;
 }
 
+.is-yandex #form-main .ml-\[2px\],
+.is-firefox #form-main .ml-\[2px\] {
+    margin-left: 3px;
+}
+
+.is-opera #form-main .ml-\[2px\]{
+    margin-left: 2.5px;
+}
+
+.is-edge #form-main .ml-\[2px\]{
+    margin-left: 3px;
+    margin-top: 1px;
+}
+.is-edge #requisite-block {
+    padding-left: 40px;
+}
+
+.is-edge #requisite-block .md\:mr-\[-2px\]{
+    margin-right: -1px;
+}
 /* //-------------------------------- Policy --------------------------------// */
 .policy-content {
     section {

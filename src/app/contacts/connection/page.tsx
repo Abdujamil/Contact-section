@@ -318,7 +318,7 @@ export default function Contacts() {
                 initial={{y: 20, opacity: 1}}
                 animate={controls}
                 className={`${styles.contactRightContent} 
-                w-full max-w-[860px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative md:mr-[-1px] mt-[2px]`}
+                w-full max-w-[860px] md:h-[432px] border border-[#353535] rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative md:mr-[-2px] mb-[-1px]`}
             >
                 <FormProvider {...methods}>
                     <form
@@ -330,7 +330,7 @@ export default function Contacts() {
                         } !font-[Rubik] flex items-start justify-between w-full gap-[30px]`}
                     >
                         {/* Textarea */}
-                        <div className="relative w-full overflow-y-auto md:w-[375px] hidden md:block md:mt-[1px]">
+                        <div className="relative w-full overflow-y-auto md:w-[374px] hidden md:block md:mt-[1px]">
                             <label htmlFor="comment" className="sr-only">Комментарий</label>
                             <textarea
                                 id='comment'
@@ -338,7 +338,7 @@ export default function Contacts() {
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 className={`txtarea-scrollbar ${styles.bounceElem}
-                                               placeholder:!text-[#ccc] w-full md:w-[375px] h-[350px] 
+                                               placeholder:!text-[#ccc] w-full md:w-full h-[350px] 
                                                relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                pr-[54px]
                                                ${
@@ -392,7 +392,7 @@ export default function Contacts() {
                             }
                         </div>
 
-                        <div className={`${styles.formInpts} w-full md:w-[374px] md:mt-[1px] md:mr-[1px]`}>
+                        <div className={`${styles.formInpts} w-full md:w-[374px] md:mt-[1px] md:mr-[2px]`}>
                             {/* Кастомный select */}
                             <div className={`relative`}>
                                 <div

@@ -71,17 +71,19 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                             className={`w-full md:flex justify-center items-start md:gap-[39.5px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px] md:mt-0 mt-[20px]`}>
+
                                 <h1
                                     className={`${styles.txtGradientRight} tracking-[-1px]
-                                    leading-[85%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[25px] mb-[20px] mt-[0]`}
+                                    leading-[79%] md:text-[48px] text-[28px] md:text-left text-center font-normal md:mb-[27px] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h1>
+
                                 <aside
                                     className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start md:mt-0 mb-5">
                                     <div
                                         className={`${styles.btns} flex flex-col items-start justify-start w-full md:max-w-[260px] max-w-full  
-                                        p-[19px] pb-[18px] gap-[12px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+                                        p-[19px] gap-[11px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
                                     >
                                         {navItems.map((item, index) => {
                                             const isActive = pathname === item.href;

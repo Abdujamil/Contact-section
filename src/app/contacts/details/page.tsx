@@ -25,7 +25,7 @@ export default function Contacts() {
                 animate={controls}
                 className={`${styles.contactRightContent} 
                 !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] md:mr-[-1px]
-                md:p-[41px] md:pt-[34px] md:mt-[3px] p-5`}
+                md:p-[41px] md:pt-[34px] md:mt-[1px] p-5`}
             >
                 <div className="flex justify-between items-end mb-[12px]">
                     <div className="w-full max-w-[516px]">
@@ -37,7 +37,7 @@ export default function Contacts() {
                         </label>
                         <p
                             className="w-full flex items-center justify-start md:w-[563px] md:max-h-[51px] bg-[#20272A] !text-[18px] md:text-nowrap
-                            overflow-auto cursor-not-allowed  border border-[#353535]
+                            overflow-auto md:overflow-hidden cursor-not-allowed  border border-[#353535]
                             rounded-[4px] px-[10px] py-[18px] text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
                         >
                             <span className={`ml-[.5px]`}>
