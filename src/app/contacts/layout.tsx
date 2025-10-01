@@ -62,13 +62,13 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                 <Bg/>
                 <div
                     className={`${styles.contact} w-full h-full md:h-[85vh] mx-auto flex flex-col items-center mt-[100px] 
-                    md:pt-[59px] md:mt-0`}
+                    md:pt-[74px] md:mt-0`}
                 >
                     <div
-                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full flex justify-center items-center md:mb-0 mb-25 pl-[1.5px]`}
+                        className={`${styles.contactContainer} w-full max-w-[1160px] h-full flex justify-center items-center md:mb-0 mb-25 `}
                     >
                         <div
-                            className={`w-full md:flex justify-center items-start md:gap-[39.5px] gap-[20px] md:pt-[60px] md:pb-[60px]`}
+                            className={`w-full md:flex justify-center items-start md:gap-[39.5px] gap-[20px] md:pt-[60px] md:pb-[60px] md:ml-[-2px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px] md:mt-0 mt-[20px]`}>
 
