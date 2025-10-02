@@ -25,7 +25,7 @@ export default function Contacts() {
                 animate={controls}
                 className={`${styles.contactRightContent} 
                 !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] md:mr-[-1px]
-                md:p-[41px] md:pt-[34px] md:mt-[1px] p-5`}
+                md:p-[41px] md:pt-[34px] md:mt-[-1px] p-5`}
             >
                 <div className="flex justify-between items-end mb-[12px]">
                     <div className="w-full max-w-[516px]">
@@ -46,7 +46,7 @@ export default function Contacts() {
                         </p>
                     </div>
 
-                    <div className="relative !overflow-hidden hidden md:block md:mr-[-2px]">
+                    <div className="relative !overflow-hidden hidden md:block md:mr-[-1px]">
                         <button
                             type="submit"
                             className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[191px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
