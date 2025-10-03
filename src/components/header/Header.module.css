@@ -207,6 +207,23 @@
 }
 
 
+.login-menu-item-active{
+    border: 1px solid #737373 !important;
+}
+
+.login-menu-item-active div{
+    transform: translateX(0) !important;
+}
+
+.login-menu-item-active div span{
+    color: #3d9ed6;
+}
+
+.login-menu-item-active div .login-icon{
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
 .login-button span {
     color: inherit;
     /*transition: color 0.08s ease;*/

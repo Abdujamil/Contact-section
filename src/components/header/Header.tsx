@@ -533,12 +533,15 @@ const Header: React.FC = () => {
                             <div className="overflow-hidden">
                                 <Link
                                     href='/auth/login'
-                                    className={`${styles["login-button"]} group flex items-center justify-center`}
+                                    className={`
+                                         ${pathname.startsWith('/auth/') ? styles["login-menu-item-active"]  : '' }
+                                         ${styles["login-button"]}  
+                                         group flex items-center justify-center`}
                                     data-text={showRegisterPromo ? "Войти" : "Выйти"}
                                     onClick={toggleRegisterPromo}
                                     onMouseEnter={() => setIsIconVisible(true)}
                                     onMouseLeave={() => setIsIconVisible(false)}>
-                                    <div className="flex items-center gap-[10px]">
+                                    <div className={`flex items-center gap-[10px] `}>
                                         <svg
                                             className={`${styles["login-icon"]} ${
                                                 isIconVisible ? styles["login-icon-visible"] : ""
@@ -554,8 +557,8 @@ const Header: React.FC = () => {
                                             />
                                         </svg>
                                         <span className="font-normal text-[18px] leading-[120%]">
-                     {showRegisterPromo ? "Войти" : "Выйти"}
-                  </span>
+                                             {showRegisterPromo ? "Войти" : "Выйти"}
+                                          </span>
                                     </div>
                                     <div className={styles.highlight}/>
                                 </Link>
