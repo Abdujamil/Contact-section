@@ -56,7 +56,7 @@ export default function Breadcrumbs({
         <nav
             className="w-full absolute z-[999] font-[Rubik] !text-[12px] md:!text-[16px] pt-[3px] top-[60px] md:pb-[3px] left-0 text-[#adadad] md:mb-4 max-w-[100%] border-b border-b-[#FFFFFF19]">
             <div
-                className="w-full pl-[30px] !text-[12px] md:!text-[16px] mb-2.5 md:mb-0"
+                className="w-full pl-[29px] !text-[12px] md:!text-[16px] mb-2.5 md:mb-0"
                 style={{
                     wordBreak: 'break-word',
                     overflowWrap: 'break-word',
