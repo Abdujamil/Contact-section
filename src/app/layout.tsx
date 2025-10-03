@@ -53,9 +53,7 @@ export const viewport: Viewport = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="ru">
-        <body
-            className={`antialiased min-h-screen flex flex-col`}
-        >
+        <body className={`antialiased min-h-screen flex flex-col`}>
         <AuthProvider>
             <Header/>
             <main className="flex-grow">
