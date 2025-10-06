@@ -25,7 +25,7 @@ export default function Contacts() {
                 animate={controls}
                 className={`${styles.contactRightContent} 
                 !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] md:mr-[-2px]
-                md:p-[41px] md:pt-[34px] md:mt-[-2px] p-5`}
+                md:p-[41px] md:pt-[34px] md:mt-[0px] p-5`}
             >
                 <div className={`md:ml-[-1px] md:mt-[-1px]`}>
                     <div className="flex justify-between items-end mb-[12px]">
