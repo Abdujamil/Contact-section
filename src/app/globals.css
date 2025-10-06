@@ -346,6 +346,19 @@ input:-webkit-autofill::first-line {
     z-index: -1 !important;
 }
 
+
+/* Скрываем основной titleTop при автозаполнении */
+.field__input:-webkit-autofill ~ .field__title {
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Показываем titleBottom при автозаполнении */
+.field__input:-webkit-autofill ~ .field__title-top {
+    top: -25px;
+    opacity: 1;
+}
+
 input::-webkit-input-placeholder {
     opacity: 0;
 }
@@ -410,6 +423,7 @@ input[type='email']::placeholder {
     z-index: 1;
     pointer-events: none;
 }
+
 
 .pin-wrap {
     will-change: transform;
