@@ -343,7 +343,7 @@ input:-webkit-autofill::first-line {
 
 .field__input:not(:placeholder-shown):not(:focus) ~ .field__title,
 .field__textarea:not(:placeholder-shown):not(:focus) ~ .field__title {
-    z-index: -1;
+    z-index: -1 !important;
 }
 
 input::-webkit-input-placeholder {
