@@ -66,7 +66,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
             <Bg/>
             <div
                 className={`${styles['auth-content']} 
-                md:pt-[88px] h-full md:h-[100vh] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                md:pt-[88px] h-full md:h-[100dvh] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <div className="w-full flex items-center justify-center h-full">
                     <div className={`md:flex gap-[40px] md:mt-[-35px]`}>

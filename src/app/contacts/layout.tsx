@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import React, {ReactNode} from "react";
+import React, {ReactNode, useEffect} from "react";
 import Bg from "@/components/background/bg";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
@@ -56,14 +56,23 @@ const navItems = [
 export default function ContactLayout({children}: { children: ReactNode }) {
     const pathname = usePathname();
 
+    useEffect(() => {
+        const setRealVh = () => {
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
+        }
+        setRealVh()
+        window.addEventListener('resize', setRealVh)
+        return () => window.removeEventListener('resize', setRealVh)
+    }, [])
+
     return (
         <>
             <div className={`${styles.page} h-full`}>
                 <Bg/>
                 {/*md:pt-[74px]*/}
                 <div
-                    className={`${styles.contact} w-full h-full md:h-[86dvh] mx-auto flex flex-col items-center mt-[100px] 
-                    md:pt-[74px] md:mt-0`}
+                    className={`${styles.contact} w-full h-full  min-h-[calc(var(--vh,1vh)*100-127px)]  mx-auto flex flex-col items-center justify-center mt-[100px] 
+                    md:pt-[51px] md:mt-0`}
                 >
                     <div
                         className={`${styles.contactContainer} w-full h-full flex justify-center items-center md:mb-0 mb-25 `}
