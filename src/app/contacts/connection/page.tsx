@@ -319,7 +319,7 @@ export default function Contacts() {
                 animate={controls}
                 className={`${styles.contactRightContent} 
                 w-full max-w-[860px] md:h-[432px] border border-[#353535] 
-                rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative md:mr-[-2px] mb-[-1px]`}
+                rounded-[6px] md:p-10 md:pt-[39px] md:pr-[38px] p-5 relative md:mr-[0px] mb-[-1px]`}
             >
                 <FormProvider {...methods}>
                     <form
