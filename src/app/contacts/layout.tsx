@@ -60,9 +60,10 @@ export default function ContactLayout({children}: { children: ReactNode }) {
         <>
             <div className={`${styles.page} h-full`}>
                 <Bg/>
+                {/*md:pt-[74px]*/}
                 <div
                     className={`${styles.contact} w-full h-full md:h-[86dvh] mx-auto flex flex-col items-center mt-[100px] 
-                    md:pt-[74px] md:mt-0`}
+                    md:pt-[56px] md:mt-0`}
                 >
                     <div
                         className={`${styles.contactContainer} w-full h-full flex justify-center items-center md:mb-0 mb-25 `}
