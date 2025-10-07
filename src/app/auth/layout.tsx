@@ -66,7 +66,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
             <Bg/>
             <div
                 className={`${styles['auth-content']} 
-                pt-[96px] h-full md:h-[100vh] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
+                md:pt-[88px] h-full md:h-[100vh] w-full max-w-[1180px] px-[10px] m-auto flex justify-center items-center`}
             >
                 <div className="w-full flex items-center justify-center h-full">
                     <div className={`md:flex gap-[40px] md:mt-[-35px]`}>
@@ -89,7 +89,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                     const isFirst = index === 0;
 
                                     return (
-                                        <div key={item.label} className={`relative !overflow-hidden`}>
+                                        <div key={item.label} className={` w-full relative !overflow-hidden`}>
                                             <Link
                                                 href={item.href}
                                                 onMouseMove={handleMouseMove}
