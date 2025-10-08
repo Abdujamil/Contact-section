@@ -23,7 +23,7 @@ export default function Contacts() {
             {/*md:mr-[-2px]*/}
             <motion.div
                 id="requisite-block"
-                initial={{y: 20, opacity: 1}}
+                initial={{y: 0, opacity: 1}}
                 animate={controls}
                 className={`${styles.contactRightContent} 
                 !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] 

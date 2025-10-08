@@ -97,7 +97,7 @@ export default function ForgotPasswordPage() {
             <motion.div
                 key={pathname}
                 id="auth-forgot-password"
-                initial={{y: 20, opacity: 1}}
+                initial={{y: 0, opacity: 1}}
                 animate={controls}
                 className={`${styles.BlogPageContent} w-full md:w-[860px] max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >

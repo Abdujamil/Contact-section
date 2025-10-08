@@ -320,7 +320,7 @@ export default function Contacts() {
             {/* Блок "Связаться" */}
             <motion.div
                 id="form-main"
-                initial={{y: 20, opacity: 1}}
+                initial={{y: 0, opacity: 1}}
                 animate={controls}
                 className={`${styles.contactRightContent} 
                 w-full max-w-[860px] md:h-[432px] border border-[#353535] 
