@@ -21,6 +21,7 @@ export default function Contacts() {
             <Breadcrumbs detailsUrl={true}/>
             {/* Блок "Реквизиты" */}
             {/*md:mr-[-2px]*/}
+
             <motion.div
                 id="requisite-block"
                 initial={{y: 0, opacity: 1}}
