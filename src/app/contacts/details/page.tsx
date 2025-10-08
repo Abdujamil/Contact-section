@@ -2,29 +2,31 @@
 import Image from "next/image";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
-import React, {useEffect} from "react";
+import React from "react";
 import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import {useDidMount} from "@/components/hooks/useDidMount";
 
 
 export default function Contacts() {
     const controls = useAnimation();
 
     const activeTab = "requisite"
-    useEffect(() => {
-        bounceActiveBlock(activeTab, controls);
-    }, [activeTab]);
+    useDidMount((isInitialMount) => {
+        bounceActiveBlock(activeTab, controls, isInitialMount);
+    }, [activeTab, controls]);
     return (
         <>
             <Breadcrumbs detailsUrl={true}/>
             {/* Блок "Реквизиты" */}
+            {/*md:mr-[-2px]*/}
             <motion.div
                 id="requisite-block"
                 initial={{y: 20, opacity: 1}}
                 animate={controls}
                 className={`${styles.contactRightContent} 
-                !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] md:mr-[-2px]
+                !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] 
                 md:p-[41px] md:pt-[34px] md:mt-[0px] p-5`}
             >
                 <div className={`md:ml-[-1px] md:mt-[-1px]`}>

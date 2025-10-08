@@ -10,7 +10,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
     const [passwordStrength, setPasswordStrength] = useState<'weak' | 'medium' | 'strong' | ''>('');
     const [showTooltip, setShowTooltip] = useState(false);
     const [isInputFocused, setIsInputFocused] = useState(false);
-    const showPassword = false;
+    // const showPassword = false;
 
     const isTooltipVisible = showTooltip && isInputFocused;
     const password = watch('Password');

@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import CustomCheckbox from "@/components/CustomCheckbox";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from "react-hook-form";
@@ -19,6 +19,7 @@ import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Link from "next/link";
 import FileSlider from "@/components/Form/FileSlider";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import {useDidMount} from "@/components/hooks/useDidMount";
 
 export default function Contacts() {
     const controls = useAnimation();
@@ -35,9 +36,10 @@ export default function Contacts() {
     } = methods;
 
     const activeTab = "connection"
-    useEffect(() => {
-        bounceActiveBlock(activeTab, controls);
+    useDidMount((isInitialMount) => {
+        bounceActiveBlock(activeTab, controls, isInitialMount);
     }, [activeTab, controls]);
+
 
     // Upload file
     const [text, setText] = useState("");
@@ -265,11 +267,13 @@ export default function Contacts() {
         setVisibleError(false);
         setTimeout(() => setVisibleError(true), 30);
     }, [submitCount]);
+
     useEffect(() => {
         if (selectedOption === "Тема") {
             setSelectError(false);
         }
     }, [selectedOption]);
+
     useEffect(() => {
         // Сбрасываем все ошибки и состояния
         setSelectError(false);
@@ -292,6 +296,7 @@ export default function Contacts() {
             fileInputRef.current.value = "";
         }
     }, [activeTab]);
+
     useEffect(() => {
         const isValidEmail = emailRegex.test(contactData.email.trim());
         const isValidPhone = phoneRegex.test(contactData.phone.trim());
@@ -432,8 +437,9 @@ export default function Contacts() {
                                                         {selectedOption || "Тема"}
                                                       </span>
 
+                                    {/*mr-[-4px]*/}
                                     <svg
-                                        className={`mr-[-4px] z-[999999] transition-transform duration-200 ${
+                                        className={`mr-[2px] z-[999999] transition-transform duration-200 ${
                                             isSelectOpen ? "rotate-180" : ""
                                         }`}
                                         width="16" height="10" viewBox="0 0 16 10" fill="none"

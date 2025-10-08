@@ -39,32 +39,39 @@ const runMotionEffect = (controls: ReturnType<typeof useAnimation>) => {
         },
     });
 };
-export const bounceActiveBlock = (activeTab: 'connection' | 'requisite' | 'login' | 'register' | 'forgot-password' | 'options' | 'dataPicker', controls: ReturnType<typeof useAnimation>) => {
-    let block: HTMLElement | null = null;
+export const bounceActiveBlock = (
+        activeTab: 'connection' | 'requisite' | 'login' | 'register' | 'forgot-password' | 'options' | 'dataPicker',
+        controls: ReturnType<typeof useAnimation>,
+        isInitialMount: boolean = false
+    ) => {
+        if (isInitialMount) return;
 
-    if (activeTab === 'connection') {
-        block = document.getElementById('form-main');
-    } else if (activeTab === 'options') {
-        block = document.getElementById('select-options');
-    } else if (activeTab === 'requisite') {
-        block = document.getElementById('requisite-block');
-    } else if (activeTab === 'login') {
-        block = document.getElementById('auth-login');
-    } else if (activeTab === 'register') {
-        block = document.getElementById('auth-register');
-    } else if (activeTab === 'forgot-password') {
-        block = document.getElementById('auth-forgot-password');
-    } else if (activeTab === 'dataPicker') {
-        block = document.getElementById('date-picker');
+        let block: HTMLElement | null = null;
+
+        if (activeTab === 'connection') {
+            block = document.getElementById('form-main');
+        } else if (activeTab === 'options') {
+            block = document.getElementById('select-options');
+        } else if (activeTab === 'requisite') {
+            block = document.getElementById('requisite-block');
+        } else if (activeTab === 'login') {
+            block = document.getElementById('auth-login');
+        } else if (activeTab === 'register') {
+            block = document.getElementById('auth-register');
+        } else if (activeTab === 'forgot-password') {
+            block = document.getElementById('auth-forgot-password');
+        } else if (activeTab === 'dataPicker') {
+            block = document.getElementById('date-picker');
+        }
+
+        if (block) {
+            controls.stop();
+
+            // Сброс анимации перед запуском новой
+            block.style.animation = 'none';
+            void block.offsetHeight; // Trigger reflow
+
+            runMotionEffect(controls);
+        }
     }
-
-    if (block) {
-        controls.stop();
-
-        // Сброс анимации перед запуском новой
-        block.style.animation = 'none';
-        void block.offsetHeight; // Trigger reflow
-
-        runMotionEffect(controls);
-    }
-};
+;

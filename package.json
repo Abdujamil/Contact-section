@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
+    "@next/bundle-analyzer": "^15.5.4",
     "@prisma/client": "^6.11.1",
     "@react-pdf/renderer": "^4.3.0",
     "@tailwindcss/line-clamp": "^0.4.4",

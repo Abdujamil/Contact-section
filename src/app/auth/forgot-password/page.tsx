@@ -13,6 +13,7 @@ import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import {usePathname} from "next/navigation";
+import {useDidMount} from "@/components/hooks/useDidMount";
 
 type ForgotPasswordFormValues = {
     email: string;
@@ -64,9 +65,14 @@ export default function ForgotPasswordPage() {
         });
     }, [register]);
 
-    useEffect(() => {
-        bounceActiveBlock('forgot-password', controls);
-    }, [controls]);
+    // useEffect(() => {
+    //     bounceActiveBlock('forgot-password', controls);
+    // }, [controls]);
+
+    const activeTab = "forgot-password"
+    useDidMount((isInitialMount) => {
+        bounceActiveBlock(activeTab, controls, isInitialMount);
+    }, [activeTab, controls]);
 
     const onSubmit: SubmitHandler<ForgotPasswordFormValues> = async (data) => {
         setShowPolicy(true); // показываем политику

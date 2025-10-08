@@ -41,14 +41,14 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
                     alt="FAQ image"
                     width={155}
                     height={153}
-                    className="rounded-[4px] transition-all ease-in-out duration-[.3s]"
+                    className=" transition-all ease-in-out duration-[.3s]"
                     style={{objectFit: "contain", aspectRatio: "1 / 1"}}
                 />
             </div>
 
             <div
                 className={`${styles.questionContainer} 
-                relative z-[-1] w-full h-full p-3 md:p-[22px] md:pl-[30px] inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
+                relative z-[-1] w-full h-full p-3 md:p-[22px] md:pl-[30px] backdrop-blur-[5px] inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
                 <div className={`${styles.number} p-[6px]`}
                      style={{
                          position: isOpen ? "relative" : "initial",

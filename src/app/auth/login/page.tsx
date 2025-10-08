@@ -13,6 +13,7 @@ import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
 import {usePathname} from "next/navigation";
+import {useDidMount} from "@/components/hooks/useDidMount";
 
 type LoginFormValues = {
     email: string;
@@ -80,9 +81,15 @@ export default function LoginPage() {
         });
     }, [register]);
 
-    useEffect(() => {
-        bounceActiveBlock('login', controls);
-    }, [controls]);
+    // useEffect(() => {
+    //     bounceActiveBlock('login', controls);
+    // }, [controls]);
+
+    const activeTab = "login"
+    useDidMount((isInitialMount) => {
+        bounceActiveBlock(activeTab, controls, isInitialMount);
+    }, [activeTab, controls]);
+
 
     // Отслеживание изменений email для визуальной индикации
     useEffect(() => {
