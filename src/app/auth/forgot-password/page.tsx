@@ -90,7 +90,6 @@ export default function ForgotPasswordPage() {
         if (!showPolicy) setShowPolicy(true);
     };
 
-
     return (
         <>
             <Breadcrumbs forgotPasswordrUrl={true}/>

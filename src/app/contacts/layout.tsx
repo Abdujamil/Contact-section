@@ -72,7 +72,7 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                 {/*md:pt-[74px]*/}
                 <div
                     className={`${styles.contact} w-full h-full  min-h-[calc(var(--vh,1vh)*100-127px)]  mx-auto flex flex-col items-center justify-center mt-[100px] 
-                    md:pt-[51px] md:mt-0`}
+                    md:pt-[51px] md:mt-0 md:overflow-y-hidden`}
                 >
                     <div
                         className={`${styles.contactContainer} w-full h-full flex justify-center items-center md:mb-0 mb-25 `}

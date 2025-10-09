@@ -4,6 +4,8 @@ import React from "react";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
 import { handleMouseLeave, handleMouseMove } from "@/components/Form/mouse";
+import headerStyles from "@/components/header/Header.module.css";
+import {Check} from "lucide-react";
 
 interface PaginationProps {
   currentPage: number;
@@ -150,20 +152,40 @@ const Pagination: React.FC<PaginationProps> = ({
           }
 
           return (
+            // <button
+            //   key={page}
+            //   onClick={() => onPageChange(Number(page))}
+            //   className={`cursor-pointer flex items-center
+            //     px-[15px] py-[18px] max-h-[50px] rounded-[4px] border text-[20px] min-w-[40px]
+            //     ${
+            //       currentPage === page
+            //         ? "text-[#3D9ED6] border-[#353535] "
+            //         : "text-[#ADADAD] border border-transparent hover:text-[#3D9ED6] hover:border-[#CCCCCC]"
+            //     }
+            //   `}
+            // >
+            //   {page}
+            // </button>
+          <div className="relative">
             <button
-              key={page}
-              onClick={() => onPageChange(Number(page))}
-              className={`cursor-pointer flex items-center
-                px-[15px] py-[18px] max-h-[50px] rounded-[4px] border text-[20px] min-w-[40px]
+                key={page}
+                onClick={() => onPageChange(Number(page))}
+                className={`${headerStyles["login-button"]} 
+                !px-[15px] !py-[18px] !h-[50px] rounded-[4px] border text-[20px] !min-w-[40px]
                 ${
-                  currentPage === page
-                    ? "text-[#3D9ED6] border-[#353535] "
-                    : "text-[#ADADAD] border border-transparent hover:text-[#3D9ED6] hover:border-[#CCCCCC]"
+                    currentPage === page
+                        ? "!text-[#3D9ED6] !border-[#353535] "
+                        : "text-[#ADADAD] border border-transparent hover:text-[#3D9ED6] hover:border-[#CCCCCC]"
                 }
-              `}
+                group flex items-center justify-center`}
             >
-              {page}
+                        <span className="font-normal text-[20px] ">
+                           {page}
+                        </span>
             </button>
+
+            <div className={styles.highlight}/>
+          </div>
           );
         })}
       </div>

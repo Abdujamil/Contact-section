@@ -55,11 +55,20 @@ const FooterLinks: React.FC = () => {
     const {handleMouseMove, handleMouseUp, handleMouseLeave} = useMouseTracking();
 
     const [copied, setCopied] = useState(false);
+    const [emailCopied, setEmailCopied] = useState(false);
+
     const telegramLink = "https://t.me/idsvvs";
+    const emailLink = "info@audiosector.ru";
 
     const handleTelegramClick = () => {
         navigator.clipboard.writeText(telegramLink).then(() => {
             setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    };
+    const handleEmailClick = () => {
+        navigator.clipboard.writeText(emailLink).then(() => {
+            setEmailCopied(true);
             setTimeout(() => setCopied(false), 2000);
         });
     };
@@ -150,8 +159,8 @@ const FooterLinks: React.FC = () => {
                 <div className="flex items-center gap-[9px]">
 
                     <div className="relative">
-                        <a
-                            href="mailto:info@audiosector.ru"
+                        <button
+                            onClick={handleEmailClick}
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseLeave}
@@ -160,7 +169,17 @@ const FooterLinks: React.FC = () => {
                         <span className="font-normal text-[18px] leading-[75%]">
                           info@audiosector.ru
                         </span>
-                        </a>
+                        </button>
+
+                        {/* Всплывающее уведомление для десктопа */}
+                        {emailCopied && (
+                            <div
+                                className="absolute top-[-50px] mt-2 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-[#28262680] backdrop-blur-[20px] rounded-[4px] text-white text-sm px-3 py-1 animate-fade-in-out">
+                                <Check className="w-4 h-4 text-green-400"/>
+                                <span>Скопировано</span>
+                            </div>
+                        )}
+
                         <div className={styles.highlight}/>
                     </div>
 

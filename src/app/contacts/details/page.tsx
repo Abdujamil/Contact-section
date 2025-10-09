@@ -16,6 +16,7 @@ export default function Contacts() {
     useDidMount((isInitialMount) => {
         bounceActiveBlock(activeTab, controls, isInitialMount);
     }, [activeTab, controls]);
+
     return (
         <>
             <Breadcrumbs detailsUrl={true}/>

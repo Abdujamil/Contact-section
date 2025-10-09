@@ -55,27 +55,27 @@ export const viewport: Viewport = {
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
         <html lang="ru">
-        <Head>
-            <link rel="preload" as="image" href="/bg.svg" />
-        </Head>
-        <body className={`antialiased min-h-screen flex flex-col`}>
-            <div
-                className={`${styles.faqBg} fixed w-full h-dvh bg-[url(/bg.svg)] bg-no-repeat left-0 top-0 z-[-1]`}
-                style={{backgroundAttachment: 'fixed',}}
-            >
-                <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
-            </div>
-        <AuthProvider>
-            <Header/>
-            <main className="flex-grow">
-                {children}
-            </main>
-            <FootCondition/>
-        </AuthProvider>
+            <Head>
+                <link rel="preload" as="image" href="/bg.svg" />
+            </Head>
+            <body className={`antialiased min-h-screen flex flex-col`}>
+                <div
+                    className={`${styles.faqBg} fixed w-full h-dvh bg-[url(/bg.svg)] bg-no-repeat left-0 top-0 z-[-1]`}
+                    style={{backgroundAttachment: 'fixed',}}
+                >
+                    <div className={`${styles.linear}  absolute inset-0 bg-black/20`}></div>
+                </div>
+            <AuthProvider>
+                <Header/>
+                <main className="flex-grow">
+                    {children}
+                </main>
+                <FootCondition/>
+            </AuthProvider>
 
-        {/*  Добавляем браузерный класс на <html> */}
-        <BrowserProvider/>
-        </body>
+            {/*  Добавляем браузерный класс на <html> */}
+            <BrowserProvider/>
+            </body>
         </html>
     );
 }

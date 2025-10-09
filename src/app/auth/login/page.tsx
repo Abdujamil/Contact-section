@@ -113,6 +113,7 @@ export default function LoginPage() {
         setEmailError(false);
         setShowPolicy(false);
     }, [pathname, methods]);
+
     return (
         <>
             <Breadcrumbs loginUrl={true}/>
