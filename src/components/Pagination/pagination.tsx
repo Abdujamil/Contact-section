@@ -166,9 +166,8 @@ const Pagination: React.FC<PaginationProps> = ({
             // >
             //   {page}
             // </button>
-          <div className="relative">
+          <div key={page} className="relative">
             <button
-                key={page}
                 onClick={() => onPageChange(Number(page))}
                 className={`${headerStyles["login-button"]} 
                 !px-[15px] !py-[18px] !h-[50px] rounded-[4px] border text-[20px] !min-w-[40px]
