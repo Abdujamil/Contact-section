@@ -106,6 +106,10 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                                         href={item.href}
                                                         onMouseMove={handleMouseMove}
                                                         onMouseLeave={handleMouseLeave}
+                                                        onClick={() => {
+                                                            // отмечаем, что это внутренний клик по навигации в контактах
+                                                            try { sessionStorage.setItem('contactsInternalNav', 'true'); } catch(e) {}
+                                                        }}
                                                         className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
                                                         style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                                     >

@@ -6,7 +6,6 @@ import React, {useEffect} from "react";
 import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
-import {useDidMount} from "@/components/hooks/useDidMount";
 
 
 export default function Contacts() {

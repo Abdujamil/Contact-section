@@ -13,7 +13,6 @@ import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
 import {usePathname} from "next/navigation";
-import {useDidMount} from "@/components/hooks/useDidMount";
 
 type LoginFormValues = {
     email: string;
@@ -81,15 +80,21 @@ export default function LoginPage() {
         });
     }, [register]);
 
+    // useEffect(() => {
+    //     bounceActiveBlock('login', controls);
+    // }, [controls]);
+
+    const activeTab = "login"
     useEffect(() => {
-        bounceActiveBlock('login', controls);
-    }, [controls]);
+        requestAnimationFrame(() => {
+            const wasInternal = sessionStorage.getItem("contactsInternalNav") === "true";
+            sessionStorage.removeItem("contactsInternalNav");
 
-    // const activeTab = "login"
-    // useDidMount((isInitialMount) => {
-    //     bounceActiveBlock(activeTab, controls, isInitialMount);
-    // }, [activeTab, controls]);
-
+            const isInitialMount = !wasInternal;
+            bounceActiveBlock(activeTab, controls, isInitialMount);
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // Отслеживание изменений email для визуальной индикации
     useEffect(() => {

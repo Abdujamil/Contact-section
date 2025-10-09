@@ -47,7 +47,7 @@ const QuestionHeader: React.FC<Props> = ({num, question, src, isOpen, handleClic
             </div>
 
             <div
-                className={`${styles.questionContainer} ${isOpen ? '' : 'active:scale-[.99]'}
+                className={`${styles.questionContainer} active:scale-[.99]
                 relative z-[99] rounded-[6px]  w-full h-full p-3 md:p-[22px] md:pl-[30px] backdrop-blur-[5px] inline-flex flex-row items-center transition-all ease duration-[.1s] `}>
                 <div className={`${styles.number} p-[6px]`}
                      style={{

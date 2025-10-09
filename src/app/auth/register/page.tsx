@@ -736,7 +736,6 @@ import DateInput from "@/components/DatePicker/DateInput";
 import {DatePicker} from "@/components/DatePicker/DatePicker";
 import {useWatch} from "react-hook-form";
 import {usePathname} from "next/navigation";
-import {useDidMount} from "@/components/hooks/useDidMount";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -952,10 +951,6 @@ export default function RegisterPage() {
     useEffect(() => {
         bounceActiveBlock('register', controls);
     }, [controls]);
-    // const activeTab = "register"
-    // useDidMount((isInitialMount) => {
-    //     bounceActiveBlock(activeTab, controls, isInitialMount);
-    // }, [activeTab, controls]);
 
     useEffect(() => {
         if (selectedDate) {

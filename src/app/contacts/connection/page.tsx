@@ -1,7 +1,7 @@
 "use client";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect} from "react";
 import CustomCheckbox from "@/components/CustomCheckbox";
 import AppInput from "@/components/forms/elements/AppInput";
 import {useForm, FormProvider} from "react-hook-form";
@@ -19,7 +19,6 @@ import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Link from "next/link";
 import FileSlider from "@/components/Form/FileSlider";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
-import {useDidMount} from "@/components/hooks/useDidMount";
 
 export default function Contacts() {
     const controls = useAnimation();
@@ -36,13 +35,22 @@ export default function Contacts() {
     } = methods;
 
     const activeTab = "connection"
-    useEffect(() => {
-        bounceActiveBlock(activeTab, controls);
-    }, [controls]);
 
-    // useDidMount((isInitialMount) => {
-    //     bounceActiveBlock(activeTab, controls, isInitialMount);
-    // }, [activeTab, controls]);
+    useEffect(() => {
+        requestAnimationFrame(() => {
+            const wasInternal = sessionStorage.getItem("contactsInternalNav") === "true";
+            sessionStorage.removeItem("contactsInternalNav");
+
+            const isInitialMount = !wasInternal;
+            bounceActiveBlock(activeTab, controls, isInitialMount);
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    // useEffect(() => {
+    //     bounceActiveBlock(activeTab, controls);
+    // }, [controls]);
+
 
 
     // Upload file

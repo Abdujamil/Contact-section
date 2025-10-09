@@ -94,6 +94,10 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 href={item.href}
                                                 onMouseMove={handleMouseMove}
                                                 onMouseLeave={handleMouseLeave}
+                                                onClick={() => {
+                                                    // отмечаем, что это внутренний клик по навигации в контактах
+                                                    try { sessionStorage.setItem('contactsInternalNav', 'true'); } catch(e) {}
+                                                }}
                                                 className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} 
                                                 border !border-[#353535] transition-all !duration-[.13s] ease-in !py-[13px] !px-[15px] !pl-[14px] !pb-[15px]
                                                 cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center gap-2.5`}
