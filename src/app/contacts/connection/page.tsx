@@ -36,9 +36,13 @@ export default function Contacts() {
     } = methods;
 
     const activeTab = "connection"
-    useDidMount((isInitialMount) => {
-        bounceActiveBlock(activeTab, controls, isInitialMount);
-    }, [activeTab, controls]);
+    useEffect(() => {
+        bounceActiveBlock(activeTab, controls);
+    }, [controls]);
+
+    // useDidMount((isInitialMount) => {
+    //     bounceActiveBlock(activeTab, controls, isInitialMount);
+    // }, [activeTab, controls]);
 
 
     // Upload file
@@ -448,7 +452,7 @@ export default function Contacts() {
                                             d="M1.414 0L9.07 7.656L7.656 9.07L0 1.414L1.414 0ZM14.3614 0L15.7754 1.414L11.5573 5.48499L10.1433 4.06999L14.3614 0Z"
                                             fill={
                                                 isSelectOpen
-                                                    ? "#3D9ED6"
+                                                    ? "#adadad"
                                                     : selectError
                                                         ? "#FF3030"
                                                         : selectedOption
@@ -472,7 +476,9 @@ export default function Contacts() {
                                                 damping: 6,
                                                 mass: 0.3,
                                             }}
-                                            className={`${styles.selectOption} absolute right-[10px] p-[26px] px-[26px] pb-[11px] top-[8px] z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
+                                            className={`
+                                            absolute right-[10px] p-[26px] px-[26px] pb-[11px] top-[8px] bg-[#101010]
+                                            z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
                                         >
                                             {options.map((option, index) => (
                                                 <div

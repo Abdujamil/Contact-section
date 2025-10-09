@@ -949,13 +949,13 @@ export default function RegisterPage() {
         }
     }, []); // Выполняется только при монтировании
 
-    // useEffect(() => {
-    //     bounceActiveBlock('register', controls);
-    // }, [controls]);
-    const activeTab = "register"
-    useDidMount((isInitialMount) => {
-        bounceActiveBlock(activeTab, controls, isInitialMount);
-    }, [activeTab, controls]);
+    useEffect(() => {
+        bounceActiveBlock('register', controls);
+    }, [controls]);
+    // const activeTab = "register"
+    // useDidMount((isInitialMount) => {
+    //     bounceActiveBlock(activeTab, controls, isInitialMount);
+    // }, [activeTab, controls]);
 
     useEffect(() => {
         if (selectedDate) {

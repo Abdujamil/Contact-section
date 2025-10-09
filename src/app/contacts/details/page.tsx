@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "@/app/page.module.scss";
 import HeaderStyles from "@/components/header/Header.module.css";
-import React from "react";
+import React, {useEffect} from "react";
 import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
@@ -12,10 +12,14 @@ import {useDidMount} from "@/components/hooks/useDidMount";
 export default function Contacts() {
     const controls = useAnimation();
 
-    const activeTab = "requisite"
-    useDidMount((isInitialMount) => {
-        bounceActiveBlock(activeTab, controls, isInitialMount);
-    }, [activeTab, controls]);
+    useEffect(() => {
+        bounceActiveBlock('requisite', controls);
+    }, [controls]);
+
+    // const activeTab = "requisite"
+    // useDidMount((isInitialMount) => {
+    //     bounceActiveBlock(activeTab, controls, isInitialMount);
+    // }, [activeTab, controls]);
 
     return (
         <>
@@ -31,7 +35,7 @@ export default function Contacts() {
                 !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] 
                 md:p-[41px] md:pt-[34px] md:mt-[0px] p-5`}
             >
-                <div className={`md:ml-[-1px] md:mt-[-1px]`}>
+                <div className={`md:ml-[-1px]`}>
                     <div className="flex justify-between items-end mb-[12px]">
                         <div className="w-full max-w-[516px]">
                             <label

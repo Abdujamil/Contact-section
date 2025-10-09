@@ -81,14 +81,14 @@ export default function LoginPage() {
         });
     }, [register]);
 
-    // useEffect(() => {
-    //     bounceActiveBlock('login', controls);
-    // }, [controls]);
+    useEffect(() => {
+        bounceActiveBlock('login', controls);
+    }, [controls]);
 
-    const activeTab = "login"
-    useDidMount((isInitialMount) => {
-        bounceActiveBlock(activeTab, controls, isInitialMount);
-    }, [activeTab, controls]);
+    // const activeTab = "login"
+    // useDidMount((isInitialMount) => {
+    //     bounceActiveBlock(activeTab, controls, isInitialMount);
+    // }, [activeTab, controls]);
 
 
     // Отслеживание изменений email для визуальной индикации

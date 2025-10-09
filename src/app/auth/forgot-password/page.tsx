@@ -65,14 +65,14 @@ export default function ForgotPasswordPage() {
         });
     }, [register]);
 
-    // useEffect(() => {
-    //     bounceActiveBlock('forgot-password', controls);
-    // }, [controls]);
+    useEffect(() => {
+        bounceActiveBlock('forgot-password', controls);
+    }, [controls]);
 
-    const activeTab = "forgot-password"
-    useDidMount((isInitialMount) => {
-        bounceActiveBlock(activeTab, controls, isInitialMount);
-    }, [activeTab, controls]);
+    // const activeTab = "forgot-password"
+    // useDidMount((isInitialMount) => {
+    //     bounceActiveBlock(activeTab, controls, isInitialMount);
+    // }, [activeTab, controls]);
 
     const onSubmit: SubmitHandler<ForgotPasswordFormValues> = async (data) => {
         setShowPolicy(true); // показываем политику
