@@ -72,7 +72,7 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                 {/*md:pt-[74px]*/}
                 <div
                     className={`${styles.contact} w-full h-full  min-h-[calc(var(--vh,1vh)*100-127px)]  mx-auto flex flex-col items-center justify-center mt-[100px] 
-                    md:pt-[51px] md:mt-0 md:overflow-y-hidden`}
+                    md:pt-[50px] md:mt-0 md:overflow-y-hidden`}
                 >
                     <div
                         className={`${styles.contactContainer} w-full h-full flex justify-center items-center md:mb-0 mb-25 `}
@@ -84,7 +84,7 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                 {/*${ pathname === '/contacts/details' ? 'md:mb-[30px] leading-[68%]' : 'md:mb-[27px] leading-[79%]' }*/}
                                 <h1
                                     className={`${styles.txtGradientRight} tracking-[-1px]
-                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[31px] leading-[68%] mb-[20px] mt-[0]`}
+                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[31.8px] leading-[68%] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h1>
