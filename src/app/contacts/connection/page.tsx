@@ -348,7 +348,7 @@ export default function Contacts() {
                         } !font-[Rubik] flex items-start justify-between w-full gap-[30px]`}
                     >
                         {/* Textarea */}
-                        <div className="relative w-full overflow-y-auto md:w-[374px] hidden md:block md:mt-[1px]">
+                        <div className="relative w-full overflow-y-auto md:min-w-[374px] hidden md:block md:mt-[1px]">
                             <label htmlFor="comment" className="sr-only">Комментарий</label>
                             <textarea
                                 id='comment'
@@ -410,7 +410,7 @@ export default function Contacts() {
                             }
                         </div>
 
-                        <div className={`${styles.formInpts} w-full md:w-[374px] md:mt-[1px] md:mr-[2px]`}>
+                        <div className={`${styles.formInpts} w-full md:min-w-[374px] md:mt-[1px] md:mr-[2px]`}>
                             {/* Кастомный select */}
                             <div className={`relative`}>
                                 <div
