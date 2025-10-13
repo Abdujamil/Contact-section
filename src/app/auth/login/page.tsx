@@ -127,7 +127,7 @@ export default function LoginPage() {
                 id="auth-login"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
-                className={`${styles.BlogPageContent} w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+                className={`${styles.BlogPageContent} !bg-transparent w-full max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
                 <div
                     className={`md:w-[780px] h-full flex md:flex-row flex-col gap-[30px] items-start justify-between`}>

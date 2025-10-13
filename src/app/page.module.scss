@@ -406,6 +406,11 @@
   }
 }
 
+.auth-content{
+  .BlogPageContent{
+    background: transparent !important;
+  }
+}
 .BlogPageContent {
   background: rgba(0, 0, 0, 0.07);
   // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6), inset 0px 0px 6px rgba(255, 255, 255, 0.1);

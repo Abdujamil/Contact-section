@@ -78,19 +78,19 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                         className={`${styles.contactContainer} w-full h-full flex justify-center items-center md:mb-0 mb-25 `}
                     >
                         <div
-                            className={`w-full md:flex justify-center items-start md:gap-[39.5px] gap-[20px] md:ml-[-1px]`}
+                            className={`w-full md:flex justify-center items-start md:gap-[40px] gap-[20px] md:ml-[-1px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px] md:mt-0 mt-[20px]`}>
                                 {/*${ pathname === '/contacts/details' ? 'md:mb-[30px] leading-[68%]' : 'md:mb-[27px] leading-[79%]' }*/}
                                 <h1
                                     className={`${styles.txtGradientRight} tracking-[-1px]
-                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[31.8px] leading-[68%] md:ml-[-4px] mb-[20px] mt-[0]`}
+                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[31.8px] leading-[68%] md:ml-[-5px] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h1>
 
                                 <aside
-                                    className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start md:ml-[-4px] md:mt-0 mb-5">
+                                    className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start md:ml-[-5px] md:mt-0 mb-5">
                                     <div
                                         className={`${styles.licenseBtns} ${styles.btns} flex flex-col items-start justify-start w-full md:max-w-[260px] max-w-full  
                                         p-[19px] gap-[11px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
