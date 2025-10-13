@@ -30,7 +30,7 @@ export default function Contacts() {
                 id="requisite-block"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
-                className={`${styles.contactRightContent} 
+                className={`${styles.contactRightContent} md:mr-[-4px]
                 !font-[Rubik] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] 
                 md:p-[41px] md:pt-[34px] md:mt-[0px] p-5`}
             >
