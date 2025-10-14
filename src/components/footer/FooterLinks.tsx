@@ -197,9 +197,11 @@ const FooterLinks: React.FC = () => {
                             }
                             group !h-[36px] flex items-center justify-center`}
                         >
-                      <span className="font-normal text-[18px] leading-[75%] mb-[3px]">
-                        Контакты
-                      </span>
+                            {/*<span className="font-normal text-[18px] leading-[75%] mb-[3px]">*/}
+                            <span>
+                            Контакты
+                        </span>
+                            {/*</span>*/}
                         </Link>
                         <div className={styles.highlight}/>
                     </div>
@@ -358,7 +360,7 @@ const FooterLinks: React.FC = () => {
                                 pathname.startsWith("/politic/policy")
                                     ? headerStyles["menu-item-active"]
                                     : headerStyles["login-button"]
-                              }
+                            }
                              group !h-[36px] flex items-center justify-center`}
                         >
                       <span className="font-normal text-[18px] leading-[75%]">
