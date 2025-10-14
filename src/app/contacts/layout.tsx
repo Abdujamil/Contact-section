@@ -84,7 +84,7 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                 {/*${ pathname === '/contacts/details' ? 'md:mb-[30px] leading-[68%]' : 'md:mb-[27px] leading-[79%]' }*/}
                                 <h1
                                     className={`${styles.txtGradientRight} tracking-[-1px]
-                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[27.8px] leading-[72%] md:ml-[-5px] md:mt-[2px] mb-[20px] mt-[0]`}
+                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[28.8px] leading-[72%] md:ml-[-5px] md:mt-[1px] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h1>
