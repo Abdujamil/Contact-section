@@ -93,7 +93,7 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                     className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start md:ml-[-5px] md:mt-0 mb-5">
                                     <div
                                         className={`${styles.licenseBtns} ${styles.btns} flex flex-col items-start justify-start w-full md:max-w-[260px] max-w-full  
-                                        p-[19px] md:pr-[18px] gap-[11px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
+                                        p-[19px]  gap-[11px] bg-[rgba(0, 0, 0, 0.07)] border border-[#353535] rounded-[6px]`}
                                     >
                                         {navItems.map((item, index) => {
                                             const isActive = pathname === item.href;
@@ -124,12 +124,12 @@ export default function ContactLayout({children}: { children: ReactNode }) {
 
                                                         <span
                                                             className={`${styles.sendIconLeft2} flex items-center justify-end transition-all !duration-[.13s] ease-in ${isFirst ? 'md:mr-[-4px] md:mt-[3px]' : 'md:mr-[-1px] md:mt-[1px]' }`}>
-                                          {item.icon}
-                                        </span>
+                                                          {item.icon}
+                                                        </span>
                                                         <span
                                                             className={`${styles.sendIconRight2} flex items-center justify-end transition-all !duration-[.13s] ease-in ${isFirst ? 'md:mr-[-4px] md:mt-[3px]' : 'md:mr-[-1px] md:mt-[1px]' }`}>
-                                          {item.icon}
-                                        </span>
+                                                          {item.icon}
+                                                        </span>
                                                     </Link>
 
                                                     <div className={styles.highlight}/>

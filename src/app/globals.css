@@ -551,6 +551,11 @@ input[type='email']::placeholder {
     margin-right: -1px;
 }
 
+.is-chrome .btn-download-pdf,
+.isfirefox .btn-download-pdf {
+    margin-bottom: 1px;
+}
+
 /* //-------------------------------- Policy --------------------------------// */
 .policy-content {
     section {
@@ -904,7 +909,7 @@ input[type='email']::placeholder {
         touch-action: none;
     }
 
-    .is-firefox .contact{
+    .is-firefox .contact {
         min-height: calc(var(--vh, 1vh) * 100 - 128px) !important;
     }
 }
