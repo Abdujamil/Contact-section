@@ -107,6 +107,7 @@ export default function Contacts() {
         email: "",
     });
 
+
     // Validation
     const {setFocus} = methods;
 

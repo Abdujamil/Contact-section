@@ -534,21 +534,23 @@ input[type='email']::placeholder {
     margin-left: 3px;
 }
 
-.is-opera #form-main .ml-\[2px\]{
+.is-opera #form-main .ml-\[2px\] {
     margin-left: 2.5px;
 }
 
-.is-edge #form-main .ml-\[2px\]{
+.is-edge #form-main .ml-\[2px\] {
     margin-left: 3px;
     margin-top: 1px;
 }
+
 .is-edge #requisite-block {
     padding-left: 40px;
 }
 
-.is-edge #requisite-block .md\:mr-\[-2px\]{
+.is-edge #requisite-block .md\:mr-\[-2px\] {
     margin-right: -1px;
 }
+
 /* //-------------------------------- Policy --------------------------------// */
 .policy-content {
     section {
@@ -596,7 +598,7 @@ input[type='email']::placeholder {
     }
 }
 
-#rekvizity-ispolnitelya ul li{
+#rekvizity-ispolnitelya ul li {
     list-style: disc !important;
 }
 
@@ -901,6 +903,10 @@ input[type='email']::placeholder {
         -ms-touch-action: none;
         touch-action: none;
     }
+
+    .is-firefox .contact{
+        min-height: calc(var(--vh, 1vh) * 100 - 128px) !important;
+    }
 }
 
 /* На мобилках разрешаем нативный скролл */
@@ -933,6 +939,8 @@ input[type='email']::placeholder {
     ::-webkit-scrollbar-thumb:hover {
         background: rgba(255, 255, 255, 0.5);
     }
+
+
 }
 
 /* Дополнительные стили для мобилок */
