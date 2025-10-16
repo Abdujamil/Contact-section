@@ -67,7 +67,7 @@ const MenuItem: React.FC<{ item: MenuItem; isActive: boolean }> = React.memo(
                 onMouseMove={handleMouseMove}
                 onClick={handleClick}
                 onMouseLeave={handleMouseLeave}>
-                <span>{item.label}</span>
+                <span className={`!font-[Roboto] !font-[300]`}>{item.label}</span>
                 <div className={styles.highlight}/>
             </Link>
         );
@@ -209,7 +209,7 @@ const Header: React.FC = () => {
 
     return (
         <>
-            <header className={`${styles.header} flex items-center w-full h-[70px]`}>
+            <header className={`${styles.header} !font-[Roboto] !font-[300] flex items-center w-full h-[70px]`}>
                 <div className="flex items-center justify-between w-full px-[30px]">
                     <Link
                         href="/"
@@ -535,7 +535,7 @@ const Header: React.FC = () => {
                                     href='/auth/login'
                                     className={`
                                          ${pathname.startsWith('/auth/') ? styles["login-menu-item-active"]  : '' }
-                                         ${styles["login-button"]}  
+                                         ${styles["login-button"]}  !px-[20px] !py-[7px]
                                          group flex items-center justify-center`}
                                     data-text={showRegisterPromo ? "Войти" : "Выйти"}
                                     onClick={toggleRegisterPromo}
@@ -556,7 +556,7 @@ const Header: React.FC = () => {
                                                 fill="currentColor"
                                             />
                                         </svg>
-                                        <span className="font-normal text-[18px] leading-[120%]">
+                                        <span className="!font-[Roboto] !font-[300] text-[18px] leading-[120%]">
                                              {showRegisterPromo ? "Войти" : "Выйти"}
                                           </span>
                                     </div>

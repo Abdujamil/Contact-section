@@ -81,10 +81,9 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                             className={`w-full md:flex justify-center items-start md:gap-[40px] gap-[20px] md:ml-[-1px]`}
                         >
                             <div className={`${styles.contactLeftContent} md:mb-[0] mb-[20px] md:mt-0 mt-[20px]`}>
-                                {/*${ pathname === '/contacts/details' ? 'md:mb-[30px] leading-[68%]' : 'md:mb-[27px] leading-[79%]' }*/}
                                 <h1
-                                    className={`${styles.txtGradientRight} tracking-[-1px]
-                                     md:text-[48px] text-[28px] md:text-left text-center font-normal  md:mb-[28.8px] leading-[72%] md:ml-[-5px] md:mt-[1px] mb-[20px] mt-[0]`}
+                                    className={`${styles.txtGradientRight} tracking-[-1px] !font-[Roboto] !font-[300]
+                                     md:text-[48px] text-[28px] md:text-left text-center  md:mb-[28.8px] leading-[72%] md:ml-[-5px] md:mt-[1px] mb-[20px] mt-[0]`}
                                 >
                                     Контакты
                                 </h1>
@@ -110,11 +109,12 @@ export default function ContactLayout({children}: { children: ReactNode }) {
                                                             // отмечаем, что это внутренний клик по навигации в контактах
                                                             try { sessionStorage.setItem('contactsInternalNav', 'true'); } catch(e) {}
                                                         }}
-                                                        className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
+                                                        className={` ${styles["btn"]} ${HeaderStyles["login-button"]} ${styles["customBtn"]} border !border-[#353535] 
+                                                        transition-all !duration-[.13s] ease-in cursor-pointer md:!w-[220px] !w-full !h-[51px] m-auto !rounded-[4px] group flex items-center !justify-between`}
                                                         style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                                     >
                                                     <span
-                                                        className={`md:ml-[-1px] text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
+                                                        className={`!font-[Roboto] !font-[300] md:ml-[-1px] text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in ${
                                                             isActive ? "!text-[#3D9ED6]" : "#adadad"} 
                                                         ${isFirst ? "!w-[190px]" : ""}
                                                         `}

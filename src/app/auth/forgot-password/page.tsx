@@ -146,7 +146,7 @@ export default function ForgotPasswordPage() {
                                                 data-text=""
                                             >
                                                   <span
-                                                      className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                                      className="!font-[Roboto] !font-[300] !transition-all !duration-[.13s] !ease-in  text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
                                                     Отправить
                                                   </span>
                                                 <svg
@@ -164,7 +164,7 @@ export default function ForgotPasswordPage() {
                                 </FormProvider>
 
                                 <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0`}>
-                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+                                    <p className={`!font-[Roboto] !font-[300] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -190,7 +190,7 @@ export default function ForgotPasswordPage() {
                                         </defs>
                                     </svg>
 
-                                    <p className={`max-h-[30px] !leading-[120%] text-[#878787] text-[16px] font-[Rubik] flex items-start justify-start gap-5`}>
+                                    <p className={`!font-[Roboto] !font-[300] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -225,7 +225,7 @@ export default function ForgotPasswordPage() {
                             }}
                         >
                             <p
-                                className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
+                                className={`!font-[Roboto] !font-[300] hidden md:block text-center text-[#adadad] text-[16px]`}
                             >
                                 Нажимая кнопку «Отправить» вы соглашаетесь с
                                 <Link

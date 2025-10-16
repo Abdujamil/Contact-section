@@ -346,7 +346,7 @@ export default function Contacts() {
                         encType="multipart/form-data"
                         className={`${
                             isSubmitted ? "opacity-0" : "opacity-100"
-                        } !font-[Rubik] flex items-start justify-between w-full gap-[30px]`}
+                        } !font-[Roboto] !font-[300] flex items-start justify-between w-full gap-[30px]`}
                     >
                         {/* Textarea */}
                         <div className="relative w-full overflow-y-auto md:min-w-[374px] hidden md:block md:mt-[1px]">
@@ -723,7 +723,7 @@ export default function Contacts() {
                                     data-text=""
                                 >
                                                   <span
-                                                      className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                                      className="!font-[Roboto] !font-[300] !transition-all !duration-[.13s] !ease-in text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
                                                     Отправить
                                                   </span>
                                     <svg
@@ -772,7 +772,7 @@ export default function Contacts() {
                     }}
                 >
                     <p
-                        className={`font-[Rubik] hidden md:block text-center relative bottom-[-40px] text-[#adadad] text-[16px]`}
+                        className={`!font-[Roboto] !font-[300] hidden md:block text-center relative bottom-[-40px] text-[#adadad] text-[16px]`}
                     >
                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                         <Link

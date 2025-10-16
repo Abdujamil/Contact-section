@@ -72,9 +72,9 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                     <div className={`md:flex gap-[40px] md:mt-[-35px]`}>
                         <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                             <h2
-                                className={`${styles.txtGradientRight} 
+                                className={`${styles.txtGradientRight} !font-[Roboto] !font-[300]
                                 hidden md:block leading-[80%] md:text-[48px] text-[28px] md:text-left text-center 
-                                font-normal md:mb-[27px] mb-[20px] mt-[-1px] tracking-[-1.2px]
+                                 md:mb-[27px] mb-[20px] mt-[-1px] tracking-[-1.2px]
                                 `}
                             >
                                 Вход
@@ -104,7 +104,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                                                 style={{color: isActive ? "#3D9ED6" : "#adadad"}}
                                             >
                                                 <span
-                                                    className={`text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] 
+                                                    className={`!font-[Roboto] !font-[300] text-left whitespace-nowrap text-[20px] !transition-all !duration-[.13s] !ease-in mb-[1px] 
                                                     ${isActive ? "!text-[#3D9ED6]" : "#adadad"}
                                                     ${isFirst ? "!w-[190px]" : ""}
                                                     `}

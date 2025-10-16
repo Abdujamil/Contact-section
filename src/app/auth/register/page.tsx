@@ -1049,7 +1049,7 @@ export default function RegisterPage() {
                                             data-text=""
                                         >
                                             <span
-                                                className="!transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
+                                                className="!font-[Roboto] !font-[300] !transition-all !duration-[.13s] !ease-in font-normal text-[#adadad] md:text-[20px] text-[18px] leading-[120%]">
                                                 Регистрация
                                             </span>
                                             <svg
@@ -1087,7 +1087,7 @@ export default function RegisterPage() {
                             }}
                         >
                             <p
-                                className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
+                                className={`!font-[Roboto] !font-[300] hidden md:block text-center text-[#adadad] text-[16px]`}
                             >
                                 Нажимая кнопку «Регистрация» вы соглашаетесь с
                                 <Link
