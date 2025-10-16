@@ -54,10 +54,10 @@ export default function Contacts() {
                             </p>
                         </div>
 
-                        <div className="btn-download-pdf relative !overflow-hidden hidden md:block md:mr-[-1px] ">
+                        <div className="relative !overflow-hidden hidden md:block md:mr-[-1px] ">
                             <button
                                 type="submit"
-                                className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} group !w-[191px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
+                                className={`${styles.btn} ${styles["btnDownloadPdf"]} ${HeaderStyles["login-button"]} btn-download-pdf group !w-[191px] !h-[51px]  flex items-center !justify-center gap-2 px-4 py-2 bg-[rgba(42, 42, 42, 0.1)] rounded-[4px] backdrop-blur-[2px] border !border-[#353535] hover:border-[#ccc] cursor-pointer text-[#ccc] font-normal text-[20px] relative  transition-all !duration-[.13s] ease-in `}
                             >
 
                                               <span

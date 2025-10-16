@@ -552,8 +552,8 @@ input[type='email']::placeholder {
 }
 
 .is-chrome .btn-download-pdf,
-.isfirefox .btn-download-pdf {
-    margin-bottom: 1px;
+.is-firefox .btn-download-pdf {
+    /*margin-bottom: 1px;*/
 }
 
 /* //-------------------------------- Policy --------------------------------// */
