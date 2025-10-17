@@ -521,7 +521,7 @@ export default function LoginPage() {
                         }}
                     >
                         <p
-                            className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px]`}
+                            className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px] md:ml-[-2px]`}
                         >
                             Нажимая кнопку «Войти в аккаунт» вы соглашаетесь с
                             <Link

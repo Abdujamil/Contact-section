@@ -73,8 +73,8 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                         <aside className="md:w-[260px] w-[320px] m-auto md:m-0 flex flex-col items-start mt-25 mb-5">
                             <h2
                                 className={`${styles.txtGradientRight} !font-[Roboto] !font-[300]
-                                hidden md:block leading-[80%] md:text-[48px] text-[28px] md:text-left text-center 
-                                 md:mb-[27px] mb-[20px] mt-[-1px] tracking-[-1.2px]
+                                hidden md:block leading-[90%] md:text-[48px] text-[28px] md:text-left text-center 
+                                 md:mb-[25px] mb-[20px] md:mt-[-3px] tracking-[-1.2px]
                                 `}
                             >
                                 Вход

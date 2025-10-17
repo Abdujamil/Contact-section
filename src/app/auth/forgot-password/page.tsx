@@ -163,7 +163,7 @@ export default function ForgotPasswordPage() {
                                     </form>
                                 </FormProvider>
 
-                                <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0`}>
+                                <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0 md:ml-[-8px]`}>
                                     <p className={`!font-[Roboto] !font-[300] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
                                              fill="none"
@@ -198,7 +198,7 @@ export default function ForgotPasswordPage() {
                                             <circle cx="6" cy="6" r="3" fill="#3C404A"/>
                                         </svg>
 
-                                        После авторизации рекомендуем заменить пароль.
+                                        После авторизации рекомендуем <br/> заменить пароль.
                                     </p>
                                 </div>
                             </div>
