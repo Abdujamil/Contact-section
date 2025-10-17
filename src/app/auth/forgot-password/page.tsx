@@ -165,12 +165,18 @@ export default function ForgotPasswordPage() {
 
                                 <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0 md:ml-[-8px]`}>
                                     <p className={`!font-[Roboto] !font-[300] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
-                                        <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
-                                             fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="6" cy="6" r="5.625" stroke="#3C404A" strokeWidth="0.75"/>
-                                            <circle cx="6" cy="6" r="3" fill="#3C404A"/>
+                                        {/*<svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"*/}
+                                        {/*     fill="none"*/}
+                                        {/*     xmlns="http://www.w3.org/2000/svg">*/}
+                                        {/*    <circle cx="6" cy="6" r="5.625" stroke="#3C404A" strokeWidth="0.75"/>*/}
+                                        {/*    <circle cx="6" cy="6" r="3" fill="#3C404A"/>*/}
+                                        {/*</svg>*/}
+
+                                        <svg className={`min-w-[9px] mt-[6px]`}
+                                            width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="9" height="9" rx="2" fill="#3C404A"/>
                                         </svg>
+
 
                                         Временный пароль будет отправлен <br/> на вашу почту.
                                     </p>
@@ -191,11 +197,9 @@ export default function ForgotPasswordPage() {
                                     </svg>
 
                                     <p className={`!font-[Roboto] !font-[300] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
-                                        <svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"
-                                             fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="6" cy="6" r="5.625" stroke="#3C404A" strokeWidth="0.75"/>
-                                            <circle cx="6" cy="6" r="3" fill="#3C404A"/>
+                                        <svg className={`min-w-[9px] mt-[6px]`}
+                                             width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect width="9" height="9" rx="2" fill="#3C404A"/>
                                         </svg>
 
                                         После авторизации рекомендуем <br/> заменить пароль.
