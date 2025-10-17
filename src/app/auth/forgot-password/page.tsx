@@ -92,7 +92,9 @@ export default function ForgotPasswordPage() {
                 id="auth-forgot-password"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
-                className={`${styles.BlogPageContent} w-full md:w-[860px] max-w-[860px] md:h-[561px] text-[18px] leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
+                className={`${styles.BlogPageContent} 
+                w-full md:w-[860px] max-w-[860px] md:h-[561px] text-[18px] 
+                leading-relaxed whitespace-pre-line md:p-[40px]  p-5 border border-[#353535] rounded-[6px]`}
             >
                 {!submitted ? (
                     <>
@@ -163,7 +165,7 @@ export default function ForgotPasswordPage() {
                                     </form>
                                 </FormProvider>
 
-                                <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0 md:ml-[-8px]`}>
+                                <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0 md:ml-[-6px]`}>
                                     <p className={`!font-[Roboto] !font-[300] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
                                         {/*<svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"*/}
                                         {/*     fill="none"*/}
