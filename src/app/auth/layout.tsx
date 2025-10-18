@@ -74,7 +74,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             <h2
                                 className={`${styles.txtGradientRight} !font-[Roboto] !font-[300]
                                 hidden md:block leading-[90%] md:text-[48px] text-[28px] md:text-left text-center 
-                                 md:mb-[25px] mb-[20px] md:mt-[-3px] tracking-[-1.2px]
+                                 md:mb-[24.5px] mb-[20px] md:mt-[-3px] tracking-[-1.2px]
                                 `}
                             >
                                 Вход
@@ -82,7 +82,8 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             <div
                                 className={`${styles.btns} ${styles.licenseBtns} 
                                 h-[213px] flex flex-col items-start justify-start w-full max-w-[320px] 
-                                md:max-w-[260px] gap-2.5 pl-[19px] py-[19px] p-[18px] md:bg-[rgba(0, 0, 0, 0.07)] md:border border-[#353535] rounded-[6px]`}
+                                md:max-w-[260px] gap-2.5 pl-[19px] py-[19px] p-[18px] md:bg-[rgba(0, 0, 0, 0.07)] 
+                                md:border border-[#353535] rounded-[6px]`}
                             >
                                 {navItems.map((item, index) => {
                                     const isActive = pathname === item.href;
