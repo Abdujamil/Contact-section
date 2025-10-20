@@ -238,9 +238,12 @@
 // AppInput.displayName = 'AppInput';
 // export default AppInput;
 
-import React, {useEffect, useState, forwardRef} from 'react';
+import React, {useEffect, useState, forwardRef, useRef} from 'react';
 import {useFormContext} from "react-hook-form";
-import styles from '../../../app/page.module.scss';
+import styles from '@/app/page.module.scss';
+import HeaderStyles from "@/components/header/Header.module.css";
+import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+
 
 interface AppInputProps {
     title: string;
@@ -300,6 +303,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
     const inputType = isPasswordType && showPassword ? 'text' : type;
 
     const inputRef = React.useRef<HTMLInputElement>(null);
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
 
     const formatPhoneNumber = (value: string) => {
         let cleaned = value.replace(/\D/g, '');
@@ -400,12 +404,13 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
             className={`relative w-full z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
             <label
                 htmlFor={inputName}
-                className={`field 
-                ${isPasswordType ? 'flex items-center justify-between' : ''} 
+                className={`field ${isPasswordType ? 'flex items-center justify-between' : ''} 
                 ${disable && 'pointer-events-none'} 
-                ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}`}>
+                ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}
+                `}>
 
                 <span className="sr-only">{title}</span>
+
 
                 {/*<input*/}
                 {/*    id={inputName}*/}
@@ -415,21 +420,23 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 {/*        register(inputName, {required}).ref(el);*/}
                 {/*    }}*/}
                 {/*    type={inputType}*/}
+                {/*    onMouseMove={handleMouseMove}*/}
+                {/*    onMouseLeave={handleMouseLeave}*/}
                 {/*    className={`field__input ${className} dark:text-[#adadad] */}
-                {/*    ${isFocused && isValid ? '!border-[#34C759]' : ''}*/}
+                {/*    ${HeaderStyles['input-hover-effect']}*/}
+                {/*    ${isFocused && isValid ? '!border-[#34C759]' : ''} */}
                 {/*    ${fail && 'error !text-[red]'}*/}
-                {/*    ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} */}
+                {/*    ${isActive ? 'bg-[#20272A] border-[#353535]' : 'bg-[#101010]'} */}
                 {/*    focus:!bg-[#20272A] active:bg-[#20272A]'}`}*/}
-
                 {/*    placeholder={getPlaceholder()}*/}
                 {/*    autoComplete={getAutocompleteName(inputName) || autocomplete}*/}
                 {/*    value={propValue !== undefined ? propValue : internalValue}*/}
                 {/*    onChange={handleChange}*/}
                 {/*    onBlur={(e) => {*/}
+                {/*        setIsFocused(false);*/}
                 {/*        if (onBlur) onBlur(e.target.value);*/}
                 {/*        if (e.target.value) {*/}
                 {/*            e.target.value = e.target.value.trimEnd() + ' ';*/}
-
                 {/*            const selectableTypes = ['text', 'search', 'url', 'tel', 'password'];*/}
                 {/*            if (selectableTypes.includes(e.target.type)) {*/}
                 {/*                e.target.setSelectionRange(e.target.value.length, e.target.value.length);*/}
@@ -443,47 +450,56 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 {/*    aria-labelledby={`${inputName}-label`}*/}
                 {/*/>*/}
 
-                <input
-                    id={inputName}
-                    {...register(inputName, { required })}
-                    ref={(el) => {
-                        inputRef.current = el;
-                        register(inputName, { required }).ref(el);
-                    }}
-                    type={inputType}
-                    className={`field__input ${className} dark:text-[#adadad] 
-                    ${isFocused && isValid ? '!border-[#34C759]' : ''}
-                    ${fail && 'error !text-[red]'}
-                    ${isActive ? '!bg-[#20272A] border-[#353535]' : '!bg-[#101010]'} 
-                    focus:!bg-[#20272A] active:bg-[#20272A]'}`}
-                    placeholder={getPlaceholder()}
-                    autoComplete={getAutocompleteName(inputName) || autocomplete}
-                    value={propValue !== undefined ? propValue : internalValue}
-                    onChange={handleChange}
-                    onBlur={(e) => {
-                        setIsFocused(false);
-                        if (onBlur) onBlur(e.target.value);
-                        if (e.target.value) {
-                            e.target.value = e.target.value.trimEnd() + ' ';
-                            const selectableTypes = ['text', 'search', 'url', 'tel', 'password'];
-                            if (selectableTypes.includes(e.target.type)) {
-                                e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+                <div
+                    ref={wrapperRef}
+                    onMouseMove={handleMouseMove}
+                    onMouseLeave={handleMouseLeave}
+                    className={`relative ${HeaderStyles['input-hover-effect']}`}
+                >
+                    <input
+                        id={inputName}
+                        {...register(inputName, {required})}
+                        ref={(el) => {
+                            inputRef.current = el;
+                            register(inputName, {required}).ref(el);
+                        }}
+                        type={inputType}
+                        className={`field__input w-full ${className}  dark:text-[#adadad]
+                        ${isFocused && isValid ? '!border-[#34C759]' : ''}
+                        ${fail && 'error !text-[red]'}
+                        ${isActive ? '!bg-[#20272A] !border-[#353535]' : '!bg-[#101010]'} 
+                        focus:!bg-[#20272A] active:bg-[#20272A]`}
+                        placeholder={getPlaceholder()}
+                        autoComplete={getAutocompleteName(inputName) || autocomplete}
+                        value={propValue !== undefined ? propValue : internalValue}
+                        onChange={handleChange}
+                        onBlur={(e) => {
+                            setIsFocused(false);
+                            if (onBlur) onBlur(e.target.value);
+                            if (e.target.value) {
+                                e.target.value = e.target.value.trimEnd() + ' ';
+                                const selectableTypes = ['text', 'search', 'url', 'tel', 'password'];
+                                if (selectableTypes.includes(e.target.type)) {
+                                    e.target.setSelectionRange(e.target.value.length, e.target.value.length);
+                                }
                             }
-                        }
-                    }}
-                    onFocus={() => {
-                        setIsFocused(true);
-                        handleFocus();
-                    }}
-                    aria-labelledby={`${inputName}-label`}
-                />
-                <span
-                    className={`${styles.titleTop} !text-[18px] !font-[Roboto] !font-[300] field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
+                        }}
+                        onFocus={() => {
+                            setIsFocused(true);
+                            handleFocus();
+                        }}
+                        aria-labelledby={`${inputName}-label`}
+                    />
+                    <span
+                        className={`${styles.titleTop} !text-[18px] !font-[Roboto] !font-[300] field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
                   {title}
                 </span>
-                <span className={`${styles.titleBottom} !font-[Roboto] !font-[300]  field__title-top ${classNameTitle}`}>
+                    <span
+                        className={`${styles.titleBottom} !font-[Roboto] !font-[300]  field__title-top ${classNameTitle}`}>
                   {title}
                 </span>
+                </div>
+
 
                 {isPasswordType && (
                     <button

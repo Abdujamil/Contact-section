@@ -226,9 +226,6 @@
 
 .login-button span {
     color: inherit;
-    /*transition: color 0.08s ease;*/
-    /*transform: translateY(-0.06em);*/
-    /*margin-top: 1.5px;*/
 }
 /* Кнопка входа */
 .login-button {
@@ -255,8 +252,19 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.input-hover-effect{
+    transition: transform 0.08s ease, color 0.08s ease;
+    will-change: transform, color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.custom-select-hover-effect{
+    will-change: color;
+}
+
+
 footer .login-button {
-    /*padding: 8px 15px 10px 15px;*/
     padding: 7px 20px;
 }
 
@@ -295,12 +303,10 @@ footer .login-button {
 
 .login-button span {
     color: inherit;
-    /*transition: color 0.08s ease;*/
-    /*transform: translateY(-0.06em);*/
-    /*margin-top: 1.5px;*/
 }
 
 /* Эффект рамки */
+.input-hover-effect::after,
 .login-button::after {
     content: "";
     position: absolute;
@@ -324,7 +330,7 @@ footer .login-button {
     opacity: 0;
     pointer-events: none;
 }
-
+.input-hover-effect:hover::after,
 .login-button:hover::after {
     opacity: 1;
 }

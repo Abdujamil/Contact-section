@@ -416,7 +416,10 @@ export default function Contacts() {
                             <div className={`relative`}>
                                 <div
                                     ref={selectRef}
-                                    className={` h-[51px] mb-[33px]
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                    className={` h-[51px] mb-[33px] ${HeaderStyles['custom-select-hover-effect']} 
+                                    ${HeaderStyles['input-hover-effect']}
                                       w-full border rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                       transition-border duration-200 ease-in
                                       ${

@@ -268,15 +268,13 @@ input:-webkit-autofill::first-line {
 
 .field__input,
 .field__textarea {
-    /*margin-top: 25px;*/
-    font-family: "Rubik";
     z-index: 1;
     -webkit-transition: all .2s ease-in-out 0s;
     -o-transition: all .2s ease-in-out 0s;
     transition: all .2s ease-in-out 0s;
     display: block;
     height: 51px;
-    background: #4a587d;
+    /*background: #4a587d;*/
     border-radius: 4px;
     font-size: 16px;
     line-height: 24px;
@@ -315,9 +313,10 @@ input:-webkit-autofill::first-line {
 }
 
 .field__input:focus ~ .field__title,
-.field__input:hover ~ .field__title,
-.field__textarea:focus ~ .field__title,
-.field__textarea:hover ~ .field__title {
+/*.field__input:hover ~ .field__title,*/
+.field__textarea:focus ~ .field__title
+/*.field__textarea:hover ~ .field__title*/
+{
     opacity: 0;
 }
 
