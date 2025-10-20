@@ -79,6 +79,7 @@ export default function AuthLayout({children}: { children: ReactNode }) {
                             >
                                 Вход
                             </h2>
+
                             <div
                                 className={`${styles.btns} ${styles.licenseBtns} 
                                 h-[213px] flex flex-col items-start justify-start w-full max-w-[320px] 

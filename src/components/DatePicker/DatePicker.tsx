@@ -607,34 +607,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
 
     const scrollToSelected = (indices?: { dayIndex: number, monthIndex: number, yearIndex: number }) => {
-        // console.log('=== scrollToSelected called ===');
-        // console.log('selectedDay:', selectedDay, 'selectedMonth:', selectedMonth, 'selectedYear:', selectedYear);
-        //
-        // // Используем переданные индексы или текущие состояния
-        // const dayIdx = indices?.dayIndex ?? centerDayIndex;
-        // const monthIdx = indices?.monthIndex ?? centerMonthIndex;
-        // const yearIdx = indices?.yearIndex ?? centerYearIndex;
-        //
-        // console.log('Using indices - day:', dayIdx, 'month:', monthIdx, 'year:', yearIdx);
-        //
-        // if (!dayRef.current || !monthRef.current || !yearRef.current) {
-        //     console.log('❌ Refs not ready');
-        //     return;
-        // }
-        //
-        // // Скроллим к индексам
-        // const dayTargetScroll = dayIdx * ITEM_HEIGHT;
-        // const monthTargetScroll = monthIdx * ITEM_HEIGHT;
-        // const yearTargetScroll = yearIdx * ITEM_HEIGHT;
-        //
-        // console.log('Target scrolls - day:', dayTargetScroll, 'month:', monthTargetScroll, 'year:', yearTargetScroll);
-        //
-        // dayRef.current.scrollTo({top: dayTargetScroll, behavior: 'auto'});
-        // monthRef.current.scrollTo({top: monthTargetScroll, behavior: 'auto'});
-        // yearRef.current.scrollTo({top: yearTargetScroll, behavior: 'auto'});
-        //
-        // console.log('✅ Scrolled to positions');
-
         console.log('=== scrollToSelected called ===');
         const dayIdx = indices?.dayIndex ?? centerDayIndex;
         const monthIdx = indices?.monthIndex ?? centerMonthIndex;
@@ -802,7 +774,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                 key="date-picker"
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
-                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.5%] left-[2.98%] md:left-[4.1%]">
+                // className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[25.5%] left-[2.98%] md:left-[4.1%]">
+                className="w-[310px] !font-[Rubik] absolute z-[99]  top-auto bottom-[59.5%] md:bottom-[22%] left-[2.98%] md:left-[-1.5%]">
                 <div className="w-full max-w-[290px] mx-4">
                     {/* маленькие тени */}
                     <div className={`${styles.rectangle}`}></div>

@@ -519,12 +519,20 @@ export default function Contacts() {
                                 </AnimatePresence>
                             </div>
 
+                            {/*<AppInput*/}
+                            {/*    className={`${styles.bounceElem} w-full mb-[33px] !px-[10px]`}*/}
+                            {/*    classNameTitle={`!left-[11px] !top-[13px] tracking-[.5px]`}*/}
+                            {/*    onFocus={handleFieldFocus}*/}
+                            {/*    title={"ФИО"}*/}
+                            {/*    inputName="name"*/}
+                            {/*    required={true}*/}
+                            {/*/>*/}
+
                             <AppInput
                                 className={`${styles.bounceElem} w-full mb-[33px] !px-[10px]`}
-                                classNameTitle={`!left-[11px] !top-[13px] tracking-[.5px]`}
+                                title={'ФИО'}
+                                inputName={'name'}
                                 onFocus={handleFieldFocus}
-                                title={"ФИО"}
-                                inputName="name"
                                 required={true}
                             />
 

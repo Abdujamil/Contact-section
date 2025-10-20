@@ -733,7 +733,7 @@ import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import DateInput from "@/components/DatePicker/DateInput";
-import {DatePicker} from "@/components/DatePicker/DatePicker";
+// import {DatePicker} from "@/components/DatePicker/DatePicker";
 import {useWatch} from "react-hook-form";
 import {usePathname} from "next/navigation";
 
@@ -848,26 +848,26 @@ export default function RegisterPage() {
         }
     };
 
-    const togglePicker = () => {
-        setShowDatePicker(prev => {
-            const newState = !prev;
-            if (newState) {
-                setTimeout(() => dateInputRef.current?.focus(), 0);
-            }
-            return newState;
-        });
-    };
+    // const togglePicker = () => {
+    //     setShowDatePicker(prev => {
+    //         const newState = !prev;
+    //         if (newState) {
+    //             setTimeout(() => dateInputRef.current?.focus(), 0);
+    //         }
+    //         return newState;
+    //     });
+    // };
 
     // обработчики для DatePicker
-    const handleDateSelect = (date: string) => {
-        console.log("Selected date:", date); // для отладки
-        setSelectedDate(date);
-        // Используем setTimeout чтобы избежать конфликтов с состоянием
-        setTimeout(() => {
-            methods.setValue("date", date);
-        }, 0);
-        setShowDatePicker(false);
-    };
+    // const handleDateSelect = (date: string) => {
+    //     console.log("Selected date:", date); // для отладки
+    //     setSelectedDate(date);
+    //     // Используем setTimeout чтобы избежать конфликтов с состоянием
+    //     setTimeout(() => {
+    //         methods.setValue("date", date);
+    //     }, 0);
+    //     setShowDatePicker(false);
+    // };
 
     const [bounce, setBounce] = useState(false);
 
@@ -1017,7 +1017,7 @@ export default function RegisterPage() {
                                     />
 
                                     <div
-                                        className={`relative mb-[41px] flex items-center justify-between`}
+                                        className={`relative mb-[41px] `}
                                     >
                                         <DateInput
                                             ref={dateInputRef}
@@ -1029,15 +1029,15 @@ export default function RegisterPage() {
                                             className={`${styles.bounceElem} w-[290px] md:w-[313px]`}
                                         />
 
-                                        <button
-                                            type="button"
-                                            onClick={togglePicker}
-                                            className={`active:scale-[.95] ${bounce ? 'bounce' : ''} ${showDatePicker ? 'border-[#737373] !bg-[#20272a]' : ''}  flex items-center justify-center w-[51px] h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px]  bg-[#101010] hover:bg-[#20272A] hover:border-[#737373] transition-colors duration-300`}
-                                        >
-                                            <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M18.8333 1.61551H16.3333V0.807814C16.3333 0.593601 16.2455 0.388161 16.0893 0.23669C15.933 0.0852179 15.721 0.00012207 15.5 0.00012207C15.279 0.00012207 15.067 0.0852179 14.9107 0.23669C14.7545 0.388161 14.6667 0.593601 14.6667 0.807814V1.61551H6.33333V0.807814C6.33333 0.593601 6.24554 0.388161 6.08926 0.23669C5.93298 0.0852179 5.72101 0.00012207 5.5 0.00012207C5.27899 0.00012207 5.06702 0.0852179 4.91074 0.23669C4.75446 0.388161 4.66667 0.593601 4.66667 0.807814V1.61551H2.16667C1.72464 1.61551 1.30072 1.7857 0.988155 2.08864C0.675595 2.39159 0.5 2.80246 0.5 3.23089V19.3847C0.5 19.8132 0.675595 20.224 0.988155 20.527C1.30072 20.8299 1.72464 21.0001 2.16667 21.0001H18.8333C19.2754 21.0001 19.6993 20.8299 20.0118 20.527C20.3244 20.224 20.5 19.8132 20.5 19.3847V3.23089C20.5 2.80246 20.3244 2.39159 20.0118 2.08864C19.6993 1.7857 19.2754 1.61551 18.8333 1.61551ZM4.66667 3.23089V4.03858C4.66667 4.2528 4.75446 4.45824 4.91074 4.60971C5.06702 4.76118 5.27899 4.84628 5.5 4.84628C5.72101 4.84628 5.93298 4.76118 6.08926 4.60971C6.24554 4.45824 6.33333 4.2528 6.33333 4.03858V3.23089H14.6667V4.03858C14.6667 4.2528 14.7545 4.45824 14.9107 4.60971C15.067 4.76118 15.279 4.84628 15.5 4.84628C15.721 4.84628 15.933 4.76118 16.0893 4.60971C16.2455 4.45824 16.3333 4.2528 16.3333 4.03858V3.23089H18.8333V6.46166H2.16667V3.23089H4.66667ZM18.8333 19.3847H2.16667V8.07705H18.8333V19.3847Z" fill="#878787"/>
-                                            </svg>
-                                        </button>
+                                        {/*<button*/}
+                                        {/*    type="button"*/}
+                                        {/*    onClick={togglePicker}*/}
+                                        {/*    className={`active:scale-[.95] ${bounce ? 'bounce' : ''} ${showDatePicker ? 'border-[#737373] !bg-[#20272a]' : ''}  flex items-center justify-center w-[51px] h-[51px] z-10 cursor-pointer border border-[#353535] rounded-[4px]  bg-[#101010] hover:bg-[#20272A] hover:border-[#737373] transition-colors duration-300`}*/}
+                                        {/*>*/}
+                                        {/*    <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">*/}
+                                        {/*        <path d="M18.8333 1.61551H16.3333V0.807814C16.3333 0.593601 16.2455 0.388161 16.0893 0.23669C15.933 0.0852179 15.721 0.00012207 15.5 0.00012207C15.279 0.00012207 15.067 0.0852179 14.9107 0.23669C14.7545 0.388161 14.6667 0.593601 14.6667 0.807814V1.61551H6.33333V0.807814C6.33333 0.593601 6.24554 0.388161 6.08926 0.23669C5.93298 0.0852179 5.72101 0.00012207 5.5 0.00012207C5.27899 0.00012207 5.06702 0.0852179 4.91074 0.23669C4.75446 0.388161 4.66667 0.593601 4.66667 0.807814V1.61551H2.16667C1.72464 1.61551 1.30072 1.7857 0.988155 2.08864C0.675595 2.39159 0.5 2.80246 0.5 3.23089V19.3847C0.5 19.8132 0.675595 20.224 0.988155 20.527C1.30072 20.8299 1.72464 21.0001 2.16667 21.0001H18.8333C19.2754 21.0001 19.6993 20.8299 20.0118 20.527C20.3244 20.224 20.5 19.8132 20.5 19.3847V3.23089C20.5 2.80246 20.3244 2.39159 20.0118 2.08864C19.6993 1.7857 19.2754 1.61551 18.8333 1.61551ZM4.66667 3.23089V4.03858C4.66667 4.2528 4.75446 4.45824 4.91074 4.60971C5.06702 4.76118 5.27899 4.84628 5.5 4.84628C5.72101 4.84628 5.93298 4.76118 6.08926 4.60971C6.24554 4.45824 6.33333 4.2528 6.33333 4.03858V3.23089H14.6667V4.03858C14.6667 4.2528 14.7545 4.45824 14.9107 4.60971C15.067 4.76118 15.279 4.84628 15.5 4.84628C15.721 4.84628 15.933 4.76118 16.0893 4.60971C16.2455 4.45824 16.3333 4.2528 16.3333 4.03858V3.23089H18.8333V6.46166H2.16667V3.23089H4.66667ZM18.8333 19.3847H2.16667V8.07705H18.8333V19.3847Z" fill="#878787"/>*/}
+                                        {/*    </svg>*/}
+                                        {/*</button>*/}
                                     </div>
 
                                     <div className="relative !w-[222px] md:m-0 m-auto !overflow-hidden">
@@ -1110,13 +1110,13 @@ export default function RegisterPage() {
                     />
                 )}
 
-                {/* DataPicker */}
-                <DatePicker
-                    isVisible={showDatePicker}
-                    onDateSelect={handleDateSelect}
-                    onClose={() => setShowDatePicker(false)}
-                    initialDate={selectedDate || ""}
-                />
+                {/*/!* DataPicker *!/*/}
+                {/*<DatePicker*/}
+                {/*    isVisible={showDatePicker}*/}
+                {/*    onDateSelect={handleDateSelect}*/}
+                {/*    onClose={() => setShowDatePicker(false)}*/}
+                {/*    initialDate={selectedDate || ""}*/}
+                {/*/>*/}
             </motion.div>
 
         </>
