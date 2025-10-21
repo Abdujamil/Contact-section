@@ -101,6 +101,8 @@
   }
 }
 
+
+
 .menu-item::after {
   content: "";
   width: 100%;
@@ -117,6 +119,11 @@
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+.menu-item-checkbox,
+.menu-item-checkbox-second {
+  color: #E1E1E1;
 }
 
 .menu-item-checkbox::after{
