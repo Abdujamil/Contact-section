@@ -368,7 +368,7 @@ export default function Contacts() {
                                                `}
                             ></textarea>
                             <span
-                                className={`absolute z-[9] left-[3.5%] top-[4.20%] pointer-events-none transition-opacity duration-200 tracking-[1.15px] ${
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[18px] pointer-events-none transition-opacity duration-200 tracking-[1.15px] ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
@@ -445,8 +445,9 @@ export default function Contacts() {
                                     }}
                                     onFocus={handleFieldFocus}
                                 >
+                                                      {/*tracking-[1.2px]*/}
                                                       <span
-                                                          className={`md:mt-[1px] md:ml-[-1px] tracking-[1.2px]
+                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[18px]
                                                               ${selectError ? "text-[#FF3030]" : "text-[#CCC]"}
                                                           `}
                                                       >

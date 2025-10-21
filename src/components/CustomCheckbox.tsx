@@ -71,8 +71,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                 </span>
             </label>
             <span
-                className={`${styles['menu-item']} ${styles[spanClasses]}
-                text-[#adadad] transition-all duration-300 peer-checked:text-[#FFF] ${fail && '!text-[#FF3030]'}`}>
+                className={`${styles['menu-item']} ${styles[spanClasses]} font-[250] text-[#e1e1e1]
+                 transition-all duration-300 peer-checked:text-[#FFF] ${fail && '!text-[#FF3030]'}`}>
                 {label}
             </span>
         </div>
