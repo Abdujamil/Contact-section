@@ -532,7 +532,7 @@ export default function Contacts() {
                             {/*/>*/}
 
                             <AppInput
-                                className={`${styles.bounceElem} w-full mb-[33px] !px-[10px]`}
+                                className={`${styles.bounceElem} w-full mb-[33px] `}
                                 title={'ФИО'}
                                 inputName={'name'}
                                 onFocus={handleFieldFocus}
@@ -588,6 +588,7 @@ export default function Contacts() {
                                     id="check-email"
                                     successful={emailSuccessful}
                                     fail={emailCheckboxError}
+                                    spanClasses={`menu-item-checkbox`}
                                     checked={isEmail}
                                     onChange={(value) => {
                                         setFailCheck(false);
@@ -620,6 +621,7 @@ export default function Contacts() {
                                     className={`ml-[2px]`}
                                     successful={phoneSuccessful}
                                     fail={phoneCheckboxError}
+                                    spanClasses={`menu-item-checkbox-second`}
                                     checked={isPhone}
                                     onChange={(value) => {
                                         setFailCheck(false);

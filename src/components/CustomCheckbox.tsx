@@ -1,4 +1,5 @@
 import React, {ChangeEvent} from 'react';
+import styles from '@/app/page.module.scss';
 
 interface CustomCheckboxProps {
     checked: boolean;
@@ -8,6 +9,7 @@ interface CustomCheckboxProps {
     successful?: boolean;
     id: string;
     className?: string;
+    spanClasses?: string;
 }
 
 const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
@@ -17,7 +19,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                                                            fail,
                                                            successful,
                                                            id,
-                                                           className
+                                                           className,
+                                                           spanClasses = ''
                                                        }) => {
     // Генерируем уникальный id один раз при создании компонента
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +71,10 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                 </span>
             </label>
             <span
-                className={`text-[#adadad] transition-all duration-300 peer-checked:text-[#FFF] ${fail && '!text-[#FF3030]'}`}>{label}</span>
+                className={`${styles['menu-item']} ${styles[spanClasses]}
+                text-[#adadad] transition-all duration-300 peer-checked:text-[#FFF] ${fail && '!text-[#FF3030]'}`}>
+                {label}
+            </span>
         </div>
     );
 };

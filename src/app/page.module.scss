@@ -81,12 +81,13 @@
 .menu-item {
   align-items: center;
   color: #adadad;
-  display: inline-block;
+  //display: inline-block;
+  position: relative;
+  width: fit-content;
   flex: 1 0 auto;
   font-size: 16px;
   justify-content: left;
   overflow: visible;
-  position: relative;
   text-align: left;
   transition: transform 0.1s ease;
   will-change: transform, color, clip-path;
@@ -102,9 +103,10 @@
 
 .menu-item::after {
   content: "";
+  width: 100%;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 1px;
   right: 0;
   bottom: 0;
   border-bottom-width: 1px;
@@ -117,6 +119,15 @@
   backface-visibility: hidden;
 }
 
+.menu-item-checkbox::after{
+  width: 95.5% !important;
+  left: 1.1px;
+}
+
+.menu-item-checkbox-second::after{
+  width: 97.5%;
+}
+
 .menu-item::before {
   content: attr(data-text);
   position: absolute;
@@ -124,7 +135,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 80%;
+  width: 100%;
   color: #ccc;
   overflow: hidden;
   white-space: nowrap;
