@@ -521,12 +521,12 @@ export default function LoginPage() {
                         }}
                     >
                         <p
-                            className={`font-[Rubik] hidden md:block text-center text-[#adadad] text-[16px] md:ml-[-2px]`}
+                            className={`!font-[Roboto] !font-[250] hidden md:block text-center text-[#e1e1e1] text-[16px] md:ml-[-2px]`}
                         >
                             Нажимая кнопку «Войти в аккаунт» вы соглашаетесь с
                             <Link
                                 href="/politic/policy"
-                                className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                                className={`!text-[#e1e1e1] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
                             >
                                 политикой конфиденциальности
                             </Link>
