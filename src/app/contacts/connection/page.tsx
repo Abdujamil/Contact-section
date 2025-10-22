@@ -348,25 +348,36 @@ export default function Contacts() {
                             isSubmitted ? "opacity-0" : "opacity-100"
                         } !font-[Roboto] !font-[300] flex items-start justify-between w-full gap-[30px]`}
                     >
+
+
                         {/* Textarea */}
-                        <div className="relative w-full overflow-y-auto md:min-w-[374px] hidden md:block md:mt-[1px]">
+                        <div className={` relative w-full  md:min-w-[374px] hidden md:block md:mt-[1px]`}>
                             <label htmlFor="comment" className="sr-only">Комментарий</label>
+                            <div
+                                className={`${HeaderStyles['input-hover-effect']} 
+                                h-[350px] border border-[#353535]  focus-within:border-[#737373]
+                                ${comment ? "!bg-[#20272A] border-[#737373]" : "bg-[#101010]"} rounded-[4px]`}
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
+                            >
                             <textarea
                                 id='comment'
                                 name="comment"
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 className={`txtarea-scrollbar ${styles.bounceElem}
-                                               placeholder:!text-[#ccc] w-full md:w-full h-[350px] 
-                                               relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                                               placeholder:!text-[#e1e1e1] font-[250] w-full h-full md:w-full  
+                                               relative resize-none  bg-[#101010] focus:!bg-[#20272A] 
+                                               rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none 
+                                               text-[#e1e1e1] text-[16px] transition-all duration-100 
                                                pr-[54px]
-                                               ${
-                                    comment
-                                        ? "!bg-[#20272A] border-[#353535]"
-                                        : "bg-[#101010] border-[#353535]"
-                                }
-                                               `}
+                                               
+                                               ${comment ? "!bg-[#20272A] border-[#737373]" : "bg-[#101010] border-[#737373]"}
+                                               
+                                       `}
                             ></textarea>
+
+                            </div>
                             {/*tracking-[1.15px]*/}
                             <span
                                 className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] !text-[#e1e1e1] pointer-events-none transition-opacity duration-200  ${
@@ -419,29 +430,21 @@ export default function Contacts() {
                                     ref={selectRef}
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}
-                                    className={` h-[51px] mb-[33px] ${HeaderStyles['custom-select-hover-effect']} 
+                                    className={` h-[51px] mb-[33px] 
                                     ${HeaderStyles['input-hover-effect']}
-                                      w-full border rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
+                                      w-full border border-[#353535] rounded-[4px] px-[12px] pr-[17px] py-3 cursor-pointer flex justify-between items-center
                                       transition-border duration-200 ease-in
-                                      ${
-                                        selectError && visibleError
-                                            ? "bounce"
-                                            : ""
-                                    }
-                                      ${
-                                        isSelectOpen
-                                            ? "!border-[#737373] !bg-[#20272A]"
-                                            : selectedOption !== "" &&
-                                            selectedOption !== "Тема"
-                                                ? "!border-[#353535] !bg-[#20272A]"
-                                                : "!border-[#353535] !bg-[#101010]"
-                                    }
+                                      ${ selectError && visibleError ? "bounce" : ""}
+                                      ${ isSelectOpen
+                                            ? "!border-[#737373] !bg-[#20272A]" : selectedOption !== "" && selectedOption !== "Тема"
+                                                ? " !bg-[#20272A]"
+                                                : " !bg-[#101010]"
+                                      }
 
                                     `}
                                     onClick={() => {
                                         setIsSelectOpen(!isSelectOpen);
                                         setSelectError(false);
-
                                         setShowPolicy(true);
                                     }}
                                     onFocus={handleFieldFocus}
@@ -494,6 +497,29 @@ export default function Contacts() {
                                             absolute right-[10px] p-[26px] px-[26px] pb-[11px] top-[8px] bg-[#101010]
                                             z-[99999] w-full max-w-[210px] mt-1 border border-[#353535] rounded-[4px]`}
                                         >
+                                            <svg
+                                                className={`absolute top-[7px] right-[7px] mr-[2px] z-[999999] rotate-180 transition-transform duration-200`}
+                                                onClick={() => {
+                                                    setIsSelectOpen(!isSelectOpen);
+                                                    setSelectError(false);
+                                                    setShowPolicy(true);
+                                                }}
+                                                width="16" height="10" viewBox="0 0 16 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M1.414 0L9.07 7.656L7.656 9.07L0 1.414L1.414 0ZM14.3614 0L15.7754 1.414L11.5573 5.48499L10.1433 4.06999L14.3614 0Z"
+                                                    fill={
+                                                        isSelectOpen
+                                                            ? "#adadad"
+                                                            : selectError
+                                                                ? "#FF3030"
+                                                                : selectedOption
+                                                                    ? "#CCC"
+                                                                    : "#adadad"
+                                                    }
+                                                />
+                                            </svg>
+
                                             {options.map((option, index) => (
                                                 <div
                                                     key={index}
@@ -552,7 +578,7 @@ export default function Contacts() {
                                     }
                                     setEmailError(false);
                                 }}
-                                className="w-full relative z-[1]"
+                                className="w-full relative z-[1] mt-[33px]"
                             >
 
                                 <AppInput
@@ -662,7 +688,9 @@ export default function Contacts() {
                                     value={comment}
                                     onChange={(e) => setComment(e.target.value)}
                                     className={`${styles.bounceElem}
-                                                       placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] bg-[#101010] focus:!bg-[#20272A] focus:border focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
+                                                       placeholder:!text-[#ccc] w-full h-[352px] relative resize-none border border-[#353535] 
+                                                       bg-[#101010] focus:!bg-[#20272A] focus:border 
+                                                       focus:border-[#737373] rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none text-[#ccc] text-[16px] transition-all duration-300
                                                        pr-[54px]
                                                        ${
                                         comment
@@ -787,12 +815,12 @@ export default function Contacts() {
                     }}
                 >
                     <p
-                        className={`!font-[Roboto] !font-[300] hidden md:block text-center relative bottom-[-40px] text-[#adadad] text-[16px]`}
+                        className={`!font-[Roboto] !font-[250] hidden md:block text-center relative bottom-[-40px] text-[#e1e1e1] text-[16px]`}
                     >
                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                         <Link
                             href="/politic/policy"
-                            className={`!text-[#adadad] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                            className={`!text-[#e1e1e1] hover:!text-[#3D9ED6] ${styles["menu-item"]} active:scale-[.95] !text-[16px] ml-[4px]`}
                         >
                             политикой конфиденциальности
                         </Link>

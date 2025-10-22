@@ -141,7 +141,7 @@ export default function LoginPage() {
                                 onClick={handleFormInteraction}
                             >
                                 <AppInput
-                                    className={`${styles.bounceElem} w-full md:w-[374px] mb-[33px]`}
+                                    className={`${styles.bounceElem} w-full md:w-[371px] mb-[33px]`}
                                     type={"email"}
                                     title={"E-mail"}
                                     inputName="email"

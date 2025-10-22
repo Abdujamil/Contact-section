@@ -33,7 +33,7 @@ export default function UsernameInputWithValidation({className}: { className?: s
     return (
         <div className="relative">
             <AppInput
-                className={className}
+                className={`${className}`}
                 title="Имя пользователя"
                 inputName="Имя пользователя"
                 required

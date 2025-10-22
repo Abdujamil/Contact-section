@@ -262,7 +262,7 @@ input:-webkit-autofill::first-line {
 .field__textarea:focus {
     -webkit-box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
-    border: 1px solid #737373;
+    /*border: 1px solid #737373;*/
     z-index: 1;
 }
 
@@ -272,16 +272,21 @@ input:-webkit-autofill::first-line {
     -webkit-transition: all .2s ease-in-out 0s;
     -o-transition: all .2s ease-in-out 0s;
     transition: all .2s ease-in-out 0s;
+    font-family: 'Roboto', sans-serif;
     display: block;
-    height: 51px;
+    /*height: 51px;*/
+    height: 48px;
     /*background: #4a587d;*/
     border-radius: 4px;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
+    /*font-weight: 400;*/
+    font-weight: 250;
     padding: 12px;
-    color: #ccc;
-    border: 1px solid #353535;
+    /*color: #ccc;*/
+    color: #e1e1e1;
+    /*border: 1px solid #353535;*/
+    border: 1px solid transparent;
     resize: none;
     outline: none;
     caret-color: #ccc;
@@ -293,12 +298,14 @@ input:-webkit-autofill::first-line {
     -webkit-text-fill-color: #ccc !important;
     caret-color: #ccc !important;
     background: #20272A !important;
-    border: 1px solid #737373 !important;
+    /*border: 1px solid #737373 !important;*/
+    border: 1px solid transparent !important;
 }
 
 .field__input:-webkit-autofill:focus {
     background: #20272A !important;
-    border: 1px solid #737373 !important;
+    /*border: 1px solid #737373 !important;*/
+    border: 1px solid transparent !important;
     -webkit-text-fill-color: #ccc !important;
     caret-color: #ccc !important;
 }
@@ -328,6 +335,7 @@ input:-webkit-autofill::first-line {
     position: absolute;
     top: 12px;
     left: 12px;
+    font-family: 'Roboto', sans-serif;
     font-size: 16px;
     /*color: #ccc;*/
     color: #e1e1e1;

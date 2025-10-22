@@ -996,7 +996,7 @@ export default function RegisterPage() {
                                     onClick={handleFormInteraction}
                                 >
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[374px] mb-[33px] mt-5 md:mt-0`}
+                                        className={`${styles.bounceElem} w-full md:w-[371px] mt-5 md:mt-0`}
                                         type={"email"}
                                         title={"E-mail"}
                                         inputName="email"
@@ -1006,18 +1006,19 @@ export default function RegisterPage() {
                                     />
 
                                     <PasswordInputWithStrength className={`${styles.bounceElem}`}/>
+
                                     <UsernameInputWithValidation
-                                        className={`${styles.bounceElem} w-full md:w-[374px]`}/>
+                                        className={`${styles.bounceElem} w-full md:w-[371px]`}/>
 
                                     <AppInput
-                                        className={`${styles.bounceElem} w-full md:w-[374px] my-[33px]`}
+                                        className={`${styles.bounceElem} w-full md:w-[371px]`}
                                         title={"Ваш никнейм"}
                                         inputName="nickname"
                                         required={true}
                                     />
 
                                     <div
-                                        className={`relative mb-[41px] `}
+                                        className={`relative mb-[41px]`}
                                     >
                                         <DateInput
                                             ref={dateInputRef}

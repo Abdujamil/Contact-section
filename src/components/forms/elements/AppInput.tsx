@@ -243,6 +243,7 @@ import {useFormContext} from "react-hook-form";
 import styles from '@/app/page.module.scss';
 import HeaderStyles from "@/components/header/Header.module.css";
 import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
+import {usePathname} from "next/navigation";
 
 
 interface AppInputProps {
@@ -285,6 +286,8 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                                                   onBlur,
                                                                   isValid
                                                               }, ref) => {
+
+    const pathname = usePathname();
     const {register, formState: {errors, isSubmitted, submitCount}, setValue, watch} = useFormContext();
     const [visibleError, setVisibleError] = useState(false);
     const [internalValue, setInternalValue] = useState('');
@@ -401,7 +404,11 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
 
     return (
         <div
-            className={`relative w-full z-[2] max-h-[51px] ${disable && 'active:scale-[0.95]'} ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'} !transition-all !duration-300`}>
+            className={`relative w-full z-[2] max-h-[51px] 
+            ${disable && 'active:scale-[0.95]'} 
+            ${visibleError && (errors[inputName] || fail) && isSubmitted && 'bounce'}
+            ${pathname === '/auth/register' ? 'mb-[33px]' : ''}
+            !transition-all !duration-300`}>
             <label
                 htmlFor={inputName}
                 className={`field ${isPasswordType ? 'flex items-center justify-between' : ''} 
@@ -415,7 +422,8 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     ref={wrapperRef}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`relative ${HeaderStyles['input-hover-effect']}`}
+                    className={`relative ${HeaderStyles['input-hover-effect']} h-[51px]
+                     border border-[#353535] focus-within:border-[#737373] rounded-[4px]`}
                 >
                     <input
                         id={inputName}
@@ -425,11 +433,12 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                             register(inputName, {required}).ref(el);
                         }}
                         type={inputType}
-                        className={`field__input w-full ${className}  dark:text-[#adadad]
+                        className={`field__input w-full ${className}  border 
                         ${isFocused && isValid ? '!border-[#34C759]' : ''}
                         ${fail && 'error !text-[red]'}
-                        ${isActive ? '!bg-[#20272A] !border-[#353535]' : '!bg-[#101010]'} 
+                        ${isActive ? '!bg-[#20272A]' : '!bg-[#101010]'} 
                         focus:!bg-[#20272A] active:bg-[#20272A]`}
+
                         placeholder={getPlaceholder()}
                         autoComplete={getAutocompleteName(inputName) || autocomplete}
                         value={propValue !== undefined ? propValue : internalValue}

@@ -51,7 +51,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
     return (
         <div className="relative">
 
-            <div className={`relative flex justify-between w-full ${className}  mb-[33px]`}>
+            <div className={`relative flex justify-between w-full ${className}  mt-[33px]`}>
                 <AppInput
                     className={`w-[290px] md:w-[313px]`}
                     type={'password'}

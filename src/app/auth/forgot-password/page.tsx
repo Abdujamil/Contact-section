@@ -106,8 +106,9 @@ export default function ForgotPasswordPage() {
 
                                     <form onSubmit={handleSubmit(onSubmit)} onClick={handleFormInteraction}
                                           className="w-full">
+
                                         <AppInput
-                                            className={`${styles.bounceElem} mb-[53px] w-full md:w-[374px] mt-[20px] md:mt-0`}
+                                            className={`${styles.bounceElem} w-full md:w-[371px] mt-[20px] md:mt-0`}
                                             type={"email"}
                                             title={"E-mail"}
                                             inputName="email"
@@ -137,7 +138,7 @@ export default function ForgotPasswordPage() {
                                             Пример тестовых email-адресов: test@example.com, user@mail.ru.
                                         </pre>
 
-                                        <div className="relative !w-[222px] md:m-0 m-auto !overflow-hidden">
+                                        <div className="relative !w-[222px] md:m-0 md:mt-[53px] m-auto !overflow-hidden">
                                             <button
                                                 type="submit"
                                                 onMouseMove={handleMouseMove}

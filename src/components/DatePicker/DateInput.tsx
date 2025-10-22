@@ -167,6 +167,8 @@ import { useFormContext } from 'react-hook-form';
 import type { UseFormRegisterReturn } from 'react-hook-form';
 import styles from '@/app/page.module.scss';
 import { DatePicker } from '@/components/DatePicker/DatePicker';
+import HeaderStyles from "@/components/header/Header.module.css";
+import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 
 interface DateInputProps {
     title: string;
@@ -344,26 +346,34 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(function Da
             ${disable ? 'active:scale-[0.95]' : ''} ${visibleError && (errors[inputName] || fail) && isSubmitted ? 'bounce' : ''} !transition-all !duration-300`}
             >
                 <label htmlFor={inputName} className={`flex items-center justify-between field ${disable ? 'pointer-events-none' : ''} ${visibleError && (errors[inputName] || fail) && isSubmitted ? 'bounce' : ''}`}>
-                    <input
-                        id={inputName}
-                        {...regProps}
-                        ref={setRefs}
-                        type="text"
-                        className={inputClassName}
-                        placeholder="дд.мм.гггг"
-                        autoComplete="bday"
-                        value={currentValue}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                        onFocus={onFocus}
-                        aria-label={title}
-                    />
-                    <span className={`${styles.titleTop} !text-[18px] font-[Rubik] field__title ${errors[inputName] ? '!text-[#FF3030]' : ''} ${classNameTitle || ''}`}>
+                    <div
+                        className={`${HeaderStyles['input-hover-effect']} border border-[#353535] focus-within:border-[#737373] rounded-[4px]`}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+
+                    >
+                        <input
+                            id={inputName}
+                            {...regProps}
+                            ref={setRefs}
+                            type="text"
+                            className={inputClassName}
+                            placeholder="дд.мм.гггг"
+                            autoComplete="bday"
+                            value={currentValue}
+                            onChange={handleChange}
+                            onKeyDown={handleKeyDown}
+                            onFocus={onFocus}
+                            aria-label={title}
+                        />
+                        <span
+                            className={`${styles.titleTop} !text-[18px] font-[Rubik] field__title mt-[-2px] ${errors[inputName] ? '!text-[#FF3030]' : ''} ${classNameTitle || ''}`}>
                         {title}
                     </span>
-                    <span className={`${styles.titleBottom} font-[Rubik] field__title-top ${classNameTitle || ''}`}>
+                        <span className={`${styles.titleBottom} font-[Rubik] field__title-top mt-[-2px] ${classNameTitle || ''}`}>
                         {title}
                     </span>
+                    </div>
 
                     {/* Calendar Button */}
                     <button
