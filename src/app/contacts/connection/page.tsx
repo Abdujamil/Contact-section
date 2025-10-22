@@ -368,7 +368,7 @@ export default function Contacts() {
                                                `}
                             ></textarea>
                             <span
-                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[18px] pointer-events-none transition-opacity duration-200 tracking-[1.15px] ${
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] !text-[#e1e1e1] pointer-events-none transition-opacity duration-200 tracking-[1.15px] ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
@@ -447,8 +447,8 @@ export default function Contacts() {
                                 >
                                                       {/*tracking-[1.2px]*/}
                                                       <span
-                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[18px]
-                                                              ${selectError ? "text-[#FF3030]" : "text-[#CCC]"}
+                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[250]
+                                                              ${selectError ? "text-[#FF3030]" : "text-[#e1e1e1]"}
                                                           `}
                                                       >
                                                         {selectedOption || "Тема"}
@@ -533,7 +533,7 @@ export default function Contacts() {
                             {/*/>*/}
 
                             <AppInput
-                                className={`${styles.bounceElem} w-full mb-[33px] `}
+                                className={`${styles.bounceElem} w-full mb-[33px]`}
                                 title={'ФИО'}
                                 inputName={'name'}
                                 onFocus={handleFieldFocus}
