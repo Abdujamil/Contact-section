@@ -64,8 +64,10 @@ body {
     -ms-user-select: none;
     -webkit-tap-highlight-color: transparent;
 
-    -webkit-font-smoothing: antialiased;
+    /*-webkit-font-smoothing: antialiased;*/
     -moz-osx-font-smoothing: grayscale;
+
+    -webkit-font-smoothing: subpixel-antialiased;
 
     /*line-height: 120%;*/
 }
