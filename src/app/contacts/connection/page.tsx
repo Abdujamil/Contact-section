@@ -367,8 +367,9 @@ export default function Contacts() {
                                 }
                                                `}
                             ></textarea>
+                            {/*tracking-[1.15px]*/}
                             <span
-                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] !text-[#e1e1e1] pointer-events-none transition-opacity duration-200 tracking-[1.15px] ${
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] !text-[#e1e1e1] pointer-events-none transition-opacity duration-200  ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
@@ -508,10 +509,10 @@ export default function Contacts() {
                                                     }}
                                                 >
                                                     <p
-                                                        className={`${styles["menu-item"]} ${
+                                                        className={`${styles["menu-item"]}  ${styles["menu-item-select-option"]}  ${
                                                             selectedOption === option
                                                                 ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
-                                                                : "text-[#adadad]"
+                                                                : "text-[#e1e1e1]"
                                                         }`}
                                                     >
                                                         {option}

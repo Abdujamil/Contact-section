@@ -101,6 +101,12 @@
   }
 }
 
+.menu-item-select-option{
+  font-family: 'Roboto', 'sans-serif' !important;
+  font-weight: 250 !important;
+  color: #e1e1e1 !important;
+}
+
 
 
 .menu-item::after {
@@ -119,6 +125,10 @@
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+.menu-item-checkboxes::after{
+  border-bottom-color: #FF3030 !important;
 }
 
 .menu-item-checkbox,

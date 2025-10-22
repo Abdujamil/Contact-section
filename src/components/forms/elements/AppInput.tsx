@@ -452,11 +452,11 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         aria-labelledby={`${inputName}-label`}
                     />
                     <span
-                        className={`${styles.titleTop} !text-[16px] !font-[Roboto] !font-[250] text-[#e1e1e1] field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
+                        className={`${styles.titleTop}  field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
                       {title}
                     </span>
                     <span
-                        className={`${styles.titleBottom} !font-[Roboto] !font-[250] text-[#e1e1e1]  field__title-top ${classNameTitle}`}>
+                        className={`${styles.titleBottom} field__title-top ${classNameTitle}`}>
                       {title}
                     </span>
                 </div>

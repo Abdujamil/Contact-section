@@ -96,53 +96,53 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                                 onClick={() => handleOptionClick(option)}
                             >
                                 <p
-                                    className={`${styles["menu-item"]} items-center gap-[4px] ${
+                                    className={`${styles["menu-item"]} ${styles["menu-item-select-option"]} items-center gap-[4px] ${
                                         selectedOption === option
                                             ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
                                             : "text-[#737373]"
                                     }`}
                                 >
-                  <span className="flex items-center">
-                    {selectedOption === option && (
-                        <svg
-                            className="absolute left-[-20px]"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 18 18"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <g filter="url(#filter0_f_3868_3147)">
-                                <circle cx="9" cy="9" r="3" fill="#3D9ED6" />
-                            </g>
-                            <circle cx="9" cy="9" r="2" fill="#3D9ED6" />
-                            <defs>
-                                <filter
-                                    id="filter0_f_3868_3147"
-                                    x="0"
-                                    y="0"
-                                    width="18"
-                                    height="18"
-                                    filterUnits="userSpaceOnUse"
-                                    colorInterpolationFilters="sRGB"
-                                >
-                                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
-                                    <feBlend
-                                        mode="normal"
-                                        in="SourceGraphic"
-                                        in2="BackgroundImageFix"
-                                        result="shape"
-                                    />
-                                    <feGaussianBlur
-                                        stdDeviation="3"
-                                        result="effect1_foregroundBlur_3868_3147"
-                                    />
-                                </filter>
-                            </defs>
-                        </svg>
-                    )}
-                      {option}
-                  </span>
+                                  <span className={`flex items-center`}>
+                                    {selectedOption === option && (
+                                        <svg
+                                            className="absolute left-[-20px]"
+                                            width="18"
+                                            height="18"
+                                            viewBox="0 0 18 18"
+                                            fill="none"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                        >
+                                            <g filter="url(#filter0_f_3868_3147)">
+                                                <circle cx="9" cy="9" r="3" fill="#3D9ED6" />
+                                            </g>
+                                            <circle cx="9" cy="9" r="2" fill="#3D9ED6" />
+                                            <defs>
+                                                <filter
+                                                    id="filter0_f_3868_3147"
+                                                    x="0"
+                                                    y="0"
+                                                    width="18"
+                                                    height="18"
+                                                    filterUnits="userSpaceOnUse"
+                                                    colorInterpolationFilters="sRGB"
+                                                >
+                                                    <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                                                    <feBlend
+                                                        mode="normal"
+                                                        in="SourceGraphic"
+                                                        in2="BackgroundImageFix"
+                                                        result="shape"
+                                                    />
+                                                    <feGaussianBlur
+                                                        stdDeviation="3"
+                                                        result="effect1_foregroundBlur_3868_3147"
+                                                    />
+                                                </filter>
+                                            </defs>
+                                        </svg>
+                                    )}
+                                      {option}
+                                  </span>
                                 </p>
                             </div>
                         ))}
