@@ -214,7 +214,6 @@ input:-webkit-autofill::first-line {
 }
 
 /*Scrollbar*/
-
 .scrollbar {
     --scrollY: 0px;
     --scrollbarHeight: 100px;
