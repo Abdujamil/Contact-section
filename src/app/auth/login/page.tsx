@@ -530,7 +530,7 @@ export default function LoginPage() {
                             Нажимая кнопку «Войти в аккаунт» вы соглашаетесь с
                             <Link
                                 href="/politic/policy"
-                                className={`!text-[#e1e1e1] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
+                                className={`${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
                             >
                                 политикой конфиденциальности
                             </Link>
