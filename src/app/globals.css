@@ -64,8 +64,9 @@ body {
     -ms-user-select: none;
     -webkit-tap-highlight-color: transparent;
 
-    /*-webkit-font-smoothing: antialiased;*/
     -moz-osx-font-smoothing: grayscale;
+
+    /*-webkit-font-smoothing: antialiased;*/
 
     -webkit-font-smoothing: subpixel-antialiased;
 
@@ -202,6 +203,14 @@ input:-webkit-autofill {
 
 input:-webkit-autofill::first-line {
     color: #CCCCCC;
+}
+
+@supports (-webkit-touch-callout: none) {
+    @media (min-resolution: 2dppx) {
+        .text-mac {
+            color: #adadad !important;
+        }
+    }
 }
 
 /*Scrollbar*/
