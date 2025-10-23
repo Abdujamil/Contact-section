@@ -19,6 +19,7 @@ import {handleMouseLeave, handleMouseMove} from "@/components/Form/mouse";
 import Link from "next/link";
 import FileSlider from "@/components/Form/FileSlider";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 export default function Contacts() {
     const controls = useAnimation();
@@ -140,6 +141,7 @@ export default function Contacts() {
 
     const [emailCheckboxError, setEmailCheckboxError] = useState(false);
     const [phoneCheckboxError, setPhoneCheckboxError] = useState(false);
+    const isMac = useIsMac();
 
     useEffect(() => {
         if (!submitCount || wasSubmittedSuccessfully) return;
@@ -815,12 +817,16 @@ export default function Contacts() {
                     }}
                 >
                     <p
-                        className={`!font-[Roboto] !font-[250] hidden md:block text-center relative bottom-[-40px] text-[#e1e1e1] text-[16px]`}
+                        className={`
+                        ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                        !font-[Roboto] !font-[250] hidden md:block text-center relative bottom-[-40px]  text-[16px]`}
                     >
                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                         <Link
                             href="/politic/policy"
-                            className={`!text-[#e1e1e1] hover:!text-[#3D9ED6] ${styles["menu-item"]} active:scale-[.95] !text-[16px] ml-[4px]`}
+                            className={` 
+                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} font-[300]
+                            hover:!text-[#3D9ED6] ${styles["menu-item"]} active:scale-[.95] !text-[16px] ml-[4px]`}
                         >
                             политикой конфиденциальности
                         </Link>

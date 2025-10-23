@@ -736,6 +736,7 @@ import DateInput from "@/components/DatePicker/DateInput";
 // import {DatePicker} from "@/components/DatePicker/DatePicker";
 import {useWatch} from "react-hook-form";
 import {usePathname} from "next/navigation";
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 // Типизация данных формы
 type RegisterFormValues = {
@@ -829,6 +830,8 @@ export default function RegisterPage() {
     const dateValue = useWatch({control: methods.control, name: "date"});
     const emailValue = useWatch({control: methods.control, name: "email"});
     const dateInputRef = useRef<HTMLInputElement | null>(null);
+
+    const isMac = useIsMac();
 
     const onSubmit: SubmitHandler<RegisterFormValues> = async (data) => {
         setShowPolicy(true);
@@ -1088,12 +1091,16 @@ export default function RegisterPage() {
                             }}
                         >
                             <p
-                                className={`!font-[Roboto] !font-[250] hidden md:block text-center text-[#e1e1e1] text-[16px] ml-[-2px]`}
+                                className={`
+                                ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                !font-[Roboto] !font-[250] hidden md:block text-center  text-[16px] ml-[-2px]`}
                             >
                                 Нажимая кнопку «Регистрация» вы соглашаетесь с
                                 <Link
                                     href="/politic/policy"
-                                    className={`!text-[#e1e1e1] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
+                                    className={`${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                     hover:!text-[#3D9ED6] 
+                                     ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
                                 >
                                     политикой конфиденциальности
                                 </Link>

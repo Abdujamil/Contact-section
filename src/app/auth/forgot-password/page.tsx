@@ -13,6 +13,7 @@ import FlightSuccess from "@/components/Form/FlightSuccess";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import {usePathname} from "next/navigation";
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 type ForgotPasswordFormValues = {
     email: string;
@@ -33,6 +34,8 @@ export default function ForgotPasswordPage() {
     const [submitted, setSubmitted] = useState(false);
 
     const [emailStatus, setEmailStatus] = useState<"found" | "not_found" | null>(null);
+
+    const isMac = useIsMac();
 
     // Замените это на реальную проверку (fetch или axios)
     const checkEmail = async (email: string) => {
@@ -232,12 +235,17 @@ export default function ForgotPasswordPage() {
                             }}
                         >
                             <p
-                                className={`!font-[Roboto] !font-[250] hidden md:block text-center text-[#e1e1e1] text-[16px]`}
+                                className={`
+                                ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                !font-[Roboto] !font-[250] hidden md:block text-center  text-[16px]`}
                             >
                                 Нажимая кнопку «Отправить» вы соглашаетесь с
                                 <Link
                                     href="/politic/policy"
-                                    className={`!text-[#e1e1e1] hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
+                                    className={`
+                                    ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                    hover:!text-[#3D9ED6] 
+                                    ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
                                 >
                                     политикой конфиденциальности
                                 </Link>

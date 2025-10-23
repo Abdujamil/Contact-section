@@ -13,6 +13,7 @@ import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import PasswordInputWithStrength from "@/app/auth/register/PasswordInputWithStrength";
 import {usePathname} from "next/navigation";
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 type LoginFormValues = {
     email: string;
@@ -32,12 +33,7 @@ export default function LoginPage() {
     const controls = useAnimation();
     const [showPolicy, setShowPolicy] = useState(false);
 
-    const [isMac, setIsMac] = useState(false);
-
-    useEffect(() => {
-        // Проверка выполняется только на клиенте
-        setIsMac(navigator.userAgent.includes('Mac OS X'));
-    }, []);
+    const isMac = useIsMac();
 
 
     // Состояния для визуальной индикации email
@@ -538,7 +534,7 @@ export default function LoginPage() {
                                 href="/politic/policy"
                                 className={`hover:!text-[#3D9ED6] 
                                 ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} 
-                                ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
+                                ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
                             >
                                 политикой конфиденциальности
                             </Link>
