@@ -69,12 +69,12 @@ export default function PasswordInputWithStrength({className}: { className?: str
 
             {isInputFocused && passwordStrength !== '' && (
                 <div className="mt-2.5 flex leading-[138%] justify-start gap-2 items-center absolute bottom-[-30px]">
-                <span className="font-[Rubik] text-[16px] text-[#CCCCCC] leading-[80%]">
+                <span className="font-[Roboto] text-[16px] text-[#adadad] font-[300]  leading-[80%]">
                 Сложность пароля:
                 </span>
                     <div className="relative">
                       <span
-                          className={`font-[Rubik] text-[16px] leading-[80%] ${
+                          className={`font-[Roboto] font-[300] text-[16px] leading-[80%] ${
                               passwordStrength === 'weak'
                                   ? 'text-[#FF3030]'
                                   : passwordStrength === 'medium'
@@ -98,7 +98,7 @@ export default function PasswordInputWithStrength({className}: { className?: str
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
                                 <div className="border border-[#353535] rounded-sm p-[15px] shadow-lg min-w-[245px]">
-                                    <p className="text-left text-[#CCCCCC] text-[14px] font-[Rubik] leading-[18px]">
+                                    <p className="text-left text-[#adadad] text-[14px] font-[300] font-[Roboto] leading-[18px]">
                                         {getTooltipText(passwordStrength)}
                                     </p>
                                 </div>

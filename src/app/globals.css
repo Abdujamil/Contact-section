@@ -27,17 +27,17 @@
 }
 
 
-@theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-}
+/*@theme inline {*/
+/*    --color-background: var(--background);*/
+/*    --color-foreground: var(--foreground);*/
+/*}*/
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
-    }
-}
+/*@media (prefers-color-scheme: dark) {*/
+/*    :root {*/
+/*        --background: #0a0a0a;*/
+/*        --foreground: #ededed;*/
+/*    }*/
+/*}*/
 
 html,
 body {
@@ -268,11 +268,12 @@ input:-webkit-autofill::first-line {
     border: .001px solid rgb(255 255 255 / 20%);
 }
 
-.field__input:focus,
-.field__textarea:focus {
+/*.field__input:focus,*/
+/*.field__textarea:focus*/
+
+.input-hover-effect:focus-within{
     -webkit-box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
-    /*border: 1px solid #737373;*/
     z-index: 1;
 }
 
@@ -291,10 +292,10 @@ input:-webkit-autofill::first-line {
     font-size: 16px;
     line-height: 24px;
     /*font-weight: 400;*/
-    font-weight: 250;
+    font-weight: 300;
     padding: 12px;
     /*color: #ccc;*/
-    color: #e1e1e1;
+    color: #adadad;
     /*border: 1px solid #353535;*/
     border: 1px solid transparent;
     resize: none;
@@ -348,8 +349,8 @@ input:-webkit-autofill::first-line {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     /*color: #ccc;*/
-    color: #e1e1e1;
-    font-weight: 250;
+    color: #adadad;
+    font-weight: 300;
     max-width: calc(100% - 40px);
     overflow: hidden;
     -o-text-overflow: ellipsis;

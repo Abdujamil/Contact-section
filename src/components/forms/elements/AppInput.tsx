@@ -422,8 +422,10 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     ref={wrapperRef}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`relative ${HeaderStyles['input-hover-effect']} h-[51px]
-                     border border-[#353535] focus-within:border-[#737373] rounded-[4px]`}
+                    className={`relative ${HeaderStyles['input-hover-effect']} input-hover-effect h-[51px]
+                     border border-[#353535] 
+                     focus-within:border-[#737373] 
+                     focus-within:bg-[#20272A] rounded-[4px]`}
                 >
                     <input
                         id={inputName}
@@ -461,7 +463,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         aria-labelledby={`${inputName}-label`}
                     />
                     <span
-                        className={`${styles.titleTop}  field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
+                        className={`${styles.titleTop} field__title ${errors[inputName] && '!text-[#FF3030]'} ${classNameTitle}`}>
                       {title}
                     </span>
                     <span

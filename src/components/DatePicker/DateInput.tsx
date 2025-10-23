@@ -367,7 +367,7 @@ const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(function Da
                             aria-label={title}
                         />
                         <span
-                            className={`${styles.titleTop} !text-[18px] font-[Rubik] field__title mt-[-2px] ${errors[inputName] ? '!text-[#FF3030]' : ''} ${classNameTitle || ''}`}>
+                            className={`${styles.titleTop} !text-[16px] font-[Roboto] field__title mt-[-2px] ${errors[inputName] ? '!text-[#FF3030]' : ''} ${classNameTitle || ''}`}>
                         {title}
                     </span>
                         <span className={`${styles.titleBottom} font-[Rubik] field__title-top mt-[-2px] ${classNameTitle || ''}`}>

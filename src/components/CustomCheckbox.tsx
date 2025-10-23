@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import styles from '@/app/page.module.scss';
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 interface CustomCheckboxProps {
     checked: boolean;
@@ -22,6 +23,8 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                                                            className,
                                                            spanClasses = ''
                                                        }) => {
+
+    const isMac = useIsMac();
     // Генерируем уникальный id один раз при создании компонента
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         onChange(e.target.checked);
@@ -71,7 +74,9 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
                 </span>
             </label>
             <span
-                className={`text-[#E1E1E1] ${styles['menu-item']}  ${styles[spanClasses]} font-[250]
+                className={` ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                 ${styles['menu-item']}  
+                 ${styles[spanClasses]} font-[300]
                  transition-all duration-300 peer-checked:text-[#FFF] ${fail ? styles['menu-item-checkboxes'] : '' } ${fail && '!text-[#FF3030]'}`}>
                 {label}
             </span>

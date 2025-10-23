@@ -368,10 +368,10 @@ export default function Contacts() {
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
                                 className={`txtarea-scrollbar ${styles.bounceElem}
-                                               placeholder:!text-[#e1e1e1] font-[250] w-full h-full md:w-full  
+                                               placeholder:!text-[#adadad] font-[300] w-full h-full md:w-full  
                                                relative resize-none  bg-[#101010] focus:!bg-[#20272A] 
                                                rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none 
-                                               text-[#e1e1e1] text-[16px] transition-all duration-100 
+                                               text-[#adadad] text-[16px] transition-all duration-100 
                                                pr-[54px]
                                                
                                                ${comment ? "!bg-[#20272A] border-[#737373]" : "bg-[#101010] border-[#737373]"}
@@ -382,7 +382,9 @@ export default function Contacts() {
                             </div>
                             {/*tracking-[1.15px]*/}
                             <span
-                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] !text-[#e1e1e1] pointer-events-none transition-opacity duration-200  ${
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[300] 
+                                 ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                 pointer-events-none transition-opacity duration-200  ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
@@ -453,8 +455,8 @@ export default function Contacts() {
                                 >
                                                       {/*tracking-[1.2px]*/}
                                                       <span
-                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[250]
-                                                              ${selectError ? "text-[#FF3030]" : "text-[#e1e1e1]"}
+                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[300]
+                                                             ${isMac ? (selectError ? 'text-[#FF3030]' : 'text-[#adadad]') : (selectError ? 'text-[#FF3030]' : 'text-[#e1e1e1]')}
                                                           `}
                                                       >
                                                         {selectedOption || "Тема"}
@@ -540,7 +542,7 @@ export default function Contacts() {
                                                         className={`${styles["menu-item"]}  ${styles["menu-item-select-option"]}  ${
                                                             selectedOption === option
                                                                 ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
-                                                                : "text-[#e1e1e1]"
+                                                                : "text-[#adadad]"
                                                         }`}
                                                     >
                                                         {option}
