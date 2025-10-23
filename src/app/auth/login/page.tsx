@@ -32,7 +32,13 @@ export default function LoginPage() {
     const controls = useAnimation();
     const [showPolicy, setShowPolicy] = useState(false);
 
-    const isMac = typeof navigator !== 'undefined' && navigator.userAgent.includes('Mac OS X');
+    const [isMac, setIsMac] = useState(false);
+
+    useEffect(() => {
+        // Проверка выполняется только на клиенте
+        setIsMac(navigator.userAgent.includes('Mac OS X'));
+    }, []);
+
 
     // Состояния для визуальной индикации email
     const [emailSuccessful, setEmailSuccessful] = useState(false);
@@ -518,19 +524,21 @@ export default function LoginPage() {
                         transition={{
                             type: "spring",
                             stiffness: 300,
-                            damping: 4, // Меньше значение = больше отскок
-                            mass: 0.3, // Добавляем массу для более "пружинистого" эффекта
+                            damping: 4,
+                            mass: 0.3,
                         }}
                     >
                         <p
                             className={`!font-[Roboto] !font-[250] hidden md:block text-center 
-                             ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                             text-[16px] md:ml-[-2px]`}
+                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                            text-[16px] md:ml-[-2px]`}
                         >
                             Нажимая кнопку «Войти в аккаунт» вы соглашаетесь с
                             <Link
                                 href="/politic/policy"
-                                className={`${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} hover:!text-[#3D9ED6] ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
+                                className={`hover:!text-[#3D9ED6] 
+                                ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} 
+                                ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
                             >
                                 политикой конфиденциальности
                             </Link>
