@@ -39,7 +39,7 @@ export default function Contacts() {
                                 className={`
                                 ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
                                 pl-[12.5px] block text-[16px] font-normal mb-[1px] leading-[148%]`}>
-                                <span className="mb-[1px] font-[250]">
+                                <span className="mb-[1px] font-[200]">
                                     Полное наименование
                                 </span>
                             </label>
@@ -83,7 +83,7 @@ export default function Contacts() {
                         <label
                             className={`
                             ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                            pl-[12px] block text-[16px] font-[250] mb-[3.5px] leading-[110%]`}>
+                            pl-[12px] block text-[16px] font-[200] mb-[3.5px] leading-[110%]`}>
                             Юридический адрес
                         </label>
                         <p
@@ -105,7 +105,7 @@ export default function Contacts() {
                                 <label
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                    pl-[12px] block text-[16px] font-[250] mb-[4px] leading-[105%]`}>
+                                    pl-[12px] block text-[16px] font-[200] mb-[4px] leading-[105%]`}>
                                     ИНН
                                 </label>
                                 <p
@@ -124,7 +124,7 @@ export default function Contacts() {
                                 <label
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                    pl-[12px] block text-[16px] font-[250] mb-[4px] leading-[105%]`}>
+                                    pl-[12px] block text-[16px] font-[200] mb-[4px] leading-[105%]`}>
                                     ОГРН
                                 </label>
                                 <p
@@ -147,7 +147,7 @@ export default function Contacts() {
                                 <label
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                    pl-[12px] block text-[16px] font-[250] mb-[3px] mt-[-.5px] leading-[97%]`}>
+                                    pl-[12px] block text-[16px] font-[200] mb-[3px] mt-[-.5px] leading-[97%]`}>
                                     Генеральный директор
                                 </label>
                                 <p
@@ -167,7 +167,7 @@ export default function Contacts() {
                                 <label
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                    pl-[12px] block text-[16px] font-[250] mb-[4px] leading-[90%] `}>
+                                    pl-[12px] block text-[16px] font-[200] mb-[4px] leading-[90%] `}>
                                     Почта
                                 </label>
                                 <p

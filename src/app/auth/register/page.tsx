@@ -1093,14 +1093,14 @@ export default function RegisterPage() {
                             <p
                                 className={`
                                 ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                !font-[Roboto] !font-[250] hidden md:block text-center  text-[16px] ml-[-2px]`}
+                                !font-[Roboto] !font-[200] hidden md:block text-center  text-[16px] ml-[-2px]`}
                             >
                                 Нажимая кнопку «Регистрация» вы соглашаетесь с
                                 <Link
                                     href="/politic/policy"
                                     className={`${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
                                      hover:!text-[#3D9ED6] 
-                                     ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
+                                     ${styles["menu-item"]} !text-[16px] font-[200] ml-[4px]`}
                                 >
                                     политикой конфиденциальности
                                 </Link>

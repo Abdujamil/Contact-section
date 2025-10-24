@@ -76,7 +76,7 @@ const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
             <span
                 className={` ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
                  ${styles['menu-item']}  
-                 ${styles[spanClasses]} font-[250]
+                 ${styles[spanClasses]} font-[200]
                  transition-all duration-300 peer-checked:text-[#FFF] ${fail ? styles['menu-item-checkboxes'] : '' } ${fail && '!text-[#FF3030]'}`}>
                 {label}
             </span>

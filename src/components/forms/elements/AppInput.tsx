@@ -422,7 +422,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     ref={wrapperRef}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`relative !font-[250]
+                    className={`relative !font-[200]
                         ${isValid ? '!border-[#34C759]' : ''}
                         ${HeaderStyles['input-hover-effect']}
                         ${isActive ? 'border-[#737373]' : 'border-[#353535]'} 
@@ -440,7 +440,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                             register(inputName, {required}).ref(el);
                         }}
                         type={inputType}
-                        className={`!font-[250] field__input w-full ${className}  border 
+                        className={`!font-[200] field__input w-full ${className}  border 
                         ${fail && 'error !text-[red]'}
                         ${isActive ? '!bg-[#20272A]' : '!bg-[#101010]'} 
                         focus:!bg-[#20272A] active:bg-[#20272A]`}

@@ -367,7 +367,7 @@ export default function Contacts() {
                                 name="comment"
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
-                                className={`txtarea-scrollbar ${styles.bounceElem} font-[250]
+                                className={`txtarea-scrollbar ${styles.bounceElem} font-[200]
                                             ${isMac ? 'text-[#adadad] placeholder:!text-[#adadad] ' : 'text-[#e1e1e1] placeholder:!text-[#e1e1e1]'}
                                                  w-full h-full md:w-full  
                                                relative resize-none  bg-[#101010] focus:!bg-[#20272A] 
@@ -381,7 +381,7 @@ export default function Contacts() {
                             </div>
                             {/*tracking-[1.15px]*/}
                             <span
-                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] text-[#adadad]
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[200] text-[#adadad]
                                  ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
                                  pointer-events-none transition-opacity duration-200  ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
@@ -454,7 +454,7 @@ export default function Contacts() {
                                 >
                                                       {/*tracking-[1.2px]*/}
                                                       <span
-                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[250]
+                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[200]
                                                              ${isMac ? (selectError ? 'text-[#FF3030]' : 'text-[#adadad]') : (selectError ? 'text-[#FF3030]' : 'text-[#e1e1e1]')}
                                                           `}
                                                       >
@@ -821,13 +821,13 @@ export default function Contacts() {
                     <p
                         className={`
                         ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                        !font-[Roboto] !font-[250] hidden md:block text-center relative bottom-[-40px]  text-[16px]`}
+                        !font-[Roboto] !font-[200] hidden md:block text-center relative bottom-[-40px]  text-[16px]`}
                     >
                         Нажимая на кнопку «Отправить» вы соглашаетесь с
                         <Link
                             href="/politic/policy"
                             className={` 
-                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} font-[250]
+                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} font-[200]
                             hover:!text-[#3D9ED6] ${styles["menu-item"]} active:scale-[.95] !text-[16px] ml-[4px]`}
                         >
                             политикой конфиденциальности
