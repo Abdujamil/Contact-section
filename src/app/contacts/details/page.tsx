@@ -6,19 +6,17 @@ import React, {useEffect} from "react";
 import {motion, useAnimation} from "framer-motion";
 import {bounceActiveBlock} from "@/components/Form/bounce";
 import Breadcrumbs from "@/components/breadCrumbs/breadCrumbs";
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 
 export default function Contacts() {
     const controls = useAnimation();
+    const isMac = useIsMac();
 
     useEffect(() => {
         bounceActiveBlock('requisite', controls);
     }, [controls]);
 
-    // const activeTab = "requisite"
-    // useDidMount((isInitialMount) => {
-    //     bounceActiveBlock(activeTab, controls, isInitialMount);
-    // }, [activeTab, controls]);
 
     return (
         <>
@@ -38,7 +36,9 @@ export default function Contacts() {
                     <div className="flex justify-between items-end mb-[12px]">
                         <div className="w-full max-w-[516px]">
                             <label
-                                className="pl-[12.5px] block text-[16px] font-normal text-[#e1e1e1] mb-[1px] leading-[148%]">
+                                className={`
+                                ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                pl-[12.5px] block text-[16px] font-normal mb-[1px] leading-[148%]`}>
                                 <span className="mb-[1px] font-[250]">
                                     Полное наименование
                                 </span>
@@ -79,7 +79,9 @@ export default function Contacts() {
 
                     <div className="mb-[12px] md:w-[778px]">
                         <label
-                            className="pl-[12px] block text-[16px] font-[250] text-[#e1e1e1] mb-[3.5px] leading-[110%]">
+                            className={`
+                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                            pl-[12px] block text-[16px] font-[250] mb-[3.5px] leading-[110%]`}>
                             Юридический адрес
                         </label>
                         <p
@@ -97,7 +99,9 @@ export default function Contacts() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] mb-[13px]">
                             <div>
                                 <label
-                                    className="pl-[12px] block text-[16px] font-[250] text-[#e1e1e1] mb-[4px] leading-[105%]">
+                                    className={`
+                                    ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                    pl-[12px] block text-[16px] font-[250] mb-[4px] leading-[105%]`}>
                                     ИНН
                                 </label>
                                 <p
@@ -112,7 +116,9 @@ export default function Contacts() {
 
                             <div>
                                 <label
-                                    className="pl-[12px] block text-[16px] font-[250] text-[#e1e1e1] mb-[4px] leading-[105%]">
+                                    className={`
+                                    ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                    pl-[12px] block text-[16px] font-[250] mb-[4px] leading-[105%]`}>
                                     ОГРН
                                 </label>
                                 <p
@@ -130,7 +136,9 @@ export default function Contacts() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:mb-[28px]">
                             <div>
                                 <label
-                                    className="pl-[12px] block text-[18px] font-[250] text-[#e1e1e1] mb-[3px] mt-[-.5px] leading-[97%] tracking-[-1.10px]">
+                                    className={`
+                                    ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                    pl-[12px] block text-[18px] font-[250] mb-[3px] mt-[-.5px] leading-[97%] tracking-[-1.10px]`}>
                                     Генеральный директор
                                 </label>
                                 <p
@@ -143,7 +151,9 @@ export default function Contacts() {
                             </div>
                             <div>
                                 <label
-                                    className="pl-[12px] block text-[18px] font-[250] text-[#e1e1e1] mb-[4px] leading-[90%] tracking-[-1.3px]">
+                                    className={`
+                                    ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                    pl-[12px] block text-[18px] font-[250] mb-[4px] leading-[90%] tracking-[-1.3px]`}>
                                     Почта
                                 </label>
                                 <p

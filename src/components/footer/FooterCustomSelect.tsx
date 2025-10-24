@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "../../app/page.module.scss";
 import headerStyles from "../header/Header.module.css";
 import { useMouseTracking } from "../hooks/useMouseTracking";
+import {useIsMac} from "@/components/hooks/useOperatingSystem";
 
 interface CustomSelectProps {
     options: string[];
@@ -24,6 +25,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
     const [isOpen, setIsOpen] = useState(false);
     const selectRef = useRef<HTMLDivElement>(null);
     const { handleMouseMove, handleMouseLeave } = useMouseTracking();
+    const isMac = useIsMac();
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -96,10 +98,12 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                                 onClick={() => handleOptionClick(option)}
                             >
                                 <p
-                                    className={`${styles["menu-item"]} ${styles["menu-item-select-option"]} items-center gap-[4px] ${
-                                        selectedOption === option
-                                            ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
-                                            : "text-[#737373]"
+                                    className={`${styles["menu-item"]} ${styles["menu-item-select-option"]} items-center gap-[4px] 
+                                    ${selectedOption === option
+                                        ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
+                                        : isMac
+                                            ? "text-[#adadad]"
+                                            : "text-[#e1e1e1]"
                                     }`}
                                 >
                                   <span className={`flex items-center`}>

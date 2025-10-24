@@ -67,7 +67,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 
     /*-webkit-font-smoothing: antialiased;*/
-
     -webkit-font-smoothing: subpixel-antialiased;
 
     /*line-height: 120%;*/
@@ -350,7 +349,7 @@ input:-webkit-autofill::first-line {
     font-size: 16px;
     /*color: #ccc;*/
     color: #adadad;
-    font-weight: 300;
+    font-weight: 250;
     max-width: calc(100% - 40px);
     overflow: hidden;
     -o-text-overflow: ellipsis;

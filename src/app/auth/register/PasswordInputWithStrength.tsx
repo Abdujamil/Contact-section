@@ -69,12 +69,13 @@ export default function PasswordInputWithStrength({className}: { className?: str
 
             {isInputFocused && passwordStrength !== '' && (
                 <div className="mt-2.5 flex leading-[138%] justify-start gap-2 items-center absolute bottom-[-30px]">
-                <span className="font-[Roboto] text-[16px] text-[#adadad] font-[300]  leading-[80%]">
+                <span className="font-[Roboto] text-[16px] text-[#adadad] font-[250]  leading-[80%]">
                 Сложность пароля:
                 </span>
                     <div className="relative">
                       <span
-                          className={`font-[Roboto] font-[300] text-[16px] leading-[80%] ${
+                          className={`font-[Roboto] font-[250] text-[16px] leading-[80%] 
+                          ${
                               passwordStrength === 'weak'
                                   ? 'text-[#FF3030]'
                                   : passwordStrength === 'medium'

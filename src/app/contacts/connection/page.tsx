@@ -367,29 +367,28 @@ export default function Contacts() {
                                 name="comment"
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
-                                className={`txtarea-scrollbar ${styles.bounceElem}
-                                               placeholder:!text-[#adadad] font-[300] w-full h-full md:w-full  
+                                className={`txtarea-scrollbar ${styles.bounceElem} font-[250]
+                                            ${isMac ? 'text-[#adadad] placeholder:!text-[#adadad] ' : 'text-[#e1e1e1] placeholder:!text-[#e1e1e1]'}
+                                                 w-full h-full md:w-full  
                                                relative resize-none  bg-[#101010] focus:!bg-[#20272A] 
                                                rounded-[4px] pt-[13px] pl-[10px] active:outline-none focus:outline-none 
-                                               text-[#adadad] text-[16px] transition-all duration-100 
+                                               text-[16px] transition-all duration-100 
                                                pr-[54px]
-                                               
                                                ${comment ? "!bg-[#20272A] border-[#737373]" : "bg-[#101010] border-[#737373]"}
-                                               
                                        `}
                             ></textarea>
 
                             </div>
                             {/*tracking-[1.15px]*/}
                             <span
-                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[300] 
+                                className={`absolute z-[9] left-[3.5%] top-[4.20%] text-[16px] !font-[250] text-[#adadad]
                                  ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
                                  pointer-events-none transition-opacity duration-200  ${
                                     comment.trim() ? "opacity-0" : "opacity-100"
                                 }`}
                             >
-                                                Комментарий
-                                              </span>
+                                Комментарий
+                            </span>
 
                             {/* Скрытый input для загрузки файла */}
 
@@ -455,7 +454,7 @@ export default function Contacts() {
                                 >
                                                       {/*tracking-[1.2px]*/}
                                                       <span
-                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[300]
+                                                          className={`md:mt-[1px] md:ml-[-1px]  text-[16px] !font-[250]
                                                              ${isMac ? (selectError ? 'text-[#FF3030]' : 'text-[#adadad]') : (selectError ? 'text-[#FF3030]' : 'text-[#e1e1e1]')}
                                                           `}
                                                       >
@@ -539,11 +538,14 @@ export default function Contacts() {
                                                     }}
                                                 >
                                                     <p
-                                                        className={`${styles["menu-item"]}  ${styles["menu-item-select-option"]}  ${
-                                                            selectedOption === option
+                                                        className={`${styles["menu-item"]}  ${styles["menu-item-select-option"]}  
+                                                            ${selectedOption === option
                                                                 ? "!text-[#3D9ED6] border-b border-b-[#3D9ED6]"
-                                                                : "text-[#adadad]"
-                                                        }`}
+                                                                : isMac
+                                                                    ? "text-[#adadad]"
+                                                                    : "text-[#e1e1e1]"
+                                                            }
+                                                        `}
                                                     >
                                                         {option}
                                                     </p>
@@ -808,9 +810,7 @@ export default function Contacts() {
                 {/* Анимированный блок с политикой */}
                 <motion.div
                     initial={{y: 20, opacity: 0}}
-                    animate={
-                        showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}
-                    }
+                    animate={showPolicy ? {y: 10, opacity: 1} : {y: -4, opacity: 0}}
                     transition={{
                         type: "spring",
                         stiffness: 300,
@@ -827,7 +827,7 @@ export default function Contacts() {
                         <Link
                             href="/politic/policy"
                             className={` 
-                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} font-[300]
+                            ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} font-[250]
                             hover:!text-[#3D9ED6] ${styles["menu-item"]} active:scale-[.95] !text-[16px] ml-[4px]`}
                         >
                             политикой конфиденциальности

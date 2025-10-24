@@ -284,7 +284,7 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                                                                   autocomplete,
                                                                   showPasswordExternally,
                                                                   onBlur,
-                                                                  isValid
+                                                                  isValid,
                                                               }, ref) => {
 
     const pathname = usePathname();
@@ -422,11 +422,15 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                     ref={wrapperRef}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`relative ${HeaderStyles['input-hover-effect']} input-hover-effect h-[51px]
-                     border border-[#353535] 
-                     focus-within:border-[#737373] 
-                     focus-within:bg-[#20272A] rounded-[4px]`}
+                    className={`relative
+                        ${isValid ? '!border-[#34C759]' : ''}
+                        ${HeaderStyles['input-hover-effect']} 
+                        input-hover-effect h-[51px]
+                        border border-[#353535] 
+                        focus-within:border-[#737373] 
+                        focus-within:bg-[#20272A] rounded-[4px]`}
                 >
+                    {/*${isFocused && isValid ? '!border-[#34C759]' : ''}*/}
                     <input
                         id={inputName}
                         {...register(inputName, {required})}
@@ -436,7 +440,6 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                         }}
                         type={inputType}
                         className={`field__input w-full ${className}  border 
-                        ${isFocused && isValid ? '!border-[#34C759]' : ''}
                         ${fail && 'error !text-[red]'}
                         ${isActive ? '!bg-[#20272A]' : '!bg-[#101010]'} 
                         focus:!bg-[#20272A] active:bg-[#20272A]`}

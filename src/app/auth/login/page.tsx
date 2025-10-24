@@ -158,7 +158,7 @@ export default function LoginPage() {
 
                                     <div className={`relative inline-flex items-center justify-end `}>
                                         <Link
-                                            className={`${styles['menu-item']} w-fit mr-[14px] mt-[3.8px] !max-w-[122px]  !font-[Roboto] !font-[300] !text-[16px] leading-[150%] text-[#adadad] !text-end `}
+                                            className={`${styles['menu-item']} w-fit mr-[14px] mt-[3.8px] !max-w-[122px]  !font-[Roboto] !font-[250] !text-[16px] leading-[150%] text-[#adadad] !text-end `}
                                             href="/auth/forgot-password">Забыли пароль?</Link>
                                     </div>
                                 </div>
@@ -207,7 +207,7 @@ export default function LoginPage() {
                                     </defs>
                                 </svg>
 
-                                <p className={`!font-[Roboto] !font-[300] whitespace-nowrap text-[#adadad] text-[16px] !leading-[70%] mb-[0.5px]`}>вход
+                                <p className={`!font-[Roboto] !font-[250] whitespace-nowrap text-[#adadad] text-[16px] !leading-[70%] mb-[0.5px]`}>вход
                                     с помощью</p>
 
                                 <svg
