@@ -440,7 +440,7 @@ export default function Contacts() {
                                       ${ selectError && visibleError ? "bounce" : ""}
                                       ${ isSelectOpen
                                             ? "!border-[#737373] !bg-[#20272A]" : selectedOption !== "" && selectedOption !== "Тема"
-                                                ? " !bg-[#20272A]"
+                                                ? " !bg-[#20272A] border-[#737373]"
                                                 : " !bg-[#101010]"
                                       }
 

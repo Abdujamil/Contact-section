@@ -44,9 +44,11 @@ export default function Contacts() {
                                 </span>
                             </label>
                             <p
-                                className="w-full flex items-center justify-start md:w-[563px] md:max-h-[51px] bg-[#20272A] !text-[18px] md:text-nowrap
-                            overflow-auto md:overflow-hidden cursor-not-allowed  border border-[#353535]
-                            rounded-[4px] px-[10px] py-[18px] text-[#ссс] focus:outline-none focus:border-[#5F5F5F]"
+                                className={`w-full flex items-center justify-start md:w-[563px] md:max-h-[51px] bg-[#20272A] !text-[16px] md:text-nowrap
+                                    overflow-auto md:overflow-hidden cursor-not-allowed  border border-[#353535]
+                                    rounded-[4px] px-[10px] py-[18px] focus:outline-none focus:border-[#5F5F5F]
+                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                    `}
                             >
                             <span className={`ml-[1px]`}>
                                 Общество с ограниченной ответственностью «АУДИОСЕКТОР»
@@ -61,7 +63,7 @@ export default function Contacts() {
                             >
 
                                               <span
-                                                  className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#ccc] text-[20px]">
+                                                  className="whitespace-nowrap !transition-all !duration-[.13s] !ease-in !group-hover:text-[#e1e1e1] text-[20px]">
                                                 Скачать PDF
                                               </span>
 
@@ -85,8 +87,10 @@ export default function Contacts() {
                             Юридический адрес
                         </label>
                         <p
-                            className="w-full flex items-center justify-start md:max-h-[51px] text-[#ссс] !text-[18px] cursor-not-allowed
-                        bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
+                            className={`w-full flex items-center justify-start md:max-h-[51px] !text-[16px] cursor-not-allowed
+                                bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]
+                                 ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                `}
                         >
                          <span className="ml-[1px]">
                                 180016, Псковская область, г.о. город Псков, г Псков, пр-кт Римский, д. 64А, кв.
@@ -105,8 +109,10 @@ export default function Contacts() {
                                     ИНН
                                 </label>
                                 <p
-                                    className="w-full flex items-center justify-start max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed
-                                bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
+                                    className={`w-full flex items-center justify-start max-h-[51px]  !text-[16px]  cursor-not-allowed
+                                        bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]
+                                         ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                        `}
                                 >
                                 <span className={`md:ml-[1px] md:mt-[1px]`}>
                                     6000005874
@@ -122,9 +128,11 @@ export default function Contacts() {
                                     ОГРН
                                 </label>
                                 <p
-                                    className="w-full flex items-center justify-start
-                                 md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border
-                                 border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
+                                    className={`w-full flex items-center justify-start
+                                        md:max-h-[51px] !text-[16px]  cursor-not-allowed bg-[#20272A] border
+                                        border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]
+                                         ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                        `}
                                 >
                                 <span className={`md:ml-[1px] md:mt-[1px]`}>
                                     1236000004569
@@ -135,14 +143,19 @@ export default function Contacts() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px] md:mb-[28px]">
                             <div>
+                                {/*tracking-[-1.10px]*/}
                                 <label
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                    pl-[12px] block text-[18px] font-[250] mb-[3px] mt-[-.5px] leading-[97%] tracking-[-1.10px]`}>
+                                    pl-[12px] block text-[16px] font-[250] mb-[3px] mt-[-.5px] leading-[97%]`}>
                                     Генеральный директор
                                 </label>
                                 <p
-                                    className="w-full flex items-center justify-start md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
+                                    className={`
+                                        w-full flex items-center justify-start md:max-h-[51px] !text-[16px]  cursor-not-allowed
+                                        bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]
+                                         ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                        `}
                                 >
                                 <span className={`ml-[1px] `}>
                                     Владимиров Владимир Михайлович
@@ -150,14 +163,19 @@ export default function Contacts() {
                                 </p>
                             </div>
                             <div>
+                                {/*tracking-[-1.3px]*/}
                                 <label
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
-                                    pl-[12px] block text-[18px] font-[250] mb-[4px] leading-[90%] tracking-[-1.3px]`}>
+                                    pl-[12px] block text-[16px] font-[250] mb-[4px] leading-[90%] `}>
                                     Почта
                                 </label>
                                 <p
-                                    className="w-full flex items-center justify-start md:max-h-[51px] text-[#ссс] !text-[18px]  cursor-not-allowed bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]"
+                                    className={`
+                                        w-full flex items-center justify-start md:max-h-[51px] !text-[16px]  cursor-not-allowed
+                                        bg-[#20272A] border border-[#353535] rounded-[4px] px-[10px] py-[18px]  focus:outline-none focus:border-[#5F5F5F]
+                                         ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
+                                        `}
                                 >
                                 <span className={`ml-[1px] `}>
                                     info@audiosector.ru

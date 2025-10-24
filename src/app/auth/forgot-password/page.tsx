@@ -1,5 +1,5 @@
 'use client'
-import {useForm, FormProvider, SubmitHandler} from "react-hook-form";
+import {useForm, FormProvider, SubmitHandler, useWatch} from "react-hook-form";
 import AppInput from "@/components/forms/elements/AppInput";
 import styles from "@/app/page.module.scss";
 import React, {useEffect, useState} from "react";
@@ -33,6 +33,10 @@ export default function ForgotPasswordPage() {
     const [showPolicy, setShowPolicy] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
+    // Состояния для визуальной индикации email
+    const [emailSuccessful, setEmailSuccessful] = useState(false);
+    const emailValue = useWatch({control: methods.control, name: "email"});
+    const [emailError, setEmailError] = useState(false);
     const [emailStatus, setEmailStatus] = useState<"found" | "not_found" | null>(null);
 
     const isMac = useIsMac();
@@ -55,6 +59,18 @@ export default function ForgotPasswordPage() {
         setEmailStatus(result);
     };
 
+    // Отслеживание изменений email для визуальной индикации
+    useEffect(() => {
+        if (emailValue) {
+            const trimmedValue = emailValue.trim();
+            const isValidEmail = emailRegex.test(trimmedValue);
+            setEmailError(!isValidEmail && trimmedValue.length > 0);
+            setEmailSuccessful(isValidEmail);
+        } else {
+            setEmailError(false);
+            setEmailSuccessful(false);
+        }
+    }, [emailValue]);
 
     useEffect(() => {
         // Регистрируем email с кастомной валидацией
@@ -116,6 +132,8 @@ export default function ForgotPasswordPage() {
                                             title={"E-mail"}
                                             inputName="email"
                                             required={true}
+                                            isValid={emailSuccessful}
+                                            fail={emailError}
                                             onBlur={handleEmailBlur}
                                         />
                                         {emailStatus === "found" && (
