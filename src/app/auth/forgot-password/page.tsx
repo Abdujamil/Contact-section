@@ -245,7 +245,7 @@ export default function ForgotPasswordPage() {
                                     className={`
                                     ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'}
                                     hover:!text-[#3D9ED6] 
-                                    ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                                    ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
                                 >
                                     политикой конфиденциальности
                                 </Link>

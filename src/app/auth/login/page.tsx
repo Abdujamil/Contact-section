@@ -534,7 +534,7 @@ export default function LoginPage() {
                                 href="/politic/policy"
                                 className={`hover:!text-[#3D9ED6] 
                                 ${isMac ? 'text-[#adadad]' : 'text-[#e1e1e1]'} 
-                                ${styles["menu-item"]} !text-[16px] font-[300] ml-[4px]`}
+                                ${styles["menu-item"]} !text-[16px] font-[250] ml-[4px]`}
                             >
                                 политикой конфиденциальности
                             </Link>
