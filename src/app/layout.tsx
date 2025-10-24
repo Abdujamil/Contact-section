@@ -29,7 +29,7 @@ const roboto = Roboto({
     weight: ["100", "300", "400", "500", "700", "900"],
     style: ["normal"],
     display: "swap",
-    variable: "--font-roboto", // создаёт CSS-переменную
+    variable: "--font-roboto",
 });
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {

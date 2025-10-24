@@ -285,7 +285,7 @@ input:-webkit-autofill::first-line {
     font-family: 'Roboto', sans-serif;
     display: block;
     /*height: 51px;*/
-    height: 48px;
+    height: 49px;
     /*background: #4a587d;*/
     border-radius: 4px;
     font-size: 16px;

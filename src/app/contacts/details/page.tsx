@@ -29,7 +29,7 @@ export default function Contacts() {
                 initial={{y: 0, opacity: 1}}
                 animate={controls}
                 className={`${styles.contactRightContent} md:mr-[-5px]
-                !font-[Roboto] !font-[300] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] 
+                !font-[Roboto] !font-[200] w-full md:w-[860px] md:h-[432px] h-auto border border-[#353535] rounded-[6px] 
                 md:p-[41px] md:pt-[34px] md:mt-[0px] mb-[-1px] p-5`}
             >
                 <div className={`md:ml-[-1px]`}>
