@@ -270,7 +270,7 @@ input:-webkit-autofill::first-line {
 /*.field__input:focus,*/
 /*.field__textarea:focus*/
 
-.input-hover-effect:focus-within{
+.input-hover-effect:focus-within {
     -webkit-box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     box-shadow: inset 2px 2px 2px rgba(7, 26, 38, .502), inset -2px -2px 2px rgba(7, 26, 38, .502);
     z-index: 1;
@@ -330,11 +330,18 @@ input:-webkit-autofill::first-line {
 }
 
 .field__input:focus ~ .field__title,
-/*.field__input:hover ~ .field__title,*/
+    /*.field__input:hover ~ .field__title,*/
 .field__textarea:focus ~ .field__title
-/*.field__textarea:hover ~ .field__title*/
+    /*.field__textarea:hover ~ .field__title*/
 {
     opacity: 0;
+}
+
+.field__input[type="password"]::-ms-reveal, .field__input[type="password"]::-ms-clear {
+    display: none !important;
+}
+.field__input[type="password"]::-webkit-credentials-auto-fill-button, .field__input[type="password"]::-webkit-caps-lock-indicator {
+    display: none !important;
 }
 
 .field__title,

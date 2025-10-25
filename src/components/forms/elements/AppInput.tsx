@@ -531,7 +531,6 @@ const AppInput = forwardRef<HTMLInputElement, AppInputProps>(({
                 {/*    </span>*/}
                 {/*</div>*/}
 
-
                 {isPasswordType && (
                     <button
                         type="button"

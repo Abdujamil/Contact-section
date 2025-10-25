@@ -188,7 +188,7 @@ export default function ForgotPasswordPage() {
                                 </FormProvider>
 
                                 <div className={`yandex-mb-texts flex flex-col mb-[2.5px] ml-0 md:ml-[-6px]`}>
-                                    <p className={`!font-[Roboto] !font-[200] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
+                                    <p className={`!font-[Roboto] !font-[200] max-h-[30px] !leading-[120%] text-[#adadad] text-[16px] flex items-start justify-start gap-5`}>
                                         {/*<svg className={`min-w-[12px] mt-[4px]`} width="12" height="12" viewBox="0 0 12 12"*/}
                                         {/*     fill="none"*/}
                                         {/*     xmlns="http://www.w3.org/2000/svg">*/}
@@ -220,7 +220,7 @@ export default function ForgotPasswordPage() {
                                         </defs>
                                     </svg>
 
-                                    <p className={`!font-[Roboto] !font-[200] max-h-[30px] !leading-[120%] text-[#878787] text-[16px] flex items-start justify-start gap-5`}>
+                                    <p className={`!font-[Roboto] !font-[200] max-h-[30px] !leading-[120%] text-[#adadad] text-[16px] flex items-start justify-start gap-5`}>
                                         <svg className={`min-w-[9px] mt-[6px]`}
                                              width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect width="9" height="9" rx="2" fill="#3C404A"/>

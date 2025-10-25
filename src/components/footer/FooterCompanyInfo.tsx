@@ -23,7 +23,7 @@ const FooterCompanyInfo: React.FC = () => {
         <div className={`md:w-auto w-full flex items-start md:items-center justify-between`}>
             <div className="mx-[10px] text-left flex flex-col items-start md:items-start h-[89px] justify-between">
                 <p className="font-[300] font-[Roboto] text-[#adadad] text-[16px] leading-[110%]">ИНН 6000005874</p>
-                <p className="text-[18px] leading-[110%]">ООО &quot;АУДИОСЕКТОР&quot;</p>
+                <p className="text-[18px] leading-[110%] !text-[#adadad] ">ООО &quot;АУДИОСЕКТОР&quot;</p>
                 <p className="font-[300] font-[Roboto] text-[#adadad] text-[16px] leading-[110%]">© 2025 Audiosector</p>
             </div>
 

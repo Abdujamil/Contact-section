@@ -68,9 +68,9 @@ export default function PasswordInputWithStrength({className}: { className?: str
             </div>
 
             {isInputFocused && passwordStrength !== '' && (
-                <div className="mt-2.5 flex leading-[138%] justify-start gap-2 items-center absolute bottom-[-30px]">
+                <div className="mt-2.5 flex leading-[138%] justify-start gap-2 items-center absolute bottom-[-29px]">
                 <span className="font-[Roboto] text-[16px] text-[#adadad] font-[200]  leading-[80%]">
-                Сложность пароля:
+                    Сложность пароля:
                 </span>
                     <div className="relative">
                       <span
@@ -108,7 +108,6 @@ export default function PasswordInputWithStrength({className}: { className?: str
                     </div>
                 </div>
             )}
-
         </div>
     );
 }

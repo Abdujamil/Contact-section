@@ -605,7 +605,6 @@ export const DatePicker: React.FC<DatePickerProps> = ({
         ref.scrollTo({top: offset, behavior: "auto"});
     };
 
-
     const scrollToSelected = (indices?: { dayIndex: number, monthIndex: number, yearIndex: number }) => {
         console.log('=== scrollToSelected called ===');
         const dayIdx = indices?.dayIndex ?? centerDayIndex;
@@ -807,7 +806,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                         </div>
 
                         <div
-                            className="flex  justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[47px] z-[9]">
+                            className="flex justify-center gap-[30px] w-full h-full max-h-[160px] absolute top-[47px] z-[9]">
 
                             {/*Close icon*/}
                             <button onClick={onClose}
@@ -859,8 +858,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         {infiniteDays.map((day, index) => (
                                             <div
                                                 key={`day-${index}`}
-                                                className={`max-h-[20px] flex items-center justify-center text-lg  select-none
-                                                ${centerDayIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
+                                                className={`max-h-[20px] flex items-center justify-center text-lg  select-none font-[Roboto]  font-[200]
+                                                ${centerDayIndex === index ? 'text-[#adadad]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center', // ВАЖНО: возвращаем для трекпада
@@ -892,8 +891,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         {infiniteMonths.map((month, index) => (
                                             <div
                                                 key={`month-${index}`}
-                                                className={`max-h-[20px] flex items-center justify-start text-lg  select-none
-                                            ${centerMonthIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
+                                                className={`max-h-[20px] flex items-center justify-start text-lg  select-none font-[Roboto]  font-[200]
+                                            ${centerMonthIndex === index ? 'text-[#adadad]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center', // ВАЖНО: возвращаем для трекпада
@@ -925,8 +924,8 @@ export const DatePicker: React.FC<DatePickerProps> = ({
                                         {infiniteYears.map((year, index) => (
                                             <div
                                                 key={`year-${index}`}
-                                                className={`max-h-[20px] flex items-center justify-center text-lg  select-none
-                                            ${centerYearIndex === index ? 'text-[#ссс]' : 'text-[#878787]'
+                                                className={`max-h-[20px] flex items-center justify-center text-lg  select-none font-[Roboto]  font-[200]
+                                            ${centerYearIndex === index ? 'text-[#adadad]' : 'text-[#878787]'
                                                 }`}
                                                 style={{
                                                     scrollSnapAlign: 'center', // ВАЖНО: возвращаем для трекпада
@@ -944,7 +943,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
 
                             <button
                                 onClick={handleConfirm}
-                                className={`${styles['menu-item']}  leading-[19px]
+                                className={`${styles['menu-item']}  leading-[19px] font-[Roboto]  font-[200]
                                 !absolute bottom-[-46px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[9999] max-w-[54px] m-auto mb-[2px] text-[#3D9ED6]
                                  text-base cursor-pointer transition-colors`}
                             >
